@@ -1,0 +1,38 @@
+/* Treasury Map (stream: map). Uses theme tokens from styles.css. */
+.tmap-wrap { margin: 18px 0; }
+.tmap-flow { margin: 0 0 14px; padding: 10px 10px 6px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.tmap-flow svg { width: 100%; height: auto; display: block; font-family: var(--sans); }
+.tmap-flow figcaption { font-size: 12px; margin: 4px 6px 2px; }
+
+.tmap-rail { fill: var(--surface-2); stroke: var(--line); }
+.tmap-rail-label { font-size: 11px; letter-spacing: 0.08em; fill: var(--muted); font-weight: 600; }
+
+.tmap-edge path { fill: none; stroke: var(--line-2); stroke-width: 1.6; }
+.tmap-edge.dashed path { stroke-dasharray: 5 4; }
+.tmap-edge text { font-size: 11.5px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.tmap-edge.hot path { stroke: var(--accent); stroke-width: 2.2; }
+.tmap-edge.hot text { fill: var(--ink-2); font-weight: 600; }
+.tmap-edge.dim { opacity: 0.25; }
+.tmap-arrowhead { fill: var(--muted); }
+
+.tmap-node { cursor: pointer; }
+.tmap-node rect { fill: var(--surface); stroke: var(--line-2); stroke-width: 1.2; }
+.tmap-node text { font-size: 14.5px; font-weight: 650; fill: var(--accent); }
+.tmap-node-liquidity rect { stroke: var(--c-concept); }
+.tmap-node-markets rect { stroke: var(--c-survey); }
+.tmap-node-infra rect { stroke: var(--c-synthesis); }
+.tmap-node:hover rect { fill: var(--accent-soft); }
+.tmap-node.current rect { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.4; }
+.tmap-node.dim { opacity: 0.35; }
+
+.tmap-conn { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+.tmap-conn > div { border: 1px solid var(--line); border-radius: 9px; padding: 8px 12px; background: var(--surface-2); }
+.tmap-conn-h { font-size: 11.5px; font-weight: 650; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.tmap-conn ul { margin: 4px 0 0; padding-left: 16px; font-size: 13px; }
+.tmap-conn li { margin: 2px 0; }
+
+@media (max-width: 640px) {
+  /* The diagram becomes unreadable at phone width; the connection lists and cards carry the content. */
+  .tmap-flow { display: none; }
+  .tmap-conn { grid-template-columns: 1fr; }
+}

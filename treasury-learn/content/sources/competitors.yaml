@@ -1,0 +1,96 @@
+# Competitor-landscape sources (stream: competitors).
+# IMPORTANT: in the authoring session (2026-09-30) WebFetch was blocked by the network proxy for every domain tried, and the
+# session-wide WebSearch budget ran out after a handful of queries. Everything below was checked against search-result
+# snippets from the listed publisher only, not by opening the page. The note field says exactly what the snippet supported.
+- id: comp-ripple-gtreasury-pymnts
+  title: Ripple Acquires Treasury Management Systems Supplier GTreasury for $1 Billion
+  publisher: PYMNTS
+  year: 2025
+  url: https://www.pymnts.com/acquisitions/2025/ripple-acquires-treasury-management-systems-supplier-gtreasury-for-1-billion
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Search snippets (PYMNTS, Blockworks, Business Wire press release of 16 Oct 2025): Ripple announced a USD 1bn acquisition of Chicago-based GTreasury on 16 October 2025; GTreasury to continue as a subsidiary; closing expected 'within months', subject to regulatory approvals."
+- id: comp-ripple-gtreasury-bw
+  title: Ripple Breaks Into Corporate Treasury With $1B GTreasury Acquisition (press release)
+  publisher: Ripple via Business Wire
+  year: 2025
+  url: https://www.businesswire.com/news/home/20251016697362/en/Ripple-Breaks-Into-Corporate-Treasury-With-%241B-GTreasury-Acquisition
+  type: vendor
+  accessed: 2026-09-30 (search snippet only)
+  note: Vendor press release, 16 Oct 2025. Supports the date and headline value; everything else in it is a vendor claim.
+- id: comp-hg-gtreasury-exit
+  title: Hg agrees sale of GTreasury to Ripple for c. $1 billion
+  publisher: Hg (also reported by Hg Capital Trust, 16 Oct 2025)
+  year: 2025
+  url: https://hgcapital.com/insights/hg-agrees-sale-of-gtreasury-to-ripple/
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Seller's announcement: Hg first invested in GTreasury in 2023 and fully exits. States GTreasury serves 'more than 1,000 customers across 160 countries' (seller claim, not independently verified)."
+- id: comp-ripple-treasury-launch
+  title: Cash and Risk Management Solution Provider GTreasury Introduces Ripple Treasury
+  publisher: Crowdfund Insider
+  year: 2026
+  url: https://www.crowdfundinsider.com/2026/01/258716-cash-and-risk-management-solution-provider-gtreasury-introduces-ripple-treasury/
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Search snippets (Crowdfund Insider, The Block): GTreasury launched 'Ripple Treasury' on 27 January 2026, combining GTreasury's TMS with Ripple's digital-asset infrastructure (RLUSD stablecoin settlement, custody). Feature claims are vendor claims as reported."
+- id: comp-gtreasury-solvexia
+  title: GTreasury Acquires Solvexia (deal record)
+  publisher: PrivSource
+  url: https://www.privsource.com/acquisitions/deal/vXSOxe
+  type: news
+  accessed: 2026-09-30 (search result title only)
+  note: Only the deal-record title was seen ("GTreasury Acquires Solvexia"). Date and terms NOT verified. Solvexia is a reconciliation/finance-automation software vendor (background knowledge — verify).
+- id: comp-treasury4-treasurygo
+  title: Treasury4 Acquires TreasuryGo to Expand Enterprise Treasury Management Capabilities (deal record)
+  publisher: PrivSource
+  url: https://www.privsource.com/acquisitions/deal/9zS2aX
+  type: news
+  accessed: 2026-09-30 (search result title only)
+  note: Only the deal-record title was seen. Date and terms NOT verified.
+- id: comp-bridgepoint-kyriba-2019
+  title: Bridgepoint to acquire Kyriba
+  publisher: Bridgepoint
+  year: 2019
+  url: https://www.bridgepointgroup.com/about-us/news-and-insights/press-releases/2019/Bridgepoint-to-acquire-Kyriba
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Snippets (Bridgepoint; San Diego Business Journal): Bridgepoint led a USD 160m round giving a majority stake at a ~USD 1.2bn valuation; closed 11 April 2019; Daher Capital, Iris Capital and then-CEO Jean-Luc Robert remained investors."
+- id: comp-treasurytoday-didonato
+  title: "Kyriba's Melissa Di Donato: a leading light for ESG, DEI and impressive growth"
+  publisher: Treasury Today
+  url: https://treasurytoday.com/women-in-treasury/kyribas-melissa-di-donato-a-leading-light-for-esg-dei-and-impressive-growth/
+  type: practitioner
+  accessed: 2026-09-30 (search snippet only)
+  note: Snippet supports that Melissa Di Donato is Chair and CEO of Kyriba, succeeding Jean-Luc Robert, and that Bridgepoint reinvested during her first year. Profile piece; growth claims are the company's.
+- id: comp-kyriba-ga-aggregators
+  title: Kyriba company profile (funding history)
+  publisher: PitchBook / Tracxn (data aggregators)
+  year: 2026
+  url: https://pitchbook.com/profiles/company/51081-58
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Aggregator snippets state General Atlantic became a minority shareholder in Kyriba in a round dated October 2024. Secondary source — confirm against a Kyriba or General Atlantic press release before relying on it."
+- id: comp-coupa-bellin-2020
+  title: Coupa Acquires BELLIN Group To Boost Treasury Services
+  publisher: PYMNTS
+  year: 2020
+  url: https://www.pymnts.com/news/b2b-payments/2020/coupa-acquires-bellin-group-boost-treasury-services/
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Snippets: Coupa acquired BELLIN (Ettenheim, Germany; cloud TMS) from LEA Partners and founder Martin Bellin; completed June 2020; positioned as Coupa Treasury Management (cash, forecasting, payments, risk, intercompany netting). Price undisclosed."
+- id: comp-atlar-funding
+  title: Atlar — funding rounds
+  publisher: Seedtable / Crunchbase (data aggregators)
+  url: https://seedtable.com/companies/atlar/funding-rounds/seed-2022-11
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Snippets: seed round (Index Ventures) in November 2022; aggregator listed no later round. Customer names (Aiven, Acne Studios, GetYourGuide, Forto, Juni, Liberis) come from Atlar's own site as quoted — vendor claims. Later rounds NOT verified."
+- id: comp-atlar-treasuryspring
+  title: Atlar partners with TreasurySpring (news listing)
+  publisher: The Paypers
+  year: 2025
+  url: https://thepaypers.com/companies/latest-news-on-atlar--33812
+  type: news
+  accessed: 2026-09-30 (search snippet only)
+  note: "Snippet: in May 2025 Atlar partnered with TreasurySpring, a cash-investment platform, to add cash-investing capability. Partnership, not a funding round."

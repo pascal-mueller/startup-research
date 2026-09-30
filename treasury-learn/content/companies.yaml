@@ -34,7 +34,7 @@ companies:
       - { label: Revenue, value: "CHF ~80m (CHF 35%, EUR 45%, USD 20%)" }
       - { label: Cost base, value: "Mostly CHF (Swiss factory and engineers); EUR and USD component purchases" }
       - { label: Entities, value: "3: Alpine Robotics AG (CH), Alpine Robotics GmbH (DE), Alpine Robotics Inc. (US)" }
-      - { label: Banks, value: "2 (a cantonal bank as house bank + a large Swiss bank for FX/USD); 9 accounts" }
+      - { label: Banks, value: "2 Swiss banks (a cantonal bank as house bank + a large Swiss bank for FX, EUR/USD and the German account); the US subsidiary also keeps a local US account; 9 accounts in total" }
       - { label: Currencies, value: "CHF, EUR, USD" }
       - { label: Cash, value: "CHF 6–12m, swinging with large project milestone payments" }
       - { label: Debt, value: "CHF 12m committed operating credit line (usually CHF 0–5m drawn); CHF 6m mortgage on the plant" }

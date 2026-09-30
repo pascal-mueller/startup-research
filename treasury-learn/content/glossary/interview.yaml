@@ -1,0 +1,46 @@
+# Interview-preparation stream glossary: organisational terms you will hear in interviews and should not ask about naively.
+- id: front-middle-back-office
+  term: Front, middle and back office
+  aka: [front office, middle office, back office, treasury operations]
+  category: Organisation
+  plain: A way of splitting treasury work so that the person who does a deal is not the person who checks, confirms, pays and books it.
+  professional: "Front office decides and executes (dealing FX, placing deposits, drawing facilities, moving cash). Middle office measures and controls risk against policy (limits, exposure reports, hedge effectiveness, valuation). Back office (treasury operations) confirms deals with counterparties, settles them, maintains static data, reconciles and hands entries to accounting. The split exists for segregation of duties; in small teams the same two people cover all three with compensating controls."
+  example: "At GlobalChem, Jonas's FX desk (front office) books a EUR/USD 20m forward on the trading platform; Marta's team in Kraków (back office) matches the bank's confirmation, checks settlement instructions and settles on value date; the risk-reporting analyst (middle office) checks the hedge ratio against policy. At Helvetic, Daniel deals and Lea confirms — the split is by person, not by department."
+  related: [segregation-of-duties, four-eyes-principle, static-data, treasury-policy]
+  confusedWith: "**Investment-bank front/back office.** Same words, much smaller scale: a corporate front office executes to hedge or fund the business, not to trade for profit."
+
+- id: treasury-committee
+  term: Treasury committee
+  aka: [finance committee, risk committee, ALCO (in banks)]
+  category: Organisation
+  plain: A regular meeting where senior finance people review treasury risks and approve the bigger decisions and policies.
+  professional: "A management committee (typically CFO as chair, Group Treasurer, Head of Accounting/Controller, sometimes Tax and the CEO) meeting monthly or quarterly to review liquidity, funding, FX and interest-rate positions, counterparty exposure and policy compliance, and to approve hedging strategies, policy changes and limit breaches. Board or audit committee approves the treasury policy itself. Many SMEs have no formal committee — the CFO decides and the board minutes it."
+  example: "Helvetic's quarterly treasury committee (Thomas, Daniel, Claudia) reviews the 13-week forecast, the covenant headroom and the EUR hedge ratio, and approves raising the USD hedge ratio from 50% to 60% after a large US order."
+  related: [treasury-policy, hedge-ratio, covenant, liquidity-headroom]
+
+- id: cut-off-time
+  term: Cut-off time
+  aka: [bank cut-off, payment cut-off]
+  category: Payments
+  plain: The latest time of day a bank accepts a payment or transfer for execution with today's value date.
+  professional: "The bank- and currency-specific deadline for submitting payment instructions (and FX or deposit instructions) for same-day value; later instructions are executed next business day. Cut-offs drive the rhythm of treasury mornings: positions must be known and funding moves approved before them. They vary by currency, rail (e.g. SIC, TARGET2/T2, SEPA, Fedwire), channel and bank."
+  example: "Lea has to have Helvetic's EUR funding transfer to the Italian subsidiary approved in the e-banking tool before the bank's early-afternoon cut-off for same-day EUR value; if Daniel is in a meeting until later, the Italian payroll account goes overdrawn for a day."
+  related: [value-date, cash-position, rtgs, sepa]
+
+- id: static-data
+  term: Static data
+  aka: [master data, standing settlement instructions, SSIs]
+  category: Systems
+  plain: The reference information that rarely changes but must be exactly right — bank accounts, counterparties, settlement instructions, signatories, entity details.
+  professional: "Non-transactional reference data in treasury and payment systems: bank-account master data (IBAN/BIC, currency, entity, signatories), counterparty and standing settlement instructions, dealing limits, user rights, chart-of-accounts mappings. Changes are a prime fraud vector, so they are typically four-eyes controlled and owned by treasury operations or a master-data team rather than the person who executes payments."
+  example: "A supplier's 'new bank account' email arrives at Alpine; Petra's rule is that no vendor bank detail changes without a call-back to a known number and a second person approving the change in Business Central."
+  related: [vendor-master-data, four-eyes-principle, call-back-verification, front-middle-back-office]
+
+- id: forecast-submission
+  term: Forecast submission (subsidiary cash forecast)
+  aka: [local forecast, reporting package, cash forecast template]
+  category: Forecasting
+  plain: The cash forecast each subsidiary's finance team sends to group treasury, usually in a fixed template on a fixed day.
+  professional: "The periodic (weekly or monthly) delivery by each reporting entity of expected receipts and payments by currency and category for the forecast horizon, via an Excel template, a TMS/forecasting portal or an ERP extract. Its quality depends on local finance's incentives, knowledge of AR/AP timing and time available; group treasury aggregates, challenges and adjusts it."
+  example: "Every Tuesday by 12:00 Giulia (HM Italia) uploads her 13-week template; Lea chases the two entities that are late, notices Italy's receipts are identical to last week's, and asks Giulia whether she rolled the file forward without updating it."
+  related: [short-term-forecast, direct-method, variance-analysis, fpa]

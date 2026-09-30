@@ -1,0 +1,74 @@
+# Sources for stream "map" (Treasury Map area pages).
+# Research note: during this authoring session direct page fetches were blocked by the network egress policy.
+# Each entry below was verified against the publisher's own page as returned by web search (title, URL and
+# summary text from that page). Figures are quoted only where the search result attributed them to the publisher.
+- id: bis-triennial-2025
+  title: "Global FX trading hits $9.6 trillion a day in April 2025 and OTC interest rate derivatives surge 79%"
+  publisher: Bank for International Settlements (BIS)
+  year: 2025
+  url: https://www.bis.org/media-releases/20250930-global-fx-trading-hits-96-trillion-day-april-2025-and-otc-interest-rate-derivatives-surge-79
+  type: official
+  note: "Triennial Central Bank Survey, April 2025 (published 30 Sep 2025; 52 jurisdictions, 1,100+ dealers). FX turnover USD 9.6tn/day, +28% vs 2022; USD on one side of 89% of trades, EUR 28.9%, JPY 16.8%; UK, US, Singapore and Hong Kong desks 75% of trading."
+- id: afp-liquidity-2025
+  title: "Survey: 61 Percent of Organizations Choose Safety as Their Top Short-Term Investment Objective (2025 AFP Liquidity Survey)"
+  publisher: Association for Financial Professionals (AFP)
+  year: 2025
+  url: https://www.financialprofessionals.org/about/learn-more/press-releases/Details/survey-61-percent-of-organizations-choose-safety-as-their-top-short-term-investment-objective
+  type: survey
+  note: "Mainly US organisations. 61% name safety the top short-term investment objective. Average 80% of short-term investment balances in bank deposits, MMFs and Treasury securities (83% in 2024); bank deposits ~46% of short-term investments (47% in 2024); government/Treasury MMFs ~20% (26% for public companies)."
+- id: kpmg-gts-2025-summary
+  title: "Global Treasury Survey 2025: Treasury as a strategic control centre"
+  publisher: KPMG Germany
+  year: 2025
+  url: https://kpmg.com/de/en/home/insights/2025/11/global-treasury-survey-2025.html
+  type: survey
+  note: "340 treasury experts from 20+ countries (skewed to larger, KPMG-network companies). 76% of participants use a treasury management system; AI used by about 10%, mainly for liquidity forecasting, reporting and fraud prevention."
+- id: milltech-fx-2025
+  title: Key global trends shaping corporate FX hedging in 2025
+  publisher: MillTech (FX-hedging platform; vendor-sponsored survey)
+  year: 2025
+  url: https://milltech.com/resources/blog/Key-global-trends-shaping-corporate-FX-hedging-in-2025
+  type: survey
+  note: "Vendor survey of ~750 senior finance executives (US, UK, Europe). Average hedge ratio ~48% (Europe and North America ~49%); average hedge tenor ~5.3 months. Mid-sized corporates; treat as indicative, not representative."
+- id: hackett-wc-2025
+  title: "The Hackett Group 2025 Working Capital Survey: Payables Rebound but Receivables and Inventory Lag"
+  publisher: The Hackett Group (press release via Business Wire)
+  year: 2025
+  url: https://www.businesswire.com/news/home/20250818205819/en/The-Hackett-Group-2025-Working-Capital-Survey-Payables-Rebound-but-Receivables-and-Inventory-Lag
+  type: survey
+  note: "Top 1,000 US listed non-financial companies (2024 financials). Cash conversion cycle improved 4% to 37 days; DPO rebounded to ~59 days; DSO and DIO worsened slightly; USD 1.7tn estimated excess working capital. Hackett also publishes a separate European edition (2025) reporting a deterioration."
+- id: pwc-wcs-2425
+  title: PwC's Working Capital Study 24/25
+  publisher: PwC
+  year: 2024
+  url: https://www.pwc.dk/en/articles-publications/2024/wcs-24-25.html
+  type: survey
+  note: "Listed companies globally. EUR ~1.56tn of 'excess' working capital; DSO up ~6.6% over five years; DPO flat overall with a widening gap between large companies (higher DPO) and smaller ones (declining DPO); inventory improvement stalling."
+- id: snb-mpa-2026-09
+  title: SNB monetary policy assessment of 24 September 2026 (policy rate unchanged at 0%)
+  publisher: Swiss National Bank, as reported by PostFinance market view
+  year: 2026
+  url: https://www.postfinance.ch/en/private/investing/knowledge/market-view/snb-keeps-policy-rate.html
+  type: official
+  note: "SNB left its policy rate at 0% on 24 Sep 2026 (also unchanged in March and June 2026); inflation ~0.8%, within target. Used for the 'CHF deposits earn roughly nothing' framing."
+- id: estv-safe-harbour-2026
+  title: Swiss safe harbour intercompany interest rates for 2026 announced
+  publisher: Deloitte Switzerland (summarising the Swiss Federal Tax Administration circular)
+  year: 2026
+  url: https://www.deloitte.com/ch/en/services/tax/blogs/swiss-safe-harbour-intercompany-interest-rates-for-2026-announced.html
+  type: practitioner
+  note: "SFTA circular (Jan 2026): minimum rate on equity-financed CHF loans to related parties 0.75% (1.00% in 2025); debt-financed: own cost plus 0.5% (to CHF 10m) / 0.25% (above), minimum 0.75%; maximum CHF borrowing rates from related parties for operating companies 3.5% up to CHF 1m and 1.5% above. Rates are safe harbours; arm's-length evidence can justify others."
+- id: sec-mmf-2023
+  title: SEC Adopts Significant Money Market Fund Reforms
+  publisher: Dechert LLP
+  year: 2023
+  url: "https://www.dechert.com/content/dam/dechert files/knowledge/onpoint/2023/7/2023-08-SEC-Adopts-Significant-Money-Market-Fund Reforms.pdf"
+  type: practitioner
+  note: "Law-firm summary of the SEC's July 2023 Rule 2a-7 amendments: redemption gates removed; mandatory liquidity fee for institutional prime and institutional tax-exempt funds when net redemptions exceed 5% of net assets (compliance 2 Oct 2024); higher minimum liquidity requirements from 2 April 2024. By Oct 2024 the institutional prime/tax-exempt sector had shrunk from 52 funds (USD 666.5bn) to 20 (USD 349.1bn) as reported by ICI/Crane data in search results — cited only as direction of travel."
+- id: bk-non-bank-rules
+  title: Briefing on the Swiss 10/20 non-bank rules and group financing
+  publisher: Bär & Karrer (Swiss law firm)
+  year: 2019
+  url: https://media.baerkarrer.ch/karmarun/image/upload/baer-karrer/BK-briefing-non-bank-rule-190212_.pdf
+  type: practitioner
+  note: "Explains why Swiss withholding tax (35% on interest from bonds and bank-like deposits) and the '10/20 non-bank rules' shape Swiss group financing and cash-pool design, and the intra-group exemption. Older; the rules were under reform discussion — tax advice is required for any real structure."

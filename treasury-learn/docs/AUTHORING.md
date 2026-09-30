@@ -192,3 +192,11 @@ Business / external: `subsidiary-finance` (local finance manager / subsidiary CF
   Manager, Helvetic), /day/lea (Treasury Analyst, Helvetic), /day/anna (Group Treasurer, GlobalChem),
   /day/priya (Head of Cash & Liquidity / cash manager, GlobalChem).
 - Screenshots: `node scripts/shot.mjs <your scratch dir> "/route"` (Chromium is at /opt/pw-browsers/chromium).
+
+## Canonical facts clarified after exemplar review (apply everywhere)
+- **Helvetic has NO cash pool.** Daniel concentrates cash manually by intercompany loan (a pool is at most "under evaluation").
+- At Helvetic, **Lea (analyst) prepares** the daily position and forecast; **Daniel decides**.
+- **Time zones:** for a Swiss company, Asian banks' prior-day statements arrive *early* (they are ahead of CET); US statements arrive last. A missing Chinese statement is a connectivity/bank problem, not a time-zone one.
+- **CHF rates ≈ 0%:** a company with a drawn RCF uses surplus CHF to repay/reduce drawings at the next rollover rather than placing CHF deposits; CHF deposits earn ~nothing. EUR/USD surplus can earn €STR/SOFR-level rates.
+- Keep amounts consistent with companies.yaml (bank-account counts, debt, covenant ratios, payroll scale).
+- **Web access:** WebFetch is blocked for most domains by the environment's egress policy; WebSearch works. Verify from search results that come from the original publisher; otherwise don't state the number.

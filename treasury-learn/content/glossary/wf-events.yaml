@@ -1,0 +1,183 @@
+# Glossary terms introduced by the "Events & crises" workflows (stream wf-events).
+- id: change-of-control
+  term: Change-of-control clause
+  aka: [CoC clause, change of control]
+  category: Debt & funding
+  plain: A clause in a loan, bond, lease or contract that lets the other side demand repayment or renegotiate if the company gets a new owner.
+  professional: >-
+    A provision (in facility agreements, bond terms, ISDA schedules, leases, key customer/supplier contracts) triggered
+    when a defined party acquires control of the obligor. Typical consequences in debt: mandatory prepayment or
+    cancellation at lenders' option, an investor put at 100–101% in bonds, or an event of default. In an acquisition,
+    the target's facilities are usually either repaid at closing or waived by lenders in advance.
+  example: >-
+    Helvetic buys a German machine-tool company with EUR 22m of bilateral bank loans. Both loan agreements allow the
+    banks to cancel and demand repayment on a change of control, so Daniel arranges payoff letters and repays them
+    from the RCF on the closing date.
+  related: [covenant, syndicated-loan, term-loan, refinancing-risk]
+  confusedWith: "**Covenant** — a covenant is a test the borrower must keep passing; a change-of-control clause is triggered by an ownership event, regardless of performance."
+- id: transition-services-agreement
+  term: Transition services agreement (TSA)
+  aka: [TSA]
+  category: Organisation
+  plain: A temporary contract under which the seller keeps providing services (payroll, IT, payments, treasury) to a business it has sold until the buyer can take them over.
+  professional: >-
+    In carve-out acquisitions, an agreement defining services the seller continues to provide post-closing for a fee
+    and a fixed period (typically 3–18 months) — often including ERP access, payment processing, bank connectivity
+    and sometimes cash pooling. Treasury must plan the exit from each service before the TSA expires.
+  example: >-
+    GlobalChem buys a coatings division from a larger group. For nine months the seller's shared-service centre still
+    runs the division's supplier payments from its own ERP under the TSA; GlobalChem's payment factory takes over
+    entity by entity.
+  related: [payment-factory, erp, bank-account-management-term]
+- id: funds-flow-memo
+  term: Funds flow memorandum
+  aka: [funds flow, closing funds flow, sources and uses at closing]
+  category: Payments
+  plain: The spreadsheet that lists every payment that must happen on the day an acquisition closes — who pays whom, how much, from which account, by what time.
+  professional: >-
+    Closing document prepared by the buyer's finance team and advisers listing all sources (facility drawings, cash
+    on hand) and uses (purchase price to seller, repayment of target debt per payoff letters, transaction fees,
+    escrow amounts), with beneficiary bank details, value dates and cut-offs. Agreed with the seller's side before
+    closing; treasury executes against it.
+  example: >-
+    Helvetic's funds flow: sources CHF 95m RCF drawing + CHF 17m own cash; uses EUR 95.7m to the seller, EUR 22m to
+    repay the target's two bank loans, EUR 2.3m advisers' fees — all value-dated on closing day.
+  related: [payment-run, value-date, drawdown, four-eyes-principle]
+- id: locked-box
+  term: Locked box
+  aka: [locked-box mechanism]
+  category: Accounting & tax
+  plain: A way of fixing an acquisition price on a past balance sheet, with the seller promising not to take cash out of the company after that date.
+  professional: >-
+    Purchase-price mechanism in which the equity price is fixed by reference to a historical balance sheet (the
+    locked-box date); the seller warrants no "leakage" (dividends, fees, unusual payments) between that date and
+    closing. Contrasts with completion accounts, where cash, debt and working capital are measured at closing and the
+    price adjusted afterwards. The mechanism determines how much treasury cares about cash movements before closing.
+  example: >-
+    Under a locked box dated 30 June, the seller of Helvetic's target may not pay itself a dividend in September; if
+    Lea spots such a payment in the first bank statements after closing, it is a leakage claim.
+  related: [net-debt, cash-position]
+- id: budget-rate
+  term: Budget rate
+  aka: [plan rate, budget FX rate]
+  category: FX
+  plain: The exchange rate the company assumed when it set its budget; everything is measured against it.
+  professional: >-
+    The FX rate(s) fixed in the annual plan for translating foreign-currency sales and costs. Hedging programmes often
+    aim to protect the budget rate; after a large move, management must decide whether to keep reporting against the
+    old budget rate or re-base targets — which also affects bonus targets and price lists.
+  example: >-
+    Helvetic budgeted EUR/CHF 0.94. After an 8% move to 0.865, each unhedged EUR 10m of margin is worth CHF 0.75m
+    less than plan in CHF.
+  related: [fx-exposure, hedge-ratio, forward, transaction-exposure]
+  confusedWith: "**Spot rate** — the market rate today; the budget rate is an internal planning assumption and does not move."
+- id: credit-support-annex
+  term: Credit Support Annex (CSA)
+  aka: [CSA, collateral agreement]
+  category: Risk & control
+  plain: An add-on to a derivatives contract that makes the side whose trades are losing money post cash or securities as collateral.
+  professional: >-
+    An annex to the ISDA Master Agreement governing bilateral collateral: which party posts variation margin, eligible
+    collateral, thresholds, minimum transfer amounts and valuation timing. Most non-financial corporates below the
+    regulatory clearing thresholds hedge without a CSA (the bank prices the credit risk into the forward instead);
+    larger corporates sometimes sign one-way or high-threshold CSAs to get better pricing.
+  example: >-
+    GlobalChem has CSAs with two of its seven relationship banks (threshold EUR 25m, illustrative). When its EUR/CHF
+    hedges move EUR 40m into the bank's favour, GlobalChem must post EUR 15m of cash the next business day.
+  related: [isda, margin-call, mark-to-market, counterparty-limit]
+- id: margin-call
+  term: Margin call
+  aka: [collateral call, variation margin call]
+  category: Risk & control
+  plain: A demand from a bank or clearing house to hand over cash now because your derivative positions have lost value.
+  professional: >-
+    A call for additional variation (or initial) margin under a CSA or clearing arrangement when the mark-to-market
+    of positions moves against the posting party beyond thresholds. For corporates with collateralised hedges, a large
+    FX or rate move turns a paper loss into a same-day or next-day cash outflow — a liquidity event, not just an
+    accounting one.
+  example: >-
+    After an 8% currency move, a group with EUR 300m of forwards under a zero-threshold CSA could face a call of
+    roughly EUR 24m within a day — cash that must come from the pool or a facility drawing.
+  related: [credit-support-annex, mark-to-market, liquidity-risk, isda]
+- id: thirteen-week-cash-flow
+  term: 13-week cash flow (13WCF)
+  aka: [13WCF, 13-week cash forecast, TWCF]
+  category: Forecasting
+  plain: A week-by-week forecast of cash in and out for the next quarter, used as the main steering tool when cash is tight.
+  professional: >-
+    A direct-method, rolling 13-week receipts-and-disbursements forecast by entity. In normal times it is the
+    standard short-term forecast; in distress it becomes the control document — updated weekly or daily, with
+    variance reporting, and often a document that lenders require as a condition of waivers or continued funding.
+  example: >-
+    When two large receipts fail to arrive, Alpine's CFO moves the weekly cash sheet to a 13-week format updated daily
+    and sends a weekly version with variances to the cantonal bank.
+  related: [short-term-forecast, direct-method, variance-analysis, liquidity-headroom]
+  confusedWith: "**FP&A forecast** — a P&L-based monthly view; the 13WCF tracks actual cash by week and can differ sharply from profit."
+- id: covenant-waiver
+  term: Covenant waiver
+  aka: [waiver, amendment and waiver, covenant reset]
+  category: Debt & funding
+  plain: Lenders' formal agreement not to act on a broken (or about-to-break) loan condition, usually in exchange for a fee, higher margin or more information.
+  professional: >-
+    A written consent from the required majority of lenders waiving a covenant breach or amending a test (a "reset")
+    before a breach occurs. Typically priced (waiver fee, margin step-up) and conditioned (e.g. monthly reporting,
+    a 13-week cash flow, restrictions on dividends or acquisitions). Requested proactively — asking before the test
+    date is far cheaper than after an event of default.
+  example: >-
+    If Helvetic's leverage were forecast at 3.4x against a 3.25x covenant at the June test, Daniel would approach the
+    four RCF banks in April for a one-off reset to 3.75x, offering a fee and quarterly instead of semi-annual reporting.
+  related: [covenant, leverage-ratio, syndicated-loan, rcf]
+- id: material-adverse-change
+  term: Material adverse change (MAC) clause
+  aka: [MAC, MAE, material adverse effect]
+  category: Debt & funding
+  plain: A loan clause that lets lenders refuse new drawings if the borrower's business has got materially worse.
+  professional: >-
+    A representation or event of default referring to a material adverse change in the borrower's business, assets or
+    financial condition. In committed facilities, the repeating representations tested at each drawing request mean
+    a MAC can act as a draw-stop. Lenders rarely invoke it (it is hard to prove), but the uncertainty is one reason
+    treasurers draw committed lines early in a crisis.
+  example: >-
+    Alpine's CFO draws CHF 5m on the committed line in week 1 of the liquidity squeeze, while the drawing conditions
+    are clearly met, rather than waiting until week 8 when the bank might argue the situation has materially changed.
+  related: [committed-facility, drawdown, covenant, rcf]
+- id: cross-default
+  term: Cross-default
+  aka: [cross-acceleration]
+  category: Debt & funding
+  plain: A clause saying that if you default on one loan, you are treated as in default on this one too.
+  professional: >-
+    A provision making a default (or acceleration, in the narrower cross-acceleration form) under other financial
+    indebtedness above a threshold an event of default under this agreement. It turns a problem with one lender into
+    a problem with all of them, which is why one covenant breach can threaten a company's entire financing.
+  example: >-
+    Helvetic's RCF contains a cross-default with a threshold of CHF 10m (illustrative); a default on the CHF 100m bond
+    would therefore also let the RCF banks cancel the facility.
+  related: [covenant, bond, rcf, syndicated-loan]
+- id: short-time-work
+  term: Short-time work (Kurzarbeit)
+  aka: [Kurzarbeit, RHT, reduced working hours compensation]
+  category: Organisation
+  plain: A government scheme that pays part of employees' wages when a company temporarily cuts working hours instead of laying people off.
+  professional: >-
+    In Switzerland (Kurzarbeitsentschädigung / RHT, administered via the cantonal unemployment funds) and Germany,
+    companies facing a temporary, unavoidable loss of work can reduce hours and receive compensation for part of
+    the lost wages. Swiss firms used it after the 2015 franc shock and heavily in 2020. For treasury it is a cash-flow
+    lever: lower payroll outflow, with the compensation arriving with a lag.
+  example: >-
+    After the 2015 floor removal, some Swiss exporters combined short-time work in weak departments with longer
+    unpaid hours elsewhere to cut unit labour cost in CHF.
+  related: [operating-cash-flow, cash-buffer]
+- id: deposit-insurance
+  term: Deposit insurance
+  aka: [deposit protection, esisuisse, FDIC insurance]
+  category: Banking & connectivity
+  plain: A guarantee scheme that repays depositors up to a limit if a bank fails — a limit far below the balances companies usually hold.
+  professional: >-
+    Statutory protection of bank deposits up to a cap per depositor per bank: USD 250,000 at the FDIC in the US,
+    CHF 100,000 in Switzerland (esisuisse), EUR 100,000 in the EU. Corporate operating balances are therefore mostly
+    uninsured, which is why bank counterparty limits, diversification and money market funds matter.
+  example: >-
+    Kleio's CHF 22m would be protected only up to CHF 100,000 per bank; the rest depends on the bank's solvency —
+    the reason its board asked for cash to be split across two Swiss banks after SVB.
+  related: [counterparty-limit, money-market-fund, counterparty, liquidity-risk]

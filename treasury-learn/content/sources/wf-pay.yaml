@@ -5,7 +5,7 @@
   year: 2025
   url: https://www.financialprofessionals.org/about/learn-more/press-releases/Details/survey-79-percent-of-organizations-were-victims-of-attempted-or-actual-payments-fraud-activity-in-2024
   type: survey
-  note: "Press release for the 2025 AFP Payments Fraud and Control Survey (data for 2024), 521 corporate practitioners, mainly US, published 15 Apr 2025. 79% experienced attempted or actual payments fraud; 63% named BEC the No. 1 avenue for fraud attempts; wires the method most targeted by BEC (63%, up from 39%); ACH credits targeted by BEC 50%; vendor imposter fraud 45% (+11 pp); 22% recovered 75%+ of lost funds (down from 41%)."
+  note: "Press release for the 2025 AFP Payments Fraud and Control Survey (data for 2024). Figures recorded by the session-1 author from the press release (headline 79% re-confirmed in session 2; the rest could not be re-opened because the site was blocked): 521 corporate practitioners, mainly US, published 15 Apr 2025. 79% experienced attempted or actual payments fraud; 63% named BEC the No. 1 avenue for fraud attempts; wires the method most targeted by BEC (63%, up from 39%); ACH credits targeted by BEC 50%; vendor imposter fraud 45% (+11 pp); 22% recovered 75%+ of lost funds (down from 41%)."
 - id: afp-pfc-2026
   title: "Over 75 Percent of U.S. Firms Experienced Payments Fraud in 2025, While AI Adoption for Fraud Mitigation Lags"
   publisher: AFP, survey underwritten by Truist
@@ -118,3 +118,89 @@
   url: https://insights.encompasscorporation.com/2025-encompass-corporate-treasurer-kyc-survey
   type: survey
   note: "Vendor-sponsored survey of 250 corporate treasurers; geography and method not shown on the landing page. 84% dissatisfied with their bank's KYC process; 92% asked for the same information more than once. Treat as indicative."
+
+# ---- added in session 2 (verified via publisher search snippets; WebFetch was egress-blocked in this session) ----
+- id: afp-pfc-2026-highlights
+  title: 2026 AFP Payments Fraud and Control Survey Report — Key Highlights
+  publisher: AFP / Truist (underwriter)
+  year: 2026
+  url: https://www.truist.com/content/dam/truist-bank/us/en/documents/info/cci/2026-afp-payments-fraud-control-survey-report-key-highlights.pdf
+  type: survey
+  note: "Key-highlights summary of the 2026 survey (data for 2025, 465 corporate practitioners, mostly US, 22nd edition). 76% experienced attempted or actual payments fraud; paper checks the most targeted method (58%), followed by ACH debits (30%) and wire transfers (25%); 74% affected by BEC; 17% use AI against payments fraud. US-centric: checks barely exist in Swiss corporate payments."
+- id: swift-eoc-2025
+  title: "ISO 20022: Implementation FAQs / ISO 20022 end of coexistence guide"
+  publisher: Swift
+  year: 2025
+  url: https://www.swift.com/standards/iso-20022/iso-20022-faqs/implementation
+  type: standard
+  note: "Coexistence of MT and ISO 20022 for cross-border bank-to-bank payment instructions (CBPR+) ended 22 Nov 2025; MT 103/202 etc. still sent by lagging banks are converted under chargeable contingency processing. Applies to the interbank leg — corporate-to-bank formats (pain.001, MT101, MT940) are governed by bank/market timelines."
+- id: epc-vop-bulk-faq
+  title: Clarifications about the provision of VOP-services for bulk files
+  publisher: European Payments Council
+  year: 2025
+  url: https://www.europeanpaymentscouncil.eu/faq/verification-payee-scheme/rulebook/clarifications-about-provision-vop-services-bulk-files
+  type: standard
+  note: "Under the Instant Payments Regulation PSPs must offer VoP for bulk files, but non-consumer payers may opt out for multiple payment orders submitted as a package and opt back in at any time. EU PSPs from 9 Oct 2025; non-euro EU states by 9 Jul 2027."
+- id: epc-vop-golive
+  title: "Verification of Payee: Insights from Go-Live"
+  publisher: European Payments Council
+  year: 2026
+  url: https://www.europeanpaymentscouncil.eu/news-insights/insight/verification-payee-insights-go-live
+  type: official
+  note: "Post-go-live review: corporate clients raised many queries — 'No Match' results for trade names, opt-out procedures for bulk files, integrating Close Match / No Match / 'verification not possible' results into payment processes; banks took varying approaches."
+- id: six-address-factsheet
+  title: Adjustment of addresses in payment orders and migration to new message versions (factsheet for SMEs)
+  publisher: SIX
+  year: 2025
+  url: https://www.six-group.com/dam/download/banking-services/standardization/sps/factsheet-address-messageversion-sme-en.pdf
+  type: standard
+  note: "19 Aug 2025. From November 2026 structured or hybrid addresses become mandatory in Swiss payment orders for all payment types (Town Name and Country always filled); orders with unstructured addresses must have an execution date before 14 Nov 2026. From then pain.001.001.09 and camt.05x.001.08 (ISO 2019 versions) must be used."
+- id: six-sps-ig-ct-2026
+  title: "Swiss Payment Standards — Implementation Guidelines Customer Credit Transfer (pain.001), version 2.3"
+  publisher: SIX
+  year: 2026
+  url: https://www.six-group.com/dam/download/banking-services/standardization/sps/ig-credit-transfer-sps-2026-en.pdf
+  type: standard
+  note: "The Swiss rules for pain.001.001.09 files sent by companies to Swiss banks (payment types, QR reference handling, addresses, character set). Updated annually with the SIC release in November."
+- id: six-ebics
+  title: EBICS — Payment Standards for Switzerland (with Swiss bank migration notices)
+  publisher: SIX; UBS; Raiffeisen
+  year: 2026
+  url: https://www.six-group.com/en/products-services/banking-services/payment-standardization/standards/ebics.html
+  type: standard
+  note: "Swiss market practice for EBICS. Swiss banks' notices (UBS, Raiffeisen) state the migration period to EBICS 3.0 ends 13 Nov 2026; afterwards EBICS 2.5 is limited (e.g. PDF download, LSV) and pain.001.001.09 / camt.05x.001.08 are exchanged only via EBICS 3.0. EBICS 3.0 replaces 2.5 order types (e.g. XE2, Z53) with Business Transaction Formats; minimum 2048-bit user keys."
+- id: encompass-kyc-2024
+  title: A corporate treasurer's perspective on KYC complexities
+  publisher: Encompass Corporation (KYC software vendor)
+  year: 2024
+  url: https://www.encompasscorporation.com/blog/a-corporate-treasurers-perspective-on-kyc-complexities/
+  type: survey
+  note: "Vendor survey of 250 corporate treasurers split evenly UK/US: average 41 days to open a new bank account; 93% asked for the same information more than once; 87% had abandoned a banking application at least once. Vendor-sponsored, UK/US only — indicative, not a Swiss benchmark."
+- id: crowe-swiss-account
+  title: Opening a Swiss Business Bank Account
+  publisher: Crowe Switzerland
+  year: 2025
+  url: https://www.crowe.com/ch/zh/en-gb/insights/opening-a-swiss-business-bank-account
+  type: practitioner
+  note: "Adviser checklist of documents Swiss banks request from companies: commercial-register extract, articles, organisation chart, ID and residence proof of shareholders and beneficial owners, financial statements or business plan, major contracts, overview of expected payment flows. Banks must identify controlling persons (25% threshold, AMLA art. 4) — Form K under the Swiss banks' due-diligence agreement (CDB 20)."
+- id: lenz-transparency-2026
+  title: New Legal Entities Transparency Act to enter into force on 1 October 2026
+  publisher: Lenz & Staehelin
+  year: 2026
+  url: https://www.lenzstaehelin.com/news-and-insights/browse-thought-leadership-insights/insights-detail/new-legal-entities-transparency-act-to-enter-into-force-on-1-october-2026
+  type: practitioner
+  note: "Swiss Transparency Act (passed 26 Sep 2025) in force 1 Oct 2026: non-public federal register of beneficial owners run by the Federal Office of Justice; financial intermediaries can access it for AML due diligence; replaces companies' purely internal beneficial-owner lists."
+- id: gtreasury-automatch
+  title: How CFOs are achieving 98% auto-match rates in reconciliation
+  publisher: GTreasury (TMS vendor)
+  year: 2025
+  url: https://www.gtreasury.com/posts/cfos-achieving-98-auto-match-rates-reconciliation
+  type: vendor
+  note: "Vendor marketing claiming 98% auto-match rates with its reconciliation tooling. Cited only as an example of vendor claims — not an industry benchmark."
+- id: gt-bsb-2013
+  title: "The 822, the TWIST BSB and the ISO BSB: What's It All About?"
+  publisher: The Global Treasurer
+  year: 2013
+  url: https://www.theglobaltreasurer.com/2013/02/21/the-822-the-twist-bsb-and-the-iso-bsb-whats-it-all-about
+  type: practitioner
+  note: "Background on the lineage of electronic bank fee statements: US EDI 822 account analysis, the European TWIST BSB standard, and the ISO 20022 camt.086 message (first published 2012) with AFP global service codes."

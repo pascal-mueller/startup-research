@@ -539,7 +539,7 @@
   category: Risk & control
   plain: The risk that changes in interest rates increase what you pay on debt or decrease what you earn on cash.
   professional: "Exposure of interest cost/income and of the value of debt and investments to rate changes. Floating-rate debt creates cash-flow risk; fixed-rate debt creates fair-value/opportunity risk. Managed by setting a target fixed/floating mix and using interest-rate swaps, caps or fixed-rate issuance."
-  example: "If SOFR rose 1 percentage point, GlobalChem's USD 300m of floating commercial paper would cost USD 3m more a year; its fixed-rate bonds would not change."
+  example: "If €STR rose 1 percentage point, rolling EUR 300m of GlobalChem's commercial paper would cost about EUR 3m more a year; its fixed-rate bonds would not change until they are refinanced."
   related: [fixed-vs-floating, interest-rate-swap, duration]
 
 - id: cash-flow-at-risk
@@ -850,3 +850,104 @@
   professional: "Forecast cash above the operating and strategic buffers over a given horizon, segmented by how long it is likely to be available (operating, core/reserve, strategic). Segmentation drives which instruments are allowed (sight deposits vs term deposits vs MMFs vs securities)."
   example: "Kleio's CHF 22m splits into ~CHF 4m operating cash, ~CHF 8m needed within 12 months, and ~CHF 10m 'reserve' that could be placed for 6–12 months."
   related: [cash-buffer, investment-policy, term-deposit, money-market-fund]
+
+# ---------------------------------------------------------------- Added in session 2 (map area pages)
+- id: rolling-forecast
+  term: Rolling forecast
+  aka: [rolling 13-week forecast, rolling horizon]
+  category: Forecasting
+  plain: A forecast that always looks the same distance ahead — each week the oldest week drops off and a new one is added at the end.
+  professional: "A forecast with a constant horizon (e.g. 13 weeks, 12 months) re-issued at a fixed cadence, as opposed to a static forecast that runs to a fixed date such as year-end. Rolling cash forecasts are the norm in treasury; FP&A budgets are usually static annual plans with periodic re-forecasts."
+  example: "Every Tuesday Lea rolls Helvetic's 13-week forecast: last week's column becomes an 'actual', week 14 is added, and she records how far last week's forecast was off."
+  related: [short-term-forecast, medium-term-forecast, forecast-accuracy, variance-analysis]
+
+- id: forecast-accuracy
+  term: Forecast accuracy
+  aka: [forecast error, actual vs forecast, forecast variance]
+  category: Forecasting
+  plain: How close the cash forecast turned out to be to what actually happened.
+  professional: "Measured per line, entity and horizon as the difference between forecast and actual cash flows (absolute error, percentage error or bias). Useful metrics separate timing errors (the cash came a week later) from permanent errors (the cash never came) and look at bias (systematically optimistic receipts) rather than only the total."
+  example: "Helvetic's week-1 forecast for HM Italia receipts was EUR 3.0m; EUR 1.9m arrived. The EUR 1.1m gap is a timing error (one customer paid 9 days late), but Italy has been over-optimistic in 8 of the last 10 weeks — a bias Daniel now corrects by haircutting Italy's week-1 receipts by 20%."
+  related: [variance-analysis, rolling-forecast, short-term-forecast]
+  confusedWith: "**Budget variance.** FP&A's variance compares actual profit to budget; treasury's forecast accuracy compares actual cash timing to the last cash forecast."
+
+- id: scenario-analysis
+  term: Scenario analysis
+  aka: [stress test, what-if analysis, downside case]
+  category: Forecasting
+  plain: Re-running the cash forecast under "what if" assumptions to see whether the company still has enough cash.
+  professional: "Deterministic variations of the base forecast (e.g. largest customer pays 60 days late, EUR/CHF −8%, RCF unavailable) used to size buffers and facilities and to prepare responses. Distinct from statistical measures such as cash flow at risk; most mid-sized companies use a handful of named scenarios rather than simulations."
+  example: "Alpine's downside case moves two robot acceptances (CHF 3.4m) by one quarter: cash would fall to CHF 1.8m in week 9, so Martin checks that the CHF 12m credit line is undrawn enough to cover it."
+  related: [liquidity-headroom, cash-flow-at-risk, liquidity-risk]
+
+- id: stp
+  term: Straight-through processing
+  aka: [STP, STP rate]
+  category: Payments
+  plain: A payment or deal that goes all the way from creation to settlement and booking without anyone touching it by hand.
+  professional: "The share of transactions processed end to end without manual intervention (re-keying, repair, manual matching). Treasury tracks STP for payments (file creation to bank acceptance), trades (execution to confirmation and settlement) and postings (bank statement to GL). Low STP means cost, delay and error risk."
+  example: "GlobalChem's payment factory sends ~95% of supplier payments without manual repair; most exceptions are missing beneficiary data in non-SEPA countries."
+  related: [payment-factory, reconciliation, iso-20022]
+
+- id: ndf
+  term: Non-deliverable forward
+  aka: [NDF]
+  category: FX
+  plain: A currency forward where no currency is exchanged at the end — only the difference in value is paid, in dollars (or another major currency).
+  professional: "A cash-settled forward on a restricted or non-convertible currency (e.g. INR, KRW, TWD, BRL): at the fixing date the difference between the contracted rate and the official fixing is settled in USD or EUR. Used where onshore currency controls prevent offshore delivery. China has both an onshore CNY market and an offshore deliverable CNH market, so many corporates hedge CNY exposures via CNH or onshore instead of NDFs."
+  example: "GlobalChem's Indian subsidiary expects INR 400m of receipts; Jonas hedges the group exposure with a USD-settled INR NDF because the offshore entity cannot take delivery of rupees."
+  related: [forward, trapped-cash, fx-exposure]
+
+- id: layered-hedging
+  term: Layered hedging
+  aka: [rolling hedge programme, hedge layering, stacked hedges]
+  category: FX
+  plain: Hedging future currency flows bit by bit over time, so near months are hedged a lot and far months a little.
+  professional: "A policy-driven programme in which forecast exposures are hedged in tranches as they approach (e.g. 75% of months 1–3, 50% of months 4–6, 25% of months 7–12), averaging the achieved rate over time and limiting the damage from forecast error. The alternative — hedging the whole year at once — locks one rate but over-hedges if volumes fall."
+  example: "Helvetic's policy band is 60–90% of the next quarter's net EUR inflows and 30–60% of quarters 2–4. Each month Lea tops up the layers; Daniel executes EUR/CHF forwards with two banks."
+  related: [hedge-ratio, forward, fx-exposure, treasury-policy]
+
+- id: payment-terms
+  term: Payment terms
+  aka: [terms of payment, net 30, credit terms, Zahlungsbedingungen]
+  category: Working capital
+  plain: The agreed number of days a customer has to pay an invoice — and any discount for paying early.
+  professional: "Contractual conditions for settling an invoice (e.g. 'net 30', '2/10 net 30' = 2% discount if paid within 10 days, otherwise due in 30). Set by sales (customer terms) and procurement (supplier terms), not treasury, but they drive DSO, DPO and therefore the cash forecast. Late-payment rules (EU Late Payment Directive) cap B2B terms in some countries."
+  example: "Alpine's German distributor customers are on 60-day terms, Swiss customers on 30. Moving the German terms to 45 days would release about EUR 1.8m of cash (EUR 36m revenue ÷ 360 × 15 days)."
+  related: [dso, dpo, working-capital, dynamic-discounting]
+
+- id: dunning
+  term: Dunning
+  aka: [collections, payment reminders, Mahnwesen]
+  category: Working capital
+  plain: The step-by-step reminders a company sends to customers who have not paid on time.
+  professional: "The accounts-receivable collections process: automated reminder levels (reminder, second notice, final demand), phone calls by credit controllers, credit holds on new orders and ultimately debt collection (in Switzerland, the Betreibung procedure). Owned by AR / credit control; its effectiveness shows up in DSO and overdue ageing, and its intelligence (who promised to pay when) is an input to the cash forecast."
+  example: "Helvetic's AR team in Germany calls every customer more than 15 days overdue above EUR 50k and logs promised payment dates, which Lea uses in the week-1 and week-2 receipts."
+  related: [dso, cash-application, payment-terms]
+
+- id: credit-insurance
+  term: Trade credit insurance
+  aka: [credit insurance, Warenkreditversicherung, Delkredere]
+  category: Working capital
+  plain: Insurance that pays out if a customer goes bust or doesn't pay its invoices.
+  professional: "Policies (from insurers such as Allianz Trade, Atradius, Coface) covering a portfolio of receivables against buyer insolvency and protracted default, with per-buyer credit limits set by the insurer. Often a precondition for non-recourse factoring and a source of external credit intelligence; the credit limits effectively cap sales to a customer on open terms."
+  example: "Alpine insures its German receivables; when the insurer cuts the limit on a distributor from EUR 2m to EUR 0.8m, sales must ask for a deposit or a bank guarantee before shipping the next robot."
+  related: [factoring, trade-finance, counterparty]
+
+- id: policy-rate
+  term: Policy rate
+  aka: [central bank rate, SNB policy rate, ECB deposit facility rate, Fed funds target]
+  category: Investments
+  plain: The interest rate a central bank sets, which anchors what companies earn on cash and pay on floating debt in that currency.
+  professional: "The central bank's main instrument: the SNB policy rate (CHF), the ECB's deposit facility rate (EUR), the Fed funds target range (USD). Overnight reference rates (SARON, €STR, SOFR) trade close to it, so it largely determines deposit and money-market yields and floating loan costs."
+  example: "With the SNB policy rate at 0% (September 2026), Kleio's CHF sight deposits earn roughly nothing, while its USD balance at the US bank can earn a meaningful money-market rate — which tempts Sarah to hold more USD than the business needs (an FX risk)."
+  related: [reference-rate, deposit, money-market-fund]
+
+- id: interest-rate-cap
+  term: Interest-rate cap
+  aka: [cap, collar, floor]
+  category: Debt & funding
+  plain: An insurance-like contract that pays the borrower if floating interest rates rise above an agreed level.
+  professional: "An option (strip of caplets) on a reference rate: the buyer pays an upfront premium and receives the difference whenever the rate fixes above the strike. A floor is the mirror; a collar combines a bought cap and a sold floor to reduce premium. Used when a borrower wants protection but keeps the benefit of low rates — common in leveraged and real-estate finance, less common than swaps for investment-grade corporates."
+  example: "Instead of swapping Helvetic's RCF drawings to fixed, Daniel could buy a 3-year cap on CHF 50m at a 1.5% SARON strike; if SARON stays near 0%, only the premium is lost."
+  related: [interest-rate-swap, fixed-vs-floating, interest-rate-risk, option]

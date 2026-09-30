@@ -1,0 +1,175 @@
+# Glossary terms owned by the Systems & Data stream.
+- id: bank-connectivity
+  term: Bank connectivity
+  aka: [connectivity, bank channels, bank integration]
+  category: Banking & connectivity
+  plain: How the company's systems and the bank exchange payment instructions and account reports — by hand in a portal, or automatically through a file or message channel.
+  professional: "The set of channels (e-banking portal, EBICS, Swift, host-to-host, bank APIs) plus the formats, keys, certificates, user rights and bank-side contracts that let payment files flow out and statements, intraday reports and status reports flow in. In practice a project per bank: contract, onboarding, key exchange, format testing, go-live and ongoing maintenance."
+  example: "Helvetic's multibank tool receives 12 prior-day statements over EBICS and Swift before 07:00; the account at the Chinese bank is still collected by the local finance team and emailed as a PDF."
+  related: [ebics, swift, host-to-host, api-banking, bank-statement, multibank-connectivity]
+  confusedWith: "**Open banking.** Regulated third-party access (PSD2) is only one, mostly SME/retail-oriented, route; corporate connectivity is dominated by EBICS, Swift, host-to-host and bank-specific corporate APIs."
+
+- id: camt-053
+  term: camt.053 (end-of-day bank statement)
+  aka: [camt.053, BankToCustomerStatement, ISO 20022 statement]
+  category: Banking & connectivity
+  plain: The modern electronic end-of-day bank statement file — opening and closing balances plus every booking of the day.
+  professional: "ISO 20022 BankToCustomerStatement. Per account: balances (e.g. opening and closing booked, closing available), and entries (Ntry) with amount, credit/debit, booking date, value date, bank transaction code, references and optionally transaction details including structured or unstructured remittance information. Successor of MT940; country/bank usage rules (e.g. Swiss Payment Standards) and version (2009 vs 2019) matter."
+  example: "Every morning Alpine's Dynamics 365 Business Central imports two camt.053 files; Petra's reconciliation starts from the closing booked balance of CHF 8.42m on the main CHF account."
+  related: [bank-statement, mt940, camt-052, camt-054, iso-20022, bank-transaction-code]
+  confusedWith: "**camt.054.** The statement (053) lists bookings; the notification (054) gives the detail behind individual bookings (e.g. each item in a batch)."
+
+- id: camt-052
+  term: camt.052 (intraday account report)
+  aka: [camt.052, intraday report, BankToCustomerAccountReport]
+  category: Banking & connectivity
+  plain: A bank report sent during the day showing movements and balances so far — provisional, not the official statement.
+  professional: "ISO 20022 BankToCustomerAccountReport, the successor of MT942. Frequency (hourly, a few times a day, or on each movement) depends on the bank and what the customer subscribes to. Entries can be 'pending' or 'booked' and must not be double-counted once the end-of-day camt.053 arrives."
+  example: "GlobalChem's TMS receives camt.052 reports every 30 minutes from its main EUR bank; at 11:00 Priya sees that a EUR 14m customer receipt has arrived and releases the planned repayment of the RCF drawing."
+  related: [camt-053, mt940, bank-statement, cash-position]
+
+- id: bai2
+  term: BAI2
+  aka: [BAI, BAI format]
+  category: Banking & connectivity
+  plain: The traditional US bank reporting file format for balances and transactions.
+  professional: "A US standard (originally from the Bank Administration Institute) with numeric type codes for balances and transactions, used for prior-day and current-day reporting by US banks. Coexists with and is gradually being complemented by ISO 20022 camt reports."
+  example: "Kleio Inc.'s US bank offers BAI2 or an API; the Swiss parent's banks send camt.053. Any consolidation tool has to translate both into one transaction model."
+  related: [bank-statement, camt-053, mt940, bank-transaction-code]
+
+- id: mt101
+  term: MT101
+  aka: [MT 101, Request for Transfer]
+  category: Banking & connectivity
+  plain: The legacy Swift message a company uses to instruct a bank to make a payment — including from an account held at another bank.
+  professional: "Swift FIN 'Request for Transfer'. Used by corporates over Swift (SCORE or MA-CUG) for single or small batches of payments, and for 'MT101 relay' where one bank forwards the instruction to the account-holding bank. The ISO 20022 equivalent for corporate-to-bank is pain.001. The November 2025 end of MT/MX coexistence concerned interbank cross-border messages; banks set their own timelines for corporate MT101."
+  example: "GlobalChem sends an MT101 through its service bureau to instruct its Singapore bank to pay SGD 2.1m from the regional treasury centre's account."
+  related: [swift, pain-001, iso-20022, service-bureau]
+
+- id: fileact
+  term: FileAct
+  aka: [Swift FileAct]
+  category: Banking & connectivity
+  plain: The Swift service for sending whole files (for example an XML payment batch or a set of statements) rather than individual messages.
+  professional: "Swift's file-transfer service, used by corporates to exchange ISO 20022 payment files (pain.001) and reports (camt.05x) or bank-proprietary files with banks over the Swift network, in contrast to FIN, which carries individual MT messages such as MT101 and MT940."
+  example: "GlobalChem's payment factory sends one pain.001 file per bank per run over FileAct; statements come back as camt.053 files the same way."
+  related: [swift, pain-001, camt-053, service-bureau]
+
+- id: service-bureau
+  term: Swift service bureau
+  aka: [service bureau, SB, Swift connectivity provider]
+  category: Banking & connectivity
+  plain: A company that runs Swift connectivity on a corporate's behalf, so the corporate doesn't have to operate Swift infrastructure itself.
+  professional: "A Swift-certified third party that hosts the Swift interface and gateway for many customers, handles operations, security updates and often format conversion and bank onboarding. The main alternatives are running Swift in-house (direct connection) or Swift's cloud option Alliance Lite2 (including when embedded in a partner application such as a TMS)."
+  example: "GlobalChem's treasury-systems lead Ben chose a service bureau because running a Swift gateway in-house would have needed dedicated IT staff and an annual security attestation of its own infrastructure."
+  related: [swift, swift-score, bank-connectivity, multibank-connectivity]
+
+- id: swift-score
+  term: SCORE and MA-CUG (Swift access for corporates)
+  aka: [SCORE, Standardised Corporate Environment, MA-CUG, member-administered closed user group]
+  category: Banking & connectivity
+  plain: The two ways a company can be allowed onto Swift to talk to its banks — once for all participating banks (SCORE), or separately inside each bank's own closed group (MA-CUG).
+  professional: "SCORE lets a corporate exchange messages with any participating bank that agrees (bilateral relationship keys still required); an MA-CUG is administered by a single bank and gives access only to that bank. Multi-bank corporates normally use SCORE; a corporate with one dominant Swift bank may use that bank's MA-CUG."
+  example: "When Helvetic considered Swift, its global bank offered its MA-CUG; Daniel preferred SCORE so the same connection could later carry the German and Swiss banks as well."
+  related: [swift, service-bureau, mt101, fileact]
+
+- id: multibank-connectivity
+  term: Multibank connectivity tool
+  aka: [bank connectivity hub, payment hub, multibanking software, BCM]
+  category: Systems
+  plain: Software that sits between the company's ERPs and all its banks, handling payment files, approvals and statements in one place.
+  professional: "Standalone product, TMS module or ERP add-on (e.g. SAP Multi-Bank Connectivity) that manages bank channels (EBICS, Swift, H2H, API), translates between ERP output and each bank's format variant, applies approval workflows and electronic signatures, and distributes statements to ERP and treasury. Often the first 'treasury system' a mid-market group buys, before a full TMS."
+  example: "Helvetic's local ERPs drop pain.001 files into the multibank tool; Daniel and the local finance manager sign them there, and the tool sends them via EBICS to the German bank and via Swift to the global bank."
+  related: [bank-connectivity, ebics, swift, payment-factory, payment-hub, tms]
+
+- id: payment-hub
+  term: Payment hub
+  aka: [payment gateway, payment engine]
+  category: Systems
+  plain: A central piece of software that all payment files pass through on their way to the banks, so controls, formats and approvals are handled once.
+  professional: "Technical layer that receives payment instructions from multiple source systems, validates and enriches them, applies sanctions screening, duplicate checks and approval workflows, converts to bank formats and routes them over the right channel; tracks status (pain.002) back to the source. A payment factory is the organisational model; the payment hub is the system that usually supports it."
+  example: "GlobalChem's payment hub rejects a file from a Polish subsidiary because the same supplier IBAN and amount were sent two hours earlier — a duplicate from a re-run in the local ERP."
+  related: [payment-factory, multibank-connectivity, sanctions-screening, pain-002]
+  confusedWith: "**Payment factory.** The factory is the centralised process and team (often POBO); the hub is the software. A company can have a hub without a factory."
+
+- id: distributed-signature
+  term: Distributed electronic signature (EBICS)
+  aka: [VEU, EDS, verteilte elektronische Unterschrift, EBICS signature classes]
+  category: Banking & connectivity
+  plain: In EBICS, payment files are approved by electronic signatures from one or more authorised people, who can sign separately and from different places.
+  professional: "EBICS users hold signature keys with a signature class (e.g. single signature E, first/second joint signature A/B, transport-only T). An order submitted with a transport signature waits at the bank until enough bank-technical signatures have been added — in the ERP/connectivity client or a mobile signing app. The bank enforces the mandate, so authority rules live partly on the bank side."
+  example: "Petra uploads Alpine's Tuesday run with a transport signature; the file waits at the bank until she and Martin each add their A signature, which Martin does on his phone at 11:40."
+  related: [ebics, signing-authority-matrix, four-eyes-principle, payment-mandate]
+
+- id: bank-transaction-code
+  term: Bank transaction code
+  aka: [BTC, BkTxCd, GVC, BAI type code, transaction type code]
+  category: Banking & connectivity
+  plain: A code on each line of a bank statement that says what kind of transaction it is — incoming transfer, card settlement, fee, interest, direct debit, and so on.
+  professional: "ISO 20022 uses a Domain/Family/Sub-family structure (e.g. PMNT/RCDT/ESCT = received SEPA credit transfer) with an optional proprietary code; MT940 uses a SWIFT code plus often bank-proprietary codes (e.g. German GVC); BAI2 uses numeric type codes. Systems map codes to posting rules and cash-flow categories, so inconsistent codes across banks break automation."
+  example: "Two of Helvetic's banks report the monthly account fee with different codes; the connectivity tool maps one to 'bank charges' and the other falls into 'unclassified', which Lea finds when the fee category looks too small."
+  related: [camt-053, posting-rules, cash-flow-category, bank-statement]
+
+- id: posting-rules
+  term: Posting rules (bank statement processing)
+  aka: [bank statement posting rules, EBS rules, search strings, matching rules]
+  category: Systems
+  plain: The rules an ERP or TMS uses to turn each bank-statement line into an accounting entry and match it to open invoices.
+  professional: "Configuration mapping (bank transaction code + account + text patterns) to GL postings and clearing logic — e.g. in SAP electronic bank statement processing, external transaction types, posting rules and search strings. Maintained by accounting/finance systems; whatever the rules don't match lands on a suspense account for manual work."
+  example: "After a bank changed the text in its fee lines, 40 lines a month stopped auto-posting at Helvetic Deutschland; Jens's accountant fixed the search string two months later."
+  related: [bank-transaction-code, reconciliation, suspense-account, cash-application]
+
+- id: cash-flow-category
+  term: Cash-flow category
+  aka: [liquidity item, cash-flow code, planning level, forecast category]
+  category: Forecasting
+  plain: The label each cash movement gets — "customer receipts", "payroll", "tax", "intercompany" — so actual cash can be compared with the forecast.
+  professional: "A treasury classification of flows (SAP calls them liquidity items) assigned by rules from bank transaction codes, counterparty, GL account or text, or inherited from ERP documents. It connects the bank side (actuals) with the forecast side (plans); if both don't use the same categories, variance analysis is impossible."
+  example: "GlobalChem's forecast has 14 categories; the TMS assigns 91% of bank lines automatically and a back-office analyst classifies the rest each morning."
+  related: [variance-analysis, direct-method, bank-transaction-code, forecast-submission]
+
+- id: stp
+  term: Straight-through processing (STP)
+  aka: [STP, STP rate, auto-match rate]
+  category: Systems
+  plain: A transaction that flows from start to end without anyone touching it; the STP rate is the share that does.
+  professional: "Used for payments (created, approved, sent, confirmed without repair), statements (imported, posted and reconciled automatically) and deals (captured, confirmed, settled, accounted automatically). Measured as a percentage per process; the residual exceptions are where operations staff spend their time."
+  example: "Marta tracks two numbers daily: payment files rejected by banks (target zero) and the share of statement lines auto-reconciled (around 93% in a normal week at GlobalChem)."
+  related: [reconciliation, payment-hub, deal-confirmation]
+
+- id: system-of-record
+  term: System of record
+  aka: [golden source, master system]
+  category: Systems
+  plain: The one system whose version of a piece of data counts as the truth when systems disagree.
+  professional: "For each data object — vendor bank details, open invoices, bank balances, deals, exchange rates, bank accounts and signatories — one system should own it and others copy from it. Treasury problems often come from unclear ownership: two lists of bank accounts, three versions of the month-end rate."
+  example: "At Helvetic, the ERPs are the system of record for invoices, the banks for balances, and Lea's spreadsheet — not any system — for the list of FX forwards, which is why the auditors ask for bank confirmations."
+  related: [erp, tms, static-data, euc]
+
+- id: trading-platform
+  term: Multi-dealer trading platform
+  aka: [FX platform, electronic trading platform, RFQ platform, 360T, FXall, FXGO]
+  category: FX
+  plain: Software where a treasurer asks several banks for a price at the same time and deals with the best one.
+  professional: "Electronic request-for-quote platforms for FX spot, forwards, swaps and money-market deposits (e.g. 360T, FXall, Bloomberg FXGO). Provide competitive quotes, an audit trail of best execution, and straight-through transfer of executed deals into the TMS for confirmation and settlement."
+  example: "Jonas's team sends a EUR/CHF 3-month forward for EUR 25m to five relationship banks on the platform; quotes arrive within seconds and the deal is booked into SAP automatically."
+  related: [forward, spot-fx, deal-confirmation, front-office]
+
+- id: fx-fixing
+  term: FX fixing / reference rate
+  aka: [fixing, benchmark rate, ECB reference rate, WM/Reuters fix, closing rate]
+  category: FX
+  plain: An officially published exchange rate at a set time each day, used so everyone uses the same rate for accounting, contracts or valuation.
+  professional: "Examples: ECB euro foreign-exchange reference rates (published around 16:00 CET, for information purposes), WM/Reuters benchmark rates (London 4pm), rates published by tax authorities for VAT. Companies choose which fixing feeds their ERP rate table for month-end revaluation and translation; treasury trades at market rates, not fixings, unless it deliberately executes 'at the fix'."
+  example: "Helvetic's month-end revaluation uses the ECB rate of the last business day loaded into SAP; Daniel's hedge results use the bank's actual deal rate, and the difference shows up in Claudia's reconciliation."
+  related: [spot-fx, reference-rate, mark-to-market, functional-currency]
+  confusedWith: "**Reference rate (interest).** Interest-rate benchmarks such as SARON or €STR are also called reference rates; an FX fixing is an exchange rate."
+
+- id: euc
+  term: End-user computing (EUC)
+  aka: [EUC, spreadsheet risk, user-developed application, UDA]
+  category: Risk & control
+  plain: Spreadsheets, macros and small tools that finance people build themselves and that important numbers depend on.
+  professional: "Audit and control term for applications built outside IT governance. Controls include an inventory of critical spreadsheets, locked formulas, version control, input reconciliation checks, independent review and access restrictions. Treasury spreadsheets (cash position, forecast, hedge register, covenant model) are typical high-risk EUCs."
+  example: "Helvetic's auditors list Lea's covenant model as a key EUC; she now keeps a change log tab and Claudia reviews the formulas before each semi-annual test."
+  related: [system-of-record, segregation-of-duties, operational-risk]

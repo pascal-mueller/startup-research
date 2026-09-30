@@ -1,0 +1,90 @@
+# Glossary terms owned by the org-structure stream (/org pages).
+- id: raci-matrix
+  term: Responsibility matrix (RACI)
+  aka: [RACI, RASCI, responsibility assignment matrix]
+  category: Organisation
+  plain: A table that says, for each task, who owns it, who does it, who approves it and who is just told.
+  professional: "Responsibility assignment matrix. Classic RACI = Responsible, Accountable, Consulted, Informed. This manual uses treasury-specific codes: Owner, Performs, contributes Data, Approves, Reviews, Informed. Real treasury RACIs usually live in the treasury policy, the signing-authority matrix and process manuals."
+  example: "Helvetic's treasury policy annex states that Daniel owns FX hedging, Lea performs confirmation matching, Thomas approves hedges outside the policy corridor, and Claudia's team reviews hedge accounting."
+  related: [treasury-policy, signing-authority-matrix, segregation-of-duties]
+  confusedWith: "**R** in classic RACI means *Responsible* (does the work); in this manual's matrix **R** means *Reviews* and **P** means performs."
+- id: dotted-line-reporting
+  term: Dotted-line (functional) reporting
+  aka: [functional reporting line, matrix reporting, solid line vs dotted line]
+  category: Organisation
+  plain: When someone has a day-to-day boss locally but also answers to a specialist boss at headquarters for part of their job.
+  professional: "Matrix organisation in which the hierarchical (solid) line runs to the local or business manager — pay, appraisal, headcount — while a functional (dotted) line runs to a group function that sets policy and standards. In treasury this typically links subsidiary finance managers or regional treasury centres to the Group Treasurer or CFO."
+  example: "Giulia (HM Italia finance manager) reports solid-line to the Italian managing director and dotted-line to Thomas, Helvetic's CFO; for treasury matters she follows Daniel's instructions without reporting to him."
+  related: [treasury-centralisation, regional-treasury-centre]
+- id: cobo
+  term: Collections on behalf of (COBO)
+  aka: [COBO, receivables on behalf of, ROBO]
+  category: Cash & liquidity
+  plain: One central group company collects customers' payments for the other group companies into its own bank accounts.
+  professional: "Customer receipts for several legal entities are collected into accounts of a central entity (usually the in-house bank), which then credits each entity's intercompany account. Mirror image of POBO; demands strong cash application and legal/tax review (e.g. agency arrangements, VAT)."
+  example: "GlobalChem's French and Belgian customers pay into the in-house bank's EUR account; Priya's team credits each subsidiary's internal account once the Kraków SSC has applied the cash."
+  related: [pobo, in-house-bank, cash-application, virtual-accounts]
+- id: reinvoicing-centre
+  term: Re-invoicing centre
+  aka: [reinvoicing]
+  category: FX
+  plain: A group company that buys from and sells to the other group companies so FX risk ends up in one place.
+  professional: "Central entity that sits legally between selling and buying entities (or between entities and third parties), invoicing each in its functional currency and concentrating FX exposure centrally for netting and hedging. Needs transfer-pricing, VAT and customs substance."
+  example: "A regional treasury centre in Singapore buys products from European plants in EUR and sells to Asian distributors in their local currencies, so the distributors no longer carry EUR exposure."
+  related: [netting, regional-treasury-centre, transaction-exposure, transfer-pricing]
+- id: collective-signature
+  term: Collective signature (joint signing)
+  aka: ["Kollektivunterschrift zu zweien", joint signature, dual signature]
+  category: Risk & control
+  plain: A rule that two authorised people must sign together — for a contract, a bank document or a payment.
+  professional: "Signing power registered (in Switzerland, in the commercial register) or granted in the bank mandate that requires two authorised signatories acting jointly. Banks implement it for payments as two electronic approvals ('collective' rights in e-banking or EBICS distributed signatures)."
+  example: "At Alpine, Petra and Martin each hold 'collective signature by two' in the cantonal bank's e-banking: Petra's release alone does not send a payment; Martin's second approval does."
+  related: [four-eyes-principle, signatory, signing-authority-matrix, payment-mandate]
+- id: procure-to-pay
+  term: Procure-to-pay (P2P)
+  aka: [P2P, purchase-to-pay]
+  category: Working capital
+  plain: The whole process from ordering something to paying the supplier.
+  professional: "End-to-end process: requisition, purchase order, goods receipt, invoice receipt, three-way match, approval, payment proposal and payment. Procurement owns the front end, AP the invoice-to-payment part; treasury typically owns only the bank channel and funding."
+  example: "Alpine's component purchases go PO (purchasing) → goods receipt (warehouse) → invoice matched in Business Central (AP) → payment run (Petra)."
+  related: [three-way-match, payment-run, vendor-master-data, order-to-cash]
+- id: order-to-cash
+  term: Order-to-cash (O2C)
+  aka: [O2C, OTC (process)]
+  category: Working capital
+  plain: The whole process from a customer's order to their money arriving and being matched to the invoice.
+  professional: "Order, credit check, delivery, invoicing, collections/dunning, cash application and dispute handling. Owned by sales operations, AR and credit control; treasury uses its output (open items, expected receipts) for forecasting."
+  example: "At Helvetic, a machine order passes credit check by Jens's credit controller, is invoiced on delivery, and the customer's payment is matched in SAP by local AR."
+  related: [cash-application, dso, procure-to-pay]
+- id: record-to-report
+  term: Record-to-report (R2R)
+  aka: [R2R, general ledger accounting and close]
+  category: Accounting & tax
+  plain: The accounting process of booking everything and producing the monthly and annual accounts.
+  professional: "General-ledger processes: journal entries, accruals, reconciliations (incl. bank and intercompany), closing, consolidation and reporting. Often run by an SSC for many entities; treasury feeds deal and intercompany data into it."
+  example: "GlobalChem's Kraków R2R team reconciles ~200 operating bank accounts monthly; the treasury accounts of the in-house bank are reconciled by Marta's back office."
+  related: [reconciliation, shared-service-centre, intercompany-reconciliation]
+- id: intercompany-reconciliation
+  term: Intercompany reconciliation
+  aka: [IC reconciliation, IC matching]
+  category: Accounting & tax
+  plain: Checking that what one group company says it owes another matches what the other says it is owed.
+  professional: "Month-end matching of intercompany receivables/payables, loans and interest between entity pairs before consolidation eliminations. Treasury-created positions (loans, cash-pool balances, netting settlements) are a frequent source of breaks."
+  example: "At Helvetic's June close, HM Deutschland shows a EUR 8.0m intercompany loan from the parent while the parent shows EUR 8.2m — Daniel's June top-up was booked by the parent but not yet by Jens's team."
+  related: [intercompany-loan, netting, record-to-report]
+- id: thin-capitalisation
+  term: Thin capitalisation rules
+  aka: [thin cap, debt-to-equity rules, interest limitation]
+  category: Accounting & tax
+  plain: Tax rules that limit how much a subsidiary can be funded with intercompany debt instead of equity.
+  professional: "Rules capping deductible interest or re-characterising excess intra-group debt (e.g. debt/equity safe harbours such as the Swiss Federal Tax Administration's circular on intercompany loans, or EBITDA-based interest limitation under ATAD in the EU). They shape whether treasury funds a subsidiary by loan or by equity."
+  example: "Before Daniel lends a further EUR 5m to HM Italia, group tax checks Italian interest-deductibility limits and suggests part of the funding as a capital contribution."
+  related: [intercompany-loan, transfer-pricing, withholding-tax]
+- id: delegation-of-authority
+  term: Delegation of authority (DoA)
+  aka: [authority matrix, approval matrix, Kompetenzordnung]
+  category: Risk & control
+  plain: The internal rulebook that says who may decide or sign what, up to which amount.
+  professional: "Board-approved schedule allocating decision and approval rights (e.g. borrowing, guarantees, hedging, bank accounts, payments, investments) to the board, CFO, treasurer and others by type and amount. Treasury's signing-authority matrix and bank mandates must be consistent with it."
+  example: "Helvetic's DoA: bank accounts opened on Daniel's proposal with CFO approval; new debt above CHF 20m needs board approval; payments above CHF 2m need one signature from treasury or the CFO."
+  related: [signing-authority-matrix, treasury-policy, collective-signature]

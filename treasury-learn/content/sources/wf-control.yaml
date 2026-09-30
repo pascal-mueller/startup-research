@@ -1,0 +1,32 @@
+# Sources for stream wf-control (month-end treasury reporting, fraud investigation, treasury policy compliance).
+# Verification note: in this session outbound page fetching was blocked by the egress proxy; the items below were
+# verified from search-result snippets published by the original publisher (CNN, FBI IC3, Swift, AFP). The Swiss
+# Code of Obligations entry is cited for well-established statutory provisions (article numbers and substance).
+- id: cnn-arup-deepfake-2024
+  title: Arup revealed as victim of $25 million deepfake scam involving Hong Kong employee
+  publisher: CNN Business
+  year: 2024
+  url: https://edition.cnn.com/2024/05/16/tech/arup-deepfake-scam-loss-hong-kong-intl-hnk
+  type: news
+  note: "16 May 2024. Arup confirmed it was the company behind the Hong Kong case first reported in Feb 2024: a Hong Kong finance employee transferred HK$200m (~US$25.6m) after a video call in which the 'CFO' and other colleagues were deepfakes. The employee first suspected the email (which asked for a secret transaction) was phishing, but the call dispelled his doubts. Arup notified Hong Kong police in January 2024 and confirmed fake voices and images were used; the fraud was discovered when the employee later checked with head office."
+- id: ic3-2023-rat
+  title: Federal Bureau of Investigation — Internet Crime Report 2023
+  publisher: FBI Internet Crime Complaint Center (IC3)
+  year: 2024
+  url: https://www.ic3.gov/AnnualReport/Reports/2023_IC3Report.pdf
+  type: official
+  note: "IC3's Recovery Asset Team initiated the Financial Fraud Kill Chain on 3,008 incidents in 2023 with potential losses of USD 758.05m and placed monetary holds on USD 538.39m (a 71% success rate). Most Kill Chain incidents are BEC. Applies to US-reported, mostly domestic, quickly reported wires — not a general recovery rate."
+- id: swift-stop-recall
+  title: Stop and Recall API — overview (gpi Stop and Recall, gSRP)
+  publisher: Swift Developer Portal
+  year: 2025
+  url: https://developer.swift.com/api/gsrp/overview
+  type: official
+  note: "Describes the gpi Stop and Recall service: a request can stop a cross-border payment still in progress (not yet credited) or request recall of funds already credited; the gpi Tracker routes the request to the bank currently holding the payment; the assigned bank should process the request within 24 hours. Recovery depends on locating and stopping the payment before it settles."
+- id: ch-co-board-duties
+  title: Swiss Code of Obligations (SR 220) — Art. 716a (non-transferable board duties), Art. 725 (threatened insolvency), Art. 728a (ordinary audit incl. internal control system)
+  publisher: Swiss Confederation (Fedlex)
+  year: 2023
+  url: https://www.fedlex.admin.ch/eli/cc/27/317_321_377/en
+  type: official
+  note: "Art. 716a para. 1 no. 3 makes the organisation of accounting, financial control and financial planning a non-transferable duty of the board of directors — the reason a Swiss board (or its audit committee on its behalf) approves the treasury policy. Art. 725 (revised 1 Jan 2023) requires the board to monitor solvency and act if insolvency threatens. Art. 728a para. 1 no. 3 requires the statutory auditor in an ordinary audit to confirm that an internal control system (IKS/ICS) exists."
