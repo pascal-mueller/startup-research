@@ -428,7 +428,7 @@
   category: Investments
   plain: Money placed with a bank for a fixed period at a fixed interest rate.
   professional: "A deposit for a fixed tenor (overnight to 12 months) at a fixed rate, usually not breakable before maturity (or only at a cost). Simple and widely used for surplus cash; yields depend on the currency's policy rate and bank appetite for deposits."
-  example: "Helvetic places EUR 8m for 3 months at a German bank at about €STR level (≈1.9–2.0%, illustrative); CHF term deposits yield close to zero with the SNB policy rate at 0%."
+  example: "Helvetic holds EUR 8m it will need in three months for a German tax payment and places it as a 3-month term deposit at about €STR level (≈1.9–2.0%, illustrative). Surplus CHF is not deposited: at a 0% SNB rate it earns ~nothing, so it reduces the SARON-based RCF drawing at the next rollover instead."
   related: [deposit, overnight, money-market-fund, investment-policy]
 
 - id: overnight
