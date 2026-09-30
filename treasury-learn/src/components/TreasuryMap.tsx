@@ -195,6 +195,7 @@ function Connections({ focus }: { focus: AreaId }) {
       </div>
       <div>
         <span className="tmap-conn-h">Feeds into</span>
+        {!outbound.length && <p className="muted tmap-conn-none">End point in this map — see the workflows below for what happens next.</p>}
         <ul>
           {outbound.map((e) => (
             <li key={e.to}>

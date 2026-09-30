@@ -66,3 +66,5 @@
 .org-tree ul.org-stack > li::before { display: block; border: 0; border-left: 1px solid var(--line-2); border-radius: 0; left: 50%; right: auto; width: 0; height: 8px; }
 .org-tree ul.org-stack > li:first-child::before { height: 8px; }
 .org-tree ul.org-stack .org-node { min-width: 140px; }
+.raci-table th.raci-col { height: auto; min-height: 150px; max-height: 230px; }
+.raci-table th.raci-col span { display: inline-block; max-height: 220px; white-space: normal; line-height: 1.2; }
