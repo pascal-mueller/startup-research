@@ -2,7 +2,7 @@
 title: Treasury and its neighbours
 nav: Treasury vs accounting, FP&A, controlling…
 order: 2
-summary: Treasury sits among accounting, FP&A, controlling, corporate finance and the CFO. They share data every day but answer different questions, on different time bases, with different systems.
+summary: Treasury sits among accounting, FP&A, controlling, tax, corporate finance and the CFO. They share data every day but answer different questions, on different time bases, with different systems.
 related: [/start, /start/growth, /org, /org/neighbours]
 ---
 
@@ -14,6 +14,7 @@ related: [/start, /start/growth, /org, /org/neighbours]
 | **Accounting** (financial accounting, "the controller's team" in US usage) | What happened, recorded correctly? | Accruals, by posting date | [ERP](term:erp) / general ledger | Books, financial statements, statutory and tax filings |
 | **FP&A** | What will revenue and profit be, and why did we miss plan? | Accruals, monthly/quarterly | Planning tool, ERP, Excel | Budget, rolling forecast, management reporting |
 | **Controlling** (DACH usage) | Are business units and costs performing and steered correctly? | Accruals, monthly | ERP cost accounting (e.g. SAP CO), Excel | Cost-centre reports, product profitability, variance analysis |
+| **Tax** | How much tax is owed where, and are group structures and flows compliant? | Tax periods and filing dates | ERP, tax engines, advisers' models | Tax returns, transfer-pricing documentation, rulings |
 | **Corporate finance / M&A** | How should the company be financed and which deals should it do? | Deal / strategy horizon | Models, data rooms | Capital structure, acquisitions, financing strategy |
 | **CFO** | All of the above, accountable to CEO, board and investors | All | All | Decisions and accountability |
 
@@ -50,16 +51,46 @@ Both "forecast", which causes endless confusion.
 
 - **FP&A** forecasts the **P&L**: revenue, margins, costs, EBITDA — on an accrual basis, usually monthly, for the budget year and beyond. Its customers are management and the board.
 - **Treasury** forecasts **cash**: receipts and payments by date and bank account, usually weekly for the next 13 weeks and monthly further out. Its purpose is to make sure the company can pay and to plan funding and investments.
+- A detail that shows you know the difference: treasury forecasts receipts **including VAT**, because customers pay the invoice total, and shows the VAT settlement as a separate outflow on its due date; FP&A's revenue is **net of VAT** (see [VAT in the cash forecast](term:vat-cash)).
 
 <Example title="Same quarter, two different forecasts" company="helvetic">
 
 FP&A at [Helvetic](co:helvetic) forecasts Q3 revenue of CHF 170m and EBITDA of CHF 22m. That is the right number for the board.
 
-Daniel's treasury forecast for the same quarter shows *cash receipts* of CHF 148m — because customers pay on 60–90-day terms, much of Q3's revenue arrives in Q4, while Q2's revenue arrives in Q3. It also shows a CHF 9m tax prepayment, a CHF 3m dividend from the Czech subsidiary, and German payroll going out on the 28th, before the big customer receipts in the first week of the next month. The low point is mid-month, not month-end.
+Daniel's treasury forecast for the same quarter shows *cash receipts* of CHF 148m — because customers pay on 60–90-day terms, much of Q3's revenue arrives in Q4, while Q2's revenue arrives in Q3. It also shows a CHF 9m tax prepayment, a CHF 3m dividend the Czech subsidiary pays to the parent (it matters in the parent's cash forecast, but nets to zero in the group view, so counting it at group level would double-count), and German payroll going out on the 28th, before the big customer receipts in the first week of the next month. The low point is mid-month, not month-end.
 
-Both forecasts are "right". They answer different questions. The [medium-term forecast](term:medium-term-forecast) is where the two meet: treasury usually derives it from FP&A's plan using the [indirect method](term:indirect-method).
+Both forecasts are "right". They answer different questions. The [medium-term forecast](term:medium-term-forecast) is where the two meet. Often treasury derives it from FP&A's plan using the [indirect method](term:indirect-method); in other companies FP&A or controlling own it and treasury reviews it. Practice varies, so ask.
 
 </Example>
+
+## Treasury vs controlling
+
+In Swiss and German companies, **Controlling** is a major neighbour, and often a bigger team than treasury. It owns management accounting: cost-centre and product profitability, business-unit reporting, capex project tracking and, very often, the planning process itself (budget, forecast, medium-term plan). Where a US company has "FP&A", a DACH company frequently has "Controlling" doing much of the same work.
+
+| What controlling has that treasury needs | What treasury gives controlling |
+|---|---|
+| The budget and rolling forecast by business unit, which feed the later months of treasury's liquidity plan | Interest cost, FX rates for planning (budget rates) and hedge rates actually achieved |
+| Capex projects with approval status and expected payment milestones | Funding constraints: what the group can afford and when |
+| Business-unit knowledge: which orders are real, which project is late | Working-capital facts in cash terms: how fast customers actually pay |
+
+**Where they collide:** the medium-term plan. Controlling's plan is in P&L terms by business unit; treasury needs it in cash terms by legal entity and currency. At [Helvetic](co:helvetic), Marco's FP&A/controlling team owns the plan and Daniel converts it into the 18-month liquidity plan; the argument every quarter is about working-capital timing (when revenue becomes cash) and capex phasing. At a smaller company like [Alpine](co:alpine) there is no separate controlling team; Martin and Petra do both.
+
+<Callout type="interview">
+
+Ask a Swiss or German finance team *"Who owns the plan, and who turns it into a cash view?"* The answer tells you whether treasury is a consumer of controlling's numbers or has its own forecasting process.
+
+</Callout>
+
+## Treasury vs tax
+
+Tax rarely appears in beginners' pictures of treasury, but many treasury decisions are tax-constrained. Moving cash between group companies is never tax-neutral by default:
+
+- **Intercompany loans** must carry arm's-length interest (in Switzerland, the Federal Tax Administration publishes safe-harbour rates each year) and can trigger withholding tax or thin-capitalisation limits.
+- **Cash pooling** creates intercompany loans every day, so tax signs off the structure before treasury builds it.
+- **Getting cash out of a subsidiary** (dividends, repatriation) depends on local distributable reserves, withholding tax and treaties. This is why cash can be [trapped](term:trapped-cash).
+- **Tax payments** (VAT, corporate tax prepayments) are among the largest and lumpiest lines in the cash forecast.
+
+In practice, tax decides *whether* a structure or flow is allowed and at what price; treasury decides *when* and *how much*, and executes. See [Treasury and tax](/org/with-tax).
 
 ## Treasury vs corporate finance
 
