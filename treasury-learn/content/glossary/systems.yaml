@@ -25,7 +25,7 @@
   category: Banking & connectivity
   plain: A bank report sent during the day showing movements and balances so far — provisional, not the official statement.
   professional: "ISO 20022 BankToCustomerAccountReport, the successor of MT942. Frequency (hourly, a few times a day, or on each movement) depends on the bank and what the customer subscribes to. Entries can be 'pending' or 'booked' and must not be double-counted once the end-of-day camt.053 arrives."
-  example: "GlobalChem's TMS receives camt.052 reports every 30 minutes from its main EUR bank; at 11:00 Priya sees that a EUR 14m customer receipt has arrived and releases the planned repayment of the RCF drawing."
+  example: "GlobalChem's TMS receives camt.052 reports every 30 minutes from its main EUR bank; at 11:00 Priya sees that a EUR 14m customer receipt has arrived early and tells the dealer to issue EUR 10m less commercial paper this week."
   related: [camt-053, mt940, bank-statement, cash-position]
 
 - id: bai2
