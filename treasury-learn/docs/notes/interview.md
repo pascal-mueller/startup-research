@@ -36,9 +36,10 @@
 - Note: `npm run check` does not parse `content/data/interview-topics.yaml` — I parsed it separately with js-yaml
   (a first draft had unquoted `why:` scalars containing ": " which broke parsing; fixed by folding all `why` values).
 - All 7 MDX pages compile with @mdx-js/mdx + remark-gfm.
-- Screenshots: at the time of writing, every route returned the Vite error overlay caused by another stream's
-  `content/glossary/lens.yaml` parse error (line 65), so rendered screenshots of /org/interview-finder and
-  /interview/questions could not be verified visually. Re-screenshot once lens.yaml is fixed.
+- Screenshots (after other streams fixed their YAML/frontmatter errors, which temporarily broke every route): all 7
+  routes rendered with no MISSING refs or runtime errors; /org/interview-finder (finder tabs, best/also/less lists,
+  size box, openers) and /interview/questions (phase tables, workflow blocks, seniority table, sources list) inspected
+  visually. Files in the session scratchpad under `interview/`.
 
 ## Research limitations (important for the reviewer)
 - WebFetch was blocked for every domain tried (momtestbook.com, producttalk.org, steveblank.com, treasurers.org,

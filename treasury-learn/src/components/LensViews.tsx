@@ -1,5 +1,5 @@
 // Agentic Treasury / Startup Lens views. Owned by the "lens" stream. Data: content/data/lens.yaml.
-import { Fragment, useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { citeIdsIn, companyById, data, sourceById, workflowById } from '../lib/content'
 import { Md } from './Md'
@@ -321,13 +321,25 @@ export function LensMatrix() {
   const [group, setGroup] = useState<string>('all')
   const [q, setQ] = useState('')
   const [sel, setSel] = useState<string | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [paneW, setPaneW] = useState<number | undefined>(undefined)
+  // The detail panel sits in a table row inside a horizontal scroller; pin it to the visible width.
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const update = () => setPaneW(el.clientWidth)
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   // Select the row named in the URL hash (anchors = workflow ids).
   useEffect(() => {
     const h = decodeURIComponent(loc.hash.replace('#', ''))
     if (h && L.workflows.some((w) => w.id === h)) {
       setSel(h)
-      requestAnimationFrame(() => document.getElementById(h)?.scrollIntoView({ block: 'center' }))
+      requestAnimationFrame(() => document.getElementById(h)?.scrollIntoView({ block: 'start' }))
     }
   }, [loc.hash, L.workflows])
 
@@ -388,7 +400,7 @@ export function LensMatrix() {
         <span className="lens-sc lens-f0">context only</span>
         <span className="muted">Click a header to sort, a row for the assessment.</span>
       </div>
-      <div className="lens-scroll">
+      <div className="lens-scroll" ref={scrollRef}>
         <table className="lens-table">
           <thead>
             <tr>
@@ -431,7 +443,7 @@ export function LensMatrix() {
                 {sel === w.id && (
                   <tr className="lens-detail-row">
                     <td colSpan={cols}>
-                      <div className="lens-detail">
+                      <div className="lens-detail" style={paneW ? { width: paneW } : undefined}>
                         <LensCard id={w.id} />
                       </div>
                     </td>

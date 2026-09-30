@@ -200,3 +200,7 @@ Business / external: `subsidiary-finance` (local finance manager / subsidiary CF
 - **CHF rates ≈ 0%:** a company with a drawn RCF uses surplus CHF to repay/reduce drawings at the next rollover rather than placing CHF deposits; CHF deposits earn ~nothing. EUR/USD surplus can earn €STR/SOFR-level rates.
 - Keep amounts consistent with companies.yaml (bank-account counts, debt, covenant ratios, payroll scale).
 - **Web access:** WebFetch is blocked for most domains by the environment's egress policy; WebSearch works. Verify from search results that come from the original publisher; otherwise don't state the number.
+- **Helvetic financials (canonical, 30 Sep 2026 LTM):** EBITDA ≈ CHF 78m; net debt ≈ CHF 106m; net debt/EBITDA ≈ 1.36x;
+  RCF drawn CHF 35m + EUR 27m, interest periods roll on the 15th, RCF matures Oct 2028 (4 banks, 60/50/50/40); CHF 100m bond 2028.
+  Reports under **Swiss GAAP FER** (GlobalChem under IFRS). EUR hedge bands graded by quarter: Q+1 60–90%, Q+2 40–70%,
+  Q+3 25–55%, Q+4 0–40%. Thomas (CFO) co-signs payments above CHF 2m. The 13-week forecast is updated **weekly** (Thursday).

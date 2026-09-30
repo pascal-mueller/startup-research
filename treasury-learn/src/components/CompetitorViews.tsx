@@ -3,7 +3,7 @@ import { Fragment, useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { data, sourceById, workflowById } from '../lib/content'
 import { SIZE_LABELS } from '../lib/sections'
-import { SOURCE_TYPE_LABEL } from './Cite'
+import { CiteContext, SOURCE_TYPE_LABEL } from './Cite'
 import { Md } from './Md'
 import '../styles/competitors.css'
 
@@ -33,6 +33,7 @@ interface Gap {
 interface Vendor {
   id: string
   name: string
+  short?: string
   category: string
   also?: string[]
   types: CompType[]
@@ -127,7 +128,7 @@ function SourceList({ ids }: { ids: string[] }) {
       </p>
     )
   return (
-    <ul className="cmp-sources">
+    <ol className="cmp-sources">
       {ids.map((id) => {
         const s = sourceById.get(id)
         if (!s) return <li key={id} className="term-missing">Missing source “{id}”</li>
@@ -150,7 +151,7 @@ function SourceList({ ids }: { ids: string[] }) {
           </li>
         )
       })}
-    </ul>
+    </ol>
   )
 }
 
@@ -171,6 +172,7 @@ function VendorRow({ v, d, open }: { v: Vendor; d: CompetitorData; open: boolean
         <SizeDots sizes={v.sizes} />
         <VerifyBadge v={v.verify} />
       </summary>
+      <CiteContext.Provider value={v.sources ?? []}>
       <div className="cmp-body">
         <dl className="cmp-facts">
           <dt>HQ</dt>
@@ -253,6 +255,7 @@ function VendorRow({ v, d, open }: { v: Vendor; d: CompetitorData; open: boolean
           <SourceList ids={v.sources ?? []} />
         </div>
       </div>
+      </CiteContext.Provider>
     </details>
   )
 }
@@ -412,7 +415,7 @@ export function CompetitorMap({ primaryOnly = false }: { primaryOnly?: boolean }
                             className={`cmp-pill cmp-pill-${v.verify} ${v.category === c.id ? '' : 'cmp-pill-also'}`}
                             title={`${v.name} — ${VERIFY_LABEL[v.verify].label}${v.category === c.id ? '' : ' (secondary category)'}`}
                           >
-                            {v.name.replace(/\s*\(.*\)$/, '')}
+                            {v.short ?? v.name.replace(/\s*\(.*\)$/, '')}
                           </Link>
                         ))}
                       </td>

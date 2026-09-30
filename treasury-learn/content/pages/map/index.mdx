@@ -2,7 +2,107 @@
 title: Treasury Map
 nav: The map
 order: 0
-summary: The major areas of corporate treasury on one page. Each area links to an explainer, and each explainer ends in the workflows where the work actually happens.
+summary: The ten areas of corporate treasury on one page — what each is for, how they feed each other, who does the work at different company sizes, and which workflows turn each area into daily tasks.
+related: [/start, /start/growth, /org, /workflows, /systems]
 ---
 
+Treasury looks like ten topics in a textbook, but in practice it is **one system**: forecasts feed cash decisions, cash decisions lead to investing or borrowing, currency and interest-rate risks come attached to the flows, and all of it runs on banks, payment rails and systems. The diagram below shows the main hand-offs between areas; click any area for its explainer.
+
 <TreasuryMap />
+
+## How the areas connect
+
+Read the diagram top-left to right, then down:
+
+1. **[Working capital](/map/working-capital)** — receivables, payables and inventory — is where the business's operations create or consume cash. Treasury doesn't run it, but its timing is the biggest input to the forecast.
+2. **[Cash forecasting](/map/cash-forecasting)** turns those operational expectations (plus payroll, tax, debt service, intercompany) into expected cash by week, entity and currency.
+3. **[Cash management](/map/cash-management)** starts from today's actual bank balances, adds the forecast for the next days, and moves cash to where it is needed — by transfer, sweep, pool or intercompany loan.
+4. What is left over goes to **[investments](/map/investments)** (or, more often, repays debt); what is missing comes from **[debt & financing](/map/debt)** — credit lines, loans, bonds, commercial paper.
+5. The same forecast defines **[FX](/map/fx)** exposure: forecast EUR receipts in a CHF company *are* the exposure to be hedged. Debt creates interest-rate exposure; deposits and hedges create bank counterparty exposure.
+6. **[Risk](/map/risk)** is the frame around all of it: the treasury policy sets hedge ratios, counterparty limits, minimum cash and approval rights, and middle-office checks report against them.
+7. Underneath, the **execution rails**: **[payments](/map/payments)** move the money, **[bank relationships](/map/banking)** provide the accounts, credit and services, and **[technology](/map/technology)** carries the data between banks, the ERP and the people who decide.
+
+<Callout type="synthesis" title="The one-sentence version">
+
+Forecast the cash, position the cash, place or fund the cash, protect it against markets and fraud — through banks and systems that must be kept working. Every workflow in this manual is a slice through that chain.
+
+</Callout>
+
+## The ten areas at a glance
+
+| Area | The question it answers | Horizon | Who does it at an SME / mid-market / multinational | Core workflows |
+|---|---|---|---|---|
+| [Cash management](/map/cash-management) | Where is our cash today, and is it in the right place? | Today – days | Head of accounting / treasury analyst + manager / cash & liquidity team | [Daily cash positioning](wf:daily-cash-positioning), [funding a subsidiary](wf:funding-subsidiary) |
+| [Cash forecasting](/map/cash-forecasting) | How much will we have, when, where? | Weeks – 18 months | Head of accounting / analyst prepares, manager owns / forecasting team with ~40 entities | [Cash forecasting](wf:cash-forecasting), [liquidity planning](wf:liquidity-planning) |
+| [Working capital](/map/working-capital) | How much cash is tied up in operations? | Months | AR, AP, operations own; CFO / controlling measure; treasury finances | [Cash forecasting](wf:cash-forecasting), [liquidity crisis](wf:liquidity-crisis) |
+| [Investments](/map/investments) | What do we do with surplus cash? | Days – 12 months | Rare / manager, mostly repays debt / cash & liquidity team | [Surplus cash investment](wf:surplus-cash-investment) |
+| [FX](/map/fx) | How can currency moves hurt us, and what do we hedge? | Months – 1–2 years | CFO / manager + analyst / FX & risk team | [FX exposure management](wf:fx-exposure-management), [FX hedging](wf:fx-hedging) |
+| [Debt & financing](/map/debt) | Can we borrow what we need, at what cost and conditions? | Months – years | CFO + house bank / manager + CFO / corporate finance team | [Credit facility management](wf:credit-facility-management), [covenant monitoring](wf:covenant-monitoring) |
+| [Risk](/map/risk) | Which financial and operational risks do we accept, and within what limits? | Continuous | CFO, auditors / manager, CFO / middle office, treasury committee | [Policy compliance](wf:policy-compliance), [fraud investigation](wf:fraud-investigation) |
+| [Payments](/map/payments) | How does money leave and arrive safely? | Daily | Head of accounting / local AP + treasury approval / payment factory | [Payment processing](wf:payment-processing), [large payment approval](wf:large-payment-approval), [bank reconciliation](wf:bank-reconciliation) |
+| [Bank relationships](/map/banking) | Which banks, for what, at what cost, who may sign? | Continuous + annual | CFO / CFO + manager / group treasurer + treasury operations | [Bank account management](wf:bank-account-management), [bank fee analysis](wf:bank-fee-analysis) |
+| [Technology](/map/technology) | How do data and instructions move between banks, ERP and people? | Continuous + projects | Head of accounting + IT partner / analyst as key user / treasury systems team | All of the above |
+
+## One event, many areas
+
+A single business event touches several areas at once — which is why "the FX person" or "the cash person" at a large company still spends much of the day coordinating with the others.
+
+<Example title="HM Italia's largest customer pays EUR 2.3m three weeks late" company="helvetic" open>
+
+| Area | What happens | Who |
+|---|---|---|
+| Working capital | The receivable goes overdue; credit control in Italy calls the customer and gets a promised date | Giulia's AR team |
+| Cash forecasting | Week-1 receipts miss by EUR 2.3m; Lea classifies it as timing and moves it three weeks out; Daniel haircuts Italy's later weeks | Lea, Daniel |
+| Cash management | HM Italia's account will not cover Friday's supplier run; Lea proposes a EUR 1.5m intercompany transfer from the parent | Lea proposes, Daniel approves |
+| Debt | With less cash at the parent, Daniel rolls CHF 3m more of the RCF drawing than planned | Daniel |
+| FX | A EUR/CHF forward sold for this week's inflow matures with no EUR to deliver; Lea arranges a 3-week swap to roll it | Lea, Daniel |
+| Risk | Covenants unaffected; the customer's credit limit is reviewed by credit control | Giulia, credit control |
+| Payments / banking | The intercompany transfer goes out before the EUR cut-off; the roll is confirmed and settled by the bank | Lea |
+
+No single system at Helvetic connects these steps; they are connected by Lea's spreadsheets and Daniel's head. At GlobalChem the same event would be picked up by the forecasting tool, the in-house bank would fund the subsidiary automatically through the pool, and the FX team would adjust the netting — but someone still has to decide whether the customer's new date is believable.
+
+</Example>
+
+## Cadence: when each area demands attention
+
+| Rhythm | Typical work | Areas |
+|---|---|---|
+| Every morning | Statements arrived? Position, funding, investments, payment releases, deal settlements | Cash management, payments, banking, technology |
+| Weekly | 13-week forecast update, variance analysis, hedge top-ups, limit checks | Forecasting, FX, investments, risk |
+| Monthly | Treasury report to the CFO, intercompany settlement / netting, hedge accounting, bank fee checks, concentration at mid-market companies | All, especially risk and forecasting |
+| Quarterly / semi-annual | Covenant certificates, hedge programme review, policy compliance, mandate reviews | Debt, risk, banking |
+| Annual / event-driven | Refinancing, rating review, bank review and RFPs, policy update, TMS projects, acquisitions, crises | Debt, banking, technology, risk |
+
+## How the map changes with company size
+
+The areas exist at every size; what changes is **who does the work and how formal it is**. At [Kleio](co:kleio) (70 people) treasury is maybe 10% of the CFO's time and five of the ten areas barely register. At [Alpine](co:alpine) (CHF 80m) the head of accounting runs cash, payments and bank reconciliation, and the CFO decides on FX and the credit line. At [Helvetic](co:helvetic) (CHF 650m) two people cover all ten areas with spreadsheets and a connectivity tool. At [GlobalChem](co:globalchem) (CHF 7bn) each cluster has its own team.
+
+| | Liquidity core | Financial risk & capital | Infrastructure & control |
+|---|---|---|---|
+| Startup (Kleio) | CFO, weekly: runway, balances, a few transfers | Rarely: spot FX, venture-debt question | CFO + accountant in bank portals; fraud is the main risk |
+| SME (Alpine) | Head of accounting daily; CFO reads the cash sheet | CFO: forwards for signed contracts, house-bank credit line | Head of accounting runs payments and EBICS; CFO signs large payments |
+| Mid-market (Helvetic) | Analyst prepares, treasury manager decides | Treasury manager within policy; CFO for refinancing | Local AP pays, treasury controls channels; TMS in evaluation |
+| Multinational (GlobalChem) | Cash & liquidity team, in-house bank, pools | FX & rates team, corporate finance team, rating agencies | Treasury operations, payment factory, treasury systems team |
+
+See [Treasury by company size](/size) and [Organization & Roles](/org) for who reports to whom.
+
+<CompanyCompare topic="who-does-treasury" />
+
+## Common beginner confusions across the map
+
+<Callout type="confusion" title="Five mix-ups that make interviews go badly">
+
+- **Cash position vs cash forecast.** Today's actual balances vs estimated future flows. Different workflows, often different people ([cash management](/map/cash-management) vs [forecasting](/map/cash-forecasting)).
+- **Treasury vs accounting.** Accounting records and reconciles; treasury manages the money and financial risk. Bank reconciliation is usually accounting's job; payment *approval* often treasury's.
+- **Working capital "belongs" to treasury.** It doesn't — sales, AR, procurement, AP and operations pull the levers ([working capital](/map/working-capital)).
+- **Hedging is trading.** Corporate hedging reduces risk under a policy; a hedge that shows a loss usually offset a gain in the business ([FX](/map/fx)).
+- **A TMS means it's automated.** Many workflows still run in Excel next to the TMS, and judgment steps stay human ([technology](/map/technology)).
+
+</Callout>
+
+## Where to go next
+
+- For each area, the explainer page ends with the workflows where the work happens and interview questions to ask.
+- The [Workflows](/workflows) section describes each recurring job step by step.
+- [Organization & Roles](/org) shows who owns each area at each size; the [responsibility matrix](/org/responsibility-matrix) maps tasks to roles.
+- [Systems & Data](/systems) goes deeper into the technology layer.

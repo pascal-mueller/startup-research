@@ -1,0 +1,30 @@
+# "Same problem, four companies" topics for stream wf-risk (FX, facilities, covenants).
+- id: fx-management
+  title: Currency risk
+  question: "\"We earn EUR and USD but pay CHF\" — how does each company handle it?"
+  cells:
+    kleio: "**No hedging.** Net long roughly USD 2.5–3m and EUR 2.3m a year against CHF costs. Sarah keeps about six months of USD costs in USD and converts the surplus at spot quarterly. Selling USD forward would cost about 3.5% a year in forward points (SOFR vs SARON, illustrative) for a risk worth perhaps CHF 0.2–0.3m a year; the board agreed to revisit above USD 5m net."
+    alpine: "**Contract by contract.** A board minute requires at least 50% of signed EUR/USD contracts above CHF 1m to be hedged with forwards at signing. Martin phones the FX bank; Petra files confirmations and tracks deals next to project milestones in Excel. Forecast revenue and tenders are not hedged; rolls happen when acceptances slip."
+    helvetic: "**Monthly layered programme.** Lea collects exposures from SAP and eight subsidiaries; the parent carries most of the risk because it invoices subsidiaries in their currencies. Policy bands by quarter (60–90% of next quarter down to 0–40% four quarters out); Daniel tops up with forwards on a multi-dealer platform with three banks; EUR 118m net 12-month exposure, ~50% hedged."
+    globalchem: "**Centralised risk function.** ~40 entities report through the TMS; intercompany flows are netted and booked exposures transferred to the in-house bank; Jonas's team hedges net positions in ~30 currencies, 12–18 months out, with IFRS 9 hedge accounting, platform execution with seven banks, NDFs for restricted currencies, and a separate back office confirming deals."
+  takeaway: "Hedging sophistication follows exposure size and data availability — the startup's most important FX decision is how much USD to hold, the multinational's is how good forty subsidiaries' forecasts are."
+
+- id: hedge-execution
+  title: Doing a hedge
+  question: What physically happens when each company does an FX hedge?
+  cells:
+    kleio: "Rarely happens. When converting USD, Sarah checks the rate in two Swiss e-banking portals and books a spot conversion in the cheaper one; the accountant sees the confirmation in the portal."
+    alpine: "Martin calls the large Swiss bank's corporate FX desk, asks for a 6-month EUR forward price for a signed order, says \"done\"; a PDF confirmation arrives by email the same day and Petra checks it and logs it. No competing quote unless he calls the cantonal bank too."
+    helvetic: "Daniel sends an RFQ to three banks on a multi-dealer platform, deals on the best of three quotes within seconds, and Lea matches the bank confirmations against the platform tickets and adds the deal to the hedge register used for Swiss GAAP FER accounting."
+    globalchem: "Small tickets are auto-RFQ'd from the TMS to the platform; larger ones are dealt by Jonas's team. Deals flow straight into SAP treasury, Marta's Kraków back office matches confirmations, hedge designations are generated for IFRS 9, and valuations come from market data."
+  takeaway: "The trade itself takes seconds at every size; the differences are price competition, who checks the confirmation, and how the deal reaches the accounts."
+
+- id: facilities-covenants
+  title: Credit lines and covenants
+  question: What borrowing lines and covenants does each company have — and who watches them?
+  cells:
+    kleio: "**None yet.** A CHF 5m venture-debt offer (illustrative) would bring a minimum-cash covenant that Sarah's model says could bite in about 15 months without growth or a new round — the covenant, not the rate, is the real cost."
+    alpine: "**One bilateral line.** CHF 12m committed operating line at the cantonal bank (typically CHF 0–5m drawn as fixed advances), guarantee lines for project down-payments, and a CHF 6m plant mortgage. Equity-ratio and leverage covenants are tested once a year on the audited accounts; Petra computes them when sending the accounts."
+    helvetic: "**Syndicated RCF + bond.** CHF 200m RCF with four banks (~CHF 60m drawn), leverage-based pricing, net debt / EBITDA ≤ 3.25x and interest cover ≥ 4x tested semi-annually; CHF 100m bond due 2028. Lea runs the facility calendar and covenant model; Daniel forecasts headroom and is preparing an amend-and-extend."
+    globalchem: "**Investment-grade backstop.** EUR 1.5bn RCF with seven core banks, undrawn, backing commercial paper, no financial maintenance covenant; bonds with negative pledge and change-of-control clauses. Olivier's team manages extensions, bank-group economics and the rating-agency metrics that act as the real constraint."
+  takeaway: "As companies grow, the facility shifts from something the business draws on to an insurance policy — and the 'covenant' shifts from a bank ratio to a credit rating."

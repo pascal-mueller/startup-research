@@ -26,6 +26,8 @@ type OrgNodeX = OrgNode & {
   dottedTo?: string
   /** Headcount or size hint, e.g. "3 FTE". */
   fte?: string
+  /** Render children as a vertical column instead of side by side (keeps wide charts readable). */
+  stack?: boolean
   children?: OrgNodeX[]
 }
 type OrgExampleX = Omit<OrgExample, 'tree'> & { tree: OrgNodeX; variantOf?: string; typical?: string }
@@ -41,7 +43,7 @@ function Node({ n }: { n: OrgNodeX }) {
         {n.dottedTo && <span className="org-dotted-to">┄ dotted line to {n.dottedTo}</span>}
       </div>
       {n.children?.length ? (
-        <ul>
+        <ul className={n.stack ? 'org-stack' : undefined}>
           {n.children.map((c, i) => (
             <Node key={i} n={c} />
           ))}

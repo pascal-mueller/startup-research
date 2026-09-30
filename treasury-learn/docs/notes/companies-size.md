@@ -56,3 +56,9 @@
   canonical "Helvetic has NO cash pool".
 - **core compare `positioning` (Alpine cell):** says DE and US balances come via "the same banks' multi-country views"; Alpine Inc. now
   has its own US bank (statements imported into the large Swiss bank's portal) — still consistent, but wording could be tightened.
+
+## Late change
+- Another stream revised `deloitte-gts-2024` (the "forecasting primarily supported by spreadsheets" phrase could not be verified). I
+  removed that claim from helvetic.mdx, size/index.mdx and size/midmarket.mdx; size/index now cites only the 22% cash-positioning figure.
+- `npm run check`: 0 errors from this stream's files (remaining error at time of writing: start/index.mdx unknown source "afp-sr-2025",
+  not mine — note that /start/growth and /start/index are not my files).

@@ -82,6 +82,17 @@ for (const f of files) {
   for (const m of s.matchAll(/<(?:WorkflowCard|Handoffs) (?:id|workflow)="([^"]+)"/g)) if (!workflows.has(m[1])) warn.push(`${f}: workflow not yet written ${m[1]}`)
   if (/ \[\]\(cite:/.test(s)) warn.push(`${f}: space before citation — write "text[](cite:x)"`)
 }
+// structured data files: must parse; role ids must exist
+for (const f of walk('content/data', '.yaml')) y(f)
+if (roles.size) {
+  const topics = existsSync('content/data/interview-topics.yaml') ? y('content/data/interview-topics.yaml') ?? [] : []
+  for (const t of topics)
+    for (const k of ['best', 'also', 'less'])
+      for (const r of t[k] ?? []) if (!roles.has(r.role)) errors.push(`interview-topics ${t.id}: unknown role "${r.role}"`)
+  for (const t of topics) for (const w of t.workflows ?? []) if (!workflows.has(w)) warn.push(`interview-topics ${t.id}: workflow not yet written "${w}"`)
+  const raci = existsSync('content/data/raci.yaml') ? y('content/data/raci.yaml') ?? [] : []
+  for (const m of raci) for (const r of m.rows ?? []) if (r.workflow && !workflows.has(r.workflow)) warn.push(`raci ${m.size}: workflow not yet written "${r.workflow}"`)
+}
 // yaml related/terms lists
 for (const w of workflows.values()) {
   for (const t of w.terms ?? []) if (!terms.has(t)) errors.push(`workflow ${w.id}: terms lists unknown "${t}"`)
