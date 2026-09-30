@@ -45,7 +45,7 @@
   category: Banking & connectivity
   plain: The share of all the fees a company pays to banks that goes to one particular bank.
   professional: "A bank's portion of the company's total annual bank revenue pool ('wallet') — interest margins, commitment fees, cash-management fees, FX spreads, capital-markets and advisory fees. Treasurers track wallet share per bank against each bank's credit commitment to show that lending is being rewarded fairly."
-  example: "Helvetic estimates its total wallet at about CHF 2.4m a year. Bank A provides 30% of the RCF but earns 45% of the wallet (it runs the payments and FX); Bank D provides 20% of the RCF and earns 6% — Daniel directs the next FX hedging tranche to Bank D."
+  example: "Helvetic estimates its total wallet at about CHF 2.4m a year. Each of the four RCF banks commits 25% of the facility, but Bank A earns 45% of the wallet (it runs the payments and most FX) while Bank D earns 6% — Daniel directs the next FX hedging tranche to Bank D."
   related: [relationship-bank, ancillary-business, account-analysis]
 
 - id: ancillary-business
@@ -676,7 +676,7 @@
   plain: The central-bank payment system where large payments between banks settle one by one, immediately and irrevocably.
   professional: "Central-bank-operated systems settling interbank payments individually in central-bank money: SIC in Switzerland (operated by SIX for the SNB, also settling retail CHF payments), T2 for EUR, Fedwire for USD, CHAPS for GBP. Their operating hours drive bank cut-off times."
   example: "Helvetic's CHF 20m bond coupon and principal payments travel through SIC and are final once settled."
-  related: [rtgs-note, settlement, real-time-payments]
+  related: [cut-off-time, settlement, real-time-payments]
 
 - id: sepa
   term: SEPA
@@ -840,7 +840,7 @@
   plain: Raw materials, parts and finished goods the company holds — cash sitting on shelves.
   professional: "Raw materials, work in progress and finished goods, owned by the company and carried at cost. Driven by operations, procurement and sales planning rather than treasury, but a major component of working capital (measured as days inventory outstanding) and therefore of the cash forecast."
   example: "Alpine builds up CHF 3m of components ahead of three projects; until the robots are delivered and paid, that CHF 3m is funded from cash and the credit line."
-  related: [dso-link-placeholder, working-capital, cash-conversion-cycle]
+  related: [working-capital, cash-conversion-cycle, dso]
 
 - id: surplus-cash
   term: Surplus cash
