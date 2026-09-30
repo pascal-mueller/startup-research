@@ -215,9 +215,11 @@
   sizeNote: >-
     **Startup:** VC-funded startups may hold large cash balances and care about bank concentration risk — the CFO
     decides. **SME:** often "leave it in the current account" or a term deposit with the house bank. **Mid-market:**
-    treasury manager places deposits/MMFs. **Multinational:** policy-driven, with counterparty limits by rating,
-    maturity buckets and daily monitoring. With CHF rates at or near 0%, CHF surplus investment is currently a
-    low-yield topic; USD and EUR balances matter more.
+    treasury manager decides; a group with a drawn RCF (like Helvetic) typically uses surplus CHF to reduce drawings at
+    the next rollover rather than placing deposits. **Multinational:** policy-driven, with counterparty limits by rating,
+    maturity buckets and daily monitoring. With CHF rates at or near 0%, CHF deposits earn roughly nothing; EUR and USD
+    surpluses (earning around €STR/SOFR levels) are where placement decisions matter. Ask "what did you do with the
+    last surplus?" rather than "how do you invest?".
   openers:
     - "What happened the last time you had cash you didn't need for a few months?"
     - "How do you decide which bank gets a deposit — walk me through the last placement."

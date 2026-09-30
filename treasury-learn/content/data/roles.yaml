@@ -1,0 +1,1115 @@
+# Role registry (org-roles stream). Schema: src/lib/types.ts → Role.
+# Every statement about who does what is tied to a company size; see /org/roles and the role pages for evidence.
+# Families: leadership | treasury | finance | business
+
+# ============================================================ LEADERSHIP
+- id: ceo
+  title: CEO
+  aka: [Chief Executive Officer, Managing Director (single-entity SMEs), Geschäftsführer, Vorsitzender der Geschäftsleitung]
+  family: leadership
+  oneLiner: Runs the company; involved in treasury only for existential liquidity, big funding, M&A and bank relationships at the top level.
+  reportsTo: The board of directors (in Switzerland the Verwaltungsrat).
+  exists:
+    startup: >-
+      Yes, and at a very small company may be the de-facto treasurer — before a CFO is hired the founder-CEO watches
+      runway, signs payments in the e-banking app and talks to the bank. At Kleio, Sarah (CFO) has taken this over.
+    sme: >-
+      Yes. Hears about cash when a project milestone slips or the credit line gets tight; co-signs very large payments at
+      some SMEs where collective signature (Kollektivunterschrift zu zweien) requires two of CEO/CFO.
+    midmarket: >-
+      Yes. Sees treasury through the CFO; involved in refinancing, acquisitions and the relationship with the two or three
+      most important banks. Would not know the hedge ratio.
+    multinational: >-
+      Yes. Treasury reaches the CEO only as capital allocation, rating, M&A financing, dividends and buybacks, or a
+      crisis (bank failure, sanctions, currency controls).
+  owns:
+    - Overall strategy and capital allocation (with the CFO and board)
+    - Final say on acquisitions and major investments that drive funding needs
+  escalates: To the board for financing, dividends and M&A.
+  knows:
+    best:
+      - Why the company needs money — growth plans, acquisitions, the business case behind capex
+      - How top bank relationships were won (at SMEs the CEO often knows the house-bank RM personally)
+    some:
+      - Runway and headroom as headline numbers
+      - How a currency move hits margins at a business level
+    not:
+      - How the cash position is produced, which systems are used, how payments are approved day to day
+      - Hedge instruments, forecast methods, bank connectivity
+  vocabulary: [runway, headroom, rating, leverage]
+
+- id: cfo
+  title: CFO
+  aka: [Chief Financial Officer, Finance Director (UK), Head of Finance, Leiter Finanzen]
+  family: leadership
+  oneLiner: Owns finance including treasury; personally does treasury work at small companies and only decides and escalates at large ones.
+  reportsTo: The CEO, with a direct line to the board's audit or finance committee; in Swiss companies a member of the executive board (Geschäftsleitung).
+  page: /org/roles-cfo
+  exists:
+    startup: >-
+      Often part-time, fractional or absent below ~30 people (founder + fiduciary do it). Where there is one, the CFO **is**
+      the treasurer — at Kleio, Sarah spends ~10% of her time on runway, bank accounts, investing the Series B cash and
+      USD conversions; Nina prepares payments, Sarah releases them.
+    sme: >-
+      Yes. Decides everything that matters (credit line, hedging, bank choice) but delegates the daily work to accounting
+      — at Alpine, Martin decides, Petra runs the cash sheet, payments and bank recs.
+    midmarket: >-
+      Yes. Treasury manager or head of treasury reports to the CFO. The CFO sets limits, approves hedging and funding
+      beyond the treasury's mandate, signs covenant certificates and runs the top bank relationships — at Helvetic,
+      Thomas meets Daniel weekly and co-signs payments above CHF 2m.
+    multinational: >-
+      Yes. The Group Treasurer reports to the CFO. The CFO chairs the treasury committee, approves policy and major
+      transactions (bond issues, RCF, M&A financing), deals with rating agencies and investors — at GlobalChem, Markus
+      sees Anna's monthly report and a quarterly committee pack; he does no operational treasury.
+  owns:
+    - Accountability for liquidity, funding and financial risk to the board
+    - Approval of treasury policy (for board sign-off), hedging strategy, funding plan and counterparty framework
+    - Signature on covenant compliance certificates and bank facility documents
+    - Top-level relationships with core banks, rating agencies and investors
+  escalates: >-
+    To the CEO and board — liquidity shortfalls that threaten operations, covenant breach risk, refinancing, large
+    unhedged losses, fraud losses, bank failures.
+  knows:
+    best:
+      - What the board worries about and what the risk appetite really is (vs what the policy says)
+      - Why the capital structure looks the way it does — why this RCF, this bond, these banks
+      - Which decisions were escalated in the last year and why (a great source of "what went wrong" stories)
+      - "At startups and SMEs: everything, because they do or directly supervise the work"
+    some:
+      - The cash forecast's headline numbers, low point and headroom; broad forecast quality
+      - Which systems exist and what the last TMS project cost
+      - FX exposure in business terms ("EUR revenue, CHF costs")
+    not:
+      - "At mid-market and larger companies: the steps of the daily cash position, which files arrive when, how payment files are built"
+      - Exact bank cut-off times, connectivity formats, reconciliation breaks
+      - How much time analysts spend in Excel and where the spreadsheet breaks
+  vocabulary: [liquidity headroom, net debt / EBITDA, covenant, RCF, hedge ratio, rating, treasury policy]
+  calendars:
+    - title: Thomas's month at Helvetic (CFO of a CHF 650m group with a 2-person treasury)
+      context: >-
+        Thomas spends perhaps a few hours a week on treasury, almost all of it reviewing, approving or deciding on
+        material that Daniel prepares. This is the rhythm in a normal month; in a refinancing year it is much heavier.
+      entries:
+        - time: Mon 08:30, weekly (30 min)
+          activity: Treasury catch-up with Daniel
+          why: The only fixed treasury slot in his week; keeps him ahead of anything that might reach the executive board.
+          system: Daniel's one-page note (PDF / Excel printout)
+          info: Group cash, 13-week low point vs the CHF 10m minimum, RCF drawn and headroom, EUR hedge ratio, open issues (China dividend, late payers)
+          decision: Usually none. Occasionally agrees to a hedge outside Daniel's mandate or a change of minimum cash.
+          with: "[Daniel](/org/roles-treasury-manager)"
+        - time: Ad hoc, a few times a month
+          activity: Second signature on payments above CHF 2m
+          why: Helvetic's signing matrix requires two signatures above CHF 2m, one of them CFO or CEO.
+          system: Bank connectivity tool / EBICS signature app on his phone
+          info: Payment batch with supporting invoice or contract; Daniel's note if unusual
+          decision: Release or query. He relies on the fact that AP and Daniel checked the beneficiary.
+          with: Daniel, Head of Group Accounting (Claudia)
+        - time: WD+8 monthly
+          activity: Review the monthly treasury report before the executive board meeting
+          why: The executive board and later the board of directors get a liquidity and FX section he must be able to defend.
+          system: Report pack (PowerPoint/Excel)
+          info: Cash and net debt by entity, 18-month liquidity plan, hedge ratios and mark-to-market, counterparty exposure, forecast accuracy
+          decision: What to say to the executive board; whether any item needs a board-level decision.
+          with: Daniel; Marco (FP&A) for the link to the business forecast
+        - time: Quarterly
+          activity: Lunch or call with the RCF banks' relationship managers
+          why: The four RCF banks expect ancillary business and access; the 2028 bond refinancing will depend on them.
+          info: Wallet-share view Daniel prepared, pending requests (guarantee lines, KYC)
+          decision: Which bank gets the next mandate (e.g. an FX or cash-management tender)
+          with: Bank RMs, Daniel
+        - time: Semi-annual (after June and December close)
+          activity: Sign the covenant compliance certificate
+          why: The RCF requires a signed certificate confirming net debt / EBITDA ≤ 3.25x and interest cover ≥ 4x.
+          info: Calculation by Claudia (accounting figures) checked by Daniel (debt, cash definitions)
+          decision: Sign; or, if headroom is thin, start a conversation with the agent bank early.
+          with: Claudia, Daniel, agent bank
+        - time: Annually
+          activity: Treasury policy review and board approval
+          why: The board of directors approves the risk framework; the CFO is accountable for it.
+          info: Daniel's redline of hedging bands, counterparty limits, signing limits
+          decision: Recommend changes to the board / audit committee.
+          with: Daniel, audit committee chair
+
+- id: board
+  title: Board of directors
+  aka: [Verwaltungsrat (CH), Aufsichtsrat (DE supervisory board), audit committee, finance committee]
+  family: leadership
+  oneLiner: Approves the treasury policy, major financing and risk appetite; sees treasury through quarterly reporting.
+  reportsTo: Shareholders.
+  exists:
+    startup: Investors' board. Asks about runway at every meeting and, after SVB in 2023, about bank concentration.
+    sme: Often owner/family plus a few independents. At Alpine the FX "policy" is a board minute.
+    midmarket: Approves the treasury policy, the RCF and bond; receives a liquidity and covenant section each quarter.
+    multinational: Audit committee reviews treasury risk and controls; the full board approves bond programmes, M&A financing, dividends.
+  owns:
+    - Approval of treasury policy and risk appetite
+    - Approval of major financing, guarantees, dividends, M&A
+  knows:
+    best:
+      - Risk appetite and what the board will not accept
+    some:
+      - Headline liquidity, covenant headroom, hedging stance
+    not:
+      - Anything operational
+  vocabulary: [treasury policy, covenant, rating, risk appetite]
+
+# ============================================================ TREASURY
+- id: head-of-treasury
+  title: Head of Treasury / Group Treasurer
+  aka: [Group Treasurer, Corporate Treasurer, Treasurer (US), Head of Group Treasury, VP Treasury, Leiter Treasury, Konzerntreasurer]
+  family: treasury
+  oneLiner: Leads the treasury function; owns policy, funding, banking and risk frameworks; in small teams also does the daily work.
+  reportsTo: >-
+    The CFO in the large majority of companies (sometimes a Deputy CFO or VP Finance in US groups). Rarely the CEO.
+  page: /org/roles-head-of-treasury
+  exists:
+    startup: No. The CFO (or founder) is the treasurer.
+    sme: >-
+      Rarely. Some SMEs with debt or heavy FX hire a "Head of Treasury" who is in practice a one-person treasury — the
+      title outranks the job. Most, like Alpine, have none: the CFO decides and the head of accounting executes.
+    midmarket: >-
+      Sometimes under this title, often not. At Helvetic the job is done by the **Treasury Manager** (Daniel), who
+      reports to the CFO and owns policy drafts, banks, funding and hedging with one analyst. In other mid-market groups
+      the same job is titled Head of Treasury or Group Treasurer and has 2–5 people.
+    multinational: >-
+      Yes — the Group Treasurer (GlobalChem: Anna) leads ~25 people in specialised teams (cash & liquidity, financial
+      risk, corporate finance, operations, systems) and spends most time on funding, rating, policy, banks, people and
+      projects, not on the daily position.
+  owns:
+    - Treasury policy (drafting, board submission, compliance)
+    - Funding strategy and liquidity framework (minimum cash, headroom targets)
+    - Bank relationship strategy, bank panel and wallet allocation
+    - Risk management frameworks (FX, interest rate, counterparty)
+    - Treasury organisation, people, systems roadmap
+    - Reporting to CFO, treasury committee and board
+  escalates: >-
+    To the CFO — anything outside policy or mandate, material liquidity risk, funding decisions, large losses, fraud,
+    covenant headroom concerns.
+  knows:
+    best:
+      - Why the treasury is organised the way it is, what is centralised and why
+      - Policy, limits, the funding plan, bank panel and relationship economics
+      - Treasury's pain points as a function — headcount, system gaps, audit findings, projects that failed
+      - "At small teams (2–4 people): also the operational detail, because they still do it"
+    some:
+      - The daily cash process and forecast mechanics (knows the design, not today's numbers)
+      - Payments and connectivity (knows the architecture and controls, not the file formats)
+    not:
+      - "In large teams: the actual spreadsheet steps, how long reconciliations take, which subsidiary sends what by email"
+      - Exact TMS configuration and interface failures (ask the systems lead)
+  vocabulary: [treasury policy, headroom, RCF, rating, counterparty limit, in-house bank, payment factory, hedge ratio, bank panel, wallet share]
+  calendars:
+    - title: Anna's month at GlobalChem (Group Treasurer, CHF 7bn, ~25 treasury staff)
+      context: >-
+        Anna does not build the cash position or book trades. Her month is reviews, decisions above her team's mandates,
+        external relationships and change projects. Compare with Daniel at Helvetic, who does all of this plus the daily work.
+      entries:
+        - time: Daily 08:30 (15 min)
+          activity: Read the morning liquidity dashboard and exception list
+          why: A problem in cash, a limit breach or a failed payment must reach her before it reaches the CFO.
+          system: SAP treasury dashboard / email summary from Priya's desk
+          info: Group liquidity, CP outstanding, pool balances, counterparty-limit utilisation, overnight incidents from Singapore and Kraków
+          decision: Usually none; asks a question when something is outside the normal range.
+          with: Priya (cash & liquidity), Marta (operations)
+        - time: Mon 09:00 weekly
+          activity: Treasury leadership meeting
+          why: Coordinate the desks; decisions that touch more than one desk (e.g. a large dividend from a subsidiary affects cash, FX and tax).
+          info: Each lead's top items; the 13-week forecast; hedge execution plan; open projects
+          decision: Priorities and who owns cross-desk issues
+          with: Priya, Jonas, Olivier, Marta, Ben
+        - time: Weekly
+          activity: Approve the commercial paper issuance plan
+          why: CP is the main short-term funding tool; the plan balances maturities against the forecast and RCF backstop.
+          info: CP maturity ladder, 13-week forecast, market rates from dealers
+          decision: Size and tenor band for the week's issuance
+          with: Olivier, Priya
+        - time: Monthly WD+6
+          activity: Sign off the monthly treasury report to Markus (CFO)
+          why: Standard management reporting; the CFO needs one view of liquidity, debt, risk and compliance.
+          info: Liquidity, net debt, hedging and MtM, counterparty exposure, policy breaches, forecast accuracy, project status
+          decision: What to highlight; which exceptions need CFO attention
+          with: All desk heads; Markus
+        - time: Quarterly
+          activity: Treasury committee and audit committee pack
+          why: Formal governance — hedging strategy changes, limit changes, policy exceptions and control findings need approval or noting.
+          info: Proposals from Jonas (hedge ratios), Priya (counterparty limits), Marta/Internal Audit (control findings)
+          decision: What to recommend; she presents, the committee approves
+          with: Markus, Head of Tax, Chief Accounting Officer, audit committee
+        - time: Quarterly / event-driven
+          activity: Rating-agency and core-bank meetings
+          why: The BBB+ rating and the seven-bank RCF are the foundation of funding; banks expect a view on ancillary business.
+          info: Credit metrics, funding plan, wallet-share analysis
+          decision: Allocation of ancillary mandates; timing of the next bond
+          with: Olivier, bank RMs, rating analysts
+        - time: Annually
+          activity: Policy review, treasury budget and systems roadmap
+          why: Policy must match the business; systems projects take years and need budget.
+          decision: Headcount, TMS/forecasting-tool investments, organisational changes (e.g. moving more work to Kraków)
+          with: Markus, Ben, HR
+
+- id: treasury-manager
+  title: Treasury Manager
+  aka: [Senior Treasury Manager, Treasury Manager Cash & Liquidity, Treasury Manager FX, Group Treasury Manager]
+  family: treasury
+  oneLiner: The title with the widest range — the sole treasurer of a mid-market group, or a specialist one level below a desk head in a multinational.
+  reportsTo: >-
+    Mid-market with no head of treasury — the CFO (Helvetic). With a head of treasury — the Head of Treasury / Group
+    Treasurer. In a multinational — a desk head (e.g. Head of Cash & Liquidity) or an Assistant Treasurer (US).
+  page: /org/roles-treasury-manager
+  exists:
+    startup: No. The CFO does it.
+    sme: >-
+      Uncommon. An SME with a big credit line or heavy FX may hire one as its first and only treasury person, reporting
+      to the CFO and usually also doing payments, bank admin and sometimes insurance. Alpine has none; Petra does the work.
+    midmarket: >-
+      The typical home of this title. Often the **most senior treasury person** — at Helvetic, Daniel runs treasury with
+      one analyst, reports to Thomas (CFO), makes day-to-day funding and hedging decisions within a mandate and prepares
+      everything the CFO decides.
+    multinational: >-
+      Several of them, each inside a specialist team — e.g. a Treasury Manager Cash & Liquidity on Priya's desk, a Treasury
+      Manager FX on Jonas's desk. Owns one process end to end, deals within a mandate, supervises 0–2 analysts; does not set
+      policy or run bank relationships at group level.
+  owns:
+    - "Mid-market: the daily cash position decision, the 13-week forecast, hedge execution within policy, intercompany funding, bank administration, first draft of policy and CFO reporting"
+    - "Multinational: one process (e.g. cash pooling and IHB funding, or FX hedge execution), its controls and its analysts"
+  escalates: >-
+    To the CFO (mid-market) or head of treasury/desk head (larger) — liquidity below minimum, needing an RCF drawing,
+    hedges outside the policy band or mandate, unexplained debits, subsidiary disputes, bank issues that threaten a payment.
+  knows:
+    best:
+      - What happens every day and week — the real steps, systems, cut-offs, files and spreadsheets
+      - Where forecasts break (which subsidiary, which category) and how they compensate
+      - Which decisions are judgment calls and which are mechanical
+      - What they escalate, how often, and what the CFO actually asks
+      - What they have built themselves (macros, workbooks, Power Query) and why
+    some:
+      - Strategy, funding plans and bank relationship economics (mid-market — they prepare them; multinational — only their slice)
+      - Accounting for hedges and intercompany loans (they supply data but accounting books it)
+      - The TMS market (if they have been through a selection)
+    not:
+      - "In a multinational: other desks' work in detail (an FX treasury manager may not know pooling mechanics)"
+      - Board-level politics of capital allocation and M&A pipeline
+      - Local AP/AR process detail in subsidiaries
+  vocabulary: [cash position, 13-week forecast, hedge ratio, intercompany loan, cut-off, value date, counterparty limit, RCF headroom, dealing mandate, four-eyes]
+  calendars:
+    - title: Daniel's normal week at Helvetic (Treasury Manager, 2-person treasury, reports to the CFO)
+      context: >-
+        Daniel is effectively Helvetic's head of treasury. Lea (analyst) prepares most data; Daniel reviews, decides,
+        releases, deals FX, and handles everything that needs judgment or a counterparty conversation. Payments for
+        subsidiaries are executed by local finance teams; HM AG's supplier runs are prepared by Swiss accounting.
+      entries:
+        - time: Daily 08:30–09:15
+          activity: Review Lea's cash position and decide today's transfers
+          why: Accounts must cover today's outflows before cut-off; surplus above the CHF 10m parent buffer can be placed or used to repay RCF.
+          system: Multibank connectivity tool (EBICS/SWIFT statements), positioning workbook in Excel
+          info: Prior-day balances for 12 accounts, today's known flows, Lea's proposed transfers and open questions
+          decision: Approve, change or reject each transfer; decide whether a gap is worth chasing today or can wait.
+          with: "[Lea](/org/roles-analyst); local finance (e.g. Jens in Germany) if a flow is unexplained"
+        - time: Daily, before ~11:00 (EUR) and ~14:00 (CHF)
+          activity: Release transfers and approve payment batches as second signatory
+          why: Collective signature — Lea or accounting enters, Daniel releases; nothing leaves on one signature.
+          system: Connectivity tool / EBICS signature
+          info: Transfer details; HM AG supplier batches (Tue and Thu) with the list of new or changed beneficiaries
+          decision: Release; hold a payment with changed bank details until call-back verification is done.
+          with: Lea, Swiss accounting (AP), Thomas for payments above CHF 2m
+        - time: Tue–Wed, weekly
+          activity: 13-week forecast review and overrides
+          why: Subsidiary forecasts are uneven in quality; the forecast drives investment, RCF and hedging decisions.
+          system: Excel forecast model fed by subsidiary templates
+          info: Lea's consolidation and variance table by entity and category; Italy's track record; known lumpy items (tax, coupon, dividends)
+          decision: Which submissions to override or haircut; whether the low point needs action (deposit, RCF repayment or drawing).
+          with: Lea, Giulia (Italy), Jens (Germany), Wei (China)
+        - time: Thu, weekly
+          activity: One-page note to Thomas, then Monday catch-up
+          why: The CFO must never be surprised; this is where escalations are made formally.
+          system: Excel / email
+          info: Cash, low point, headroom, hedge ratio, issues
+          decision: What needs Thomas's decision vs information only
+          with: Thomas (CFO)
+        - time: Weekly, usually Fri
+          activity: FX exposure check and hedge execution
+          why: EUR revenue is hedged with rolling forwards inside a 60–90% band for the next quarter; new orders shift exposure.
+          system: Lea's hedge-ratio workbook; bank FX portals or a multi-bank trading platform; phone
+          info: Exposure per currency from subsidiary forecasts and order book, existing forwards, current rates from two or three banks
+          decision: Whether to add a layer now, how much, with which bank (price and wallet share), within his dealing mandate.
+          with: RCF banks' FX desks; Lea checks the confirmations
+        - time: Ad hoc, several times a week
+          activity: Subsidiary funding, intercompany loans and repatriation questions
+          why: Cash is concentrated manually; each move needs an intercompany loan record for accounting, tax and transfer pricing.
+          system: Excel intercompany loan register; email
+          info: Subsidiary cash needs, loan balances, arm's-length interest rates, withholding-tax constraints (China)
+          decision: Fund by loan, repay, or declare a dividend (with Tax and Thomas)
+          with: Subsidiary finance managers, Head of Tax, Claudia
+        - time: Ad hoc, ~weekly
+          activity: Bank administration — KYC renewals, signatory changes, account openings, fee queries
+          why: Nobody else owns it; a lapsed KYC or missing signatory can block payments.
+          system: Bank portals, PDFs, wet-ink signatures, courier
+          info: Board resolutions, ID copies, signatory list
+          decision: Which accounts to keep; who needs signing rights
+          with: Bank RMs and service desks, Legal
+        - time: 2–4 hours a week
+          activity: TMS evaluation project
+          why: The Excel set-up has key-person risk (if Daniel and Lea are both away) and does not scale.
+          system: Vendor demos, requirements spreadsheet
+          decision: Shortlist and business case for Thomas
+          with: Ben-equivalent does not exist here — IT and Lea
+    - title: Daniel's month, quarter and year at Helvetic
+      context: >-
+        The weekly routine above repeats; these are the periodic tasks layered on top. Month-end work is mostly
+        providing treasury data to accounting and reporting to the CFO.
+      entries:
+        - time: WD1–WD3 monthly
+          activity: Month-end treasury data for Group Accounting
+          why: Accounting books intercompany interest, FX deals and valuations; treasury has the deal-level data.
+          system: Excel deal list, bank MtM statements, intercompany loan register
+          info: Open forwards with bank valuations, deposits, RCF drawings and interest, intercompany loan balances and interest
+          decision: None usually; resolves differences with Claudia's team.
+          with: Claudia (Head of Group Accounting)
+        - time: WD5 monthly
+          activity: Monthly hedge layer
+          why: The policy layers hedges month by month so the hedge rate averages over time.
+          system: Hedge workbook, bank dealing
+          info: Exposure forecast months 1–12, current cover per month, policy bands
+          decision: Size of the new layer; any exceptions to propose to Thomas
+          with: Lea, banks
+        - time: WD6–WD8 monthly
+          activity: Monthly treasury report and 18-month liquidity plan update
+          why: Thomas takes a liquidity and FX section to the executive board; the 18-month plan tracks the 2028 bond refinancing.
+          system: Excel / PowerPoint
+          info: Actuals vs forecast, FP&A's latest outlook, debt and covenant projections
+          decision: Messages and recommendations (e.g. start refinancing talks early)
+          with: Marco (FP&A), Thomas
+        - time: Quarterly
+          activity: Bank fee and wallet review; counterparty exposure check
+          why: Five banks compete for business; fees are rarely checked otherwise; deposits must stay within counterparty limits.
+          system: Bank fee statements, Excel
+          decision: Where to place the next piece of business; which disputes to raise
+          with: Bank RMs, Thomas
+        - time: Semi-annual (June, December)
+          activity: Covenant calculation support and compliance certificate
+          why: RCF covenants are tested semi-annually; a breach is a default event.
+          system: Accounting close figures + treasury debt data in Excel
+          info: EBITDA from Claudia, net debt definition per facility agreement
+          decision: Whether headroom is thin enough to warn the banks early
+          with: Claudia, Thomas, agent bank
+        - time: Annually
+          activity: Audit, policy review, KYC wave, RCF bank meeting
+          why: Auditors request bank confirmations and deal lists; policy and signatories need yearly refresh.
+          decision: Redline to the policy for Thomas and the board
+          with: External auditors, Thomas, banks
+
+- id: treasury-analyst
+  title: Treasury Analyst
+  aka: [Junior / Senior Treasury Analyst, Treasury Specialist, Treasury Associate, Cash Management Analyst, Treasury Accountant (hybrid)]
+  family: treasury
+  oneLiner: Collects the data, builds the position, forecast and reports, executes routine transactions and prepares the decisions others take.
+  reportsTo: The treasury manager or head of treasury; in multinationals a desk head.
+  page: /org/roles-analyst
+  exists:
+    startup: No. The accountant (Nina at Kleio) prepares payments; nobody builds a daily position.
+    sme: >-
+      Rarely under this title. The equivalent work is done by a senior accountant or the head of accounting (Petra at
+      Alpine) between other tasks.
+    midmarket: >-
+      Often exactly one — at Helvetic, Lea builds the daily position, consolidates the 13-week forecast, maintains the
+      hedge workbook and intercompany register, enters transfers and checks confirmations. Daniel decides.
+    multinational: >-
+      Several, each attached to a desk — cash & liquidity analysts run positioning and pool monitoring, risk analysts run
+      exposure and hedge reports, operations analysts do confirmations and reconciliations, often in an SSC.
+  owns:
+    - Data collection and consolidation (balances, subsidiary forecasts, exposures)
+    - Draft cash position and proposed transfers
+    - Forecast consolidation and variance analysis
+    - Routine reports (daily, weekly, month-end)
+    - Entering transactions for approval; checking confirmations (in small teams)
+  escalates: To the treasury manager — any unexplained balance, missing data, late subsidiary input, limit issue, or anything above their authority.
+  knows:
+    best:
+      - The actual mechanics — which files arrive when, which bank portal fails, which Excel tab breaks
+      - How long each task takes and what is manual copy-paste
+      - Which subsidiaries submit late or poor data and how they chase them
+      - Workarounds, macros and Power Query the team built
+    some:
+      - Why decisions are made (they see the outcome but not always the reasoning)
+      - Policy limits (they check against them)
+    not:
+      - Bank relationship economics, negotiation history, funding strategy
+      - Why the policy is set the way it is; board and CFO discussions
+      - What the business would do differently with a better forecast
+  vocabulary: [cash position, value date, MT940 / camt.053, variance, forecast template, confirmation, intercompany, cut-off]
+  calendars:
+    - title: Lea's normal week at Helvetic (Treasury Analyst, reports to Daniel)
+      context: >-
+        Lea's week is dominated by data — getting it, checking it, consolidating it — and by preparing Daniel's decisions.
+        She enters transfers but cannot release them alone.
+      entries:
+        - time: Daily 07:45
+          activity: Check all 12 statements arrived; refresh the positioning workbook
+          why: A missing statement means an unknown balance; the Chinese bank's file typically arrives around 10:00.
+          system: Connectivity tool, Excel (Power Query refresh)
+          info: Prior-day MT940/camt.053 statements
+          decision: Whether an odd balance is a data problem (duplicate file, mapping) or a real movement
+          with: Bank service desk if a file is missing
+        - time: Daily 08:10–08:55
+          activity: Add today's known flows, explain yesterday's variances, draft transfer proposals
+          why: Daniel needs options, not raw data, by 09:00.
+          system: Excel; emails from subsidiaries; ERP payment-run lists
+          info: AP runs, payroll/tax calendar, intercompany settlements, subsidiary emails ("Italy pays EUR 1.2m today")
+          decision: Which variances to flag; which option to recommend
+          with: Local finance (Jens, Giulia), Swiss AP
+        - time: Daily after approval
+          activity: Enter approved transfers; update the intercompany loan register
+          why: Every intercompany transfer must be documented for accounting, tax and interest.
+          system: Connectivity tool (first signature), Excel register
+          with: Daniel (releases)
+        - time: Mon, weekly
+          activity: Roll the 13-week forecast forward and send reminders to subsidiaries
+          why: Templates are due Tuesday noon; late entities are the main source of error.
+          system: Excel template by email or shared folder
+          info: Last week's actuals from the positioning workbook
+          with: Eight subsidiary finance managers
+        - time: Tue–Wed, weekly
+          activity: Consolidate submissions and prepare the variance table
+          why: Daniel reviews Wednesday; variance by entity and category shows who forecasts badly.
+          system: Excel
+          decision: Classify variances as timing, permanent or missing input (first pass; Daniel confirms)
+          with: Daniel; chases France, which typically submits late
+        - time: Thu–Fri, weekly
+          activity: Update the hedge-ratio workbook; match FX confirmations
+          why: Daniel needs the current cover per month before dealing; every deal needs an independent confirmation check.
+          system: Excel; bank confirmations (PDF/email or portal)
+          info: Exposure forecasts, open forwards, bank confirmations
+          decision: Flag mismatches (rate, date, amount) immediately
+          with: Daniel, bank back offices
+        - time: Month-end WD1–WD3
+          activity: Deal lists, valuations and intercompany interest for accounting
+          why: Accounting books treasury transactions from treasury data.
+          system: Excel, bank MtM reports
+          with: Claudia's team
+
+- id: cash-manager
+  title: Cash Manager / Liquidity Manager
+  aka: [Liquidity Manager, Cash & Liquidity Manager, Head of Cash Management, Cash Pool Manager, Disponent (DE), In-house bank manager]
+  family: treasury
+  oneLiner: Owns the daily cash position, funding and pooling across the group — a specialist version of what a mid-market treasury manager does among other things.
+  reportsTo: Head of Cash & Liquidity or the Group Treasurer (multinational); sometimes the treasury manager.
+  page: /org/roles-cash-manager
+  exists:
+    startup: No.
+    sme: No — the head of accounting does the weekly cash sheet (Petra at Alpine).
+    midmarket: >-
+      Usually not a separate role. The treasury manager does it with the analyst (Daniel and Lea). A larger mid-market
+      group (CHF 1–3bn) may have a cash manager as the second or third treasury hire.
+    multinational: >-
+      Yes, usually a small team. At GlobalChem, Priya is Head of Cash & Liquidity and runs the in-house bank, pools,
+      netting and short-term funding/investment with cash managers and analysts in Basel and Singapore.
+  owns:
+    - Daily cash positioning and funding across entities and currencies
+    - Cash pools, sweeps and in-house bank accounts
+    - Short-term investment and borrowing within policy (deposits, MMFs, CP in coordination with funding)
+    - Short-term cash forecast consolidation and accuracy tracking
+    - Intercompany funding and repatriation (with Tax)
+    - Bank account structure (often shared with operations)
+  escalates: To the head of cash / group treasurer — funding needs beyond limits, counterparty-limit breaches, trapped cash, failed sweeps, forecast shortfalls.
+  knows:
+    best:
+      - Daily liquidity mechanics, pools, sweeps, cut-offs, intraday issues
+      - Which entities and banks cause trouble; trapped-cash countries
+      - Forecast accuracy by entity and how it is used for funding decisions
+      - Short-term investment and CP maturity decisions
+    some:
+      - FX (because pooling and funding create currency positions)
+      - Payment factory flows (they see the cash effect)
+    not:
+      - Hedge accounting, long-term funding strategy, rating-agency work
+      - Subsidiary AP/AR processes in detail
+  vocabulary: [cash pool, header account, sweep, in-house bank, netting, trapped cash, overnight, CP, MMF, counterparty limit, cut-off]
+  calendars:
+    - title: A cash manager's day and week on Priya's desk at GlobalChem (Basel)
+      context: >-
+        Priya's team covers ~40 entities and ~280 accounts. EUR and USD physical pools sweep overnight; many other
+        currencies are managed account by account. Singapore covers Asia before Basel opens.
+      entries:
+        - time: Daily 07:30
+          activity: Handover from the Singapore regional treasury centre
+          why: Asian positions settle before Europe opens; overnight issues (a failed sweep, a missing CNY statement) are passed on.
+          system: Email / chat; SAP cash position
+          info: APAC balances, what was funded or invested overnight
+          with: Singapore RTC
+        - time: Daily 08:00
+          activity: Check pool header positions after overnight sweeps and the non-pooled accounts
+          why: The header accounts show group liquidity per currency; non-pooled entities (restricted countries) need manual funding.
+          system: SAP treasury (cash position / in-house bank), bank statements via SWIFT service bureau
+          info: Header balances, statement completeness exceptions from Marta's team
+          decision: Which entities need funding; whether a sweep failed
+          with: Treasury operations (Kraków)
+        - time: Daily 08:30–10:00
+          activity: Funding and investment decisions for the day
+          why: Surplus must be invested within counterparty limits; shortfalls funded before cut-off at lowest cost.
+          system: SAP, dealing platform / bank portals, MMF portal
+          info: Today's position, CP maturities, counterparty-limit usage, rates
+          decision: Deposit vs MMF vs CP reduction; FX swap vs spot to cover currency shortfalls
+          with: Priya approves above her limits; Jonas's desk for FX swaps
+        - time: Weekly Tue
+          activity: 13-week forecast consolidation and accuracy tracking
+          why: 40 reporting units submit through a forecasting tool; accuracy by entity (target ±10% on 4-week receipts) steers follow-up.
+          system: Forecasting tool, SAP
+          decision: Which entities to challenge; input to the CP plan
+          with: Subsidiary finance, Olivier's team (CP)
+        - time: Monthly
+          activity: Netting cycle and intercompany settlement
+          why: Monthly multilateral netting reduces cross-border intercompany payments to one net payment per entity.
+          system: Netting module / SAP IHB
+          info: Intercompany invoices submitted by entities
+          decision: Resolve disputes before the netting run; FX to buy for net positions
+          with: Subsidiary accounting, Marta's team, Jonas's desk
+        - time: Monthly / quarterly
+          activity: Trapped-cash and repatriation review
+          why: Cash in restricted countries earns little and cannot fund the group; dividends and loans need Tax.
+          decision: Proposals for dividends, loan repayments or local investment
+          with: Tax, Priya, Anna
+
+- id: fx-risk-manager
+  title: FX / Financial Risk Manager
+  aka: [Head of Financial Risk, FX Manager, Risk Manager (treasury), Treasury Risk Manager, Market Risk Manager (corporate)]
+  family: treasury
+  oneLiner: Measures FX and interest-rate exposures, designs and executes hedges under the policy, and supports hedge accounting.
+  reportsTo: Group Treasurer (multinational). In mid-market, the job is part of the treasury manager's role.
+  page: /org/roles-fx-risk
+  exists:
+    startup: No. The CFO converts USD when needed; Kleio has no hedges.
+    sme: >-
+      No. The CFO decides occasional forwards for big foreign-currency orders; the head of accounting books them. Alpine's
+      hedging rule is a board minute.
+    midmarket: >-
+      No separate role. The treasury manager deals (Daniel), the analyst maintains the exposure and hedge workbook (Lea),
+      the CFO approves the strategy, accounting books the hedges.
+    multinational: >-
+      Yes — a desk. At GlobalChem, Jonas (Head of Financial Risk) with ~4 people collects exposures from ~40 entities,
+      nets them, executes hedges on a trading platform, manages interest-rate hedges on the bond portfolio and supports
+      hedge accounting with Group Accounting.
+  owns:
+    - FX exposure collection and netting (transaction; translation where hedged)
+    - Hedge programme design within policy and execution of hedges
+    - Interest-rate risk on debt (fixed/floating mix, swaps)
+    - Hedge documentation and effectiveness data for accounting
+    - Risk reporting (exposure, cover ratios, MtM, sensitivities)
+  escalates: To the group treasurer / CFO — proposals to change hedge ratios, hedging outside policy, large MtM losses, exposures the business cannot forecast.
+  knows:
+    best:
+      - Exposure collection problems — which subsidiaries forecast currency flows poorly, how often
+      - Hedge programme logic, instruments, pricing and bank dealing
+      - Hedge accounting interface and audit questions
+    some:
+      - Cash and pooling (FX swaps are the bridge)
+      - Commercial pricing in foreign currencies (if the business asks for rates)
+    not:
+      - Daily cash positioning detail, payments, bank connectivity
+      - Subsidiary sales pipeline beyond what exposure reports show
+  vocabulary: [transaction exposure, translation exposure, hedge ratio, layering, forward points, FX swap, option, hedge accounting, MtM, netting]
+
+- id: treasury-operations
+  title: Treasury Operations / Back Office
+  aka: [Treasury Back Office, Treasury Settlements, Treasury Operations Analyst, Head of Treasury Operations, Treasury Services]
+  family: treasury
+  oneLiner: Confirms, settles, reconciles and books treasury transactions and runs payment operations, bank static data and treasury controls.
+  reportsTo: Group Treasurer (a different line from the dealers), sometimes the SSC head with a functional line to treasury.
+  page: /org/roles-operations
+  exists:
+    startup: No. The accountant and the bank portal do it; nothing to confirm except the occasional FX conversion.
+    sme: No separate role. The head of accounting (Petra) reconciles and books; bank confirmations are filed.
+    midmarket: >-
+      Not a team. At Helvetic the analyst checks confirmations and Group Accounting books deals — segregation of duties
+      is achieved by splitting tasks between Daniel (deals), Lea (confirms) and accounting (books), not by a separate office.
+    multinational: >-
+      Yes. At GlobalChem, Marta runs ~8 people in the Kraków SSC — deal confirmations and settlement, statement
+      completeness, payment factory release, static data, bank reconciliation of treasury accounts, bank account admin,
+      SWIFT and user-rights housekeeping.
+  owns:
+    - Confirmation matching and settlement of treasury deals
+    - Bank statement completeness and treasury account reconciliation
+    - Payment release in the payment factory (in some groups)
+    - Static data (bank accounts, counterparties, SSIs), bank mandates and user rights
+    - Booking of treasury transactions (or feeding accounting)
+  escalates: To head of treasury operations / group treasurer — unmatched confirmations, failed settlements, fraud attempts, reconciliation breaks, bank outages.
+  knows:
+    best:
+      - What fails every day — files, confirmations, settlements, SWIFT messages
+      - Control design in practice (four-eyes, call-backs, user rights) and audit findings
+      - Volume and effort — how many confirmations, payments, reconciliations per day
+    some:
+      - Why front office deals the way it does
+    not:
+      - Hedging and funding strategy, bank relationship economics
+      - Forecasting
+  vocabulary: [confirmation, settlement, SSI, static data, SWIFT MT300/MT320, reconciliation, four-eyes, user rights, back office]
+  calendars:
+    - title: Marta's team's week in the Kraków shared-service centre (GlobalChem treasury operations)
+      context: >-
+        Eight people; they never decide a trade or a funding amount. Their job is that what Basel decided actually
+        happens, correctly, and is recorded — and that nothing leaves the company that should not.
+      entries:
+        - time: Daily 07:30
+          activity: Statement completeness check across ~280 accounts
+          why: Priya's desk starts positioning at 08:00; missing statements must be chased first.
+          system: SWIFT service bureau reports, SAP bank statement monitor
+          decision: Chase bank, or flag the account as estimated
+          with: Banks' service desks, Priya's desk
+        - time: Daily 08:00–10:00
+          activity: Match yesterday's deal confirmations and prepare settlements
+          why: Unmatched confirmations are how errors and unauthorised deals are caught.
+          system: SAP treasury, confirmation matching (SWIFT MT300/MT320 or platform), bank portals
+          info: Deals booked by the front office, bank confirmations
+          decision: Escalate mismatches — never correct a front-office deal themselves
+          with: Jonas's and Priya's desks, banks' back offices
+        - time: Daily, several windows
+          activity: Payment factory — validate and release payment files from AP and treasury
+          why: Payments from 22 European entities leave centrally (POBO); sanctions and duplicate checks run here.
+          system: SAP payment factory, SWIFT
+          info: AP payment files from the SSC, treasury transfers, urgent manual payments
+          decision: Release, hold, or return a payment to AP (e.g. beneficiary change without call-back)
+          with: SSC AP team, treasury desks
+        - time: Weekly
+          activity: Static data and bank-mandate changes; user-rights review
+          why: Changes to SSIs, bank accounts and signatories are fraud vectors and must be four-eyes controlled.
+          system: SAP master data, bank portals (eBAM where available)
+          decision: Approve or reject change requests; verify by call-back
+          with: Ben (systems), banks, Legal
+        - time: Monthly WD1–WD4
+          activity: Reconcile treasury accounts; post deals, interest and fees; support month-end
+          why: Group Accounting needs complete and reconciled treasury balances.
+          system: SAP, bank fee statements
+          with: Group Accounting
+        - time: Quarterly
+          activity: Signatory and mandate review; audit requests
+          why: Leavers must lose rights; auditors test controls and sample deals.
+          with: Internal Audit, external auditors, banks
+
+- id: bank-relationship-manager
+  title: Bank Relationship Manager (corporate side)
+  aka: [Bank Relationship Management lead, Head of Banking, Banking Manager]
+  family: treasury
+  oneLiner: Owns the company's relationships with its banks — panel, wallet allocation, fees, facilities, KYC. A dedicated role only in large groups.
+  reportsTo: Group Treasurer or Head of Corporate Finance.
+  page: /org/roles-bank-relationship
+  exists:
+    startup: No. The CFO (or founder) talks to the banker.
+    sme: No. The CFO owns it (Martin at Alpine); the head of accounting handles KYC paperwork and signatory changes.
+    midmarket: No. The treasury manager owns it day to day (Daniel), the CFO for the top banks (Thomas).
+    multinational: >-
+      Sometimes. Many groups split it — Group Treasurer and Head of Corporate Finance own the core-bank relationships
+      and wallet allocation; operations owns KYC and account admin. A named "banking" role exists mainly in very large groups.
+  owns:
+    - Bank panel and wallet-share tracking
+    - Allocation of ancillary business to banks
+    - Fee reviews and service issues
+    - Coordination of KYC, mandates and facility documentation
+  escalates: To the group treasurer — bank withdrawal from facilities, service failures, fee disputes, KYC deadlines at risk.
+  knows:
+    best:
+      - Which bank does what, what each earns, and what each wants
+      - How bank selection actually happens
+    some:
+      - Connectivity and account structures
+    not:
+      - Daily cash and hedging detail
+  vocabulary: [relationship bank, wallet share, ancillary business, RCF, KYC, bank scorecard]
+
+- id: corporate-finance
+  title: Debt / Capital Markets / Corporate Finance
+  aka: [Head of Corporate Finance, Capital Markets Manager, Funding Manager, Head of Funding, Corporate Finance Manager]
+  family: treasury
+  oneLiner: Raises and manages debt — facilities, bonds, private placements, CP, ratings — and in some groups also M&A finance.
+  reportsTo: Group Treasurer (if inside treasury) or CFO (if Corporate Finance is a separate department that also does M&A).
+  page: /org/roles-debt
+  exists:
+    startup: No. The CFO raises equity and considers venture debt with the board (Kleio has a venture-debt offer).
+    sme: No. The CFO negotiates the credit line and mortgage with the house bank.
+    midmarket: >-
+      No separate role. The CFO leads, the treasury manager prepares and manages — at Helvetic, Daniel tracks the RCF,
+      prepares covenant data, and will run the 2028 bond refinancing with Thomas and the banks.
+    multinational: >-
+      Yes. At GlobalChem, Olivier (Head of Corporate Finance, ~3 people inside treasury) runs bond issuance, the CP
+      programme, the RCF, rating-agency relations and debt covenant/rating metrics. M&A deal work sits in a separate
+      M&A team; Olivier finances the deals.
+  owns:
+    - Funding plan and debt maturity profile
+    - Bonds, private placements, CP programme, syndicated facilities
+    - Rating-agency relationship and credit metrics
+    - Covenant monitoring (with accounting)
+  escalates: To the group treasurer / CFO — every issuance decision, refinancing timing, covenant concerns, rating pressure.
+  knows:
+    best:
+      - Funding strategy, debt markets, documentation, rating metrics
+      - Bank and investor relationships on the funding side
+    some:
+      - Liquidity planning (medium-term), interest-rate hedging
+    not:
+      - Daily cash operations, payments, forecasting mechanics
+  vocabulary: [RCF, bond, CP, private placement, Schuldschein, covenant, rating, maturity profile, refinancing risk, credit spread]
+
+- id: treasury-systems
+  title: Treasury Systems Lead
+  aka: [Treasury Technology Manager, TMS Administrator, Treasury IT, Treasury Systems & Projects]
+  family: treasury
+  oneLiner: Runs the TMS, bank connectivity and treasury interfaces; leads system projects.
+  reportsTo: Group Treasurer (with a line into IT).
+  exists:
+    startup: No.
+    sme: No. The ERP partner or IT handles bank file set-up.
+    midmarket: >-
+      No. The treasury manager and analyst administer the connectivity tool themselves with vendor support; IT helps
+      with ERP interfaces. Helvetic's TMS evaluation is run by Daniel.
+    multinational: >-
+      Yes. At GlobalChem, Ben (with 1–2 people) runs SAP treasury configuration, SWIFT via a service bureau, market-data
+      feeds, the forecasting tool and user administration, and leads upgrades.
+  owns:
+    - TMS and connectivity configuration, interfaces and upgrades
+    - User rights set-up (with operations approving)
+    - Treasury system projects and vendor management
+  escalates: To group treasurer — outages, interface failures, project risks.
+  knows:
+    best:
+      - Integration pain — which interfaces break, what data is missing, what vendors really deliver
+      - Formats (camt, MT, pain.001), connectivity channels, bank onboarding effort
+    some:
+      - The business processes the systems support
+    not:
+      - Market decisions, funding, bank economics
+  vocabulary: [TMS, SWIFT, EBICS, host-to-host, API, camt.053, pain.001, interface, SSO]
+
+- id: payments-lead
+  title: Payments Lead / Payment Factory Manager
+  aka: [Head of Payments, Payment Factory Manager, Payment Operations Lead, Treasury Payments Manager, Finance Operations (payments)]
+  family: treasury
+  oneLiner: Runs the central payment process — formats, channels, controls and release — in groups large enough to have a payment factory or payments operations team.
+  reportsTo: Treasury operations / Group Treasurer, or the SSC / finance operations head (with a functional line to treasury).
+  page: /org/roles-payments
+  exists:
+    startup: No. The accountant prepares, the CFO releases in the e-banking app.
+    sme: No. AP prepares; the head of accounting and the CFO sign (collective signature).
+    midmarket: >-
+      No. Each subsidiary's AP prepares and releases its own payments locally; treasury owns connectivity and signing
+      rules and co-signs the parent's payments (Daniel at Helvetic).
+    multinational: >-
+      Yes. At GlobalChem, payment factory operations sit in Marta's team in Kraków; payment policy, banks and
+      connectivity architecture stay with Group Treasury; AP in the SSC decides what to pay.
+  owns:
+    - Payment formats, channels and bank connectivity for payments (with systems)
+    - Payment controls — validation, sanctions screening, duplicate checks, release workflow
+    - Payment incident handling and returned payments
+  escalates: To treasury operations head / group treasurer — suspected fraud, bank outages, payments at risk of missing cut-off.
+  knows:
+    best:
+      - Payment volumes, rejection rates, fraud attempts, formats and bank channels
+      - Where AP data quality breaks (vendor master data, missing addresses)
+    some:
+      - Cash impact of payment timing
+    not:
+      - Why a supplier is paid on a given date (AP / procurement) or whether it should be (business)
+  vocabulary: [payment factory, POBO, pain.001, pain.002, payment run, sanctions screening, call-back, vendor master data, four-eyes]
+
+# ============================================================ FINANCE
+- id: head-of-accounting
+  title: Head of Accounting / Financial Controller
+  aka: [Chief Accountant, Head of Group Accounting, Financial Controller (UK), Leiter Rechnungswesen, Chief Accounting Officer]
+  family: finance
+  oneLiner: Owns the books, the close and financial statements; at SMEs also runs the treasury work; at larger companies books what treasury does.
+  reportsTo: The CFO.
+  page: /org/with-accounting
+  exists:
+    startup: Often the single accountant (Nina at Kleio) or an external fiduciary.
+    sme: >-
+      Yes, and is often the de-facto treasury operator — at Alpine, Petra runs payments, bank recs and the weekly cash sheet
+      alongside the close, VAT and AP oversight.
+    midmarket: >-
+      Yes — Claudia at Helvetic owns group close and consolidation, books treasury deals and intercompany loans from Lea's
+      data and computes EBITDA for covenants.
+    multinational: >-
+      Yes (Chief Accounting Officer / Group Reporting). Hedge accounting, IFRS 9 documentation, treasury postings are joint
+      topics with treasury; bank reconciliation often in the SSC.
+  owns:
+    - General ledger, close, consolidation, statutory accounts
+    - Bank reconciliation (at SMEs and mid-market often local accounting)
+    - Accounting for treasury transactions and hedge accounting
+  knows:
+    best:
+      - Booked cash, reconciliation breaks, intercompany mismatches, audit findings
+      - "At SMEs: the whole cash process, because they run it"
+    some:
+      - The cash forecast (as a user) and covenant calculations
+    not:
+      - Hedging strategy, bank negotiations, forward-looking liquidity decisions (above SME size)
+  vocabulary: [close, reconciliation, accrual, intercompany, hedge accounting, consolidation]
+
+- id: controlling
+  title: Controlling (management accounting)
+  aka: [Controller, Business Controller, Konzerncontrolling, Management Accounting]
+  family: finance
+  oneLiner: In DACH companies, the function that owns budgets, performance analysis and often the P&L forecast — not the cash forecast.
+  reportsTo: The CFO.
+  exists:
+    startup: No.
+    sme: Often combined with accounting or the CFO.
+    midmarket: Yes. In DACH groups often overlaps with or replaces FP&A (at Helvetic, Marco's FP&A team plays this role).
+    multinational: Yes, group and business-unit controllers; BU controllers are often the people who submit forecast inputs.
+  owns:
+    - Budgets, cost-centre and product profitability, performance reporting
+  knows:
+    best:
+      - Business plans, margins, budget assumptions
+    some:
+      - Working-capital drivers
+    not:
+      - Cash timing, bank positions, hedging
+  vocabulary: [budget, forecast, variance, cost centre, EBIT]
+
+- id: fpa
+  title: FP&A
+  aka: [Financial Planning & Analysis, Head of FP&A, Planning]
+  family: finance
+  oneLiner: Owns the budget and the P&L forecast; supplies the medium-term outlook treasury turns into a cash and funding plan.
+  reportsTo: The CFO.
+  page: /org/with-fpa
+  exists:
+    startup: The CFO's model (Sarah's runway model at Kleio).
+    sme: The CFO or a controller.
+    midmarket: Yes — Marco at Helvetic; his outlook feeds Daniel's 18-month liquidity plan.
+    multinational: Yes, large; forecasting cycles are quarterly, treasury reconciles its cash forecast to FP&A's.
+  owns:
+    - Budget, rolling P&L forecast, long-range plan
+  knows:
+    best:
+      - Revenue and cost outlook, business drivers, plan assumptions
+    some:
+      - Capex and working-capital assumptions
+    not:
+      - Cash timing by week, bank balances, FX hedges
+  vocabulary: [budget, rolling forecast, EBITDA, variance, driver]
+
+- id: accounts-payable
+  title: Accounts Payable
+  aka: [AP, Kreditorenbuchhaltung, Purchase-to-Pay (P2P) team]
+  family: finance
+  oneLiner: Checks and books supplier invoices and prepares payment runs — decides what is due, not how cash is funded.
+  reportsTo: Head of accounting or SSC head.
+  page: /org/with-ap
+  exists:
+    startup: The accountant (Nina) or fiduciary.
+    sme: 1–2 people in accounting; Petra oversees.
+    midmarket: In each subsidiary's local finance team; at Helvetic HM AG's AP prepares Tuesday/Thursday runs.
+    multinational: In the SSC (GlobalChem Kraków for Europe); payment files go to the payment factory.
+  owns:
+    - Invoice verification, three-way match, vendor master data (often), payment proposals
+  knows:
+    best:
+      - Payment runs, due dates, supplier terms in practice, vendor-bank-detail changes
+    some:
+      - Upcoming large payables (useful for the forecast)
+    not:
+      - Group liquidity, bank balances, FX
+  vocabulary: [payment run, three-way match, vendor master data, payment terms, DPO]
+
+- id: accounts-receivable
+  title: Accounts Receivable / Credit Control
+  aka: [AR, Debitorenbuchhaltung, Credit Management, Collections, Order-to-Cash (O2C)]
+  family: finance
+  oneLiner: Invoices customers, applies cash, chases overdue payments; knows which customers will really pay when.
+  reportsTo: Head of accounting, SSC head or (for credit control) the CFO.
+  page: /org/with-ar
+  exists:
+    startup: Stripe plus the accountant; Sarah chases the big enterprise customers.
+    sme: Accounting plus project managers — at Alpine the acceptance certificate is the real trigger for payment.
+    midmarket: Local finance teams; knowledge of late payers stays local (e.g. Giulia on Italian customers).
+    multinational: SSC for cash application and dunning; regional credit managers for limits and disputes.
+  owns:
+    - Invoicing, cash application, dunning, credit limits
+  knows:
+    best:
+      - Which customers pay late, disputes, expected receipt dates
+    some:
+      - DSO trends
+    not:
+      - How receipts are pooled, invested or hedged
+  vocabulary: [DSO, cash application, dunning, credit limit, remittance]
+
+- id: tax
+  title: Tax
+  aka: [Head of Tax, Group Tax, Steuerabteilung]
+  family: finance
+  oneLiner: Decides the tax-efficient (and legal) way to move money between entities — loans, dividends, pooling, withholding taxes.
+  reportsTo: The CFO.
+  page: /org/with-tax
+  exists:
+    startup: External adviser.
+    sme: External adviser plus the CFO.
+    midmarket: Often one Head of Tax or external advisers; involved in intercompany loan rates and dividends (Helvetic).
+    multinational: Yes, a team; transfer pricing of in-house bank, pooling, netting; repatriation planning.
+  owns:
+    - Transfer-pricing policy for intercompany financing, withholding taxes, repatriation structures
+  knows:
+    best:
+      - Why cash cannot simply be moved, interest-rate rules for intercompany loans
+    some:
+      - Pooling and netting structures
+    not:
+      - Daily cash and hedging
+  vocabulary: [transfer pricing, withholding tax, repatriation, thin capitalisation, arm's length]
+
+- id: procurement
+  title: Procurement
+  aka: [Purchasing, Einkauf, Sourcing]
+  family: finance
+  oneLiner: Negotiates supplier contracts and terms; source of large planned purchases and currency of supply.
+  reportsTo: COO or CFO.
+  page: /org/with-procurement
+  exists:
+    startup: Founders / ops.
+    sme: Purchasing team in operations (Alpine buys EUR/USD components).
+    midmarket: Local and central purchasing; big contracts matter for FX exposure.
+    multinational: Central category management; supplier finance programmes with treasury.
+  owns:
+    - Supplier selection, contract and payment terms
+  knows:
+    best:
+      - Upcoming large purchases, contract currencies, supplier terms
+    some:
+      - Supplier finance, DPO targets
+    not:
+      - Cash position, hedging
+  vocabulary: [payment terms, DPO, supply chain finance, contract currency]
+
+- id: legal
+  title: Legal
+  aka: [General Counsel, Legal department, Rechtsdienst]
+  family: finance
+  oneLiner: Reviews facility and bond documentation, guarantees, bank mandates and board resolutions.
+  reportsTo: CEO or CFO.
+  exists:
+    startup: External lawyers.
+    sme: External lawyers.
+    midmarket: Small in-house team plus external counsel for financing.
+    multinational: In-house team; financing lawyers external.
+  owns:
+    - Legal review of financing documents, powers of attorney, signatory resolutions
+  knows:
+    best:
+      - Documentation terms, what was negotiated in facility agreements
+    some:
+      - Covenants
+    not:
+      - Operations
+  vocabulary: [facility agreement, guarantee, power of attorney, board resolution]
+
+- id: internal-audit
+  title: Internal Audit
+  aka: [IA, Group Internal Audit]
+  family: finance
+  oneLiner: Tests treasury controls periodically; source of findings on segregation of duties, signatories and payments.
+  reportsTo: Audit committee (functionally), CFO or CEO (administratively).
+  exists:
+    startup: No.
+    sme: No; external auditors only.
+    midmarket: Sometimes a small team or outsourced.
+    multinational: Yes; treasury audited every 1–3 years.
+  owns:
+    - Assurance on controls
+  knows:
+    best:
+      - Control weaknesses, past incidents
+    some:
+      - Process design
+    not:
+      - Market decisions
+  vocabulary: [control, finding, SoD, audit trail]
+
+# ============================================================ BUSINESS / EXTERNAL
+- id: subsidiary-finance
+  title: Subsidiary Finance Manager / Local CFO
+  aka: [Local Finance Manager, Subsidiary CFO, Country Controller, Kaufmännischer Leiter, Finance Director (subsidiary)]
+  family: business
+  oneLiner: Runs finance in a foreign subsidiary; submits the forecast, executes local payments, explains local surprises.
+  reportsTo: Local managing director (solid line) and group CFO or controlling (dotted/functional) — or the reverse.
+  page: /org/with-subsidiaries
+  exists:
+    startup: Rare; Kleio Inc. is run by Sarah with a US payroll provider.
+    sme: A local bookkeeper and the subsidiary managing director (Alpine DE and US).
+    midmarket: Yes — Giulia (Italy), Jens (Germany), Wei (China) at Helvetic; they execute local payments and submit forecast templates.
+    multinational: Yes; with a payment factory and IHB their treasury role shrinks to forecasting and local banking exceptions.
+  owns:
+    - Local books, local payments (unless centralised), local bank contacts, forecast submission
+  knows:
+    best:
+      - Local customers, suppliers, tax dates, bank quirks, why the forecast was wrong
+    some:
+      - Group treasury rules (as constraints)
+    not:
+      - Group liquidity picture, hedging strategy
+  vocabulary: [forecast template, intercompany, local bank, cut-off]
+
+- id: business-unit
+  title: Business unit / operations
+  aka: [Sales, Project management, Division management]
+  family: business
+  oneLiner: Generates the flows treasury manages — orders, contracts, capex — and the currency exposures.
+  reportsTo: Division head / CEO.
+  exists:
+    startup: Sales and founders.
+    sme: Project managers who know when acceptance certificates will be signed (Alpine).
+    midmarket: Sales and plants in subsidiaries.
+    multinational: Divisions and BUs with their own controllers.
+  owns:
+    - Commercial decisions, pricing currency, capex requests
+  knows:
+    best:
+      - Order pipeline, timing of big projects, customer behaviour
+    some:
+      - FX impact on pricing
+    not:
+      - Treasury processes
+  vocabulary: [order intake, pipeline, milestone, capex]
+
+- id: external-fiduciary
+  title: External fiduciary / accountant
+  aka: [Treuhänder (CH), Steuerberater (DE), outsourced bookkeeper, payroll provider]
+  family: business
+  oneLiner: At small companies, keeps the books and runs payroll; sometimes prepares payments.
+  reportsTo: Contract with the CFO/founder.
+  exists:
+    startup: Common — Kleio uses one for payroll.
+    sme: For tax and some subsidiaries (Alpine US bookkeeper).
+    midmarket: Small foreign subsidiaries only.
+    multinational: Rare, dormant entities.
+  owns:
+    - Bookkeeping, payroll, tax filings as contracted
+  knows:
+    best:
+      - Booked history, payroll dates
+    some:
+      - Cash balances
+    not:
+      - Treasury decisions
+  vocabulary: [payroll, VAT, closing]
+
+- id: bank-rm
+  title: Bank relationship manager (bank side)
+  aka: [Corporate banker, Relationship Manager, Treasury Relationship Manager (bank title), Coverage banker, Firmenkundenberater]
+  family: business
+  oneLiner: The bank's person for the company — sells credit and services, coordinates KYC, brings product specialists.
+  reportsTo: The bank.
+  page: /org/roles-bank-relationship
+  exists:
+    startup: A startup-banking RM at the venture bank.
+    sme: Firmenkundenberater at the cantonal/house bank — personal relationship with the CFO.
+    midmarket: RMs at each of the 5 banks; senior coverage for the RCF banks.
+    multinational: Global relationship managers at core banks, plus product specialists (cash management, FX, DCM).
+  owns:
+    - The bank's side of credit, services and KYC
+  knows:
+    best:
+      - What the bank will lend and at what price; what peers do (anonymously)
+    some:
+      - The company's cash-management set-up at that bank
+    not:
+      - The company's full bank panel, internal decisions
+  vocabulary: [wallet, ancillary, credit approval, KYC, pricing]
