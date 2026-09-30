@@ -1,0 +1,321 @@
+id: fx-exposure-management
+title: FX exposure management
+question: We expect USD and EUR revenues but have CHF costs — how much currency risk do we actually have, where, and when?
+group: FX & risk
+order: 1
+summary: >-
+  Before anyone can decide whether to hedge, someone has to find out which foreign-currency amounts the company
+  will receive and pay, in which legal entity, in which month, and how certain they are. Treasury collects booked
+  items from the ERP, signed orders from sales and purchasing, and forecasts from FP&A and the subsidiaries; cleans
+  out the classic errors (functional-currency mistakes, double-counted intercompany, stale copies); nets what can be
+  netted; and produces an exposure report that sets the open risk against existing hedges and the policy. It is
+  mostly a data-collection and data-quality job, done monthly, and it is the input to every hedging decision.
+objective: >-
+  Produce a reliable, netted view of [transaction exposure](term:transaction-exposure) by entity, currency and time
+  bucket — split into booked, firmly committed and forecast amounts — plus a periodic view of
+  [translation](term:translation-exposure) and [economic exposure](term:economic-exposure), so that hedging decisions,
+  budget rates and management reporting rest on numbers people trust.
+trigger: >-
+  Monthly exposure cycle after month-end close (typically working days 3–7); ad hoc when a large foreign-currency
+  contract is signed or tendered, when a subsidiary is acquired, or after a sharp currency move.
+frequency: >-
+  Monthly at mid-market and large companies (weekly or daily for booked balance-sheet items at the largest);
+  quarterly, per contract or not at all at small companies.
+people:
+  - role: Treasury analyst (at large groups, an FX / financial-risk analyst)
+    does: Sends the exposure call, extracts ERP data, chases and cleans submissions, consolidates, builds the report.
+  - role: Treasury manager / FX risk manager
+    does: Owns the exposure definitions and the report; challenges subsidiaries and FP&A; turns the report into a hedging proposal.
+  - role: Subsidiary finance managers
+    does: Submit booked non-functional-currency items, firm orders and 12-month forecasts by currency; explain changes.
+  - role: FP&A / controlling
+    does: Supplies the budget and rolling forecast by currency beyond the order book; owns the budget rate.
+  - role: Sales / order management and procurement
+    does: Know which large foreign-currency contracts are signed, tendered or delayed, and in which currency purchases are invoiced.
+  - role: Group accounting
+    does: Confirms functional currencies, intercompany invoicing currencies and revaluation results; supplies net-investment figures for translation exposure.
+  - role: CFO / treasury committee
+    does: Receives the summarised exposure and open risk; decides on anything outside policy (e.g. hedging translation, changing invoicing currency).
+systems:
+  - name: "[ERP](term:erp) (e.g. SAP S/4HANA, Dynamics, local ERPs)"
+    use: Open receivables and payables by document currency versus company-code currency; open sales and purchase orders; intercompany balances.
+  - name: Excel exposure template
+    use: The collection tool at most companies below the largest — one tab per entity, rows by currency and month.
+  - name: "[TMS](term:tms) exposure / risk module"
+    use: At larger groups, collects submissions, pulls ERP items automatically, holds hedges, computes hedge ratios and sensitivities.
+  - name: Planning system (FP&A)
+    use: Budget and rolling forecast by currency for months beyond the firm order book.
+  - name: 13-week cash forecast
+    use: Cross-check of near-term foreign-currency flows (the first quarter of the exposure view should agree with it).
+  - name: Deal register / TMS and bank confirmations
+    use: Outstanding forwards, swaps and options to set against the exposure.
+  - name: Market data (bank portal, Bloomberg, month-end rate table)
+    use: Closing rates for booked items and forward rates for sensitivities.
+data:
+  - name: Booked exposures (monetary items)
+    source: ERP open items by currency — trade receivables and payables, foreign-currency cash, intercompany loans and balances
+    notes: Only items in a currency other than the entity's own functional currency count. This is the most common error.
+  - name: Firm commitments
+    source: Signed customer contracts and purchase orders not yet invoiced (ERP order book, project list, large capex orders)
+    notes: At project businesses, milestone dates are uncertain even when the contract is signed.
+  - name: Forecast exposures
+    source: FP&A rolling forecast / budget by currency; subsidiary 12-month forecasts
+    notes: Far less certain; policies hedge smaller percentages the further out they are.
+  - name: Tenders and bids in foreign currency
+    source: Sales / bid management
+    notes: Contingent exposure — may or may not happen; typically tracked separately and hedged, if at all, with options.
+  - name: Functional currency and invoicing-currency map
+    source: Group accounting; intercompany/transfer-pricing policy
+    notes: Decides in which entity an exposure sits. Changing the intercompany invoicing currency moves the exposure.
+  - name: Outstanding hedges
+    source: Deal register / TMS / bank confirmations
+    notes: Allocated to the exposure buckets they were meant to cover.
+  - name: Net investment in foreign subsidiaries
+    source: Consolidation (equity of each subsidiary, in local currency)
+    notes: Basis for translation exposure; normally reported quarterly or annually, not monthly.
+steps:
+  - title: Keep the exposure rules and entity map current
+    who: Treasury manager with group accounting
+    where: Policy document / Excel master tab
+    when: Annually and on any structural change
+    detail: >-
+      Define what counts as exposure and where it sits: functional currency of each entity, which currencies are
+      tracked, the intercompany invoicing currency (e.g. the parent invoices sales companies in their local currency, so
+      the exposure is concentrated at the parent), time buckets (months or quarters, 12–24 months out), materiality
+      thresholds, and how booked, firm and forecast amounts are reported. Update when entities are added, acquired, or
+      change invoicing currency.
+    judgment: >-
+      Where to concentrate exposure (parent vs subsidiaries), which currencies are material enough to track, and how far
+      out forecasts are meaningful. These choices determine how much work the monthly cycle is.
+  - title: Send the monthly exposure call with closing rates
+    who: Treasury analyst
+    where: Email with Excel template, or TMS submission task
+    when: Working day 2–3 after month-end
+    detail: >-
+      Send each subsidiary the template pre-filled with last month's submission and the month-end closing rates,
+      with a deadline (e.g. WD5 noon). Ask for booked non-functional-currency items, signed orders not yet invoiced, and a
+      12-month forecast by currency and month.
+  - title: Extract booked exposures from the ERP
+    who: Treasury analyst
+    where: ERP open-item reports (customer and vendor line items by document currency), intercompany balance report
+    detail: >-
+      For entities on the main ERP, pull open receivables and payables whose document currency differs from the
+      company-code currency, plus foreign-currency bank balances and intercompany loans. Net per entity and currency.
+      For entities on local ERPs, rely on the submission or ask the local accountant for an export.
+    manual: >-
+      ERP exports pasted into Excel and filtered by currency each month; local-ERP entities send screenshots or
+      re-typed numbers.
+  - title: Collect firm commitments and large contracts
+    who: Treasury analyst with sales controlling / procurement
+    where: ERP order book, project list, email
+    detail: >-
+      Add signed-but-not-invoiced customer orders and purchase orders in foreign currency by expected invoice or payment
+      month — for project businesses, by milestone. Ask sales about large contracts signed or lost since last month and
+      about tenders in foreign currency (tracked separately as contingent exposure).
+    manual: >-
+      The order book rarely carries reliable payment dates; the analyst asks project managers or sales controllers
+      when milestones will really be invoiced.
+    judgment: Whether a slipping milestone moves the exposure by a month or makes it doubtful altogether.
+  - title: Collect forecast exposures
+    who: Subsidiary finance → treasury analyst; FP&A
+    where: Excel templates, planning system extract
+    when: Deadline e.g. WD5
+    detail: >-
+      Take FP&A's rolling forecast of revenue and costs by currency for the months beyond the order book, and the
+      subsidiaries' own forecasts. Check that the first three months agree broadly with the 13-week
+      [cash forecast](wf:cash-forecasting); large differences mean one of them is wrong.
+    manual: Chasing late or copied submissions — the same pattern as in cash forecasting.
+  - title: Validate and clean the submissions
+    who: Treasury analyst
+    where: Excel / TMS
+    detail: >-
+      Check each line against the rules: is the currency really non-functional for that entity? Is an intercompany
+      balance reported by both sides (double counting)? Are signs right (receivable = long, payable = short)? Did a
+      subsidiary simply copy last month? Compare with last month and with the actual foreign-currency flows of the month
+      just ended (back-testing), and query anything that moved by more than a threshold.
+    judgment: >-
+      Which corrections to make centrally and which to send back; whether a big change is real (a new order) or a
+      template error. Requires knowing the business and each local finance team's habits.
+  - title: Net and aggregate by currency and bucket
+    who: Treasury analyst
+    where: Excel / TMS
+    detail: >-
+      Offset inflows and outflows in the same currency where they genuinely offset (same entity, similar timing — a
+      [natural hedge](term:natural-hedge)), aggregate per currency pair against the reporting currency and per time
+      bucket, and show entity-level exposures separately where they cannot be netted in one set of books (e.g. a Czech
+      entity's EUR/CZK exposure cannot be offset against the Swiss parent's EUR/CHF exposure in its own P&L). At groups
+      with a [netting](term:netting) centre or in-house bank, intercompany flows are netted before this step.
+    judgment: >-
+      How much offsetting to accept. Netting a September EUR receipt against a March EUR payment looks tidy but leaves
+      six months of real risk.
+  - title: Set exposures against hedges and policy
+    who: Treasury analyst
+    where: Excel / TMS, deal register
+    detail: >-
+      Allocate outstanding forwards and options to buckets, compute the [hedge ratio](term:hedge-ratio) per bucket versus
+      the policy band, the open (unhedged) position, the average hedged rate versus the [budget rate](term:budget-rate), and
+      a sensitivity (CHF impact of a 5% or 10% move on the open position).
+  - title: Review the translation and economic view
+    who: Treasury manager with group accounting and FP&A
+    where: Excel, consolidation data
+    when: Quarterly or annually
+    detail: >-
+      Separately from the monthly cycle: net investment in each foreign subsidiary (translation exposure, which hits
+      equity through the currency translation reserve) and the structural mismatch between revenue currencies and cost
+      base (economic exposure). These are mostly reported and discussed, not hedged; the levers are pricing, invoicing
+      currency, sourcing and where to produce.
+    judgment: Whether any of this deserves action (e.g. hedging a net investment, sourcing more in EUR) — a CFO and board conversation, not an analyst decision.
+  - title: Report and feed the hedging decision
+    who: Treasury analyst → treasury manager → CFO
+    where: Exposure report (Excel / TMS / slide)
+    when: WD6–8
+    detail: >-
+      The [exposure report](term:exposure-report) goes to the treasury manager with commentary on changes and data
+      issues; the manager adds a hedging proposal (see [FX hedging](wf:fx-hedging)) and a summary for the CFO's monthly
+      pack or the treasury committee. Data-quality problems go back to the subsidiaries by name, and forecast-versus-actual
+      accuracy by entity is tracked so weak submitters are visible.
+example:
+  title: "Helvetic's September exposure cycle: an Italian mistake, a missing UK payable, EUR 59.5m open"
+  body: |
+    **WD2 (Fri 2 Oct)** — Lea sends the exposure template to the eight subsidiaries with the 30 September closing rates (EUR/CHF 0.9350, USD/CHF 0.8000 — illustrative), deadline WD5 noon. From SAP she extracts HM AG's open items by document currency: EUR receivables 29.0m and EUR payables 8.0m (booked +21.0m), USD receivables 11.0m, and the USD 5.0m intercompany loan to HM Inc.
+
+    **WD5–WD6** — Submissions arrive (France after two reminders). Lea's corrections:
+
+    | Entity (functional currency) | What was submitted | Problem found | Exposure after cleaning |
+    |---|---|---|---|
+    | HM Italia (EUR) | EUR receivables 14.0m as "FX exposure" | EUR is Italy's own currency — not an exposure | none |
+    | HM UK (GBP) | GBP sales 6.0m | GBP is functional; a USD 1.2m payable to a US spindle supplier is missing | USD −1.2m (in the UK's books) |
+    | HM CZ (CZK) | EUR sales to group 45m over 12 months; EUR receivables 6.1m | Correct, but this is EUR/CZK risk in the Czech books and cannot be netted against HM AG's EUR | EUR +45m (CZ, reported separately) |
+    | HM Suzhou (CNY) | nothing | Ledger shows USD 4.0m export receivables | USD +4.0m (CNY books; restricted currency) |
+    | HM Inc. (USD) | nothing | Correct: HM AG invoices it in USD, so the exposure sits at HM AG | none |
+    | HM AG (CHF) | SAP + FP&A | Weeks 1–13 aligned to the 13-week cash forecast; months 4–12 from Marco's rolling forecast | EUR +118m, USD +54m, GBP +14m net over 12 months |
+
+    **EUR/CHF at HM AG (EUR m), after allocating existing forwards:**
+
+    | Quarter | of which booked | of which signed orders | Net inflow expected | Hedged | Hedge ratio | Policy band |
+    |---|---|---|---|---|---|---|
+    | Q4 2026 | 21.0 | 10.0 | 31.0 | 24.8 | 80% | 60–90% |
+    | Q1 2027 | — | 12.0 | 28.0 | 17.0 | 61% | 40–70% |
+    | Q2 2027 | — | 8.0 | 29.0 | 11.9 | 41% | 25–55% |
+    | Q3 2027 | — | 4.0 | 30.0 | 4.8 | 16% | 0–40% |
+    | **12 months** | **21.0** | **34.0** | **118.0** | **58.5** | **50%** | |
+
+    Open EUR position: 59.5m. A 5% fall in EUR/CHF would reduce its CHF value by about CHF 2.8m (59.5m × 0.935 × 5%). USD: 54m net inflow, 29m hedged (54%); a 5% USD move on the open 25m is about CHF 1.0m.
+
+    **WD7** — Daniel reviews. Two things bother him: Q4 relies on two German machine acceptances that Jens says "should" happen in December, and the Q3 2027 forecast is pure budget with no orders behind it yet. He asks Lea to show Q4 with and without the two acceptances (EUR 27m vs 31m) and takes that into the [hedging](wf:fx-hedging) decision. He also notes the Czech EUR/CZK exposure (EUR 45m a year against CZK costs) is not covered by any policy — an item for Thomas and the next treasury committee.
+
+    **Translation (quarterly note)** — Net investment in HM Deutschland ≈ EUR 85m, HM Inc. ≈ USD 40m, HM Suzhou ≈ CNY 300m. Not hedged; Claudia reports the translation effect in equity.
+judgment:
+  - decision: What counts as exposure and in which entity it sits
+    why: Functional currencies, intercompany invoicing currency and netting rules are choices with accounting, tax and operational consequences; getting them wrong produces confidently wrong numbers.
+  - decision: How much to trust forecast exposures, by entity and horizon
+    why: Budgets in foreign currency are often revenue targets rather than expectations; order books slip. The same forecast-quality judgment as in cash forecasting.
+  - decision: Whether to accept a subsidiary's submission or override it
+    why: Central treasury lacks local detail; local teams may not understand what an exposure is. Overrides must be explained and fed back.
+  - decision: How much netting across time and entities to allow
+    why: Offsetting flows months apart or in different legal entities understates real risk in the P&L of each entity.
+  - decision: Whether translation or economic exposure warrants action
+    why: No derivative fixes a cost base in the wrong currency; the answer may be pricing, sourcing or production location — decisions far outside treasury.
+failure_modes:
+  - mode: Functional-currency error (a subsidiary reports its own currency as exposure, or misses a real one)
+    consequence: Hedges placed for risks that don't exist, or real risks left open; revaluation losses surprise accounting at month-end.
+    detection: Automated check of exposure currency against the entity's functional currency; comparing ERP revaluation results with the reported exposure.
+  - mode: Intercompany exposure double-counted or reported on the wrong side
+    consequence: Group exposure overstated; over-hedging.
+    detection: Intercompany matrix check; clear rule on which side carries the exposure.
+  - mode: Budget treated as a firm exposure and hedged heavily
+    consequence: Over-hedged when sales fall short; forwards must be rolled or closed out at a loss — worst when the currency has moved against the hedge.
+    detection: Back-testing forecast vs actual foreign-currency flows by entity; declining hedge ratios for later buckets.
+  - mode: Large contract signed or tendered without treasury knowing
+    consequence: A multi-million foreign-currency exposure runs unhedged for weeks; or a tender won at a price that no longer covers CHF costs.
+    detection: Rule that sales must notify treasury of foreign-currency bids above a threshold; review of the order book.
+  - mode: Stale or copied submissions
+    consequence: The exposure report looks complete but reflects last month's world.
+    detection: Change analysis versus last month; tracking of submission timestamps and zero-change entities.
+  - mode: Exposure report never reconciled to accounting revaluation or to the cash forecast
+    consequence: Three different pictures of the same currency risk in treasury, accounting and FP&A; no one trusts any of them.
+    detection: Monthly reconciliation of booked exposure to the ERP revaluation base; quarter-one alignment with the 13-week forecast.
+software: >-
+  Most mid-market companies collect exposures in **Excel templates** and ERP exports. **TMS** risk modules (e.g. from
+  Kyriba, SAP treasury, FIS, ION products) and specialist **FX-risk tools** can pull booked items from ERPs, collect
+  forecast submissions, and compute hedge ratios and sensitivities, but they still depend on subsidiaries submitting
+  forecasts. The FX trading platforms (see [FX hedging](wf:fx-hedging)) handle execution, not exposure identification.
+  See [Systems & Data](/systems); vendor names are examples, not endorsements.
+manual_work:
+  - Pasting ERP open-item exports into Excel and filtering by currency.
+  - Chasing subsidiaries for templates and re-explaining what an exposure is.
+  - Asking sales and project managers when foreign-currency milestones will really be invoiced.
+  - Correcting functional-currency and sign errors by hand.
+  - Allocating existing hedges to buckets in a spreadsheet.
+  - Building the monthly slide and commentary for the CFO.
+by_size:
+  startup: >-
+    No formal exposure process. The CFO knows roughly what share of revenue is in USD or EUR and what is paid in those
+    currencies (cloud, US staff). The practical questions are "how much USD do we keep versus convert?" and "what does a
+    10% USD fall do to runway?". Answered in the runway spreadsheet a few times a year.
+  sme: >-
+    Exposure means the list of signed foreign-currency contracts — often kept by the head of accounting or the CFO in
+    Excel from the ERP order book — plus a rough annual view of EUR and USD revenues and costs from the budget. Subsidiary
+    exposures are rarely collected. Big contracts are hedged one by one when signed; the rest is left open.
+  midmarket: >-
+    A monthly Excel cycle run by the treasury analyst: ERP extracts for the main entities, templates from subsidiaries,
+    FP&A forecast for later months, consolidated into an exposure report against hedges and policy bands. Data quality
+    and chasing are the main effort; the report feeds a layered hedging programme.
+  multinational: >-
+    Exposure collection through a TMS from dozens of entities, with booked items often pulled automatically from ERPs,
+    intercompany flows netted through a netting centre or in-house bank, and a financial-risk team reviewing
+    exceptions. Balance-sheet exposures may be updated weekly or daily. The hard parts remain forecast quality from local
+    units, restricted currencies, and agreeing one view with accounting and FP&A.
+companies:
+  kleio: "About 40% of revenue is USD (≈ USD 6m a year) and 20% EUR (≈ EUR 2.6m), but Kleio also pays roughly USD 3m+ a year for cloud hosting and its 8 US staff. Sarah's 'exposure' is a few rows in the runway sheet: net USD long about USD 2.5–3m and net EUR long about EUR 2.3m a year — small against CHF ~22m of cash and CHF 0.9m monthly burn."
+  alpine: "Petra keeps a list of signed EUR and USD project contracts from Business Central with milestone months (e.g. a USD 3.2m US order: 30% on order, 60% on delivery, 10% on acceptance), plus EUR and USD component purchases. Forecast revenue beyond signed projects is not tracked by currency; tenders in USD are known only to sales until won."
+  helvetic: "The worked example above. Lea spends roughly WD2–WD6 of each month on it; the parent carries most exposure because it invoices the sales subsidiaries in their own currencies. The Czech EUR/CZK exposure is identified but not yet covered by the policy."
+  globalchem: "About 40 entities submit monthly through the TMS; booked items for SAP entities are pulled automatically and balance-sheet positions updated weekly. Intercompany invoices settle through the monthly netting run and the in-house bank, so most subsidiaries' booked exposure is transferred to the centre, where Jonas's team sees one net position per currency. Forecast exposures for ~30 currencies feed a 12–18-month hedging programme; restricted-currency exposures (e.g. INR) are flagged for NDF hedging."
+handoffs:
+  - from: Subsidiary finance
+    gives: booked non-functional-currency items, signed orders and 12-month forecast by currency (template)
+    to: Treasury analyst
+    note: The weakest link — many local accountants have never been told what an exposure is.
+  - from: ERP / group accounting
+    gives: open items by document currency, intercompany balances, functional-currency map, revaluation results
+    to: Treasury analyst
+  - from: FP&A
+    gives: rolling forecast and budget by currency; budget rates
+    to: Treasury analyst / manager
+  - from: Sales / procurement
+    gives: large foreign-currency contracts signed, tendered or delayed
+    to: Treasury manager
+    note: Often informal — a hallway conversation or a line in a sales report.
+  - from: Treasury analyst
+    gives: consolidated exposure report with data-quality notes
+    to: Treasury manager
+  - from: Treasury manager
+    gives: exposure summary, open risk and hedging proposal
+    to: CFO / treasury committee
+  - from: Treasury manager
+    gives: corrections and questions on submissions
+    to: Subsidiary finance
+interview: >-
+  Ask the person who builds the report (analyst, FX risk manager, or head of accounting at an SME) to open **last
+  month's exposure report** and walk through where each number came from: which ERP report, which subsidiary templates,
+  what they corrected, what they had to guess. Ask when a subsidiary last reported something that wasn't an exposure,
+  and when a large foreign-currency contract reached treasury late. Ask FP&A whether they recognise the forecast
+  numbers. Distinguish the three exposures in your questions — "transaction", "translation", "economic" — or you will
+  get answers about the wrong one.
+ai_note: >-
+  Extracting booked items and flagging obvious data errors (functional-currency mismatches, copied submissions,
+  intercompany mismatches) is rule-based and already partly done by TMS tools. Harder: judging how real a forecast or a
+  milestone date is, which depends on conversations with sales and local finance. Assistance with collection,
+  validation and commentary is plausible; the exposure definitions and overrides remain management choices.
+terms: [fx-exposure, transaction-exposure, translation-exposure, economic-exposure, booked-exposure, exposure-report, functional-currency, natural-hedge, netting, balance-sheet-hedging, hedge-ratio, layered-hedging, budget-rate, intercompany-loan, restricted-currency]
+related: [fx-hedging, cash-forecasting, month-end-reporting, currency-shock, policy-compliance, acquisition-integration]
+sources: [clariant-frm-2020, schindler-holding-2021, milltech-fx-2025, eact-guiding-principles]
+evidence_note: >-
+  The distinction between transaction, translation and economic exposure and the booked / firm / forecast split are
+  established concepts found throughout treasury training material. Large Swiss groups describe centralised hedging of
+  net transaction exposures in their reports — e.g. Clariant hedges net transaction exposures in major currencies
+  selectively under board-approved policies[](cite:clariant-frm-2020), and Schindler's holding company is responsible
+  for hedging the foreign-currency risks of group companies[](cite:schindler-holding-2021). A vendor-sponsored 2025
+  survey of mid-sized corporates reported an average hedge ratio of about 48% and average hedge tenor of about 5
+  months[](cite:milltech-fx-2025) — indicative only. The step sequence, timings, error types and the worked example are
+  practitioner-pattern synthesis, not survey findings; no published benchmark for exposure-data quality was found.

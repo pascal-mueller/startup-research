@@ -1,0 +1,40 @@
+# "Same problem, four companies" topics for the payments & banking workflows (stream wf-pay).
+- id: payment-approval
+  title: Supplier payment approval
+  question: Who prepares, approves and releases a routine supplier payment?
+  cells:
+    kleio: "**Nina** (accountant) prepares a batch in each bank's e-banking twice a month; **Sarah** (CFO) approves in the bank app as second signatory. No purchase orders, so no 3-way match — Sarah's eye is the control."
+    alpine: "An AP clerk runs the proposal in Business Central on Tuesdays and Fridays; **Petra** reviews it and uploads the files via EBICS; Petra plus one other signatory release them, and **Martin** must co-sign any file with payments above CHF 250k."
+    helvetic: "Each subsidiary's AP runs its own payment run; **local finance managers** sign in the multibank tool (or in bank portals for non-SAP entities). **Lea** in treasury watches rejects and makes treasury payments; she does not approve supplier invoices."
+    globalchem: "Invoices are approved in the ERPs; **Marta's payment factory** in Kraków receives files from 28 ERPs, applies duplicate, sanctions and anomaly checks, and releases them to banks — mostly on behalf of subsidiaries. Local signatories no longer release routine payments."
+  takeaway: "As companies grow, the control moves from a person signing in a bank app to system checks and a central factory — and 'who approves' splits into who approves the invoice and who releases the file."
+
+- id: large-payment
+  title: A CHF 4m payment
+  question: What happens when someone needs to pay CHF 4 million?
+  cells:
+    kleio: "It is almost always Kleio's own money moving (a deposit at another bank). Sarah enters it; the board chair co-signs. The risk to manage is social engineering, not the counterparty."
+    alpine: "Half of a normal day's cash: Martin checks credit-line headroom with Petra first, co-signs personally, and the house bank's relationship manager would likely phone to confirm."
+    helvetic: "Non-routine CHF 2–10m needs CFO and CEO under the matrix. Lea verifies contract, guarantee and beneficiary (call-back on a changed IBAN), Daniel picks the value date to match a deposit maturity, and the connectivity tool enforces the matrix because the bank mandate is broader."
+    globalchem: "Routine for treasury's own deal settlements; non-standard payments above EUR 5m need Anna and the CFO, first payments to new beneficiaries are verified by treasury operations, and acquisition payments need a legal closing checklist."
+  takeaway: "The checks are the same at every size — real obligation, real beneficiary, cash available, right approvers — but only larger companies make a system enforce them."
+
+- id: bank-accounts
+  title: Bank accounts and signatories
+  question: How many accounts, who keeps the list, and how long does a new one take?
+  cells:
+    kleio: "7 accounts at 3 banks, listed on a tab in Sarah's sheet. A second Swiss bank took about six weeks after SVB, mostly collecting documents from board members abroad."
+    alpine: "9 accounts at 2 banks. The house bank's relationship manager handles most paperwork; removing a departed controller from one e-banking contract took three weeks."
+    helvetic: "12 operating accounts (down from 31 in 2024) in Daniel's Excel register, reconciled annually with bank confirmations. Moving the Czech entity to one bank took ~8 weeks to a usable account and ~7 months to the last closure."
+    globalchem: "~280 accounts in a TMS register administered by treasury operations; signatory changes tracked bank by bank; new accounts in emerging markets take two to four months."
+  takeaway: "Account opening is slow for everyone because of KYC round trips; what changes with size is whether anyone knows, at any moment, exactly which accounts exist and who can move money from them."
+
+- id: reconciliation-owner
+  title: Bank reconciliation
+  question: Who reconciles the bank accounts, and what does treasury do in it?
+  cells:
+    kleio: "Nina reconciles monthly with the bank feed; the fiduciary reviews. The hard part is breaking down Stripe payouts net of fees and refunds."
+    alpine: "Petra matches daily in Business Central — she is both 'treasury' and 'accounting'. Local bookkeepers reconcile the German and US accounts; Petra reviews at month-end."
+    helvetic: "Claudia's accounting team owns reconciliation; Lea supplies treasury deals and intercompany loans — the interface that most often leaves items unexplained."
+    globalchem: "The Kraków shared-service centre reconciles ~280 accounts with a reconciliation tool; treasury operations reconciles the in-house bank and confirms treasury deals independently of the dealers."
+  takeaway: "Reconciliation is an accounting control; treasury's role is to make its own transactions explainable — and to act fast on debits nobody recognises."

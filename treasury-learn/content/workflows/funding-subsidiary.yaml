@@ -1,0 +1,333 @@
+id: funding-subsidiary
+title: Funding a subsidiary (and moving cash within the group)
+question: One entity needs cash; another has excess cash. How do we move it — and in what legal form?
+group: Cash & liquidity
+order: 5
+summary: >-
+  Inside a group, cash sits in separate legal entities in different countries. When one needs money (a loss-making
+  start-up subsidiary, a new plant, working capital for growth) and another has surplus, treasury cannot simply
+  "transfer" it: every movement must take a legal form — an intercompany loan, a capital injection, a cash-pool
+  position, a dividend or repayment — each with tax, transfer-pricing, currency, accounting and sometimes
+  exchange-control consequences. Treasury validates the need, chooses the instrument with tax and legal, prices it at
+  arm's length, documents it, executes it (including any FX), and monitors it until it is repaid, converted or rolled.
+objective: >-
+  Get cash to the entity that needs it, from the cheapest source in the group, in a form that is tax-efficient,
+  defensible to tax authorities on both sides, properly documented and booked, and reversible when the need ends —
+  and get excess cash back from subsidiaries where it is idle or at risk.
+trigger: >-
+  A subsidiary's forecast shows a shortfall; a funding request from local finance (capex, working capital, acquisition,
+  losses); a new entity is set up; the daily position shows an account short (short-term, under an existing framework);
+  or the other direction — a subsidiary accumulates idle cash that should be upstreamed, or loan maturities fall due.
+frequency: >-
+  Short-term funding under existing intercompany agreements: daily to weekly at groups without automatic pooling.
+  Structured funding decisions (new loans, equity, dividends): a few to a few dozen times a year, plus annual
+  dividend and transfer-pricing cycles.
+people:
+  - role: Subsidiary finance manager / local CFO
+    does: Raises the funding request with amount, currency, purpose and duration; supplies the local forecast; signs local documents; books the loan locally.
+  - role: Treasury analyst
+    does: Validates the request against the subsidiary's forecast, identifies the source, prepares the term sheet, FX and payment, and updates the intercompany loan register.
+  - role: Treasury manager / head of cash & liquidity
+    does: Decides the funding route (with tax), approves pricing and FX hedging, executes or approves the transfer.
+  - role: Tax (group or external adviser)
+    does: Advises on instrument choice, interest deductibility, withholding taxes, transfer-pricing rate and documentation.
+  - role: Legal / company secretary
+    does: Drafts or reviews loan agreements and board resolutions; handles capital increases and registrations.
+  - role: Accounting (group and local)
+    does: Books the loan or equity in both entities, accrues interest, reconciles intercompany balances monthly, handles FX revaluation.
+  - role: CFO / boards of both entities
+    does: Approve above treasury's limits; capital injections and dividends always need board or shareholder resolutions.
+systems:
+  - name: Bank portals / EBICS / SWIFT
+    use: Execute the transfer; for cross-border CNY or other controlled currencies, submit supporting documents to the bank.
+  - name: Intercompany loan register (Excel or TMS)
+    use: Principal, currency, rate, maturity, interest periods, accrued interest, agreement reference for every intercompany loan.
+  - name: "[ERP](term:erp) (both entities)"
+    use: Booking in both ledgers; intercompany reconciliation at month-end.
+  - name: FX dealing platform or bank
+    use: Spot conversion and hedge (forward or [FX swap](term:swap)) when the loan currency differs from the lender's funds.
+  - name: Document management / shared drive
+    use: Signed loan agreements, board resolutions, transfer-pricing files — often scattered, a recurring audit finding.
+data:
+  - name: Subsidiary cash forecast and funding need
+    source: Local finance; the 13-week forecast; capex plans
+    notes: Peak need, duration and currency matter more than the headline amount.
+  - name: Surplus by entity and its mobility
+    source: Cash position; tax/legal knowledge
+    notes: Surplus in a restricted country (e.g. China) is not a practical funding source at short notice.
+  - name: Existing intercompany positions
+    source: Intercompany loan register, ERP
+    notes: Outstanding loans, framework limits, maturities — and who already owes whom.
+  - name: Arm's-length interest rates
+    source: Transfer-pricing policy or benchmark; Swiss [safe-harbour rates](term:safe-harbour-rates) for Swiss lenders/borrowers
+    notes: Reference rate plus a credit spread reflecting the borrower's standalone credit quality.
+  - name: Subsidiary equity and debt ratios
+    source: Local balance sheet
+    notes: Needed for thin-capitalisation and interest-limitation checks; negative equity may force equity instead of debt.
+  - name: Tax parameters
+    source: Tax department / advisers
+    notes: Withholding tax on interest and dividends (with treaty relief), interest-limitation rules, capital duties.
+  - name: Exchange-control rules
+    source: Local bank, local advisers
+    notes: E.g. China's registration and documentation requirements for cross-border lending, dividends and fees.
+steps:
+  - title: Receive and validate the funding request
+    who: Subsidiary finance → treasury analyst
+    where: Email / funding request template, 13-week forecast
+    detail: >-
+      The local finance manager asks for money: "HM Inc. needs USD 6m for the new demo centre and inventory". The analyst
+      checks it against the subsidiary's forecast: peak need, how long, when it can repay, whether part could be covered
+      by collecting overdue receivables or timing payments. Short, daily shortfalls go through the existing framework
+      (see [daily cash positioning](wf:daily-cash-positioning)); structured requests go through this workflow.
+    judgment: Whether the need is real and how long it will last — local teams sometimes ask for comfortable cushions.
+  - title: Find the source inside the group
+    who: Treasury analyst
+    where: Cash position, liquidity plan
+    detail: >-
+      Which entity has surplus in which currency, and can it be moved? Parent or [in-house bank](term:in-house-bank)
+      surplus is the usual source; surplus in a sister company may need to be upstreamed first; cash in restricted
+      countries is usually excluded. If the group has no surplus, the source is external — the parent draws on its
+      facility and on-lends.
+  - title: Choose the funding instrument
+    who: Treasury manager with tax (and legal)
+    where: Meeting / email, tax memo
+    detail: >-
+      **[Intercompany loan](term:intercompany-loan)** for temporary needs (repayable; interest deductible locally within
+      limits; needs arm's-length pricing and documentation). **[Capital injection](term:capital-injection)** for
+      permanent needs or where the subsidiary's equity is too thin (no interest, hard to get back; may trigger capital
+      duties in some countries). **[Cash pool](term:cash-pooling)** position where a pool exists (automatic, but a pool
+      balance that never goes positive is really a long-term loan and may be challenged). **External local financing with
+      a parent guarantee** where exchange controls or local rules make intercompany funding impractical (guarantee fee
+      must itself be arm's length). In the other direction: dividend, repayment of an existing loan, or an upstream loan
+      from subsidiary to parent.
+    judgment: >-
+      Loan vs equity is a tax, legal and practical judgment: interest deductibility and [thin capitalisation](term:thin-capitalisation)
+      rules in the borrower's country, withholding taxes, whether the subsidiary will ever repay, local minimum-capital
+      or over-indebtedness rules, and how easy it is to get the money back later.
+  - title: Set the currency and the FX hedge
+    who: Treasury manager
+    where: Excel / FX platform
+    detail: >-
+      Usually lend in the subsidiary's [functional currency](term:functional-currency) so the subsidiary has no FX
+      risk; the lender then holds a foreign-currency receivable. The lender converts its own currency spot and hedges the
+      receivable with a forward or rolling FX swaps — or designates the loan as part of its net investment if repayment
+      is not planned. For a CHF parent lending USD, hedging costs roughly the USD–CHF interest differential, which
+      largely offsets the higher USD interest earned.
+    judgment: Hedge or not; and whether the loan is "permanent" enough for net-investment treatment (an accounting judgment with P&L consequences).
+  - title: Price it at arm's length
+    who: Treasury manager with tax
+    where: Transfer-pricing policy, benchmark, ESTV circulars
+    detail: >-
+      Set the interest rate as reference rate plus a credit spread appropriate to the borrower's standalone credit
+      quality and the loan's tenor and currency ([transfer pricing](term:transfer-pricing)). A Swiss lender can rely on
+      the Swiss tax administration's annual safe-harbour minimum rates (for 2026: 0.75% minimum for equity-financed CHF
+      loans; published foreign-currency rates such as EUR 2.50% and USD 4.00%)[](cite:estv-safe-harbour-2026) — below
+      them, it must prove arm's length or risk the shortfall being treated as a
+      [hidden profit distribution](term:hidden-profit-distribution). The *borrower's* tax authority applies its own test —
+      it will challenge a rate that is too high.
+    judgment: Where in the arm's-length range to set the rate, balancing the two tax authorities and the group's overall tax position.
+  - title: Document and approve
+    who: Treasury analyst / legal; signatories of both entities
+    where: Loan agreement template, board resolutions, e-signature
+    detail: >-
+      Loan agreement (parties, amount, currency, rate and reference, interest periods, maturity, repayment, early
+      repayment, subordination if needed, governing law), board approvals where required, and transfer-pricing file
+      entry. Larger groups use a **framework (master) intercompany agreement** under which individual drawdowns only need a
+      confirmation. Local regulatory steps where required — in China, cross-border loans and dividends need registration
+      and supporting documents at the bank.
+    manual: Agreements drafted from Word templates, signed by directors in two countries, filed in a shared drive; missing or expired agreements are a classic audit and tax-audit finding.
+  - title: Execute the FX and the transfer
+    who: Treasury manager approves; analyst or treasury operations executes
+    where: FX platform / bank portal / EBICS
+    when: Value date agreed with the subsidiary, respecting currency cut-offs
+    detail: >-
+      Book the spot FX (and hedge), send the payment with an intercompany reference that lets both ledgers match it, and
+      confirm receipt with local finance.
+  - title: Book in both entities and reconcile
+    who: Group and local accounting
+    where: ERP (both entities)
+    detail: >-
+      The lender books a receivable, the borrower a liability, both accrue interest at the agreed rate. Month-end
+      intercompany reconciliation checks that both sides agree — differences (FX rates, accrual timing, a payment booked
+      on one side only) are common. FX differences on intercompany loans between entities with different functional
+      currencies do not eliminate on consolidation and can hit group P&L unless hedged or treated as net investment.
+    manual: Intercompany mismatch investigation by email between group and local accounting.
+  - title: Service, monitor and review
+    who: Treasury analyst
+    where: Intercompany loan register
+    detail: >-
+      Calculate and settle interest (quarterly or at period end), roll or reprice at maturity, update the rate when the
+      reference rate moves, and review annually whether the subsidiary can repay. Loans that will never be repaid are
+      candidates for conversion to equity (debt-equity swap) — a tax and legal exercise.
+    judgment: When a "temporary" loan has become permanent and should be restructured.
+  - title: Upstream surplus and deal with trapped cash
+    who: Treasury manager with tax and local finance
+    where: Liquidity plan, dividend calendar
+    detail: >-
+      The reverse flow: subsidiaries with idle cash repay intercompany loans, lend upstream, or pay dividends. Where cash
+      is [trapped](term:trapped-cash) — e.g. in China, where a foreign-invested company pays dividends only out of
+      audited after-tax profits after allocating 10% to a statutory reserve (until that reserve reaches 50% of registered
+      capital), and dividends carry a 10% withholding tax unless a treaty reduces it[](cite:china-briefing-dividends) —
+      treasury plans an annual dividend cycle, and uses service fees, royalties or trade settlement only where they are
+      real and documented. Larger multinationals can use Chinese cross-border cash-pooling programmes, which the
+      authorities have expanded but which cover a limited number of groups[](cite:safe-cash-pool-2024).
+    judgment: Whether the tax cost of upstreaming (withholding tax, statutory reserves) is worth paying now, or whether the cash should be reinvested locally.
+example:
+  title: "Helvetic: HM Inc. needs USD 6m; HM Suzhou has CNY it can't lend"
+  body: |
+    **The request.** In October 2026 HM Inc.'s US controller asks Daniel for USD 6m (≈ CHF 4.8m at USD/CHF 0.80) to
+    build a demo and service centre and stock machines for faster US deliveries. Lea checks HM Inc.'s forecast: the need
+    peaks at USD 6m in Q1 2027 and, if US sales grow as planned, is repaid from operating cash over 2028. HM Suzhou,
+    meanwhile, holds about CNY 60m (≈ CHF 6.8m) that Wei reports as surplus to local needs.
+
+    **Options Lea writes up for Daniel (illustrative):**
+
+    | Option | How | Cost / benefit | Problems |
+    |---|---|---|---|
+    | A. USD loan from HM AG | HM AG converts CHF 4.8m spot into USD and lends USD 6m for 2 years at 4.00% p.a. | HM Inc. deducts USD 240k interest per year; HM AG earns it. No external margin paid by the group | HM AG holds a USD receivable → hedge; loan agreement, TP file, board resolutions in CH and US |
+    | B. Capital injection into HM Inc. | HM AG subscribes new equity | No interest deduction in the US; no FX hedge accounting question if treated as investment | Permanent; getting it back needs dividends or capital reduction; overkill for a 2-year need |
+    | C. US bank loan with HM AG guarantee | Local bank lends at SOFR + margin | Keeps a US bank relationship active | Group pays an external margin plus guarantee fee on money it already has; covenants and KYC for a small loan |
+    | D. Use Suzhou's CNY | HM Suzhou lends to HM Inc. or pays a dividend | Uses idle cash | Cross-border lending out of China needs registration with the bank and is capped under macro-prudential rules; a dividend is possible only after the 2026 statutory audit (mid-2027), after reserve allocation and withholding tax — too late and too slow for Q1 |
+
+    **Decision.** Daniel and Claudia (Head of Group Accounting) choose **A**, with the group's external tax adviser
+    confirming the rate: 4.00% matches the Swiss tax administration's 2026 USD safe-harbour rate[](cite:estv-safe-harbour-2026),
+    and the adviser's benchmark supports it as within the arm's-length range from the US side. HM Inc.'s equity is
+    positive and the interest is small relative to its earnings, so US interest-limitation rules are not an issue.
+
+    **Execution.** Lea drafts the loan from the group template; the agreement is signed by HM AG's two authorised
+    signatories and HM Inc.'s officers. Daniel buys USD 6m spot against CHF and, per Helvetic's policy of hedging
+    foreign-currency intercompany loans, sells USD 6m forward in 3-month rolling swaps. With USD rates around 3.5–4% and
+    CHF around 0%, the forward points cost roughly the same as the interest earned — so HM AG's hedged return in CHF is
+    close to zero. That is expected: the point is not to earn money on HM Inc. but to fund it without paying a bank's
+    margin. The USD is sent via the global bank to HM Inc.'s account with reference "IC LOAN HMAG-HMINC-2026-03";
+    Claudia's team sets up the intercompany accounts on both sides.
+
+    **The China part.** Daniel adds HM Suzhou's 2027 dividend to the liquidity plan instead. If Suzhou's 2026 after-tax
+    profit is CNY 25m and the statutory reserve is not yet at 50% of registered capital, CNY 2.5m goes to the reserve;
+    of the CNY 22.5m distributable, withholding tax (10%, or a lower treaty rate if it applies) is deducted; the net
+    ~CNY 20m (≈ CHF 2.3m) could arrive around mid-2027, after the audit, the board resolution and the bank's document
+    checks. Wei starts the paperwork in the spring.
+judgment:
+  - decision: Whether the subsidiary's need is real, and for how long
+    why: Local teams ask for comfort; treasury must distinguish a permanent structural need (equity) from a temporary one (loan) from a cushion (no).
+  - decision: Loan, equity, pool or external funding
+    why: Depends on tax deductibility, withholding taxes, thin-capitalisation and local corporate-law rules, exchange controls, and whether the money will ever come back — a joint treasury/tax/legal judgment.
+  - decision: The interest rate within the arm's-length range
+    why: Two tax authorities look at the same rate from opposite sides; the defensible rate depends on the borrower's standalone credit and on documentation quality.
+  - decision: Whether to hedge the lender's FX exposure
+    why: Hedging removes P&L volatility but the cost can offset the interest; not hedging leaves the lender exposed. Net-investment treatment is an accounting judgment.
+  - decision: Whether to pay the tax cost of repatriating trapped cash
+    why: Withholding tax and statutory reserves reduce what arrives; leaving cash local keeps it exposed to local banks and currency risk.
+failure_modes:
+  - mode: No written loan agreement, or an expired one
+    consequence: The tax authority recharacterises the balance (as equity, as a hidden distribution, or disallows interest); auditors raise findings.
+    detection: Intercompany loan register reconciled to signed agreements annually; tax review.
+  - mode: Interest rate not at arm's length
+    consequence: Tax adjustments, penalties and possible double taxation; in Switzerland, below-safe-harbour lending to related parties may be treated as a hidden profit distribution.
+    detection: Transfer-pricing policy and annual rate review; tax sign-off on new loans.
+  - mode: Intercompany balances don't agree between entities
+    consequence: Consolidation differences, month-end delays, and cash that "disappears" between ledgers.
+    detection: Monthly intercompany reconciliation; unique references on every intercompany payment.
+  - mode: Unhedged FX on intercompany loans
+    consequence: Unexpected group P&L swings when the currency moves; a surprise for the CFO at quarter-end.
+    detection: Include intercompany loans in the FX exposure report; policy rule on hedging or net-investment designation.
+  - mode: '"Temporary" loans that become permanent'
+    consequence: A subsidiary with negative equity and a loan it can never repay; local over-indebtedness rules can force a capital injection at a bad moment.
+    detection: Annual review of each loan's repayment capacity; subsidiary equity monitoring.
+  - mode: Relying on trapped cash for group liquidity
+    consequence: The group counts cash it cannot move quickly; a funding gap elsewhere is discovered too late.
+    detection: Exclude restricted-country cash from available headroom in the [liquidity plan](wf:liquidity-planning).
+software: >-
+  At mid-market companies, intercompany loans live in **Excel registers** and Word templates; execution is through
+  bank portals or a multibank tool; interest is calculated in Excel and invoiced manually. **TMS** products offer
+  intercompany loan and in-house-bank modules (loan register, interest calculation, automatic postings, statements
+  to subsidiaries). **Cash pools and in-house banks** automate much of the short-term funding at large groups.
+  Transfer-pricing benchmarks come from tax advisers or database tools. See [Systems & Data](/systems).
+manual_work:
+  - Drafting, signing and filing loan agreements and board resolutions across countries.
+  - Keeping the intercompany loan register and interest calculations in Excel.
+  - Calculating and invoicing intercompany interest each period.
+  - Reconciling intercompany balances between group and local accounting.
+  - Collecting documents for exchange-control or bank checks (e.g. Chinese dividends and cross-border loans).
+  - Annual rate reviews and transfer-pricing file updates with the tax adviser.
+by_size:
+  startup: >-
+    Usually one foreign subsidiary (often a US sales entity) funded by the parent through a **cost-plus service
+    agreement**: the parent pays the subsidiary its costs plus a markup set by a transfer-pricing adviser, monthly. No
+    intercompany loans; the "funding" decision is just the monthly transfer. The founder or CFO executes it in e-banking.
+  sme: >-
+    The parent funds subsidiaries informally — an intercompany current account that grows over time, often without a
+    written agreement or interest until the auditor or a tax audit asks. The CFO decides; the head of accounting
+    executes and books. Upstreaming happens by annual dividend if at all.
+  midmarket: >-
+    A treasury manager funds subsidiaries by documented intercompany loans (often under a framework agreement), with
+    rates from a transfer-pricing policy, FX hedged at the parent, and a loan register in Excel. Tax and group
+    accounting are consulted on each new structure. Restricted countries (China) are handled by annual dividend cycles.
+  multinational: >-
+    An in-house bank provides most subsidiary funding through intercompany accounts and cash pools; pricing follows a
+    group transfer-pricing policy (reference rate plus spreads by subsidiary rating); FX on intercompany positions is
+    managed centrally. Structured funding (equity, large loans, acquisitions) involves tax, legal and corporate finance.
+    Restricted-currency countries get local bank financing, cross-border pooling programmes where available, and annual
+    repatriation plans.
+companies:
+  kleio: >-
+    Kleio Inc. (US) has no loans: Kleio AG pays it a monthly service fee under a cost-plus agreement set up by the
+    fiduciary's transfer-pricing adviser. Sarah transfers the USD each month from the Swiss USD account; Nina books it.
+  alpine: >-
+    Alpine AG funds the German and US subsidiaries through intercompany current accounts that have grown to several
+    million over the years. Last year's audit noted that the US balance had no written agreement and no interest; Petra
+    now charges interest at the ESTV safe-harbour rate and Martin signed loan agreements for both balances.
+  helvetic: >-
+    The worked example: a documented USD loan from HM AG, hedged at the parent, and an annual dividend plan for HM
+    Suzhou. Without a cash pool, Daniel moves day-to-day surpluses and shortfalls by intercompany loan under framework
+    agreements with each subsidiary; Lea keeps the register.
+  globalchem: >-
+    Priya's in-house bank holds intercompany accounts for ~40 subsidiaries, prices them under the group transfer-pricing
+    policy, and funds new plants through a mix of equity and IHB loans agreed with tax. Restricted-currency countries
+    (e.g. China) are financed locally and repatriated via annual dividends; Marta's team in Kraków books and settles
+    intercompany interest monthly.
+handoffs:
+  - from: Subsidiary finance
+    gives: funding request (amount, currency, purpose, duration) and local forecast
+    to: Treasury analyst
+  - from: Treasury analyst
+    gives: validated need, source options, draft term sheet
+    to: Treasury manager
+  - from: Tax
+    gives: instrument recommendation, arm's-length rate, withholding-tax and deductibility view
+    to: Treasury manager
+  - from: Legal / company secretary
+    gives: loan agreement or capital-increase documents; board resolutions
+    to: Signatories of both entities
+  - from: Treasury manager
+    gives: approved FX deal and transfer
+    to: Treasury operations / bank
+  - from: Treasury analyst
+    gives: loan details, interest schedule, payment reference
+    to: Group and local accounting
+    note: So both ledgers match at month-end.
+  - from: Local finance (restricted country)
+    gives: audited accounts, board resolution, tax documents for dividends
+    to: Local bank / treasury
+interview: >-
+  Ask the treasury manager for **the last time a subsidiary needed money**: who asked, how they checked the need, why
+  loan and not equity, who set the rate and how, who signed what, how FX was handled, and how long it took end to end.
+  Ask the subsidiary finance manager the same from their side. Ask tax how they review intercompany loans, and ask
+  about cash that "can't come home" — where it is and what they do about it.
+ai_note: >-
+  Parts are document- and rule-heavy: drafting loan agreements from templates, maintaining the loan register,
+  calculating interest, reconciling intercompany balances, checking that each loan has a valid agreement and a rate
+  within policy. Assistance there is plausible. The instrument choice and pricing involve tax and legal
+  judgment across jurisdictions with real penalty risk; expect humans (and advisers) to keep ownership.
+terms: [intercompany-loan, capital-injection, cash-pooling, in-house-bank, transfer-pricing, safe-harbour-rates, hidden-profit-distribution, thin-capitalisation, withholding-tax, trapped-cash, statutory-reserve, repatriation, functional-currency, swap]
+related: [daily-cash-positioning, liquidity-planning, surplus-cash-investment, fx-exposure-management, fx-hedging, acquisition-integration]
+sources: [estv-safe-harbour-2026, china-briefing-dividends, safe-cash-pool-2024, bk-non-bank-rules]
+evidence_note: >-
+  Instrument choices, arm's-length pricing and documentation requirements are established practice (OECD
+  transfer-pricing guidance on financial transactions underpins most national rules). Swiss safe-harbour figures are
+  from the 2026 ESTV circulars as summarised by Deloitte and other advisers[](cite:estv-safe-harbour-2026) — the
+  foreign-currency rates were taken from search-result extracts and should be checked against the ESTV circular before
+  use. Chinese dividend rules[](cite:china-briefing-dividends) and cross-border pooling programmes[](cite:safe-cash-pool-2024)
+  change frequently; treat them as orientation, not advice. Why Swiss withholding tax and the 10/20 non-bank rules shape
+  group financing is explained by Bär & Karrer[](cite:bk-non-bank-rules). The Helvetic, Alpine and Kleio details are illustrative synthesis. Tax
+  consequences always depend on the specific country pair and facts.

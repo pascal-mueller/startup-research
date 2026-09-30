@@ -1,0 +1,70 @@
+---
+title: "Digital worker: explain last week's forecast variances"
+nav: "DW · Forecast variance"
+order: 7
+summary: The weekly variance step of the 13-week forecast modelled as an AI-prepared assignment — the one treasury task where every output is scored by reality within weeks, which makes it the best place to build an evaluation set.
+related: [/workflows/cash-forecasting, /lens/matrix, /lens/dw-liquidity-recommendation, /day/lea]
+---
+
+<Callout type="synthesis">
+
+Illustrative model based on the [cash forecasting](wf:cash-forecasting) workflow and its Helvetic week-23 example.
+Lens rating: [good agent candidate](/lens/matrix#cash-forecasting). Forecasting is the most-cited treasury priority and
+challenge[](cite:afp-bench-2025-article,eact-2025) and the most crowded AI category — vendors already market ML
+forecasts, and one calls its forecasting "fully autonomous"[](cite:highradius-autonomous-2027) (a claim). This model
+deliberately starts with the *explanation* of last week, not with prediction.
+
+</Callout>
+
+## Why variance first, not prediction
+
+Prediction is where vendors compete, and its accuracy is hard to attribute (was the forecast better because of the
+model, or because the quarter was calm?). Variance explanation is different: it is a **bounded** question about the past,
+every answer can be **checked against evidence**, and "timing" answers are **scored automatically** when the money does
+or does not arrive. It also produces what prediction later needs — categorised actuals and a history of *why* forecasts
+missed.
+
+<DigitalWorker id="dw-forecast-variance" />
+
+## A worked week
+
+<Example title="Week 23: the system's variance table and Daniel's verdicts" company="helvetic" open>
+
+The system reconciles last week's actuals to the bank statements (group net −5.0m vs forecast −1.6m, CHF m) and proposes:
+
+| Line | Variance | Proposed type | Proposed reason and evidence | Daniel's verdict |
+|---|---|---|---|---|
+| Customer receipts, Italy | −2.1 | Timing | Largest customer's invoice open in the Italian ERP, not disputed; paid 10 days late in 7 of last 10 invoices | **Right** |
+| Customer receipts, UK | −0.7 | Permanent | Short payment against invoice; credit-control email mentions a disputed delivery | **Right** — "and flag it to the CFO" |
+| Supplier payments, Germany | −0.3 | Timing | AP run released Thursday instead of Friday (SAP run log) | **Right** |
+| Tax, Germany | −0.3 | Missing input | Trade-tax prepayment debit; not in Jens's submission; same debit last quarter | **Right** — and adds all four quarterly dates to the central calendar |
+| Total | **−3.4** | | Ties to statements ✓ | |
+
+**Proposed forward adjustments:** move Italy's CHF 2.1m into week 1 (accepted); haircut Italy's receipts by 15% in
+weeks 5–13 because of a 9-of-12-week over-forecast pattern (accepted, with Daniel's note "review in a quarter"); add the
+German tax calendar (accepted).
+
+**Draft questions to subsidiaries:** one to Giulia ("Customer X's invoice was paid 10 days late again — should we
+assume that in the template?"), one to Jens (tax dates). Lea edits the tone and sends them under her name.
+
+**Four weeks later**, the system scores its own "timing" call: the Italian CHF 2.1m arrived in week 24 → correct. The UK
+CHF 0.7m never arrived → the "permanent" call was also correct. Both enter the evaluation set.
+
+</Example>
+
+## What makes this hard despite the good rating
+
+- **Categorising actuals** is the unglamorous prerequisite. If bank transactions cannot be mapped reliably to forecast
+  lines (customer receipts vs intercompany vs tax), every variance is wrong. This mapping is where most effort goes.
+- **Organisational inputs.** The biggest variances come from what subsidiaries submit. A system can detect copy-pasted
+  templates and missing lumpy items; it cannot make local finance care.
+- **Explanation ≠ cause.** A plausible explanation with evidence can still be the wrong cause. The "right / wrong /
+  partly" verdicts, and the outcome scoring of timing calls, exist to measure exactly that.
+
+<Callout type="interview" title="Questions this model suggests">
+
+"Show me last week's variance analysis. Which lines did you explain, which did you leave, and why?" "How do you know,
+four weeks later, whether 'timing' really was timing?" "Do you store old forecast versions?" — if not, there is no
+feedback loop yet, and building one is the first job.
+
+</Callout>

@@ -1,0 +1,76 @@
+---
+title: Payments roles — treasury, AP, shared services and the payment factory
+nav: Payments roles
+order: 30
+summary: Payments touch five or six functions, and beginners usually assume treasury "does payments". In most companies AP decides what to pay, someone else approves, a bank or payment factory executes, and accounting reconciles. Treasury owns the channels, the controls and the funding. This page shows who decides, prepares, approves, executes and reconciles at each company size.
+related: [/org/roles, /org/roles-operations, /org/with-ap, /workflows/payment-processing, /workflows/large-payment-approval, /workflows/fraud-investigation, /map/payments]
+---
+
+## Five questions for any payment
+
+For every supplier payment, ask separately:
+
+1. **Who decides it should be paid?** Usually AP, after invoice approval and three-way match, following payment terms that procurement negotiated.
+2. **Who prepares it?** AP builds the [payment run](term:payment-run) in the ERP.
+3. **Who approves / signs it?** Authorised signatories under the [signing authority matrix](term:signing-authority-matrix), often two people. Treasury or the CFO for large items.
+4. **Who executes it?** The file goes to the bank through e-banking, EBICS, host-to-host or SWIFT, sometimes via a [payment factory](term:payment-factory).
+5. **Who reconciles it?** Accounting or the SSC matches the bank debit to the open item.
+
+Treasury's role is to make sure the money is there ([cash positioning](wf:daily-cash-positioning)), that channels and controls work, and that unusual or treasury-originated payments (intercompany loans, deal settlements) are handled.
+
+<RoleExists id="payments-lead" />
+
+## Who does what, by size
+
+| | Decides | Prepares | Approves | Executes | Reconciles |
+|---|---|---|---|---|---|
+| **[Kleio](co:kleio)** | Nina (invoice approval by budget owners) | Nina, in e-banking | Sarah (second signature) | Bank via e-banking | Nina / fiduciary |
+| **[Alpine](co:alpine)** | AP clerk / Petra | AP in Business Central, EBICS file | Petra + Martin (collective signature) | House bank via EBICS | Petra's team |
+| **[Helvetic](co:helvetic)** — commercial payments | Local AP in each subsidiary | Local AP in local ERP | Two local signatories. At HM AG, Swiss accounting prepares and Daniel is second signatory; Thomas above CHF 2m | Local banks / connectivity tool | Local accounting |
+| **Helvetic** — treasury payments | Daniel (funding, deals) | Lea | Daniel (and Thomas above CHF 2m) | Connectivity tool | Lea / Claudia's team |
+| **[GlobalChem](co:globalchem)** — Europe | AP in the Kraków SSC | SSC AP (SAP payment run) | Workflow approvals in SAP per signing matrix | Payment factory (Marta's team), [POBO](term:pobo) from in-house bank accounts via SWIFT | SSC record-to-report |
+| **GlobalChem** — outside payment factory | Local AP | Local AP | Local signatories | Local banks | Local accounting; treasury monitors |
+
+## Payment factory, SSC, finance operations — what's the difference?
+
+- A **[shared-service centre](term:shared-service-centre)** performs many finance processes (AP, AR, accounting) for many entities.
+- A **payment factory** centralises payment *execution* for many entities through one process and one set of bank connections. It is often described as a shared-service centre for payments[](cite:dbs-payment-factory). It may sit inside the SSC, inside treasury operations, or be mostly a system.
+- **Payments-on-behalf-of (POBO)**: the payment factory pays suppliers from central (in-house bank) accounts on behalf of subsidiaries.
+- **"Finance operations"** is a newer umbrella term, common in tech companies, that can include AP, payments and billing.
+
+<Callout type="survey">
+
+PwC's 2025 treasury survey reports that among organisations above USD 10bn revenue, 60% operate a payment factory and 50% a payments-on-behalf-of model[](cite:pwc-gts-2025). Below the large-multinational tier these structures are much less common.
+
+</Callout>
+
+## What a payments lead actually does (multinational)
+
+- Owns payment formats (e.g. [pain.001](term:pain-001)), status reports ([pain.002](term:pain-002)) and channel set-up with the systems team.
+- Runs validation: duplicate checks, [sanctions screening](term:sanctions-screening), format checks, cut-off management.
+- Handles rejected and returned payments, urgent manual payments, and bank incidents.
+- Enforces the fraud controls: [call-back verification](term:call-back-verification) of changed bank details, dual approval, and holding suspicious payments. See [fraud investigation](wf:fraud-investigation).
+- Reports volumes, rejection rates, fraud attempts.
+
+Payment policy (which banks, which channels, which approvals) stays with the Group Treasurer. What gets paid stays with AP and the business.
+
+## What they know, and don't
+
+<RoleKnows id="payments-lead" />
+
+For the AP side, see <RoleLink id="accounts-payable" />:
+
+<RoleKnows id="accounts-payable" />
+
+## Interview implications
+
+<Callout type="interview" title="Don't ask treasury why a supplier was paid late">
+
+- **Why** a payment was made or when it was due: **AP / procurement**.
+- **How** it left the company, and which controls applied: **payments lead / treasury operations** (large companies), **head of accounting** (SME), **treasury manager** (mid-market, for treasury payments and channels).
+- **Whether** the money was there: **cash manager / treasury manager**.
+- **Fraud attempts**: payment operations and AP see them first; the CFO sees the ones that got far.
+
+A useful opener for any of them: "Walk me through the last payment run from invoice to bank debit. Who touched it?"
+
+</Callout>

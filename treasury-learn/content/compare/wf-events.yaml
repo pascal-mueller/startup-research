@@ -1,0 +1,30 @@
+# "Same problem, four companies" topics for the Events & crises workflows (stream wf-events).
+- id: events-currency-shock
+  title: EUR/CHF drops 8%
+  question: What does a sudden 8% fall in EUR/CHF mean for each company, and what does it do in the first days?
+  cells:
+    kleio: "Little: EUR is ~20% of revenue, so ≈ CHF 0.2m a year. **Sarah** mentions it in the board update; runway barely moves. USD is Kleio's real currency question."
+    alpine: "Painful but manageable: EUR 9m of unhedged project backlog loses ≈ CHF 0.7m. **Martin** reprices a dozen open EUR quotes within a week and asks the board whether to hedge the rest — there is no written policy."
+    helvetic: "A day of measurement: **Lea** revalues the EUR 81m forward book (+CHF 6.1m MTM) and the unhedged 12-month exposure (–CHF 5.2m); **Daniel** briefs the CFO by 14:00, no trades that day, a hedging committee after five days."
+    globalchem: "**Jonas's** team revalues ~1,000 trades in the TMS within an hour and checks CSAs — the move is in GlobalChem's favour, so banks post collateral; the reverse move would have meant margin calls funded by **Priya's** team."
+  takeaway: "The same move is noise for a startup, a pricing problem for an SME, a measurement-and-communication exercise for a mid-market group, and a collateral and rating-metrics question for a multinational."
+
+- id: events-missing-receivables
+  title: Expected receipts don't arrive
+  question: What happens when large expected receipts fail to arrive?
+  cells:
+    kleio: "A delayed annual prepayment shortens runway on paper; **Sarah** re-runs the runway model and, with CHF 22m in two banks, does nothing drastic."
+    alpine: "Crisis mode: two milestones (≈ CHF 4.9m) missing, the 13th salary due in December. **Martin** starts a daily cash call, draws CHF 5m on the committed line early, calls the cantonal bank himself and arranges factoring."
+    helvetic: "A distributor's default is absorbed by CHF 140m undrawn RCF; **Daniel's** binding constraint is the leverage covenant, so he runs the covenant model and pre-briefs the four RCF banks."
+    globalchem: "A single customer default is a credit-management matter; group crisis mode is reserved for market events such as a commercial-paper market closing, when the backstop RCF is prepared."
+  takeaway: "The smaller the company, the faster a customer problem becomes a liquidity crisis — and the more the CFO personally carries the bank conversation."
+
+- id: events-acquisition
+  title: Integrating an acquisition
+  question: How does each company take control of an acquired company's banks and cash?
+  cells:
+    kleio: "One German account: **Sarah** becomes signatory, moves the balance to Kleio's Swiss bank and closes the account after direct debits are moved."
+    alpine: "**Martin** and **Petra** become joint signatories on a Dutch distributor's three accounts, repay a small overdraft and add a row to the cash sheet."
+    helvetic: "A full treasury workstream: funds flow of EUR 120m on closing day, mandates and KYC at five banks, a customer-guarantee problem in week 2, first payroll funded by intercompany loan, 100-day status to the CFO."
+    globalchem: "A carve-out with a 12-month TSA, account openings in 11 countries, onboarding into the in-house bank and pools, and the payment factory taking over after ERP migration."
+  takeaway: "At every size the first job is the same — know every account and who can sign on it — but the paperwork and the time banks take grow with each country and bank."

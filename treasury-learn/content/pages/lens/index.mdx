@@ -1,0 +1,127 @@
+---
+title: Agentic Treasury — which treasury assignments could an AI system perform?
+nav: Overview
+order: 1
+summary: A deliberately skeptical, clearly separated startup lens on the 20 core treasury workflows. It asks which recurring assignments an AI system could increasingly perform itself — and where the honest answer is "already automated", "not worth it" or "must stay human".
+related: [/lens/method, /lens/matrix, /lens/candidates, /lens/digital-worker, /competitors, /interview/bad-questions]
+---
+
+<Callout type="warning" title="This section is not the educational content">
+
+Everything outside the *Agentic Treasury* and *Competitor Landscape* sections is written to be neutral about AI and
+startups. This section is the opposite: it takes a position. The ratings are **the author's synthesis**, informed by the
+workflow pages, surveys and vendor material cited below — not survey results, and not validated by interviews yet. Use
+them as hypotheses to test with treasurers, never as findings to quote back at them.
+
+</Callout>
+
+## Two different questions
+
+Most "AI in treasury" material answers **"Where can we add AI to treasury software?"** — a forecasting model in the
+TMS, a chat window over the cash position, anomaly flags in the payment hub. That is a product-feature question, and
+the incumbents (TMS, ERP and bank platforms) are well placed to answer it.
+
+This section asks a different question: **"Which assignments that treasury professionals perform today could an AI
+system increasingly perform itself?"** The unit of analysis is the *assignment* a manager gives a person — "Lea, by
+09:30 tell me where we stand and what you'd move" — not the software module. That framing forces the uncomfortable
+details into view:
+
+| Adding AI to software | An AI system performing an assignment |
+|---|---|
+| "Our TMS has ML forecasting" | Who rolled the forecast forward, chased France, explained last week's CHF 3.4m miss and wrote the CFO note? |
+| Measured by feature adoption | Measured by whether the manager accepts the output unedited, and whether it was right |
+| The human still does the job, faster | The human reviews, decides and signs; the system prepares, proposes and learns from corrections |
+| Risk sits in the software vendor's model | Risk sits in the control design: who approves, what the system may touch, what is logged |
+
+The second framing is what a vertical-AI company would have to sell — and it is exactly where treasury's controls,
+trust requirements and messy inputs bite hardest.
+
+## What is already true (evidence)
+
+<Callout type="survey" title="Adoption is broad but shallow">
+
+- PwC's 2025 Global Treasury Survey: 74% of respondents are expanding or actively using AI, with machine learning
+  (71%) and predictive analytics (64%) the main focus — but only 26% describe their AI capabilities as moderately or
+  very mature; 42% are piloting and 32% are at early stages[](cite:pwc-gts-2025).
+- The 2025 EACT survey of European group treasurers ranks AI *below* data analytics and cloud, and attributes the low
+  ranking to the absence of true data lakes and standardised information[](cite:eact-2025).
+- AFP's 2026 fraud survey: 76% of US organisations experienced attempted or actual payments fraud in 2025, yet only 17%
+  use AI to fight it[](cite:afp-pfc-2026).
+- Deloitte's 2024 survey found cash-flow forecasting, cash positioning and market-risk management to be the most
+  popular treasury GenAI use cases[](cite:deloitte-gts-2024).
+- An AFP poll of 2023 conference attendees (not a representative sample) named lack of AI competence (55%),
+  integration with current processes (48%) and data security (44%) as the main roadblocks[](cite:afp-ai-roadblocks-2023).
+
+</Callout>
+
+<Callout type="field" title="Vendors are already selling 'agents' — label these as claims">
+
+SAP describes a Joule *Cash Management Agent* that computes closing balances per account and proposes bank transfers
+"in line with treasury policy"[](cite:sap-cash-agent). Kyriba launched *TAI*, an "agentic AI" it positions as augmenting
+rather than replacing treasurers[](cite:kyriba-tai-2025). GTreasury announced *GSmart AI* with "agentic actions" across
+liquidity, forecasting and payments[](cite:gtreasury-gsmart-2025). HighRadius claims cash forecasting and cash
+application are already "fully autonomous" and targets 90%+ automation of the office of the CFO by 2027[](cite:highradius-autonomous-2027).
+None of these are independent evidence of results. What they do prove: the most obvious agent use cases — positioning
+and forecasting — are **the incumbents' roadmap**, not an empty field.
+
+</Callout>
+
+## Why treasury is harder than it looks for agents
+
+**Controls are designed around named humans.** Payments are released under the [four-eyes principle](term:four-eyes-principle)
+and a [signing authority matrix](term:signing-authority-matrix); banks execute only instructions signed by persons in the
+[payment mandate](term:payment-mandate) (in Switzerland typically *collective signature by two*). US-listed groups test these
+controls under SOX 404; Swiss companies with an ordinary audit must have an internal control system whose existence the
+auditor confirms. An AI system can be the *maker* in a maker–checker design; it cannot be a signatory.
+
+**Regulation is mostly not the blocker — accountability is.** The EU AI Act's high-risk list covers creditworthiness
+assessment of *natural persons* (with an explicit exception for fraud detection); corporate treasury tasks such as
+positioning, forecasting or hedging are not listed[](cite:eu-ai-act-annex3). DORA applies to financial entities such as
+banks and payment institutions, not to a manufacturer's treasury[](cite:dora-scope). FINMA's 2024 AI guidance is likewise
+addressed to supervised institutions — the corporate meets it through its banks[](cite:finma-ai-guidance-2024). The binding
+constraints are internal: audit, ICS/SOX, the board-approved treasury policy, and the CFO's personal accountability.
+
+**Numbers must be exactly right, repeatably.** Research on LLMs in finance shows the failure pattern: on FinanceBench,
+a 2023 GPT-4-Turbo retrieval setup answered 81% of questions about company filings incorrectly or not at all[](cite:financebench-2023);
+on τ-bench, a 2024 agent that succeeded on over 60% of tasks on average succeeded on all eight repeats of the same task
+less than 25% of the time[](cite:tau-bench-2024). Newer models do better, but the design lesson holds: arithmetic belongs in
+deterministic code, and the metric that matters to an operations team is **repeatability**, not average accuracy.
+
+**Inputs are social, not just technical.** The weakest input in forecasting and positioning is what subsidiaries,
+credit control and AP *tell* treasury, by email or phone. Every workflow page lists this under manual work. A model can
+read the email; it cannot make Italy submit honest numbers.
+
+## The result in one view
+
+<LensSummary />
+
+Of 20 workflows, **5 are rated good agent candidates**, **9 possible**, **6 hard or dangerous**. Two of the five "good"
+ones — [bank fee analysis](/lens/matrix#bank-fee-analysis) and [month-end reporting](/lens/matrix#month-end-reporting) —
+are good *agent* tasks but weak standalone *businesses*. One of the "possible" ones —
+[bank reconciliation](/lens/matrix#bank-reconciliation) — is technically the cleanest agent task in the manual and a bad
+startup target because rule-based matching already does most of it.
+
+<Callout type="synthesis" title="Where the lens points (hypotheses, not conclusions)">
+
+1. **Preparation, not execution.** In every good candidate the system prepares and proposes; a human with authority decides and releases.
+2. **Exceptions, not the table.** Where software already builds the position or matches statements, what is left is explaining the exceptions — which needs email, history and context.
+3. **The feedback loop is the asset.** Workflows with frequent expert corrections *and* objective outcomes (forecast vs actual, projected vs actual balance) are where a system can measurably improve and where customer-specific context compounds.
+4. **Mid-market is the gap.** Multinationals have TMS automation and large teams; SMEs have too little volume. [Helvetic](co:helvetic)-shaped groups — two people, eight subsidiaries, Excel — are where an agent could take over a meaningful part of a real job.
+
+</Callout>
+
+## How to use this section
+
+- Start with [Method](/lens/method) to see how the 16 criteria are scored and where the scoring is weak.
+- The [Matrix](/lens/matrix) is sortable and filterable; each row opens the full assessment.
+- [Candidates](/lens/candidates) groups the workflows and shows the start-narrow → expand paths and what would have to be true.
+- The [Digital Worker view](/lens/digital-worker) models four assignments end to end, including verification, feedback loops and guardrails.
+
+<Callout type="interview" title="Don't bring the ratings into the interview">
+
+Asking a treasurer "would you let an AI do your cash positioning?" produces opinions, not evidence (see
+[bad questions](/interview/bad-questions)). Ask instead: "Walk me through this morning's position — what did you have to
+ask someone?", "What did your manager change in your last proposal, and why?", "What would you never let a system do
+automatically?" The answers are what should move these ratings.
+
+</Callout>

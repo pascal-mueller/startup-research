@@ -132,7 +132,7 @@ vendors:
         text: "No multi-bank consolidation, audit trail or version control by design; the workbook is only as reliable as the last person who touched it."
       - basis: question
         text: "Ask how many hours per week go into downloading and pasting, and what went wrong the last time the spreadsheet had an error. The answer tells you whether the pain is real or theoretical."
-    notes: "Survey evidence that forecasting remains largely spreadsheet-based at many companies: [](cite:deloitte-gts-2024). For a founder, the honest competitor for a 70–500-person company is almost always this row, not Kyriba."
+    notes: "Survey evidence that forecasting remains largely spreadsheet-based at many companies[](cite:deloitte-gts-2024). For a founder, the honest competitor for a 70–500-person company is often this row, not Kyriba — test that in interviews."
     sources: [deloitte-gts-2024]
 
   # ---------------- Established TMS ----------------
@@ -413,7 +413,7 @@ vendors:
     workflow: "Weekly/monthly cash forecast and cash position for CFOs and finance managers without a treasury team."
     positioning: "Cash management for the CFO of an SME — the 'Excel replacement' pitch."
     strengths:
-      - "Aimed squarely at the forecasting pain that surveys rank as the hardest treasury activity (see [](cite:afp-bench-2026))."
+      - "Aimed squarely at the forecasting pain that surveys rank as the hardest treasury activity[](cite:afp-bench-2026)."
     gaps:
       - basis: scope
         text: "SME/mid-market positioning; not documented as a full TMS (no hedge accounting or complex deal book) — verify current scope."

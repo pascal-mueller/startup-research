@@ -1,0 +1,329 @@
+id: acquisition-integration
+title: Acquisition integration (treasury workstream)
+question: We just bought a company with its own banks, accounts, currencies and systems. How do we get control of its cash?
+group: Events & crises
+order: 1
+summary: >-
+  When a company buys another, treasury has a workstream that starts in due diligence and runs for months after
+  closing: find every bank account, facility, guarantee and hedge of the target; deal with loans that fall due on a
+  change of control; execute the closing-day funds flow; on Day 1 make sure nobody can move the target's cash without
+  the new owner knowing; then, over roughly 100 days, bring the target into the group's visibility, forecasting,
+  policies, bank relationships and funding structure. It is mostly checklists, documents and bank paperwork — and the
+  places where it goes wrong (a forgotten signatory, a guarantee that lapses, a payroll that cannot be funded) are
+  well known.
+objective: >-
+  Take control of the acquired company's cash and payments from the first day, avoid defaults or surprises from
+  change-of-control clauses, keep the business running (payroll, suppliers, guarantees), and integrate the entity into
+  group treasury within a defined plan at acceptable cost and risk.
+trigger: Signing of an acquisition agreement (planning starts in due diligence, before signing); closing date; for carve-outs, the transition services agreement timetable.
+frequency: >-
+  Event-driven: never at many SMEs; one to a few times a year at acquisitive mid-market groups; continuously at
+  serial acquirers and large multinationals, which run it from a standard playbook.
+people:
+  - role: Treasury manager / head of treasury
+    does: Treasury workstream lead — due diligence questions, financing, funds flow, Day-1 controls, 100-day plan.
+  - role: Treasury analyst
+    does: Inventories accounts and signatories, collects KYC documents, sets up bank reporting, integrates the target into the forecast.
+  - role: CFO
+    does: Approves financing and the funds flow; signs board resolutions; decides the integration ambition (how fast, how far).
+  - role: M&A / corporate development and the integration management office
+    does: Deal timetable, SPA, Day-1 plan across all functions; treasury reports status to them.
+  - role: Legal (in-house and external)
+    does: SPA terms (locked box or completion accounts, leakage), payoff letters, security release, corporate resolutions and commercial-register filings for new directors.
+  - role: Tax
+    does: How the acquisition and the target's refinancing are funded (intercompany loans, interest deductibility, withholding tax), transfer pricing.
+  - role: Target's CFO / finance team
+    does: The only people who know how the target's banking really works; prepare payments and data during and after the transition.
+  - role: Target's banks and the group's banks
+    does: Process mandates, KYC, account changes, payoffs, guarantee replacements; provide statements and connectivity.
+  - role: Head of accounting / IT
+    does: Opening balance sheet, intercompany accounting; ERP access and bank-file connectivity.
+systems:
+  - name: Virtual data room
+    use: Where due-diligence documents (loan agreements, account lists, guarantees) are read before signing.
+  - name: Target's bank portals and local e-banking/EBICS clients
+    use: The only view of the target's cash on Day 1; often desktop software with electronic signatures held by named individuals.
+  - name: Group connectivity tool / "[TMS](term:tms)"
+    use: Must be extended to the target's banks (new EBICS contracts, SWIFT set-up) — typically weeks of set-up per bank.
+  - name: "[ERP](term:erp) (both companies')"
+    use: The target keeps its own ERP for months or years; payments and forecasts come out of it until migration.
+  - name: Excel
+    use: Account and signatory inventory, funds flow memo, integration tracker, forecast template for the new entity.
+  - name: Bank account management records (or "[eBAM](term:ebam)")
+    use: Central record of accounts, mandates and signatories that the target must be added to.
+data:
+  - name: Complete list of bank accounts, with signatories and e-banking users
+    source: Due diligence request, then the target's banks directly
+    notes: The target's own list is often incomplete (dormant accounts, accounts opened locally, credit cards, escrow accounts).
+  - name: Financing agreements with change-of-control, guarantees, security
+    source: Data room, legal
+    notes: Determines what must be repaid, waived or replaced at closing.
+  - name: Guarantees and letters of credit issued on the target's behalf
+    source: Target's banks, legal
+    notes: Advance-payment and performance guarantees for customers are often issued under lines that end with the old owner or old facilities.
+  - name: Hedges and derivative agreements
+    source: Target's banks (confirmations), target's treasury records
+    notes: May need to be closed out, novated or kept; master agreements may contain their own change-of-control terms.
+  - name: Cash at closing and price mechanism
+    source: SPA (locked-box date or completion-accounts definitions)
+    notes: Decides whether cash movements before closing change the price or are leakage claims.
+  - name: Payroll, tax and key supplier payment calendar of the target
+    source: Target's finance team
+    notes: The first payroll under new ownership must be funded without fail.
+  - name: KYC documents for the new ownership
+    source: Group legal / company secretary
+    notes: Banks re-run KYC on the new beneficial owner; commercial-register extracts, IDs of new signatories, org charts.
+steps:
+  - title: Treasury due diligence
+    who: Treasury manager with legal and M&A
+    where: Virtual data room, Q&A with the target
+    when: "Before signing (weeks −12 to −4)"
+    detail: >-
+      Request and read: all bank accounts and signatories, credit facilities, leases and other debt, guarantees and
+      letters of credit, hedges, cash pooling with the seller's group, factoring or supply-chain-finance programmes,
+      restricted or [trapped cash](term:trapped-cash), bank fees, payment and fraud controls. Flag every
+      [change-of-control](term:change-of-control) clause and anything that would stop working at closing.
+    judgment: Which findings affect price or deal terms (e.g. expensive prepayment, cash trapped in a country) versus which are just integration work.
+  - title: Plan financing and the treatment of target debt
+    who: Treasury manager → CFO
+    where: Facility agreements, financing model
+    when: "Signing to closing"
+    detail: >-
+      Decide how the price and the target's debt repayment are funded (cash, [RCF](term:rcf) drawing, new [term loan](term:term-loan)
+      or bridge loan), check the group's own facilities allow the acquisition (permitted-acquisition
+      clauses, pro forma [leverage](term:leverage-ratio)), and for each target facility choose: repay at closing via a
+      payoff letter, obtain a waiver, or keep it. Decide the currency of any new drawing (a EUR drawing hedges a EUR
+      acquisition but costs more than CHF at ~0%).
+    judgment: Repay versus keep target facilities; currency and tenor of acquisition funding; how much headroom must remain after closing.
+  - title: Prepare Day-1 controls, mandates and KYC
+    who: Treasury analyst with legal / company secretary
+    where: Board resolutions, bank mandate forms, KYC packs
+    when: "Weeks before closing"
+    detail: >-
+      Draft the new signatory lists and [payment mandates](term:payment-mandate) for every target account (usually
+      joint signature, one group and one local signatory), the resolutions appointing new directors (with
+      commercial-register filings), and the KYC pack each bank will require from the new owner. Agree with the
+      target's banks in advance what they need and how long they take. Define the interim payment rule for Day 1
+      (e.g. every payment above EUR 50k countersigned by group treasury).
+    manual: >-
+      Every bank has its own forms. Collecting certified IDs, register extracts and ownership charts for five banks in
+      three countries is days of paperwork — and banks commonly ask for the same information again[](cite:encompass-kyc-2025).
+  - title: Execute the closing funds flow
+    who: Treasury manager executes; CFO approves; legal confirms conditions met
+    where: Group bank portals, funds flow memo, calls with counterparties' banks
+    when: "Closing day (Day 0)"
+    detail: >-
+      Draw facilities with the required notice, then release payments exactly as in the
+      [funds flow memo](term:funds-flow-memo): price to the seller (net of escrow), repayment of target debt per payoff
+      letters, fees. Confirm receipt with each beneficiary and obtain release of security (share pledges, land charges)
+      and confirmations that target loans are cancelled.
+    judgment: >-
+      What to do if a condition or payment is late on the day — closing is usually sequenced so that no money moves until
+      every document is confirmed.
+  - title: Take control of accounts and payments on Day 1
+    who: Treasury manager with target CFO
+    where: Target's bank portals / EBICS clients, bank mandate submissions
+    when: "Day 1 (first business day after closing)"
+    detail: >-
+      Submit new mandates; revoke the seller's and departing managers' [signatory](term:signatory) rights and
+      e-banking/EBICS access (banks may need days to process — send written revocations immediately); apply the interim
+      payment rule; freeze opening of new accounts, new borrowing and new FX trades without group approval.
+    manual: >-
+      Removing a departed owner from EBICS signature classes and portal users is a separate, bank-specific process from
+      changing the account mandate; both must be checked account by account.
+  - title: Get visibility of the target's cash
+    who: Treasury analyst
+    where: Portals (read access), then group connectivity tool
+    when: "Day 1 to week 6"
+    detail: >-
+      Immediately: read-only portal access or a daily balance email from the target's finance team. Then: new EBICS or
+      SWIFT reporting contracts so prior-day statements flow into the group's [daily cash position](wf:daily-cash-positioning);
+      map accounts to entities and currencies. Until then, the target is a manual line in the positioning workbook.
+  - title: Protect against fraud and leakage
+    who: Treasury manager with target AP and group treasury operations
+    where: AP vendor master, payment release workflow
+    when: "Day 1 to week 8"
+    detail: >-
+      Public deal announcements invite [business email compromise](term:business-email-compromise): fake "new owner" or
+      "new bank details" requests. Brief the target's AP team, enforce call-back verification on vendor bank-detail
+      changes, and review the first weeks of payments. Under a [locked box](term:locked-box), check post-closing
+      statements for leakage between the locked-box date and closing.
+  - title: Integrate forecasting and fund the first payroll
+    who: Treasury analyst with target finance
+    where: 13-week forecast template, target ERP reports
+    when: "Weeks 1–6"
+    detail: >-
+      Add the target to the [13-week forecast](wf:cash-forecasting) with the group template; confirm the first
+      payroll, tax and large supplier dates under new ownership and that the target's accounts can fund them — overdraft
+      lines may have ended with the repaid facilities. Fund shortfalls by [intercompany loan](term:intercompany-loan).
+  - title: Replace financing, guarantees and hedges
+    who: Treasury manager with tax, legal and banks
+    where: Intercompany loan agreements, bank guarantee lines, ISDA / master agreements
+    when: "Weeks 2–12"
+    detail: >-
+      Put intercompany loan agreements in place for funding pushed down to the target (terms agreed with tax: interest
+      rate, deductibility, withholding tax). Replace customer guarantees and letters of credit issued under the target's
+      old lines with guarantees under group lines, or counter-guarantee them. Decide whether the target's hedges are kept,
+      closed out or replaced by group hedges.
+    judgment: Pace of replacement versus the risk of a customer guarantee lapsing mid-contract.
+  - title: Bring the target under group policy
+    who: Treasury manager
+    where: Treasury policy, signing authority matrix, counterparty limits, FX exposure process
+    when: "Weeks 4–12"
+    detail: >-
+      Apply the group [treasury policy](term:treasury-policy): who may sign and approve what
+      ([signing authority matrix](term:signing-authority-matrix)), [counterparty limits](term:counterparty-limit) for the
+      target's banks, FX exposure reporting and hedging, investment rules for surplus cash, and whether the target joins
+      group cash concentration (pool or manual intercompany transfers).
+  - title: Rationalise banks and report the 100-day status
+    who: Treasury manager → CFO / integration office
+    where: Bank meetings, account-closure forms, integration tracker
+    when: "Days 30–100 and beyond"
+    detail: >-
+      Decide which target banks and accounts to keep (local operating needs, customer payment habits, guarantees) and
+      which to close; move balances and direct debits before closing accounts. Report status to the CFO and integration
+      office at day 100: control (all mandates changed?), visibility (all statements automated?), financing (all CoC
+      items resolved?), policy (applied?), and the longer roadmap — ERP migration, payment-process harmonisation, TMS or
+      pooling decisions — which typically takes 1–3 years.
+example:
+  title: "Helvetic buys Norvia Spindle Systems GmbH (fictional): the first 100 days"
+  body: |
+    *Illustrative scenario consistent with Helvetic's facts (CHF 200m RCF with ~CHF 60m drawn, covenant ≤ 3.25x, no cash pool, Lea prepares / Daniel decides).*
+
+    **The target:** Norvia, a founder-owned spindle maker near Stuttgart — EUR 85m revenue, 420 employees, a plant in Poland (PLN) and a US service company (USD). 5 banks, 14 accounts, EUR 22m of bilateral loans at two German banks (both with change-of-control prepayment clauses), EUR 3.5m of customer advance-payment guarantees issued by its savings bank, USD 6m of forwards under a German-law framework agreement. Payments are released in a desktop EBICS client; the founder has sole signature on every German account.
+
+    **Deal:** enterprise value EUR 120m, locked box at 30 June, closing Friday 30 October 2026.
+
+    **Funds flow (closing day, value 30 Oct):**
+
+    | | EUR m | CHF m (at 0.935) |
+    |---|---|---|
+    | Sources: RCF drawing | | 95.0 |
+    | Sources: HM AG cash | | 17.2 |
+    | Uses: price to seller (net of EUR 5m escrow) | 90.7 | |
+    | Uses: escrow agent | 5.0 | |
+    | Uses: repay two bank loans (payoff letters) | 22.0 | |
+    | Uses: advisers' fees | 2.3 | |
+    | **Total** | **120.0** | **112.2** |
+
+    Pro forma: RCF drawn CHF 155m of 200m (undrawn falls from 140m to 45m); net debt ≈ CHF 221m against EBITDA ≈ CHF 88m (78m + Norvia ≈ 10m) → 2.5x vs covenant 3.25x. Daniel tells Thomas that 45m of undrawn headroom is thin for a CHF 650m group and proposes terming out CHF 75m (e.g. a Schuldschein) within 12 months.
+
+    **Before closing** — Lea builds the account inventory: the data room listed 12 accounts; the banks' confirmations show 14 (a dormant USD account and a rental-deposit account). She prepares mandate forms and KYC packs for all five banks: new signatories Daniel (group) and Norvia's CFO (local), joint signature only.
+
+    **Day 0, 09:00–13:00** — Daniel requests the RCF drawing three business days ahead; on the day he releases the four payments from HM AG's accounts, the escrow agent and both banks confirm receipt by 12:30, and legal confirms the release of the share pledge. Closing is signed at 13:15.
+
+    **Day 1 (Monday 2 Nov)** — New mandates go to all banks; written revocation of the founder's signature and EBICS access sent to each bank by 10:00. Interim rule: every Norvia payment above EUR 50k needs Daniel's second signature. Lea gets read access to three portals the same day; the other two banks need the completed KYC first, so Norvia's CFO emails a balance screenshot each morning.
+
+    **Week 2** — The savings bank says the EUR 3.5m advance-payment guarantees were issued under the repaid loan facility; it will keep them only against a group counter-guarantee. HM AG issues one within the week — a customer's contract would otherwise have allowed it to demand a replacement or withhold payment.
+
+    **Week 3** — Norvia's AP receives an email "from Helvetic group finance" asking to change a supplier's bank details. Call-back verification catches it.
+
+    **Week 4** — First payroll under Helvetic (EUR 2.4m on 26 Nov): Norvia's EUR accounts hold EUR 4.1m, but its overdraft line ended with the loans. Daniel formalises a EUR 22m intercompany loan from HM AG (terms agreed with tax) and transfers EUR 3m as working-capital headroom.
+
+    **Day 100 (early February)** — Status to Thomas: mandates changed at 5 of 5 banks; statements from 4 banks automated via EBICS into Helvetic's connectivity tool (the Polish bank still manual); accounts reduced from 14 to 8; USD forwards kept to maturity and new hedges placed under Helvetic's policy; Norvia added to weekly forecasting and to Daniel's manual concentration by intercompany transfer. Open: SAP migration planned for 2028, and the acquisition has strengthened the case in the TMS evaluation.
+judgment:
+  - decision: Which target findings matter for price and terms versus integration only
+    why: Requires reading documents in context — a prepayment clause may be cheap or expensive depending on rates and fees; trapped cash may or may not matter.
+  - decision: Repay, waive or keep the target's facilities
+    why: Trade-off between cost, simplicity, lender relationships and local operating needs (overdrafts, guarantee lines).
+  - decision: How fast to take control versus disrupting the business
+    why: Immediate central approval of every payment protects cash but can paralyse a business whose suppliers are used to the old process.
+  - decision: Which banks and accounts to keep
+    why: Local banks may be needed for customer habits, guarantees or relationships; every extra bank costs fees, KYC and connectivity.
+  - decision: Currency and tenor of acquisition funding
+    why: Hedging the investment in foreign currency versus the cost of that currency's interest rate; refinancing risk of a short bridge.
+failure_modes:
+  - mode: An account or signatory is missed in the inventory
+    consequence: A former owner or employee can still move money; cash invisible to the group.
+    detection: Bank confirmations requested directly from each bank; reconciliation of all accounts in the general ledger to bank confirmations.
+  - mode: Change-of-control clause overlooked
+    consequence: Loan becomes repayable or an event of default; lender leverage in a renegotiation; cross-default risk.
+    detection: Legal review of all financing, leases and key contracts in due diligence with a CoC tracker.
+  - mode: Customer guarantees or LCs lapse or are withdrawn
+    consequence: Customer can demand replacement, withhold payment or terminate; reputational damage.
+    detection: Guarantee register taken over at closing with expiry dates and the underlying line.
+  - mode: First payroll or tax payment not funded
+    consequence: Employees unpaid in the first month under new ownership — a serious and visible failure.
+    detection: Payroll and tax calendar confirmed in the first week; funding arranged before local facilities end.
+  - mode: Fraud exploiting the ownership change
+    consequence: Payments to fraudsters posing as the new owner or as suppliers with new bank details.
+    detection: Awareness briefing on Day 1; call-back verification; heightened review of vendor master changes.
+  - mode: Integration stalls after the first weeks
+    consequence: Target stays outside group controls and visibility for years; policy exceptions become permanent.
+    detection: A 100-day plan with owners and dates, reported to the CFO / integration office.
+software: >-
+  Integration is run from **Excel trackers**, bank forms and email. Group connectivity tools and TMSs matter once
+  the target's banks are connected — which takes weeks per bank. **eBAM** capabilities and bank KYC portals can
+  shorten mandate changes where both sides support them; many banks still require paper or PDF forms with
+  wet or qualified electronic signatures. Integration-management software is used at large companies for the overall
+  programme, not for treasury tasks specifically. See [Systems & Data](/systems).
+manual_work:
+  - Building the account and signatory inventory from data-room documents and bank confirmations.
+  - Filling in each bank's mandate and KYC forms; collecting certified IDs and register extracts.
+  - Checking account by account that old signatories and e-banking users are really removed.
+  - Emailing daily balances until statements are automated.
+  - Maintaining the change-of-control, guarantee and integration trackers.
+by_size:
+  startup: >-
+    An acqui-hire or small asset/share deal. The CFO adds the target's one or two accounts, changes signatories, moves
+    the cash to the company's own bank and closes the old accounts within weeks. The main risks are unpaid liabilities
+    discovered later and payroll set-up in a new country.
+  sme: >-
+    Buying a distributor or small competitor. The CFO and head of accounting handle it alongside their normal work:
+    signatories, e-banking access, maybe repaying a local loan, adding the entity to the cash sheet. Often
+    underestimated — bank KYC and account changes take longer than the deal itself.
+  midmarket: >-
+    A treasury manager runs the workstream as above, alongside daily work, with legal and external advisers. The
+    financing and covenant check are central; full integration into ERP and connectivity can take 1–3 years.
+  multinational: >-
+    A standard M&A integration playbook, a treasury workstream in the integration management office, dedicated staff
+    for bank account onboarding and KYC across dozens of countries, onboarding into the in-house bank, cash pools, netting
+    and (after ERP migration) the payment factory. Carve-outs add a [TSA](term:transition-services-agreement) with the
+    seller and the separation from the seller's cash pool and bank mandates on Day 1.
+companies:
+  kleio: "Kleio buys a 6-person Berlin startup for its product. Sarah becomes signatory on its single German account, moves the EUR 0.4m balance to Kleio's Swiss bank after a month, and closes the account once the last direct debits are moved — the hard part was setting up German payroll."
+  alpine: "Alpine buys its Dutch distributor (EUR 6m revenue). Martin and Petra become joint signatories on its three accounts, repay a EUR 0.5m local overdraft, close two of the accounts, and add the entity as a row in Petra's cash sheet. Six months later it still books in its own accounting software."
+  helvetic: "The worked example above: Daniel leads the treasury workstream alongside the daily position; the funds flow, the savings bank's guarantees and the first payroll are the moments that matter."
+  globalchem: "GlobalChem carves a EUR 600m coatings business out of a larger group. The seller's shared-service centre runs payments under a 12-month TSA; Priya's team opens accounts for the new entities in 11 countries, connects them to the in-house bank and pools, and Marta's payment factory takes over entity by entity after SAP migration. Olivier checks the rating impact of the bond-financed price."
+handoffs:
+  - from: M&A / corporate development
+    gives: deal timetable, data-room access, SPA terms (locked box, escrow)
+    to: Treasury manager
+  - from: Treasury manager
+    gives: due-diligence findings (CoC, guarantees, trapped cash, hedges) and financing plan
+    to: CFO / M&A team
+  - from: Legal
+    gives: payoff letters, security releases, board resolutions, register filings
+    to: Treasury manager
+  - from: Target's CFO / finance team
+    gives: account lists, signatories, payroll and tax calendar, daily balances until automated
+    to: Treasury analyst
+    note: Relationships matter — these people may be anxious about their own role after the deal.
+  - from: Treasury analyst
+    gives: mandate forms and KYC packs
+    to: Target's banks
+  - from: Tax
+    gives: intercompany financing structure and terms
+    to: Treasury manager
+  - from: Treasury manager
+    gives: 100-day status report (control, visibility, financing, policy) and roadmap
+    to: CFO / integration management office
+interview: >-
+  Ask a treasurer who has integrated an acquisition to show you **their Day-1 checklist** and tell you what was not
+  on it: which account or guarantee surfaced late, how long bank KYC took, when statements were finally automated, and
+  what was still open after a year. Ask the target side (a subsidiary finance manager who was acquired) what the first
+  weeks felt like. See [Who should I interview?](/org/interview-finder).
+ai_note: >-
+  Much of the workload is document work: extracting accounts, clauses, guarantees and signatories from data-room
+  documents and bank confirmations, and filling bank forms. That extraction and tracking is plausibly assistable. The
+  decisions (financing, what to keep, how fast to take control) and the bank-side processes (KYC, mandate changes)
+  are not something software controls; banks' own processing times often set the pace.
+terms: [change-of-control, funds-flow-memo, locked-box, transition-services-agreement, signatory, payment-mandate, kyc, ebam, trapped-cash, intercompany-loan, rcf, leverage-ratio, business-email-compromise, counterparty-limit, treasury-policy]
+related: [bank-account-management, daily-cash-positioning, cash-forecasting, funding-subsidiary, credit-facility-management, covenant-monitoring, policy-compliance, fraud-investigation]
+sources: [encompass-kyc-2025]
+evidence_note: >-
+  The step sequence reflects established M&A treasury practice (due diligence, funds flow, Day-1 controls, 100-day
+  plan) as the author understands it; it is **not** backed here by a published integration guide, because Big-4,
+  bank and AFP integration guides could not be opened in this session (web access restricted). Treat the timings as
+  typical ranges, not benchmarks. The KYC friction point cites a vendor-sponsored survey and is indicative only[](cite:encompass-kyc-2025).
+  The Norvia example and company variants are illustrative synthesis.

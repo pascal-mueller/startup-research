@@ -1,0 +1,373 @@
+# Responsibility matrices (RaciMatrixView). Owned by the org-structure stream.
+# Codes: O = owner (accountable), P = performs (hands-on), D = contributes data/input, A = approves/authorises,
+#        R = reviews (checks and challenges the output), I = informed. Empty = usually not involved.
+# Several codes per cell are comma-separated. Task names must be identical across the four matrices (the
+# "one workflow across sizes" view matches on them). `role` = canonical role id from docs/AUTHORING.md.
+# These are illustrative, modelled on the reference companies; the row notes explain what commonly varies.
+
+- size: startup
+  label: Small company (Kleio)
+  company: kleio
+  intro: "One person owns almost everything. The interesting columns are who else **touches** the work: the accountant, the fiduciary, the CEO as second signatory, and the board."
+  columns:
+    - { id: board, label: "Board (incl. investors)", role: board }
+    - { id: ceo, label: CEO, role: ceo }
+    - { id: cfo, label: "CFO (Sarah)", role: cfo }
+    - { id: accountant, label: "Accountant (Nina)", role: head-of-accounting }
+    - { id: depts, label: "Department heads", role: business-unit }
+    - { id: fiduciary, label: "Fiduciary / payroll / tax adviser", role: external-fiduciary }
+    - { id: bank, label: "Bank relationship manager", role: bank-rm }
+  rows:
+    - task: Daily cash positioning
+      workflow: daily-cash-positioning
+      cells: { cfo: "O,P", accountant: D }
+      note: "Not daily and not formal: Sarah looks at three e-banking portals a few times a week and before payment runs. Nina's open-items list tells her what is about to go out."
+    - task: Cash forecasting
+      workflow: cash-forecasting
+      cells: { ceo: R, cfo: "O,P", accountant: D, depts: D, board: I }
+      note: "At this size the 'forecast' is a monthly runway model (months of cash left at current burn). The critical inputs are the hiring plan (department heads) and the timing of big annual prepayments."
+    - task: Liquidity planning
+      workflow: liquidity-planning
+      cells: { board: A, ceo: "P,R", cfo: "O,P", bank: D }
+      note: "Liquidity planning = deciding when to raise the next round or accept venture debt. The board decides; the CFO prepares the numbers and the options."
+    - task: FX exposure calculation
+      workflow: fx-exposure-management
+      cells: { cfo: "O,P", accountant: D }
+      note: "A rough monthly view: USD receipts vs USD cloud and US payroll costs. Many startups never calculate exposure formally."
+    - task: FX hedge execution
+      workflow: fx-hedging
+      cells: { cfo: "O,P", ceo: I, bank: P }
+      note: "Typically no forwards at all — Sarah converts surplus USD to CHF at spot in the bank portal. If hedging starts, the board usually wants a one-page rule first."
+    - task: Payment preparation
+      workflow: payment-processing
+      cells: { accountant: P, cfo: O, depts: D, fiduciary: P }
+      note: "Nina captures approved invoices and builds the payment batch; the fiduciary produces the payroll file. Department heads approve invoices (a business approval, not a payment approval)."
+    - task: Payment approval
+      workflow: large-payment-approval
+      cells: { cfo: "O,A", ceo: A, accountant: P }
+      note: "Swiss e-banking with joint signing: Nina enters, Sarah releases. Above a threshold, or when Sarah is away, the CEO is the second approver — the moment fraudsters like to target."
+    - task: Payment execution
+      workflow: payment-processing
+      cells: { accountant: P, cfo: A, bank: P }
+      note: "Execution is the bank's job once released. Nina checks the status next day; rejected payments come back to her."
+    - task: Bank account opening
+      workflow: bank-account-management
+      cells: { board: A, ceo: P, cfo: "O,P", bank: P }
+      note: "Account opening requires KYC documents, commercial-register extract and signatures of registered signatories — often Sarah and the CEO together. The board resolution matters when a new banking relationship is started (after SVB, Kleio's board asked for a second bank)."
+    - task: Short-term investing
+      workflow: surplus-cash-investment
+      cells: { board: A, ceo: I, cfo: "O,P", bank: D }
+      note: "The board approves simple rules (which banks, max per bank, instruments). With CHF rates around 0%, the question for CHF cash is safety and access, not yield; USD balances can earn money-market rates."
+    - task: Subsidiary funding
+      workflow: funding-subsidiary
+      cells: { cfo: "O,P", accountant: P, fiduciary: D }
+      note: "Kleio Inc. is funded monthly by intercompany transfer, usually under a cost-plus service agreement the tax adviser designed. Nina books it."
+    - task: Cash pooling
+      cells: {}
+      note: "Not applicable: 7 accounts, 3 banks, two entities. Sarah moves money manually."
+    - task: Debt issuance / facilities
+      workflow: credit-facility-management
+      cells: { board: A, ceo: P, cfo: "O,P", bank: P }
+      note: "The live question is the venture-debt offer. Sarah models it; the CEO negotiates alongside; the board decides."
+    - task: Covenant monitoring
+      workflow: covenant-monitoring
+      cells: { cfo: "O,P" }
+      note: "No debt, no covenants today. If venture debt is signed, typical obligations are minimum cash and monthly reporting to the lender — Sarah would own them."
+    - task: Fraud response
+      workflow: fraud-investigation
+      cells: { ceo: I, cfo: "O,P", accountant: P, bank: P }
+      note: "Whoever notices first (often Nina) calls the bank to try to recall the payment; Sarah handles police report and insurers. The first hours decide whether money comes back."
+    - task: Treasury reporting
+      workflow: month-end-reporting
+      cells: { board: I, ceo: R, cfo: "O,P", accountant: D }
+      note: "A cash and runway page in the monthly board/investor pack."
+    - task: Bank reconciliation
+      workflow: bank-reconciliation
+      cells: { cfo: R, accountant: "O,P", fiduciary: R }
+      note: "Nina reconciles via bank feeds in the cloud accounting system; the fiduciary checks at year-end."
+    - task: TMS administration
+      cells: { cfo: "O,P" }
+      note: "No TMS. The equivalent is e-banking user and signing-rights administration, which Sarah does with each bank."
+    - task: Bank relationship management
+      cells: { ceo: P, cfo: "O,P", bank: P }
+      note: "Two Swiss banks and one US bank. Relationship = annual meeting, KYC refreshes, and the venture-debt discussion."
+
+- size: sme
+  label: International SME (Alpine)
+  company: alpine
+  intro: "Treasury is split between a CFO who decides and a Head of Accounting who executes. Watch the business columns: at Alpine the best cash-forecast inputs come from project managers, not from finance."
+  columns:
+    - { id: board, label: Board, role: board }
+    - { id: ceo, label: CEO, role: ceo }
+    - { id: cfo, label: "CFO (Martin)", role: cfo }
+    - { id: hoa, label: "Head of Accounting (Petra)", role: head-of-accounting }
+    - { id: ap, label: "Accounts payable", role: accounts-payable }
+    - { id: ar, label: "AR / credit control", role: accounts-receivable }
+    - { id: controller, label: "Controller", role: controlling }
+    - { id: sales, label: "Sales / project managers", role: business-unit }
+    - { id: purchasing, label: "Purchasing", role: procurement }
+    - { id: subs, label: "DE/US MD + local bookkeeper", role: subsidiary-finance }
+    - { id: adviser, label: "Tax adviser / auditor", role: external-fiduciary }
+    - { id: bank, label: "Bank relationship manager", role: bank-rm }
+  rows:
+    - task: Daily cash positioning
+      workflow: daily-cash-positioning
+      cells: { cfo: I, hoa: "O,P", ap: D, subs: D }
+      note: "Petra checks both banks' e-banking around 08:30 and updates the Excel cash sheet; she has read access to DE and US accounts. Martin sees it only when she flags something."
+    - task: Cash forecasting
+      workflow: cash-forecasting
+      cells: { cfo: "O,R", hoa: P, ap: D, ar: D, controller: D, sales: D, purchasing: D, subs: D }
+      note: "Petra keeps a 13-week sheet; the swing factor is milestone timing (one delayed acceptance moves CHF 2m), which only sales and project managers know. At many SMEs the controller, not accounting, owns this sheet."
+    - task: Liquidity planning
+      workflow: liquidity-planning
+      cells: { board: A, ceo: R, cfo: "O,P", hoa: D, controller: D, bank: D }
+      note: "Martin decides when to draw the CHF 12m credit line and whether the company can take on another big project; the board approves the line and large capex."
+    - task: FX exposure calculation
+      workflow: fx-exposure-management
+      cells: { cfo: O, hoa: P, controller: D, sales: D }
+      note: "EUR (45% of revenue) against a CHF cost base: Petra lists open EUR/USD orders and receivables; Martin interprets. There is no formal exposure report at many SMEs — ask to see the spreadsheet."
+    - task: FX hedge execution
+      workflow: fx-hedging
+      cells: { board: A, cfo: "O,P", hoa: P, bank: P }
+      note: "Martin agrees forwards by phone or on the bank's FX platform within the board minute; Petra checks the bank confirmation and books it (a minimal front/back split). Many SMEs only convert at spot."
+    - task: Payment preparation
+      workflow: payment-processing
+      cells: { hoa: O, ap: P, purchasing: D, subs: P }
+      note: "AP builds the weekly payment proposal in Business Central after three-way match; purchasing supplies POs and agreed terms. The subsidiaries' bookkeepers prepare local payments."
+    - task: Payment approval
+      workflow: large-payment-approval
+      cells: { ceo: A, cfo: A, hoa: "O,A", subs: A }
+      note: "Collective signature by two in e-banking/EBICS: Petra plus Martin. The CEO signs above an internal threshold. In DE/US the managing director co-signs local payments — the group often has no view of them until month-end."
+    - task: Payment execution
+      workflow: payment-processing
+      cells: { hoa: "O,P", ap: I, bank: P }
+      note: "Petra uploads the pain.001 file via EBICS and it goes once the second signature is given. Rejections come back to her."
+    - task: Bank account opening
+      workflow: bank-account-management
+      cells: { board: A, ceo: P, cfo: "O,A", hoa: P, subs: P, bank: P }
+      note: "Petra assembles KYC and signature forms; signatories registered in the commercial register sign. Accounts for the GmbH or Inc. are signed locally by the managing director — the usual source of 'accounts nobody at head office knew about'."
+    - task: Short-term investing
+      workflow: surplus-cash-investment
+      cells: { board: I, cfo: "O,A", hoa: P, bank: D }
+      note: "Rare: cash swings CHF 6–12m and the credit line is often partly drawn, so surplus CHF usually repays drawings (CHF deposits earn ~0%). Occasional EUR call or term deposits."
+    - task: Subsidiary funding
+      workflow: funding-subsidiary
+      cells: { cfo: "O,A", hoa: P, subs: D, adviser: D }
+      note: "Martin decides; Petra transfers and books the intercompany loan; the tax adviser sets an arm's-length rate (in Switzerland often with reference to the tax administration's published safe-harbour rates)."
+    - task: Cash pooling
+      cells: {}
+      note: "No pool: three entities, nine accounts. Petra sweeps manually when an account runs low."
+    - task: Debt issuance / facilities
+      workflow: credit-facility-management
+      cells: { board: A, ceo: P, cfo: "O,P", hoa: D, bank: P }
+      note: "Renewal of the CHF 12m line and the plant mortgage: Martin negotiates with the cantonal bank, the CEO joins the annual meeting, the board approves."
+    - task: Covenant monitoring
+      workflow: covenant-monitoring
+      cells: { board: I, cfo: O, hoa: P, controller: D, bank: I }
+      note: "If the line carries financial conditions (Swiss SME lines often reference an equity ratio or leverage), Petra computes them from the half-year accounts and Martin sends the confirmation. Many SME facilities only require annual accounts."
+    - task: Fraud response
+      workflow: fraud-investigation
+      cells: { ceo: I, cfo: O, hoa: P, ap: P, bank: P, adviser: I }
+      note: "Typical case is a fake supplier bank-detail change. AP spots it, Petra calls the bank to recall, Martin decides on police and insurance."
+    - task: Treasury reporting
+      workflow: month-end-reporting
+      cells: { board: I, ceo: I, cfo: O, hoa: P, controller: P }
+      note: "Cash, credit-line usage and open FX forwards appear as one page in the controller's monthly management report."
+    - task: Bank reconciliation
+      workflow: bank-reconciliation
+      cells: { cfo: R, hoa: O, ap: P, ar: P, subs: P, adviser: R }
+      note: "Statements (camt.053) are imported into Business Central; AR and AP clear their items; Petra reviews the monthly reconciliation. The auditor reviews annually."
+    - task: TMS administration
+      cells: { cfo: A, hoa: "O,P" }
+      note: "No TMS. Petra administers e-banking/EBICS users and signing rights; Martin countersigns changes. Nobody reviews these rights regularly — a common audit finding."
+    - task: Bank relationship management
+      cells: { ceo: P, cfo: "O,P", hoa: P, bank: P }
+      note: "Martin owns the two relationships; Petra handles day-to-day service issues and fee questions."
+
+- size: midmarket
+  label: Mid-market (Helvetic)
+  company: helvetic
+  intro: "A two-person central treasury owns group liquidity, funding and hedging, while subsidiaries keep payments and local data. Most rows involve a hand-off between Lea, Daniel and a subsidiary finance manager."
+  columns:
+    - { id: board, label: "Board / audit committee", role: board }
+    - { id: cfo, label: "CFO (Thomas)", role: cfo }
+    - { id: tm, label: "Treasury Manager (Daniel)", role: treasury-manager }
+    - { id: ta, label: "Treasury Analyst (Lea)", role: treasury-analyst }
+    - { id: acc, label: "Group Accounting (Claudia)", role: head-of-accounting }
+    - { id: fpa, label: "FP&A (Marco)", role: fpa }
+    - { id: tax, label: "Group tax", role: tax }
+    - { id: ap, label: "AP (local)", role: accounts-payable }
+    - { id: ar, label: "AR / credit control (local)", role: accounts-receivable }
+    - { id: subs, label: "Subsidiary finance (Giulia, Jens, Wei)", role: subsidiary-finance }
+    - { id: legal, label: "Legal", role: legal }
+    - { id: it, label: "Group IT / ERP" }
+    - { id: bank, label: "Bank relationship managers", role: bank-rm }
+  rows:
+    - task: Daily cash positioning
+      workflow: daily-cash-positioning
+      cells: { cfo: I, tm: "O,R", ta: P, ap: D, subs: D }
+      note: "Lea prepares the position by ~08:30 from the multibank tool plus emails from subsidiaries about large items; Daniel reviews and decides transfers. The CFO hears only about exceptions."
+    - task: Cash forecasting
+      workflow: cash-forecasting
+      cells: { cfo: R, tm: O, ta: P, acc: D, fpa: D, tax: D, ap: D, ar: D, subs: D }
+      note: "Subsidiaries submit a template every second Thursday; Lea consolidates and flags variances; Daniel adjusts and presents the 13-week view to Thomas monthly. FP&A's plan drives weeks 9–13 and the medium-term view."
+    - task: Liquidity planning
+      workflow: liquidity-planning
+      cells: { board: A, cfo: A, tm: "O,P", ta: P, fpa: D, tax: D }
+      note: "Daniel sets headroom against the CHF 200m RCF and plans bond refinancing (2028); Thomas approves drawings above the policy threshold; the board approves dividends and the annual financing plan."
+    - task: FX exposure calculation
+      workflow: fx-exposure-management
+      cells: { cfo: I, tm: "O,R", ta: P, acc: D, fpa: D, subs: D }
+      note: "Monthly: subsidiaries report forecast EUR/USD/CNY flows; Lea calculates net exposure and the hedge requirement against the policy corridor; Daniel reviews. FP&A supplies budget rates and the plan."
+    - task: FX hedge execution
+      workflow: fx-hedging
+      cells: { board: A, cfo: A, tm: "O,P", ta: P, acc: R, bank: P }
+      note: "Daniel trades forwards with the RCF banks; Lea matches confirmations (she must not trade); group accounting books and documents hedge accounting. Thomas approves anything outside the policy; the board approves the policy itself."
+    - task: Payment preparation
+      workflow: payment-processing
+      cells: { ta: P, acc: P, ap: P, subs: O }
+      note: "Commercial payments are prepared locally by each entity's AP; the parent's AP sits in Claudia's team. Treasury prepares only treasury payments (IC loans, deal settlements) — Lea does those."
+    - task: Payment approval
+      workflow: large-payment-approval
+      cells: { cfo: "O,A", tm: A, acc: A, subs: A }
+      note: "Local payments: two local signatures (finance manager + managing director). Group rule: any payment above CHF 2m needs one signature from treasury or the CFO. Thomas owns the signing-authority matrix; Daniel maintains the bank mandates."
+    - task: Payment execution
+      workflow: payment-processing
+      cells: { tm: O, ta: P, subs: P, it: D, bank: P }
+      note: "Two flows: subsidiaries release commercial payments via the multibank tool or local e-banking; Lea sends treasury payments. Daniel owns the bank channels and their controls; IT runs the connectivity."
+    - task: Bank account opening
+      workflow: bank-account-management
+      cells: { cfo: A, tm: "O,P", ta: P, subs: P, legal: P, bank: P }
+      note: "Every new account needs Daniel's proposal and Thomas's approval (after the 2024 rationalisation from 31 to 12 accounts). Legal provides board resolutions and KYC documents; local managers sign local forms."
+    - task: Short-term investing
+      workflow: surplus-cash-investment
+      cells: { cfo: A, tm: "O,P", ta: P, bank: D }
+      note: "Limited: with ~CHF 60m drawn on the RCF, surplus CHF repays drawings at the next rollover. Only temporary EUR/USD surplus goes into short deposits within bank limits Thomas approved."
+    - task: Subsidiary funding
+      workflow: funding-subsidiary
+      cells: { cfo: A, tm: "O,P", ta: P, acc: I, tax: R, subs: D, legal: P }
+      note: "Daniel lends by intercompany loan; tax checks transfer pricing, thin-cap and withholding tax; legal drafts the loan agreement. China is the hard case: funding into and cash out of HM Suzhou needs registrations and time."
+    - task: Cash pooling
+      cells: { cfo: I, tm: O, ta: P, tax: R, bank: D }
+      note: "Helvetic has **no** cash pool. Daniel concentrates cash manually by intercompany loan; a EUR pool is under evaluation, which tax must review first. The codes describe the manual concentration."
+    - task: Debt issuance / facilities
+      workflow: credit-facility-management
+      cells: { board: A, cfo: "O,A", tm: P, acc: D, legal: P, bank: P }
+      note: "Thomas owns the RCF and bond relationship; Daniel does the work (drawings, renewals, bond documentation and investor questions, bank group meetings). The board approves new facilities."
+    - task: Covenant monitoring
+      workflow: covenant-monitoring
+      cells: { board: I, cfo: A, tm: O, ta: P, acc: D, fpa: D, bank: I }
+      note: "Semi-annual test (net debt/EBITDA ≤ 3.25x, interest cover ≥ 4x). Lea calculates from Claudia's figures using the loan agreement's definitions; Marco's forecast shows forward headroom; Thomas signs the compliance certificate."
+    - task: Fraud response
+      workflow: fraud-investigation
+      cells: { cfo: A, tm: O, ta: P, acc: P, subs: P, legal: P, it: P, bank: P }
+      note: "If fraud hits a subsidiary, the local finance manager calls the bank first and Daniel coordinates recalls across banks; IT investigates email compromise; Thomas decides on disclosure and external counsel."
+    - task: Treasury reporting
+      workflow: month-end-reporting
+      cells: { board: I, cfo: I, tm: O, ta: P, acc: D, fpa: I }
+      note: "Monthly treasury report to Thomas (cash, debt, headroom, hedges, covenants, counterparties); quarterly summary to the audit committee."
+    - task: Bank reconciliation
+      workflow: bank-reconciliation
+      cells: { tm: R, ta: D, acc: O, subs: P }
+      note: "Accounting owns reconciliation: each entity reconciles its accounts; Claudia's team the parent's. Treasury supplies deal data and investigates unexplained treasury items."
+    - task: TMS administration
+      cells: { cfo: A, tm: O, ta: P, it: P }
+      note: "No TMS yet (project in evaluation). Lea is key user of the multibank tool: users, payment templates, signing rules; IT handles interfaces to SAP; Thomas approves changes to signing rights."
+    - task: Bank relationship management
+      cells: { cfo: P, tm: "O,P", ta: D, subs: D, bank: P }
+      note: "Daniel manages the five banks day to day and allocates ancillary business (FX, payments) to RCF lenders; Thomas attends the annual bank meetings. Lea supplies fee data."
+
+- size: multinational
+  label: Large multinational (GlobalChem)
+  company: globalchem
+  intro: "Work is split across specialised treasury desks, a payment factory in the SSC, and separate accounting, tax and FP&A functions. Codes for treasury desks describe the desk (head + team), not only the named head."
+  columns:
+    - { id: board, label: "Board / Audit & Finance Cttee", role: board }
+    - { id: cfo, label: "Group CFO (Markus)", role: cfo }
+    - { id: gt, label: "Group Treasurer (Anna)", role: head-of-treasury }
+    - { id: cash, label: "Cash & Liquidity / IHB (Priya)", role: cash-manager }
+    - { id: risk, label: "Financial Risk (Jonas)", role: fx-risk-manager }
+    - { id: cf, label: "Corporate Finance (Olivier)", role: corporate-finance }
+    - { id: ops, label: "Treasury Ops & Payment Factory (Marta)", role: treasury-operations }
+    - { id: sys, label: "Treasury Systems (Ben)", role: treasury-systems }
+    - { id: acc, label: "Group Accounting", role: head-of-accounting }
+    - { id: fpa, label: "Group FP&A", role: fpa }
+    - { id: tax, label: "Group Tax", role: tax }
+    - { id: ssc, label: "Kraków SSC (AP, R2R)", role: accounts-payable }
+    - { id: subs, label: "Subsidiary / regional CFOs", role: subsidiary-finance }
+    - { id: legal, label: "Legal", role: legal }
+    - { id: audit, label: "Internal audit", role: internal-audit }
+  rows:
+    - task: Daily cash positioning
+      workflow: daily-cash-positioning
+      cells: { gt: I, cash: "O,P", ops: D, sys: D, subs: D }
+      note: "Priya's cash desk has the position by ~09:00 CET from the TMS; Singapore covers APAC earlier in the day. Marta's team chases missing statements; subsidiaries report unusual large flows."
+    - task: Cash forecasting
+      workflow: cash-forecasting
+      cells: { cfo: I, gt: R, cash: "O,P", cf: D, fpa: D, tax: D, ssc: D, subs: D }
+      note: "40 reporting units submit in the forecasting tool; Priya's team challenges and consolidates. Forecast quality from the units is the main problem — not the tool."
+    - task: Liquidity planning
+      workflow: liquidity-planning
+      cells: { board: A, cfo: A, gt: O, cash: P, cf: P, fpa: D }
+      note: "Anna owns the liquidity reserve (cash plus the undrawn EUR 1.5bn RCF); Olivier plans CP issuance and bond maturities; the board approves the annual financing framework and dividend."
+    - task: FX exposure calculation
+      workflow: fx-exposure-management
+      cells: { gt: R, cash: D, risk: "O,P", acc: D, fpa: D, subs: D }
+      note: "Exposures come from subsidiary forecasts and ERP open items; Jonas's desk nets them (the in-house bank and netting remove much of the gross exposure) before deciding hedges."
+    - task: FX hedge execution
+      workflow: fx-hedging
+      cells: { board: A, cfo: A, gt: A, risk: "O,P", ops: P, acc: R }
+      note: "Front office (Jonas's dealers) trades on the FX platform; back office (Marta) confirms and settles; group accounting applies IFRS 9 hedge accounting. Anna approves within her mandate, Markus above it; the board approves the policy."
+    - task: Payment preparation
+      workflow: payment-processing
+      cells: { ssc: P, subs: O }
+      note: "The SSC's AP team (and local finance outside Europe) creates payment proposals in the ERPs. Treasury does not decide which invoices to pay."
+    - task: Payment approval
+      workflow: large-payment-approval
+      cells: { cfo: A, gt: A, cash: A, ops: R, ssc: A, subs: "O,A" }
+      note: "Commercial payments are approved in ERP workflows under the signing-authority matrix; the payment factory screens (sanctions, duplicates, changed bank details) and holds exceptions. Treasury's own payments and very large amounts need Priya/Anna, and Markus above the top threshold."
+    - task: Payment execution
+      workflow: payment-processing
+      cells: { cash: D, ops: "O,P", sys: P }
+      note: "Marta's payment factory sends payments via the SWIFT service bureau, paying on behalf of European entities from in-house bank accounts; Ben keeps the channel running; Priya funds the accounts."
+    - task: Bank account opening
+      workflow: bank-account-management
+      cells: { gt: "O,A", cash: R, ops: P, subs: P, legal: P, audit: R }
+      note: "Group policy: no account without Group Treasury approval. Marta's team runs KYC, mandates and signatory updates; local directors sign locally. Internal audit periodically compares bank confirmations with the account register."
+    - task: Short-term investing
+      workflow: surplus-cash-investment
+      cells: { board: A, cfo: I, gt: A, cash: "O,P", ops: P }
+      note: "Priya invests EUR/USD surplus in deposits and MMFs within counterparty limits; the board approves the investment policy; Marta settles. CHF surplus is usually used to avoid CP issuance rather than invested at ~0%."
+    - task: Subsidiary funding
+      workflow: funding-subsidiary
+      cells: { gt: A, cash: "O,P", cf: P, acc: I, tax: R, subs: D, legal: P }
+      note: "Most entities are funded through in-house bank accounts; restricted-currency countries need local facilities (Olivier) or approvals. Tax reviews transfer pricing and thin capitalisation."
+    - task: Cash pooling
+      cells: { gt: A, cash: "O,P", ops: P, sys: P, acc: R, tax: R, legal: R }
+      note: "EUR and USD physical pools feed the in-house bank; monthly multilateral netting settles intercompany trade. Tax and legal review each new country joining a pool."
+    - task: Debt issuance / facilities
+      workflow: credit-facility-management
+      cells: { board: A, cfo: A, gt: R, cf: "O,P", acc: D, tax: R, legal: P }
+      note: "Olivier runs bond issues, the CP programme and the RCF with the banks and rating agencies; Markus and Anna front the rating agency meetings."
+    - task: Covenant monitoring
+      workflow: covenant-monitoring
+      cells: { cfo: A, gt: R, cf: "O,P", acc: D, fpa: D }
+      note: "Investment-grade bonds and RCFs often carry few or no financial covenants; the monitoring focus shifts to rating metrics and documentation undertakings."
+    - task: Fraud response
+      workflow: fraud-investigation
+      cells: { cfo: I, gt: A, ops: "O,P", sys: P, subs: P, legal: P, audit: P }
+      note: "Marta's payment factory is first line (it sees most outgoing payments); Ben checks user and system logs; internal audit investigates; Anna decides on bank and external escalation."
+    - task: Treasury reporting
+      workflow: month-end-reporting
+      cells: { board: I, cfo: I, gt: O, cash: P, risk: P, cf: P, ops: P, sys: P, acc: D }
+      note: "Each desk supplies its section; Anna signs off the monthly report to Markus and the quarterly risk report to the Audit & Finance Committee."
+    - task: Bank reconciliation
+      workflow: bank-reconciliation
+      cells: { ops: P, acc: O, ssc: P }
+      note: "The SSC's record-to-report team reconciles operating accounts; Marta's back office reconciles in-house bank and treasury deal accounts."
+    - task: TMS administration
+      cells: { gt: A, ops: R, sys: "O,P", audit: R }
+      note: "Ben owns configuration, interfaces and user administration; Marta reviews user rights quarterly for segregation of duties; Anna approves role changes."
+    - task: Bank relationship management
+      cells: { cfo: P, gt: "O,P", cash: P, cf: P, ops: D, subs: D }
+      note: "Anna manages the core bank group and allocation of ancillary business (wallet share) to the seven RCF banks; Olivier covers capital-markets banks; Priya the cash-management banks; Marta supplies fee and service data."

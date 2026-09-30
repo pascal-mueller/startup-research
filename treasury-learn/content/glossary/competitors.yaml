@@ -1,0 +1,64 @@
+# Glossary terms added by the competitors stream.
+- id: deal-capture
+  term: Deal capture
+  aka: [trade capture, deal entry]
+  category: Systems
+  plain: Recording a financial transaction (an FX forward, a loan, a deposit) in a system with all its terms, so it can be confirmed, settled, valued and booked.
+  professional: "Entry of a treasury transaction's economic terms (counterparty, amounts, rate, trade/value/maturity dates, settlement instructions) into the TMS, either manually or straight-through from a trading platform. It drives confirmation matching, settlement, mark-to-market valuation, hedge accounting and GL postings — the core function that separates a full TMS from a cash-visibility tool."
+  example: "Jonas at GlobalChem deals a EUR 20m / CHF forward on a multi-dealer platform; the trade flows into the TMS automatically, Marta's back office matches the bank's confirmation, and the forward is valued every month-end."
+  related: [tms, forward, multi-dealer-platform, hedge-accounting, mark-to-market]
+
+- id: swift-service-bureau
+  term: Swift service bureau
+  aka: [SSB, service bureau]
+  category: Banking & connectivity
+  plain: A company that connects you to the Swift network so you don't have to run your own Swift infrastructure.
+  professional: "A Swift-certified third party that hosts and operates Swift connectivity (and often EBICS/host-to-host channels and bank-format conversion) on behalf of corporates, which then send payments and receive statements from many banks through one connection. Common for groups with many banks that want multi-bank reporting without running Swift in-house."
+  example: "GlobalChem does not run its own Swift infrastructure: statements from its ~20 banks and ~280 accounts arrive through a service bureau into SAP every morning, and payment files leave the same way."
+  related: [swift, ebics, host-to-host, api-banking, tms]
+
+- id: currency-management-automation
+  term: Currency management automation
+  aka: [hedging automation, FX automation]
+  category: FX
+  plain: Software that takes FX exposures from business systems and hedges them according to pre-set rules, without a treasurer doing each trade.
+  professional: "Rule-based hedging workflow: exposures are captured from ERP, pricing or order systems; policy rules (hedge ratios, tenors, thresholds) generate hedge requirements; trades are executed with banks and fed back for accounting. Humans own the rules and exceptions; the software performs the repetitive trade-by-trade steps."
+  example: "An online retailer prices in 12 currencies. Each night its hedging tool nets that day's foreign-currency sales and books forwards per the rule 'hedge 100% of confirmed orders above EUR 50k equivalent'; the treasurer reviews exceptions weekly."
+  related: [fx-exposure, hedge-ratio, forward, treasury-policy]
+
+- id: cash-investment-portal
+  term: Cash investment portal
+  aka: [MMF portal, investment portal]
+  category: Investments
+  plain: A website where a treasurer can put spare cash into money-market funds or deposits from many providers in one place.
+  professional: "A multi-provider dealing platform for short-term investments (money-market funds, fixed-term funds or deposits) that consolidates onboarding, execution, holdings and counterparty-exposure reporting. The treasury investment policy still decides which funds, ratings and limits are allowed."
+  example: "GlobalChem invests USD 60m of surplus across three triple-A money-market funds through a portal; Priya checks the portal's exposure report against counterparty limits every Friday."
+  related: [money-market-fund, investment-policy, counterparty-limit, surplus-cash]
+
+- id: stablecoin
+  term: Stablecoin
+  aka: [fiat-backed token]
+  category: Payments
+  plain: A digital token on a blockchain designed to keep a fixed value against a normal currency such as the US dollar.
+  professional: "A crypto-asset referencing a fiat currency, typically backed by cash and short-term government securities held by the issuer (e.g. USDC, and Ripple's RLUSD). Some treasury vendors now offer stablecoin settlement for cross-border transfers; for corporates this raises treasury-policy, accounting, custody, counterparty and regulatory questions that most investment and payment policies do not yet address."
+  example: "A vendor demo shows a USD transfer from a US entity to a Singapore subsidiary settling in seconds via a stablecoin. Before using it, Anna's team would have to answer: is the token an approved instrument under policy, who is the counterparty, and how is it booked?"
+  related: [treasury-policy, counterparty, correspondent-banking]
+
+- id: treasury-agent
+  term: Treasury agent (AI)
+  aka: [AI agent, digital worker]
+  category: Systems
+  plain: Software that is meant to carry out a treasury task itself — gather data, decide within rules, act or propose an action — rather than just show information to a person.
+  professional: "Marketing and research term for LLM- or rules-based software that plans and executes multi-step treasury tasks (e.g. assemble the cash position, explain variances, draft a funding proposal) with tool access to banks, ERPs or TMS, typically under human approval. Distinguish carefully between shipped capability, pilot, and announcement; 'agent' is used loosely by vendors."
+  example: "A vendor claims its agent 'prepares the daily liquidity recommendation'. The founder's interview question: 'Who checks it before 10:00, what did they change last week, and has it ever released a payment?'"
+  related: [tms, cash-position, four-eyes-principle]
+  confusedWith: "**An AI assistant / copilot.** A copilot answers questions about data; an agent performs steps. Many 2025–2026 'agents' are copilots."
+
+- id: tms-selection
+  term: TMS selection (RFP)
+  aka: [TMS RFP, system selection]
+  category: Systems
+  plain: The formal process a company runs to choose treasury software — usually with a long questionnaire sent to several vendors and demos.
+  professional: "Structured procurement: requirements catalogue, long list, request for proposal/information (RFP/RFI), scripted demos, reference calls, commercial negotiation. Larger groups often use treasury consultants to run it; implementation follows and commonly takes months. The process shapes the market: vendors compete on RFP checklist breadth, which favours suites."
+  example: "Helvetic's CFO asks Daniel to replace the spreadsheet position. Daniel writes 120 requirements, invites four vendors, and a consultant scores the demos; the decision takes five months and implementation six more (illustrative)."
+  related: [tms, system-of-record]

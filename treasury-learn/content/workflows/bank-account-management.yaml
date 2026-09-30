@@ -1,0 +1,295 @@
+id: bank-account-management
+title: Opening and closing bank accounts
+question: We need a new bank account (or want to get rid of one) — who does what, and why does it take weeks?
+group: Payments & banking
+order: 4
+summary: >-
+  Opening a corporate bank account means getting internal approval, a board resolution, a know-your-customer (KYC)
+  package the bank accepts, signed account and e-banking agreements, users and signatories set up, and the account
+  connected to statements, payment files, the ERP and the reconciliation — before the first payment can go out.
+  Closing one means moving every flow off it first. In between, the account's mandates, signatories and KYC must be
+  kept current. It is document-heavy, slow, and a classic source of control gaps: accounts nobody monitors and
+  signatories who left years ago.
+objective: >-
+  Have exactly the accounts the business needs — each approved, documented, correctly mandated, visible in the cash
+  position, included in the reconciliation, and with only current employees able to operate it — and close the rest.
+trigger: >-
+  New entity, new country or currency, new business (e.g. a lockbox or collection account), a bank change after an
+  RFP or refinancing, a counterparty-risk decision (as after the 2023 SVB and Credit Suisse events), an acquisition,
+  a person joining or leaving (signatory change), a KYC refresh request, or an account-rationalisation review.
+frequency: >-
+  Openings and closings a few times a year at mid-market groups (more at multinationals, rarely at small companies);
+  signatory changes whenever people move; KYC refreshes continuously across a large bank panel; a full review of the
+  account inventory annually.
+people:
+  - role: Treasury manager / head of treasury
+    does: Approves the need, chooses the bank and account structure, owns the account inventory and mandate policy.
+  - role: Treasury analyst / treasury operations / bank account administrator
+    does: Assembles documents, fills in bank forms, chases the bank, sets up connectivity and master data, keeps the register.
+  - role: Entity directors / board (and company secretary)
+    does: Pass the board resolution; provide IDs; sign account-opening documents as legal representatives.
+  - role: Legal / corporate secretariat
+    does: Provides registry extracts, articles, certified and apostilled copies, incumbency certificates.
+  - role: Tax
+    does: Completes FATCA/CRS self-certifications and tax forms (e.g. US W-8BEN-E / W-9).
+  - role: Bank relationship manager and bank onboarding / KYC team
+    does: Collect documents, run the bank's due diligence, issue agreements, set up users; often ask follow-up questions in several rounds.
+  - role: Treasury systems / IT
+    does: Configure statement and payment channels (EBICS keys, SWIFT routing, APIs), ERP house-bank data, TMS.
+  - role: Accounting
+    does: Creates GL accounts, includes the account in the reconciliation; closes GL accounts after closure.
+  - role: CFO
+    does: Approves new banking relationships under policy; typically a signatory.
+systems:
+  - name: Bank account register (Excel at most mid-market companies; TMS/eBAM module at large ones)
+    use: Inventory of accounts, purpose, entity, currency, bank, signatories, e-banking users, channels, documents, review dates. See [eBAM](term:ebam).
+  - name: Bank onboarding portals, email and paper
+    use: Where KYC documents are uploaded and forms signed; many banks still require wet-ink or qualified e-signatures and originals.
+  - name: Bank connectivity (EBICS, SWIFT, host-to-host, APIs) and e-banking administration
+    use: Adding the account to statement delivery and payment channels; user and signature rights; keys and tokens.
+  - name: "[ERP](term:erp) and [TMS](term:tms) master data"
+    use: House bank, bank account ID, GL account, payment methods, reconciliation rules, cash-position mapping.
+  - name: Commercial registers and beneficial-ownership registers
+    use: Sources of the extracts the bank requires; in Switzerland the commercial register shows who has individual or collective signing authority.
+data:
+  - name: Business case and approval
+    source: Requesting entity / treasury
+    notes: Why the account is needed; treasury policy usually reserves opening to group treasury.
+  - name: Entity documents
+    source: Legal / corporate secretariat
+    notes: Commercial-register extract, articles, board resolution, organisation chart up to the ultimate owner, financial statements — often certified, sometimes apostilled and translated[](cite:crowe-swiss-account).
+  - name: Beneficial owners / controlling persons
+    source: Share register, ownership chart
+    notes: Swiss banks identify controlling persons (25% threshold) on "Form K"[](cite:crowe-swiss-account); from 1 October 2026 banks can also consult Switzerland's new non-public transparency register[](cite:lenz-transparency-2026).
+  - name: Signatories and users with IDs
+    source: HR / individuals
+    notes: Passport copies, residence, sometimes in-person identification or video identification.
+  - name: Tax self-certifications
+    source: Tax
+    notes: FATCA/CRS status; US forms for US-dollar or US-bank accounts.
+  - name: Expected account activity
+    source: Treasury
+    notes: Volumes, countries, counterparties, currencies — banks ask this for AML profiling and will query deviations later.
+  - name: Signing authority matrix
+    source: Treasury policy
+    notes: The mandate given to the bank should implement it, not contradict it.
+steps:
+  - title: Establish and approve the need
+    who: Requester (subsidiary, project) → treasury manager; CFO for a new bank
+    where: Email / account-request form
+    detail: >-
+      A subsidiary asks for a new account (a new currency, a local tax requirement, a customer that insists on local
+      payment). Treasury checks whether an existing account or structure can do the job — many requests are avoidable —
+      and approves under the policy that no account may be opened without group treasury.
+    judgment: Whether the account is needed at all, and whether it should sit at an existing relationship bank (preferred) or a new one.
+  - title: Choose bank, account structure and services
+    who: Treasury manager
+    where: Bank discussions, RFP results
+    detail: >-
+      Decide the bank (existing panel bank, credit relationship, local capabilities), account currency and type,
+      whether it joins a cash pool or sweeping structure, connectivity (EBICS/SWIFT/API), and statement and payment
+      services required. Pricing is agreed or referenced to the existing price schedule.
+    judgment: Trading off service quality, wallet allocation to relationship banks, counterparty risk and connectivity cost.
+  - title: Pass the board resolution and define signatories
+    who: Treasury proposes; entity board resolves; legal certifies
+    where: Board minutes / bank templates
+    detail: >-
+      The entity's board authorises the account and names the signatories and signing rules (e.g. collective by two,
+      with limits), consistent with the [signing authority matrix](term:signing-authority-matrix). Banks often insist
+      on their own template. In Switzerland the commercial-register entry of signing authority is checked too.
+      See [board resolution](term:board-resolution) and [bank mandate](term:payment-mandate).
+    manual: Drafting, collecting signatures from directors in different countries, certification and apostilles.
+  - title: Assemble and submit the KYC package
+    who: Treasury analyst with legal and tax
+    where: Bank onboarding portal / email / courier
+    detail: >-
+      Registry extracts, articles, ownership chart to the ultimate owner, controlling-person forms, IDs of directors and
+      signatories, financial statements, tax self-certifications, expected activity. The bank's KYC team reviews and
+      usually comes back with questions — a missing certification, an out-of-date extract (many banks require extracts
+      no older than 3–6 months), an unclear ownership layer.
+    manual: >-
+      The single largest effort. Documents already given to the same bank for another entity are requested again;
+      in a vendor survey of UK and US treasurers, 93% reported being asked for the same information more than once[](cite:encompass-kyc-2024).
+  - title: Sign the account and channel agreements
+    who: Legal representatives / signatories
+    where: Bank documents (wet ink or qualified e-signature)
+    detail: >-
+      Account-opening forms, general terms, e-banking or EBICS contract, SWIFT or API service agreements, and pricing.
+      The account number (IBAN) is issued, but it is not yet usable in practice.
+  - title: Set up users, rights and keys
+    who: Treasury analyst / treasury systems; bank
+    where: E-banking administration; EBICS client; SWIFT service bureau
+    detail: >-
+      Create e-banking users and signature rights; for [EBICS](term:ebics), generate keys and send the signed
+      initialisation letters (INI/HIA) so the bank activates the subscriber; for SWIFT, add the account to MT101/pain.001
+      and statement routing; issue tokens. Rights should implement the mandate, not exceed it.
+    manual: Key-initialisation letters, token logistics, and checking that each user's rights match the mandate.
+  - title: Connect the account to systems
+    who: Treasury systems / analyst; accounting
+    where: ERP, TMS, multibank tool, cash-position workbook
+    detail: >-
+      Order statement delivery (camt.053 / MT940, intraday camt.052, camt.054 detail); add the account to the
+      connectivity tool; create house-bank and bank-account master data and the GL account in the ERP; add matching
+      rules, the cash-position mapping and the forecast line; register the account in the account inventory.
+  - title: Test and go live
+    who: Treasury analyst
+    where: Bank channel, ERP
+    detail: >-
+      Receive the first statements and check they import and map correctly; send a small test payment and a test
+      payment file; check that the reconciliation picks the account up. Only then is the account "live".
+  - title: Migrate flows and announce new details
+    who: Treasury with AR, AP, payroll, tax
+    where: Letters, customer portals, payroll provider, tax authorities
+    detail: >-
+      Move payment runs, payroll, direct debits, card-acquirer and PSP settlements, tax payments and customer
+      collections to the new account. Customers must be told the new remittance details in a way they can verify —
+      a "please pay to our new account" letter looks exactly like vendor-imposter fraud to them.
+    judgment: How long to run old and new accounts in parallel; which customers need personal contact rather than a letter.
+  - title: Close the old account
+    who: Treasury analyst prepares; signatories sign
+    where: Bank closure letter, e-banking, ERP
+    when: After a run-off period, typically months
+    detail: >-
+      Once no flows have arrived for an agreed period, transfer the residual balance, send a closure instruction signed
+      according to the mandate, get written confirmation, cancel e-banking users, tokens, EBICS subscribers and
+      direct-debit authorisations, and close the ERP bank master data and GL account after the final reconciliation.
+    manual: Chasing the last stray receipts and the bank's closure confirmation; updating every system that referenced the account.
+  - title: Maintain mandates, signatories and KYC
+    who: Treasury operations / bank account administrator
+    where: Account register, bank forms
+    when: Continuous; full review at least annually
+    detail: >-
+      When someone joins or leaves, update mandates and users at every bank where they appear (a leaver's removal
+      should take days, not months). Answer periodic KYC refresh requests. Once a year, reconcile the register against
+      bank-confirmed lists of accounts and signatories and flag [dormant accounts](term:dormant-account) for closure.
+    judgment: Which accounts to keep "just in case" and which to close — dormant accounts cost fees and control effort.
+example:
+  title: "Helvetic's 2024 rationalisation: moving the Czech entity to one bank"
+  body: |
+    Helvetic's 2024 account review found 31 accounts, 7 of them with fewer than ten transactions a year — including a CZK account at a local Czech bank where a former controller was still a signatory. Daniel decided to move HM Czech's banking (a production site) to the Prague branch of the German relationship bank, already connected to Helvetic's multibank tool via EBICS, and close three local accounts.
+
+    | Week | What happened | Who |
+    |---|---|---|
+    | 0 | Daniel approves; CFO (Thomas) signs off the change of bank for the entity | Daniel, Thomas |
+    | 1–2 | HM Czech's statutory directors sign the bank's board-resolution template naming the local finance manager and Daniel as joint signatories; certified Czech register extract; ownership chart up to HM AG | Lea, local finance, directors |
+    | 2–5 | KYC: the bank requests HM AG documents again (already on file at its German entity), an apostilled HM AG register extract no older than three months, and passport copies of two HM AG directors; one round of questions on expected CZK volumes and Asian suppliers | Lea, legal |
+    | 6 | Account agreements and EBICS contract signed; CZK and EUR IBANs issued | Directors |
+    | 7 | EBICS keys initialised; accounts added to the multibank tool; SAP house bank, GL accounts and matching rules configured; cash-position workbook updated | Lea, SAP consultant |
+    | 8 | Test file (two small payments) and first statements import correctly | Lea |
+    | 8–12 | Payroll, social security, tax office, utilities and supplier runs moved; 60 customers informed by letter and in the invoice template; four large customers called personally | Local finance, Lea |
+    | 12–24 | Old accounts run in parallel; stray receipts forwarded; direct debits cancelled | Local finance |
+    | 26 | Residual CZK 184,000 transferred; closure letters signed; the bank confirms closure after five weeks; e-banking users (including the former controller) cancelled | Lea, Daniel |
+
+    **Elapsed time:** about 8 weeks to a usable account and about 7 months to the last closure confirmation. **Result:** one of the steps from 31 to 12 accounts; annual fees on the closed accounts of around CHF 3,000 saved; one fewer bank to keep KYC current with. The time sink was not the bank's systems but the KYC round trips and the run-off.
+judgment:
+  - decision: Whether a new account is needed at all
+    why: Every account adds fees, KYC, mandates and reconciliation work for years; many requests can be served by existing accounts or POBO structures.
+  - decision: Which bank
+    why: Balances service needs, relationship-bank wallet expectations, counterparty risk and connectivity cost; rarely just price.
+  - decision: Who should be a signatory, with what limits
+    why: Too few signatories stop payments when people travel; too many weaken control. Needs to match the matrix and reality of who is available.
+  - decision: How long to keep an old account open during migration
+    why: Closing too early bounces stray receipts; keeping it too long preserves a control gap and fees.
+  - decision: Which dormant accounts to close
+    why: Some "unused" accounts exist for tax, legal, escrow or rare-but-critical flows; closing needs local knowledge.
+failure_modes:
+  - mode: Account opened locally without treasury's knowledge
+    consequence: Cash invisible to the group, not in the reconciliation, unauthorised signatories, fraud exposure.
+    detection: Annual bank confirmations; auditors' confirmation letters; policy that only group treasury can open accounts.
+  - mode: Leaver remains a signatory or e-banking user
+    consequence: A former employee (or someone using their credentials) can still release payments.
+    detection: HR-leaver trigger to treasury; annual reconciliation of bank-confirmed signatory lists against the register.
+  - mode: Mandate and internal matrix diverge
+    consequence: The bank executes payments the company's rules do not allow, or blocks legitimate ones.
+    detection: Periodic comparison of each bank mandate with the matrix.
+  - mode: New account not connected to reporting or reconciliation
+    consequence: Balance missing from the cash position; fraud on the account unnoticed.
+    detection: Go-live checklist; completeness check in the daily position.
+  - mode: KYC refresh ignored
+    consequence: The bank restricts or freezes the account — sometimes on a payment day.
+    detection: A KYC calendar per bank; single owner for bank requests.
+  - mode: Customers keep paying into a closed account, or a fraudster exploits the announced change
+    consequence: Receipts returned or delayed; customers pay a fraudster who sent a fake "new account" letter at the same time.
+    detection: Verifiable announcements; monitoring receipts on the old account during run-off.
+software: >-
+  Large companies keep the account register in a **TMS bank-account-management module** (e.g. Kyriba, FIS, SAP bank
+  account management) or a specialised eBAM tool, with approval workflows and document storage; the ISO 20022 acmt
+  messages for electronic account opening with banks exist but have seen limited adoption. Most mid-market companies
+  keep an **Excel register**. KYC itself runs through each bank's onboarding portal; corporate KYC utilities and
+  digital-identity vendors address the repeated-document problem. See [Systems & Data](/systems).
+manual_work:
+  - Collecting, certifying, apostilling and translating documents for each bank and entity.
+  - Filling in each bank's own forms and board-resolution templates.
+  - Answering KYC follow-up questions, often repeatedly for information already provided.
+  - EBICS key letters, tokens and user administration per bank.
+  - Updating ERP, TMS, connectivity, cash-position and reconciliation set-ups.
+  - Notifying customers, suppliers, payroll and tax authorities of new details.
+  - Chasing closure confirmations and cancelling users.
+  - Maintaining the account register and reconciling it to bank confirmations.
+by_size:
+  startup: >-
+    The CFO or founder opens accounts personally with the bank's SME desk; documents are simple but foreign board
+    members (venture investors) make ID collection slow. The typical trigger is diversification after a funding round
+    or a bank scare. No register beyond a sheet; e-banking users are the CFO and a founder.
+  sme: >-
+    Rare events handled by the CFO and head of accounting with the house bank's relationship manager, who "walks the
+    documents through". Opening accounts for foreign subsidiaries is the hard case — local banks, local documents,
+    local directors. Signatory changes lag behind staff changes.
+  midmarket: >-
+    Treasury owns the process and an Excel register; a handful of openings and closings a year, often driven by bank
+    rationalisation, refinancing or acquisitions. The effort sits with one analyst; KYC round trips and multi-country
+    document certification dominate the elapsed time.
+  multinational: >-
+    A treasury-operations team administers hundreds of accounts in a TMS register with workflow approvals, handles
+    dozens of KYC refreshes and signatory changes a year across the bank panel, and runs periodic rationalisation. New
+    accounts in restricted or emerging markets can take months. Policy strictly reserves account opening to group
+    treasury, and auditors test it.
+companies:
+  kleio: "After SVB, Sarah opened accounts at a second Swiss bank: about six weeks, mostly spent collecting passport copies and signatures from two board members who live abroad. Kleio Inc.'s US account was opened online in days. The register is a tab in Sarah's Google Sheet."
+  alpine: "Nine accounts at two banks. The cantonal bank's relationship manager handles most paperwork; when the previous controller left, Petra had to send updated signature cards and board extracts to both banks and it took three weeks to remove him from one e-banking contract."
+  helvetic: "The worked example above. Since the 2024 rationalisation Daniel keeps an Excel register of the 12 operating accounts, reviewed annually against bank confirmations. China is the exception: the Chinese bank's account changes require local documents, chops and in-person visits, handled by Wei."
+  globalchem: "About 280 accounts in the TMS register. Marta's team administers mandates and users; when a Kraków team member leaves, signatory-removal letters go to every bank where she appears and each confirmation is tracked. Opening accounts for a new entity in an emerging market routinely takes two to four months."
+handoffs:
+  - from: Subsidiary / business
+    gives: request and business case for an account
+    to: Treasury manager
+  - from: Treasury manager
+    gives: decision on bank, account structure and signatories
+    to: Treasury analyst; CFO for approval of new banks
+  - from: Legal / corporate secretariat and tax
+    gives: certified entity documents, board resolution, tax self-certifications
+    to: Treasury analyst
+  - from: Treasury analyst
+    gives: KYC package and signed agreements
+    to: Bank onboarding team (via the relationship manager)
+    note: Several rounds of questions are normal.
+  - from: Bank
+    gives: account numbers, contracts, channel activation
+    to: Treasury analyst / treasury systems
+  - from: Treasury systems / analyst
+    gives: configured channels and master data; new account in the register
+    to: Accounting (GL, reconciliation), AP/AR (payment methods, remittance details)
+  - from: HR
+    gives: joiners and leavers who are signatories or users
+    to: Treasury operations
+    note: If this trigger is missing, leavers stay on mandates for months.
+interview: >-
+  Ask the person who **did the paperwork** for the last account opening (an analyst or treasury operations, the head
+  of accounting at an SME) to reconstruct the timeline: which documents, which questions from the bank, where it
+  stalled. Ask how they learn that a signatory has left. Ask how many accounts they have and when they last confirmed
+  the list with the banks. CFOs will know the outcome, rarely the process.
+ai_note: >-
+  The work is document assembly, form-filling, tracking and chasing — plausible for assistance (pre-filling bank
+  forms from a document vault, tracking KYC requests, reconciling registers against bank confirmations). The binding
+  steps (board resolutions, signatures, bank-side due diligence) are legal acts and regulated bank processes, and the
+  main delay is on the bank's side, so automation on the company side alone shortens the process only partly.
+terms: [ebam, bank-account-management-term, kyc, board-resolution, payment-mandate, signatory, signing-authority-matrix, dormant-account, ebics, house-bank, relationship-bank]
+related: [bank-fee-analysis, payment-processing, acquisition-integration, policy-compliance, daily-cash-positioning]
+sources: [crowe-swiss-account, lenz-transparency-2026, encompass-kyc-2024, encompass-kyc-2025]
+evidence_note: >-
+  Document requirements are from adviser guidance for Swiss banks[](cite:crowe-swiss-account) and the new Swiss
+  transparency law in force from 1 October 2026[](cite:lenz-transparency-2026). The only quantitative data on
+  timelines found are vendor surveys of UK and US treasurers: an average of 41 days to open an account and 93% asked
+  for the same information more than once[](cite:encompass-kyc-2024); 84% dissatisfied with their bank's KYC process
+  in the 2025 edition[](cite:encompass-kyc-2025). These are indicative, vendor-sponsored and not Swiss. The step
+  sequence is established practice; the timeline in the example and the company variants are illustrative synthesis.

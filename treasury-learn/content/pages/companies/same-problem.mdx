@@ -1,0 +1,117 @@
+---
+title: Same problem, four scales
+nav: Same problem, four scales
+order: 5
+summary: The same treasury workflow — forecasting, FX, payment approval, liquidity planning, bank accounts, surplus cash — at a 70-person start-up, a CHF 80m SME, a CHF 650m mid-market group and a CHF 7bn multinational. What changes with scale, and what stays stubbornly the same.
+related: [/companies, /size, /start/growth, /org/responsibility-matrix, /workflows]
+---
+
+## How to read this page
+
+Each section takes one workflow and shows how it is actually performed at [Kleio](co:kleio), [Alpine](co:alpine), [Helvetic](co:helvetic) and [GlobalChem](co:globalchem). Read across a row to see the progression; read down a column to get a feel for one company. Four things drive almost every difference:
+
+| Driver | Why it changes the work |
+|---|---|
+| **Number of entities and countries** | Each entity has its own accounts, books, tax position and legal limits on moving money. Cross-entity work (funding, pooling, intercompany) is most of what a central treasury adds. |
+| **Number of currencies** | Turns "how much cash?" into "how much of each currency, where?", and creates exposure that someone must measure and decide on. |
+| **Volume and value** | More payments and larger amounts mean more fraud risk, more control, and eventually industrialised processes (payment factory, automated matching). |
+| **Financing structure** | Equity-funded start-ups care about runway; borrowers care about headroom and covenants; rated issuers care about maturity profiles and rating metrics. |
+
+Who does the work is shown first, because everything else follows from it.
+
+<CompanyCompare topic="who-does-treasury" />
+
+## 1. Cash forecasting
+
+The mechanics scale from a runway model to a multi-entity forecasting tool; the hard judgment — which customers will really pay when, and whether to trust a subsidiary's numbers — does not go away. Full workflow: [cash forecasting](wf:cash-forecasting).
+
+<CompanyCompare topic="forecasting" />
+
+<CompanyCompare topic="co-forecast-error" />
+
+**What changes:** horizon (months of runway → 13 weeks → multi-horizon), number of contributors (one → dozens of entities), whether accuracy is measured at all.
+**What does not:** receipts are the most uncertain line; lumpy items (tax, bonuses, milestones) are forgotten; the forecast is only as good as the people who feed it.
+
+## 2. FX management
+
+Every one of the four companies earns in currencies it does not spend. What differs is whether anyone measures the exposure and whether a policy decides the response. Full workflows: [FX exposure management](wf:fx-exposure-management), [FX hedging](wf:fx-hedging).
+
+<CompanyCompare topic="co-fx-exposure" />
+
+<CompanyCompare topic="co-fx-hedging" />
+
+**What changes:** from "convert when needed" to ad hoc forwards to a hedge-ratio band to layered programmes with netting and hedge accounting; from the CFO's instinct to a board-approved policy.
+**What does not:** the hedge is only as good as the forecast of the exposure; someone still decides how much uncertainty to hedge; a large move in EUR/CHF is felt at every size.
+
+<Callout type="confusion" title="'More sophisticated' is not the same as 'better hedged'">
+
+Kleio's decision not to hedge is reasonable: net amounts are small relative to runway, and its biggest currency risk is not a cash flow at all. Alpine's ad hoc forwards on signed contracts are arguably closer to the real exposure than a policy that hedges a forecast. Sophistication follows scale and complexity; it is not a maturity score.
+
+</Callout>
+
+## 3. Payment approval
+
+Payment work splits into two questions: how routine payments get out, and how an unusual one is checked. Full workflows: [payment processing](wf:payment-processing), [large payment approval](wf:large-payment-approval).
+
+<CompanyCompare topic="co-payment-run" />
+
+<CompanyCompare topic="co-payment-approval" />
+
+<CompanyCompare topic="co-controls" />
+
+**What changes:** who presses the button (the CFO → the head of accounting → local finance teams → a payment factory); approval of the *spending* separates from release of the *payment*; controls move from people to systems.
+**What does not:** two people, verified bank details, and a call-back when something looks unusual. Fraudsters target the exceptions at every size.
+
+## 4. Liquidity planning
+
+Short-term positioning answers "is there enough today?"; liquidity planning answers "will there be enough over the next year or two, and what is the backstop?" Full workflows: [liquidity planning](wf:liquidity-planning), [funding a subsidiary](wf:funding-subsidiary).
+
+<CompanyCompare topic="positioning" />
+
+<CompanyCompare topic="co-liquidity-planning" />
+
+<CompanyCompare topic="co-intercompany" />
+
+**What changes:** the backstop (equity round → bank line → syndicated RCF → RCF plus capital markets), the horizon (months → years), and the mechanism for moving cash between entities (a transfer → a sweep → intercompany loans → pools and an in-house bank).
+**What does not:** the question "what is the low point, and what do we do if it is worse?"; tax and legal constraints on moving cash between entities.
+
+## 5. Bank account management
+
+Opening, maintaining and closing accounts sounds administrative until you count signatories, KYC files and connectivity set-ups. Full workflow: [bank account management](wf:bank-account-management).
+
+<CompanyCompare topic="co-bank-landscape" />
+
+<CompanyCompare topic="co-bank-account-opening" />
+
+**What changes:** from a list in a spreadsheet to a dedicated tool; from the CFO doing it personally to a back-office team; periodic [rationalisation](term:bank-account-rationalisation) becomes necessary.
+**What does not:** the bank's KYC process is slow at every size, and someone has to remember to remove signatories who leave.
+
+## 6. Surplus cash (investments)
+
+Full workflow: [surplus cash investment](wf:surplus-cash-investment).
+
+<CompanyCompare topic="co-investments" />
+
+**What changes:** from "which bank is safe?" to a policy-bound portfolio with counterparty limits and approved instruments. Borrowers use surplus to repay drawings first.
+**What does not:** safety and liquidity before yield. In CHF, with rates around zero (illustrative, autumn 2026), there is very little yield to chase anyway; EUR and USD balances earn more.
+
+## Also compared
+
+<CompanyCompare topic="co-systems" />
+
+<CompanyCompare topic="co-reporting" />
+
+<CompanyCompare topic="co-key-person" />
+
+## The pattern across all six
+
+<Callout type="synthesis" title="What scale automates, and what it does not">
+
+1. **Collection and execution are automated first** — statements, positions, sweeps, payment files, confirmations.
+2. **Decisions become policies** — hedge ratios, counterparty limits, minimum cash, signing matrices. The judgment moves from the individual decision to setting and reviewing the policy.
+3. **Specialists appear** — cash, risk, capital markets, operations, systems — each with a narrower view than the start-up CFO who sees everything.
+4. **The hard, human parts persist at every size:** getting honest forecast inputs, judging customer payment behaviour, deciding how much uncertainty to hedge, handling exceptions and fraud attempts, and maintaining bank relationships.
+
+For interviews, this means the *same* question — "walk me through the last forecast you produced" — yields completely different answers at each size. Place the company on the ladder first; see [Treasury by Size](/size).
+
+</Callout>

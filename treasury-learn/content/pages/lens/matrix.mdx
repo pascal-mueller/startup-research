@@ -1,0 +1,50 @@
+---
+title: The Agentic Treasury matrix
+nav: Matrix
+order: 3
+summary: All 20 canonical workflows scored on the 16 criteria. Sort by any column, filter by class or group, and click a row for the full assessment — including what is already automated, what the human keeps, and how the rating compares with the workflow page's own neutral AI note.
+related: [/lens/method, /lens/candidates, /lens/digital-worker, /workflows]
+---
+
+<Callout type="synthesis" title="How to read it">
+
+Scores are 1–5 and the author's synthesis ([method](/lens/method)). **Colour shows direction, not size**: green means
+the score helps an AI system do the work, red means it gets in the way, grey means context only (current automation and
+human involvement). Headers with a dotted red underline are "higher is worse" criteria. Links of the form
+`/lens/matrix#workflow-id` open a row directly.
+
+</Callout>
+
+<LensMatrix />
+
+## Patterns worth noticing
+
+- **Sort by "Loop" (feedback).** The top of the list — [cash forecasting](/lens/matrix#cash-forecasting),
+  [bank reconciliation](/lens/matrix#bank-reconciliation), [daily cash positioning](/lens/matrix#daily-cash-positioning)
+  — are the workflows where outcomes arrive within days and experts correct output routinely. A system can be *measured*
+  there. At the bottom are the crises, where there is nothing to learn from.
+- **Sort by "Auto" (current automation).** [Payment processing](/lens/matrix#payment-processing) and
+  [bank reconciliation](/lens/matrix#bank-reconciliation) are already highly automated by rules. What is left is thin.
+- **Sort by "Conseq" (consequences).** The six workflows scored 5 — payment processing, large payment approval, covenant
+  monitoring, fraud investigation and the two crises — all involve irrecoverable money or contractual default. None is
+  rated a good candidate; covenant monitoring is "possible" only because the calculation can be prepared and checked
+  before a human signs the certificate.
+- **"Suit" vs "Moat" pull apart.** The highest-suitability workflows have the *lowest* defensibility, because positioning,
+  fee checks and reporting are features any TMS or bank can ship. Defensibility shows up where customer-specific
+  context accumulates: forecasting overrides, exposure mappings, explanations of recurring exceptions.
+
+<Callout type="warning" title="Disagreeing with the workflow pages">
+
+Each assessment shows the workflow author's own neutral `ai_note` next to the lens view. Where the lens is more
+skeptical or more optimistic, the difference is stated. The workflow pages are the reference for *how the work is done*;
+this matrix is one reader's view of *what that implies for agents*.
+
+</Callout>
+
+## Sources used in the assessments
+
+The evidence lines inside each assessment cite: PwC's 2025 treasury survey on AI adoption and maturity[](cite:pwc-gts-2025);
+EACT 2025 on data readiness[](cite:eact-2025); AFP on payments fraud[](cite:afp-pfc-2026) and forecasting priorities[](cite:afp-bench-2025-article);
+Deloitte 2024 on GenAI use cases[](cite:deloitte-gts-2024); ACT/HSF on debt strategy[](cite:act-hsf-debt-2025); AFP and HSBC on bank
+fee analysis[](cite:afp-bank-fee-analysis,hsbc-camt086); the EU AI Act[](cite:eu-ai-act-annex3); and vendor announcements from
+SAP[](cite:sap-cash-agent), Kyriba[](cite:kyriba-tai-2025) and HighRadius[](cite:highradius-autonomous-2027) (claims only).

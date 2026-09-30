@@ -1,0 +1,79 @@
+---
+title: Treasury Analyst — the person who makes the numbers exist
+nav: Treasury Analyst
+order: 24
+summary: The Treasury Analyst gathers the data, builds the cash position, forecast and hedge reports, enters transactions for approval and prepares the decisions a manager takes. They are the best source on how treasury work is physically done — files, spreadsheets, chasing, workarounds — and a weaker source on why decisions are made.
+related: [/org/roles-treasury-manager, /org/roles-cash-manager, /org/roles-operations, /day/lea, /org/who-knows-what, /workflows/daily-cash-positioning, /workflows/cash-forecasting]
+---
+
+## What the role is
+
+An analyst turns scattered information (bank statements, subsidiary emails, ERP payment lists, bank confirmations) into something a manager can decide on: a position with proposed transfers, a forecast with a variance table, a hedge-cover report against the policy band. In small teams the analyst also **enters** transactions, and someone senior releases them. That split is how a two-person treasury achieves [four-eyes control](term:four-eyes-principle).
+
+Career guides describe the same entry point. Analyst-level roles centre on short-term cash forecasting, bank reconciliations, payment processing and data analysis. After a few years people move up to Senior Analyst or Treasury Manager[](cite:learnsignal-career-2026). In the ACT's competency framework, analysts sit mainly at the *tactical* and *operational* levels[](cite:act-competency-framework).
+
+<RoleExists id="treasury-analyst" />
+
+<Callout type="confusion" title="Analyst ≠ junior accountant, ≠ FP&A analyst">
+
+An FP&A analyst models revenue, costs and budget variances. A treasury analyst models **cash timing, bank balances and financial exposures**. Accountants reconcile what was *booked*. Treasury analysts track what is *in the bank and when*. The two overlap on bank reconciliation, which at mid-market companies is usually still done by accounting.
+
+</Callout>
+
+## Concrete examples of analyst work
+
+These are drawn from Lea's work at [Helvetic](co:helvetic) (one analyst, reporting to Daniel) and from analysts on GlobalChem's desks.
+
+| Task | What it physically looks like | Output | Who uses it |
+|---|---|---|---|
+| **Statement check** | 07:45: confirm all 12 prior-day statements (MT940/[camt.053](term:bank-statement)) arrived in the connectivity tool. The Chinese bank's file is missing, and since China is ahead of CET it should be in, so she opens a ticket with the bank. | Completeness list | Daniel; the day's position |
+| **Cash position** | Refresh the Power Query in the positioning workbook. Add today's AP runs, payroll and tax, and any flows subsidiaries mentioned by email. Compare against yesterday's expectation. | Projected closing balance per account, list of variances, proposed transfers | Daniel decides by 09:00 |
+| **Variance investigation** | HM Deutschland is EUR 0.3m lower than expected. She checks the statement detail and finds a trade-tax prepayment. She emails Jens to confirm and adds the date to the tax calendar. | Explained variance; corrected calendar | Forecast quality |
+| **13-week forecast** | Monday: roll the model forward and send templates. Tuesday noon: collect them and chase France. Wednesday: consolidate and build the variance table by entity and category. | Consolidated forecast, variance table | Daniel overrides; monthly to Thomas |
+| **FX exposure and hedge report** | Take subsidiaries' monthly currency forecasts and the list of open forwards. Compute cover per currency and month against the 60–90% band. | Hedge-ratio workbook; "needs top-up" list | Daniel deals |
+| **Confirmation matching** | Compare the bank's PDF confirmation (rate, amount, value date, settlement account) with the deal log, and flag any difference immediately. | Matched / unmatched list | Control. At GlobalChem this is back-office work |
+| **Intercompany loan register** | Record each transfer as a loan draw or repayment, compute interest at the agreed rate, and send month-end statements to the subsidiaries. | Register; interest statements | Group Accounting (Claudia), Tax |
+| **Month-end pack** | Deal list with bank valuations, deposits, RCF drawings and interest, intercompany balances. | Excel files for accounting | Claudia's team books them |
+| **Ad hoc analysis** | "What does a 5% EUR/CHF drop do to next year's EBIT after hedges?" "How much did we pay each bank in fees last year?" "Which subsidiaries forecast worst?" | Short Excel analysis | Daniel, Thomas |
+| **Systems work** | Map a new bank account into the connectivity tool, fix a broken statement import, maintain macros. | Working tools | Everyone |
+
+<Callout type="actually" title="What 'prepare the decision' means in practice">
+
+Lea does not send Daniel a spreadsheet. She sends three lines. "HM DE short EUR 1.35m after tax prepayment (confirmed with Jens). Options: (1) EUR 1.5m IC loan from HM AG EUR, recommended; (2) from Italy, but Italy pays suppliers Thursday; (3) overdraft, against policy. Suzhou statement still missing, ticket open." Daniel's decision takes two minutes because the analysis is done. That preparation is most of the analyst's value.
+
+</Callout>
+
+## Weekly rhythm
+
+<RoleCalendar id="treasury-analyst" index={0} />
+
+## How the analyst role changes with size
+
+<SizeTabs startup="No analyst. At [Kleio](co:kleio), Nina (accountant) prepares payment batches; nobody builds a daily position. Sarah checks balances in the e-banking app." sme="Rarely a treasury analyst. At [Alpine](co:alpine), Petra (Head of Accounting) or a senior accountant does analyst work between other tasks: a weekly cash sheet, project milestone tracking, the credit-line balance." midmarket="Typically one analyst for everything: position, forecast, FX reports, confirmations, intercompany register, month-end. Broad exposure, heavy Excel, and the backup for the manager, which is also the main key-person risk. Lea at [Helvetic](co:helvetic)." multinational="Several analysts, each on a desk. On Priya's cash desk at [GlobalChem](co:globalchem), two analysts build the position from SAP by 09:00 and monitor the pools. On Jonas's desk, analysts run exposure collection from about 40 entities. Operations analysts in Kraków match confirmations and reconcile. Narrower jobs, deeper systems, less Excel." />
+
+## What analysts know, and don't
+
+<RoleKnows id="treasury-analyst" />
+
+## Interview implications
+
+<Callout type="interview" title="Why analysts are underrated interviewees">
+
+For a founder studying where the manual work is, analysts are often the most **precise** interviewees. They can tell you which file arrives at 07:40, which bank portal times out, how many minutes the consolidation takes and which tab of the workbook nobody dares touch. Managers compress all that into "we do a daily position".
+
+Good questions:
+- "Show me (or describe) the workbook. Which tabs do you touch every morning, and in what order?"
+- "What did you copy and paste today?"
+- "Which subsidiary do you chase most, and what do you do when they don't answer?"
+- "What does your manager change in what you prepare, and why?"
+- "When did something you prepared turn out to be wrong? How was it caught?"
+
+Less useful: "Why is the hedge policy 60–90%?" or "How did you choose your banks?" Those are manager or CFO questions.
+
+</Callout>
+
+<Callout type="warning">
+
+Analysts may be less free to talk. Ask the manager for permission, and don't ask for internal files. Descriptions are enough.
+
+</Callout>

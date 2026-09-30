@@ -1,0 +1,61 @@
+---
+title: Treasury and procurement
+nav: With procurement
+order: 36
+summary: Procurement commits the company to future payments — often large, sometimes in foreign currency, with payment terms that shape working capital. Treasury usually learns about these commitments late. The useful interfaces are FX-denominated contracts, prepayments and deposits, payment terms and supplier finance.
+related: [/org/neighbours, /org/with-ap, /workflows/fx-exposure-management, /map/working-capital]
+---
+
+## Who owns what
+
+| Topic | Procurement owns | Treasury owns |
+|---|---|---|
+| **Supplier selection and contracts** | Negotiation, contract, [purchase orders](term:procure-to-pay) | — |
+| **Payment terms** | Negotiates them (often measured on price, not terms) | Wants them aligned with the group's [working-capital](term:working-capital) targets; tracks [DPO](term:dpo) with finance |
+| **Currency of contracts** | Chooses (often whatever the supplier offers) | Measures and hedges the resulting [FX exposure](term:fx-exposure) |
+| **Prepayments, deposits, guarantees** | Agrees them with suppliers | Funds them; issues bank guarantees or letters of credit |
+| **[Supply-chain finance](term:supply-chain-finance)** | Onboards suppliers | Selects the bank/platform, manages the programme, watches accounting treatment |
+| **Commodity purchases** | Buys | May hedge price or FX risk |
+
+## What moves between them
+
+| From → to | What | Why treasury needs it |
+|---|---|---|
+| Procurement → treasury | New large contracts (amount, currency, payment schedule) | FX exposure; forecast |
+| Procurement → treasury | Requests for guarantees, letters of credit, prepayments | Bank lines and liquidity |
+| Procurement → treasury | Supplier term changes | Forecast and working capital |
+| Treasury → procurement | FX quotes and hedges for contracts; guidance on invoice currency | Protect contract margins |
+| Treasury → procurement | Supplier finance programme and bank onboarding | Longer terms without hurting suppliers |
+
+## Where it breaks
+
+- **Invisible commitments.** A USD 8m equipment order is signed in May for delivery in November. Treasury learns about it from the first invoice — too late to hedge at the budgeted rate or plan the funding.
+- **Terms traded for price.** Procurement accepts 30-day terms for a 2% price cut; nobody compares that with the group's funding cost.
+- **Currency by default.** Contracts in the supplier's currency create exposures the group could have avoided or netted.
+- **Prepayments without security.** A 30% deposit is paid to a new supplier without an advance-payment guarantee.
+
+<Example title="Components in euro, costs in francs" company="alpine" open>
+
+[Alpine](co:alpine)'s purchasing team (under the COO) negotiates a 12-month framework contract for EUR 6.5m of motors and gearboxes from a German supplier, paid monthly on 60-day terms. Alpine's EUR revenues are larger than its EUR costs, so this contract *reduces* the net EUR exposure — a [natural hedge](term:natural-hedge).
+
+Because the head of purchasing tells Martin (CFO) before signing, Martin reduces the amount of EUR he plans to sell forward for the next 12 months by roughly the contract volume. Petra adds the monthly EUR outflows to the 13-week sheet. Had purchasing not told him, Alpine would have hedged EUR revenues that were already offset — over-hedging, not risk reduction.
+
+At [GlobalChem](co:globalchem) the same information would arrive through the procurement system's commitment data feeding Jonas's exposure report; at [Kleio](co:kleio) the relevant "procurement" is the USD cloud-hosting contract, which Sarah signs herself.
+
+</Example>
+
+## How it varies
+
+<SizeTabs
+  startup="No procurement function. The CFO or department heads sign contracts; the CFO sees commitments directly."
+  sme="Purchasing sits in operations. Contact with finance depends on personal relationships; the CFO often approves large contracts anyway and can flag FX."
+  midmarket="Procurement is divisional or local. Treasury depends on a rule (e.g. contracts above a threshold or in foreign currency need finance sign-off) and on subsidiaries reporting commitments in their exposure template."
+  multinational="Central procurement with category managers. Interfaces are formal: commitments in the procurement system feed the exposure process; treasury runs supply-chain finance and guarantee lines; commodity hedging may sit with a procurement risk desk or treasury."
+/>
+
+<Callout type="interview" title="Questions to ask">
+
+- To treasury: "How do you learn about large purchase commitments — before or after signing?"
+- To procurement: "Does anyone in finance care what currency or payment terms you agree?"
+
+</Callout>

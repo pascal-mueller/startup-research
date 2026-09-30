@@ -1,0 +1,254 @@
+id: bank-fee-analysis
+title: Bank fee analysis
+question: What are we actually paying our banks — and are they charging what we agreed?
+group: Payments & banking
+order: 5
+summary: >-
+  Treasury collects the fee statements (or fee debits) from every bank, translates each bank's descriptions into a
+  common list of services, checks prices against what was agreed and volumes against its own records, adds the costs
+  that never appear on a fee statement (FX spreads, deductions on incoming payments, balance-related charges), disputes
+  errors, and uses the result in bank-relationship reviews and tenders. At most companies below the large-multinational
+  tier it is done irregularly, if at all, because fee data arrives in inconsistent formats and the amounts look small
+  next to the effort.
+objective: >-
+  Know the true cost of banking services per bank, entity and service; recover overcharges; and base bank-relationship
+  and tender decisions on facts rather than impressions.
+trigger: >-
+  Monthly or quarterly fee statements; annual bank-relationship or wallet review; budget season; an RFP or
+  refinancing; a noticeable jump in fee debits; a bank's price-change notice.
+frequency: >-
+  Monthly at large companies with structured fee data; quarterly or annually at mid-market companies; ad hoc at SMEs
+  (usually when a fee debit surprises someone). A full review before each bank tender, typically every 3–7 years.
+people:
+  - role: Treasury analyst / treasury operations
+    does: Collects statements, normalises and checks them, prepares the disputes and the analysis.
+  - role: Treasury manager / head of treasury
+    does: Decides what to dispute and renegotiate; uses the results in bank meetings and wallet allocation.
+  - role: Bank relationship manager (the bank's) and bank service team
+    does: Explain charges, correct errors and issue refunds; negotiate pricing.
+  - role: Accounting / controlling
+    does: Books fees (often from lump-sum debits) and allocates them to entities and cost centres.
+  - role: Procurement (at some large companies)
+    does: Supports tenders and contract management for banking services.
+  - role: CFO
+    does: Sees the result in the annual bank review; approves bank changes.
+systems:
+  - name: Bank fee statements
+    use: "Structured ISO 20022 [camt.086](term:bank-services-billing) or US EDI 822 account-analysis files where banks provide them; otherwise PDF statements or bare fee debits on the account statement."
+  - name: Bank statements (camt.053 / MT940)
+    use: The fee debits themselves, with bank transaction codes; deductions on incoming payments; FX conversion rates actually applied.
+  - name: Excel
+    use: The analysis tool at almost all companies below the largest — a service-by-bank price grid.
+  - name: TMS bank-fee module or fee-analysis service
+    use: At large companies, imports camt.086/822 files, maps services to standard codes, compares with agreed prices.
+  - name: Pricing agreements
+    use: Price schedules, side letters and tender results — often scattered across email and the relationship manager's memory.
+  - name: ERP / payment tool reports
+    use: The company's own counts of payments, receipts and accounts to check the bank's volumes.
+data:
+  - name: Service volumes and unit prices per bank and account
+    source: camt.086 / EDI 822 / PDF fee statements
+    notes: Each bank names services differently; AFP Service Codes (US) and AFP Global Service Codes give a common taxonomy[](cite:afp-bank-fee-analysis,gt-bsb-2013).
+  - name: Agreed prices
+    source: Price schedules, tender results, side letters
+    notes: If nobody can find the agreement, the check is impossible — a common finding.
+  - name: Own transaction counts
+    source: ERP payment runs, payment tool, account register
+    notes: Used to check the bank's volumes and to spot charges for closed accounts or unused services.
+  - name: FX deals and conversions
+    source: Bank statements, FX platform, trade confirmations
+    notes: Compare executed rates with mid-market rates at the time — the largest hidden cost for many companies.
+  - name: Incoming-payment deductions
+    source: Bank statements vs invoice amounts
+    notes: Intermediary and lifting fees taken from receipts under SHA/BEN ([charge bearer](term:charge-bearer)).
+  - name: Balances and interest terms
+    source: Bank statements, interest statements
+    notes: Balance-related charges and, in the US, [earnings credits](term:earnings-credit-rate).
+  - name: Credit commitments and other revenue per bank
+    source: Facility agreements, FX and capital-markets activity
+    notes: Needed to put fees into the [wallet](term:wallet-share) context.
+steps:
+  - title: Collect fee information from every bank
+    who: Treasury analyst
+    where: Bank portals, connectivity tool, email
+    when: Monthly or quarterly
+    detail: >-
+      Download or receive fee statements for every bank and entity. Where a bank sends no statement, extract the fee
+      debits from the account statements. Request structured camt.086 files from banks that can provide them[](cite:hsbc-camt086).
+    manual: >-
+      Logging into portals, downloading PDFs, asking relationship managers for statements that "should have been sent",
+      and retyping PDF tables into Excel.
+  - title: Build or refresh the agreed-price reference
+    who: Treasury analyst
+    where: Excel / TMS
+    detail: >-
+      Collect the current price schedules and any negotiated side letters per bank and service. Missing agreements are
+      requested from the bank. This reference is the basis of every check that follows.
+  - title: Normalise services to a common list
+    who: Treasury analyst
+    where: Excel / fee-analysis tool
+    detail: >-
+      Map each bank's service descriptions to a common taxonomy — ideally AFP Global Service Codes — so that "SEPA
+      credit transfer, file-based" means the same thing across banks[](cite:afp-bank-fee-analysis).
+      Allocate charges to entities and accounts.
+    manual: Mapping hundreds of bank-specific descriptions by hand the first time; re-mapping when banks change their descriptions.
+  - title: Check prices against the agreement
+    who: Treasury analyst
+    where: Excel / tool
+    detail: >-
+      Compare billed unit prices with the agreed prices per service. Typical findings: list prices instead of negotiated
+      ones, discounts that lapsed after a price change, services priced at a manual rate when they were file-based.
+  - title: Check volumes against own records
+    who: Treasury analyst
+    where: Excel, ERP reports, account register
+    detail: >-
+      Compare billed volumes with the company's own counts: number of payments by type, number of accounts, users and
+      tokens. Look for fees on closed accounts, services nobody uses (paper statements, unused tokens, old channels) and
+      duplicate charges.
+  - title: Quantify the indirect costs
+    who: Treasury analyst
+    where: Excel, FX records, bank statements
+    detail: >-
+      Estimate costs that never appear as fees: FX spreads on conversions (executed rate vs mid-market at the time),
+      deductions on incoming cross-border receipts, correspondent fees under OUR payments, value-dating, and
+      balance-related charges or low interest. In the US, account analysis nets fees against
+      [earnings credits](term:earnings-credit-rate), so the "fee" partly hides in forgone interest.
+    judgment: >-
+      Which benchmark to use for FX spreads (time of execution, mid vs a fair bid-offer), and how much of an indirect
+      cost is actually negotiable.
+  - title: Dispute errors and claim refunds
+    who: Treasury analyst drafts; treasury manager sends to the relationship manager
+    where: Email / bank meeting
+    detail: >-
+      Send the bank a specific list (service, period, billed vs agreed, amount) and ask for a refund and a correction
+      going forward. Track the refund on the account statement.
+    judgment: Which disputes are worth the relationship capital; small items may be bundled into the next pricing negotiation instead.
+  - title: Allocate and report
+    who: Treasury analyst → accounting / controlling
+    where: Excel, ERP
+    detail: >-
+      Allocate bank costs to entities and cost centres (often requested by controlling for transfer pricing and
+      budgets), and report total bank costs by bank and service to the treasury manager and CFO, with trends.
+  - title: Feed the relationship and wallet review
+    who: Treasury manager / head of treasury
+    where: Annual bank review
+    detail: >-
+      Combine fees with FX, lending and capital-markets revenue per bank to estimate each bank's share of the company's
+      [wallet](term:wallet-share), and compare it with that bank's credit commitment. Banks that lend but earn little
+      ancillary business will say so at the next refinancing.
+    judgment: Whether to reward a bank for its balance-sheet commitment with fee business even if it is not the cheapest.
+  - title: Renegotiate or run a tender
+    who: Head of treasury / treasury manager, with procurement at large companies
+    where: Bank negotiations / [RFP](term:bank-rfp)
+    detail: >-
+      Use the analysis to renegotiate prices with incumbent banks or, every few years, to run a cash-management RFP
+      with a standard volume template so banks quote on the same basis. Price is only one criterion — service
+      coverage, connectivity, credit commitment and migration cost weigh heavily.
+example:
+  title: "Helvetic's annual bank-fee review: five banks, one Excel grid"
+  body: |
+    In January Lea spends about four days on the review. Only one of the five banks provides camt.086; the others send PDFs, and the Chinese bank only shows fee debits on the statement. Explicit fees for 2025 (excluding loan margins and RCF commitment fees): about **CHF 410k**.
+
+    | Finding | Bank | How found | Annual effect (CHF, illustrative) |
+    |---|---|---|---|
+    | Monthly account-package fees still charged for three accounts closed in the 2024 rationalisation | Swiss bank B | Account register vs fee statement | 1,800 — refunded for 14 months |
+    | ~14,000 file-based SEPA payments priced at the manual e-banking rate (CHF 0.90 instead of the agreed 0.25) | German bank | Price grid vs statement | ~9,100 — refunded and corrected |
+    | "Lifting fee" of CHF 8 on ~1,100 incoming cross-border EUR payments, not in the agreement | Swiss bank A | Receipts net of fees on camt.053 | ~8,800 — bank agrees to waive going forward, no refund |
+    | Paper statements and six unused e-banking tokens | Two banks | Volume check | ~1,500 — cancelled |
+    | CZK conversions executed ~0.35% from mid versus ~0.10% on the FX platform | German bank | Executed rates vs mid-market at trade time | ~40,000 on ~CHF 16m converted — moved to competitive quotes on the FX platform |
+
+    **Result:** about CHF 21k of explicit fees recovered or avoided, and a larger saving on FX spreads — the item that did not appear on any fee statement. Daniel takes the per-bank totals, together with FX and lending, into the annual wallet review: bank D provides 20% of the RCF but earns about 6% of Helvetic's roughly CHF 2.4m wallet, so the next EUR hedging tranche goes to bank D.
+judgment:
+  - decision: What counts as a bank cost
+    why: Explicit fees are the easy part; FX spreads, deductions and balance-related costs are often larger and need assumptions to estimate.
+  - decision: Which errors to dispute and how hard
+    why: Recovering CHF 2,000 may not be worth friction with a bank whose credit line matters; bundling into the next negotiation is often smarter.
+  - decision: How to use fee data in bank relationships
+    why: The cheapest bank is not necessarily the right one; relationship banks expect ancillary business in return for lending.
+  - decision: When to run a tender
+    why: Tenders cost months of work and migration risk; worth it after structural change (new ERP, POBO, refinancing) or large price gaps.
+failure_modes:
+  - mode: Nobody reviews fees because they are debited directly
+    consequence: Overcharges and fees for closed accounts or unused services run for years.
+    detection: Periodic review; comparing total fee debits year on year.
+  - mode: Agreed prices not documented
+    consequence: Impossible to prove an overcharge; the bank's list price wins.
+    detection: Keeping price schedules and side letters in the account register.
+  - mode: Only explicit fees analysed
+    consequence: The largest costs (FX spreads, deductions on receipts) are missed; decisions made on the wrong numbers.
+    detection: Including FX execution analysis and receipt deductions in the review.
+  - mode: Inconsistent fee formats make comparison meaningless
+    consequence: Banks compared on different service definitions; wrong conclusions in a tender.
+    detection: Mapping to standard service codes; standard volume templates in RFPs.
+  - mode: Fees not allocated to entities
+    consequence: Local managers see no cost of extra accounts or manual payments; no incentive to change behaviour.
+    detection: Controlling reports by entity.
+software: >-
+  **Excel** dominates. Large companies use **TMS bank-fee modules** or specialised **bank fee analysis services**
+  that ingest camt.086 / EDI 822 files and map them to AFP codes. Bank support for camt.086 is uneven, and many banks
+  still send PDFs[](cite:hsbc-camt086). FX transaction-cost analysis is offered by FX platforms and specialist
+  providers. See [Systems & Data](/systems).
+manual_work:
+  - Downloading and retyping PDF fee statements.
+  - Mapping each bank's service descriptions to a common list.
+  - Finding the agreed prices and side letters.
+  - Counting own volumes from the ERP and payment tool to check the bank's.
+  - Estimating FX spreads from executed rates.
+  - Writing dispute emails and tracking refunds.
+by_size:
+  startup: >-
+    No fee analysis; fees are a line in the accounting. The largest bank cost is usually invisible: converting USD or
+    EUR receipts at the bank's standard rate in e-banking, which can cost more than all account fees combined.
+    Switching conversions to a negotiated rate or FX platform is the one fee action worth doing.
+  sme: >-
+    The head of accounting looks at the quarterly fee debit when it seems high and asks the relationship manager. Pricing
+    is negotiated as a package with the house bank, often alongside the credit line. FX spreads on project receipts are
+    the material item.
+  midmarket: >-
+    An annual Excel review by the treasury analyst for the bank-relationship meeting, with a few disputes a year. Fee
+    data comes in several formats; FX execution is increasingly benchmarked via a multi-bank FX platform. The main use
+    is the wallet discussion with RCF banks.
+  multinational: >-
+    Monthly structured fee data (camt.086 / 822) from core banks, mapped to AFP Global Service Codes in a TMS module or
+    by a service provider; systematic disputes; fee allocation to entities; periodic regional RFPs. Wallet analysis
+    feeds bank-panel decisions at refinancing.
+companies:
+  kleio: "Sarah has never analysed fees. The meaningful cost is converting about USD 250k a month of US revenue at the bank's standard rate — illustratively 0.5–1% from mid, CHF 15–30k a year — which she is now moving to a negotiated rate at the second bank. Kleio Inc.'s US bank nets fees against an earnings credit on the USD balance."
+  alpine: "Petra checks the quarterly fee package (the CHF 12,480 debit that once confused her) and Martin negotiates prices with the house bank alongside the CHF 12m credit line. FX spreads on EUR project receipts at the large bank are the item Martin actually negotiates."
+  helvetic: "The worked example above: an annual Excel review of five banks by Lea, feeding Daniel's wallet review with the four RCF banks."
+  globalchem: "Seven core banks deliver camt.086 monthly; Ben's team maps lines to AFP Global Service Codes in the TMS and flags price deviations automatically. A 2025 European cash-management RFP with a standard volume template went to four RCF banks; wallet share per bank is reviewed before every refinancing."
+handoffs:
+  - from: Banks
+    gives: fee statements (camt.086 / 822 / PDF) and fee debits
+    to: Treasury analyst
+  - from: Treasury analyst
+    gives: price-and-volume check, disputes, indirect-cost estimate
+    to: Treasury manager
+  - from: Treasury manager
+    gives: disputes and renegotiation requests
+    to: Bank relationship managers
+  - from: Treasury analyst
+    gives: cost allocation by entity and cost centre
+    to: Accounting / controlling
+  - from: Treasury manager
+    gives: fees and wallet share per bank
+    to: Head of treasury / CFO (annual bank review, refinancing, RFP decisions)
+interview: >-
+  Ask a treasury analyst or manager **when they last looked at a bank fee statement**, what format it came in, what
+  they found and whether they got money back. Ask how they measure FX execution costs. Ask a head of treasury how
+  fees enter bank-panel decisions. Expect honest answers that fee analysis is low on the list at most companies — that
+  is useful information, not a gap to sell into.
+ai_note: >-
+  Parsing inconsistent PDF fee statements, mapping services to codes and checking prices against agreements is
+  document-heavy, rule-checkable work that suits automation. The economic value per company is usually modest
+  relative to other treasury work, and the decisions that matter (relationship and tender choices) depend on credit
+  and wallet considerations that are judgment calls.
+terms: [bank-services-billing, account-analysis, earnings-credit-rate, wallet-share, ancillary-business, relationship-bank, bank-rfp, charge-bearer, spot-fx]
+related: [bank-account-management, credit-facility-management, fx-hedging, payment-processing, bank-reconciliation]
+sources: [afp-bank-fee-analysis, hsbc-camt086, gt-bsb-2013, tt-share-of-wallet]
+evidence_note: >-
+  The standards lineage (EDI 822, TWIST BSB, ISO 20022 camt.086, AFP service codes) is documented by AFP, HSBC and
+  practitioner press[](cite:afp-bank-fee-analysis,hsbc-camt086,gt-bsb-2013); wallet-share analysis is standard
+  practitioner framing[](cite:tt-share-of-wallet). No reliable survey data on typical overcharge rates or savings was
+  found; the example's findings and amounts are illustrative synthesis, chosen as typical categories rather than
+  typical magnitudes.

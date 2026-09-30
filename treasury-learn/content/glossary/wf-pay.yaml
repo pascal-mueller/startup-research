@@ -7,7 +7,7 @@
   plain: Payments that reach the recipient's account within seconds, at any hour, any day.
   professional: "Account-to-account credit transfers settled in near real time 24/7/365: SCT Inst in euro (under the EU Instant Payments Regulation euro-area banks had to receive by Jan 2025 and send by Oct 2025, at no higher price than a normal SEPA transfer); SIC Instant Payments in CHF (receiving mandatory for large Swiss banks since Aug 2024, all by end-2026); RTP and FedNow in the US. Irrevocable once sent, which is why fraud controls matter more."
   example: "Kleio pays a freelance designer's EUR invoice as SCT Inst on a Saturday; it is credited in seconds. The same irrevocability means a payment to a fraudster cannot be stopped."
-  related: [sepa, sic, verification-of-payee, rtgs-note]
+  related: [sepa, sic, verification-of-payee, rtgs, cut-off-time]
 
 - id: sic
   term: SIC (Swiss Interbank Clearing)
@@ -16,7 +16,7 @@
   plain: Switzerland's central payment system through which Swiss franc payments between banks are settled.
   professional: "The Swiss RTGS system for CHF, operated by SIX on behalf of the Swiss National Bank. Settles high-value and retail CHF payments individually and irrevocably in central-bank money. The SIC5 platform (live November 2023) has also carried SIC Instant Payments (24/7) since August 2024. euroSIC is the parallel system for euro payments in Switzerland. Companies never connect to SIC directly: they send pain.001 files to their bank, which settles through SIC before its own cut-off."
   example: "Helvetic's CHF 4m down payment to a Swiss supplier leaves HM AG's account and is settled through SIC on the same day, provided Lea submits it before the bank's CHF cut-off."
-  related: [rtgs-note, sct-inst, qr-bill, settlement]
+  related: [rtgs, cut-off-time, sct-inst, qr-bill, settlement]
 
 - id: pain-001
   term: pain.001 (payment instruction file)
@@ -70,7 +70,7 @@
   plain: The main US payment rails — Fedwire for urgent, high-value wires settled immediately, ACH for cheaper batch payments such as payroll and supplier runs.
   professional: "Fedwire Funds Service: the Federal Reserve's RTGS system (final, irrevocable, per payment). ACH: batch clearing under Nacha Operating Rules (credits and debits, same-day or next-day settlement; returns possible). CHIPS is a private high-value netting system. Checks remain widely used by US businesses and are the most fraud-exposed method; RTP and FedNow add instant payments."
   example: "Kleio Inc. pays its US payroll by ACH through the payroll provider two days before payday, and a USD 180k annual cloud invoice by Fedwire when the vendor insists on immediate funds."
-  related: [positive-pay, correspondent-banking, sct-inst, rtgs-note]
+  related: [positive-pay, correspondent-banking, sct-inst, rtgs]
 
 - id: three-way-match
   term: 3-way match
@@ -232,7 +232,7 @@
   category: Banking & connectivity
   plain: In the US, a notional interest rate a bank applies to your balances to offset the service fees it charges.
   professional: "US account-analysis mechanism: average collected balances (net of reserve requirements, where applicable) earn a credit at the ECR that is set against monthly service charges; the net is debited as the analysis fee. Excess credits usually expire. It makes fee comparisons across US and European banks tricky because some of the 'fee' is paid in forgone interest."
-  example: "Alpine Inc. keeps about USD 600k with its US bank; at an illustrative 1.5% ECR that generates ~USD 750 of credit a month against USD 1,100 of ACH, wire and positive-pay fees, so only ~USD 350 is debited."
+  example: "Kleio Inc. keeps about USD 600k with its US bank; at an illustrative 1.5% ECR that generates ~USD 750 of credit a month against USD 1,100 of ACH, wire and card-related fees, so only ~USD 350 is debited — and the forgone interest on USD 600k is the real price."
   related: [account-analysis, bank-services-billing, positive-pay]
 
 - id: bank-rfp

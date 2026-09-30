@@ -69,7 +69,7 @@ data:
     source: Facility agreement, accounting
     notes: E.g. [net debt](term:net-debt) / [EBITDA](term:ebitda) at 30 June and 31 December. A breach can make the facility unavailable exactly when it is needed.
   - name: Policy thresholds
-    source: [Treasury policy](term:treasury-policy) / liquidity policy
+    source: "[Treasury policy](term:treasury-policy) / liquidity policy"
     notes: Minimum [headroom](term:liquidity-headroom), minimum cash, maximum reliance on one bank, refinancing lead time (e.g. "refinance at least 12 months before maturity").
   - name: Stress assumptions
     source: Treasury with FP&A and CFO
@@ -179,7 +179,7 @@ example:
     Daniel prepares the quarterly liquidity review for Thomas (CFO) and the board's audit committee. Lea has linked the
     13-week forecast (October–December) and Marco's (FP&A) 2027 budget. Group cash is CHF 45m, of which about CHF 7m
     (CNY ~60m) sits in HM Suzhou and is treated as [trapped](term:trapped-cash); the policy minimum cash is CHF 10m;
-    the CHF 200m RCF is CHF 60m drawn. Helvetic's liquidity policy requires at least CHF 50m of headroom at all times.
+    the CHF 200m RCF is about CHF 60m drawn (CHF 35m and EUR 27m loans). Helvetic's liquidity policy requires at least CHF 50m of headroom at all times.
     All figures are illustrative.
 
     **Base case (CHF m, quarter-end):**
@@ -209,9 +209,11 @@ example:
        runs out of cash — and a covenant breach could block the RCF, turning a covenant issue into a liquidity issue.
     2. The dividend decision is the most powerful lever and falls in February (board proposal to the April AGM), so the
        board should see the stress case before approving the dividend proposal.
-    3. The CHF 100m bond matures in 2028. If it were repaid from the RCF, undrawn headroom would fall from 140 to about 40
-       — below the CHF 50m policy minimum. He proposes to start refinancing in 2027 (a new CHF bond or a Schuldschein),
-       at least 12 months before maturity, and to talk to the four RCF banks about extending the facility at the same time.
+    3. Both the CHF 100m bond and the RCF (after both one-year extension options were used) mature in 2028. The plan's
+       24-month extension shows the problem: from late 2027 the RCF drops out of headroom as it enters its final year,
+       and repaying the bond from the RCF would in any case cut undrawn headroom from 140 to about 40 — below the CHF 50m
+       policy minimum. He proposes an amend-and-extend of the RCF by mid-2027 and a bond or Schuldschein refinancing in
+       late 2027, at least 12 months before the bond matures. See [credit facility management](wf:credit-facility-management).
     4. Amber trigger: if order intake falls more than 15% for two consecutive months, the stress case becomes the base
        case and capex approvals above CHF 1m go to the CFO.
 

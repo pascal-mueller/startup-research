@@ -1,0 +1,135 @@
+/* Systems & Data stream: diagrams and data views. Uses theme tokens from styles.css so light/dark both work. */
+
+.sys-fig { margin: 20px 0 24px; }
+.sys-fig figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+
+/* tabs */
+.sys-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.sys-tab {
+  font: inherit; font-size: 13px; padding: 4px 10px; border-radius: 14px; cursor: pointer;
+  border: 1px solid var(--line-2, var(--line)); background: var(--surface); color: var(--ink-2, var(--ink));
+}
+.sys-tab:hover { border-color: var(--accent); color: var(--accent); }
+.sys-tab.on { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.sys-tabs-small .sys-tab { font-size: 12px; padding: 2px 9px; }
+
+/* ---------- stack diagram ---------- */
+.sys-stack-layers { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 10px; }
+.sys-layer { display: grid; grid-template-columns: 170px 1fr; gap: 10px; align-items: stretch; }
+.sys-layer-label { display: flex; flex-direction: column; justify-content: center; padding: 6px 8px; border-left: 3px solid var(--lc, var(--accent)); }
+.sys-layer-name { font-weight: 600; font-size: 13.5px; color: var(--ink); }
+.sys-layer-note { font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+.sys-layer-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.sys-box {
+  border: 1px solid var(--line); border-top: 3px solid var(--lc, var(--accent)); border-radius: 7px;
+  padding: 7px 9px; background: var(--bg); min-width: 0;
+}
+.sys-box-name { font-weight: 600; font-size: 13px; line-height: 1.3; }
+.sys-box-name a { color: var(--ink); }
+.sys-box-name a:hover { color: var(--accent); }
+.sys-box-detail { font-size: 12.5px; color: var(--ink-2, var(--ink)); line-height: 1.4; margin-top: 3px; }
+.sys-box.absent { opacity: 0.55; border-style: dashed; border-top-style: dashed; }
+.sys-box.absent .sys-box-detail { color: var(--muted); font-style: italic; }
+.sys-layer-join { height: 14px; margin-left: 170px; position: relative; }
+.sys-layer-join::before {
+  content: '⇅'; position: absolute; left: 50%; top: -3px; transform: translateX(-50%);
+  font-size: 13px; color: var(--muted); line-height: 1;
+}
+.sys-layer-decide { --lc: var(--c-synthesis); }
+.sys-layer-treasury { --lc: var(--accent); }
+.sys-layer-execution { --lc: var(--c-warning); }
+.sys-layer-connectivity { --lc: var(--c-interview); }
+.sys-layer-sources { --lc: var(--c-field); }
+
+/* ---------- data-flow diagram ---------- */
+.sys-df-grid { display: grid; grid-template-columns: 1fr 26px 1.05fr 26px 1fr; gap: 6px; align-items: start; }
+.sys-df-col { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.sys-df-colhead { font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.sys-df-card { border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: var(--surface); }
+.sys-df-in { border-left: 3px solid var(--c-field); }
+.sys-df-out { border-left: 3px solid var(--c-actually); }
+.sys-df-name { font-weight: 600; font-size: 13px; }
+.sys-df-name a { color: var(--ink); }
+.sys-df-owner { font-size: 11.5px; color: var(--muted); }
+.sys-df-card ul { margin: 4px 0 0; padding-left: 16px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2, var(--ink)); }
+.sys-df-card li { margin: 1px 0; }
+.sys-df-timing { font-size: 11.5px; color: var(--c-interview); margin-top: 3px; font-family: var(--mono); }
+.sys-df-arrow { align-self: stretch; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 20px; }
+.sys-df-center-col { position: sticky; top: 70px; }
+.sys-df-hub { border: 2px solid var(--accent); border-radius: 10px; background: var(--accent-soft); padding: 10px 12px; }
+.sys-df-hub-title { font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+.sys-df-hub ol { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.45; }
+.sys-df-hub-note { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+/* ---------- connectivity diagram ---------- */
+.sys-conn-grid { display: grid; grid-template-columns: 130px 1fr 130px; gap: 10px; align-items: stretch; }
+.sys-conn-end { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 10px; display: flex; flex-direction: column; justify-content: center; }
+.sys-conn-end-title { font-weight: 700; font-size: 13px; }
+.sys-conn-end-body { font-size: 12px; color: var(--muted); line-height: 1.4; margin-top: 4px; }
+.sys-conn-lanes { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sys-conn-lane {
+  display: grid; grid-template-columns: 120px 1fr; column-gap: 10px; row-gap: 2px;
+  border: 1px solid var(--line); border-left: 3px solid var(--c-interview); border-radius: 7px; padding: 6px 9px; background: var(--bg);
+}
+.sys-conn-name { font-weight: 600; font-size: 13px; grid-row: span 3; }
+.sys-conn-flows { display: flex; flex-wrap: wrap; gap: 4px 12px; font-family: var(--mono); font-size: 11.5px; }
+.sys-conn-out { color: var(--c-warning); }
+.sys-conn-in { color: var(--c-actually); }
+.sys-conn-how { font-size: 12.5px; color: var(--ink-2, var(--ink)); line-height: 1.4; }
+.sys-conn-fits { font-size: 12px; color: var(--muted); }
+
+/* ---------- tables and profiles ---------- */
+.sys-table { font-size: 13.5px; }
+.sys-table td, .sys-table th { vertical-align: top; }
+.sys-th-sub { display: block; font-weight: 400; font-size: 11.5px; color: var(--muted); }
+.sys-absent { color: var(--muted); }
+.sys-costack-table th[scope='row'] { white-space: nowrap; font-weight: 600; }
+.sys-prod-link { font-weight: 600; }
+.sys-sizes { display: inline-flex; flex-wrap: wrap; gap: 3px; vertical-align: middle; }
+.sys-size {
+  font-size: 10.5px; padding: 0 5px; border-radius: 3px; border: 1px solid var(--line); color: var(--muted);
+  line-height: 1.6; white-space: nowrap; font-weight: 500;
+}
+.sys-size.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.sys-chip { font-size: 12px; padding: 1px 8px; border-radius: 10px; border: 1px solid var(--line-2, var(--line)); color: var(--ink-2, var(--ink)); }
+
+.sys-cats { margin: 12px 0 18px; }
+.sys-cat { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.sys-cat dt { font-weight: 600; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sys-cat dd { margin: 3px 0 0; font-size: 14.5px; }
+
+.sys-profiles { display: flex; flex-direction: column; gap: 14px; margin: 14px 0; }
+.sys-profile { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 12px 14px; scroll-margin-top: 80px; }
+.sys-profile header { margin-bottom: 6px; }
+.prose .sys-profile-title { margin: 0 0 4px; font-size: 17px; }
+.sys-profile-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sys-profile-vendor { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+.sys-profile-dl { display: grid; grid-template-columns: 130px 1fr; gap: 5px 12px; margin: 8px 0 0; font-size: 14px; line-height: 1.5; }
+.sys-profile-dl dt { font-weight: 600; color: var(--ink-2, var(--ink)); font-size: 13px; }
+.sys-profile-dl dd { margin: 0; }
+.sys-profile-dl dt.sys-not { color: var(--c-warning); }
+.sys-checked { margin-top: 8px; font-size: 11.5px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 5px; }
+.sys-checked-knowledge { color: var(--c-confusion); }
+
+.sys-costack-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 10px 0 16px; }
+.sys-costack-co { border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; background: var(--surface); }
+.prose .sys-costack-co h4 { margin: 2px 0 6px; font-size: 14.5px; }
+.sys-costack-co dl { margin: 0; font-size: 13px; }
+.sys-costack-co dl > div { padding: 3px 0; border-bottom: 1px solid var(--line); }
+.sys-costack-co dt { font-weight: 600; font-size: 12px; color: var(--muted); }
+.sys-costack-co dd { margin: 0; }
+
+/* ---------- narrow screens ---------- */
+@media (max-width: 760px) {
+  .sys-layer { grid-template-columns: 1fr; gap: 6px; }
+  .sys-layer-label { padding: 2px 8px; }
+  .sys-layer-join { margin-left: 0; }
+  .sys-df-grid { grid-template-columns: 1fr; }
+  .sys-df-arrow { transform: rotate(90deg); height: 22px; }
+  .sys-df-center-col { position: static; }
+  .sys-conn-grid { grid-template-columns: 1fr; }
+  .sys-conn-lane { grid-template-columns: 1fr; }
+  .sys-conn-name { grid-row: auto; }
+  .sys-profile-dl { grid-template-columns: 1fr; gap: 1px; }
+  .sys-profile-dl dd { margin-bottom: 6px; }
+}

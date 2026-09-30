@@ -1,0 +1,71 @@
+---
+title: Treasury and tax
+nav: With tax
+order: 35
+summary: Almost every structural treasury decision — lending to a subsidiary, joining a cash pool, paying a dividend, repatriating cash, setting up an in-house bank or regional centre — has tax consequences. Tax owns transfer pricing, withholding tax and interest-deductibility rules; treasury owns the transaction. The classic failure is tax learning about a transaction after the money moved.
+related: [/org/neighbours, /workflows/funding-subsidiary, /map/cash-management, /org/structures]
+---
+
+## Who owns what
+
+| Topic | Tax owns | Treasury owns |
+|---|---|---|
+| **Intercompany loans** | Arm's-length interest rate ([transfer pricing](term:transfer-pricing)), [thin-capitalisation](term:thin-capitalisation) limits, documentation | Amount, timing, currency, the loan agreement (with legal), execution |
+| **Cash pooling** | Pool leader remuneration, allocation of pool benefit, deductibility, local restrictions | Pool design with banks, operation, balances |
+| **Dividends and [repatriation](term:repatriation)** | [Withholding tax](term:withholding-tax), treaty relief, timing constraints | When cash is needed centrally, FX conversion, transfers |
+| **Tax payments** | Amounts and calendar | Having the cash in the right entity on the due date |
+| **Treasury centres, IHB, re-invoicing** | Substance, location, incentives, VAT for [COBO](term:cobo)/[POBO](term:pobo) and re-invoicing | Operating model and the case for doing it |
+| **FX and hedging** | Tax treatment of derivative gains and losses | Hedging decisions |
+
+<Callout type="concept" title="Why tax got more involved in treasury after 2020">
+
+In February 2020 the OECD added Chapter X to its Transfer Pricing Guidelines, its first dedicated guidance on financial transactions: treasury functions, intra-group loans, cash pooling, hedging, financial guarantees and captive insurance[](cite:oecd-tpg-chx-roedl). It expects cash-pool benefits to be shared among members and the pool leader to be rewarded according to its actual functions and risks, and it has raised documentation expectations. The practical effect: tax departments now ask treasury for more evidence about why a loan has a given rate and who in the group really bears the risk.
+
+</Callout>
+
+## What moves between them
+
+| From → to | What | When |
+|---|---|---|
+| Tax → treasury | Tax payment calendar by entity (prepayments, final payments, VAT) | Annually + updates; feeds the [cash forecast](wf:cash-forecasting) |
+| Tax → treasury | Interest rates for IC loans (often safe-harbour or benchmark studies), equity vs debt guidance | Per loan / annually |
+| Tax → treasury | Withholding-tax cost of dividend vs loan repayment routes | Per repatriation |
+| Treasury → tax | New or changed IC loans, pool members, netting flows, guarantees | Per transaction; year-end list |
+| Treasury → tax | Plans for pools, IHB, regional centre, repatriation | Early in the project |
+
+## Where it breaks
+
+- **After the fact.** Treasury lends EUR 5m to a subsidiary on Friday because it is short; tax finds out at year-end the rate is off-market or local thin-cap rules make part of the interest non-deductible.
+- **Trapped cash.** A subsidiary has surplus cash but the only exit routes (dividend, loan, fees) cost withholding tax or need approvals — treasury sees an idle balance, tax sees a cost, and nothing happens. See [trapped cash](term:trapped-cash).
+- **Pool surprises.** A cash pool is set up for operational reasons; tax later objects to how interest is allocated among members.
+- **Payment calendar gaps.** A large tax prepayment is missing from the forecast because nobody told treasury the amount changed.
+
+<Example title="Funding HM Italia" company="helvetic" open>
+
+HM Italia needs EUR 5m for six months: a large Italian customer pays late and a new production line is being installed. Daniel ([Helvetic](co:helvetic) Treasury Manager) prefers an intercompany loan from the parent because the RCF is drawn in CHF and the parent has EUR from the German entity's surplus.
+
+1. **Daniel → group tax** (Monday): amount, tenor, currency, purpose. Asks for the rate and any constraints.
+2. **Group tax** checks HM Italia's existing debt, Italian interest-deductibility limits and the group's transfer-pricing policy; proposes a rate based on the group's benchmark, and checks whether Italian withholding tax applies to interest paid to the Swiss parent and which relief (treaty or Swiss–EU agreement) is available.
+3. Tax suggests EUR 3m as a loan and EUR 2m as a capital contribution because of the interest limit — which needs an Italian shareholder resolution (legal) and CFO approval.
+4. **Thomas (CFO)** approves; **legal** prepares the loan agreement and resolution; **Lea** prepares the transfer; **Daniel** and **Thomas** release it.
+5. **Claudia's team** and **Giulia** (HM Italia finance) book both sides; Lea adds the loan to the IC schedule for month-end.
+
+Total elapsed time: four working days, three of them waiting for tax and legal. Treasury's frustration ("we just need to move EUR 5m") and tax's caution ("this sets a precedent for the Italian tax audit") are both legitimate.
+
+</Example>
+
+## How it varies
+
+<SizeTabs
+  startup="An external tax adviser designs the cost-plus agreement with the US subsidiary once; Sarah follows it. Tax questions arise at fundraising or when opening a new entity."
+  sme="External tax adviser; the CFO calls them for intercompany rates and dividends. At [Alpine](co:alpine) Martin uses the adviser's rate for loans to the German GmbH."
+  midmarket="One to two people in group tax plus advisers. Tax is usually consulted on new IC loans; less reliably on small top-ups. Pools and IHBs remain in evaluation partly because of the tax work."
+  multinational="Group tax is a large function with transfer-pricing specialists. At [GlobalChem](co:globalchem) tax reviews every new pool member, the IHB's remuneration, repatriation from restricted countries and the Singapore centre's substance. A treasury–tax committee or standing meeting is common."
+/>
+
+<Callout type="interview" title="Questions to ask">
+
+- To treasury: "When do you involve tax — before or after you move money between entities?" "Where do you have cash you cannot move?"
+- To tax: "What treasury transactions give you the most work?" "What do you wish treasury told you earlier?"
+
+</Callout>

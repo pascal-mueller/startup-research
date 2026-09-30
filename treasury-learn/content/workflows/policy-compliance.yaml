@@ -1,0 +1,309 @@
+id: policy-compliance
+title: Treasury policy compliance
+question: What is in a treasury policy, who approves it, and how does anyone know it is being followed?
+group: Controls & reporting
+order: 3
+summary: >-
+  A treasury policy is the board-approved rulebook for what treasury may do: how much liquidity to hold, which banks
+  and how much exposure to each, how much currency risk to hedge and with which instruments, who may sign and
+  approve payments, and how breaches are reported. Compliance is the unglamorous routine behind it: translating the
+  policy into limits in systems and spreadsheets, checking exposures against those limits daily or monthly,
+  reviewing bank signatory lists, handling and reporting breaches, and answering internal and external auditors.
+  In small teams the hard part is not the check itself but independence — the person who trades is often the
+  person who monitors.
+objective: >-
+  Make sure treasury takes only the risks the board has approved, that authority to move money sits only with
+  authorised people, and that any deviation is caught, explained, remediated and reported — giving the CFO, board
+  and auditors evidence that the controls work.
+trigger: >-
+  Continuous (limit checks around every deal and the daily cash position); monthly and quarterly reporting cycles;
+  the annual policy review; events such as a bank downgrade, an acquisition, a new instrument, a new country, a
+  change of CFO or signatories, or an audit.
+frequency: >-
+  Daily or per-deal limit checks at mid-market and large companies; monthly hedge-ratio and liquidity checks;
+  quarterly or semi-annual signatory and mandate reviews; annual policy review and board approval; internal audit of
+  treasury typically every one to three years on a risk basis (practice varies).
+people:
+  - role: Board of directors / audit committee
+    does: Approves the policy and its limits (in Switzerland, financial control and planning are a non-transferable board duty); receives breach and compliance reporting; approves material waivers.
+  - role: CFO
+    does: Proposes the policy to the board; approves procedures, sub-limits and temporary waivers within delegated authority; first escalation point for breaches.
+  - role: Head of treasury / treasury manager
+    does: Drafts and maintains the policy; runs the controls day to day; owns breach handling and reporting.
+  - role: Treasury analyst / middle office
+    does: Runs the limit checks, maintains limit tables and signatory lists, prepares the compliance report. At large companies a separate middle office or risk-control team does this independently of the dealers.
+  - role: Treasury operations / back office
+    does: Confirms deals independently of the dealer; maintains bank mandates and e-banking user rights.
+  - role: Treasury committee (larger companies)
+    does: CFO, treasurer and sometimes controller, tax and legal meet monthly or quarterly to review exposures, hedging and compliance.
+  - role: Accounting / controlling
+    does: Checks treasury figures against the ledger; often the independent reviewer in small teams.
+  - role: Internal audit and external auditor
+    does: Test design and operation of treasury controls; issue findings and follow up on remediation.
+  - role: Banks
+    does: Hold the account mandates and signatory lists that must match internal authorities; notify rating changes and KYC updates.
+systems:
+  - name: Policy document and authority matrix
+    use: The approved rules, limits and delegation of authority (Word/PDF, board minutes).
+  - name: "[TMS](term:tms) limit module or Excel limit sheet"
+    use: Counterparty, instrument and tenor limits; pre-deal checks; utilisation reports.
+  - name: Cash position / deal register
+    use: Source of exposures per bank (deposits, balances, derivative market values).
+  - name: Rating data (agency websites, Bloomberg, bank research)
+    use: Bank credit ratings that drive limits; downgrade alerts.
+  - name: Bank portals, e-banking user administration, bank mandate documents
+    use: Who can sign and approve at each bank; the evidence for signatory reviews.
+  - name: Commercial register (Handelsregister in Switzerland)
+    use: Publicly registered signatory powers (e.g. joint signature by two), which banks check for mandates.
+  - name: Audit / GRC tools (large companies)
+    use: Control documentation, testing evidence, finding tracking.
+data:
+  - name: Policy limits
+    source: Treasury policy and appendices
+    notes: E.g. max exposure per bank by rating; hedge-ratio ranges by horizon; approved instruments; minimum liquidity; maximum tenor for deposits.
+  - name: Current exposures
+    source: Cash position, deal register, derivative valuations
+    notes: Counterparty exposure usually = balances + deposits + positive derivative market value (definitions vary; some add a potential-future-exposure add-on).
+  - name: Forecast exposures
+    source: FX exposure forecast, cash forecast
+    notes: Hedge ratios are hedges divided by forecast exposure, so a forecast change can create a breach without any trade.
+  - name: Bank ratings
+    source: Rating agencies
+  - name: Signatory and user lists
+    source: Bank mandates, e-banking user lists, commercial register, HR leaver lists, internal authority matrix
+    notes: The four lists rarely agree; reconciling them is the core of the signatory review.
+  - name: Breach and waiver log
+    source: Treasury's own register
+steps:
+  - title: Review and redraft the policy
+    who: Head of treasury / treasury manager, with accounting, tax, legal and internal audit input
+    where: Word document, benchmark against peers, previous year's breaches
+    when: Annually (often ahead of the budget or the audit-committee cycle), and after major events
+    detail: >-
+      Update the sections — scope and objectives; roles and delegation of authority; liquidity (minimum cash, headroom);
+      funding; FX and interest-rate risk (what to hedge, ranges by horizon, instruments); counterparty and investment
+      limits; bank accounts, mandates and signatories; payment controls; treasury systems and access; reporting;
+      breach handling. Changes are driven by what happened: a new currency after an acquisition, a bank downgrade,
+      breaches that showed a limit is unworkable.
+    judgment: >-
+      Setting limits that are prudent but workable. Limits so tight they are breached every month get ignored;
+      limits so wide they never bind give no protection. Also: how much discretion to give treasury (ranges rather
+      than fixed hedge ratios).
+  - title: Approve through the governance chain
+    who: CFO → audit committee → board
+    where: Committee and board meetings, minutes
+    when: Annually
+    detail: >-
+      The CFO reviews and signs off; the audit committee (or finance/risk committee) reviews in detail; the board
+      approves the policy and any limits reserved to it. Operational procedures (how to do a call-back, the deal
+      confirmation process) are usually approved by the CFO rather than the board.
+  - title: Translate the policy into system settings and lists
+    who: Treasury analyst / treasury systems / operations
+    where: TMS limit tables, Excel limit sheet, e-banking and ERP approval workflows, bank mandates
+    when: After approval; whenever authorities change
+    detail: >-
+      Load limits per counterparty, instrument and tenor; set payment approval thresholds and dual-approval rules in
+      e-banking, ERP and TMS; update bank mandates to match the [signing authority matrix](term:signing-authority-matrix);
+      update the commercial register where signatory powers change.
+    manual: >-
+      Bank mandate changes require signed forms, identification documents and KYC for each bank; at a group with
+      many banks this is weeks of paperwork.
+  - title: Check limits before dealing
+    who: Treasury manager (dealer), with system or analyst check
+    where: TMS pre-deal check or Excel limit sheet
+    when: Before each deposit, FX or derivative trade
+    detail: >-
+      Before placing a deposit or executing a hedge, confirm that the counterparty has headroom within its limit and
+      rating threshold and that the instrument and tenor are permitted. After the trade, back office confirms it
+      independently of the dealer.
+  - title: Monitor counterparty exposure
+    who: Treasury analyst / middle office
+    where: Cash position + deal register → limit report
+    when: Daily (large companies) to weekly or month-end (mid-market)
+    detail: >-
+      Compute exposure per bank — balances, deposits, positive derivative values — and compare with limits; check
+      bank ratings for changes. A downgrade can turn a compliant position into a breach overnight.
+    judgment: Whether a temporary excess (a large receipt landing at one bank) needs immediate action or can be cured next day.
+  - title: Monitor hedge ratios and liquidity limits
+    who: FX / risk manager or treasury analyst
+    where: Excel / TMS exposure report
+    when: Monthly, after the exposure forecast update
+    detail: >-
+      Divide hedges by forecast exposure for each period and compare with policy ranges; check minimum liquidity and
+      headroom. Out-of-range results trigger new hedges, deal adjustments, or a documented decision not to act.
+  - title: Review signatories, mandates and system access
+    who: Treasury analyst / operations, reviewed by treasury manager
+    where: Bank mandates, e-banking user lists, HR leaver list, authority matrix, commercial register
+    when: Quarterly or semi-annually; immediately for leavers
+    detail: >-
+      For each bank and entity, compare who can sign or approve with who should: remove leavers, fix people with
+      single-signature rights where joint signature is required, check that no one can both create and approve
+      payments. Request bank confirmations of mandates where portals don't show them.
+    manual: The most tedious control — bank lists come as PDFs or screenshots, and local subsidiary mandates are often out of date.
+  - title: Handle breaches
+    who: Treasury manager → CFO (→ audit committee for material breaches)
+    where: Breach log, email, monthly report
+    when: Within one business day of detection (typical policy wording)
+    detail: >-
+      Record the [breach](term:limit-breach): what, since when, amount, cause, whether **passive** (caused by events —
+      a downgrade, a receipt, a forecast change) or **active** (caused by a decision — a deal above limit, an
+      unauthorised instrument). Propose remediation (move cash, adjust hedges) or request a temporary waiver from the
+      authority defined in the policy. Report all breaches in the monthly report; material and active ones to the
+      audit committee.
+    judgment: Whether to cure immediately at a cost (breaking a deposit, unwinding a hedge) or request a waiver; how to report an active breach without destroying trust.
+  - title: Report compliance
+    who: Treasury manager / head of treasury
+    where: Monthly treasury report; quarterly audit-committee report
+    when: Monthly / quarterly
+    detail: >-
+      A compliance table (each policy limit, current value, status), the breach and waiver log, and signatory review
+      results. See [month-end reporting](wf:month-end-reporting). Large companies add a formal quarterly attestation by
+      the treasurer.
+  - title: Support audits and close findings
+    who: Treasury manager with internal and external auditors
+    where: Audit requests, walk-throughs, evidence folders
+    when: Year-end audit; internal audit cycle
+    detail: >-
+      External auditors test the key treasury controls as part of the internal control system (in a Swiss ordinary
+      audit, the auditor must confirm that an internal control system exists); internal audit reviews the treasury
+      function in more depth. Typical findings: missing independent deal confirmation, outdated bank mandates,
+      limits not monitored in periods, users with conflicting rights. Treasury agrees actions and deadlines and
+      reports progress.
+    manual: Pulling evidence (screenshots of approvals, signed confirmations, limit reports for sample dates) is manual at most companies.
+example:
+  title: "Helvetic Machines, Q3 compliance check for the audit committee"
+  body: |
+    Helvetic's policy (approved by the board each December) requires, among other things: hedge 60–90% of next-quarter
+    forecast EUR net inflows with forwards or plain-vanilla options; trade only with RCF banks; per-bank exposure limits
+    (illustrative: CHF 25m for the two Swiss banks, CHF 20m for the global bank, CHF 10m for the German bank); minimum
+    cash CHF 10m and liquidity headroom of at least CHF 75m; joint signature by two for all bank payments; deals confirmed
+    by someone other than the dealer.
+
+    In October Lea prepares the quarterly compliance table for Daniel:
+
+    | Policy item | Limit | Position / finding | Status |
+    |---|---|---|---|
+    | Exposure, German bank | CHF 10m | CHF 10.1m on 30 Sep after a EUR 3.1m receipt; cured 1 Oct | Passive breach, cured |
+    | Exposure, Chinese bank | Excluded (standing board waiver) | CNY 7.9m equiv.; cannot be repatriated quickly | Waiver, reviewed annually |
+    | EUR hedge ratio, next quarter | 60–90% | 80% on 30 Sep; fell to 55% on 31 Aug after the sales forecast was raised; topped up with EUR 3m forwards on 4 Sep | Passive breach in August, cured |
+    | Instruments | Forwards, vanilla options | Forwards only | Compliant |
+    | Liquidity headroom | ≥ CHF 75m | CHF 176.1m | Compliant |
+    | Bank signatories | Only current, authorised staff | Former HM France finance manager (left in June) still on the French bank's mandate, no e-banking access | Breach — mandate change requested 9 Oct |
+    | Deal confirmation | Not by the dealer | 2 of 41 forwards confirmed by Daniel himself while Lea was on holiday | Active control deviation |
+
+    **What Daniel does.** He reports all items; the last two go to the audit committee with remediation: HM France's
+    mandate is updated (the bank needs a signed form and the new signatory's ID, which takes three weeks), and during
+    Lea's absences confirmations will be done by Claudia's deputy in group accounting, as internal audit had already
+    recommended in its 2025 treasury review. Thomas (CFO) asks why the leaver was not removed in June: the HR leaver
+    list does not reach treasury for subsidiary staff — a process fix goes to HR.
+judgment:
+  - decision: Where to set limits and ranges
+    why: Balances risk appetite against workability; depends on business model, rating, bank landscape and the team's capacity to monitor.
+  - decision: Passive vs active breach, and cure vs waiver
+    why: Curing can be expensive (breaking deposits, unwinding hedges); a waiver needs a reason the board will accept.
+  - decision: What counts as exposure
+    why: Whether to include derivative market values, potential future exposure, operating balances or cash in transit changes the numbers and the breaches.
+  - decision: How to keep independence in a small team
+    why: Two-person treasuries cannot separate dealing, confirming and monitoring internally; they borrow independence from accounting or the CFO.
+  - decision: When the policy itself is wrong
+    why: Repeated breaches may mean the limit is outdated (the business changed) rather than that treasury is careless — a judgment to take back to the board.
+failure_modes:
+  - mode: Policy exists on paper but is not mapped to systems
+    consequence: Payment limits, signatories or counterparty limits in practice differ from those approved; the board believes controls exist that don't.
+    detection: Walk-through comparing policy to system settings and bank mandates; internal audit.
+  - mode: Stale bank mandates and user rights
+    consequence: Leavers or wrong people can sign; a fraud or dispute exposes it.
+    detection: Periodic signatory review against HR leaver lists and the commercial register.
+  - mode: Exposure calculated only at month-end
+    consequence: Large intra-month breaches (e.g. after a big receipt or a downgrade) go unseen.
+    detection: More frequent monitoring for large banks; rating alerts.
+  - mode: The monitor is the dealer
+    consequence: Breaches and errors are not reported, or are reported late; weak segregation of duties.
+    detection: Independent review by accounting, middle office or the CFO; audit testing.
+  - mode: Breaches handled informally
+    consequence: No log, no trend, no evidence for auditors; recurring problems not escalated.
+    detection: Breach register reviewed quarterly by the CFO or treasury committee.
+  - mode: Policy not updated after the business changed (acquisition, new currency, new instruments)
+    consequence: Treasury operates outside any approved framework or breaks the policy daily.
+    detection: Policy review triggers listed in the policy itself.
+software: >-
+  Large companies run pre-deal limit checks, exposure and hedge-ratio reports in the **TMS**, bank account and
+  signatory data in **bank account management** modules (sometimes with eBAM), and audit evidence in **GRC** tools.
+  Mid-market companies use an Excel limit sheet fed from the cash position and deal list, and keep mandates in folders.
+  Bank portals increasingly allow e-banking user administration by the client, but mandate changes still need paperwork.
+  See [Systems & Data](/systems).
+manual_work:
+  - Recalculating exposures per bank from the cash position and derivative values.
+  - Reconciling bank signatory lists, e-banking users, HR leavers and the authority matrix.
+  - Completing bank mandate forms and KYC documents for every signatory change.
+  - Maintaining the breach log and writing breach explanations.
+  - Collecting audit evidence for sample dates.
+by_size:
+  startup: >-
+    No written treasury policy; at most a board resolution on where cash may be held (often written after the 2023
+    SVB collapse) and investment rules for deposits. The CFO and a founder are joint signatories; compliance means
+    the board asks at the quarterly meeting. Venture investors or venture-debt lenders may impose covenants on cash
+    holdings.
+  sme: >-
+    A short policy or a board minute: which banks, hedging rules in broad terms, joint signature for payments. The
+    head of accounting checks signatories when someone leaves and the auditor asks about controls at year-end.
+    Monitoring is informal; breaches are noticed when the bank or auditor points them out.
+  midmarket: >-
+    A written policy approved by the board annually; limits checked by the treasury analyst in Excel monthly or
+    weekly; breaches reported in the CFO report; internal audit reviews treasury every few years. Segregation of
+    duties in a two- or three-person team is the recurring audit issue.
+  multinational: >-
+    A policy framework with sub-policies (hedging, investments, funding, bank relationships, payments) and local
+    procedures; a middle office or risk-control team independent of dealers monitors limits daily in the TMS; a
+    treasury committee meets monthly or quarterly; formal attestation, audit committee reporting and regular internal
+    audits. Hundreds of signatories and users across ~20 banks make mandate management a function of its own.
+companies:
+  kleio: "A one-page board resolution after SVB: cash split across at least two Swiss banks, maximum CHF 15m per bank, deposits only up to 6 months. Sarah reports compliance on one line of the quarterly board deck; Sarah and the CEO hold joint signature."
+  alpine: "No written treasury policy beyond a board minute allowing FX forwards with the two Swiss banks up to 12 months. Martin and Petra hold joint signature; the auditor's management letter recommended a written hedging policy two years in a row."
+  helvetic: "The worked example above: a board-approved policy, Excel limit sheet run by Lea, monthly reporting to Thomas, quarterly to the audit committee, and a segregation-of-duties issue typical of a two-person team."
+  globalchem: "A group treasury policy with sub-policies, approved by the board annually after audit-committee review. The middle office in Jonas's area runs daily TMS limit reports; Ben's systems team administers user rights; Marta's operations team manages ~280 account mandates. The treasury committee (Markus, Anna, the Head of Tax and the Group Controller) meets monthly."
+handoffs:
+  - from: Head of treasury
+    gives: draft policy and proposed limits
+    to: CFO → audit committee → board
+  - from: Board / audit committee
+    gives: approved policy, limits, standing waivers
+    to: Treasury
+  - from: HR / subsidiary management
+    gives: joiners, leavers and role changes of signatories
+    to: Treasury operations / analyst
+    note: The weakest link in most signatory processes.
+  - from: Treasury analyst / middle office
+    gives: limit utilisation, hedge ratios, breaches
+    to: Treasury manager / head of treasury
+  - from: Treasury manager
+    gives: breach reports, waiver requests, compliance table
+    to: CFO (monthly), audit committee (quarterly)
+  - from: Treasury operations
+    gives: mandate change forms, KYC documents
+    to: Banks
+  - from: Internal / external audit
+    gives: findings and recommendations
+    to: CFO / head of treasury / audit committee
+interview: >-
+  Ask to see (or have described) **the table of contents of their treasury policy** and **the last breach they
+  reported**: what triggered it, who they told, how it was cured. Ask how they know that each bank's signatory list is
+  correct today, and what the last audit finding in treasury was. Ask small teams who checks the treasurer's own deals.
+  Internal auditors are useful interviewees on this workflow — they see the gap between policy and practice.
+ai_note: >-
+  Limit checks and exposure calculations are deterministic and already automated in good TMS set-ups. The messy,
+  manual part — reconciling signatory lists, mandates, users and HR data across banks and entities, and collecting
+  audit evidence — is document-heavy and checkable, which makes assistance plausible. Setting limits, deciding on
+  waivers and reporting breaches to a board are accountability decisions that will stay with named people.
+terms: [treasury-policy, investment-policy, counterparty-limit, counterparty-exposure, hedge-ratio, limit-breach, delegation-of-authority, signatory, signing-authority-matrix, payment-mandate, segregation-of-duties, four-eyes-principle, internal-control-system, three-lines-model, treasury-committee, credit-rating, liquidity-headroom, front-middle-back-office, kyc]
+related: [month-end-reporting, fraud-investigation, bank-account-management, fx-hedging, surplus-cash-investment, covenant-monitoring]
+sources: [ch-co-board-duties, eact-guiding-principles, bacs-ceo-fraud-2026, deloitte-gts-2024]
+evidence_note: >-
+  The Swiss board's non-transferable duty for financial control and planning, the board's duty to monitor solvency,
+  and the auditor's confirmation that an internal control system exists are statutory[](cite:ch-co-board-duties);
+  segregation of duties is a core treasury principle in European treasury associations' guidance[](cite:eact-guiding-principles);
+  the Swiss federal cyber office recommends collective signature and four-eyes approval for payments and master-data
+  changes[](cite:bacs-ceo-fraud-2026). Policy contents, monitoring frequencies, audit cycles and the Helvetic example
+  are established practice and illustrative synthesis — there is no single standard policy, and limit
+  definitions (especially what counts as counterparty exposure) vary between companies. No survey figures on
+  policy-breach frequency were verified for this page.

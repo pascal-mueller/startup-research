@@ -78,7 +78,7 @@ data:
   - name: Forecast vs actual
     source: Stored 13-week forecast versions and actual cash flows
   - name: Limits and policy thresholds
-    source: [Treasury policy](term:treasury-policy)
+    source: "[Treasury policy](term:treasury-policy)"
     notes: Counterparty limits, hedge-ratio ranges, minimum liquidity, approved instruments.
 steps:
   - title: Capture month-end balances and check completeness
@@ -198,7 +198,7 @@ example:
 
     | Item | 31 Aug | 30 Sep | Comment |
     |---|---|---|---|
-    | Cash (bank) | 61.2 | 54.0 | Q3 VAT and bond-related payments; of which CNY 7.9 held in China, not freely movable |
+    | Cash (bank) | 61.2 | 54.0 | Q3 VAT payment and seasonal working capital; of which CNY 7.9 held in China, not freely movable |
     | Gross debt (RCF 60.0 + bond 100.0) | 160.0 | 160.0 | Bond due 2028 |
     | Net debt | 98.8 | 106.0 | |
     | Undrawn committed RCF | 140.0 | 140.0 | |
@@ -209,6 +209,8 @@ example:
     **Hedges** — EUR net inflows forecast for the next 12 months: EUR 118m; hedged with forwards EUR 58m. Next quarter hedged 80% (policy 60–90%), Q+2 61%, Q+3 41%, Q+4 16%. Average contracted rate 0.9390; market value of all forwards +CHF 0.9m (EUR +0.6m, USD +0.3m) per bank valuations.
 
     **Counterparty exposure** — German bank: cash 9.8 + positive forward value 0.3 = CHF 10.1m against a CHF 10m limit (101%) after a EUR 3.1m customer receipt landed on 30 September. Daniel classifies it as a passive breach, moves EUR 2m to HM AG on 1 October (exposure back to about 82%) and lists it in the exceptions section.
+
+    **Cash vs RCF** — HM AG holds CHF 9m above its CHF 10m buffer. CHF deposits earn about 0% while RCF drawings cost SARON plus the margin, so Daniel's commentary proposes reducing the RCF drawing by CHF 8m at the 15 October rollover rather than placing a deposit (net debt unchanged, interest cost lower, the amount can be redrawn if the forecast turns).
 
     **Forecast accuracy** — September receipts forecast 4 weeks earlier: CHF 58.0m; actual CHF 52.3m (−9.8%), mostly Italy again.
 

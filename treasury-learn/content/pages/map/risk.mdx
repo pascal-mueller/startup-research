@@ -1,0 +1,144 @@
+---
+title: Financial & operational risk
+nav: Risk
+order: 7
+cluster: markets
+summary: The risk framework around treasury — liquidity, FX, interest-rate, counterparty, fraud and operational risk — set out in a policy, measured against limits and reported upward. Market risks are hedged; operational and fraud risks are controlled by process, segregation of duties and people who ask awkward questions.
+subtopics: [liquidity risk, FX risk, interest-rate risk, counterparty risk, fraud, operational risk]
+related: [/map/fx, /map/debt, /map/investments, /map/payments, /org/roles-fx-risk, /org/roles-operations]
+---
+
+<TreasuryMap focus="risk" />
+
+"Risk" in treasury is not a separate activity so much as **the frame around every other area**: the [treasury policy](term:treasury-policy) says how much of each risk the company accepts, who may take which decision, and what gets reported. Beginners tend to think of treasury risk as FX and rates. In interviews with smaller companies, the risks that actually cause losses are more often **liquidity** (running short because a customer paid late or a bank line disappeared) and **fraud** (paying a criminal).
+
+## The six risks at a glance
+
+| Risk | The question | Main tools | Where it's covered in depth |
+|---|---|---|---|
+| Liquidity | Can we pay everything, when due, in every entity? | Forecasts, buffers, committed facilities, maturity spreading | [Cash management](/map/cash-management), [forecasting](/map/cash-forecasting), [debt](/map/debt) |
+| FX | How much can currency moves hurt margins, cash and equity? | Exposure measurement, natural hedges, forwards/options | [FX](/map/fx) |
+| Interest-rate | How much do rate moves change our interest cost or income? | Fixed/floating mix, swaps, caps | [Debt](/map/debt) |
+| Counterparty | What if a bank, fund or hedge counterparty fails? | Limits, diversification, ISDA/netting, collateral | [Investments](/map/investments), [banking](/map/banking) |
+| Fraud | Could someone trick us into paying them, or steal from inside? | Segregation of duties, call-backs, payee checks, bank controls | [Payments](/map/payments) |
+| Operational | Could a process, system or key person fail? | Procedures, controls, backups, reconciliation, BCP | [Technology](/map/technology) |
+
+## Who does this work, by company size
+
+| Task | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Writes / approves policy | No written policy beyond an investment one-pager; board | Board minute on FX hedging; bank signing rules | Daniel drafts, Thomas and the board approve | Anna drafts, [treasury committee](term:treasury-committee) and board approve |
+| Measures and reports risk | Sarah, informally | Martin, informally | Lea's monthly treasury report: liquidity, hedge ratios, limits, covenants | Middle office in Jonas's team: exposure, CFaR, limit utilisation, compliance |
+| Owns fraud controls | Sarah + Nina | Petra; auditors challenge annually | Daniel (bank channels) + Claudia (AP, vendor master) | Marta (payment factory) + group internal control + IT security |
+| Independent check | Auditor | Auditor | Auditor, occasional internal audit | Internal audit, external audit, risk committee |
+
+<Callout type="concept" title="Front, middle and back office">
+
+In larger treasuries risk control is built into the organisation: the **front office** decides and deals, the **middle office** measures risk and checks limits and policy compliance independently, the **back office** confirms, settles and accounts ([front/middle/back office](term:front-middle-back-office)). Small teams cannot staff three offices; they compensate with bank-side dual signatures, CFO review and auditors.
+
+</Callout>
+
+## Liquidity risk
+
+**Plain:** the risk of not having enough cash, in the right place, when a payment is due. **Professional:** [liquidity risk](term:liquidity-risk) from forecast error, loss of funding (facility cancelled, covenant breach, market closed), [trapped cash](term:trapped-cash), bank failure, or a sudden call on cash (collateral, guarantees, acquisition). Measured by [headroom](term:liquidity-headroom) against forecast low points and stress [scenarios](term:scenario-analysis); controlled by minimum cash, committed facilities, maturity spreading and early refinancing. Rating agencies assess it too — S&P's "adequate" liquidity descriptor, for instance, requires sources of at least 1.2x uses over twelve months[](cite:sp-liquidity-descriptors).
+
+Example: Alpine is profitable, but a delayed CHF 2m acceptance and a slow German distributor could take cash from CHF 6m to CHF 1m within six weeks. Its liquidity risk tool is the CHF 12m committed line — and keeping the house bank informed early, so the line is still there when needed.
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [liquidity crisis](wf:liquidity-crisis), [covenant monitoring](wf:covenant-monitoring).
+- **Terms:** [liquidity risk](term:liquidity-risk), [liquidity headroom](term:liquidity-headroom), [cash buffer](term:cash-buffer), [refinancing risk](term:refinancing-risk), [committed vs uncommitted](term:committed-facility).
+
+**Ask:** "What liquidity scenario do you stress-test, and how many weeks would you last?" · "Which funding source could disappear, and what would trigger that?" · "Who decides the minimum cash level?"
+
+## FX risk
+
+**Plain:** the risk that exchange-rate moves reduce margins, cash flows or the value of foreign assets. **Professional:** transaction, translation and economic exposures (see [FX](/map/fx)), measured as net exposure per currency and horizon, sometimes aggregated statistically as [cash flow at risk](term:cash-flow-at-risk); managed by policy (hedge ratios, instruments, tenors, counterparties) and reported as hedge ratios, MtM and sensitivity ("a 10% EUR fall costs CHF X m of EBIT").
+
+Example: GlobalChem's monthly risk report shows 12-month FX CFaR at 95% of CHF 70m unhedged and CHF 30m after hedges; Jonas presents the sensitivity per currency to the treasury committee quarterly. Helvetic reports hedge ratios per quarter against the policy bands and a simple sensitivity table.
+
+- **Drives:** [FX exposure management](wf:fx-exposure-management), [FX hedging](wf:fx-hedging), [currency shock](wf:currency-shock).
+- **Terms:** [FX exposure](term:fx-exposure), [hedge ratio](term:hedge-ratio), [cash flow at risk](term:cash-flow-at-risk), [value at risk](term:var), [economic exposure](term:economic-exposure).
+
+**Ask:** "How do you express FX risk to the CFO or board — sensitivity, CFaR, hedge ratio?" · "What did the last big currency move cost, and was that inside expectations?" · "Who measures the risk independently of the person who hedges?"
+
+## Interest-rate risk
+
+**Plain:** the risk that rate changes increase interest cost or reduce interest income. **Professional:** [interest-rate risk](term:interest-rate-risk) on floating debt (cash-flow risk), on fixed debt (you lock in if rates fall), on investments (reinvestment and market-value risk) and on pension or lease liabilities; managed through the fixed/floating mix, [interest-rate swaps](term:interest-rate-swap), [caps](term:interest-rate-cap) and matching of debt and investment tenors. For Swiss companies with CHF debt, the zero-rate environment makes this a smaller issue than for EUR or USD borrowers.
+
+Example: A 1-point SARON rise costs Helvetic ~CHF 0.6m a year on its CHF 60m floating RCF drawing — below materiality, so unhedged. For Kleio, falling USD rates reduce MMF income on USD 4m by about USD 40k per point — irrelevant to runway.
+
+- **Drives:** [credit facility management](wf:credit-facility-management), [policy compliance](wf:policy-compliance).
+- **Terms:** [interest-rate risk](term:interest-rate-risk), [fixed vs floating](term:fixed-vs-floating), [interest-rate swap](term:interest-rate-swap), [duration](term:duration).
+
+**Ask:** "What fixed/floating mix do you target?" · "Does interest-rate risk get board attention, or is it below materiality?" · "Who executes rate hedges and who values them?"
+
+## Counterparty risk
+
+**Plain:** the risk of losing money because a bank, fund or other party you deal with fails. **Professional:** exposure to [counterparties](term:counterparty) through deposits and investments (full principal at risk), derivatives (positive MtM, reduced by netting under an [ISDA](term:isda) and collateral under a [CSA](term:credit-support-annex)), settlement (paying one leg before receiving the other) and dependency (a bank that provides the RCF or payment services). Controlled by [counterparty limits](term:counterparty-limit) tiered by rating or CDS, diversification, and monitoring. Also includes *customer* credit risk, owned by credit control rather than treasury.
+
+<Callout type="field" title="2023 changed this conversation">
+
+SVB's failure (US depositors were made whole only by an emergency decision over a weekend[](cite:ust-fed-fdic-2023-joint)) and the UBS takeover of Credit Suisse[](cite:finma-ubs-cs-2023) made bank counterparty risk concrete for treasurers who had treated it as theory. In a NeuGroup member survey, most treasuries reported reassessing bank counterparty management, with more deposit diversification and more use of government MMFs[](cite:neugroup-svb-2023). Kleio's board request to split cash across banks is the startup version of the same reaction.
+
+</Callout>
+
+Example: Helvetic's limits (CHF 30m per A-rated bank, CHF 15m per BBB-rated bank) include operating balances and the positive MtM of forwards; Lea reports utilisation weekly. GlobalChem aggregates deposits, MMF holdings and derivative MtM across ~20 banks daily and reviews limits when a bank's rating or CDS moves.
+
+- **Drives:** [surplus cash investment](wf:surplus-cash-investment), [policy compliance](wf:policy-compliance), [FX hedging](wf:fx-hedging).
+- **Terms:** [counterparty](term:counterparty), [counterparty limit](term:counterparty-limit), [ISDA](term:isda), [credit support annex](term:credit-support-annex), [deposit protection](term:deposit-protection), [credit rating](term:credit-rating).
+
+**Ask:** "What did you change after SVB and Credit Suisse?" · "How are bank limits set and reviewed?" · "Do your limits include derivatives and operating balances?"
+
+## Fraud
+
+**Plain:** criminals (or insiders) tricking or bypassing the company into paying them. **Professional:** external payment fraud — [business email compromise](term:bec) / CEO fraud, vendor impersonation and bank-detail changes, account takeover, cheque fraud (US) — and internal fraud (fictitious vendors, manipulated payment files). Controls: [segregation of duties](term:segregation-of-duties), [four-eyes](term:four-eyes-principle) release in the bank channel, [call-back verification](term:call-back-verification) on independently sourced numbers, [vendor master data](term:vendor-master-data) change controls, [verification of payee](term:verification-of-payee), [sanctions screening](term:sanctions-screening), restricted bank user rights, file-integrity protection between ERP and bank.
+
+<Callout type="survey" title="How common is payment fraud?">
+
+In the AFP's 2026 Payments Fraud and Control Survey (465 US practitioners, data for 2025), 76% of organisations experienced attempted or actual payments fraud and 74% were affected by business email compromise[](cite:afp-pfc-2026). In Switzerland, reports of CEO fraud to the Federal Office for Cyber Security rose from 719 in 2024 to 971 in 2025[](cite:bacs-ceo-fraud-2026). A widely reported 2024 case: an Arup employee in Hong Kong transferred about USD 25m after a video call with deepfaked "executives"[](cite:cnn-arup-deepfake-2024).
+
+</Callout>
+
+<Example title="A Tuesday email at Kleio" company="kleio">
+
+Nina receives an email that looks like it is from Sarah (sent from a look-alike domain): an urgent, confidential CHF 48,000 payment to a new "legal adviser" before a financing closes. Kleio's rule, written after an auditor's comment: any new beneficiary or change of bank details is confirmed by phone using a number from the existing supplier record, never from the email. Nina calls Sarah's mobile; Sarah knows nothing. Nina reports it; Sarah alerts the bank and warns the team. The control that worked was a habit, not software.
+
+</Example>
+
+- **Drives:** [fraud investigation](wf:fraud-investigation), [payment processing](wf:payment-processing), [large payment approval](wf:large-payment-approval).
+- **Terms:** [business email compromise](term:bec), [call-back verification](term:call-back-verification), [verification of payee](term:verification-of-payee), [segregation of duties](term:segregation-of-duties), [vendor master data](term:vendor-master-data), [positive pay](term:positive-pay).
+
+<Callout type="confusion" title="Most fraud losses pass through legitimate approval">
+
+In BEC cases the payment is usually approved by authorised people who were deceived. Dual approval helps only if the second approver actually checks the underlying request, not just the amount. Ask how approvers verify, not just how many there are.
+
+</Callout>
+
+**Ask:**
+- "Tell me about the last fraud attempt you caught. How did you catch it?"
+- "What happens, step by step, when a supplier asks to change bank details?"
+- "Who can create a new beneficiary and who can release a payment to it?"
+- "What would you do in the first hour if money went to a fraudster?"
+
+## Operational risk
+
+**Plain:** losses from things going wrong in processes, systems or people — errors, outages, a key person leaving. **Professional:** [operational risk](term:operational-risk) in treasury includes wrong or duplicate payments, missed cut-offs, dealing errors, unconfirmed trades, spreadsheet errors ([end-user computing](term:euc)), static-data errors, connectivity failures, key-person dependency and regulatory reporting failures (e.g. derivative [trade reporting](term:trade-reporting)). Controls: documented procedures, [segregation of duties](term:segregation-of-duties), reconciliations, deal confirmations, access reviews, [business continuity](term:business-continuity) plans with tested fallbacks.
+
+Example: Alpine's largest treasury risk is Petra: she is the only person who knows the EBICS upload, the cash sheet and which customers pay late. Her holiday cover is a two-page procedure written by the auditors' request. At Helvetic, the risk sits in Lea's workbooks — a broken link in the hedge spreadsheet once doubled a EUR exposure line for a week before Daniel noticed the hedge ratio looked too low.
+
+- **Drives:** [bank reconciliation](wf:bank-reconciliation), [policy compliance](wf:policy-compliance), [month-end reporting](wf:month-end-reporting).
+- **Terms:** [operational risk](term:operational-risk), [business continuity](term:business-continuity), [segregation of duties](term:segregation-of-duties), [static data](term:static-data), [deal confirmation](term:deal-confirmation), [end-user computing](term:euc).
+
+**Ask:** "What would break if you were off for three weeks?" · "Which spreadsheet would you least like to lose?" · "When did a system or bank connection last fail, and what did you do?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** Main risks: runway, bank concentration, fraud. No policy apart from investments; controls are bank-portal dual approval and a call-back habit. FX and rate risk are small relative to cash."
+  sme="**Alpine.** Liquidity (lumpy projects), EUR exposure without a policy, key-person risk around Petra. Controls rely on bank-side collective signatures and the annual audit."
+  midmarket="**Helvetic.** A written treasury policy with limits and hedge bands, monthly risk reporting to the CFO, covenant monitoring. Two people cannot fully segregate front and back office; compensating controls are CFO approval of large trades and bank-side dual signature."
+  multinational="**GlobalChem.** Formal risk framework: policy approved by the board, treasury committee, independent middle office, CFaR and limit reporting, internal audit reviews, hundreds of users with managed rights. Risk management is a department's job, not a person's."
+/>
+
+<CompanyCompare topic="map-risk-register" />
+
+Related workflows: <Workflows ids={["policy-compliance", "fraud-investigation", "liquidity-crisis", "currency-shock"]} />

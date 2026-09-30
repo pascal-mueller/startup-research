@@ -1,0 +1,320 @@
+id: liquidity-crisis
+title: Liquidity crisis response
+question: Expected receivables haven't arrived and the forecast now shows a hole. What happens, day by day?
+group: Events & crises
+order: 3
+summary: >-
+  A liquidity crisis at an operating company rarely starts with a headline. It starts with a large expected receipt
+  that does not arrive, a customer who delays acceptance, a bank that fails with the company's cash inside, or a funding
+  market that closes. Treasury (or the CFO at smaller companies) confirms the problem, rebuilds the
+  [13-week cash flow](term:thirteen-week-cash-flow) with a stress case, switches to daily cash control, pulls the
+  available levers — drawing committed lines, deferring payments, factoring, freezing capex, pushing collections —
+  talks to banks early, and escalates to the CEO and board with clear numbers. The goal is to never miss payroll,
+  tax or a debt payment, and never be surprised by a covenant.
+objective: >-
+  Keep the company able to pay its obligations when due through the squeeze, with a documented low point and headroom
+  in a realistic stress case, while preserving the trust of banks, suppliers, employees and the board.
+trigger: >-
+  A material expected receipt fails to arrive or is announced late; a customer becomes insolvent; the forecast low
+  point falls below minimum cash or headroom policy; a bank holding significant balances fails or is at risk; a
+  funding source (CP market, a credit line) becomes unavailable; a covenant breach is forecast.
+frequency: >-
+  Rare in its acute form, but most finance teams at project-based or concentrated-customer companies go through a
+  milder version every few years. A company-wide crisis mode typically lasts 4–13 weeks.
+people:
+  - role: CFO
+    does: Owns the response; decides on levers; leads bank and board communication; at SMEs builds much of the analysis personally.
+  - role: Treasury manager / head of treasury
+    does: Rebuilds the 13-week cash flow, runs the daily cash call, prepares bank discussions and facility drawings.
+  - role: Treasury analyst / head of accounting (SME)
+    does: Daily cash position, daily forecast update, payment prioritisation lists, lever tracker.
+  - role: Accounts receivable / credit control, sales
+    does: Confirm what is really happening with the customer; chase all other receivables; negotiate partial payments.
+  - role: Accounts payable / procurement
+    does: Produce the payment list by priority; negotiate payment extensions with suppliers.
+  - role: Legal (and external counsel)
+    does: Insolvency claims, retention of title, contract rights against the defaulting customer; reviews facility terms.
+  - role: CEO and board
+    does: Informed early; approve capex freezes, large levers and, if needed, capital measures. In Switzerland the board carries a legal duty to monitor solvency.
+  - role: Banks' relationship managers
+    does: Process drawings; discuss temporary increases, waivers, factoring; ask for information and a 13-week cash flow.
+systems:
+  - name: Bank portals / connectivity tool
+    use: Daily (and intraday) balances; confirmation that promised receipts actually arrived.
+  - name: "[ERP](term:erp) AR and AP"
+    use: Open receivables by customer and due date; open payables and the payment proposal to be prioritised.
+  - name: 13-week cash-flow workbook (Excel almost everywhere)
+    use: Base, expected and stress cases; daily updates; lever tracker; the document shared with banks.
+  - name: Facility agreements and the covenant model
+    use: Drawing conditions, notice periods, information undertakings, covenant definitions and headroom.
+  - name: Email, phone, daily video call
+    use: The daily cash meeting and most supplier/customer negotiation happen here.
+data:
+  - name: The missing receipt(s)
+    source: Bank statements, AR, sales, the customer
+    notes: The first question is whether it is timing (will come) or credit (may never come) — the answer changes everything.
+  - name: All other large expected receipts
+    source: AR ageing, project milestones, sales
+    notes: Crises cluster; a sector problem hits several customers.
+  - name: Scheduled outflows with priority
+    source: AP, payroll, tax calendar, loan schedule
+    notes: Payroll, social charges, taxes, VAT and debt service are not deferrable in practice; many supplier payments are.
+  - name: Undrawn committed facilities and drawing conditions
+    source: Facility agreements
+    notes: Notice periods (often 1–3 business days) and repeating representations (e.g. no MAC) matter.
+  - name: Covenants and information undertakings
+    source: Facility agreements, bond terms
+    notes: A forecast breach usually triggers a duty to inform lenders; cross-default links all facilities.
+  - name: Bank balances by bank
+    source: Daily position
+    notes: In a bank-failure scenario, which balances are reachable today is the only number that matters.
+steps:
+  - title: Detect and confirm — timing or credit?
+    who: Cash analyst / head of accounting → treasury manager / CFO
+    where: Bank statements, AR, calls to sales and the customer
+    when: "Day 1"
+    detail: >-
+      The expected receipt is not on the statement. Before anything else, find out why: payment run delayed, dispute,
+      acceptance not signed, or the customer in financial trouble (insolvency filing, press reports, other suppliers
+      unpaid, credit insurer withdrawing cover). Check whether other customers in the same segment or country behave
+      the same way.
+    judgment: >-
+      Whether this is a one-off delay or the first sign of a pattern. Over-reacting damages relationships; under-reacting
+      loses the weeks in which levers are cheap.
+  - title: Rebuild the 13-week cash flow with expected and stress cases
+    who: Treasury manager (CFO at SMEs)
+    where: 13-week workbook
+    when: "Day 1–2"
+    detail: >-
+      Remove or delay the missing receipts; add a stress case (further slippage, lower new-order deposits, one more
+      customer late); identify the low point and [headroom](term:liquidity-headroom) = cash + undrawn committed lines –
+      minimum operating cash, week by week and by entity. Note lumpy items in the window (payroll, 13th-month salary,
+      VAT, tax, coupon, loan repayments).
+    judgment: How severe to make the stress case — credible enough to act on, not so extreme that it looks like panic.
+    manual: The forecast is rebuilt by hand, receipt by receipt, often with sales and project managers on the phone.
+  - title: Switch to daily cash control
+    who: CFO decides; treasury / head of accounting runs it
+    where: Daily 30-minute call; payment approval workflow
+    when: "Day 2–3"
+    detail: >-
+      A short daily cash meeting (CFO, treasury/accounting, AR, AP/procurement, sometimes sales) reviews yesterday's
+      actuals versus forecast, today's receipts and payments, and the lever tracker. All payments above a low threshold
+      go to the CFO for release; the 13-week file is updated daily instead of weekly.
+    manual: >-
+      The daily update is a manual reconciliation of bank activity against the forecast, receipt by receipt. It is
+      tedious and is exactly what keeps the numbers credible.
+  - title: Secure liquidity early — draw committed lines
+    who: CFO / treasury manager
+    where: Utilisation request to the facility agent or bank
+    when: "Day 2–5"
+    detail: >-
+      Draw part of the [committed facility](term:committed-facility) while drawing conditions are clearly met and hold
+      the cash. The cost is interest and loss of optionality; the benefit is certainty — a lender may later argue that a
+      [material adverse change](term:material-adverse-change) has occurred, or covenants may block drawings. Uncommitted
+      lines and overdrafts can be cancelled by the bank and do not count as headroom.
+    judgment: How much to draw and when — drawing everything can alarm lenders and signal distress; drawing too little too late risks losing access.
+  - title: Push collections and protect the claim
+    who: AR / credit control, sales, legal
+    where: Calls, emails, customer meetings; court filings if insolvent
+    when: "Week 1"
+    detail: >-
+      Chase every overdue receivable, offer settlement of disputes, ask for partial payments against partial acceptance,
+      ask new customers for larger deposits. For an insolvent customer: file the claim, check retention-of-title and any
+      priority or reclamation rights for recently delivered goods, and claim on credit insurance if any.
+  - title: Prioritise and defer payments
+    who: AP / procurement prepare; CFO decides
+    where: ERP payment proposal, Excel priority list, supplier calls
+    when: "Week 1–2"
+    detail: >-
+      Rank outflows: payroll and social charges, taxes and VAT, debt service and critical suppliers are paid on time;
+      other suppliers are asked for extended terms, ideally by agreement rather than by silently paying late. Capex and
+      hiring are frozen unless essential.
+    judgment: >-
+      Which suppliers can be stretched without endangering supply or triggering their own credit insurers to cut the
+      company off — a stretched supplier that stops delivering converts a liquidity problem into an operating one.
+  - title: Talk to the banks before they hear it elsewhere
+    who: CFO with treasury manager
+    where: Calls and meetings with relationship banks; written information to lenders
+    when: "Week 1–2"
+    detail: >-
+      Inform the main banks proactively with the 13-week cash flow, the cause, the levers and the plan. Ask about a
+      temporary facility increase, [factoring](term:factoring) or invoice finance on sound receivables, and — if a
+      [covenant](term:covenant) test is at risk — a [waiver](term:covenant-waiver) before the test date. Check
+      information undertakings: many facility agreements require notice of events that could be material.
+    judgment: >-
+      What to disclose and when. Early transparency usually buys goodwill and time; a bank that discovers a problem from
+      overdraft usage or a missed covenant certificate reacts defensively. Watch [cross-default](term:cross-default).
+  - title: Escalate to the board and document
+    who: CFO → CEO → board
+    where: Board call / extraordinary meeting, written memo
+    when: "Week 1–2"
+    detail: >-
+      The board receives the 13-week cash flow, the stress case, levers taken and decisions needed (capex freeze, factoring,
+      shareholder support if required). In Switzerland, since the 2023 company-law revision the board is explicitly
+      required to monitor solvency and act if insolvency threatens (Art. 725 CO); minutes should show it did. In Germany,
+      the managing directors' insolvency-filing duties make the same documentation vital.
+  - title: If the cause is a bank, not a customer
+    who: Treasury manager / CFO
+    where: Other banks' portals, customer invoicing, payroll provider
+    when: "Hours 0–72"
+    detail: >-
+      When a bank holding the company's cash fails or is at risk, the question becomes: which cash can we reach today,
+      and through which other bank can payroll and suppliers be paid? Redirect customer receipts (with fraud controls —
+      "new bank details" letters are a fraud vector), move payroll funding, and check which facilities remain available.
+      On 10 March 2023 Roku disclosed that about USD 487m, roughly 26% of its cash, was at the closed Silicon Valley Bank,
+      mostly uninsured[](cite:roku-8k-2023); uninsured depositors only learned on Sunday 12 March that they would have
+      access on Monday[](cite:ust-fed-fdic-2023-joint). At Credit Suisse, corporate and private clients withdrew deposits
+      and let time deposits mature in the second half of March 2023 (customer deposits fell by CHF 67bn in the
+      quarter)[](cite:cs-1q23-earnings) before the 19 March takeover by UBS, after which accounts remained accessible[](cite:finma-ubs-cs-2023).
+  - title: Run the plan, track levers, and exit crisis mode
+    who: Treasury manager / CFO
+    where: Daily call, weekly lender and board updates
+    when: "Weeks 2–13"
+    detail: >-
+      Track actuals against the 13-week cash flow and each lever against its target. Send lenders the agreed weekly or
+      monthly reporting. Define the exit criteria up front (e.g. stress-case low point above minimum cash for 13 weeks
+      without new levers) and return to the normal weekly cycle when met; repay the precautionary drawing if not needed.
+      Afterwards: review customer concentration, credit insurance, payment terms and bank diversification — after SVB,
+      NeuGroup found 81% of surveyed treasuries reassessing bank counterparty management, most often towards greater
+      deposit diversification[](cite:neugroup-svb-2023).
+example:
+  title: "Alpine, October 2026: two milestones don't arrive and the 13th salary is coming"
+  body: |
+    *Illustrative scenario consistent with Alpine's facts (cash CHF 6–12m, CHF 12m committed line usually 0–5m drawn, lumpy project milestones, no treasurer).*
+
+    **Monday, 5 Oct** — Petra's daily check: the US customer's USD 2.2m (≈ CHF 1.76m) delivery milestone, due Friday, is not on the Alpine Inc. account. The US managing director promises to call.
+
+    **Tuesday** — Two pieces of news: the US customer, a regional e-commerce fulfilment firm, filed for Chapter 11 over the weekend; and a German retail customer postpones acceptance tests at two sites to "December at the earliest" — EUR 3.3m (≈ CHF 3.1m) of acceptance milestones slip. By 18:00 Martin and Petra have rebuilt the weekly sheet as a 13-week cash flow. Cash includes CHF 3m already drawn on the line; minimum cash is CHF 1.5m.
+
+    | Week (w/c) | Original forecast | Expected: US lost, DE paid wk 11 | Stress: DE beyond wk 13, new deposits –CHF 0.3m/wk | Stress + levers |
+    |---|---|---|---|---|
+    | 1 (5 Oct) | 6.4 | 6.4 | 6.4 | 11.4 |
+    | 4 (26 Oct, payroll) | 7.9 | 3.0 | 3.0 | 9.6 |
+    | 8 (23 Nov, payroll) | 6.1 | 1.2 | **0.0** | 8.3 |
+    | 10 (7 Dec) | 7.4 | 2.5 | 0.7 | 8.6 |
+    | 12 (21 Dec, payroll + 13th salary) | 3.9 | 2.1 | **–3.4** | 4.2 |
+    | 13 (28 Dec) | 5.3 | 3.5 | –2.3 | 5.3 |
+
+    *Closing cash, CHF m. Stress low point –3.4 in week 12; undrawn line CHF 9m, so headroom after minimum cash is only CHF 4.1m.*
+
+    **Wednesday** — Martin informs the CEO and the board chair, starts a daily 08:30 cash call (Martin, Petra, head of sales, head of operations/procurement) and requires his approval for every payment above CHF 25k. He sends a utilisation request for CHF 5m under the committed line (two business days' notice) — the conditions are clearly met today; he does not want to find out in December whether they still are.
+
+    **Thursday** — Martin calls the cantonal bank's relationship manager before she notices the drawing: cause, 13-week file, levers. He asks about non-recourse factoring of the German GmbH's undisputed receivables (EUR 1.9m → ≈ CHF 1.6m advance) and learns the bank will want the 13-week file monthly. He also rereads the credit agreement's information undertakings and the minimum equity ratio clause (illustrative); writing off the US receivable does not endanger it.
+
+    **Week 2** — Board call: capex freeze on a new CHF 0.8m test cell (to Q2 2027), hiring freeze on six open roles (≈ CHF 0.1m per month), factoring approved. Procurement agrees 30-day extensions on CHF 1.2m of component invoices with two long-standing suppliers — who are told why. Payroll, AHV social charges, VAT and the mortgage payment stay untouched. US counsel files the claim and checks whether recently delivered robots give Alpine any priority.
+
+    **Weeks 3–13** — Daily updates; Petra's lever tracker shows factoring received in week 4 and the extensions repaid in weeks 9–11. The German CEO, called by Alpine's CEO, agrees to accept and pay the first site (EUR 1.6m) in week 10. With the stress-case low point now above CHF 4m, Martin ends the daily call in week 9 and returns to the Monday cash sheet — but keeps the CHF 5m drawn until the German money is in.
+judgment:
+  - decision: Timing problem or credit problem
+    why: A late payer and an insolvent customer look identical on the bank statement for the first days; the response differs completely.
+  - decision: How hard to stress the forecast
+    why: Too mild and the levers come too late; too severe and management makes damaging cuts or alarms lenders.
+  - decision: When and how much to draw on committed lines
+    why: Balancing certainty of cash against cost, signalling and lender relations.
+  - decision: Which payments to defer and which suppliers to ask
+    why: Depends on supplier criticality, relationship history and whether their own credit insurers will react.
+  - decision: What to tell banks, when
+    why: Transparency builds trust but can trigger lender reviews; silence risks breaching information undertakings and a worse reaction later.
+  - decision: When to go back to normal mode
+    why: Staying in crisis mode is exhausting and costly; leaving too early risks a second surprise.
+failure_modes:
+  - mode: Treating a credit problem as a timing problem for weeks
+    consequence: The cheap levers (early drawing, supplier talks, factoring) are used too late or not available.
+    detection: Explicit timing-vs-credit classification of each missing receipt, reviewed daily.
+  - mode: Counting uncommitted lines or overdrafts as headroom
+    consequence: The bank cancels or does not extend them exactly when needed.
+    detection: Headroom definition limited to committed, available facilities.
+  - mode: Silent stretching of suppliers
+    consequence: Suppliers stop delivering or demand prepayment; credit insurers cut limits; production stops.
+    detection: Supplier calls logged; procurement feedback in the daily meeting.
+  - mode: Missing a non-deferrable payment (payroll, social charges, tax, debt service)
+    consequence: Legal and reputational damage far beyond the amount; possible event of default.
+    detection: Priority list with hard-coded "must pay" items and dates.
+  - mode: Lenders learn from someone else
+    consequence: Loss of trust; tougher terms for waivers or increases.
+    detection: Proactive communication plan owned by the CFO.
+  - mode: Covenant breach discovered at the test date
+    consequence: Event of default, cross-default, expensive waiver.
+    detection: Pro forma covenant calculation in every 13-week update.
+  - mode: Fraud during the chaos
+    consequence: Fake "changed bank details" letters or urgent payment requests exploit the confusion, especially in bank-failure scenarios.
+    detection: Unchanged call-back verification and four-eyes rules, even in crisis mode.
+software: >-
+  The crisis runs on **Excel** and the bank portals almost everywhere below large multinationals; restructuring
+  advisers bring their own 13-week templates. TMS and forecasting tools help where they exist (faster daily
+  positions, scenario versions), but the inputs — which customer will pay, which supplier will wait — come from calls.
+  See [Systems & Data](/systems).
+manual_work:
+  - Rebuilding the forecast receipt by receipt with sales, project managers and AR.
+  - Daily reconciliation of actual bank activity against the 13-week forecast.
+  - Maintaining the payment priority list and releasing payments one by one.
+  - Preparing lender packs, board memos and weekly variance commentary.
+  - Supplier and customer negotiation calls, logged in email or a spreadsheet.
+by_size:
+  startup: >-
+    The equivalent is a runway crisis: a large customer does not renew or a funding round is delayed. The CFO rebuilds
+    the monthly runway model weekly, cuts burn (hiring freeze, cloud and tool costs), talks to existing investors about
+    a bridge, and considers venture debt. Bank-failure risk is acute because startups often hold all cash in one
+    account — the SVB lesson.
+  sme: >-
+    The CFO and head of accounting do everything in Excel with the house bank on the phone. Levers: the committed line
+    (if it is committed), supplier extensions, factoring, capex and hiring freezes, owner support. The biggest risk is
+    discovering too late that the credit line is uncommitted or tied to conditions.
+  midmarket: >-
+    The treasury manager runs the 13-week cash flow by entity with subsidiary input; the CFO leads bank talks with the
+    syndicate; covenant headroom is often the binding constraint rather than cash. Local subsidiary cash (e.g. China)
+    may not be available to the parent quickly.
+  multinational: >-
+    Usually triggered by market events rather than one customer: CP markets closing, a rating downgrade, a large bank
+    failing, or a sector downturn. Treasury draws backstop RCFs, activates contingency funding plans, moves cash across
+    counterparties, and reports daily to the Group Treasurer and CFO; the board and rating agencies are briefed.
+    Individual customer defaults are handled by credit management without group-wide crisis mode.
+companies:
+  kleio: "The Kleio version: a major insurer customer delays its January annual prepayment by 3 months. Sarah re-runs the runway model (CHF 22m cash, CHF 0.9m monthly burn), finds runway still above 20 months, and does nothing drastic — but the board's post-SVB rule of at least two Swiss banks means no single failure can freeze payroll."
+  alpine: "The worked example above: two missing milestones, a Chapter 11 customer, the 13th salary in December, and a CFO who draws the committed line early and calls the bank himself."
+  helvetic: "A large Chinese distributor stops paying CNY 40m; the CNY cash at HM Suzhou cannot be upstreamed quickly anyway. Daniel moves the 13-week forecast to twice-weekly, keeps the CHF 140m undrawn RCF as headroom and runs the covenant model: leverage rises from 1.5x to about 1.8x in the stress case — no waiver needed, but he pre-briefs the four RCF banks before the semi-annual test."
+  globalchem: "Crisis mode means the capital markets, not a customer: if the EUR commercial-paper market shuts (as happened briefly in March 2020), Priya's team stops issuing, Olivier prepares a drawing under the EUR 1.5bn backstop RCF, and Anna reports daily to Markus. A single customer default is handled by credit management and barely registers at group level."
+handoffs:
+  - from: Bank statements / cash analyst
+    gives: missing receipt flagged
+    to: Treasury manager / CFO
+  - from: AR / sales
+    gives: customer status — timing, dispute or credit problem
+    to: Treasury manager / CFO
+  - from: Treasury manager
+    gives: rebuilt 13-week cash flow with expected and stress cases, headroom by week
+    to: CFO
+  - from: AP / procurement
+    gives: payment priority list and supplier extension results
+    to: CFO (daily cash call)
+  - from: CFO
+    gives: cause, 13-week cash flow, levers, requests (increase, factoring, waiver)
+    to: Relationship banks / lenders
+    note: Proactive, before the bank notices; often followed by agreed weekly or monthly reporting.
+  - from: CFO
+    gives: situation memo, stress case, decisions needed
+    to: CEO / board
+  - from: Legal / external counsel
+    gives: insolvency claim, retention-of-title, facility-term review
+    to: CFO
+interview: >-
+  Ask CFOs and treasurers about **the worst cash week they have lived through**: what they saw first, who told them,
+  when they drew the line, which supplier they asked first, what the bank said, what they told the board, and what they
+  changed afterwards. Ask which facilities they count as headroom — the answer reveals a lot. See
+  [Who should I interview?](/org/interview-finder).
+ai_note: >-
+  Daily reconciliation of actuals against the 13-week forecast and drafting lender and board updates are mechanical
+  and could be heavily assisted. The core of the workflow — judging whether a customer will pay, which supplier can
+  wait, what to tell a bank — relies on relationships and information that is not in any system, under personal
+  accountability of the CFO and board. Early-warning signals (payment-behaviour changes, news) are a plausible narrow use.
+terms: [thirteen-week-cash-flow, liquidity-headroom, committed-facility, drawdown, material-adverse-change, covenant, covenant-waiver, cross-default, factoring, cash-buffer, deposit-insurance, counterparty-limit, liquidity-risk]
+related: [cash-forecasting, liquidity-planning, credit-facility-management, covenant-monitoring, daily-cash-positioning, currency-shock, fraud-investigation]
+sources: [roku-8k-2023, ust-fed-fdic-2023-joint, cs-1q23-earnings, finma-ubs-cs-2023, neugroup-svb-2023]
+evidence_note: >-
+  Bank-failure facts are from primary filings and official statements: Roku's 8-K[](cite:roku-8k-2023), the joint US
+  Treasury/Fed/FDIC statement[](cite:ust-fed-fdic-2023-joint), Credit Suisse's 1Q23 release[](cite:cs-1q23-earnings)
+  and FINMA[](cite:finma-ubs-cs-2023); the post-SVB treasury response is from a NeuGroup member survey of mostly large
+  US companies[](cite:neugroup-svb-2023). These were verified from publisher search snippets because direct page access
+  was unavailable this session. The step sequence, levers and the Alpine example are established restructuring and
+  treasury practice synthesised by the author, not survey findings; the reference to Art. 725 CO (Swiss company law in
+  force since 1 January 2023) should be checked against the legal text before being relied on.

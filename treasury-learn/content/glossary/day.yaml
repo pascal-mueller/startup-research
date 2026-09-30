@@ -1,0 +1,36 @@
+# Glossary terms added by the "day" stream (Day in the Life).
+- id: key-person-risk
+  term: Key-person risk
+  aka: [key-man risk, single point of failure, bus factor]
+  category: Risk & control
+  plain: The danger that a process stops or goes wrong when one particular person is absent, because only they know how it works.
+  professional: "An operational-risk concentration typical of small treasury teams: one person holds the knowledge of the positioning workbook, the forecast macros, bank connectivity or signing rights. Mitigated by documented procedures, cross-training, a backup signatory in the bank mandates, and systems that replace personal spreadsheets. Auditors and TMS business cases frequently cite it."
+  example: "Helvetic's treasury is Daniel and Lea. When both are away, the CFO is the only other treasury signatory, and nobody else can run the positioning workbook — so they never take holidays in the same week and Daniel builds the position himself on Lea's days off."
+  related: [operational-risk, segregation-of-duties, business-continuity]
+
+- id: ebics-key-initialisation
+  term: EBICS key initialisation (INI / HIA letters)
+  aka: [EBICS initialisation, INI letter, HIA letter, EBICS key renewal]
+  category: Banking & connectivity
+  plain: Before a company's software can talk to a bank over EBICS, each user's electronic keys must be registered with the bank — including a signed paper or electronic letter confirming them.
+  professional: "In EBICS, each subscriber generates key pairs (signature, authentication, encryption), transmits the public keys to the bank (INI for the signature key, HIA for authentication and encryption keys) and confirms them out-of-band with signed initialisation letters, after which the bank activates the subscriber. Keys and certificates have to be renewed; an expired or blocked key stops statement downloads and payment uploads until re-initialised."
+  example: "When Helvetic's EBICS keys for the German bank expire unnoticed, no German statement arrives and the payment upload fails. Lea generates new keys, Daniel and the CFO sign the initialisation letters, and the bank activates them two days later; meanwhile Germany is run from the bank's web portal."
+  related: [ebics, ebics-signature, bank-statement]
+
+- id: thirteenth-month-salary
+  term: 13th-month salary
+  aka: [13. Monatslohn, 13th salary]
+  category: Cash & liquidity
+  plain: An extra month's salary that many Swiss (and some other European) employers pay each year, usually in December or split between mid-year and December.
+  professional: "A contractual or customary annual salary component in Switzerland, Austria, Germany (as Weihnachtsgeld, varying), Italy and elsewhere. For treasury it is a predictable but large outflow that roughly doubles the payroll in the month it is paid, and it is a classic item missed in forecasts built from 'average monthly payroll'."
+  example: "Alpine's Swiss payroll is about CHF 2.1m a month; in December, with the 13th salary, Petra plans for about CHF 4m and checks the credit line in November."
+  related: [short-term-forecast, liquidity-headroom]
+
+- id: jour-fixe
+  term: Jour fixe
+  aka: [weekly jour fixe, JF, regular 1:1]
+  category: Organisation
+  plain: A standing weekly (or fortnightly) meeting between a manager and their boss at a fixed time — the German/Swiss-German word for it.
+  professional: "Common in DACH companies. In treasury, the weekly jour fixe between the treasury manager and the CFO is where the cash position, forecast low point, facility drawings, hedges and bank topics are reviewed and decisions above the manager's authority are taken. If you are interviewing a Swiss treasurer, 'what's on the agenda of your jour fixe with the CFO?' is a good question about escalation."
+  example: "Daniel's Thursday jour fixe with Thomas is 30 minutes: position, 13-week low point, whether to roll or repay an RCF tranche, the hedge ratio, and any bank issue."
+  related: [short-term-forecast, liquidity-headroom, signing-authority-matrix]

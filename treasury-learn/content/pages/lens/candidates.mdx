@@ -1,0 +1,95 @@
+---
+title: Candidates — good, possible, hard
+nav: Candidates
+order: 4
+summary: The 20 workflows grouped by classification, with the reasoning, the narrow first slice, how it could expand into more of the person's job, and what would have to be true. Includes an explicit list of tempting but poor startup targets.
+related: [/lens/matrix, /lens/digital-worker, /lens/method, /org/roles-analyst, /competitors]
+---
+
+<Callout type="synthesis">
+
+Everything on this page is the author's synthesis from the workflow pages and the evidence on the [overview](/lens).
+"Good agent candidate" means a system could plausibly perform a meaningful part of the assignment under human review —
+not that it is a good company to start.
+
+</Callout>
+
+## Good agent candidates
+
+<LensGroup cls="good" detail />
+
+## Possible
+
+<LensGroup cls="possible" detail />
+
+## Hard or dangerous
+
+<LensGroup cls="hard" detail />
+
+## Start narrow → expand into the job
+
+The spec's question is whether a system can start with one assignment and grow into **more of the person's job**. Looking
+at the roles rather than the workflows, one path stands out: the **mid-market treasury analyst's recurring week**
+([Lea at Helvetic](/day/lea)).
+
+| Step | Assignment the system takes on | Why it is the next step | What the human still does |
+|---|---|---|---|
+| 1 | Morning position briefing, read-only ([digital worker](/lens/dw-liquidity-recommendation)) | Daily, objective next-day check, zero write access | Lea builds her own position in parallel for two weeks to compare |
+| 2 | Explanations of unexpected movements, with evidence | Same data; adds email/remittance context | Daniel judges right / wrong |
+| 3 | Transfer and sweep proposals against policy | The daily decision Daniel already reviews | Daniel approves; two humans release in the bank |
+| 4 | Weekly variance analysis ([digital worker](/lens/dw-forecast-variance)) | Daily actuals already categorised in steps 1–2 | Daniel decides overrides |
+| 5 | Monthly FX exposure collection ([digital worker](/lens/dw-exposure-collection)) | Same subsidiaries, same chasing pattern | Daniel and the CFO decide hedges |
+| 6 | Month-end treasury report | Assembles outputs of 1–5 | Daniel edits the message to the CFO |
+| 7 | Quarterly bank-fee review ([digital worker](/lens/dw-bank-fee-review)) | Low-risk add-on using the same statements | Daniel decides which banks to challenge |
+
+At step 7, the system is preparing most of what a mid-market analyst produces in a week. The analyst's own job shifts to
+checking, chasing the humans the system cannot, and the judgment calls — which is roughly what the
+[treasury manager](/org/roles-treasury-manager) does today. That is the credible version of "the AI increasingly performs
+the expert's job". It never reaches the manager's decisions or anyone's signing rights.
+
+<Callout type="warning" title="The path breaks if step 1 is wrong">
+
+If the morning position is not right every day, nobody will let the system near steps 3–7. The first slice has to be
+boringly reliable — every statement present, every balance with an as-of time, every number computed deterministically.
+
+</Callout>
+
+## What would have to be true (across candidates)
+
+1. **Data access without an IT project.** Bank statements for every account, ERP read access in multi-ERP groups, and
+   permission to read the treasury mailbox — the place where "known flows" and explanations live.
+2. **Corrections are captured.** Daniel's edits must happen *in* the system, not in the bank portal afterwards, or there
+   is no learning loop.
+3. **Auditors accept the control design.** The system as *maker*, a human as *checker*, full logs, no signing rights.
+   This fits existing [four-eyes](term:four-eyes-principle) controls and ICS/SOX documentation — if it is designed that way from day one.
+4. **Subsidiaries tolerate it.** Chasing and questioning local finance is organisational work. If Giulia in Italy feels
+   audited by a bot, the inputs get worse, not better.
+5. **The buyer has budget and pain at the same time.** Mid-market groups have the pain but small software budgets and
+   often a TMS project "in evaluation" — the agent competes with that project for the same money and attention.
+
+## Tempting but poor startup targets
+
+<Callout type="warning" title="Say it plainly">
+
+- **Bank reconciliation** — technically ideal, commercially poor: rule-based matching already clears most items where it
+  is set up, ERP and reconciliation vendors own the residual, and the work often sits in accounting, not treasury.
+- **Payment processing / release** — already straight-through; adding an agent to the release path adds fraud and
+  control risk. Fraud *prevention* is a real market, but a crowded detection/control market, not a digital treasurer.
+- **Large payment approval** — the approver is the control. A product that approves is unsellable; one that assembles
+  the approval dossier is a feature.
+- **Surplus cash investment in CHF** — at ~0% CHF rates, a Swiss borrower with a drawn RCF simply repays drawings at the
+  next rollover. There is little to optimise.
+- **Crises and events** (liquidity crisis, currency shock, acquisition integration, fraud investigation) — rare, unique,
+  relationship-driven; no feedback loop. Consultants' and restructuring advisers' territory.
+- **Bank fee analysis on its own** — a good agent task, but a small budget line reviewed quarterly. Use as a wedge, not a company.
+
+</Callout>
+
+<Callout type="interview" title="Test these in interviews">
+
+For each good candidate, ask the person who *does* the assignment: "Show me the last one you produced. What did your
+manager change? What did you have to ask someone? How long did it take? What happened the last time it was wrong?" If
+the answers show little time spent, few corrections, or decisions that depend on information no system could see, lower
+the rating.
+
+</Callout>

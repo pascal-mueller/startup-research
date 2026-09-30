@@ -1,0 +1,83 @@
+---
+title: Treasury management systems (TMS)
+nav: TMS
+order: 5
+summary: What a TMS does module by module, what implementing one really involves, who runs it once it is live, and what it does not solve. A TMS is treasury's own system of record for positions, deals, exposures and bank accounts — it depends entirely on the data the ERP, the banks and the business feed it.
+related: [/systems/architecture, /systems/vendors, /systems/bank-connectivity, /map/technology, /org/roles-operations, /competitors]
+---
+
+## What a TMS is
+
+A [TMS](term:tms) (treasury management system; TRMS when risk functionality is emphasised) is software that treasury uses as its own system of record: bank balances and transactions, the cash position and forecast, deals (FX, money market, debt, derivatives), exposures, bank accounts and signatories, and the accounting entries that follow. It is sold as SaaS (most new implementations), hosted, or as modules inside an ERP (SAP's treasury components).
+
+Three families exist in the market (details on [Vendors](/systems/vendors)):
+
+- **Enterprise TMS/TRMS** — full deal lifecycle, valuation, hedge accounting, in-house bank; e.g. Kyriba, FIS Treasury and Risk Manager, Ripple Treasury (formerly GTreasury), ION's products, Coupa Treasury, SAP Treasury and Risk Management.
+- **Cloud cash-management platforms** — built around bank connectivity, cash visibility, forecasting and payments, aimed at SMEs and mid-market, several adding TMS depth; e.g. Trovata, Agicap, Atlar, Embat.
+- **Connectivity / payment hubs** — which many mid-market groups buy first, before or instead of a TMS; e.g. SAP Multi-Bank Connectivity, Nomentia, standalone multibank tools.
+
+## Module by module
+
+| Module | What it does | Who uses it | What still needs a human |
+|---|---|---|---|
+| Bank connectivity & statement import | Collects statements and intraday reports from all banks; checks completeness; stores transactions | Treasury ops, analyst | Chasing missing statements; bank onboarding |
+| Cash positioning | Balances by entity/bank/currency, plus today's expected flows; target balances and sweeps | [Analyst](/org/roles-analyst), [cash manager](/org/roles-cash-manager) | Deciding what to move, fund, invest ([daily positioning](wf:daily-cash-positioning)) |
+| Cash-flow classification | Assigns [cash-flow categories](term:cash-flow-category) to bank lines by rules | Analyst, ops | Maintaining rules; classifying the unmatched residue |
+| Forecasting | Collects submissions, pulls ERP open items, stores versions, measures accuracy | Analyst, subsidiaries, FP&A | Judgment overlays; challenging submissions ([forecasting](wf:cash-forecasting)) |
+| Payments | Treasury payments, payment hub for ERP files, approval workflow, format generation, sometimes sanctions screening | Treasury, payment factory | Approving; investigating rejects and unusual payments |
+| Bank account management ([eBAM](term:ebam)) | Account register, signatories, users, documents, approval workflow for opening/closing | Treasury operations | KYC paperwork with each bank; periodic mandate reviews |
+| In-house bank & intercompany | Internal accounts per subsidiary, interest calculation, intercompany loans, [netting](term:netting), POBO/COBO | Cash & liquidity team | Setting internal rates and limits; tax and legal constraints |
+| Deal management (front office) | Deal capture for FX, deposits, loans, bonds, derivatives; limits check | Dealers, [FX/risk manager](/org/roles-fx-risk) | Deciding what to trade and when |
+| Confirmation & settlement (back office) | Matching counterparty confirmations, generating settlement payments | [Treasury operations](/org/roles-operations) | Resolving mismatches with banks |
+| Market data & valuation | Rate feeds, [mark-to-market](term:mark-to-market), exposure reports | Middle office, risk | Choosing curves and methods; explaining results |
+| Risk & hedge accounting | Exposure aggregation, hedge relationships, effectiveness documentation | Risk manager, accounting | Policy and designation decisions; auditor discussions |
+| Debt & facilities | Facility register, drawings, interest schedules, covenant calculations | [Corporate finance](/org/roles-debt) | Negotiating; covenant judgment ([covenant monitoring](wf:covenant-monitoring)) |
+| Accounting interface | Generates journal entries for deals, interest, revaluation, in-house bank | Back office, accounting | Mapping to the chart of accounts; month-end reconciliation |
+| Reporting | Standard and ad hoc reports, dashboards | Everyone | Deciding what the numbers mean |
+
+No company uses all modules. A mid-market buyer typically starts with connectivity, positioning, forecasting and payments; deal management and hedge accounting come when the hedging programme and auditors require it. GlobalChem uses almost all of them, in SAP.
+
+## Implementation reality
+
+What treasurers describe when they talk about their TMS project (practitioner patterns, not survey statistics):
+
+- **Scope and data first.** Designing the account structure, cash-flow categories, entity hierarchy, deal types and accounting rules takes longer than expected, because it forces decisions nobody wrote down before ("is this intercompany or external?").
+- **Bank connectivity dominates the timeline.** Every bank must be onboarded to the new channel; statement formats tested; payment formats certified. Ten banks can mean ten parallel projects on the banks' schedules.
+- **ERP interfaces.** Pulling AP/AR data and posting entries back requires ERP-side work, owned by a different team with its own backlog.
+- **Timelines.** Vendors of cloud cash platforms advertise weeks for a first go-live of visibility modules; full TMS implementations at multinationals are commonly described as running from several months to more than a year, phased by module and region. Treat any single number with suspicion and ask a customer, not the vendor.
+- **Parallel running.** Treasury keeps its spreadsheets running alongside the new system until it trusts the numbers — sometimes for months.
+- **Adoption.** Modules that are bought but not used are common; ask "which modules do you actually use every day?"
+
+## Who administers it
+
+| Size | Who | What they do |
+|---|---|---|
+| Mid-market (e.g. a future TMS at Helvetic) | The treasury analyst or manager, with vendor support | Users and rights, static data (banks, accounts, counterparties), mapping rules, report changes, first-line troubleshooting |
+| Multinational (GlobalChem) | A treasury-systems team (Ben and, at large groups, a few colleagues) plus IT | Release management, interfaces, connectivity, access reviews, projects, vendor management, audit evidence |
+
+Administration includes the unglamorous controls auditors test: who can enter deals vs confirm them ([segregation of duties](term:segregation-of-duties)), who can change [static data](term:static-data) such as counterparty settlement instructions, periodic user-access reviews, and change management for configuration.
+
+## What a TMS does not solve
+
+- **Forecast input quality.** A TMS stores and compares forecasts; it cannot make a subsidiary submit on time or think about cash timing. See [Data quality](/systems/data-quality).
+- **Bank-side reality.** A bank that does not deliver statements electronically, or a country where accounts cannot be connected, stays manual.
+- **ERP data problems.** Wrong due dates, missing vendor data, unposted intercompany — all flow straight into the TMS.
+- **Judgment.** Whether to hedge, how much buffer to hold, whether to fund a subsidiary by loan or equity, whether a payment looks wrong — the TMS provides information and control steps, people decide.
+- **Organisational design.** Who approves what, which entity pays on behalf of whom, what the policy says — must be decided before configuration.
+- **Spreadsheets.** Surveys consistently find spreadsheets remain in use alongside treasury systems, especially for forecasting[](cite:deloitte-gts-2024).
+
+<Callout type="survey">
+
+European treasurers list treasury-technology review or TMS replacement among their top priorities, while AI ranks low because data lakes and standardised data are missing[](cite:eact-2025). US practitioners name cash and liquidity forecasting as their most challenging activity (62% in AFP's 2025 benchmarking; 49% in 2026)[](cite:afp-bench-2025,afp-bench-2026) — the area where a TMS helps least on its own because the inputs come from outside treasury.
+
+</Callout>
+
+<Callout type="interview">
+
+- "Which modules do you use every day, and which did you buy but not use?"
+- "What still runs in Excel next to the TMS, and why?"
+- "Who administers the system, and how much of their week does it take?"
+- "What took longest in the implementation?"
+- "If you replaced it tomorrow, what would you miss and what wouldn't you?"
+
+</Callout>

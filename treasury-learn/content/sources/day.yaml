@@ -1,0 +1,40 @@
+# Sources registered by the "day" stream.
+# Research note: WebFetch was blocked by the environment's egress policy for all publisher domains tried, and the
+# session's WebSearch budget ran out early. The facts below were taken from search-result snippets attributed to the
+# original publisher's page (URL given); each note says exactly what was used. Nothing else from these pages is relied on.
+- id: frb-fedwire-hours
+  title: Fedwire Funds Service — operating hours
+  publisher: Federal Reserve Financial Services
+  url: https://app.frbservices.org/resources/financial-services/wires/operating-hours.html
+  type: official
+  note: "From the publisher's page as shown in search results (not opened directly): the Fedwire Funds Service business day runs from 21:00 ET on the preceding calendar day to 19:00 ET; the deadline for third-party (customer) transfers is 18:45 ET. Banks set earlier cut-offs for their corporate clients."
+
+- id: boe-chaps-faq
+  title: Extended CHAPS/CREST settlement day — frequently asked questions
+  publisher: Bank of England
+  url: https://www.bankofengland.co.uk/payment-and-settlement/faqs
+  type: official
+  note: "From search-result extract of the Bank of England FAQ (not opened directly): CHAPS opens 06:00 and closes 18:00 for bank-to-bank payments; customer payments must be submitted by 17:40; individual banks may set earlier customer cut-offs. The Bank plans an earlier opening in future (reported as 01:30 from September 2027, subject to confirmation)."
+
+- id: aos-t2-hours
+  title: ECB consults on extension to T2 operating hours
+  publisher: A&O Shearman (FinReg blog)
+  year: 2025
+  url: https://finreg.aoshearman.com/ecb-consults-on-extension-to-t2-operating-hours
+  type: news
+  note: "Law-firm summary of an ECB consultation (search-result extract, not opened directly): T2, the euro RTGS system, currently closes its day at 18:00 CET and the ECB has consulted on extending operating hours. Used only for 'T2's day ends at 18:00 CET'; customer-payment cut-offs are earlier and bank-specific."
+
+- id: ubs-sic-hours-2017
+  title: Transaction versus payment — change of SIC operating hours
+  publisher: UBS
+  year: 2017
+  url: https://www.ubs.com/global/en/media/display-page-ndp/en-20170118-transaction-versus-payment.html
+  type: official
+  note: "Bank notice (search-result extract, not opened directly): from 15 May 2017 SIX Interbank Clearing extended SIC operating hours from 15:00 to 17:00 CET, and SIX SIS moved its CHF delivery-versus-payment deadline from 14:30 to 16:30. Used only to explain why Swiss banks' same-day CHF cut-offs sit in the afternoon; the banks' own corporate cut-offs are earlier and vary."
+
+- id: rw-day-global-treasurer
+  title: A day in the life of a global treasurer
+  publisher: Robert Walters
+  url: https://www.robertwalters.co.uk/career-advice/latest-tax-treasury-research/a-day-in-the-life-of-a-global-treasurer.html
+  type: practitioner
+  note: "Recruiter interview with Simon Neville (former Treasury Director, Tesco), seen as a search-result summary only. Supports the qualitative point that a group treasurer's day splits into operational treasury with 'live' decisions and structured work — developing the team, improving systems, meeting stakeholders. No numbers taken from it."

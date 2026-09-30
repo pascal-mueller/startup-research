@@ -146,11 +146,13 @@
     - Approval of major financing, guarantees, dividends, M&A
   knows:
     best:
-      - Risk appetite and what the board will not accept
+      - Risk appetite and what the board will not accept (e.g. after SVB, bank concentration limits at startups)
+      - Why a financing or hedging policy was approved in its current form
     some:
-      - Headline liquidity, covenant headroom, hedging stance
+      - Headline liquidity, covenant headroom, hedging stance, as presented in the quarterly pack
     not:
-      - Anything operational
+      - Anything operational — how positions, forecasts or payments are produced
+      - Which systems treasury uses
   vocabulary: [treasury policy, covenant, rating, risk appetite]
 
 # ============================================================ TREASURY
@@ -300,7 +302,7 @@
       entries:
         - time: Daily 08:30–09:15
           activity: Review Lea's cash position and decide today's transfers
-          why: Accounts must cover today's outflows before cut-off; surplus above the CHF 10m parent buffer can be placed or used to repay RCF.
+          why: Accounts must cover today's outflows before cut-off. CHF surplus above the CHF 10m parent buffer earns ~0% on deposit, so it is used to reduce RCF drawings at the next rollover; EUR or USD surplus can earn money-market rates.
           system: Multibank connectivity tool (EBICS/SWIFT statements), positioning workbook in Excel
           info: Prior-day balances for 12 accounts, today's known flows, Lea's proposed transfers and open questions
           decision: Approve, change or reject each transfer; decide whether a gap is worth chasing today or can wait.
@@ -352,7 +354,7 @@
           why: The Excel set-up has key-person risk (if Daniel and Lea are both away) and does not scale.
           system: Vendor demos, requirements spreadsheet
           decision: Shortlist and business case for Thomas
-          with: Ben-equivalent does not exist here — IT and Lea
+          with: Group IT, Lea, TMS vendors (there is no treasury systems role at this size)
     - title: Daniel's month, quarter and year at Helvetic
       context: >-
         The weekly routine above repeats; these are the periodic tasks layered on top. Month-end work is mostly
@@ -445,7 +447,7 @@
       entries:
         - time: Daily 07:45
           activity: Check all 12 statements arrived; refresh the positioning workbook
-          why: A missing statement means an unknown balance; the Chinese bank's file typically arrives around 10:00.
+          why: A missing statement means an unknown balance. Asian banks (the Chinese bank) are ahead of CET, so their files should already be in; if not, it is a connectivity or bank problem. The US bank's statement is usually the last to arrive.
           system: Connectivity tool, Excel (Power Query refresh)
           info: Prior-day MT940/camt.053 statements
           decision: Whether an odd balance is a data problem (duplicate file, mapping) or a real movement
@@ -622,7 +624,7 @@
       Not a team. At Helvetic the analyst checks confirmations and Group Accounting books deals — segregation of duties
       is achieved by splitting tasks between Daniel (deals), Lea (confirms) and accounting (books), not by a separate office.
     multinational: >-
-      Yes. At GlobalChem, Marta runs ~8 people in the Kraków SSC — deal confirmations and settlement, statement
+      Yes. At GlobalChem, Marta runs a 7-person team in the Kraków SSC — deal confirmations and settlement, statement
       completeness, payment factory release, static data, bank reconciliation of treasury accounts, bank account admin,
       SWIFT and user-rights housekeeping.
   owns:
@@ -646,7 +648,7 @@
   calendars:
     - title: Marta's team's week in the Kraków shared-service centre (GlobalChem treasury operations)
       context: >-
-        Eight people; they never decide a trade or a funding amount. Their job is that what Basel decided actually
+        Seven people; they never decide a trade or a funding amount. Their job is that what Basel decided actually
         happens, correctly, and is recorded — and that nothing leaves the company that should not.
       entries:
         - time: Daily 07:30
@@ -761,7 +763,7 @@
       No. The treasury manager and analyst administer the connectivity tool themselves with vendor support; IT helps
       with ERP interfaces. Helvetic's TMS evaluation is run by Daniel.
     multinational: >-
-      Yes. At GlobalChem, Ben (with 1–2 people) runs SAP treasury configuration, SWIFT via a service bureau, market-data
+      Yes. At GlobalChem, Ben (a 2-person team) runs SAP treasury configuration, SWIFT via a service bureau, market-data
       feeds, the forecasting tool and user administration, and leads upgrades.
   owns:
     - TMS and connectivity configuration, interfaces and upgrades
@@ -857,11 +859,13 @@
     - Budgets, cost-centre and product profitability, performance reporting
   knows:
     best:
-      - Business plans, margins, budget assumptions
+      - Business plans, margins, budget and cost-centre assumptions
+      - "Why a BU's numbers moved (volume, price, mix) — useful for explaining forecast variances"
     some:
-      - Working-capital drivers
+      - Working-capital drivers (inventory build, project billing)
+      - "In DACH groups: the medium-term plan treasury uses for liquidity planning"
     not:
-      - Cash timing, bank positions, hedging
+      - Cash timing by week, bank positions, hedging, payment controls
   vocabulary: [budget, forecast, variance, cost centre, EBIT]
 
 - id: fpa
@@ -949,11 +953,13 @@
     - Transfer-pricing policy for intercompany financing, withholding taxes, repatriation structures
   knows:
     best:
-      - Why cash cannot simply be moved, interest-rate rules for intercompany loans
+      - "Why cash cannot simply be moved: withholding taxes on dividends and interest, transfer-pricing rules for intercompany loan rates, thin-capitalisation limits"
+      - Repatriation options and their cost per country (e.g. China dividends need audited accounts and tax clearance)
+      - Tax payment calendar (a frequent forgotten forecast item)
     some:
-      - Pooling and netting structures
+      - Pooling, netting and in-house bank structures (they approve the design)
     not:
-      - Daily cash and hedging
+      - Daily cash positions, hedging decisions, bank operations
   vocabulary: [transfer pricing, withholding tax, repatriation, thin capitalisation, arm's length]
 
 - id: procurement
@@ -972,11 +978,12 @@
     - Supplier selection, contract and payment terms
   knows:
     best:
-      - Upcoming large purchases, contract currencies, supplier terms
+      - Upcoming large purchases and capex contracts, contract currencies, negotiated payment terms
+      - Which suppliers are strategic or fragile (relevant for supply-chain-finance and early-payment requests)
     some:
-      - Supplier finance, DPO targets
+      - Supplier finance programmes, DPO targets
     not:
-      - Cash position, hedging
+      - Cash position, FX hedging, how payments are executed
   vocabulary: [payment terms, DPO, supply chain finance, contract currency]
 
 - id: legal
@@ -994,11 +1001,12 @@
     - Legal review of financing documents, powers of attorney, signatory resolutions
   knows:
     best:
-      - Documentation terms, what was negotiated in facility agreements
+      - What facility and bond documents actually say (definitions, events of default, negative pledges, guarantees)
+      - Powers of attorney, board resolutions, who may legally sign what
     some:
-      - Covenants
+      - Covenant definitions (with treasury and accounting)
     not:
-      - Operations
+      - Day-to-day treasury operations, pricing, systems
   vocabulary: [facility agreement, guarantee, power of attorney, board resolution]
 
 - id: internal-audit
@@ -1016,11 +1024,12 @@
     - Assurance on controls
   knows:
     best:
-      - Control weaknesses, past incidents
+      - Control weaknesses and past findings in treasury (segregation of duties, signatory lists, user rights, manual payments)
+      - Past incidents and near-misses, including fraud attempts
     some:
-      - Process design
+      - Process design across treasury, AP and SSC
     not:
-      - Market decisions
+      - Why market and funding decisions were taken; daily volumes
   vocabulary: [control, finding, SoD, audit trail]
 
 # ============================================================ BUSINESS / EXTERNAL
@@ -1040,11 +1049,13 @@
     - Local books, local payments (unless centralised), local bank contacts, forecast submission
   knows:
     best:
-      - Local customers, suppliers, tax dates, bank quirks, why the forecast was wrong
+      - Local customers, suppliers, tax dates, bank quirks — the real reason a forecast was wrong
+      - How group templates are filled in (and how much is copied from last month)
+      - Local banking and regulatory constraints (e.g. CNY capital controls for Wei in Suzhou)
     some:
-      - Group treasury rules (as constraints)
+      - Group treasury rules, as constraints they live with; internal hedge rates
     not:
-      - Group liquidity picture, hedging strategy
+      - The group liquidity picture, hedging strategy, why central treasury asks for what it asks
   vocabulary: [forecast template, intercompany, local bank, cut-off]
 
 - id: business-unit
@@ -1062,11 +1073,12 @@
     - Commercial decisions, pricing currency, capex requests
   knows:
     best:
-      - Order pipeline, timing of big projects, customer behaviour
+      - Order pipeline, timing of big projects and milestones, customer behaviour (who will pay late)
+      - Contract currencies and pricing clauses — the origin of FX exposure
     some:
-      - FX impact on pricing
+      - FX impact on margins; capex timing
     not:
-      - Treasury processes
+      - Treasury processes, hedges in place, bank matters
   vocabulary: [order intake, pipeline, milestone, capex]
 
 - id: external-fiduciary
@@ -1084,11 +1096,11 @@
     - Bookkeeping, payroll, tax filings as contracted
   knows:
     best:
-      - Booked history, payroll dates
+      - Booked history, payroll and social-security dates, VAT and tax filing dates
     some:
-      - Cash balances
+      - Bank balances (they see statements for bookkeeping)
     not:
-      - Treasury decisions
+      - Treasury decisions, forecasting, FX
   vocabulary: [payroll, VAT, closing]
 
 - id: bank-rm
@@ -1107,9 +1119,10 @@
     - The bank's side of credit, services and KYC
   knows:
     best:
-      - What the bank will lend and at what price; what peers do (anonymously)
+      - What the bank will lend and at what price; what the bank's credit committee cares about
+      - What peer companies do (anonymised) — useful market colour, but sales-driven
     some:
-      - The company's cash-management set-up at that bank
+      - The company's cash-management set-up and pain points at that bank
     not:
-      - The company's full bank panel, internal decisions
+      - The company's full bank panel, internal decisions, what other banks offered
   vocabulary: [wallet, ancillary, credit approval, KYC, pricing]

@@ -1,0 +1,66 @@
+---
+title: Market data and dealing platforms
+nav: Market data
+order: 6
+summary: The FX rates, interest-rate curves and fixings treasury uses to value deals, measure exposure, convert positions and decide — and the platforms used to execute trades. Small treasuries use bank portals and free central-bank data; large ones pay for terminals and feeds. The rate you look at, the rate you deal at and the rate accounting uses are three different numbers.
+related: [/map/fx, /workflows/fx-hedging, /workflows/fx-exposure-management, /workflows/currency-shock, /systems/tms]
+---
+
+## What market data treasury needs
+
+| Data | Used for | Typical source | Who looks at it |
+|---|---|---|---|
+| FX spot rates | Converting the cash position to CHF; indicative prices before dealing | Bank FX portal, Bloomberg / LSEG, free central-bank publications | Analyst, cash manager, FX manager |
+| FX forward points | Pricing and valuing [forwards](term:forward) ([forward points](term:forward-points)) | Bank quotes, trading platform, terminal | FX/risk manager, middle office |
+| FX fixings / reference rates | Accounting revaluation, contracts, budget rates ([FX fixing](term:fx-fixing)) | ECB reference rates, WM/Reuters, tax authorities' rates | Accounting, treasury |
+| Interest-rate fixings | Interest on floating debt and deposits: SARON (SIX), €STR (ECB), SOFR (NY Fed), Euribor (EMMI) | Published by administrators; terminal feed | Corporate finance, back office |
+| Yield curves | [Mark-to-market](term:mark-to-market) of swaps and forwards; discounting | Terminal / TMS feed | Middle office, risk |
+| Money-market fund and deposit rates | [Surplus cash investment](wf:surplus-cash-investment) decisions | Bank offers, fund platforms | Cash manager |
+| Credit spreads, ratings, CDS | [Counterparty limits](term:counterparty-limit), funding decisions | Terminal; rating agencies | Head of treasury, risk |
+| Commodity prices | Exposure for commodity-intensive groups | Exchanges, terminal | Risk manager |
+
+Current levels in this manual's illustrative autumn-2026 setting: EUR/CHF around 0.93–0.94, USD/CHF around 0.79–0.81, SNB policy rate and SARON around 0%, €STR around 1.9–2.0%, SOFR around 3.5–4%. With CHF rates near zero, surplus CHF earns almost nothing, which is why a group with drawn bank debt reduces drawings rather than placing CHF deposits, while EUR and USD surpluses still earn meaningful overnight rates.
+
+## Three rates for "the same" exchange rate
+
+<Callout type="confusion" title="Screen rate, deal rate, accounting rate">
+
+- **Screen / indicative rate** — what a terminal or bank portal shows right now. Nobody has agreed to trade at it.
+- **Deal rate** — the rate actually agreed with a bank for a specific trade, including the bank's margin. It lands in the TMS or hedge register from the confirmation.
+- **Accounting rate** — a fixing (e.g. the ECB reference rate of month-end, or a group rate set monthly) loaded into the ERP for revaluation and reporting.
+
+When Helvetic's month-end result shows an "FX loss" that surprises Thomas, the difference between these three is usually part of the explanation.
+
+</Callout>
+
+## Where the data comes from, by size
+
+| | Startup ([Kleio](co:kleio)) | SME ([Alpine](co:alpine)) | Mid-market ([Helvetic](co:helvetic)) | Multinational ([GlobalChem](co:globalchem)) |
+|---|---|---|---|---|
+| Rates for decisions | Bank portal rate at conversion time | Bank portal; call to the bank's FX desk | Relationship banks' FX platforms; bank research | Bloomberg; multi-dealer platform |
+| Rates in the system | Accounting software's automatic rates | ERP rate table from ECB / Swiss tax-authority rates | SAP rate table from a daily feed; Lea's spreadsheet for valuation | Rate feed into SAP treasury for valuation, revaluation, hedge accounting |
+| Valuation of hedges | None (no hedges) | Bank's month-end valuation statement | Bank valuation statements, checked in Excel | Calculated in the TMS; compared to bank statements |
+| Dealing | Portal conversion | Phone / portal with one bank | Several banks by phone/platform; competitive quotes collected by email or chat | [Multi-dealer platform](term:trading-platform) with audit trail |
+
+## Dealing platforms
+
+Mid-market and large treasuries increasingly execute FX and money-market deals on electronic platforms instead of by phone: multi-dealer request-for-quote platforms (360T, owned by Deutsche Börse; FXall, part of LSEG; Bloomberg FXGO) or single-bank portals. The treasurer sends the same request to several banks, takes the best quote, and the executed deal flows into the TMS for confirmation matching and settlement. The benefits practitioners cite are evidence of best execution for auditors and fewer manual keying errors; the limit is that the platform executes decisions — it does not decide what to hedge.
+
+## Cost and administration
+
+Terminal licences are per user and a material budget item for small teams, which is why treasuries below the large-multinational tier rely on bank portals, bank research and free central-bank data. Rate feeds into a TMS are licensed separately from the terminal. Someone (at GlobalChem, Ben's systems team) must monitor that the feed arrived: a stale rate table silently revalues everything at yesterday's prices.
+
+## Failure modes
+
+- **Stale rates.** The feed failed overnight; the TMS values the portfolio at yesterday's rates and nobody notices until the valuation looks odd.
+- **Wrong fixing.** Accounting uses one reference rate, treasury another; month-end reconciliation shows a difference nobody can explain for a day.
+- **Holiday calendars.** A fixing is not published on a local holiday; value dates of forwards roll incorrectly if calendars are not maintained.
+- **Illiquid or restricted currencies.** Onshore and offshore rates differ (e.g. CNY vs CNH); which one applies depends on where the cash is.
+
+<Callout type="interview">
+
+- "Where do the rates in your cash report come from, and at what time are they taken?"
+- "How do you get competitive quotes when you hedge?"
+- "Which rate does accounting use at month-end, and who loads it?"
+
+</Callout>

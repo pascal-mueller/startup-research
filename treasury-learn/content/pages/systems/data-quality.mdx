@@ -1,0 +1,98 @@
+---
+title: Where treasury data breaks
+nav: Data quality
+order: 9
+summary: 'The recurring data failures behind late cash positions, wrong forecasts and manual reconciliation — missing statements, mapping and bank codes, truncated remittance information, master data, market data and forecast submissions. For each: what it looks like, how it is noticed, who fixes it.'
+related: [/systems/architecture, /systems/bank-connectivity, /workflows/bank-reconciliation, /workflows/cash-forecasting, /workflows/daily-cash-positioning]
+---
+
+## Why this page matters
+
+Most of the time analysts and operations staff spend on "systems" is spent on exceptions: the statement that didn't arrive, the bank line nothing matched, the subsidiary forecast that doesn't add up. These exceptions are where manual work concentrates at every company size — and where the people you interview can describe their work most concretely. European treasurers themselves cite missing central data and non-standardised data as the reason AI ranks low on their agendas[](cite:eact-2025).
+
+## Bank statements
+
+| Failure | What it looks like | How it's noticed | Who fixes it |
+|---|---|---|---|
+| Statement missing | 11 of 12 accounts in the position; one bank shows yesterday's balance | Completeness check (if someone built one) or an odd number in the position | Analyst chases the bank or the local team; treasury ops raises a ticket with the connectivity provider |
+| Statement late | A bank's prior-day file arrives after the morning decision | Position built without it; decision taken on estimates | Analyst notes the estimate; treasury asks the bank for an earlier delivery or an intraday report |
+| Duplicate import | Balances and flows doubled after a re-send | Position jumps; reconciliation fails | Ops deletes the duplicate; checks the import rules |
+| Balance break | Opening balance today ≠ closing balance yesterday | Automated continuity check in a TMS; otherwise at reconciliation | Ops asks the bank for the missing statement or a correction |
+| Intraday vs final | Provisional [camt.052](term:camt-052) entries counted again when the [camt.053](term:camt-053) arrives | Position too high by the amount of intraday credits | System rules; analyst awareness |
+| Value date vs booking date | Balance "available" differs from "booked"; interest calculated on the wrong one | Cash seems to be there but a payment bounces / overdraft interest | Analyst uses the right balance type; ops checks [value dating](term:value-date) against bank terms |
+| Format change | After a bank release, a field moves or a code changes; import rejects the file or mis-maps it | Import error, or silently wrong categories | Treasury systems / connectivity vendor adjusts mapping |
+| Account not connected | Chinese, African or newly acquired accounts never come electronically | They are always the manual lines in the workbook | A connectivity project, or accepted as manual |
+
+<Example title="The missing statement" company="helvetic">
+
+On a Tuesday, the multibank tool shows 10 of 11 electronic statements at 07:45 — the German bank's EUR account is missing. Lea checks the EBICS job log: the download ran, but the bank returned "no data available". She calls the bank's electronic-banking helpdesk, which confirms a processing delay on their side, and she uses the bank portal's intraday view to get a provisional balance (EUR 3.1m). She marks the line "portal, provisional" in the position and tells Daniel, who postpones a EUR 2m transfer out of that account until the statement arrives at 10:20. The fix was a phone call; the cost was two hours of uncertainty on the day's biggest EUR balance.
+
+</Example>
+
+## Mapping and codes
+
+Statement lines have to be classified — into [cash-flow categories](term:cash-flow-category) for treasury and into GL postings for accounting. The classification relies on [bank transaction codes](term:bank-transaction-code), counterparty names and text patterns.
+
+- **Different codes for the same thing.** Bank A reports a card-acquirer settlement with one ISO family code; bank B uses a proprietary code; the MT940 from bank C puts it in free text. Each needs a rule.
+- **Rules decay.** A customer changes its name, a bank changes its fee text, a new subsidiary opens an account — the rule no longer fires and lines fall into "unclassified" or onto a [suspense account](term:suspense-account).
+- **Batch bookings.** One statement line for a whole payment run or a whole card-settlement day; the detail comes separately ([camt.054](term:camt-054)) or not at all, so matching to invoices requires the detail file.
+- **Intercompany.** Transfers between group accounts must be recognised as internal on both sides or the forecast and the position double count.
+
+Who fixes it: accounting maintains [posting rules](term:posting-rules) in the ERP; treasury (or its systems team) maintains classification rules in the TMS. When they are maintained separately, treasury's and accounting's views of the same bank line can disagree.
+
+## Remittance information
+
+Receipts are only useful for reconciliation if they say what they pay. [Remittance information](term:remittance-information) breaks in predictable ways:
+
+- **Missing or generic** — "payment June" instead of invoice numbers. AR matches by hand.
+- **Truncated** — MT940's free-text field is limited (six lines of 65 characters); unstructured ISO 20022 remittance is limited to 140 characters per occurrence. Long invoice lists get cut.
+- **Lost in the chain** — intermediary banks or conversion between formats drop data (the ISO 20022 migration is intended to reduce this for cross-border payments[](cite:swift-iso-mt9xx)).
+- **Structured references ignored** — in Switzerland the QR-bill reference makes matching near-automatic ([QR-bill](term:qr-bill)), but only for customers who use it.
+
+Owned by: AR / [cash application](term:cash-application) in accounting, with treasury affected through reconciliation and forecast accuracy.
+
+## Master and static data
+
+| Data | Failure | Consequence |
+|---|---|---|
+| Vendor bank details (ERP) | Changed after a fraudulent email; typo in IBAN | Payment to a fraudster or rejection ([payment fraud](wf:fraud-investigation)) |
+| Bank account register | New account not added to TMS / connectivity; closed account still in it | Invisible cash; false "missing statement" alarms |
+| Bank codes (BIC, clearing numbers) | Bank merger or BIC change not reflected | Payment files rejected |
+| Counterparty settlement instructions ([static data](term:static-data)) | Out of date in the TMS | FX settlement to the wrong account; failed settlement |
+| Signatories and users | Leavers not removed | Control failure found by audit ([eBAM](term:ebam)) |
+| Holiday calendars | Local holiday missing | Value dates and cut-offs wrong; payment late |
+
+## Market data
+
+Stale rates after a feed failure, the wrong fixing for month-end, missing holiday calendars, onshore vs offshore rates for restricted currencies. See [Market data](/systems/market-data#failure-modes).
+
+## Forecast submissions
+
+The largest and least technical data-quality problem. Typical failures in [forecast submissions](term:forecast-submission) from subsidiaries and business units:
+
+| Failure | Example | How treasury catches it |
+|---|---|---|
+| Late | HM Suzhou submits on Wednesday for a Tuesday consolidation | Chasing; last week's numbers rolled forward with a flag |
+| Copied | The UK entity's receipts are identical to last month's to the franc | Variance review; comparison with prior versions |
+| P&L instead of cash | Revenue submitted by month of invoicing, not by week of receipt | Comparison with AR ageing and customer payment behaviour |
+| Wrong sign or currency | A payment entered as a receipt; EUR amounts in a CHF column | Plausibility checks; totals vs prior week |
+| Missing categories | Tax payments, bonuses, capex left out | Treasury's own calendar of known large flows |
+| Intercompany mismatch | Italy expects EUR 1.2m from Germany; Germany doesn't plan to pay it | Intercompany matrix must net to zero |
+| Template changed | Someone inserted a column; the consolidation link now reads the wrong cell | Totals check against the submission |
+
+Actual-vs-forecast [variance analysis](term:variance-analysis) is the main feedback loop: it shows which entities and categories are systematically wrong, and gives treasury the evidence to push back. See [Cash forecasting](wf:cash-forecasting).
+
+<Callout type="synthesis" title="Pattern across all of these">
+
+The failures that cost the most time are not technical outages but **silent mismatches**: a line that is classified wrongly, a rate that is a day old, a forecast that is copied. Completeness and plausibility checks — did every account report, does the opening balance match, did every entity submit, do the totals move plausibly — catch most of them. Where they exist, they were usually built by the analyst who got burned.
+
+</Callout>
+
+<Callout type="interview">
+
+- "What's the most common reason this morning's position is incomplete?"
+- "What share of bank lines do you classify by hand, and which kinds?"
+- "Which subsidiary's forecast do you trust least, and why?"
+- "What checks have you built after something went wrong?"
+
+</Callout>

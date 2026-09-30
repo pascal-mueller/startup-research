@@ -1,0 +1,301 @@
+id: large-payment-approval
+title: Large or unusual payment approval
+question: Someone requests a CHF 4 million payment — what has to happen before the money leaves?
+group: Payments & banking
+order: 2
+summary: >-
+  A payment that is large, urgent, outside the normal payment run, or to a new beneficiary gets a separate treatment:
+  someone verifies that the obligation is real and approved, that the beneficiary account really belongs to the
+  payee, that the request is not social engineering, that the paying account will have the cash on the value date,
+  and that the people approving it have the authority to do so — both under the company's own signing rules and
+  under the bank mandate. It happens rarely at any one company, is almost entirely judgment and verification, and is
+  exactly where fraudsters aim.
+objective: >-
+  Release large and non-routine payments only when the obligation, the beneficiary and the approvals have been
+  independently verified, on a value date that suits liquidity, with a documented evidence trail — without making
+  genuine urgent payments impossible.
+trigger: >-
+  A request outside the normal payment run above a threshold (e.g. above CHF 250k at an SME, above CHF 1–2m at a
+  mid-market group), any payment to a new or changed beneficiary account, any "urgent/confidential" instruction, and
+  large treasury or capex payments (down payments, acquisitions, dividends, tax, loan repayments).
+frequency: >-
+  A few times a month at SMEs and mid-market groups; daily at multinationals, where treasury's own large flows
+  (FX settlements, deposits, intercompany funding) are handled by standard processes and only genuinely unusual items
+  follow this route.
+people:
+  - role: Requester (business unit, project, plant, M&A team, tax)
+    does: Asks for the payment and supplies the contract, invoice and approval evidence.
+  - role: Treasury analyst / payment operations
+    does: Checks the evidence, verifies the beneficiary, checks liquidity, prepares the payment in the bank channel, assembles the evidence pack.
+  - role: Treasury manager / head of treasury
+    does: Reviews the evidence, decides value date and funding, challenges anything unusual; often first signatory.
+  - role: CFO (and CEO or board above higher thresholds)
+    does: Approve under the signing authority matrix; release as bank signatories.
+  - role: Accounts payable / master-data team
+    does: Confirm the vendor record and approved invoice; perform or document the call-back for new bank details.
+  - role: Legal / M&A / tax (for non-trade payments)
+    does: Confirm contractual conditions (closing conditions met, guarantees received, withholding tax).
+  - role: Bank
+    does: Validates, screens and executes; some banks call back on unusual large payments or new beneficiaries.
+systems:
+  - name: Bank connectivity tool / TMS / e-banking portal
+    use: Where the single payment is entered and where the signing workflow enforces who must approve.
+  - name: "[ERP](term:erp)"
+    use: Vendor master, approved invoice or capex order, purchase order, contract reference.
+  - name: Cash position / forecast (Excel or TMS)
+    use: Is the paying account funded on the value date; what does it do to headroom?
+  - name: Email, phone, contract archive
+    use: The request itself; the independently sourced phone number for the call-back; the signed contract.
+  - name: Signing authority matrix and bank mandate documents
+    use: Who must approve internally, and who the bank will accept — two different lists that must be consistent.
+data:
+  - name: Payment request with supporting documents
+    source: Requester
+    notes: Invoice, contract or board minute, capex approval, closing memorandum. Missing documents are the first red flag.
+  - name: Beneficiary name, account, bank, country
+    source: Invoice / request — to be checked against the vendor master and independent sources
+    notes: A difference between the invoice and the vendor master is the single most important signal.
+  - name: Independently sourced contact details
+    source: Contract, vendor master, earlier correspondence, company website — never the request email
+    notes: Basis of the [call-back](term:call-back-verification).
+  - name: Approval limits
+    source: "[Signing authority matrix](term:signing-authority-matrix), treasury policy"
+    notes: E.g. non-routine payments of CHF 2–10m need CFO and CEO.
+  - name: Bank mandate / e-banking rights
+    source: Bank documentation
+    notes: The bank enforces its mandate, not the internal matrix — unless the tool enforces the matrix too.
+  - name: Cash position and forecast for the value date
+    source: Treasury
+  - name: Guarantees and conditions precedent
+    source: Contract, the company's bank (for authenticated guarantees)
+    notes: E.g. an [advance payment guarantee](term:advance-payment-guarantee) before a down payment.
+steps:
+  - title: Receive and log the request
+    who: Treasury analyst
+    where: Email / ticket / payment tool
+    when: On receipt
+    detail: >-
+      The request arrives — ideally through the ERP or a request form, often by email from a manager. The analyst logs
+      it, identifies who requested it and through which channel, and whether it could have gone through the normal
+      payment run (if yes, why doesn't it?).
+    judgment: Whether the channel itself is suspicious — a forwarded email, a personal address, a request that bypasses the normal approver.
+  - title: Classify the payment and determine the approval route
+    who: Treasury analyst
+    where: Signing authority matrix
+    detail: >-
+      Routine (approved invoice due in the run) or non-routine (down payment, acquisition, settlement, tax, loan,
+      one-off)? Amount band? New beneficiary? The classification determines who must approve — e.g. CFO and CEO for
+      non-routine payments of CHF 2–10m — and which documents are required.
+  - title: Verify the underlying obligation
+    who: Treasury analyst with requester, AP, legal
+    where: ERP, contract archive
+    detail: >-
+      Check that there is a signed contract or approved invoice, that the capex or budget approval exists, that the
+      amount and currency match the contract, and that the conditions for paying now are met: milestone reached,
+      guarantee received, closing conditions fulfilled, withholding tax considered.
+    judgment: Whether the evidence actually supports paying this amount now, or only supports paying something later.
+  - title: Verify the beneficiary
+    who: AP / master-data team; treasury analyst checks the documentation
+    where: Vendor master, phone
+    detail: >-
+      Compare the beneficiary name, IBAN and bank on the request with the vendor master and previous payments. For any
+      new or changed account, perform a [call-back](term:call-back-verification) to a known contact, record who
+      confirmed what, and have a second person approve the master-data change. Check the account-holder name matches
+      the legal payee (not a "sister company", factor or private person) unless there is documented reason such as a
+      verified [notice of assignment](term:assignment-of-receivables). For euro payments from EU/EEA banks,
+      [Verification of Payee](term:verification-of-payee) now adds a bank-side name check[](cite:ecb-ipr).
+    manual: The call-back and its documentation are manual everywhere; so is obtaining a factor's notice of assignment.
+    judgment: How much verification is enough; what to do when the supplier's contact confirms but something still feels wrong.
+  - title: Screen for fraud patterns
+    who: Treasury analyst → treasury manager
+    where: Checklist / judgment
+    detail: >-
+      Check the classic markers of [business email compromise](term:business-email-compromise) and CEO fraud: urgency
+      and secrecy ("confidential acquisition, don't tell anyone"), a senior person who is unreachable, a new beneficiary
+      or a bank in a different country from the supplier, a request to bypass the normal process, pressure near a
+      cut-off or before a weekend, and — increasingly — voice messages or calls that imitate an executive. Swiss
+      authorities recorded 971 CEO-fraud reports in 2025, up from 719 in 2024[](cite:bacs-ceo-fraud-2026).
+    judgment: >-
+      Fraud rarely looks like fraud; the judgment is to treat the process as non-negotiable even when a senior executive
+      appears to ask for an exception.
+  - title: Check liquidity and choose the value date
+    who: Treasury manager
+    where: Cash position / forecast
+    detail: >-
+      Confirm the paying account will hold enough cash on the value date and what the payment does to the entity's and
+      group's buffer. Choose the value date: the contractual due date, not earlier; aligned with maturing deposits or
+      funding; not on a day when the bank's cut-off makes same-day execution uncertain. If the payment is in foreign
+      currency, arrange the FX (spot or an existing hedge).
+    judgment: Whether to fund by breaking a deposit, drawing a facility or moving cash from another entity; whether paying a day later costs anything.
+  - title: Prepare the payment and the evidence pack
+    who: Treasury analyst (maker)
+    where: Connectivity tool / e-banking
+    detail: >-
+      Enter the payment as a single item (or from an approved template), with the requested execution date,
+      remittance information and charge option. Attach or reference the evidence: request, contract clause,
+      approval, call-back record, guarantee confirmation, liquidity note.
+    manual: >-
+      The evidence pack is typically a PDF folder or email thread assembled by hand; at many companies it is only
+      partially kept.
+  - title: Review and approve under the matrix
+    who: Treasury manager (checker); CFO and CEO (approvers)
+    where: Connectivity tool signing workflow / bank app
+    detail: >-
+      The treasury manager reviews the evidence pack and the entered payment against it (amount, beneficiary, date),
+      then routes it to the approvers the matrix requires. The approvers sign in the tool or bank app. Where the bank
+      mandate is looser than the internal matrix (e.g. any two of five signatories), the tool's workflow — or discipline —
+      must enforce the internal rule.
+    judgment: >-
+      Approvers decide whether they are satisfied with the evidence; a good approver asks one question the pack does
+      not answer.
+  - title: Transmit before cut-off and monitor execution
+    who: Treasury analyst
+    where: Connectivity tool / bank portal / intraday statement
+    when: Before the bank's same-day cut-off for the currency
+    detail: >-
+      Release before the bank's cut-off for the currency. Monitor the [pain.002](term:pain-002) status and the debit on
+      the intraday report (camt.052 / MT942). Large CHF payments settle individually through [SIC](term:sic); banks
+      may apply their own checks and occasionally call back on unusual payments.
+  - title: Confirm, communicate and file
+    who: Treasury analyst
+    where: Email, ERP, forecast
+    detail: >-
+      Confirm execution to the requester and, where useful, to the payee (with the reference); update the forecast and
+      cash position; hand the evidence pack to accounting and archive it for audit; diarise follow-ups (guarantee
+      reduction, next milestone, refunds).
+example:
+  title: "Helvetic: a CHF 4.0m down payment for a heat-treatment line — and a changed IBAN"
+  body: |
+    **Monday 14:10** — The head of operations at HM AG's Swiss plant emails Daniel: the supplier of a new heat-treatment line needs the 30% down payment "this week, otherwise we lose our production slot". Attached: the supplier's invoice for CHF 4,000,000 (30% of a CHF 13.3m contract), the signed contract, and the board-approved capex request.
+
+    Lea works through the checks:
+
+    | Check | Finding | Status |
+    |---|---|---|
+    | Obligation | Contract signed; capex approved by the board in the 2026 budget; down payment due "10 days after receipt of advance payment guarantee" | OK — but conditional |
+    | Guarantee | No [advance payment guarantee](term:advance-payment-guarantee) received yet | **Hold** |
+    | Beneficiary | Invoice IBAN is at a different Swiss bank than the vendor master (a supplier already paid for spare parts in 2025) | **Verify** |
+    | Call-back | Lea calls the supplier's CFO on the number in the signed contract: the supplier moved its main banking in April; he emails a signed bank confirmation letter from his own domain | OK after AP's second person approves the master-data change |
+    | Fraud markers | Urgency present, but request came through the known internal requester with full documents; no secrecy | Acceptable |
+    | Approvals | Non-routine, CHF 2–10m → CFO (Thomas) and CEO under the matrix | Route |
+
+    **Tuesday 11:00** — HM AG's bank receives an authenticated CHF 4.0m guarantee from the supplier's bank via Swift, valid until three months after scheduled delivery. Daniel reads the wording (reduces with delivery; payable on first demand).
+
+    **Liquidity:** HM AG's CHF account is projected at CHF 13.6m for Thursday, with CHF 0.8m of other outflows; the policy buffer at the parent is CHF 10m. Paying CHF 4m on Wednesday would take the account to CHF 8.8m. A CHF 2m one-week deposit matures on Thursday. Daniel chooses **Thursday value** (contractually fine: day 2 of 10), leaving CHF 10.8m after the deposit returns.
+
+    **Wednesday 16:30** — Lea enters the payment in the connectivity tool with the reference from the invoice and attaches the evidence pack. HM AG's bank mandate would accept any two of five collective signatories — including Daniel and Claudia — so the tool's workflow is configured to require Thomas and the CEO for single payments above CHF 2m. Daniel checks the entered IBAN against the confirmation letter; Thomas signs from Zurich airport after asking one question ("Has the guarantee's issuing bank been checked?" — yes, a large Swiss bank); the CEO signs at 08:20 on Thursday.
+
+    **Thursday 09:05** — Transmitted well before the CHF cut-off; the debit appears in the 10:00 intraday report. Lea confirms to the plant and the supplier, updates the 13-week forecast, and diarises the guarantee expiry.
+
+    **The fraud variant.** Had the same request arrived as an email "from Thomas" on Friday at 16:45 — new Hong Kong IBAN, "confidential, the CEO knows, I'm boarding" — every row above would fail: no capex order, no contract, no known contact, a change of country, secrecy and deadline pressure. The call-back to Thomas's mobile from the internal directory ends it.
+judgment:
+  - decision: Whether the evidence supports paying this amount now
+    why: Contracts are conditional; a down payment without its guarantee, or an acquisition payment before closing conditions, can be unrecoverable. Reading the contract is judgment, not a lookup.
+  - decision: Whether a beneficiary change is genuine
+    why: Documents can be forged and email domains spoofed; context (does this supplier plausibly change banks? same country? same name?) and the independence of the call-back channel decide.
+  - decision: Whether to insist on process against a senior person's pressure
+    why: CEO fraud works by exploiting hierarchy and urgency. The judgment is organisational courage more than analysis.
+  - decision: Value date and funding
+    why: Paying early costs interest and flexibility; paying late risks contractual consequences; funding choices (deposit, facility, intercompany) depend on the forecast.
+  - decision: Whether an approver is satisfied
+    why: Approvers are the last human check; whether they ask the right question is not codifiable.
+failure_modes:
+  - mode: Payment to a fraudster after a fake CEO or supplier request
+    consequence: Loss of the full amount; recovery is rare once funds have moved on, especially with instant or cross-border payments.
+    detection: Call-back via an independent channel; red-flag checklist; Verification of Payee "no match" for euro payments; bank fraud monitoring (unreliable as a last line).
+  - mode: Down payment released without the guarantee or conditions met
+    consequence: Unsecured exposure to a supplier who may fail.
+    detection: Condition checklist in the evidence pack; legal sign-off for large contracts.
+  - mode: Approval under the bank mandate but outside the internal matrix
+    consequence: A payment that the bank executes legitimately but that the company's rules did not allow; governance breach, and a route for insiders.
+    detection: Tool-enforced workflows; periodic comparison of bank mandates with the matrix; internal audit.
+  - mode: Paying account not funded on the value date
+    consequence: Payment rejected or delayed; overdraft interest; embarrassment with a key supplier.
+    detection: Liquidity check step; intraday monitoring.
+  - mode: Duplicate — the same large amount also paid through the regular run
+    consequence: A multi-million overpayment dependent on the supplier's goodwill to return.
+    detection: Blocking the invoice in the ERP when paying it manually; duplicate checks across manual and run payments.
+  - mode: Evidence not kept
+    consequence: Audit findings; no defence in a fraud or dispute case.
+    detection: Audit sampling of large payments.
+software: >-
+  There is no dedicated product category for this workflow: it runs in the **payment tool or TMS** (maker-checker
+  workflows, amount-based approval routing, templates, beneficiary whitelists), the **ERP** (vendor master, invoice
+  blocking), and email. Banks add Verification of Payee for euro payments and their own fraud monitoring. Payment
+  fraud-detection vendors and TMS vendors offer anomaly scoring on payment files and bank-detail changes. See
+  [Systems & Data](/systems).
+manual_work:
+  - Reading contracts and approval documents to confirm the obligation and its conditions.
+  - Call-backs to independently sourced contacts and documenting them.
+  - Assembling the evidence pack.
+  - Checking the liquidity impact and arranging funding or FX.
+  - Chasing approvers who are travelling, often across time zones and against a cut-off.
+  - Comparing bank mandates with the internal signing matrix (periodic, usually once a year or after reorganisations).
+by_size:
+  startup: >-
+    A CHF 4m payment is an event: usually moving the company's own money (placing a deposit at another bank, funding
+    the US subsidiary) rather than paying a supplier. The CFO prepares it in e-banking and a board member or CEO signs
+    as second signatory. Social engineering is the dominant risk — small teams, founders who travel, a company in the
+    press after a funding round.
+  sme: >-
+    Anything above a few hundred thousand francs gets the CFO's attention and signature. The head of accounting
+    verifies the supplier and prepares the payment; checks are informal but real ("I know this supplier"). A CHF 4m
+    payment would be a significant share of cash and may need a credit-line drawing, so the liquidity step dominates.
+  midmarket: >-
+    A written matrix with CFO/CEO/board thresholds, a treasury analyst who assembles evidence, and a connectivity tool
+    that may or may not enforce the matrix. The weak points are gaps between bank mandates and the internal matrix and
+    evidence that is kept inconsistently. CHF 4m is unusual but not rare (capex, acquisitions, dividends, tax).
+  multinational: >-
+    CHF 4m is routine for treasury's own flows, which run through standard deal-settlement processes. The unusual-payment
+    route is for non-standard items (acquisitions, litigation settlements, first payments to new beneficiaries), with
+    formal evidence requirements, beneficiary whitelists in the TMS, independent verification by treasury operations,
+    and board approval above set limits. Many payment-factory rules flag outliers automatically (new beneficiary,
+    amount outside the supplier's history, change of country).
+companies:
+  kleio: "The largest payments Sarah makes are her own: moving CHF 4–8m between Swiss banks for deposits after the SVB-driven diversification. She enters them in e-banking; the board chair signs as second signatory. A spoofed 'Sarah' email to Nina asking for an urgent CHF 48k payment was stopped by the call-back rule."
+  alpine: "Martin must co-sign anything above CHF 250k. A CHF 4m payment would be half of Alpine's cash on a normal day — in practice only a plant-related payment or a loan repayment. Petra would check the credit line headroom first, and the house bank's relationship manager would likely call Martin to confirm."
+  helvetic: "The worked example above. The matrix requires CFO and CEO for non-routine payments of CHF 2–10m and the board above CHF 10m; Lea assembles evidence; the connectivity tool enforces the matrix because the bank mandates are broader."
+  globalchem: "Treasury operations (Marta's team) verifies any first payment to a new beneficiary independently of the requester; the TMS whitelists beneficiaries for treasury payments; non-standard payments above EUR 5m require Anna and the CFO (Markus), and acquisition payments are released only against a closing checklist signed by legal."
+handoffs:
+  - from: Requester
+    gives: payment request, contract, approval evidence
+    to: Treasury analyst
+  - from: AP / master-data team
+    gives: vendor-master comparison and documented call-back for any new account
+    to: Treasury analyst
+  - from: Legal / M&A / project management
+    gives: confirmation that contractual conditions are met (guarantee received, closing conditions)
+    to: Treasury analyst
+  - from: Treasury analyst
+    gives: entered payment + evidence pack + liquidity note
+    to: Treasury manager
+  - from: Treasury manager
+    gives: reviewed payment for approval
+    to: CFO / CEO (board above its threshold)
+    note: Approvers mostly see the pack on a phone; the quality of the summary matters.
+  - from: Approvers
+    gives: released payment
+    to: Bank
+  - from: Treasury analyst
+    gives: confirmation, updated forecast, archived evidence
+    to: Requester, accounting, audit file
+interview: >-
+  Ask a treasury manager or head of accounting to tell you about **the last payment that made them nervous** — what
+  was unusual, what they checked, whom they called, and who signed. Ask whether they have ever been targeted by CEO
+  fraud and what stopped it. Ask how the bank mandate compares to their internal approval rules (many will not know
+  offhand — that is itself informative). CFOs can speak to approval thresholds; analysts to the evidence work.
+ai_note: >-
+  The verification work (compare request to contract, vendor master and payment history; flag red-flag patterns;
+  assemble the evidence pack) is well suited to assistance, and anomaly scoring on payments is an active vendor area.
+  The decision to release a large payment is, by design, a human act by bank-registered signatories, and AI-generated
+  voice and email impersonation are part of the threat — so an assistant here is a checker, not an approver.
+terms: [signing-authority-matrix, call-back-verification, business-email-compromise, vendor-master-data, four-eyes-principle, segregation-of-duties, signatory, payment-mandate, verification-of-payee, advance-payment-guarantee, assignment-of-receivables, manual-payment, sic, cut-off-time, value-date]
+related: [payment-processing, fraud-investigation, daily-cash-positioning, policy-compliance, bank-account-management]
+sources: [bacs-ceo-fraud-2026, afp-pfc-2026-highlights, nacha-ic3-2024, ecb-ipr, epc-vop-bulk-faq]
+evidence_note: >-
+  The control sequence (independent verification, call-back, dual approval, tool-enforced limits) is established practice
+  and matches the recommendations of Switzerland's Federal Office for Cyber Security, which also reported the rise in
+  CEO-fraud reports from 719 (2024) to 971 (2025)[](cite:bacs-ceo-fraud-2026). US survey data: 74% of organisations
+  were affected by BEC in 2025[](cite:afp-pfc-2026-highlights); the FBI's IC3 recorded close to USD 2.8bn of BEC losses
+  in 2024[](cite:nacha-ic3-2024). Verification of Payee for euro credit transfers has applied since 9 October 2025[](cite:ecb-ipr).
+  Thresholds, the signing matrix and the worked example are illustrative synthesis; real matrices vary widely.

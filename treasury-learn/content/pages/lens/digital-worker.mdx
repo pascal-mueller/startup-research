@@ -1,0 +1,53 @@
+---
+title: Digital Worker view — modelling an assignment end to end
+nav: Digital worker view
+order: 5
+summary: How to describe a treasury assignment as work an AI system could perform — human assignment, inputs, reasoning, tools, output, verification, execution, feedback loop, failure modes and guardrails — with four worked models for the most promising assignments.
+related: [/lens/candidates, /lens/matrix, /day/lea, /day/daniel]
+---
+
+## Why model the assignment, not the feature
+
+A feature description ("AI-powered cash positioning") hides every question that decides whether a treasurer would rely
+on it. A digital-worker model forces them into the open. It is a template for **thinking and interviewing**, not a
+product spec, and every model below is an illustrative synthesis set at [Helvetic](co:helvetic), where Lea
+(analyst) prepares and Daniel (treasury manager) decides.
+
+<Flow
+  steps={["Assignment|what the manager asks for", "Inputs|where each one really comes from", "Reasoning|what the expert weighs", "Tools|and the access granted", "Output|the artefact handed over", "Verification|how the expert judges it", "Execution|who acts — a human", "Feedback|corrections and outcomes become data"]}
+  loop="Accepted, edited and rejected outputs plus real outcomes become the evaluation set that gates the next autonomy level"
+  caption="The nine parts of each model (failure modes and guardrails are the ninth)"
+/>
+
+| Part | The question to answer | Typical trap |
+|---|---|---|
+| **Human assignment** | What exactly does the manager ask for, by when, and who does it today? | Describing a workflow instead of an assignment |
+| **Inputs** | Which system or person provides each input, when does it arrive, how good is it? | Assuming the ERP holds what actually arrives by email |
+| **Human reasoning** | What does the treasurer consider — including what they *don't* write down? | Reducing judgment to "analyse the data" |
+| **Tools / systems** | Which systems are touched, and is access read, draft or none? | Giving write access to banks "for convenience" |
+| **Output** | What artefact does the manager receive? | An answer without evidence or uncertainty |
+| **Verification** | How does the expert tell it is right — now, and later? | "The manager reviews it" with no criteria |
+| **Execution** | Who acts on it, under which control? | The system as signatory |
+| **Feedback loop** | How do corrections and outcomes become training and evaluation data? | Corrections made in the bank portal, invisible to the system |
+| **Failure modes & guardrails** | What goes wrong, and what prevents or catches it? | Treating hallucination as the only risk; ignoring stale data, automation bias and injection |
+
+## Four modelled assignments
+
+<DigitalWorkerIndex />
+
+The four were chosen because they combine a recurring assignment, checkable output, a feedback loop, and a place on the
+[start-narrow → expand path](/lens/candidates) of a mid-market analyst's week. No payment-release, approval or crisis
+assignment was modelled: the lens rates those [hard or dangerous](/lens/candidates).
+
+## Design rules common to all four
+
+<Callout type="synthesis" title="Rules the models apply">
+
+1. **Numbers by code, words by model.** Balances, conversions, variances and policy checks are computed deterministically; the language model selects, explains and drafts.
+2. **Evidence or "unexplained".** No explanation without a link to the statement line, invoice or email it rests on. "I don't know" is a valid, and often the most valuable, output.
+3. **Maker, never checker.** The system prepares; a named human approves; release follows the existing [bank mandate](term:payment-mandate) and [four-eyes](term:four-eyes-principle) rules. No signing rights, no bank write access.
+4. **Autonomy is earned per level.** Each model has an autonomy ladder with an explicit gate (e.g. "ties out every day for two weeks"). Gates are measured on the [evaluation set](term:evaluation-set), not asserted.
+5. **Watch the reviewer, too.** [Automation bias](term:automation-bias) is the most likely failure once the system is usually right: track edit rates and seed test items.
+6. **Inputs are data, not instructions.** Emails and remittance text are an attack surface ([prompt injection](term:prompt-injection), [BEC](term:business-email-compromise)).
+
+</Callout>

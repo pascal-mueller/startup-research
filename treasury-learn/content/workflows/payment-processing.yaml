@@ -330,7 +330,7 @@ ai_note: >-
   files and bank-detail changes is a plausible assistive use, and vendors are adding it; AFP's 2026 survey found only
   17% of organisations using AI against payments fraud[](cite:afp-pfc-2026-highlights). Releasing payments is a legal
   act by bank-registered signatories, so autonomy there faces a hard trust, liability and mandate barrier.
-terms: [payment-run, pain-001, pain-002, camt-054, three-way-match, vendor-master-data, call-back-verification, ebics-signature, four-eyes-principle, signatory, payment-mandate, verification-of-payee, sic, sct-inst, charge-bearer, swift-gpi, structured-address, manual-payment, payment-factory, pobo, rtgs-note]
+terms: [payment-run, pain-001, pain-002, camt-054, three-way-match, vendor-master-data, call-back-verification, ebics-signature, four-eyes-principle, signatory, payment-mandate, verification-of-payee, sic, sct-inst, charge-bearer, swift-gpi, structured-address, manual-payment, payment-factory, pobo, cut-off-time]
 related: [large-payment-approval, bank-reconciliation, daily-cash-positioning, fraud-investigation, bank-account-management]
 sources: [six-sps-ig-ct-2026, six-address-factsheet, epc-vop-bulk-faq, swift-eoc-2025, afp-pfc-2026-highlights, pwc-gts-2025, six-ebics]
 evidence_note: >-

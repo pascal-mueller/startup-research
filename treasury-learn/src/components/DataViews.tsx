@@ -160,7 +160,7 @@ export function VendorProfiles({ category, ids }: { category?: string; ids?: str
       {list.map((p) => (
         <section key={p.id} id={p.id} className="sys-profile">
           <header>
-            <h3 className="sys-profile-title">{p.name}</h3>
+            <h4 className="sys-profile-title">{p.name}</h4>
             <div className="sys-profile-meta">
               <span className="sys-chip">{catName(p.category)}</span>
               <SizeDots sizes={p.sizes} />

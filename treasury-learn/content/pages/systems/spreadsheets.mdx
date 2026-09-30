@@ -1,0 +1,67 @@
+---
+title: Spreadsheets in treasury
+nav: Spreadsheets
+order: 7
+summary: Excel is the most widely used treasury system at every size below the largest multinationals, and still present at the largest. It persists for good reasons — flexibility, judgment overlays, cost, gaps between systems — and carries real risks — key-person dependency, formula errors, no audit trail. Knowing which workbooks exist tells you how treasury really works.
+related: [/systems/tms, /systems/data-quality, /workflows/cash-forecasting, /workflows/daily-cash-positioning, /workflows/covenant-monitoring]
+---
+
+## Why Excel persists
+
+<Callout type="survey">
+
+In Deloitte's 2024 global treasury survey, cash forecasting at many respondents was still primarily spreadsheet-based, and fewer than a quarter rated their forecasting maturity above average[](cite:deloitte-gts-2024). A 2025 Strategic Treasurer/TIS survey (vendor-sponsored) found the share of practitioners calling forecasting "difficult" rose from 39% in 2018 to 53% in 2025[](cite:st-tis-cfv-2025). An older, vendor-sponsored ACT/Kyriba survey showed the size gradient: small companies relied on Excel-type tools for daily cash management far more than large ones[](cite:kyriba-act-2013) — directionally still what practitioners describe.
+
+</Callout>
+
+The reasons treasurers give are rarely "we don't know better":
+
+- **The data comes from everywhere.** When inputs arrive from five ERPs, four bank channels and eight subsidiaries' emails, the spreadsheet is the only tool that accepts all of them without an IT project.
+- **Judgment overlays.** A forecast is data plus adjustments ("the Milan customer pays 20 days late", "the tax payment moved"). Spreadsheets make overlays easy and visible to the person who made them.
+- **Cost and scale.** For [Alpine](co:alpine), with 2 banks and 9 accounts, a well-built workbook costs nothing and does the job. A TMS would be overhead.
+- **Ad hoc questions.** "What if the RCF is cut by CHF 50m and EUR/CHF drops 8%?" is faster to model in Excel than to configure in a system.
+- **Gaps between systems.** Even with a TMS, the last mile — board packs, covenant models, scenario analysis, bank fee comparisons — often lives in Excel.
+- **Distrust and parallel running.** New systems run alongside the old workbook until treasury trusts them; some workbooks never get switched off.
+
+## The typical treasury workbooks
+
+| Workbook | What's in it | Who maintains it | Updated | Size where common |
+|---|---|---|---|---|
+| Daily cash position | Balances per account, today's expected flows, target balances, CHF equivalent | Analyst ([Lea](/org/roles-analyst)); Petra at Alpine | Daily | SME, mid-market |
+| 13-week cash forecast | Receipts and payments by week, by entity; actual vs forecast | Analyst; reviewed by treasury manager | Weekly | Everywhere |
+| Subsidiary [forecast submission](term:forecast-submission) template | One tab per entity, fixed categories, local currency | Subsidiary finance fill it in; treasury consolidates | Weekly/monthly | Mid-market and up |
+| FX exposure and hedge register | Forecast exposures, hedge ratios, open forwards, maturities | FX manager or treasury manager | Weekly + on each deal | Mid-market |
+| Intercompany loan register | Lender, borrower, amount, currency, rate, maturity | Treasury; checked by accounting | On each change | Mid-market |
+| Debt and covenant model | Facilities, drawings, interest, covenant ratios and headroom | Treasury / corporate finance; reviewed by accounting | Monthly, and before each test | Anyone with covenants |
+| Bank account and signatory list | Accounts, purpose, signatories, e-banking users | Treasury ops / head of accounting | On change; quarterly review | SME, mid-market |
+| Counterparty limit monitor | Deposits and derivative exposure per bank vs limits | Treasury | Daily/weekly | Mid-market and up |
+| Bank fee analysis | Fees per bank vs agreed pricing | Treasury / ops | Quarterly/annually | Mid-market and up |
+| Board / CFO liquidity pack | Headroom, forecast, covenants, hedging summary | Treasury manager / head of treasury | Monthly/quarterly | Everywhere |
+
+<Example title="Helvetic's workbook landscape" company="helvetic">
+
+Lea maintains six workbooks that the treasury process depends on: the daily position (one tab per bank plus a summary), the 13-week forecast (eight subsidiary input tabs linked to a consolidation tab), the hedge register (about 40 open EUR/CHF and USD/CHF forwards), the intercompany loan register, the covenant model for the RCF (net debt/EBITDA ≤ 3.25x, interest cover ≥ 4x), and the bank account list for 12 accounts at 5 banks. When the TMS project team asked what the future system had to replace, this list was the scope document.
+
+</Example>
+
+## The risks
+
+| Risk | What it looks like | Typical control |
+|---|---|---|
+| Key-person dependency | Only Lea understands the forecast links; she is on holiday during the covenant test | Documentation, a second trained person, simpler structure |
+| Formula and link errors | A row inserted in a subsidiary tab shifts a SUM range; a link points to last month's file | Check totals against source; locked formulas; review by a second person |
+| Version confusion | "Forecast_v7_final_DK2.xlsx" vs "Forecast_v7_final.xlsx" | One storage location, naming rule, change log |
+| No audit trail | Nobody can show who changed an assumption, and when | Change-log tab; storing snapshots; moving critical registers into a system |
+| Stale inputs | Balances pasted yesterday reused today | Date stamps on every input; completeness checks |
+| Unauthorised change | Hedge register edited to hide a deal | [Segregation of duties](term:segregation-of-duties): deals confirmed by back office against bank confirmations, not against the register |
+
+Auditors call these [end-user computing (EUC)](term:euc) risks and increasingly ask for an inventory of critical spreadsheets and evidence of review.
+
+<Callout type="interview">
+
+- "Which spreadsheets would stop your process if they broke tomorrow?"
+- "Who else could run the forecast workbook if you were out for two weeks?"
+- "What do you export into Excel even though you have a system?"
+- "What have you built yourself — macros, Power Query, scripts?"
+
+</Callout>

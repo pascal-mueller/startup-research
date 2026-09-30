@@ -1,0 +1,168 @@
+---
+title: Short-term investments
+nav: Investments
+order: 4
+cluster: liquidity
+summary: What a company does with cash it does not need yet — deposits, money market funds, government bills — governed by an investment policy that puts safety first, liquidity second and yield last, and by limits on how much can sit with any one bank or fund.
+subtopics: [deposits, money market funds, government securities, counterparty limits, investment policy, liquidity vs yield vs safety]
+related: [/map/cash-management, /map/debt, /map/risk, /org/roles-cash-manager]
+---
+
+<TreasuryMap focus="investments" />
+
+Corporate treasury "investment" is **not** asset management. The money invested is the company's operating and reserve cash, which must be there when payroll, a tax bill or a loan repayment falls due. The job is to avoid losing it (to a failing bank or a falling bond price), to keep it available, and only then to earn something on it. A treasurer who talks mostly about yield is either at a cash-rich tech company with a large strategic reserve or is taking risks the board may not know about.
+
+<Callout type="survey" title="What treasurers actually do with short-term cash">
+
+In the AFP's 2025 Liquidity Survey (mainly US organisations), 61% named **safety** as their top short-term investment objective; on average 80% of short-term investment balances sat in bank deposits, money market funds and Treasury securities, with bank deposits alone about 46% and government MMFs about 20%[](cite:afp-liquidity-2025). European and Swiss companies use MMFs less and bank deposits more, and CHF instruments earn close to nothing at a 0% SNB policy rate[](cite:snb-mpa-2026-09).
+
+</Callout>
+
+## First question: invest, or repay debt?
+
+Before any instrument choice comes a simpler decision. If the company has **drawn debt**, surplus cash usually does more good repaying it:
+
+<Example title="Helvetic: why surplus CHF repays the RCF instead of sitting on deposit" company="helvetic" open>
+
+Helvetic has CHF 60m drawn on its RCF at SARON (≈ 0%) + 0.90% margin ≈ 0.9% p.a. A CHF sight or term deposit earns ≈ 0% at a 0% SNB policy rate. Holding CHF 10m of surplus as a deposit instead of repaying RCF drawings costs about CHF 90,000 a year. So when Lea's position shows CHF surplus at the parent, Daniel reduces the next RCF rollover; he keeps only the CHF 10m policy minimum and operating balances in sight accounts. Because the RCF is committed, repaid amounts can be redrawn with a few days' notice — the liquidity is still there.
+
+EUR is different: EUR money that will be needed in EUR in three months (e.g. for a German tax payment) can earn around €STR (≈ 1.9–2.0%, illustrative) on a term deposit. Converting it to CHF to repay the RCF would, via FX swap points, give back most of the interest difference.
+
+</Example>
+
+Kleio (no debt, CHF 22m of equity-funded cash) and GlobalChem (large gross cash held for liquidity reasons even while it has bonds outstanding) are the companies where investing surplus is a real, recurring activity.
+
+## Who does this work, by company size
+
+| Task | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Decides how much is investable | Sarah ([CFO](/org/roles-cfo)), board approves policy | Martin, rarely relevant | Daniel ([treasury manager](/org/roles-treasury-manager)); mostly repays RCF | Priya ([cash & liquidity](/org/roles-cash-manager)) from the forecast |
+| Places deposits / buys MMFs | Sarah via bank portals | Petra, on Martin's instruction | Lea prepares, Daniel executes | Cash & liquidity dealers; portal or bank platforms |
+| Monitors limits | Sarah, quarterly | – | Lea, weekly | Middle office / risk, daily |
+| Confirms and settles | Bank advice checked by Nina | Petra | Lea | [Treasury operations](/org/roles-operations) (Marta) |
+| Sets investment policy | Board | Board minute | CFO + board | Board/finance committee on Anna's proposal |
+
+## Liquidity vs yield vs safety
+
+**Plain:** you can't have maximum safety, instant access and high return at once — pick in that order. **Professional:** the **SLY principle** (security, liquidity, yield) orders corporate investment objectives. Safety: the principal must not be lost (credit risk of the bank or issuer, market-value risk of securities). Liquidity: cash must be available when the forecast says it is needed, without a loss or a fee. Yield: only then maximise return. In practice cash is **segmented** by horizon — operating cash (needed within weeks, sight accounts), reserve cash (needed within the year, deposits and MMFs), strategic cash (longer-term, possibly short-dated securities) — see [surplus cash](term:surplus-cash).
+
+<Example title="Kleio's CHF 22m, segmented" company="kleio" open>
+
+| Segment | Amount | Horizon | Where | Earns (illustrative) |
+|---|---|---|---|---|
+| Operating | ~CHF 4m | next 1–2 months of burn | CHF sight accounts at both Swiss banks, USD at the US bank | ≈ 0% on CHF |
+| Reserve | ~CHF 8m | needed within 12 months | 3- and 6-month CHF term deposits laddered across the two Swiss banks | slightly above 0% |
+| Longer reserve | ~CHF 10m | beyond 12 months (runway ~24 months) | Term deposits, a USD government MMF for USD balances, possibly Confederation bills | CHF ≈ 0%; USD MMF near US money-market rates |
+
+The binding constraint is not yield but **bank concentration**: after SVB the board wants no more than 40% at one bank. Sarah is tempted by USD rates, but converting CHF to USD to earn more would create an FX risk for a company whose costs are in CHF — a classic beginner mistake the board rejected.
+
+</Example>
+
+- **Drives:** [surplus cash investment](wf:surplus-cash-investment), [liquidity planning](wf:liquidity-planning).
+- **Terms:** [surplus cash](term:surplus-cash), [investment policy](term:investment-policy), [yield](term:yield), [policy rate](term:policy-rate), [liquidity](term:liquidity).
+
+<Callout type="confusion" title="Higher-yielding currency ≠ free money">
+
+EUR and USD deposits pay more than CHF, but a Swiss company converting CHF into USD to capture the rate takes on currency risk that can wipe out years of interest in a week. If the USD is hedged back with a forward, the forward points remove most of the rate advantage (covered interest parity). See [forward points](term:forward-points).
+
+</Callout>
+
+**Ask:**
+- "How do you decide how much cash is really surplus, and for how long?"
+- "In what order do you rank safety, liquidity and yield — and has that ever been tested?"
+- "Would you rather repay debt or hold cash? Why do you hold gross cash at all?"
+
+## Deposits
+
+**Plain:** leaving money at a bank, either callable any time (sight/call) or locked for a fixed period (term). **Professional:** [sight deposits](term:deposit) and [term deposits](term:term-deposit) are unsecured claims on the bank; term deposits pay a fixed rate for a fixed period (overnight to 12 months typically) and usually cannot be broken early without penalty. Rates track the currency's policy and overnight rates ([SARON](term:reference-rate), €STR, SOFR). Deposit protection is irrelevant at corporate size — the Swiss scheme covers CHF 100,000 per depositor per bank ([deposit protection](term:deposit-protection)).
+
+Example: GlobalChem's in-house bank has EUR 40m of surplus at 15:30 after sweeps and places it [overnight](term:overnight) with a core relationship bank that has room under its limit; the next morning it returns with a day's interest at about €STR. Priya's team does this most days, rotating banks to stay within limits and to reward relationship banks.
+
+- **Drives:** [surplus cash investment](wf:surplus-cash-investment).
+- **Terms:** [deposit](term:deposit), [term deposit](term:term-deposit), [overnight](term:overnight), [counterparty](term:counterparty), [deposit protection](term:deposit-protection).
+
+**Ask:**
+- "Which banks get your deposits, and is that decided by rate, by limit or by relationship?"
+- "How do you get quotes — by phone, bank portal, a multi-bank platform?"
+- "What happens when a big receipt lands at a bank that is already at its limit?"
+
+## Money market funds
+
+**Plain:** a fund that pools many investors' cash into very short-term, high-quality debt and lets you withdraw daily. **Professional:** [MMFs](term:money-market-fund) are regulated in the EU by the Money Market Funds Regulation (CNAV, LVNAV and VNAV types) and in the US by SEC Rule 2a-7. They diversify bank risk across many issuers but are not deposits: in stress they can suffer outflows, and US institutional prime funds must now impose a liquidity fee when daily net redemptions exceed 5% of net assets (compliance from October 2024)[](cite:sec-mmf-2023). Government MMFs (investing in government debt and repos) are the most conservative type. Treasurers usually access them through the bank or a [cash investment portal](term:cash-investment-portal).
+
+Example: Kleio holds USD 4m of its US cash in a USD government MMF at the US bank, redeemable same day; GlobalChem invests EUR 100–200m across three AAA-rated EUR and USD MMFs through a portal, with a maximum of 10% of any fund's assets.
+
+- **Drives:** [surplus cash investment](wf:surplus-cash-investment), [policy compliance](wf:policy-compliance).
+- **Terms:** [money market fund](term:money-market-fund), [cash investment portal](term:cash-investment-portal), [counterparty limit](term:counterparty-limit).
+
+<Callout type="confusion" title="An MMF is not a bank account">
+
+An MMF share can (rarely) lose value or be subject to fees in a crisis, and its value depends on the fund's holdings. Conversely, it can be *safer* than one large deposit at one bank because it is diversified. Ask interviewees which types they allow (government, LVNAV, VNAV) and why.
+
+</Callout>
+
+**Ask:**
+- "Do you use money market funds? Which types, and what do you need to see before investing?"
+- "Does your policy limit the share of any one fund's assets you may hold?"
+- "What did you do with your MMFs in March 2020 or March 2023?"
+
+## Government securities
+
+**Plain:** lending short-term to a government by buying its bills or bonds. **Professional:** [treasury bills](term:treasury-bill) and short government bonds (US Treasuries, German Bunds/Bubills, Swiss Confederation money-market debt register claims and bonds) carry minimal credit risk for major issuers but require a custody account, settlement operations and valuation; their market price falls if yields rise, so selling before maturity can realise a loss ([duration](term:duration), [mark-to-market](term:mark-to-market)). Used by large cash holders; rare below mid-market.
+
+Example: GlobalChem's EUR 400m securities portfolio (mostly short-dated government and supranational paper, portfolio duration capped under one year) is managed by an external asset manager under a mandate; Priya's team monitors the mandate, the 10-day VaR against the board limit, and liquidity. Kleio could buy 3-month US T-bills with surplus USD, but Sarah finds MMFs simpler for USD 4m.
+
+- **Terms:** [government securities](term:treasury-bill), [yield](term:yield), [duration](term:duration), [mark-to-market](term:mark-to-market), [value at risk](term:var).
+
+**Ask:**
+- "Do you hold securities directly or through a manager? Who reconciles the custody account?"
+- "What maturity and duration limits apply, and why those numbers?"
+- "Have you ever had to sell before maturity at a loss?"
+
+## Counterparty limits
+
+**Plain:** a cap on how much money can sit with any one bank or fund. **Professional:** [counterparty limits](term:counterparty-limit) set maximum exposure per counterparty — deposits, investments, derivative MtM, sometimes settlement exposure — usually tiered by credit rating (and sometimes CDS spread), with group-wide aggregation across subsidiaries. Monitored daily or weekly; breaches must be reported and corrected. Operating balances count too, which is why a large customer receipt can breach a limit overnight.
+
+<Example title="A limit breach at Helvetic" company="helvetic">
+
+Policy: maximum CHF 30m with an A-rated bank, CHF 15m with a BBB-rated bank. On Monday a Chinese customer's CHF 9m down payment for a production line lands at Helvetic's BBB-rated German bank, where the EUR operating account already holds the equivalent of CHF 14m. Exposure: CHF 23m against a CHF 15m limit. Lea flags it in the morning position; Daniel moves CHF 8m to a Swiss bank the same day and records the breach and its resolution in the monthly treasury report to Thomas.
+
+</Example>
+
+Who: Kleio — the board's 40%-per-bank rule, checked by Sarah quarterly; Alpine — no formal limits (two banks); Helvetic — Lea monitors weekly in Excel; GlobalChem — the TMS aggregates exposure across ~20 banks daily, the risk team reports breaches.
+
+- **Drives:** [surplus cash investment](wf:surplus-cash-investment), [policy compliance](wf:policy-compliance), [daily cash positioning](wf:daily-cash-positioning).
+- **Terms:** [counterparty limit](term:counterparty-limit), [counterparty](term:counterparty), [credit rating](term:credit-rating), [ISDA](term:isda).
+
+**Ask:**
+- "How are your bank limits set — ratings, CDS, balance-sheet size — and who approves changes?"
+- "Do you include derivative exposure and operating balances in the limit?"
+- "When was the last breach, and what caused it?"
+- "What changed in your bank limits after Credit Suisse and SVB in 2023?"
+
+## Investment policy
+
+**Plain:** the board-approved rulebook for where spare cash may go. **Professional:** the [investment policy](term:investment-policy) (part of or an annex to the [treasury policy](term:treasury-policy)) defines objectives (SLY), eligible instruments, minimum ratings, maximum tenors and duration, counterparty and concentration limits, currency rules (usually: invest in the currency of the future need), approval authorities and reporting. It matters as much for what it forbids (equities, structured products, long-dated bonds, anything not understood) as for what it allows.
+
+Example: Kleio's one-page policy, approved by the board after SVB: deposits only at banks rated A− or better; government MMFs; Swiss Confederation bills; maximum 12 months; maximum 40% at any one bank; no currency conversion to chase yield. GlobalChem's policy runs to a dozen pages with tiered limits, approved instruments by currency and quarterly compliance reporting to the finance committee.
+
+- **Drives:** [policy compliance](wf:policy-compliance), [surplus cash investment](wf:surplus-cash-investment).
+- **Terms:** [investment policy](term:investment-policy), [treasury policy](term:treasury-policy), [treasury committee](term:treasury-committee).
+
+**Ask:**
+- "What does your investment policy forbid, and has anyone asked for an exception?"
+- "Who approved it, and when was it last changed — and why?"
+- "How do you prove compliance each quarter, and to whom?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** The one company where investment is a board topic: CHF 22m of runway, no debt. Deposits laddered across two Swiss banks, a USD MMF, a one-page policy. The risks are bank concentration and the temptation to chase USD yield."
+  sme="**Alpine.** Rarely surplus for long; cash first reduces the credit-line drawing. When milestones coincide, Petra places CHF 2–3m for a month at the house bank, earning almost nothing. Investment is not a real activity."
+  midmarket="**Helvetic.** Surplus CHF repays RCF drawings; only currency needed later in that currency is placed on term deposit. Counterparty limits matter more than yield."
+  multinational="**GlobalChem.** Hundreds of millions invested daily across deposits, MMFs and a managed securities portfolio, with tiered limits, a portal, daily exposure monitoring and quarterly policy compliance — while also holding gross cash as a liquidity reserve for the rating agencies."
+/>
+
+<CompanyCompare topic="map-investing" />
+
+Related workflows: <Workflows ids={["surplus-cash-investment", "liquidity-planning", "policy-compliance"]} />

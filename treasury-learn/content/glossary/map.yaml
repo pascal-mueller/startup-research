@@ -867,7 +867,7 @@
   category: Forecasting
   plain: How close the cash forecast turned out to be to what actually happened.
   professional: "Measured per line, entity and horizon as the difference between forecast and actual cash flows (absolute error, percentage error or bias). Useful metrics separate timing errors (the cash came a week later) from permanent errors (the cash never came) and look at bias (systematically optimistic receipts) rather than only the total."
-  example: "Helvetic's week-1 forecast for HM Italia receipts was EUR 3.0m; EUR 1.9m arrived. The EUR 1.1m gap is a timing error (one customer paid 9 days late), but Italy has been over-optimistic in 8 of the last 10 weeks — a bias Daniel now corrects by haircutting Italy's week-1 receipts by 20%."
+  example: "Helvetic's week-1 forecast for HM Italia receipts was EUR 3.0m; EUR 1.9m arrived. The EUR 1.1m gap is a timing error (one customer paid 9 days late), but Italy has over-forecast receipts in 9 of the last 12 weeks — a bias Daniel now corrects by haircutting Italy's receipts by 15% in weeks 5–13."
   related: [variance-analysis, rolling-forecast, short-term-forecast]
   confusedWith: "**Budget variance.** FP&A's variance compares actual profit to budget; treasury's forecast accuracy compares actual cash timing to the last cash forecast."
 
@@ -879,15 +879,6 @@
   professional: "Deterministic variations of the base forecast (e.g. largest customer pays 60 days late, EUR/CHF −8%, RCF unavailable) used to size buffers and facilities and to prepare responses. Distinct from statistical measures such as cash flow at risk; most mid-sized companies use a handful of named scenarios rather than simulations."
   example: "Alpine's downside case moves two robot acceptances (CHF 3.4m) by one quarter: cash would fall to CHF 1.8m in week 9, so Martin checks that the CHF 12m credit line is undrawn enough to cover it."
   related: [liquidity-headroom, cash-flow-at-risk, liquidity-risk]
-
-- id: stp
-  term: Straight-through processing
-  aka: [STP, STP rate]
-  category: Payments
-  plain: A payment or deal that goes all the way from creation to settlement and booking without anyone touching it by hand.
-  professional: "The share of transactions processed end to end without manual intervention (re-keying, repair, manual matching). Treasury tracks STP for payments (file creation to bank acceptance), trades (execution to confirmation and settlement) and postings (bank statement to GL). Low STP means cost, delay and error risk."
-  example: "GlobalChem's payment factory sends ~95% of supplier payments without manual repair; most exceptions are missing beneficiary data in non-SEPA countries."
-  related: [payment-factory, reconciliation, iso-20022]
 
 - id: ndf
   term: Non-deliverable forward

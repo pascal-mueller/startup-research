@@ -1,0 +1,77 @@
+---
+title: The ERP from treasury's point of view
+nav: ERP
+order: 3
+summary: The ERP is the accounting system of record — invoices, payables, receivables, the general ledger and supplier bank details. Treasury does not own it, but most of treasury's forecast inputs and all routine payments start there, and treasury's deals and bank movements must end up in it.
+related: [/systems/architecture, /org/with-accounting, /org/with-ap, /org/with-ar, /workflows/payment-processing, /workflows/bank-reconciliation]
+---
+
+## What the ERP is (and is not) for treasury
+
+An [ERP](term:erp) (enterprise resource planning system) integrates the general ledger, accounts payable, accounts receivable, procurement, sales, inventory and often payroll. Typical names by size: Bexio, Abacus, Sage or Xero-type cloud accounting at startups and small Swiss companies; Microsoft Dynamics 365 Business Central, Abacus or SAP Business One at SMEs; SAP S/4HANA, Oracle, Microsoft Dynamics 365 Finance or Infor at mid-market and large groups — often several at once after acquisitions.
+
+For treasury, the ERP is three things:
+
+1. **The source of near-term cash-flow data** — who we owe, when; who owes us, when.
+2. **The origin of routine payments** — the AP payment run produces the payment file.
+3. **The destination of treasury's results** — bank statements are posted, deals and hedges are accounted for, intercompany loans are booked.
+
+It is *not* treasury's view of the bank. The ERP learns about cash when statements are imported and posted — usually the next morning, sometimes days later for accounts nobody has automated.
+
+## What treasury takes from the ERP
+
+| Data | ERP area | Who maintains it | How treasury uses it | Watch out for |
+|---|---|---|---|---|
+| Open payables with due dates | AP | [AP team](/org/with-ap) | Outflow forecast (2–4 weeks is fairly reliable) | Due date ≠ payment date: payment runs happen on fixed days, and some suppliers are paid early for discounts or late by habit |
+| Payment-run calendar and proposals | AP | AP | Today's and this week's outflows; approval | Extra runs before holidays; urgent manual payments outside the run |
+| Open receivables with due dates | AR | [AR / credit control](/org/with-ar) | Inflow forecast | Customers pay late systematically; disputes; partial payments |
+| Sales orders, purchase orders | Sales, procurement | Business | Forecast beyond open invoices | Order date ≠ invoice date ≠ cash date |
+| Intercompany balances | GL / intercompany | Group accounting | Intercompany settlement, netting, funding | The two sides disagree; mismatches surface at month-end |
+| GL cash and bank accounts | GL | [Accounting](/org/with-accounting) | Reconciliation of treasury position vs books | Unposted statement lines on suspense |
+| Vendor master (incl. bank details) | AP / master data | AP or a master-data team | Payment file content | Changed fraudulently ([BEC](term:bec)) or wrongly; see [vendor master data](term:vendor-master-data) |
+| Exchange-rate table | GL | Accounting (often from a treasury or ECB feed) | Revaluation, reporting | Different rates in ERP and in treasury's spreadsheet |
+
+## What treasury gives back
+
+- **Bank statement postings.** [camt.053](term:camt-053)/[MT940](term:mt940) files are imported and turned into GL entries by [posting rules](term:posting-rules); matched items clear open invoices ([cash application](term:cash-application)), the rest lands on a [suspense account](term:suspense-account). Usually accounting's process, but treasury sees the consequences.
+- **Treasury deal accounting.** FX forwards, deposits, loans, interest accruals, [hedge accounting](term:hedge-accounting) entries — posted from the TMS via an interface, or prepared manually from treasury's spreadsheet by an accountant.
+- **Intercompany loans and in-house bank positions.** Treasury decides; accounting books both sides in both entities.
+- **Rates.** At many groups treasury supplies month-end and budget rates that accounting loads into the ERP.
+
+## ERPs with treasury modules
+
+Some ERPs include treasury functionality beyond AP/AR:
+
+- **SAP S/4HANA** has Cash Management (bank account management, cash positioning, liquidity forecasting), Treasury and Risk Management (deal capture, valuation, hedge accounting), In-House Cash and payment functions, plus SAP Multi-Bank Connectivity as a managed bank gateway[](cite:sap-mbc). Large SAP groups — like [GlobalChem](co:globalchem) — often use these instead of a separate TMS.
+- **Oracle** and **Microsoft Dynamics 365 Finance** offer cash and bank management (statement import, reconciliation, cash-flow forecast views); groups with complex deal portfolios often pair them with a standalone TMS. (Scope per version not re-verified here — see [Vendors](/systems/vendors).)
+- **SME ERPs** (Business Central, Abacus, Bexio) cover payment files, bank statement import and reconciliation, and sometimes a simple cash-flow view. They do not cover deals, hedges or multi-bank visibility beyond the accounts connected to them.
+
+<Callout type="confusion" title="Payment run vs treasury payment">
+
+The **AP payment run** pays suppliers for approved invoices: hundreds or thousands of payments, generated by the ERP, owned by AP. A **treasury payment** moves money for treasury reasons: funding a subsidiary, settling an FX deal, repaying a loan — few, large, often created in the TMS or bank portal. Both need approval, but by different people under different limits. Mixing them up leads to asking a treasurer about invoice approvals they never see.
+
+</Callout>
+
+## Multi-ERP reality
+
+At [Helvetic](co:helvetic), SAP S/4HANA runs in Switzerland, Germany and the Czech Republic; Italy, France, the UK, the US and China run smaller local ERPs. Consequences Lea deals with every week:
+
+- **Payables data comes in three shapes.** SAP payment proposals can be exported in one layout; the other five subsidiaries email Excel lists in their own layouts.
+- **Company codes and GL accounts differ.** "Bank charges" is a different account in each ERP, so any group-level view needs a mapping table — maintained by Lea in Excel.
+- **Payment files differ.** Each local ERP generates its own pain.001 variant; the multibank tool has to accept each one.
+- **Month-end timing differs.** Some subsidiaries close on working day 3, others on day 6, so the month-end cash reconciliation waits for the slowest.
+
+A larger group like GlobalChem usually has a programme to move all entities to one ERP instance ("single instance"), but acquisitions keep adding legacy systems. Treasury systems that can take data from several ERPs are valued for exactly this reason.
+
+## Who administers the ERP
+
+Not treasury. Usually a finance-systems or IT team with key users in accounting and AP, plus an implementation partner for configuration. Treasury is a requester: it asks for export layouts, payment-format changes, new bank accounts in the house-bank tables, posting-rule changes. At Alpine, Petra (Head of Accounting) is the key user of Business Central and calls the Dynamics partner for payment-format changes; at GlobalChem, Ben's treasury-systems team works with the central SAP competence centre.
+
+<Callout type="interview">
+
+- "When AP changes the payment-run date, how do you find out?"
+- "Which entities' payables can you see in one place, and which come by email?"
+- "Who can change a supplier's bank details, and what check happens before the next run?"
+- "How do treasury deals get into the general ledger — interface or manual journal?"
+
+</Callout>

@@ -1,0 +1,174 @@
+---
+title: Treasury structures and variants
+nav: Structures & variants
+order: 2
+summary: There is no standard treasury organisation. Companies differ on six dimensions — reporting line, how treasury and corporate finance are split, degree of centralisation, regional treasury centres and in-house banks, shared-service centres and payment factories, and how front, middle and back office are separated. This page shows the common variants and when each is typical.
+related: [/org, /org/responsibility-matrix, /org/roles, /map/cash-management, /map/payments, /size]
+---
+
+## Six dimensions, not one org chart
+
+When you meet a treasurer, place their organisation on each of these dimensions. Most real companies are a mix.
+
+| Dimension | Options | What decides it |
+|---|---|---|
+| **1. Reporting line** | Treasury → CFO · treasury → finance director / financial controller → CFO · Treasurer and Controller as peers | Size, whether a full-time treasurer exists, national habits (US vs DACH) |
+| **2. Treasury vs corporate finance** | Combined (treasurer owns debt and capital markets) · corporate-finance desk inside treasury · separate corporate finance / M&A function | Capital-markets activity, M&A frequency, CFO preference |
+| **3. Centralisation** | Decentralised · partially centralised · fully centralised · hybrid by region | Number of entities, regulation (capital controls), acquisition history, systems |
+| **4. Treasury centres** | None · regional treasury centre(s) · in-house bank | Scale, time zones, restricted currencies, tax |
+| **5. Payment processing** | Local finance pays · shared-service centre pays · payment factory (in the entity's name or [on behalf of](term:pobo)) | ERP landscape, number of entities, fraud-control ambitions |
+| **6. Office separation** | One person with a reviewer · two-person front/back split · full [front](term:front-office) / [middle](term:middle-office) / [back office](term:back-office) | Team size, trading volume, audit expectations |
+
+<Callout type="field" title="Structure follows history">
+
+Organisations are rarely designed from scratch. Treasury is typically centralised in steps triggered by events: a refinancing that requires group-level control (Helvetic centralised in 2021 when it refinanced), an acquisition, a fraud incident, a bank failure, or an ERP or TMS project. Ask "when did it become like this, and why?" — the answer explains the odd bits.
+
+</Callout>
+
+## 1. Reporting line
+
+### Treasury under the CFO (most common once a treasurer exists)
+
+The Treasury Manager or Group Treasurer reports directly to the CFO, alongside the heads of accounting, FP&A and tax. This is the structure at [Helvetic](co:helvetic) and [GlobalChem](co:globalchem). In US-style organisations the **Treasurer** and **Controller** are explicit peers — one runs the money, the other the books — which gives clean [segregation of duties](term:segregation-of-duties) between executing and recording transactions.
+
+<OrgChart id="us-treasurer-controller" />
+
+### Treasury under a finance director or financial controller
+
+In SMEs and many family-owned or UK-style organisations, the treasury manager (or a "treasury accountant") reports to the Head of Finance / Financial Controller, who reports to the CFO or Finance Director. Treasury is treated as an extension of accounting. It works while the job is mainly cash, payments and bank administration. It becomes a problem when treasury needs to challenge accounting's data or when forecasting competes with the month-end close for the same people.
+
+<OrgChart id="controller-led" />
+
+| | Under the CFO | Under a controller / head of finance |
+|---|---|---|
+| **Typical when** | A dedicated treasurer exists; debt, FX or multiple entities make treasury a strategic function | SME; treasury mostly operational; one or two entities |
+| **Strength** | Direct access to the decision-maker; independence from accounting | Close to the data; cheap; fewer hand-offs |
+| **Weakness** | Treasury can drift away from operational data | Forecasting and risk get squeezed by the close; weaker segregation of duties |
+| **Interview implication** | The treasurer can speak to decisions and policy | Ask the controller *and* the CFO — decisions and mechanics sit with different people |
+
+## 2. Treasury and corporate finance: combined or split?
+
+"Corporate finance" as a department means debt and capital markets, M&A, sometimes investor relations. How it relates to treasury varies:
+
+| Pattern | Who does debt and capital markets | Who does M&A | Typical when | Example |
+|---|---|---|---|---|
+| **CFO does it** | CFO with banks and advisers | CFO/CEO with advisers | Small and mid-sized companies | [Kleio](co:kleio), [Alpine](co:alpine); at [Helvetic](co:helvetic) Thomas owns the RCF and bond, Daniel does the work |
+| **Inside treasury** | A corporate-finance or capital-markets desk under the Group Treasurer | Separate corporate development team | Large issuers | [GlobalChem](co:globalchem): Olivier under Anna. Novartis' treasury (at the time described) was split into International Treasury, Capital Markets, and Control & Reporting[](cite:tmi-novartis-treasury) |
+| **Separate function** | "Head of Corporate Finance" beside the treasurer, both under the CFO | Same function | Acquisitive groups, private-equity-owned companies | Treasury then does execution: drawings, hedges of deal currency, cash for closing |
+
+<Callout type="confusion" title="Two different 'corporate finance' teams">
+
+A "corporate finance" team in a company is not the same as a bank's or an advisory firm's corporate finance department (which advises clients on M&A and capital raising). And inside companies, the label covers anything from a two-person debt desk in treasury to an M&A team reporting to the CEO. Ask what they actually do. See [Debt & capital markets roles](/org/roles-debt).
+
+</Callout>
+
+## 3. Centralised, decentralised, hybrid
+
+Treasury Today describes three levels[](cite:tt-centralised-treasury):
+
+| Level | Policy | Decisions and dealing | Banking and payments | Typical |
+|---|---|---|---|---|
+| **Decentralised** | Each subsidiary; group advises | Subsidiary | Local banks, local funding | Recently acquired businesses, holding groups, countries with capital controls |
+| **Partially centralised** | Group sets policy, may instruct | Group may deal for subsidiaries or instruct them | Subsidiaries keep local banks; back office may be central | Many mid-market groups — [Helvetic](co:helvetic) |
+| **Fully centralised** | Group | Group or regional treasury centre | Central bank relationships, [cash pooling](term:cash-pooling), often [in-house bank](term:in-house-bank) and [payment factory](term:payment-factory) | Large multinationals — [GlobalChem](co:globalchem) in Europe |
+
+<OrgChart id="decentralised-group" />
+
+Centralisation almost always happens in the same order, because the early steps need only policy and the later ones need systems, legal work and tax review:
+
+<Flow steps={["Policy|group treasury policy, limits", "Visibility|all bank balances centrally", "Funding & hedging|group borrows and hedges; IC loans", "Bank rationalisation|fewer banks and accounts", "Liquidity structures|cash pools, netting, IHB", "Payments|payment factory, POBO/COBO"]} caption="Typical sequence of treasury centralisation. Many groups stop at step 3 or 4, and even large groups are often hybrid by region." />
+
+<Callout type="survey" title="How common are the centralised structures?">
+
+PwC's 2025 Global Treasury Survey (350 treasurers) reports that among organisations above USD 10bn revenue, 67% use [in-house banks](term:in-house-bank), 60% [payment factories](term:payment-factory) and 50% [payments on behalf of](term:pobo) (POBO)[](cite:pwc-gts-2025). These are large-company figures; they say nothing about mid-market prevalence. Treasury Today notes that many multinationals end up hybrid or decentralised because full centralisation is impractical[](cite:tt-centralised-treasury), and an AFP panel of Middle East and Africa treasurers described a common hybrid: cash management decentralised by country, funding and risk centralised[](cite:afp-mea-centralisation-2024).
+
+</Callout>
+
+| What stays local even in centralised groups | Why |
+|---|---|
+| Deciding which invoices to pay and when | Commercial knowledge sits with the business and AP |
+| Local tax, payroll and social-security payments | Local rules, local accounts, local deadlines |
+| Cash in restricted-currency countries (e.g. China, India, parts of Africa and Latin America) | Capital controls; cannot be pooled across borders freely |
+| Relationships with local banks for collections and guarantees | Local market practice |
+| The forecast input | Only local finance knows the local business |
+
+## 4. Regional treasury centres and in-house banks
+
+### Regional treasury centres (RTCs)
+
+An [RTC](term:regional-treasury-centre) is a treasury team in another time zone that runs liquidity, banking, sometimes FX and [re-invoicing](term:reinvoicing-centre) for a region, reporting solid-line to the Group Treasurer and often dotted-line to the regional CFO. Treasury Today notes RTCs commonly act as payment factory, in-house bank, netting or re-invoicing centre[](cite:tt-centralised-treasury).
+
+- **Why they exist:** time zones (an Asian morning is over before Basel starts), restricted currencies that need local expertise, regional bank relationships, and tax incentives.
+- **Example:** Nestlé's Singapore treasury centre, set up in 1998, runs treasury activities for all Nestlé entities in more than 20 Asia-Pacific markets with front, middle and back office segregated[](cite:tt-nestle-ntc-ap-2023).
+- **Location economics:** Singapore's Finance and Treasury Centre incentive offers a concessionary 8% or 10% tax rate on qualifying treasury income, with substance conditions (for the 8% rate on a first award: at least 4 treasury professionals in Singapore and S$1.5m annual spend)[](cite:edb-ftc-factsheet).
+- **Typical when:** material flows in several regions, usually above several billion revenue. Mid-market groups like [Helvetic](co:helvetic) usually cover Asia from head office plus a strong local finance manager (Wei in Suzhou).
+
+### In-house bank (IHB)
+
+An in-house bank is a group entity (and usually a system module, e.g. in SAP) that keeps internal current accounts for subsidiaries, lends to and borrows from them, and often pays and collects on their behalf ([POBO](term:pobo), [COBO](term:cobo)).
+
+| Stage | What the IHB does | Who runs it |
+|---|---|---|
+| Internal accounts and IC loans | Records each subsidiary's position with the centre; pays interest | Cash & liquidity team |
+| Cash pooling feeds the IHB | Pool balances become IHB accounts | Cash team + back office |
+| Netting | Monthly multilateral settlement of intercompany invoices | Cash team or back office |
+| POBO / COBO | Pays suppliers and collects from customers on behalf of subsidiaries | Payment factory / back office |
+
+Scale of a large implementation, as described in a vendor case study: Siemens Gamesa built an in-house bank and payment factory across 235 legal entities in 85 countries and reports closing about 600 bank accounts[](cite:tis-siemens-gamesa-ihb) (vendor-published; treat as illustration).
+
+<Callout type="field" title="Why Helvetic does not have an in-house bank">
+
+With 8 subsidiaries and 12 accounts, Helvetic gets most of the benefit from simple intercompany loans that Daniel arranges manually — it has **no** cash pool; a EUR pool is only under evaluation. An IHB would need a TMS, legal agreements with every subsidiary, tax review in six countries and accounting changes. At this size, the people cost of running it usually outweighs the savings. The trigger is typically a TMS project or an acquisition that doubles the entity count.
+
+</Callout>
+
+## 5. Shared-service centres and payment factories
+
+These two are often co-located and often confused.
+
+| | [Shared-service centre](term:shared-service-centre) (SSC / GBS) | [Payment factory](term:payment-factory) |
+|---|---|---|
+| **Does** | Transactional finance for many entities: [procure-to-pay](term:procure-to-pay), [order-to-cash](term:order-to-cash), [record-to-report](term:record-to-report), payroll | Collects payment files from many ERPs, validates, screens, routes to banks; sometimes pays on behalf of entities |
+| **Decides** | Which invoices are due and paid (under entity approval rules) | Nothing commercial — it controls *how* money leaves |
+| **Usually reports to** | CFO or a Global Business Services head | Treasury (policy, banks, controls) — or the SSC/GBS head with a dotted line to treasury |
+| **Typical when** | 15–20+ entities with similar processes | Many entities, many banks, a fraud-control push, or a TMS/ERP harmonisation |
+
+<OrgChart id="large-rtc-ssc" />
+
+Central and Eastern Europe hosts many such centres: ABSL counted 2,081 business-service centres employing about 488,700 people in Poland at the end of Q1 2025, with Kraków one of the largest hubs[](cite:absl-poland-2025) — the reason [GlobalChem](co:globalchem)'s treasury operations team sits in Kraków is typical, not exotic. A bank case study describes Siemens' payment factory processing the payments of German and US units plus cross-border payments[](cite:db-siemens-payment-factory).
+
+Deloitte's 2024 survey found treasurers more willing to outsource operational activities — treasury technology, bank account administration, in-house banking and treasury payments[](cite:deloitte-gts-2024-web) — so the "operations" box in a large group's chart may be partly an external provider.
+
+## 6. Front, middle and back office
+
+The ACT describes the classic split[](cite:act-wiki-office-structure): the **front office** identifies exposures, manages cash and deals; the **middle office** (mainly in large organisations) checks deals against authorisations and limits, reports exposures and maintains mandates and standing data; the **back office** confirms and settles deals, reconciles bank accounts and accounts for transactions. The principle: the person who does the deal must not settle the money.
+
+| Size | Front office | Middle office | Back office |
+|---|---|---|---|
+| [Kleio](co:kleio) | Sarah (CFO) | — | Nina checks the bank confirmation and books it |
+| [Alpine](co:alpine) | Martin (CFO) trades forwards | — | Petra checks confirmations and books; the auditor reviews |
+| [Helvetic](co:helvetic) | Daniel trades and decides transfers | Thomas reviews limits monthly; no separate function | Lea matches confirmations (she does not trade); group accounting settles and books |
+| [GlobalChem](co:globalchem) | Priya's and Jonas's desks, Olivier for debt | Treasury control team inside Marta's operations group | Marta's back office in Kraków |
+
+<Callout type="warning" title="Where small teams are exposed">
+
+With two people, segregation of duties depends on holidays and sick days. When Lea is away, who matches Daniel's confirmations? If the answer is "Daniel, just this week", the control is gone. Auditors and fraudsters both know this. Ask small teams how they cover absences.
+
+</Callout>
+
+## How to read an unfamiliar organisation
+
+| Ask | Why |
+|---|---|
+| "Who reports to whom, and which lines are dotted?" | Locates authority vs influence |
+| "What can you decide without the CFO?" | Delegated authority is the real org chart |
+| "Where do payments leave the company — which team presses send?" | Reveals SSC/payment factory/local model |
+| "Is anything run by a regional centre or an in-house bank?" | Reveals centralisation level |
+| "Who confirms your deals?" | Reveals front/back separation |
+| "What changed in the structure in the last three years, and why?" | Surfaces the event that shaped it — and current projects |
+
+<Callout type="synthesis" title="Evidence note">
+
+Definitions of front/middle/back office follow the ACT[](cite:act-wiki-office-structure); the centralisation spectrum follows Treasury Today[](cite:tt-centralised-treasury). Prevalence figures come from PwC[](cite:pwc-gts-2025) and apply only to groups above USD 10bn revenue. The size thresholds in "typical when" are practitioner ranges, not survey data. Company case material (Nestlé, Novartis, Siemens) comes from practitioner and vendor publications and may be dated.
+
+</Callout>

@@ -1,0 +1,311 @@
+id: credit-facility-management
+title: Managing credit facilities
+question: We have a CHF 200m revolving credit facility — what does someone actually have to do to use it, pay for it and keep it?
+group: Debt & funding
+order: 1
+summary: >-
+  A committed credit facility (typically an [RCF](term:rcf)) is the company's insurance policy for liquidity. Managing it
+  is a mix of administration and relationship work: knowing what the 150-page agreement actually says, sending
+  utilisation requests to the agent by the deadline, rolling loans at the end of each interest period, checking the
+  agent's interest and fee calculations, watching utilisation and the ancillary lines (guarantees, overdrafts) the
+  business really runs out of, delivering information to lenders, keeping each bank in the syndicate happy enough to
+  stay, and starting the extension or refinancing a year or two before maturity. Covenant compliance is closely related
+  and covered in [covenant monitoring](wf:covenant-monitoring).
+objective: >-
+  Have committed funding available when needed at predictable cost; use it efficiently (draw only what is needed, in
+  the right currency and period); never miss a notice, payment or information deadline; and keep a stable bank group
+  willing to extend and renew the facility well before it becomes short-dated.
+trigger: >-
+  Interest-period ends (every 1–6 months per loan); a funding need in the cash forecast; quarterly fee invoices;
+  reporting dates; a guarantee or overdraft request from the business; extension windows; 12–24 months before maturity;
+  any corporate event needing lender consent (acquisition, disposal, new guarantor).
+frequency: >-
+  Weekly to monthly administration at a company that draws its facility; a few times a year for an undrawn backstop;
+  a multi-month project every 3–5 years (refinancing or amend-and-extend).
+people:
+  - role: Treasury manager (at large groups, corporate finance / capital markets)
+    does: Owns the facility; decides drawings and rollovers with the forecast; manages the agent and the bank group; runs extensions and refinancings.
+  - role: Treasury analyst
+    does: Maintains the facility calendar and debt register, prepares utilisation requests, checks interest and fee notices, tracks ancillary lines.
+  - role: CFO
+    does: Signs notices as authorised signatory; approves significant drawings, the bank-group strategy, and new or amended facilities; fronts the annual bank meeting.
+  - role: Facility agent (a bank in the syndicate)
+    does: Receives notices, allocates loans among lenders, calculates compounded-rate interest and fees, circulates information and consent requests.
+  - role: Banks' relationship managers and credit departments
+    does: Decide on extensions, amendments, ancillary lines and renewals; review the company annually.
+  - role: Legal counsel (in-house and external)
+    does: Negotiate facility documentation, amendments and consents; interpret clauses in unusual situations.
+  - role: Group accounting
+    does: Books drawings, interest and fee accruals; supplies financial statements for information undertakings.
+  - role: Board of directors
+    does: Approves new facilities and major amendments; grants signing authorities.
+systems:
+  - name: Facility agreement and "cheat sheet"
+    use: The legal source; a 2–5 page internal summary is what people actually consult.
+  - name: Debt register / TMS debt module (or Excel)
+    use: Loans outstanding by currency, interest periods, rates, maturities, fees, accruals; a calendar of deadlines.
+  - name: Agent's loan portal or email
+    use: Utilisation requests and confirmations, interest and fee notices, lender communications (many agents offer a portal; PDF by email remains common).
+  - name: Cash forecast and daily position
+    use: Decides whether to draw, repay or roll, and in which currency.
+  - name: Bank portals (guarantee and trade-finance modules)
+    use: Issuing and tracking guarantees and letters of credit under ancillary lines.
+  - name: Market data
+    use: Reference rates (SARON, €STR, EURIBOR, SOFR) to check interest calculations and compare funding alternatives.
+data:
+  - name: Facility terms
+    source: Facility agreement (typically [LMA](term:lma)-based in Europe)
+    notes: Commitments per lender, currencies, margin grid, commitment and utilisation fees, notice deadlines, interest-period options, representations, undertakings, events of default, extension options, maturity.
+  - name: Loans outstanding and interest periods
+    source: Debt register, agent confirmations
+  - name: Funding need by currency and date
+    source: "[Cash forecast](wf:cash-forecasting), [daily position](wf:daily-cash-positioning)"
+  - name: Interest and fee notices
+    source: Facility agent
+    notes: For compounded-rate loans the interest is known only a few days before the payment date.
+  - name: Ancillary line usage (guarantees, overdrafts, LCs)
+    source: Bank portals, subsidiaries, sales (guarantee requests)
+    notes: Often tracked separately from the RCF and outside treasury's daily view.
+  - name: Wallet share and relationship economics per bank
+    source: Treasury's own records of fees, FX volumes, cash-management business per bank
+    notes: What each lender earns from the company beyond the thin loan margin.
+steps:
+  - title: Abstract the agreement into a working summary
+    who: Treasury manager, with legal
+    where: Facility agreement → Word/Excel summary
+    when: At signing and after every amendment
+    detail: >-
+      Extract what daily life needs: commitments by lender and currency, margin grid and fees, notice deadlines by loan
+      type, interest-period options, signatories, the information undertakings and their deadlines, covenants and their
+      definitions, baskets for additional debt and security, extension windows, maturity, and which events need lender
+      consent. The summary is used far more than the agreement itself.
+    manual: Reading 150+ pages and typing the relevant parameters into a summary and calendar — entirely manual at most companies.
+  - title: Maintain the facility calendar and debt register
+    who: Treasury analyst
+    where: Excel / TMS debt module
+    detail: >-
+      Record every loan (currency, amount, start, end of [interest period](term:interest-period), rate basis) and every
+      deadline: notice dates, interest and fee payments, reporting dates, extension windows, maturity. The calendar
+      feeds the daily cash position so repayments and interest are never a surprise.
+  - title: Decide draw, repay or roll
+    who: Treasury manager; CFO above an agreed amount
+    where: Cash forecast, Excel, short meeting or email
+    when: A week or so before each interest-period end, or when the forecast shows a need
+    detail: >-
+      Using the 13-week forecast, decide the amount, currency and period of each loan: roll unchanged, reduce with surplus
+      cash, increase, or switch currency. Compare with alternatives — using idle cash, an [FX swap](term:swap) of surplus
+      currency, a local overdraft, commercial paper at large companies. With CHF rates near 0%, surplus CHF is better used
+      to reduce CHF drawings than left in deposits. Check thresholds that change cost, such as a
+      [utilisation fee](term:utilisation-fee) above one-third drawn.
+    judgment: >-
+      How much buffer to keep drawn versus repaid; which currency to borrow in; whether a need is temporary (short period,
+      overdraft or swap) or structural (longer period, or a term loan instead).
+  - title: Prepare, sign and deliver the utilisation request
+    who: Treasury analyst prepares; two authorised signatories sign (often CFO and treasury manager)
+    where: Agreement's scheduled form, PDF by email or agent portal
+    when: By the deadline, e.g. 10:00 three business days before the utilisation date
+    detail: >-
+      Fill in the [utilisation request](term:utilisation-request) exactly as the schedule requires — facility, currency,
+      amount, utilisation date, interest period, account for payment. Before signing, confirm the
+      [repeating representations](term:repeating-representations) are still true (no default continuing, no undisclosed
+      material litigation). Rollovers of maturing loans are usually netted, so only the difference moves in cash.
+    manual: Word or PDF templates filled by hand, printed, signed (or e-signed) and emailed; the most common error is a wrong date, account or missed deadline.
+    judgment: Whether anything that has happened since the last drawing makes the representations doubtful — a question for legal, not for the analyst alone.
+  - title: Confirm funding and book it
+    who: Treasury analyst
+    where: Agent confirmation, bank statement, debt register
+    when: Utilisation date
+    detail: >-
+      Check the agent's confirmation, that the net amount arrived on the right account with the right value date, update
+      the debt register, and give accounting the drawing, rate basis and accrual information.
+  - title: Check interest and fee notices
+    who: Treasury analyst
+    where: Agent notices, Excel recalculation
+    when: End of each interest period; quarterly for fees
+    detail: >-
+      Recompute interest (for compounded SARON or SOFR loans the agent calculates in arrears with a lookback; check a
+      sample), the [commitment fee](term:commitment-fee) on undrawn amounts (commonly a percentage of the margin),
+      utilisation and agency fees, and the margin level under the [margin ratchet](term:margin-ratchet) after each
+      compliance certificate. Approve payment.
+  - title: Monitor utilisation, headroom and ancillary lines
+    who: Treasury analyst → treasury manager
+    where: Excel / TMS, bank guarantee portals
+    when: Weekly or monthly
+    detail: >-
+      Report drawn and undrawn amounts, and usage of [ancillary facilities](term:ancillary-facility): guarantee lines
+      (for customer advance payments and performance bonds), subsidiary overdrafts, letters of credit. These lines are
+      what operations actually hit first — a sales team needing a guarantee for a signed order does not care that the RCF
+      is 70% undrawn.
+  - title: Deliver information undertakings
+    who: Treasury manager with group accounting
+    where: Email / agent portal
+    when: Per agreement (e.g. annual accounts within 120 days, half-year within 90 days — varies)
+    detail: >-
+      Send the financial statements, the compliance certificate (see [covenant monitoring](wf:covenant-monitoring)),
+      budget if required, notices of material events, and KYC updates requested by lenders.
+  - title: Manage the bank group
+    who: Treasury manager and CFO
+    where: Annual bank meeting, RM calls, wallet-share analysis in Excel
+    when: Continuously; formal review annually
+    detail: >-
+      Present results and strategy to lenders once a year; track what each lender earns from the relationship (FX,
+      cash management, guarantees, capital-markets mandates) and allocate [ancillary business](term:ancillary-business)
+      so that each lender's return justifies its commitment. Listen for signs that a bank wants to reduce.
+    judgment: >-
+      Which banks to reward with business and which to let go; whether to accept a weaker price from a lender to keep it
+      in the group. Relationship judgment, not arithmetic.
+  - title: Extend, amend and extend, or refinance
+    who: Treasury manager leads; CFO and board approve; legal and a coordinating bank support
+    where: Extension request letters; RFP, term sheet, LMA documentation, KYC, board resolutions
+    when: In each extension window; A&E or refinancing typically 12–24 months before maturity
+    detail: >-
+      Exercise [extension options](term:extension-option) where they exist (each lender decides individually). Before the
+      facility becomes short-dated, run an [amend and extend](term:amend-and-extend) or a refinancing: sound out banks,
+      agree a term sheet with a coordinator, negotiate documentation, complete KYC, obtain board approval, sign, satisfy
+      conditions precedent.
+    judgment: When to start (market conditions, other maturities, auditors' view of short-dated debt), which banks to invite, and which terms to trade off (price, size, tenor, covenants).
+example:
+  title: "Helvetic, October 2026: a rollover, a guarantee that doesn't fit, and the start of an amend-and-extend"
+  body: |
+    **The facility (illustrative terms).** CHF 200m RCF signed October 2021, LMA-based, five years plus two one-year extension options — both accepted by all banks, so it now matures in October 2028, the same year as the CHF 100m bond. Margin by leverage: 0.85% up to 1.50x (current, at ~1.4x), then 1.05% / 1.30% / 1.55%. Commitment fee 35% of margin (0.2975% p.a.). Utilisation fee 0.10% p.a. above one-third drawn. CHF loans at compounded SARON (five-day lookback, zero floor), EUR loans at EURIBOR. Notices: 10:00 Zurich time, three business days before.
+
+    | Lender | Commitment (CHF m) | Share of loans (CHF m) | Other business with Helvetic |
+    |---|---|---|---|
+    | Swiss bank A (coordinator and agent) | 60 | 18.1 | CHF cash management, FX hedging, CHF 10m guarantee line (6.2m used) |
+    | Swiss bank B | 50 | 15.1 | FX hedging, bond paying agent |
+    | German bank | 50 | 15.1 | EUR cash management, FX hedging, EUR 2m overdraft for HM Deutschland |
+    | Global bank | 40 | 12.0 | US/UK accounts only |
+    | **Total** | **200** | **60.2** (30%) | Loans: CHF 35m + EUR 27m (≈ CHF 25.2m at 0.935) |
+
+    **Mon 5 Oct — calendar.** Lea's register shows both loans' interest periods end Thu 15 Oct; requests are due Mon 12 Oct, 10:00. The agent's Q3 commitment-fee invoice is CHF 106,285; Lea recomputes 0.2975% × average undrawn CHF 139.8m × 92/360 and agrees it.
+
+    **Tue 6 Oct — the decision.** The 13-week forecast shows HM Deutschland needs EUR 8m from mid-October for material on a large order, while HM AG's EUR receipts are committed to settling Q4 forwards. HM AG holds about CHF 5m more than it needs; at SARON ≈ 0% it earns nothing. Lea's first draft — roll everything and add EUR 8m — would take drawings to CHF 67.7m, over the one-third threshold, triggering 0.10% on *all* loans (≈ CHF 68k a year). Daniel's decision: roll the CHF loan at **CHF 30m** (repay 5m) and the EUR loan at **EUR 35m** (27m + 8m new), both for three months. Drawings after: CHF 30m + EUR 35m ≈ CHF 62.7m (31%), no utilisation fee.
+
+    **Fri 9 Oct — interest notices.** EUR loan: 27m × (EURIBOR 2.05% + 0.85%) × 92/360 = EUR 200,100 (rate fixed in July, so Lea checked it then). CHF loan: compounded SARON came out marginally below zero, floored at 0, so interest = 35m × 0.85% × 92/360 = CHF 76,028 — the agent's figure matches.
+
+    **Mon 12 Oct, 09:15 — requests.** Two utilisation requests, signed by Thomas and Daniel. Before signing, Daniel confirms with legal that nothing affects the representations. Emailed as PDF to the agent's loan desk; confirmation back by 14:00.
+
+    **Thu 15 Oct — settlement.** Cashless rollovers: HM AG pays CHF 5.076m (repayment plus interest) and receives EUR 7.80m (8.0m new minus 0.20m interest), which Lea lends on to HM Deutschland by intercompany loan. Register updated; Claudia's team gets the booking details.
+
+    **Same week — a guarantee that doesn't fit.** Sales signs a CHF 4.0m machine order whose customer requires an [advance payment guarantee](term:advance-payment-guarantee). Swiss bank A's guarantee line has CHF 3.8m free. Options: wait for CHF 1.5m of guarantees expiring 31 October (the customer won't pay the deposit until the guarantee arrives); ask Swiss bank B to issue against cash collateral (ties up CHF 4m); or ask Swiss bank A for a temporary increase. Daniel asks for an increase to CHF 12m; the bank's credit approval takes eight working days, and the RM mentions that Swiss bank A "would like to discuss the RCF renewal early".
+
+    **Thu 22 Oct — A&E memo to Thomas.** With RCF and bond both maturing in 2028, both would appear as current liabilities in the 2027 accounts. Daniel proposes an amend-and-extend to 2031 + 1 + 1 signed by Q2 2027, before the bond refinancing: sound out the four banks in November; the global bank earns little from Helvetic and may not extend, so invite one more bank that could take its CHF 40m together with some EUR cash management; term sheet by February; documentation and KYC March–April; board approval in May.
+judgment:
+  - decision: Draw, repay, or use an alternative (cash, FX swap, overdraft)
+    why: Cost differences are small per decision but add up; availability, currency needs and thresholds (utilisation fees) matter as much as rate.
+  - decision: Whether the representations can be repeated before a drawing
+    why: A drawing in a difficult period can be refused, and a false representation is itself a default. Requires legal and business context.
+  - decision: How to allocate ancillary business across the bank group
+    why: Lenders expect a return beyond the loan margin; starving a bank of business risks losing it at the next extension.
+  - decision: When to start an extension or refinancing, and which banks to invite
+    why: Starting early costs fees and management time; starting late weakens the company's negotiating position and may worry auditors and rating agencies.
+  - decision: Which terms to trade off in negotiation (price, size, tenor, covenants, baskets)
+    why: Some terms matter only in a downturn; it takes experience to know which ones will matter.
+failure_modes:
+  - mode: Missed notice deadline
+    consequence: Drawing not available on the needed date; rollover becomes repayment; a scramble for overdraft funding.
+    detection: Facility calendar feeding the daily position; reminders a week ahead.
+  - mode: Interest or fee errors by the agent not caught
+    consequence: Overpayment (usually small) or, with compounded rates, misunderstood interest amounts in the forecast.
+    detection: Independent recalculation; comparison with reference-rate data.
+  - mode: Ancillary line exhausted when the business needs it
+    consequence: A signed order cannot proceed (no guarantee, no deposit); overdraft rejections at a subsidiary.
+    detection: Monthly ancillary-line report; sales must request guarantees early.
+  - mode: Facility allowed to become short-dated
+    consequence: Debt shown as current; going-concern questions; weaker negotiating position; rating-agency concern at rated companies.
+    detection: Maturity profile reviewed quarterly; A&E started 12–24 months ahead.
+  - mode: A lender leaves at extension or refinancing
+    consequence: Facility shrinks or the company must find a replacement under time pressure.
+    detection: Wallet-share analysis; regular RM contact; early sounding.
+  - mode: Corporate action taken without required consent (acquisition, disposal, new debt, security)
+    consequence: Breach of an undertaking — potentially an event of default.
+    detection: Treasury and legal review of the agreement's baskets and consent requirements before any such transaction.
+software: >-
+  Most mid-market companies manage facilities in **Excel** (debt register, calendar, fee checks) alongside the PDF
+  agreement. **TMS debt modules** (e.g. SAP treasury, Kyriba, FIS, ION products) hold loans, generate accruals and
+  schedules and can model compounded-rate interest. Agents provide **loan portals** for notices and documents. Legal
+  **contract-analysis tools** are occasionally used to abstract agreements. None of these negotiate with banks. See
+  [Systems & Data](/systems).
+manual_work:
+  - Abstracting the facility agreement and every amendment into a summary and calendar.
+  - Filling, signing and emailing utilisation requests.
+  - Recalculating interest and fee notices in Excel.
+  - Tracking guarantee and overdraft usage across banks from separate portals.
+  - Compiling wallet-share data per bank from fee invoices and FX records.
+  - Coordinating KYC documents, board resolutions and signatures for amendments.
+by_size:
+  startup: >-
+    Usually no committed facility. Venture-funded companies may be offered venture debt (a term loan with warrants and
+    a minimum-cash or similar covenant) or a small credit line against receivables. The CFO's work is evaluating the
+    term sheet against runway and covenants, not administering drawings.
+  sme: >-
+    A bilateral committed or uncommitted line with the house bank — in Switzerland often a credit limit usable as
+    current-account overdraft or as fixed-term advances of 1–6 months — plus guarantee lines and perhaps a mortgage.
+    Drawings are requested by email or phone and a signed form; the bank reviews the credit annually on the audited
+    accounts and budget. The CFO and head of accounting handle it; there is no agent and no syndicate.
+  midmarket: >-
+    A club deal or syndicated RCF with 3–6 banks, drawn regularly to fund working capital, with an agent, LMA
+    documentation, leverage-based pricing and covenants; bilateral ancillary lines for guarantees and local overdrafts.
+    The treasury manager handles it as a monthly routine plus a refinancing project every 3–5 years; bank-group
+    management is a real part of the job.
+  multinational: >-
+    A large RCF (often 7–15 banks) that is rarely or never drawn and serves as a liquidity backstop for commercial paper
+    and rating agencies; administration is light but the facility is extended almost every year via extension options,
+    and the relationship economics of the whole bank group are managed deliberately. Investment-grade facilities often
+    have no financial covenants. Owned by corporate finance / capital markets rather than the cash team.
+companies:
+  kleio: "No debt. A venture lender has offered CHF 5m over 36 months (illustrative: 12 months interest-only, warrants, a minimum-cash covenant). Sarah's work is modelling whether the covenant could bite before the next equity round, and negotiating the material-adverse-change clause — not facility administration."
+  alpine: "A CHF 12m committed operating line at the cantonal bank, usually CHF 0–5m drawn as fixed advances of one to three months, plus guarantee lines for customer advance payments on projects and the CHF 6m plant mortgage. Petra emails the relationship manager and sends the signed advance form two days ahead; the bank's annual credit review uses the audited accounts, budget and order book. Martin handles the relationship."
+  helvetic: "The worked example above: a four-bank syndicated RCF drawn at ~CHF 60m, bilateral guarantee and overdraft lines, and an amend-and-extend to start ahead of the 2028 bond maturity."
+  globalchem: "The EUR 1.5bn RCF with seven core banks is undrawn and backs the commercial-paper programme. Olivier's corporate-finance team requests the one-year extension in each window, holds an annual bank meeting in Basel, and allocates FX, cash management and bond mandates across the seven banks using a wallet-share model. Like many investment-grade facilities, it has no financial maintenance covenant."
+handoffs:
+  - from: Cash forecast / daily position
+    gives: funding need or surplus by currency and date
+    to: Treasury manager
+  - from: Treasury analyst
+    gives: prepared utilisation requests, fee checks, calendar alerts
+    to: Treasury manager / CFO (signatories)
+  - from: Treasury (signatories)
+    gives: signed utilisation requests, extension requests, information and certificates
+    to: Facility agent
+  - from: Facility agent
+    gives: confirmations, interest and fee notices, lender communications
+    to: Treasury analyst
+  - from: Sales / subsidiaries
+    gives: requests for guarantees, overdraft needs
+    to: Treasury manager
+    note: Frequently late — "the customer needs the guarantee tomorrow".
+  - from: Treasury analyst
+    gives: drawings, repayments, interest and fee accruals
+    to: Group accounting
+  - from: Treasury manager / CFO
+    gives: bank-group strategy, refinancing proposal
+    to: Board
+  - from: Banks' RMs
+    gives: signals on appetite, pricing, extension decisions
+    to: Treasury manager / CFO
+interview: >-
+  Ask the treasury manager (or head of corporate finance at a large group) to show you their **facility summary and
+  calendar**, and to walk through the last rollover or drawing: who decided, who signed, what the agent sent back.
+  Then ask about the last extension or refinancing: when they started, which banks dropped out and why, what they
+  traded off. At an SME ask the CFO how the house bank's annual credit review works. Ask about guarantees — it is often
+  the most operationally painful part and rarely visible from outside.
+ai_note: >-
+  Abstracting agreements into parameters, maintaining calendars, drafting notices and recalculating interest and fees
+  are rule-based and checkable against the document — plausible for assistance, provided a person verifies clause
+  interpretation. Bank-group management and refinancing negotiations are relationship work where software offers
+  little beyond analysis. Signing notices and representations will remain a human, legally accountable act.
+terms: [rcf, committed-facility, syndicated-loan, lma, facility-agent, utilisation-request, interest-period, drawdown, commitment-fee, utilisation-fee, margin-ratchet, repeating-representations, ancillary-facility, ancillary-business, advance-payment-guarantee, extension-option, amend-and-extend, reference-rate, refinancing-risk, wallet-share, relationship-bank]
+related: [covenant-monitoring, cash-forecasting, daily-cash-positioning, liquidity-planning, funding-subsidiary, month-end-reporting, bank-fee-analysis]
+sources: [lma-facility-sample, heidelberg-sfa-2014, loomis-rcf-2025, globalcapital-ae-2025, zanders-saron, act-hsf-debt-2025, seco-kmu-finanzierung-2021]
+evidence_note: >-
+  Facility mechanics follow LMA-style documentation: e.g. a utilisation request delivered to the agent by 10:00 on the
+  third business day before the utilisation date[](cite:lma-facility-sample) (actual deadlines vary by agreement and loan
+  type). Commitment fees quoted as a percentage of margin are a common convention — one published agreement uses
+  35%[](cite:heidelberg-sfa-2014). Five-year RCFs with two one-year extension options are a common
+  structure[](cite:loomis-rcf-2025), and amend-and-extend was reported as a major 2025 loan-market
+  theme[](cite:globalcapital-ae-2025). Compounded SARON is calculated in arrears, typically with a lookback, so interest
+  is known only near the payment date[](cite:zanders-saron). 76% of ACT/HSF 2025 respondents expected macroeconomic and
+  geopolitical factors to influence debt strategy considerably[](cite:act-hsf-debt-2025). A SECO 2021 study found 32% of
+  Swiss SMEs used bank financing (the population includes micro-firms)[](cite:seco-kmu-finanzierung-2021). Pricing grids,
+  fees, bank shares and the worked example are illustrative synthesis; market pricing varies by credit and period.

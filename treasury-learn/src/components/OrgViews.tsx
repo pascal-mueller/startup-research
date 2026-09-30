@@ -321,6 +321,15 @@ export function RaciMatrixView({ initial = 'midmarket' }: { initial?: string }) 
               ))}
             </select>
           </label>
+          {(() => {
+            const rid = m.columns.find((c) => c.id === role)?.role
+            return rid && roleById().has(rid) ? (
+              <span className="small muted">
+                {' '}
+                Role profile: <RoleLink id={rid} />
+              </span>
+            ) : null
+          })()}
           {CODE_ORDER.map((code) => {
             const rows = m.rows.filter((r) => codesOf(r.cells[role]).includes(code))
             if (!rows.length) return null

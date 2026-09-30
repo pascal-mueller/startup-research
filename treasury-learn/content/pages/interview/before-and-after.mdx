@@ -1,0 +1,134 @@
+---
+title: Before and after the interview
+nav: Before and after
+order: 6
+summary: A preparation checklist, a note-taking template built around the workflow structure, and a debrief method for mapping what you heard onto workflows and roles — including how to spot the real owner of a workflow and the red flags that you are talking to the wrong person.
+related: [/interview, /interview/questions, /org/interview-finder, /org/responsibility-matrix, /workflows]
+---
+
+## Before: preparation checklist
+
+**The week before**
+
+1. **Size the company.** Revenue, employees, number of countries/entities, listed or private, owner-managed or PE-owned. Place it in a tier: [startup, SME, mid-market or multinational](/size). This single step predicts most of who does what.
+2. **Read the annual report's treasury-relevant parts** (if public): financing note (facilities, bonds, maturities), financial-risk note (FX, interest-rate, liquidity risk — often describes the hedging policy in a paragraph), cash and cash equivalents, subsidiaries list. This is public information you never need to ask for, and it lets you ask sharper questions ("You refinanced the RCF last year — walk me through how that started").
+3. **Check the person's role and history** on LinkedIn: current title, how long in role, where they came from (bank, audit, accounting, another corporate). Ex-bankers often know markets and banks deeply; ex-auditors know controls and accounting.
+4. **Guess the org** using [Who should I interview?](/org/interview-finder) and [Preparing by role](/interview/by-role): what do they probably own, what do they probably not know? Write down your guess — the debrief compares it with what you heard.
+5. **Choose one or two workflows** for the walk-through, based on what the person most likely does. Re-read those [workflow pages](/workflows) (steps, judgment points, failure modes, hand-offs).
+6. **Refresh vocabulary** for those workflows: [Vocabulary](/interview/vocabulary).
+7. **Write a one-page guide**: 3 context questions, 1 walk-through opener with probes, 4 judgment/failure questions, 3 tools/change questions, close. From [Questions that work](/interview/questions). Delete anything hypothetical ([Questions to avoid](/interview/bad-questions)).
+
+**The day before**
+
+- Confirm time, duration (keep to 30–45 min), and that it's not a sales meeting.
+- Decide what you will say in one sentence if asked what you're working on — honest, and without a pitch.
+- If recording: ask in advance, and be ready to do without. Many treasury people will decline recording; take notes by hand or type.
+- Prepare to say "I won't ask for bank names, balances, approval limits or documents" at the start.
+
+**In the first two minutes**
+
+- Repeat the ground rules: no pitch, no confidential data, anonymised notes.
+- Ask *"What were the last three things you worked on?"* and adjust the guide to the answer.
+
+## During: note-taking template
+
+Take notes in the same structure the workflow pages use, so that the debrief is a mapping exercise rather than an interpretation exercise. Capture the interviewee's **own words** for anything surprising.
+
+```text
+INTERVIEW  #__  date: ____  duration: __ min   recorded: y/n
+Person:    role/title ______  reports to ______  years in role __  background ______
+Company:   tier (startup / SME / mid-market / multinational)  revenue ~___  entities ~__  banks ~__  currencies ~__
+Treasury:  team size __  where it sits ______  TMS? y/n (which, if volunteered)  SSC / payment factory? y/n
+
+LAST THREE THINGS THEY WORKED ON
+1. ______   2. ______   3. ______
+
+WALK-THROUGH  workflow: ______  instance: "last ______ on ______"
+Trigger:        (calendar / event / request from ___)
+Step | who | system/file | input + source | time | manual? | judgment?
+ 1   |     |             |                |      |         |
+ 2   |     |             |                |      |         |
+ ...
+Hand-offs:      from ___ gives ___ to ___ (and back)
+Output:         what, to whom, what decision it drove
+Judgment:       what they changed / overrode, and what they knew that the system didn't
+Escalation:     what goes up, to whom, last time it happened
+Failure story:  when, what, consequence, what changed afterwards
+Workarounds:    spreadsheets, macros, templates, manual re-typing (who maintains?)
+Trust boundary: "would never let software ___"  /  "would happily delegate ___"
+Change:         last 2-3 years; last tool/process change (first thought -> decision)
+
+VERBATIM QUOTES (exact words)
+- "..."
+
+REFERRALS  role ______  (person, if offered) ______  for workflow ______
+MY SURPRISES  (where this contradicted my prep guess)
+FOLLOW-UPS    (questions I'd ask next time)
+```
+
+Separate **what they did** (observed behaviour, told as a story) from **what they think** (opinions, generalisations). Mark generalisations with a "G" in the margin; they are weaker evidence.
+
+## After: debrief within 24 hours
+
+Write the debrief the same day. Memory of specific details (systems, times, names of files) fades fast, and those details are the evidence.
+
+### 1. Map what you heard onto the workflow
+
+Open the relevant workflow page and compare, step by step:
+
+| Workflow step (from the manual) | What this company does | Who | System | Manual? | Different from the manual because… |
+|---|---|---|---|---|---|
+| Collect bank balances | Connectivity tool for 4 banks; Chinese bank by portal screenshot | Analyst | Multibank tool, Excel | Partly | Chinese bank not connected |
+| Compare with expected flows | Against yesterday's forecast sheet | Analyst | Excel | Yes | No TMS |
+| Decide transfers | Manager, before early-afternoon cut-off | Manager | E-banking | — | — |
+
+Differences are the valuable part. Either the manual generalises too much (note it — see "Requests" in the notes), or this company is unusual (note why: size, industry, history).
+
+### 2. Map the roles
+
+Fill in a mini [responsibility matrix](/org/responsibility-matrix) for the workflow as described: who **owns**, **performs**, **contributes data**, **approves**, **reviews**, is **informed**. Compare with the prep guess and with the manual's matrix for that size tier. Note every name-less "someone in accounting does that" — it's a referral target.
+
+### 3. Spot the real workflow owner
+
+The real owner of a workflow is usually the person who:
+
+- **is chased when it's late** ("the CFO asks me on Tuesday if it's not there");
+- **fixes it when it breaks** — not the person who designed it;
+- **knows the exceptions by name** (which entity, which bank, which customer);
+- **maintains the spreadsheet or macro** that holds it together;
+- **would be missed** if they were on holiday for two weeks ("nobody else really knows how to do it").
+
+If the person you interviewed **approves** or **reads** the output but does none of the above, they are a reviewer or decider. Their account is valuable for *why* and *what it's worth*, but you need the doer for *how*.
+
+### 4. Classify the evidence
+
+For each claim you might rely on later, tag it:
+
+- **Observed story** — they described a specific past instance (strong).
+- **Generalisation** — "we usually…" (medium; check against a story).
+- **Opinion / prediction** — "we would…", "it'd be great if…" (weak; don't count as evidence of need).
+- **Second-hand** — "I think subsidiaries…" (check with the other side of the hand-off).
+
+### 5. Update the running picture
+
+After every 5 interviews, look across the debriefs: which steps are consistently manual, which judgments recur, which hand-offs break, which roles own what at this size. Patterns across several companies of the same tier are worth far more than a vivid single story.
+
+## Red flags that you are talking to the wrong person
+
+| Signal | What it probably means | What to do |
+|---|---|---|
+| Every answer is in the present tense and plural: "we ensure…", "we manage…" | Decider or policy owner; far from the mechanics | Ask "who on your team does that day to day?" and ask for an introduction; use the rest of the time on decisions, escalation and history. |
+| They describe the process as it appears in a policy or a vendor slide | Designer, not operator — or they haven't done it for years | Ask "when did you last do it yourself?" |
+| They can't name a system, a file, or a time of day | Not the doer | Redirect to what they *do* touch (approvals? reports?). |
+| "That's done in the subsidiaries / by AP / in Kraków" for most questions | The workflow lives elsewhere | Ask for the role and location; the SSC or local finance is your next interview. |
+| They talk mostly about strategy, digitalisation, "AI roadmap" | Senior, conference-mode | Anchor with one story: "tell me about the last time X surprised you". |
+| Everything is "fully automated" and nothing ever goes wrong | Either genuinely automated (happens at mature multinationals for some workflows — note it) or out of touch | Ask about the last exception; if there are truly none, you've learned the workflow is solved there. |
+| They're a banker, consultant or vendor describing "what treasurers do" | Second-hand across many clients | Useful context; not evidence about any one company. |
+| The company has no treasury function, and you asked for "treasury" | At startup/SME size, the CFO or head of accounting does the work | Re-ask using the work ("who looks after cash and the banks?"), not the title. |
+| They seem uncomfortable, check the clock, or answer "I can't talk about that" repeatedly | Confidentiality concern, or you drifted into sensitive territory | Step back to process shape and past stories; drop the topic. Don't push. |
+
+<Callout type="warning" title="Don't over-read one interview">
+
+One company's process is not the profession's process. A Treasury Manager at a CHF 650m industrial group with no TMS and a Head of Cash at a CHF 7bn group with an in-house bank will describe "daily cash positioning" in ways that barely overlap. Record size and context with every finding, and compare only within tiers.
+
+</Callout>

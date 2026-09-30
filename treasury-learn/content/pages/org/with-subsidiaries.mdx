@@ -1,0 +1,90 @@
+---
+title: Treasury, business units and subsidiaries
+nav: With subsidiaries & BUs
+order: 37
+summary: Subsidiary and business-unit finance teams supply most of the information treasury works with — local forecasts, exposures, unusual flows, local bank issues — but usually do not report to treasury. How much they do themselves depends on how centralised the group is. Information quality breaks at the subsidiary more often than anywhere else.
+related: [/org/neighbours, /org/structures, /workflows/cash-forecasting, /workflows/funding-subsidiary, /workflows/fx-exposure-management, /org/roles]
+---
+
+## Who is "the subsidiary"?
+
+In treasury conversations "the subsidiary" usually means its **finance manager** (local CFO, finance director, *kaufmännischer Leiter*, controller) and their small team: local accounting, AP, AR, sometimes payroll. They typically report **solid-line to the local managing director** and **[dotted-line](term:dotted-line-reporting) to the group CFO** — or the reverse in groups with strong central finance. They almost never report to treasury, even when treasury depends on them daily.
+
+A **business unit** (division) is a management grouping across entities; its finance lead cares about divisional results, not about which legal entity holds the cash. Treasury works in legal entities and bank accounts; BUs think in products and markets. Both views are needed in a forecast.
+
+## What local finance does — by degree of centralisation
+
+| Task | Decentralised group | Partially centralised ([Helvetic](co:helvetic)) | Centralised ([GlobalChem](co:globalchem), Europe) |
+|---|---|---|---|
+| Local cash position | Does it | Reports large/unusual items; treasury sees balances centrally | Treasury sees everything; local finance explains exceptions |
+| Cash forecast | Own forecast; sends summary | Fills group template every two weeks | Submits in forecasting tool weekly/monthly; challenged by treasury |
+| FX | Hedges locally with local banks within limits | Reports exposures; group hedges centrally | Reports exposures (or ERP data is pulled); in-house bank takes the FX risk |
+| Payments | Prepares and executes locally | Prepares and releases locally; large ones co-signed centrally | Prepares in ERP; payment factory executes |
+| Bank accounts and relationships | Local | Local signatories; treasury approves new accounts | Treasury decides; local directors sign documents |
+| Funding | Local overdrafts/loans | Intercompany loans from the parent | In-house bank accounts; local facilities only where required |
+| Surplus cash | Keeps it locally | Upstreams on instruction | Swept automatically into pools |
+
+## What local finance provides — and how
+
+| Input | Form | Frequency | Quality issues |
+|---|---|---|---|
+| Cash forecast | Excel template or forecasting tool; receipts, payments, capex, tax, IC flows by week | Weekly to monthly | Copied from last month; built from P&L not cash; optimistic on receipts |
+| FX exposure | Template of forecast foreign-currency flows | Monthly | Late; confusion between invoice currency and functional currency |
+| Large or unusual flows | Email, chat, phone | Ad hoc | Forgotten until the money moves |
+| Local bank issues | Email | Ad hoc | Treasury hears after the problem |
+| Balances (where no central visibility) | Email or portal screenshots | Daily/weekly | Manual and error-prone |
+| Month-end figures | Consolidation system | Monthly | Arrives after treasury needs it |
+
+<Callout type="survey" title="Why subsidiary forecasts are weak">
+
+Deloitte's 2024 global treasury survey found forecasting still primarily spreadsheet-based for many respondents and noted that business forecasts tend to focus on revenue and margin rather than cash[](cite:deloitte-gts-2024). Local finance teams are measured on local results and the close, not on forecast accuracy for treasury — which explains much of the quality gap. (The incentive point is a practitioner observation, not a survey finding.)
+
+</Callout>
+
+## Where information quality breaks
+
+- **No ownership.** The template is filled by whoever is free on Thursday.
+- **Wrong basis.** The local controller sends the P&L forecast with a delay applied, rather than a real cash view.
+- **Missing one-offs.** Tax prepayments, customs deposits, a bonus month, a customer prepayment.
+- **Currency confusion.** Exposures reported in local currency equivalent rather than the currency of the flow.
+- **Silence on bad news.** A large customer disputes an invoice; the subsidiary hopes to fix it before reporting.
+- **Local accounts.** An account opened by the local MD for convenience, outside treasury's register.
+- **Restricted countries.** Cash in China, India and other controlled markets cannot be pooled freely; local finance and local banks become the gatekeepers for any cross-border movement.
+
+<Example title="Two weeks of subsidiary forecasts at Helvetic" company="helvetic" open>
+
+Every second Thursday by 12:00 CET, Helvetic's eight subsidiaries upload the 13-week template to a shared folder. Lea (Treasury Analyst) consolidates it on Friday.
+
+| Subsidiary | Finance lead | What happens in practice |
+|---|---|---|
+| HM Suzhou | Wei | Arrives first (China is ahead of Switzerland) and is detailed, but the CNY surplus can only be moved via approved routes (dividend after audit, or registered intercompany loans), so Daniel treats it as *trapped* for 13-week purposes. |
+| HM Deutschland | Jens | Reliable; Jens adds comments on large receipts. |
+| HM Italia | Giulia | Receipts consistently 3–4 weeks later than forecast; Lea applies a payer-behaviour adjustment and discusses it with Giulia monthly. |
+| HM UK, FR, CZ, Swiss service company | Local controllers | Mostly on time; one usually needs a chase every cycle. |
+| HM US | Controller | Arrives last (US time zone) and often on Friday; Lea uses the previous version and flags it. |
+
+Daniel reviews Lea's consolidation, calls Giulia about a CHF 1.2m difference, and then presents the group view to Thomas (CFO). None of the eight finance leads reports to Daniel; he relies on Thomas's authority, a group deadline, and personal relationships.
+
+</Example>
+
+## How it varies
+
+<SizeTabs
+  startup="At [Kleio](co:kleio) the US 'subsidiary' is a sales team with no finance staff. Sarah (CFO) funds it monthly and sees its account directly; nothing to coordinate."
+  sme="At [Alpine](co:alpine) each foreign subsidiary has a managing director and a part-time or outsourced bookkeeper. Information arrives when Petra asks for it; local payments and local bank accounts are often invisible to head office until month-end."
+  midmarket="The subsidiary finance manager is treasury's most important external partner. Template discipline, a group deadline and a monthly call carry the process. Central visibility of balances (multibank tool) is usually the first centralisation step."
+  multinational="Forty reporting units, a forecasting tool and a treasury team that challenges submissions. Regional treasury centres (Singapore at GlobalChem) sit between head office and local finance for their region. The debate is about accountability for forecast error and local banking autonomy."
+/>
+
+<Callout type="interview" title="Interview the subsidiary side">
+
+A subsidiary finance manager is an excellent, under-used interviewee. Ask:
+
+- "What does group treasury ask you for, and how long does it take?"
+- "How do you build the cash forecast — from what data?"
+- "What happens when your number is wrong?"
+- "What would you stop sending if you could?"
+
+The answers show where treasury's data really comes from — and why the group forecast is only as good as its weakest subsidiary.
+
+</Callout>

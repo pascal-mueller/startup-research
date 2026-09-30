@@ -1,0 +1,88 @@
+---
+title: Treasury and accounts payable
+nav: With AP
+order: 33
+summary: AP decides which supplier invoices are paid and when; treasury makes sure the money is there, controls the bank channels and — depending on the company — approves or sends the payments. Who actually presses "send" varies more than almost any other responsibility in finance.
+related: [/org/neighbours, /org/roles-payments, /workflows/payment-processing, /workflows/large-payment-approval, /workflows/fraud-investigation, /map/payments]
+---
+
+## Who owns what
+
+| | Accounts payable | Treasury |
+|---|---|---|
+| **Invoices** | Receives, checks ([three-way match](term:three-way-match)), books, obtains business approval | — |
+| **Supplier master data** | Maintains [vendor master data](term:vendor-master-data), incl. bank details (ideally with independent verification) | Sets verification rules in larger groups; investigates fraud |
+| **Payment run** | Builds the [payment proposal](term:payment-run) in the ERP by due date and payment terms | Knows the total and timing; funds the accounts |
+| **Approval** | First approval of the run | May co-approve large payments; owns signing rules at the bank |
+| **Execution** | Sends the file (in many SMEs and mid-market local entities) | Sends it (when treasury or a [payment factory](term:payment-factory) controls bank channels) |
+| **Bank connectivity** | User of it | Owns it (e-banking rights, EBICS/SWIFT, multibank tool) |
+| **Payment status and rejects** | Re-processes rejected payments | Monitors failed or returned payments in larger groups |
+
+## What AP knows that treasury needs
+
+- **Scheduled payment runs** — date, total, currency, and which accounts they will hit.
+- **Large or unusual invoices** — capex milestones, annual licences, customs and duties.
+- **Payment behaviour** — which suppliers are paid early (discounts), which late (disputes), which insist on prepayment.
+- **Terms changes** — a supplier moving from 60 to 30 days changes the forecast immediately.
+
+AP rarely volunteers this; treasury asks for it. In a 13-week forecast, AP's open items drive the first 2–4 weeks of outflows — see [Cash forecasting](wf:cash-forecasting).
+
+## Who actually executes payments
+
+| Model | Prepares | Approves | Sends to bank | Typical at |
+|---|---|---|---|---|
+| **Finance does everything** | Accountant / AP | CFO + second signatory ([collective signature](term:collective-signature)) | Same accountant uploads, second approver releases | [Kleio](co:kleio), [Alpine](co:alpine) |
+| **Local entities pay** | Local AP | Two local signatories; treasury or CFO co-signs above a threshold | Local finance via local e-banking or group multibank tool | [Helvetic](co:helvetic) |
+| **SSC pays** | SSC AP team | Per entity signing matrix in ERP workflow | SSC, through treasury-owned channels | Groups with an SSC but no payment factory |
+| **Payment factory** | SSC or local AP | ERP workflow; factory screens and holds exceptions | Payment factory (treasury ops), often [POBO](term:pobo) | [GlobalChem](co:globalchem) in Europe |
+
+<Callout type="confusion" title="Approving an invoice is not approving a payment">
+
+A department head approving an invoice confirms the goods or service were received at the agreed price. A payment approval (signature in e-banking or the payment factory) authorises money to leave the bank. Different people, different controls. Fraud often exploits a gap between the two — a correctly approved invoice paid to a changed bank account.
+
+</Callout>
+
+## Where it breaks
+
+| Break | Consequence |
+|---|---|
+| Urgent manual payment outside the run ("the supplier will stop delivery") | Bypasses controls; unforecast outflow |
+| Supplier bank-detail change accepted by email | Classic [business email compromise](term:business-email-compromise) loss |
+| Payment run date moved without telling treasury | Account overdrawn, or funding moved unnecessarily |
+| Payment rejected by bank (wrong IBAN, sanctions hit, format) | Late payment; AP and treasury each assume the other handles it |
+| Same person can change master data and release payments | Segregation-of-duties failure |
+
+<Callout type="survey" title="Why AP–treasury controls matter">
+
+In the 2025 AFP Payments Fraud and Control Survey (521 mainly US practitioners), 79% of organisations experienced attempted or actual payments fraud and 63% named business email compromise the leading avenue[](cite:afp-pfc-2025). The Swiss Federal Office for Cyber Security (BACS) recommends collective signature for payments *and* master-data changes, and verifying change requests via a second channel using a known phone number[](cite:bacs-ceo-fraud-2026).
+
+</Callout>
+
+<Example title="A supplier bank change at Alpine" company="alpine" open>
+
+**Tuesday 10:40.** The AP clerk at [Alpine](co:alpine) receives an email, apparently from a German gearbox supplier, with new bank details "due to a bank merger". Friday's run includes EUR 312k of this supplier's invoices.
+
+**Alpine's rule** (introduced after a near-miss): bank changes are only accepted after a call-back to a number already in the vendor file, and a second person approves the master-data change. The clerk calls the supplier's known number; the supplier knows nothing about a change.
+
+**Who does what next:** the clerk blocks the vendor record; Petra (Head of Accounting) informs Martin (CFO) and checks whether any payment already went to the new account (none); Martin informs the supplier and the IT provider, who finds a compromised mailbox at the supplier. Friday's run goes out to the old, verified account.
+
+**What treasury-type work was involved:** knowing the run total and funding it (Petra), owning the call-back control (Petra/AP), deciding on escalation (Martin). At Alpine these are all "finance"; at [GlobalChem](co:globalchem) the payment factory would additionally flag the changed IBAN before release.
+
+</Example>
+
+## How it varies
+
+<SizeTabs
+  startup="The accountant is AP. At [Kleio](co:kleio) Nina prepares the batch, Sarah releases. Payroll comes from the external provider as a file."
+  sme="AP (1–2 people) inside accounting builds runs; the Head of Accounting uploads; the CFO co-signs. Treasury knowledge of AP comes from sitting in the same team."
+  midmarket="Each entity's AP pays locally; central treasury sees payments only through the multibank tool or next-day statements. Treasury's leverage is the signing rules and a large-payment threshold. At [Helvetic](co:helvetic) any payment above CHF 2m needs a signature from treasury or the CFO."
+  multinational="AP sits in the SSC; the payment factory is a treasury-operations unit. The interface is a file, a set of screening rules and an exception queue — and a service-level agreement on who fixes a rejected payment."
+/>
+
+<Callout type="interview" title="Questions to ask">
+
+- To AP: "When does treasury hear about your payment run?" "What happens when a supplier changes bank details?"
+- To treasury: "Who presses send on a supplier payment here?" "When did an AP payment last surprise you?"
+- To both: "Who owns a payment the bank rejected?"
+
+</Callout>

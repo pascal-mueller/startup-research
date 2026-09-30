@@ -1,0 +1,310 @@
+id: surplus-cash-investment
+title: Surplus cash investment
+question: What can we safely invest, for how long, and where?
+group: Cash & liquidity
+order: 4
+summary: >-
+  When the forecast shows cash above what operations and the safety buffer need, treasury decides how much of it is
+  genuinely spare, for how long, and where to put it — first asking whether it should repay borrowings instead — then
+  places it within the investment policy's rules on instruments, ratings, tenors and counterparty limits: bank deposits,
+  money market funds, or (at larger companies) government securities. The priorities are safety first, liquidity second,
+  yield third. In Swiss francs, with the SNB policy rate at 0%, the job is almost entirely about safety and bank
+  diversification; in EUR and USD there is real yield to earn.
+objective: >-
+  Keep surplus cash safe and available when needed, spread across creditworthy counterparties, and earn a reasonable
+  return within the board-approved [investment policy](term:investment-policy) — without taking risks the company is not
+  paid to take (credit risk, market risk on long securities, FX risk from converting currencies to chase yield).
+trigger: >-
+  The daily [cash position](term:cash-position) or the [13-week forecast](wf:cash-forecasting) shows a surplus above the
+  buffer for a meaningful period; a deposit or fund holding matures; a large inflow arrives (customer prepayments,
+  disposal proceeds, equity raise, bond issue ahead of a maturity); a counterparty is downgraded or a limit is breached.
+frequency: >-
+  Daily or weekly decisions on short placements and rollovers at mid-market and large companies; monthly or quarterly
+  at SMEs and startups; an annual review of the investment policy itself.
+people:
+  - role: Treasury analyst / cash manager
+    does: Calculates investable amounts by currency and horizon, checks limits, collects rate quotes, prepares the placement proposal.
+  - role: Treasury manager / head of cash & liquidity
+    does: Decides amount, tenor and counterparty within policy; approves placements; manages bank relationships affected by where deposits go.
+  - role: Treasury operations / back office
+    does: Confirms deals with banks, verifies settlement instructions, settles, records the deal, tracks maturities.
+  - role: Head of treasury / CFO
+    does: Approves placements above delegated limits, exceptions to policy, and the investment policy itself.
+  - role: Accounting
+    does: Classifies holdings (cash, cash equivalents, other financial assets), books interest and any fair-value changes.
+  - role: Board / audit or finance committee
+    does: Approves the investment policy (eligible instruments, minimum ratings, limits).
+systems:
+  - name: Bank portals, phone and email
+    use: Where most term deposits are still quoted and booked at mid-market companies — call two or three banks, compare, deal.
+  - name: MMF trading portals and multi-dealer platforms
+    use: Portals that show many money market funds with yields, ratings and cut-offs and route subscriptions (e.g. ICD); multi-dealer platforms for FX and money-market deposits (e.g. 360T)[](cite:t360-corporate).
+  - name: "[TMS](term:tms) or Excel deal register"
+    use: Records deals, maturities, rates and counterparty exposure; generates the limit-utilisation report and accruals.
+  - name: Rating and market data
+    use: Bank and fund ratings (agency sites, Bloomberg, bank research), CDS spreads at large companies; reference rates (SARON, €STR, SOFR).
+  - name: Custody account (large companies)
+    use: Needed to hold government securities or commercial paper; brings settlement and custody operations.
+data:
+  - name: Investable surplus by currency and horizon
+    source: Cash position and 13-week forecast; liquidity plan for longer horizons
+    notes: Segmented into operating cash (days), reserve cash (weeks to months) and strategic cash (beyond 12 months) — see [surplus cash](term:surplus-cash).
+  - name: Outstanding borrowings and their cost
+    source: Debt register, RCF drawing schedule
+    notes: A company paying a margin on drawn debt usually earns less on a deposit than it pays on the loan ([negative carry](term:negative-carry)).
+  - name: Investment policy rules
+    source: Board-approved policy
+    notes: Eligible instruments, minimum ratings, maximum tenor, maximum per counterparty, maximum per fund, approval authorities.
+  - name: Current exposure per counterparty
+    source: Bank balances + deposits + MMF holdings + derivative exposure
+    notes: Current-account balances count too — the limit is on total exposure to a bank, not just deposits.
+  - name: Counterparty ratings and other signals
+    source: Rating agencies, CDS, news
+    notes: Ratings move slowly; large treasuries watch CDS and news as early-warning signals.
+  - name: Rate quotes
+    source: Relationship banks, MMF portals
+    notes: CHF sight deposits and short CHF term deposits earn roughly 0% at a 0% SNB policy rate; EUR roughly €STR; USD roughly SOFR/fed funds (illustrative, autumn 2026).
+steps:
+  - title: Establish the investable amount by currency and horizon
+    who: Treasury analyst
+    where: Positioning sheet, 13-week forecast, liquidity plan
+    when: Daily/weekly after positioning; monthly for longer placements
+    detail: >-
+      Take the projected balance per currency, subtract the operating buffer and known outflows, and read off how long
+      the surplus lasts: CHF 12m spare for 2 weeks, then CHF 5m spare for 3 months because of the dividend, etc. Each
+      currency is handled separately; converting CHF into USD to earn USD rates creates FX risk and is normally prohibited
+      unless hedged — and once hedged, the rate advantage largely disappears in the [forward points](term:forward-points).
+    judgment: How much of the forecast surplus to trust. Placing too long means breaking a deposit or drawing the RCF later; too short leaves money idle.
+  - title: Ask first whether the surplus should repay debt
+    who: Treasury manager
+    where: Debt register / RCF schedule
+    detail: >-
+      If the RCF is drawn, repaying a drawing at its next [interest period](term:interest-period) end usually beats a deposit:
+      the company saves the loan margin (partly offset by the commitment fee that applies again on the undrawn amount).
+      Keeping cash *and* debt can still be deliberate — for liquidity safety, for cash in entities that can't repay parent
+      debt, or where re-drawing is uncertain — but it should be a decision, not an accident.
+    judgment: Whether the flexibility of holding cash is worth the negative carry.
+  - title: Check policy, eligible instruments and counterparty limits
+    who: Treasury analyst
+    where: Limit report (TMS or Excel), rating sources
+    detail: >-
+      For each candidate counterparty: is it on the approved list, does it meet the minimum rating, how much of its limit
+      is already used (including current-account balances)? For funds: type ([LVNAV/CNAV/VNAV](term:mmf-types) or US
+      government fund), fund size, rating, and the maximum share of the fund the company may hold. Check maximum tenor.
+    manual: Ratings and limit utilisation kept in an Excel sheet, updated by hand when an agency action is noticed.
+  - title: Collect quotes
+    who: Treasury analyst
+    where: Phone / email / bank portal / MMF portal
+    when: Morning, before deal cut-offs
+    detail: >-
+      Ask two to four eligible banks for rates on the relevant tenors (1 week, 1 month, 3 months) and compare with MMF
+      net yields. Banks price deposits by how much they want them: a bank short of deposits pays more; a bank flush with
+      them may quote nothing, or discourage large CHF balances.
+    manual: Rate quotes by phone or email copied into a comparison sheet.
+  - title: Decide the allocation
+    who: Treasury manager
+    where: Excel / TMS
+    detail: >-
+      Choose the split across instruments and banks: same-day-liquid MMFs or call accounts for money that might be needed;
+      term deposits laddered to known outflows (a deposit maturing the day before the dividend); government securities
+      only for larger, stable balances where a custody set-up exists. Weigh the [relationship banks](term:relationship-bank)
+      that provide credit facilities and expect some ancillary business — deposits are part of that
+      [wallet share](term:wallet-share).
+    judgment: >-
+      Yield versus liquidity versus relationship obligations versus concentration. The highest quote often comes from the
+      counterparty the policy likes least.
+  - title: Approve
+    who: Treasury manager; head of treasury / CFO above delegated limits or for policy exceptions
+    where: TMS workflow, email, signature app
+    detail: >-
+      Four-eyes approval per the signing-authority matrix. Exceptions (a bank temporarily over its limit, a tenor
+      longer than policy) need documented approval by the person the policy names.
+  - title: Deal and confirm
+    who: Treasury manager or analyst deals; treasury operations confirms
+    where: Phone / portal / multi-dealer platform
+    detail: >-
+      Book the deposit (amount, rate, tenor, value date) or subscribe to the fund before its dealing cut-off. The back
+      office matches the bank's written confirmation to the deal ticket — someone other than the dealer — and checks the
+      settlement instructions against the verified [standard settlement instructions](term:ssi).
+    manual: Confirmation matching by email/PDF at many mid-market companies; unconfirmed deals chased by phone.
+  - title: Settle and record
+    who: Treasury operations
+    where: Bank portal / TMS / ERP
+    detail: >-
+      Transfer the funds (or let the bank debit the account), record the deal in the register, set up the interest
+      accrual, and inform accounting. Placements longer than three months are generally not
+      [cash equivalents](term:cash-equivalents) and move to a different balance-sheet line — which some CFOs care about.
+  - title: Monitor maturities, limits and ratings
+    who: Treasury analyst
+    where: TMS / Excel maturity calendar
+    detail: >-
+      Maturities flow back into the daily position; each one is a roll-over-or-return decision. Watch rating actions and
+      news: if a bank is downgraded below the policy minimum, decide whether to let existing deposits run off or break
+      them, and stop new placements.
+    judgment: Breaking a deposit costs money and signals distrust to the bank; keeping it risks the exposure. After SVB (2023), many treasurers reviewed how quickly they would act.
+  - title: Report
+    who: Treasury manager
+    where: Monthly treasury report
+    detail: >-
+      Holdings by instrument, counterparty, currency and maturity; limit utilisation and breaches; weighted yield versus
+      a benchmark (e.g. SARON, €STR, SOFR); any exceptions. Annually, review the policy — approved counterparties, limits,
+      whether new instruments are needed.
+example:
+  title: "Helvetic in December 2026: surplus after year-end collections"
+  body: |
+    Year-end collections have lifted Helvetic's group cash to about CHF 59.5m (see [liquidity planning](wf:liquidity-planning)).
+    Lea's forecast shows the surplus lasts until the Q1 bonus and tax payments and, for part of it, until the May dividend.
+    Helvetic's investment policy (illustrative): banks rated A-/A3 or better, maximum CHF 20m total exposure per bank;
+    AAA-rated LVNAV or public-debt CNAV funds in EUR, US government MMFs in USD, maximum CHF 10m per fund; maximum tenor
+    6 months; CHF, EUR and USD invested in their own currency only.
+
+    | Currency pot | Surplus beyond buffer | How long | Options considered | Decision |
+    |---|---|---|---|---|
+    | CHF at HM AG (CHF 26m; CHF 10m kept as parent buffer) | CHF 16m | ~5 months (until the dividend) | CHF 3-month deposit ≈ 0.0–0.1%; repay part of the CHF 35m RCF loan (compounded SARON ≈ 0% plus margin, illustratively ~1.1%) | **Repay CHF 15m** at the 15 January rollover; until then it stays on current account (a 4-week CHF deposit would earn nothing); re-draw in May if needed |
+    | EUR at HM AG (EUR 9m) + EUR 6m moved from DE/IT/FR by intercompany loan (no cash pool) | EUR 10m (EUR 5m kept for January supplier runs and funding HM Deutschland) | ~2 months | Repay part of the EUR 27m RCF loan — but it is in a 3-month EURIBOR interest period to 15 January and cannot be prepaid mid-period without break costs; 1-month deposit ≈ 1.9%; EUR LVNAV MMF ≈ 1.8–1.9% net, same-day liquidity | **EUR 10m into a EUR LVNAV MMF** for ~4 weeks, redeemed on 15 January to repay EUR 10m of the RCF loan at its period end |
+    | USD at HM Inc. (USD 5m; USD 2m operating) | USD 3m | 3+ months | US bank's sweep ≈ below market; US government MMF ≈ 3.5–3.8% net | **USD 3m into a US government MMF** |
+    | CNY at HM Suzhou (~CNY 60m) | not available to the group | — | Local time deposit at the Chinese bank | Wei keeps it locally under a policy exception; see [funding a subsidiary](wf:funding-subsidiary) |
+
+    *Rates are illustrative for autumn 2026 (SARON ≈ 0%, €STR ≈ 1.9–2.0%, SOFR ≈ 3.5–4%).*
+
+    **What it's worth, roughly:** repaying CHF 15m from mid-January to May saves ~1.1% margin minus a commitment fee of
+    ~0.4% on the now-undrawn amount ≈ 0.7% × 15m × 4/12 ≈ **CHF 35k**. The EUR MMF earns ~1.85% × 10m × 4/52 ≈
+    **EUR 14k** before the EUR repayment takes over (saving EURIBOR plus margin on EUR 10m). The USD fund earns
+    ~3.6% × 3m × 3/12 ≈ **USD 27k** per quarter. A CHF deposit instead of the repayment would have earned close to nothing.
+
+    **The judgment calls:** Daniel checks that repaying CHF 15m and EUR 10m still leaves roughly CHF 165m undrawn and that a re-draw needs
+    only three business days' notice — acceptable given the headroom. The EUR fund is chosen over a deposit at Swiss
+    bank A because bank A already holds CHF 14m of Helvetic's current-account balances and would exceed its CHF 20m
+    limit. He also notes the German RCF bank has asked twice about ancillary business; next quarter's EUR placements go
+    there if its rating stays above policy minimum.
+judgment:
+  - decision: How much of the surplus is really investable, and for how long
+    why: Depends on forecast reliability. A placement that has to be broken, or a facility drawn to cover it, costs more than it earned.
+  - decision: Invest or repay debt
+    why: Mathematically, repaying expensive debt usually wins; strategically, holding cash may be worth the negative carry for safety or because re-drawing is uncertain.
+  - decision: Which counterparties, and how concentrated
+    why: Ratings are an input, not an answer. Relationship obligations, operational convenience and the lesson of SVB all pull in different directions.
+  - decision: Deposit, money market fund or securities
+    why: Deposits are simple but concentrate risk in one bank; MMFs diversify but add fund risk and (in stress) liquidity fees; securities need custody and carry market risk. Size and operational capacity matter.
+  - decision: What to do when a counterparty weakens
+    why: Acting on a downgrade or bad news early protects the company but can damage a relationship and cost break fees; waiting may be the bigger risk.
+  - decision: Whether to reach for yield
+    why: Extending tenor or lowering credit quality for a few basis points is the classic way treasury gets into trouble. Most policies deliberately forbid it; the temptation remains.
+failure_modes:
+  - mode: Concentration in one bank
+    consequence: A bank failure or resolution freezes operating cash; deposits far above any deposit-insurance limit are unsecured claims. SVB in March 2023 made this concrete for many companies, although US authorities ultimately protected all SVB depositors[](cite:ust-fed-fdic-2023-joint).
+    detection: Counterparty-limit report that includes current-account balances; board-level limit on share of cash at one bank.
+  - mode: Tenor mismatch
+    consequence: Money locked in a deposit when a payment is due; the company breaks the deposit at a cost or draws its RCF.
+    detection: Ladder maturities to known outflows; keep a same-day-liquid portion.
+  - mode: Reaching for yield
+    consequence: Credit or mark-to-market losses on instruments the policy never contemplated (the "enhanced cash" funds that lost value in 2008 are the textbook case).
+    detection: Strict eligible-instrument list; independent review of any new instrument.
+  - mode: Currency conversion to earn a higher rate
+    consequence: FX loss that dwarfs the interest earned; e.g. converting CHF to USD for a 3.5% rate difference and losing 5% on the currency.
+    detection: Policy rule that currencies are invested in their own currency or fully hedged.
+  - mode: Settlement to a fraudulent or wrong account
+    consequence: Principal lost or delayed.
+    detection: Verified standing settlement instructions; confirmation matching by someone other than the dealer; call-back on changed instructions.
+  - mode: Limit breach through current-account balances
+    consequence: A large customer receipt lands at a bank already at its deposit limit; exposure silently exceeds policy.
+    detection: Daily limit check on total exposure, not just placed deposits.
+  - mode: MMF liquidity fees or gates in stress
+    consequence: Cash assumed same-day available is delayed or reduced when a fund's liquid assets fall below regulatory thresholds.
+    detection: Prefer government/public-debt funds for the most critical liquidity; spread across funds; understand the fund's rules.
+software: >-
+  Mid-market companies mostly deal **by phone, email and bank portal** and track deposits in **Excel** or the ERP.
+  **MMF portals** give access to many funds through one account and consolidated reporting. **Multi-dealer platforms**
+  are used by larger treasuries for competitive deposit quotes. **TMS** investment modules record deals, generate
+  confirmations and accruals, and monitor limits. Large companies holding securities use **custodians** and sometimes
+  external managers. See [Systems & Data](/systems); vendor names are examples, not endorsements.
+manual_work:
+  - Calling or emailing banks for quotes and copying them into a comparison sheet.
+  - Maintaining the counterparty list, ratings and limit utilisation in Excel.
+  - Matching deal confirmations to tickets and chasing missing confirmations.
+  - Tracking maturities and remembering to decide rollovers before they return to the current account.
+  - Checking fund fact sheets and ratings when selecting or reviewing MMFs.
+  - Preparing the monthly investment report (holdings, limits, yield vs benchmark).
+by_size:
+  startup: >-
+    The venture-funded startup with a large post-round cash pile is where investment matters most relative to size.
+    The CFO or founder splits cash across two or three banks (a post-SVB board demand), places part in term deposits or
+    MMFs, and follows a one-page board-approved policy. The risk is not yield but concentration and liquidity: the cash
+    *is* the company's runway.
+  sme: >-
+    Usually minimal: surplus sits in current accounts or a call account at the house bank, occasionally a 1–3-month
+    term deposit. Decisions by the CFO, often without a written policy. In CHF there has been little to earn for years,
+    so the focus is on paying down the credit line and not keeping everything at one bank.
+  midmarket: >-
+    A treasury manager places short-term deposits and MMFs in a handful of currencies within a written policy,
+    often first repaying RCF drawings. Deposits go preferentially to the RCF banks. Spreadsheet limit monitoring; no
+    securities.
+  multinational: >-
+    A formal investment programme managed by the cash & liquidity team: [in-house bank](term:in-house-bank) or cash-pool headers hold
+    the group surplus; allocations across MMFs, deposits and sometimes government securities or short-dated commercial
+    paper; counterparty limits driven by ratings and CDS; weekly limit reports; possibly external managers for a
+    strategic tranche. Most cash in restricted countries is invested locally under separate rules.
+companies:
+  kleio: >-
+    Sarah's CHF 22m is the company's runway. Post-SVB she split it across two Swiss banks and a US bank: ~CHF 4m
+    operating cash at sight, ~CHF 8m in 3–6-month CHF deposits laddered to payroll and the burn, the remainder in
+    6–12-month deposits and Swiss Confederation money-market claims — all yielding close to zero in CHF. The USD
+    balance at Kleio Inc. sits in a US government MMF because that is the one pot that earns something. The one-page
+    policy (A- or better, max 12 months, max 40% at one bank) is what the board actually reads.
+  alpine: >-
+    Little genuine surplus: cash swings between CHF 6m and 12m with milestone payments. When a big milestone arrives,
+    Martin first repays the operating credit line, then leaves the rest on current account or places EUR in a 1-month
+    deposit at the large Swiss bank. No written investment policy.
+  helvetic: >-
+    The worked example: repay the CHF drawing, park EUR in an MMF until the interest-period date, USD in a government
+    fund. Daniel's constraint is counterparty limits at five banks, not yield.
+  globalchem: >-
+    Priya's team manages the group surplus centrally through the in-house bank: same-day-liquid EUR and USD MMFs for
+    operating liquidity, laddered deposits with the seven RCF banks (limits tied to rating and CDS), and short
+    government bills for part of the reserve. Commercial paper outstanding is weighed against surplus cash: issuing CP
+    only to hold cash is negative carry. Cash in restricted-currency countries is invested locally under a separate
+    policy annex.
+handoffs:
+  - from: Cash positioning / forecasting
+    gives: surplus by currency and expected duration
+    to: Treasury analyst
+  - from: Treasury analyst
+    gives: investable amounts, limit headroom, quotes, proposed allocation
+    to: Treasury manager
+  - from: Treasury manager
+    gives: approved placements (four-eyes); exceptions escalated
+    to: Treasury operations / head of treasury or CFO
+  - from: Banks / fund providers
+    gives: rate quotes, deal confirmations, fund statements
+    to: Treasury operations
+  - from: Treasury operations
+    gives: deal records, accrual data, holdings by classification
+    to: Accounting
+  - from: Treasury manager
+    gives: monthly investment report, limit breaches, policy changes
+    to: CFO / board committee
+interview: >-
+  Ask **what happened to the last surplus**: how they decided it was surplus, whether they considered repaying debt,
+  which banks they called, why that tenor, and who approved. Ask to see (or have described) the investment policy's
+  counterparty limits and how they check them daily. Ask what changed after SVB in 2023, and what they do in CHF
+  when rates are 0%. At a startup, ask the CFO what the board asked about cash safety.
+ai_note: >-
+  Much of the routine is well structured — compute investable amounts, check limits, collect quotes, propose a ladder,
+  match confirmations — and could be automated or assisted; some platforms already automate quote collection and
+  MMF subscriptions. At 0% CHF rates the economic value of optimising yield is small; the value is in not breaching
+  limits and not concentrating risk. Decisions about counterparty trust and exceptions remain human and policy-bound,
+  and autonomous placement of company cash faces a high control bar.
+terms: [surplus-cash, investment-policy, counterparty-limit, deposit, term-deposit, money-market-fund, mmf-types, treasury-bill, negative-carry, laddering, cash-equivalents, ssi, interest-period, relationship-bank, wallet-share]
+related: [daily-cash-positioning, cash-forecasting, liquidity-planning, credit-facility-management, policy-compliance, bank-fee-analysis]
+sources: [afp-liquidity-2025, snb-mpa-2026-09, mmfr-ms-im, sec-mmf-2023, neugroup-svb-2023, ust-fed-fdic-2023-joint, t360-corporate]
+evidence_note: >-
+  The safety–liquidity–yield ordering, segmentation of cash and the step sequence are established practice. Survey
+  evidence (mainly US): 61% of AFP 2025 Liquidity Survey respondents named safety the top short-term investment
+  objective, and on average about 80% of short-term balances sat in bank deposits, MMFs and Treasury securities, with
+  bank deposits the largest single share (~46%)[](cite:afp-liquidity-2025). After SVB, NeuGroup members reported
+  reassessing bank counterparty risk and diversifying deposits[](cite:neugroup-svb-2023). EU MMF rules (LVNAV/CNAV at
+  least 10% daily and 30% weekly maturing assets, WAM ≤ 60 days, WAL ≤ 120 days) are from Regulation (EU) 2017/1131 as
+  summarised by Morgan Stanley IM[](cite:mmfr-ms-im); US MMF rules changed in 2023[](cite:sec-mmf-2023). The SNB kept
+  its policy rate at 0% in September 2026[](cite:snb-mpa-2026-09). The Helvetic policy, rates and allocations are
+  illustrative synthesis; in this session sources were verified from publisher search-result extracts because direct
+  page fetches were blocked.

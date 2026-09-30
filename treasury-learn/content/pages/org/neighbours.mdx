@@ -1,0 +1,64 @@
+---
+title: Teams around treasury
+nav: Teams around treasury
+order: 30
+summary: Treasury works through other teams. This page lists every team treasury depends on or serves — what each owns, what it gives treasury, what it gets back, and how the relationship changes with company size — with a detailed page for the seven most important ones.
+related: [/org, /start/neighbours, /org/handoffs, /org/responsibility-matrix, /org/with-accounting, /org/with-subsidiaries]
+---
+
+[Treasury and its neighbours](/start/neighbours) compares the *questions* each finance function answers. This page is about the *working interfaces*: who sends what to whom, how often, and where it goes wrong.
+
+## The map of interfaces
+
+| Team | What it owns | Gives treasury | Gets from treasury | Rhythm | Detail |
+|---|---|---|---|---|---|
+| **Accounting / group accounting** | Ledger, close, financial statements, consolidation, [intercompany reconciliation](term:intercompany-reconciliation) | Month-end balances, EBITDA for covenants, IC balances | Deal data, IC loans and interest, hedge documentation, bank account list | Daily (statements) and monthly (close) | [Treasury and accounting](/org/with-accounting) |
+| **FP&A / controlling** | Budget, rolling forecast, management reporting, [budget rates](term:budget-rate) | Plan, forecast, capex, business context | Cash forecast, FX and interest outlook, hedge rates | Monthly | [Treasury and FP&A](/org/with-fpa) |
+| **Accounts payable** | Supplier invoices, [payment runs](term:payment-run), [vendor master data](term:vendor-master-data) | Scheduled payments, large invoices | Funding of accounts, bank channels, fraud alerts | Per run (weekly or more) | [Treasury and AP](/org/with-ap) |
+| **Accounts receivable / credit control** | Invoicing, collections, [cash application](term:cash-application), credit limits | Open items, expected receipts, late-payer intelligence | Unidentified receipts, bank details, (sometimes) credit-insurance input | Weekly | [Treasury and AR](/org/with-ar) |
+| **Tax** | Tax filings and payments, [transfer pricing](term:transfer-pricing), [withholding tax](term:withholding-tax), structure | Tax calendar, constraints on IC funding, pooling and dividends | Planned IC loans, pools, repatriation, dividends | Monthly + per transaction | [Treasury and tax](/org/with-tax) |
+| **Procurement** | Supplier selection, contracts, payment terms | Large commitments, prepayments, FX-denominated contracts, commodity purchases | FX quotes/hedges for contracts, input on payment terms, supplier finance | Ad hoc | [Treasury and procurement](/org/with-procurement) |
+| **Subsidiaries / business units** | Local operations, local finance, local banks (to varying degrees) | Forecasts, exposures, unusual flows, local bank issues | Funding, hedges, instructions, policy | Weekly–monthly | [Treasury and subsidiaries](/org/with-subsidiaries) |
+| **Payroll / HR** | Payroll, bonuses, pensions | Payroll dates and amounts, bonus and severance months | Funded payroll accounts on time | Monthly | Covered under [AP](/org/with-ap) and forecasting |
+| **Legal / company secretary** | Contracts, entity governance, board resolutions | Signed documents, resolutions, powers of attorney | Requests for bank, loan and ISDA documentation | Per transaction | — |
+| **Internal audit / internal control** | Assurance over controls | Findings, control requirements | Evidence: approvals, reconciliations, user-rights reviews | Annual audit + follow-ups | — |
+| **IT / ERP team** | ERP, interfaces, user access, security | Interfaces, connectivity, email security | Requirements, incident reports | Projects + incidents | [Systems & data](/systems) |
+| **Shared-service centre (SSC)** | Transaction processing for many entities | Payment proposals, reconciliations | Payment channels, rules, funding | Daily | [Structures](/org/structures) |
+| **Investor relations** | Communication with shareholders and analysts | Questions on net debt, liquidity, dividend capacity | Debt and liquidity facts, rating information | Quarterly | — |
+| **Insurance / enterprise risk** | Insurance programme, group risk register | Risk register requirements | Financial-risk input; credit-insurance and guarantee needs | Annual | — |
+
+## How the interfaces change with size
+
+<SizeTabs
+  startup="There are no interfaces — just people. At [Kleio](co:kleio) Sarah (CFO) and Nina (accountant) share a room; the 'hand-off' from AP to treasury is Nina telling Sarah that CHF 380k of invoices are due Friday. The external fiduciary is the tax and payroll 'department'. The risk is not coordination but capacity and single points of failure."
+  sme="Interfaces are inside one finance team. At [Alpine](co:alpine) Petra (Head of Accounting) *is* the interface: she runs AP, AR and bank reconciliation and does the treasury tasks, while the controller holds the project data. The critical outside interface is sales/project management, who know when milestones will be paid. Subsidiaries are a managing director and a bookkeeper who send information when asked."
+  midmarket="Interfaces become formal. At [Helvetic](co:helvetic) Lea receives templates from eight subsidiaries, a payment-run list from each AP team, the plan from Marco (FP&A) and month-end figures from Claudia (group accounting). Treasury has no authority over any of them, so deadlines, templates and personal relationships carry the work."
+  multinational="Interfaces become systems and service levels. At [GlobalChem](co:globalchem) the SSC in Kraków sends payment files, 40 reporting units submit in a forecasting tool, tax and accounting are large departments with their own calendars. Friction moves from 'who sends what' to data definitions, system cut-offs and ownership of exceptions."
+/>
+
+## Signals a relationship is not working
+
+<Callout type="field" title="What practitioners complain about">
+
+- **Accounting:** the ERP cash balance does not match the bank; treasury deals are booked late or wrong at month-end; nobody owns the treasury bank accounts' reconciliation.
+- **FP&A:** two forecasts that do not reconcile, and the CFO asks why cash is CHF 20m lower than "the forecast".
+- **AP:** urgent manual payments outside the run; payment dates changed without telling treasury; a supplier bank-detail change nobody verified.
+- **AR:** customer receipts that cannot be matched sit in a suspense account while treasury needs to know whose money it is.
+- **Tax:** an intercompany loan or dividend that tax learns about after the money has moved.
+- **Procurement:** a USD 8m equipment contract signed without anyone asking treasury about FX or payment timing.
+- **Subsidiaries:** forecasts copied from last month; exposures reported late; local bank accounts nobody at head office knew existed.
+
+These are field observations, not survey results; they recur because each team is measured on its own objectives (close on time, pay on time, minimise tax, hit sales targets), none of which is "give treasury good data".
+
+</Callout>
+
+<Callout type="interview" title="Questions about neighbours">
+
+- "Which team's data do you rely on most, and which do you trust least?"
+- "When did another team last surprise you with a payment or a commitment?"
+- "Who do you have to chase every week?"
+- "Is there anything you do for another team that they think is their own work?"
+
+Interview the neighbours too: an AP lead or a subsidiary finance manager can tell you what treasury asks of them and why it is hard — a view treasury itself rarely has.
+
+</Callout>

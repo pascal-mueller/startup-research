@@ -1,0 +1,125 @@
+---
+title: How the treasury systems stack fits together
+nav: Architecture
+order: 2
+summary: Treasury owns almost none of the data it works with. Invoices and payables live in the ERP, balances and transactions at the banks, rates with market-data vendors, forecasts with the business units. Treasury's systems — from a Google Sheet to a full TMS — exist to pull these together every day, turn them into positions and decisions, and push instructions back out.
+related: [/systems, /systems/bank-connectivity, /systems/tms, /systems/data-quality, /map/technology, /workflows/daily-cash-positioning]
+---
+
+## The one-sentence model
+
+**ERP → invoices, AP, AR, GL. Banks → balances, transactions, payments. Market data → FX and interest rates. Business units → forecasts. Treasury combines them, decides, and sends instructions back to the banks and entries back to the ERP.**
+
+Everything on this page elaborates that sentence. The main point for an interview: when a treasurer describes their "system", most of what they are describing is **plumbing and data collection**, not decision-making software. Ask where each number comes from before asking what the software does with it.
+
+## The stack in one picture
+
+Click a reference company to see what it actually runs in each layer. The same five layers exist at a 70-person startup and a CHF 7bn group; what changes is whether each layer is a separate system, a spreadsheet tab, or a person with a browser.
+
+<StackDiagram />
+
+Reading it bottom-up:
+
+- **Data sources.** The [ERP](term:erp) holds open payables and receivables, payment runs, the general ledger and — crucially — [vendor master data](term:vendor-master-data) including suppliers' bank details. Banks hold the only authoritative record of balances. Market-data providers and central banks publish rates. Business units and FP&A hold plans and the qualitative knowledge ("the customer in Milan will pay late again").
+- **Bank connectivity.** The channels that carry payment files out and [bank statements](term:bank-statement) in: e-banking portals, [EBICS](term:ebics), [Swift](term:swift), [host-to-host](term:host-to-host), [bank APIs](term:api-banking). See [Bank connectivity](/systems/bank-connectivity).
+- **Execution.** Where money actually gets committed: the payment run and its approvals, and FX/money-market dealing (phone, bank portal or a [multi-dealer platform](term:trading-platform)).
+- **Treasury workflow.** A [TMS](term:tms), a lighter cloud cash tool, or a spreadsheet builds the [cash position](term:cash-position), the forecast, the register of deals and exposures, and generates accounting entries. See [TMS](/systems/tms) and [Spreadsheets](/systems/spreadsheets).
+- **Decide & report.** The daily cash report, the 13-week forecast pack, covenant and board reports. Almost always ends in Excel or PowerPoint, even at companies with a full TMS.
+
+<Callout type="confusion" title="Four things people call 'the treasury system'">
+
+- **ERP** — the accounting system of record (SAP, Oracle, Dynamics, Abacus, Bexio). Knows invoices, not bank balances in real time.
+- **Bank portal** — each bank's own website. Knows that bank's accounts only.
+- **Connectivity tool / payment hub** — moves files between ERPs and banks. Knows what was sent and received, not what it means.
+- **TMS** — treasury's own system of record for positions, deals, exposures, bank accounts. Only as good as what the other three feed it.
+
+A mid-market treasurer who says "we don't have a TMS" may still have a sophisticated multibank tool; one who says "we use SAP" may mean SAP's treasury modules or just its payment run. Ask which.
+
+</Callout>
+
+## Where each piece of data comes from
+
+<DataFlowDiagram />
+
+The diagram's key lesson is the imbalance between the columns. Treasury's own records (deals, facilities, bank accounts) are the only inputs it controls. Every other input is owned by a department with different priorities: accounting cares about the month-end close, AP about paying on time, subsidiaries about their own targets, banks about their own formats.
+
+## System of record: who owns which data
+
+A [system of record](term:system-of-record) is the one place whose version counts when systems disagree. Many treasury problems are really ownership problems — two lists of bank accounts, three month-end rates, a forecast nobody signed off.
+
+| Data | Usual system of record | Maintained by | Treasury uses it for | Typical failure |
+|---|---|---|---|---|
+| Bank balances and transactions | The bank (reported via statement files) | Bank | [Cash position](term:cash-position), [reconciliation](term:reconciliation), actual vs forecast | Missing or late statement; intraday vs final confusion |
+| Open payables, payment runs | ERP (AP module) | [Accounts payable](/org/with-ap) | Outflow forecast for the next 2–4 weeks; payment execution | Run date moved without telling treasury |
+| Open receivables | ERP (AR module) | [Accounts receivable](/org/with-ar) | Inflow forecast | Due date ≠ date the customer actually pays |
+| Supplier bank details | ERP vendor master | AP / master-data team | Payment file content | Changed by fraudster ([BEC](term:bec)) or by typo |
+| General ledger cash accounts | ERP | [Accounting](/org/with-accounting) | Month-end reconciliation, reporting | Treasury and GL cash differ by unposted items |
+| FX, money-market and debt deals | TMS, or treasury spreadsheet | Treasury (front office enters, back office confirms) | Exposure, valuation, settlement, accounting | Deal in spreadsheet but not confirmed; maturity missed |
+| Bank accounts, signatories, users | TMS BAM module or spreadsheet | Treasury operations | Controls, KYC, audit | Leavers still hold signing rights ([eBAM](term:ebam)) |
+| Exchange rates for accounting | ERP rate table | Accounting (often loaded from a treasury feed) | Revaluation, translation, budget rates | Two rate sources used in the same report |
+| Forecast inputs | Templates or forecasting tool | Subsidiaries, FP&A | [Cash forecast](wf:cash-forecasting) | Late, copied from last month, no cash timing |
+| Facility terms, covenants | Loan documents; covenant model | Treasury / corporate finance | Headroom, covenant tests | Definition in model differs from the credit agreement |
+
+## A morning's data run at Helvetic
+
+What "treasury combines" means in practice at [Helvetic Machines](co:helvetic), which has five banks, 12 operating accounts, SAP S/4HANA in three countries, smaller ERPs in five, a multibank connectivity tool and no TMS:
+
+| Time (CET) | What happens | System | Who |
+|---|---|---|---|
+| overnight | Prior-day [camt.053](term:camt-053) statements from the two Swiss and the German bank are fetched by scheduled [EBICS](term:ebics) jobs; the global bank's statements for the US and UK accounts arrive over [Swift](term:swift) as MT940 | Multibank tool | Automated |
+| ~04:30 | Wei, finance manager of HM Suzhou, emails a PDF balance confirmation and an Excel list of yesterday's movements for the account at the Chinese bank — China is six to seven hours ahead, so his day is half over. The account is not connected to the multibank tool: a connectivity gap, not a time-zone problem | Email | Wei |
+| 07:45 | Lea checks that 11 of 11 electronic statements have arrived; the US account's prior-day report is usually the last one | Multibank tool | [Lea](/org/roles-analyst) |
+| 08:00 | Lea exports balances into the cash-position workbook, adds the Suzhou figures by hand, converts to CHF at the morning rates from the bank's FX portal | Excel | Lea |
+| 08:15 | Lea pulls today's scheduled payments: SAP payment proposals for CH/DE/CZ; emailed payment lists from IT, FR, UK, US | SAP, email | Lea |
+| 08:40 | Lea flags that HM Italia will be EUR 0.7m short after Friday's supplier run; she checks the 13-week forecast and finds Giulia's submission assumed a customer receipt that has not arrived | Excel, email | Lea, [Giulia](/org/with-subsidiaries) |
+| 09:15 | Daniel reviews the position and decides to fund HM Italia with a EUR 1m [intercompany loan](term:intercompany-loan) from the parent's EUR account | Excel | [Daniel](/org/roles-treasury-manager) |
+| 09:30 | Lea creates the EUR transfer in the multibank tool; Daniel approves it with his EBICS signature; the loan is recorded in the intercompany loan register (a spreadsheet) and Claudia's team is told for the intercompany booking | Multibank tool, Excel, email | Lea, Daniel, [Claudia](/org/with-accounting) |
+
+Nothing in this sequence is exotic. It shows the three recurring seams: **(1)** a bank account outside the automated channel, **(2)** ERP data that only exists in some entities' systems, **(3)** a hand-off from treasury's decision back to accounting's books. Tools can remove the first two; the third needs agreed processes. The full workflow is in [Daily cash positioning](wf:daily-cash-positioning).
+
+## Integration patterns
+
+| Pattern | Example | Strength | Weakness |
+|---|---|---|---|
+| Scheduled files | EBICS or SFTP job fetches camt.053 at 06:00; ERP writes pain.001 to a folder the connectivity tool picks up | Robust, bank-supported everywhere, audit trail | Batch timing; format variants per bank; silent failures if nobody checks the job ran |
+| Messaging network | Swift FIN/[FileAct](term:fileact) via a [service bureau](term:service-bureau) | One channel to many banks | Cost and onboarding per bank (relationship keys); legacy MT still common for statements |
+| API calls | Cash tool queries a bank's balance endpoint every hour | Near real-time, no files | Each bank's API differs; coverage patchy outside large banks; rarely covers everything the file did |
+| ERP–TMS interface | Nightly export of AP/AR open items to the TMS; TMS posts journal entries back | Removes re-keying | Mapping of company codes, GL accounts, cash-flow categories must be maintained |
+| Manual export / email | Wei's PDF; a subsidiary's Excel forecast | Works anywhere, no project | Late, error-prone, invisible to controls |
+| Spreadsheet as integration layer | Lea's workbook combines all of the above | Flexible, cheap | [Key-person and formula risk](/systems/spreadsheets) |
+
+<Callout type="field" title="The integration is the project">
+
+Practitioners describing a TMS or connectivity project mostly talk about the interfaces, not the software: getting every bank to deliver statements in a usable format, mapping each ERP's company codes and accounts, and deciding which system owns which data. The software licence is rarely the hardest part. Treat this as a practitioner pattern, not a survey finding.
+
+</Callout>
+
+## How the stack changes with size
+
+<CompanyStacks />
+
+- **Startup ([Kleio](co:kleio)).** One accounting system with bank feeds, bank portals, one Google Sheet. The CFO *is* the integration layer. The stack question that matters is not software but bank concentration and approval rights.
+- **SME ([Alpine](co:alpine)).** ERP generates payment files; EBICS upload to the home banks; Excel for cash and forecast. No TMS — and usually rightly so: with 2 banks and 9 accounts, the ERP plus a spreadsheet can see everything.
+- **Mid-market ([Helvetic](co:helvetic)).** Several ERPs after acquisitions, a multibank connectivity tool as the first treasury-specific system, spreadsheets for position, forecast, hedges and covenants. This is the tier where a TMS or cloud cash platform is typically evaluated — and where the business case is argued in hours saved and control gaps closed.
+- **Multinational ([GlobalChem](co:globalchem)).** A TMS (here SAP's treasury modules inside S/4HANA), Swift via a service bureau, a payment factory and [payment hub](term:payment-hub), trading platforms and Bloomberg, a separate forecasting tool, and a treasury-systems team (Ben) to run it all. Spreadsheets remain for scenarios and exceptions.
+
+**What usually triggers the next system** (field observation, not a survey): a second or third bank that has to be checked daily; the first foreign subsidiary with its own ERP; an RCF with covenants and a hedging policy that auditors want evidenced; an acquisition that doubles the number of bank accounts; an ERP migration (for SAP customers, the end of ECC mainstream maintenance in 2027[](cite:sap-ecc-maintenance) is forcing many of those); and the key-person event — the analyst who built the workbook leaves.
+
+<Callout type="survey">
+
+European treasurers put treasury technology review or TMS replacement among their top priorities, while ranking AI low because data is not centralised or standardised[](cite:eact-2025). In Deloitte's 2024 survey, cash forecasting at many companies was still primarily spreadsheet-based[](cite:deloitte-gts-2024). Both findings point at the same place: the integration and data layers of this stack, not the decision layer.
+
+</Callout>
+
+## Questions to ask about someone's stack
+
+<Callout type="interview">
+
+- "Walk me through where this morning's cash position came from — which system for which bank?"
+- "Which bank accounts are *not* in the automated feed, and how do you get their balances?"
+- "What do you export from the ERP, how often, and who owns that export?"
+- "When a statement is missing, how do you notice and who fixes it?"
+- "Which spreadsheets would stop the process if they broke?"
+- "Who administers the TMS / connectivity tool — treasury, IT, or a vendor?"
+
+</Callout>

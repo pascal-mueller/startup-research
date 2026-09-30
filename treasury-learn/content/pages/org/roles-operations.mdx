@@ -1,0 +1,70 @@
+---
+title: Treasury Operations / Back Office
+nav: Treasury Operations
+order: 27
+summary: Treasury operations makes sure that what the front office decided actually happens, correctly, and is recorded. It confirms and settles deals, checks statements, reconciles, runs payment operations, maintains static data and bank mandates, and operates the controls. This page explains front, middle and back office, and what happens to this work in companies too small to have a back office.
+related: [/org/roles, /org/roles-payments, /org/roles-fx-risk, /workflows/bank-reconciliation, /workflows/payment-processing, /workflows/fraud-investigation, /systems]
+---
+
+## Front, middle and back office
+
+The three-office split comes from banks and is used in larger corporate treasuries. The ACT defines it this way[](cite:act-wiki-front-office,act-wiki-middle-office,act-wiki-back-office):
+
+| Office | Does | Corporate examples | Must NOT |
+|---|---|---|---|
+| **[Front office](term:front-office)** | Works with the business on exposures; market information and pricing; cash management; dealing in money markets, FX, rates and funding; enters deals in the TMS | Priya's cash desk, Jonas's FX desk, Olivier's funding team at GlobalChem | Confirm or settle their own deals |
+| **[Middle office](term:middle-office)** | Checks deals follow authorisation rules; monitors limits and reports breaches; exposure and performance reporting; maintains bank-account and dealing mandates and standing data such as SSIs | The treasury-control function in Marta's team; in other groups, "treasury controlling" or risk control | Deal |
+| **[Back office](term:back-office)** | Confirms deals promptly; settles when due; bank reconciliation; accounting for transactions; reporting where there is no middle office; supervises TMS controls | Marta's 7-person team in Kraków | Deal; set their own limits |
+
+The principle behind it is [segregation of duties](term:segregation-of-duties): "no employee should be in a position both to commit and to conceal fraud or errors"[](cite:act-wiki-sod). The ACT's short version is that the front office does the deal but doesn't settle the money, and the back office settles the money but doesn't do the deal. The two should also have different reporting lines[](cite:act-wiki-back-office).
+
+<Callout type="confusion" title="Middle office is often not a separate team">
+
+Many corporate treasuries, even large ones, have no team called "middle office". The tasks exist but sit with the back office, a treasury controller, internal control or the head of treasury. "Front/back office" is widely understood; "middle office" means different things in different companies. Ask what the team actually does.
+
+</Callout>
+
+<RoleExists id="treasury-operations" />
+
+## What the back office actually does
+
+| Task | Detail | Example |
+|---|---|---|
+| **[Deal confirmation](term:deal-confirmation)** | Match each bank's confirmation (SWIFT MT300 for FX, MT320 for deposits and loans, or a platform or PDF) against the deal in the TMS | A forward booked at 0.9360 is confirmed by the bank at 0.9306: escalated to the dealer and the bank before settlement |
+| **Settlement** | Make sure both legs of each deal pay on value date to the right accounts | A maturing USD deposit must arrive at the new correspondent after an SSI change |
+| **Statement completeness** | Every statement for every account, every day | 280 accounts at GlobalChem; missing files chased before the cash desk starts |
+| **Reconciliation** | Treasury accounts, deal-related flows, intercompany balances | See [bank reconciliation](wf:bank-reconciliation) |
+| **Payment operations** | In many groups, the payment factory release sits here | See [Payments roles](/org/roles-payments) |
+| **[Static data](term:static-data)** | Bank accounts, counterparties, SSIs, users: four-eyes controlled, verified by call-back | A bank-account change request by email is refused until verified by phone |
+| **Bank mandates and documentation** | Signatory lists, [KYC](term:kyc) packs, account opening/closing documents, [dealing mandates](term:dealing-mandate) | A quarterly review removes leavers from all 20 banks' signatory lists |
+| **Accounting feed** | Treasury postings (deals, interest, fees, valuations) into the ERP | Month-end WD1–4 |
+| **Controls and audit** | Evidence for auditors, user-rights reviews | A sample of 25 deals tested annually by internal audit |
+
+Job adverts describe the same list. Deutsche Börse's Prague back-office role processes and validates deals (counterparty, currency, amount), generates SWIFT payments, matches confirmations, updates static data in the SAP treasury module and reconciles treasury accounts[](cite:job-db-treasury-back-office). Note that Deutsche Börse is a market-infrastructure group, not an industrial company. A shared-service-centre treasury lead advertised in Kraków handles bank inquiries and mandates, and reviews and approves manual payments and payment runs[](cite:job-krakow-treasury-team-leader).
+
+## Without a back office
+
+<SizeTabs startup="No back office. The bank portal and the accountant cover it: Nina at [Kleio](co:kleio) books what the bank statement shows. The main control is that Sarah releases every payment." sme="At [Alpine](co:alpine), Petra's accounting team reconciles the bank accounts and books the occasional forward from the bank's confirmation. Segregation comes from collective signature at the bank: Petra enters, Martin signs." midmarket="At [Helvetic](co:helvetic), segregation is achieved by splitting tasks across a small team rather than by an office. Daniel deals; Lea checks the confirmations; Claudia's Group Accounting books the deals and valuations; local accounting reconciles the operating accounts. The weak spot is holidays: when Lea is away, Daniel must not check his own deals, so Claudia's team does it." multinational="At [GlobalChem](co:globalchem), Marta's 7-person team in the Kraków SSC is a full back office and payment factory, with treasury control (middle-office tasks) inside it. It reports to Anna, not to the dealing desks, which is the reporting-line separation the ACT describes." />
+
+## Calendar
+
+<RoleCalendar id="treasury-operations" index={0} />
+
+## What treasury operations knows, and doesn't
+
+<RoleKnows id="treasury-operations" />
+
+## Interview implications
+
+<Callout type="interview">
+
+Treasury operations people know **volumes, failure rates and control effort**: how many confirmations are unmatched per week, how many payments are returned, how much time static-data changes take, what the auditors found. They are also the first to see fraud attempts. This makes them valuable for anyone studying where work is repetitive and error-prone.
+
+- "What breaks most often in a normal week?"
+- "Walk me through the last payment you stopped. Why did you stop it?"
+- "How is a bank-account change verified?"
+- "What do you still do manually that the TMS should do?"
+
+They are the wrong people to ask why the company hedges or borrows as it does.
+
+</Callout>

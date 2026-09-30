@@ -1,0 +1,471 @@
+# Org charts (OrgChart component). Owned by the org-structure stream.
+# Node fields: title, who, note, kind (exec|treasury|finance|business|external), dotted (dashed box = functional or
+# part-time link), dottedTo (text: functional reporting target), fte, children.
+# Company examples must stay consistent with content/companies.yaml. Generic variants have no company.
+
+- id: kleio
+  title: The CFO is the treasury department
+  company: kleio
+  size: startup
+  summary: >-
+    ~70 people, two entities, 7 bank accounts. No one has "treasury" in their title. Sarah (CFO) spends roughly 10% of
+    her time on cash, runway, bank relationships and FX; Nina (accountant) prepares payments and reconciles; payroll
+    and the annual accounts are done with an external fiduciary.
+  typical: "Venture-backed or owner-managed companies below roughly CHF 20–50m revenue with one or two entities."
+  tree:
+    title: Board of directors
+    who: founders + 2 investor directors
+    kind: exec
+    note: Sets runway expectations; approved the post-SVB rule to spread cash across banks
+    children:
+      - title: CEO
+        who: co-founder
+        kind: exec
+        note: Co-signs large payments; leads fundraising
+        children:
+          - title: CFO
+            who: Sarah
+            kind: treasury
+            note: "Finance, HR admin, legal admin, investor reporting — and all treasury decisions"
+            children:
+              - title: Accountant
+                who: Nina
+                kind: finance
+                note: Bookkeeping, AP/AR, payment files, bank reconciliation
+              - title: Fiduciary / payroll provider
+                kind: external
+                dotted: true
+                note: Swiss payroll, VAT, statutory accounts and tax returns
+              - title: US payroll / accounting provider
+                kind: external
+                dotted: true
+                note: Kleio Inc. payroll and US filings
+          - title: Engineering, Sales, Customer Success
+            kind: business
+            note: "Department heads approve invoices and feed the hiring plan"
+          - title: Kleio Inc. (US)
+            kind: business
+            fte: 8 people
+            note: Sales team; no finance staff
+            dottedTo: Sarah for all money matters
+  whoDoesWhat:
+    - { task: Checking balances, who: "Sarah, in three e-banking portals, two or three times a week and before each payment run. No formal daily position." }
+    - { task: Cash forecast / runway, who: "Sarah, monthly, in one Google Sheet: 18-month runway by month, fed by Nina's AP/AR lists and the hiring plan. See [cash forecasting](wf:cash-forecasting)." }
+    - { task: Payments, who: "Nina enters supplier invoices and prepares the payment batch in e-banking; Sarah releases (second signature). Payroll files come from the fiduciary; Sarah releases them too." }
+    - { task: FX, who: "Sarah converts surplus USD to CHF at spot when the USD balance gets large; no hedging programme. See [FX exposure management](wf:fx-exposure-management)." }
+    - { task: Investing surplus cash, who: "Sarah, within rules the board approved: CHF split across two Swiss banks for safety (CHF deposits earn roughly nothing at a 0% SNB rate), surplus USD in short US deposits or a government money market fund. The CEO is informed." }
+    - { task: Bank relationships, who: "Sarah (and the CEO when debt is discussed — the venture-debt offer is on the table)." }
+  notes:
+    - "Segregation of duties exists only in its simplest form: Nina prepares, Sarah releases. When Sarah is on holiday, the CEO is the second signatory — a common weak point."
+    - "The board is the real 'treasury committee' here: it sees runway every month and approved the investment rules."
+
+- id: alpine
+  title: Treasury inside the accounting team
+  company: alpine
+  size: sme
+  summary: >-
+    CHF 80m revenue, three entities, 9 accounts at two banks, a CHF 12m credit line. Treasury is a set of tasks shared
+    between Martin (CFO), who decides, and Petra (Head of Accounting), who runs cash, payments and bank reconciliations
+    alongside the close. Subsidiaries have a managing director and a part-time local bookkeeper each.
+  typical: "SMEs with roughly CHF 30–300m revenue and a handful of entities; finance team of 5–15 people with no dedicated treasurer."
+  tree:
+    title: Board of directors
+    kind: exec
+    note: Approves credit line, mortgage, dividends; FX rules exist only as a board minute
+    children:
+      - title: CEO
+        kind: exec
+        children:
+          - title: CFO
+            who: Martin
+            kind: treasury
+            note: "Decides funding, FX conversions and forwards, investments; owns bank relationships"
+            fte: finance team of 7
+            children:
+              - title: Head of Accounting
+                who: Petra
+                kind: treasury
+                note: "Close, VAT, audit — plus cash sheet, payment runs, bank recs, intercompany"
+                children:
+                  - title: Accounts payable
+                    fte: 1.5 FTE
+                    kind: finance
+                  - title: Accounts receivable & credit control
+                    fte: 1 FTE
+                    kind: finance
+                  - title: Payroll & GL accountant
+                    fte: 1 FTE
+                    kind: finance
+              - title: Controller
+                fte: 1 FTE
+                kind: finance
+                note: Budget, monthly management report, project (milestone) controlling
+          - title: COO — production & purchasing
+            kind: business
+            note: Buyers negotiate component contracts and payment terms
+          - title: Sales & project management
+            kind: business
+            note: Know when acceptance certificates — and therefore milestone payments — will happen
+          - title: Alpine Robotics GmbH (DE)
+            who: managing director + part-time bookkeeper
+            kind: business
+            dottedTo: Martin (finance), Petra (bookkeeping)
+          - title: Alpine Robotics Inc. (US)
+            who: managing director + outsourced bookkeeper
+            kind: business
+            dottedTo: Martin (finance), Petra (bookkeeping)
+      - title: Tax adviser & statutory auditor
+        kind: external
+        dotted: true
+        note: Transfer pricing, intercompany loan rates, annual audit
+  whoDoesWhat:
+    - { task: Daily cash check, who: "Petra, around 08:30, e-banking of both banks (DE and US balances viewed with read access); updates the Excel cash sheet. Martin looks only when she flags something." }
+    - { task: Cash forecast, who: "Petra maintains a 13-week sheet; the key inputs are milestone dates from project managers and the controller. Martin reviews weekly in their Monday meeting." }
+    - { task: Payments, who: "AP prepares the payment proposal in Business Central; Petra checks and uploads the file via EBICS; Martin gives the second approval (collective signature). Local bookkeepers pay local suppliers in DE/US; the managing director co-signs." }
+    - { task: FX, who: "Martin decides conversions and forwards; he calls the large Swiss bank's FX desk or uses its platform. Petra checks the confirmation and books it." }
+    - { task: Credit line and covenants, who: "Martin negotiates with the cantonal bank; Petra calculates the covenant figures from the half-year accounts and sends the certificate." }
+    - { task: Subsidiary funding, who: "Martin decides; Petra transfers and books the intercompany loan; the tax adviser sets the interest rate." }
+  notes:
+    - "Petra is the person to interview about how treasury work is really done here — Martin can explain decisions, not the mechanics."
+    - "Because Petra both prepares/uploads payments and reconciles the bank accounts, auditors typically ask for compensating controls (Martin's second approval, a monthly review of the reconciliation)."
+
+- id: helvetic
+  title: Small central treasury reporting to the CFO
+  company: helvetic
+  size: midmarket
+  summary: >-
+    CHF 650m revenue, 8 subsidiaries in 6 currencies. A two-person treasury (Daniel, Lea) reports directly to Thomas
+    (CFO) and runs group liquidity, funding, FX hedging and bank relationships. Local finance teams keep their own AP,
+    AR and payment execution; group accounting, FP&A and tax sit beside treasury under the CFO.
+  typical: "International mid-market groups of roughly CHF 300m–2bn revenue: treasury of 1–5 people, centralised decisions, decentralised payment execution."
+  tree:
+    title: Board of directors
+    note: Audit committee approves treasury policy, financing and dividends
+    kind: exec
+    children:
+      - title: CEO
+        kind: exec
+        children:
+          - title: CFO
+            who: Thomas
+            kind: exec
+            children:
+              - title: Treasury
+                who: Daniel (Treasury Manager)
+                kind: treasury
+                fte: 2 FTE
+                note: Liquidity, funding (RCF, bond), FX hedging, banks, IC loans
+                children:
+                  - title: Treasury Analyst
+                    who: Lea
+                    kind: treasury
+                    note: Cash position, 13-week forecast, exposure reports, confirmations, reporting
+              - title: Group Accounting & Consolidation
+                who: Claudia
+                kind: finance
+                note: Consolidation, parent-company accounting (incl. AP/AR of the AG), IFRS, hedge accounting
+              - title: FP&A
+                who: Marco
+                kind: finance
+                note: Budget, rolling forecast, management reporting, budget FX rates
+              - title: Group Tax
+                kind: finance
+                fte: 1 person + advisers
+              - title: Group IT / ERP
+                kind: finance
+                note: SAP S/4HANA, multibank connectivity tool
+          - title: Legal / company secretary
+            kind: finance
+            note: Board resolutions, loan and bank documentation
+          - title: Divisions & subsidiaries
+            kind: business
+            children:
+              - title: HM Deutschland
+                who: Jens (finance mgr)
+                kind: business
+                dottedTo: CFO Thomas; treasury instructions from Daniel
+              - title: HM Italia
+                who: Giulia (finance mgr)
+                kind: business
+                dottedTo: CFO Thomas
+              - title: HM Suzhou
+                who: Wei (finance mgr)
+                kind: business
+                dottedTo: CFO Thomas
+              - title: FR, UK, CZ, US, CH service
+                kind: business
+                note: Local finance manager or controller each; local AP/AR
+  whoDoesWhat:
+    - { task: Daily cash position, who: "Lea at ~08:00 from the multibank tool (balances of all 12 accounts), plus emails from subsidiaries on large items; Daniel reviews by 09:30." }
+    - { task: 13-week forecast, who: "Subsidiary finance managers submit an Excel template every second Thursday; Lea consolidates; Daniel adjusts and presents to Thomas monthly." }
+    - { task: FX hedging, who: "Subsidiaries report EUR/USD/CNY exposures monthly; Lea computes the hedge requirement against the policy corridor; Daniel trades forwards with the RCF banks; Lea matches confirmations; Claudia's team books and documents hedge accounting." }
+    - { task: Payments, who: "Commercial payments: local finance teams prepare and release them locally (two local signatures). Treasury payments (IC loans, deal settlements): Lea prepares, Daniel and Thomas release." }
+    - { task: Funding and covenants, who: "Daniel runs the RCF (drawings, renewals) with Thomas; Lea calculates net debt/EBITDA semi-annually from Claudia's figures; Thomas signs the compliance certificate." }
+    - { task: Bank accounts, who: "Daniel owns the bank account register and approves every new account with Thomas; local managers sign local bank documents." }
+  notes:
+    - "Segregation of duties with two people is tight: Daniel trades, Lea confirms, group accounting settles and books. When either is absent, Claudia or Thomas steps in — a known key-person risk."
+    - "Subsidiary finance managers report solid-line to their local managing director and dotted-line to the CFO. They are **not** part of treasury, but most treasury input comes from them — see [Working with subsidiaries](/org/with-subsidiaries)."
+
+- id: globalchem
+  title: Group Treasury with specialised desks, in-house bank and payment factory
+  company: globalchem
+  size: multinational
+  summary: >-
+    CHF 7bn revenue, ~40 operating subsidiaries, ~280 bank accounts. Anna (Group Treasurer) reports to Markus (CFO) and
+    leads ~25 people in five teams. Payments and the treasury back office run from the Kraków shared-service location;
+    a Singapore regional treasury centre covers Asia. Accounting, FP&A, tax and the SSC are separate functions under the CFO.
+  typical: "Groups above roughly CHF/USD 3–5bn revenue with many entities and currencies; investment-grade issuers with bonds and CP."
+  tree:
+    title: Board — Audit & Finance Committee
+    kind: exec
+    note: Approves treasury policy, financing framework, dividends; receives quarterly treasury risk report
+    children:
+      - title: CEO
+        kind: exec
+        children:
+          - title: Group CFO
+            who: Markus
+            kind: exec
+            note: Chairs quarterly treasury committee
+            children:
+              - title: Group Treasurer
+                who: Anna
+                kind: treasury
+                fte: ~25 FTE
+                children:
+                  - title: Corporate Finance
+                    who: Olivier
+                    kind: treasury
+                    fte: 3
+                    note: Bonds, CP, RCF, rating agencies, M&A funding
+                  - title: Cash & Liquidity / In-house bank
+                    who: Priya
+                    kind: treasury
+                    fte: 6
+                    note: Positioning, pools, IC funding, investments, forecast
+                    children:
+                      - title: Regional Treasury Centre Singapore
+                        kind: treasury
+                        fte: 3
+                        note: APAC liquidity, restricted currencies, local banks
+                        dottedTo: APAC regional CFO
+                  - title: Financial Risk (FX & rates)
+                    who: Jonas
+                    kind: treasury
+                    fte: 4
+                    note: Exposure, hedging, IRS, hedge accounting input
+                  - title: Treasury Operations & Payment Factory
+                    who: Marta (Kraków)
+                    kind: treasury
+                    fte: 7
+                    note: Back office, treasury control (middle office), payment factory, bank account admin
+                  - title: Treasury Systems
+                    who: Ben
+                    kind: treasury
+                    fte: 2
+                    note: TMS/SAP treasury, SWIFT service bureau, IHB, market data
+              - title: Group Accounting & Reporting
+                kind: finance
+                note: Consolidation, IFRS 9 hedge accounting, IC reconciliation
+              - title: Group FP&A / Controlling
+                kind: finance
+                note: Budget, forecasts, budget rates
+              - title: Group Tax
+                kind: finance
+                note: Transfer pricing, WHT, pooling and repatriation structures
+              - title: Global Business Services (Kraków SSC)
+                kind: finance
+                note: AP, AR, record-to-report for European entities
+          - title: General Counsel
+            kind: finance
+            note: Bank and bond documentation, KYC, entity governance
+          - title: Divisions / regions
+            kind: business
+            children:
+              - title: Subsidiary & regional CFOs
+                kind: business
+                note: 40 reporting units; forecasts, exposures, local banking
+                dottedTo: Group CFO; treasury policy from Anna
+      - title: Internal Audit
+        kind: exec
+        dotted: true
+        note: Reports to the Audit Committee; audits treasury controls
+  whoDoesWhat:
+    - { task: Daily cash position, who: "Priya's cash desk (two analysts) from the TMS by 09:00 CET, with Singapore covering APAC in its morning. Marta's team makes sure all statements arrived." }
+    - { task: Forecasting, who: "40 reporting units submit weekly/monthly in the forecasting tool; Priya's team challenges and consolidates; Anna reviews; FP&A reconciles the monthly view to its forecast." }
+    - { task: FX, who: "Exposure from subsidiaries and ERP → Jonas's desk nets, decides hedges within the mandate and trades on the FX platform → Marta's back office confirms and settles → Group Accounting applies hedge accounting." }
+    - { task: Payments, who: "AP in the Kraków SSC and local finance teams create payment proposals; the payment factory (Marta) screens, routes and sends via SWIFT, paying on behalf of European entities from in-house bank accounts." }
+    - { task: Debt and ratings, who: "Olivier; Anna and Markus lead bank and rating-agency meetings; the board approves new bond issuance frameworks." }
+    - { task: Controls, who: "Treasury control inside Marta's team checks limits and mandates daily; Ben administers user rights with Marta reviewing them quarterly; internal audit reviews treasury annually." }
+  notes:
+    - "PwC's 2025 survey reports in-house banks at 67%, payment factories at 60% and POBO at 50% of respondents above USD 10bn revenue[](cite:pwc-gts-2025) — GlobalChem (about USD 8.7bn) is plausible but on the smaller side for all three."
+    - "Treasury Operations is physically in the SSC but reports to Anna, not to the SSC head — a common way to keep treasury controls under treasury while using SSC infrastructure. Other groups put the payment factory under the SSC/GBS head instead."
+
+# ------------------------------------------------------------------ generic variants
+- id: us-treasurer-controller
+  title: "Treasurer and Controller as peers under the CFO"
+  size: midmarket
+  variantOf: reporting line
+  summary: >-
+    The classic US (and increasingly international) split: the **Treasurer** runs money, banks, debt and risk; the
+    **Controller** (chief accounting officer) runs accounting, AP, AR, payroll and the close. Both report to the CFO.
+  typical: "US-listed and many larger European companies; most groups with a full-time treasurer. In US usage 'Controller' = head of accounting."
+  tree:
+    title: CFO
+    kind: exec
+    children:
+      - title: Treasurer
+        kind: treasury
+        children:
+          - title: Assistant Treasurer — cash & banking
+            kind: treasury
+          - title: Assistant Treasurer — capital markets & risk
+            kind: treasury
+          - title: Treasury analysts
+            kind: treasury
+      - title: Controller / CAO
+        kind: finance
+        children:
+          - title: General accounting & close
+            kind: finance
+          - title: AP / AR / payroll
+            kind: finance
+      - title: FP&A
+        kind: finance
+      - title: Tax
+        kind: finance
+      - title: Investor relations
+        kind: finance
+        dotted: true
+  whoDoesWhat:
+    - { task: Payment execution, who: "Usually AP (under the Controller) runs payment proposals; treasury controls bank channels, funding and the wire templates. Either can own the final release — ask." }
+    - { task: Bank reconciliation, who: "Controller's team (general accounting)." }
+    - { task: Debt, who: "Treasurer, with the CFO; a separate corporate development team handles M&A." }
+  notes:
+    - "Clean segregation of duties between execution (treasury) and recording (controller) is the main argument for this split."
+
+- id: controller-led
+  title: Treasury inside a controller-led finance team
+  size: sme
+  variantOf: reporting line
+  summary: >-
+    A treasury manager (or 'treasury accountant') reports to the Head of Finance / Financial Controller rather than to
+    the CFO. Treasury is seen as an extension of accounting: cash, payments, bank recs, some FX.
+  typical: "SMEs and lower mid-market companies (roughly CHF 100–500m revenue), family-owned groups, and UK-style organisations where the 'Financial Controller' runs finance operations under a Finance Director."
+  tree:
+    title: CFO / Finance Director
+    kind: exec
+    note: Keeps bank relationships, funding and hedging decisions
+    children:
+      - title: Head of Finance / Financial Controller
+        kind: finance
+        children:
+          - title: Treasury Manager or treasury accountant
+            kind: treasury
+            note: Cash position, forecast, payments, bank admin
+          - title: Accounting & close
+            kind: finance
+          - title: AP / AR
+            kind: finance
+      - title: Controlling / FP&A
+        kind: finance
+      - title: Tax
+        kind: finance
+        dotted: true
+        note: often external
+  whoDoesWhat:
+    - { task: Strategic decisions (funding, hedging), who: "CFO — the Financial Controller is often not delegated authority." }
+    - { task: Operational treasury, who: "The treasury manager, with close deadlines competing for attention." }
+  notes:
+    - "Watch for: forecasting treated as an accounting exercise (ledger-based rather than bank-based), and treasury work squeezed out at month-end."
+    - "Segregation of duties is weaker because the same boss owns execution and recording; auditors look for compensating reviews."
+
+- id: decentralised-group
+  title: Decentralised group — subsidiaries run their own treasury
+  size: midmarket
+  variantOf: centralisation
+  summary: >-
+    A small group treasury (often 1–3 people) sets policy, manages group debt and advises; each subsidiary's finance
+    director keeps local banks, local funding, local FX and payments.
+  typical: "Acquisitive groups that have not yet integrated, holding structures with autonomous businesses, and groups operating in countries with capital controls. Many large groups are decentralised in some regions."
+  tree:
+    title: Group CFO
+    kind: exec
+    children:
+      - title: Group Treasurer
+        kind: treasury
+        fte: 1–3
+        note: Policy, group debt, bank panel, consolidated reporting
+      - title: Subsidiary A — finance director
+        kind: business
+        note: Local bank lines, local FX, payments, forecasting
+        dottedTo: Group Treasurer for policy
+        children:
+          - title: Local bank(s)
+            kind: external
+      - title: Subsidiary B — finance director
+        kind: business
+        dottedTo: Group Treasurer for policy
+        children:
+          - title: Local bank(s)
+            kind: external
+      - title: Subsidiary C — finance director
+        kind: business
+        dottedTo: Group Treasurer for policy
+        children:
+          - title: Local bank(s)
+            kind: external
+  whoDoesWhat:
+    - { task: Cash positioning, who: "Each subsidiary for itself; group sees balances monthly or weekly via reporting." }
+    - { task: FX hedging, who: "Local finance directors with local banks within group limits — or not at all." }
+    - { task: Funding, who: "Group for the parent's debt; subsidiaries may hold local overdrafts and loans." }
+  notes:
+    - "Typical pain: cash surplus in one entity while another borrows locally at a higher rate; poor group visibility. Treasury Today describes a spectrum from decentralised through partially to fully centralised, and notes many multinationals stay hybrid because full centralisation is impractical[](cite:tt-centralised-treasury)."
+
+- id: large-rtc-ssc
+  title: Large group — regional treasury centres, in-house bank and SSC payment factory
+  size: multinational
+  variantOf: centralisation
+  summary: >-
+    A global head office treasury (policy, funding, risk) plus regional treasury centres (e.g. Americas, EMEA, APAC)
+    that run liquidity and banking for their region, an in-house bank entity, and a payment factory co-located with
+    a shared-service centre.
+  typical: "Groups above roughly USD 10bn revenue or with 100+ entities; RTCs are often placed where the tax or regulatory regime suits (e.g. Singapore's FTC incentive[](cite:edb-ftc-factsheet))."
+  tree:
+    title: Group CFO
+    kind: exec
+    children:
+      - title: Group Treasurer
+        kind: treasury
+        children:
+          - title: Corporate finance & capital markets
+            kind: treasury
+          - title: Group financial risk
+            kind: treasury
+          - title: In-house bank / liquidity
+            kind: treasury
+          - title: Treasury middle office & systems
+            kind: treasury
+          - title: RTC Americas
+            kind: treasury
+            dottedTo: Americas CFO
+          - title: RTC EMEA
+            kind: treasury
+          - title: RTC APAC
+            kind: treasury
+            dottedTo: APAC CFO
+      - title: Global Business Services head
+        kind: finance
+        children:
+          - title: SSC — P2P, O2C, R2R
+            kind: finance
+          - title: Payment factory
+            kind: treasury
+            dotted: true
+            dottedTo: Group Treasurer for policy, banks and controls
+  whoDoesWhat:
+    - { task: Payments, who: "SSC processes invoices; the payment factory sends them; treasury owns bank connectivity policy and approves new channels." }
+    - { task: Liquidity, who: "RTCs run regional pools and local banks; head office in-house bank concentrates surplus and funds deficits." }
+  notes:
+    - "Real examples: Nestlé runs a Singapore treasury centre for Asia-Pacific since 1998 covering 20+ markets, with front/middle/back-office segregation[](cite:tt-nestle-ntc-ap-2023); Siemens' payment factory processes payments of German and US units and cross-border payments[](cite:db-siemens-payment-factory)."
+    - "Whether the payment factory sits under treasury or under GBS varies; ask who approves a new bank channel and who owns a failed payment."
