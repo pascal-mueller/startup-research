@@ -1,0 +1,135 @@
+---
+title: Bank relationship management
+nav: Bank relationships
+order: 9
+cluster: infra
+summary: Choosing and managing the banks the company depends on — which bank provides which accounts, services and credit, what it costs, who may sign — and the unglamorous administration of KYC, mandates and signatories that never stops.
+subtopics: [bank accounts, bank fees, credit facilities, relationship banks, KYC, mandates, signatories]
+related: [/map/payments, /map/debt, /map/technology, /map/cash-management, /org/roles-bank-relationship]
+---
+
+<TreasuryMap focus="banking" />
+
+Banks are treasury's main suppliers: they hold the cash, move the payments, provide the credit lines and trade the hedges. Unlike most suppliers, **they also lend to the company and expect to be rewarded for it** with other business. Bank relationship management is therefore two jobs: a strategic one (which banks, what each provides, how lending is balanced against fee-earning business) and an administrative one (accounts, KYC, mandates, signatories, fees) that consumes surprising amounts of time. Very few companies have a dedicated [bank relationship manager](/org/roles-bank-relationship); usually the CFO or head of treasury owns the strategy and treasury operations or accounting does the administration.
+
+<Callout type="confusion" title="Two different 'relationship managers'">
+
+The company's bank relationship owner (CFO, treasurer) deals with the **bank's** relationship manager ([bank RM](/org/roles-bank-relationship)), who coordinates the bank's product specialists (cash management, FX, credit, trade finance) and argues internally for credit limits for the client. When an interviewee says "my RM", ask which side they mean.
+
+</Callout>
+
+## Who does this work, by company size
+
+| Task | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Bank strategy (which banks, what for) | Sarah + board | Martin | Thomas (CFO) + Daniel | Anna ([Group Treasurer](/org/roles-head-of-treasury)); banking panel reviewed yearly |
+| Credit facilities | Venture lender, Sarah | Martin with the house bank | Daniel runs; Thomas negotiates | Olivier (corporate finance) |
+| Accounts, mandates, signatories | Sarah | Petra (admin), Martin signs | Daniel with local finance | [Treasury operations](/org/roles-operations) (Marta's team), eBAM |
+| KYC responses | Sarah | Petra | Daniel / Lea, with legal | Marta's team + legal entity management |
+| Fee review | Rarely | Rarely | Lea, annually | Treasury operations, quarterly, with analysis tools |
+
+## Bank accounts
+
+**Plain:** every account the company holds, in which entity, currency and bank, and what it is for. **Professional:** the account landscape (operating, collection, disbursement, payroll, tax, master/concentration, escrow, custody), recorded in an account inventory with purpose, owner entity, signatories, e-banking users and connectivity status; opened and closed under documented approval ([bank account management](term:bank-account-management-term), [eBAM](term:ebam)). Account rationalisation — closing accounts left over from acquisitions and local habits — reduces fees, KYC effort, fraud surface and visibility gaps.
+
+Example: Helvetic went from 31 to 12 accounts in 2024 (a nine-month project: moving direct debits and customer payment instructions to new accounts, closing [dormant](term:dormant-account) ones, updating ERP bank master data). GlobalChem's ~280 accounts are reconciled quarterly against bank-confirmed mandate lists.
+
+- **Drives:** [bank account management](wf:bank-account-management), [acquisition integration](wf:acquisition-integration).
+- **Terms:** [bank account management](term:bank-account-management-term), [eBAM](term:ebam), [dormant account](term:dormant-account), [virtual accounts](term:virtual-accounts), [bank account rationalisation](term:bank-account-rationalisation).
+
+**Ask:** "How long does it take to open an account, start to finish, and what takes longest?" · "Who keeps the account inventory, and when did it last disagree with a bank?" · "How many accounts would you close tomorrow if it were easy?"
+
+## Bank fees
+
+**Plain:** what the bank charges — per payment, per account, per service, plus hidden charges in FX spreads and interest margins. **Professional:** explicit fees (account maintenance, transactions, e-banking/EBICS channel, cash-management products, guarantees, commitment fees) reported in [bank fee statements](term:account-analysis) — increasingly as ISO 20022 camt.086[](cite:hsbc-camt086) using standard service codes (AFP codes in the US[](cite:afp-bank-fee-analysis), [BSB](term:bank-services-billing) in Europe) — plus implicit costs (FX spreads, low deposit rates, float). Fee analysis compares billed prices against negotiated pricing, finds charges for closed accounts and unused services, and informs tenders ([bank RFP](term:bank-rfp)). US banks offset fees with an [earnings credit rate](term:earnings-credit-rate) on balances.
+
+Example: Lea compares four banks' annual statements (all PDF, different formats) and finds one bank still charging monthly fees on three accounts closed in the 2024 rationalisation, and another billing EBICS fees for a channel Helvetic no longer uses — about CHF 14k a year together. The larger cost she cannot see directly: FX spreads on subsidiaries' spot conversions done locally at the bank's standard rates.
+
+- **Drives:** [bank fee analysis](wf:bank-fee-analysis).
+- **Terms:** [bank fee statement](term:account-analysis), [bank services billing](term:bank-services-billing), [earnings credit rate](term:earnings-credit-rate), [wallet share](term:wallet-share).
+
+**Ask:** "Do you know what you pay each bank per year, all-in?" · "Who checks fee statements, and in what format do they arrive?" · "What was the last billing error you found?"
+
+## Credit facilities
+
+**Plain:** the credit lines and guarantees banks make available to the company. **Professional:** committed and uncommitted facilities ([RCF](term:rcf), [current-account credit](term:current-account-credit), overdrafts, [ancillary facilities](term:ancillary-facility)), guarantee and letter-of-credit lines ([bank guarantees](term:credit-facility-letter), [LCs](term:letter-of-credit)), and derivative lines (the bank's internal limit for trading FX with you). Credit is the anchor of the relationship: banks allocate scarce balance sheet to clients who give them profitable [ancillary business](term:ancillary-business). Details in [Debt & financing](/map/debt).
+
+Example: Alpine needs an [advance-payment guarantee](term:advance-payment-guarantee) of EUR 900k for a German customer's deposit; the cantonal bank issues it under Alpine's guarantee line, which reduces the headroom on the CHF 12m facility. Martin learns that the large Swiss bank, which gets the FX business, would also have issued it — useful in the next pricing talk.
+
+- **Drives:** [credit facility management](wf:credit-facility-management).
+- **Terms:** [RCF](term:rcf), [committed vs uncommitted](term:committed-facility), [bank guarantee](term:credit-facility-letter), [letter of credit](term:letter-of-credit), [trade finance](term:trade-finance), [ancillary business](term:ancillary-business).
+
+**Ask:** "Which bank would lend to you in a bad year, and why that one?" · "Where do your guarantee and FX lines sit, and are they enough?" · "How do banks tell you their credit appetite has changed?"
+
+## Relationship banks
+
+**Plain:** the few banks the company deliberately keeps close because they lend to it. **Professional:** [relationship banks](term:relationship-bank) (core banks, often the RCF syndicate) are awarded ancillary business — cash management, FX, bond mandates, M&A advice — roughly in proportion to their credit commitment. Treasurers track [wallet share](term:wallet-share) per bank against credit provided and classify banks as under-, fairly or over-rewarded[](cite:tt-share-of-wallet); the annual bank review (and bank meetings) is where this is discussed. SMEs typically have a [house bank](term:house-bank) plus one or two others.
+
+<Example title="Balancing Helvetic's four RCF banks" company="helvetic" open>
+
+| Bank | RCF commitment | Estimated annual wallet share | Status |
+|---|---|---|---|
+| Swiss bank 1 | 25% | 45% (payments, most FX, CHF bond lead) | Over-rewarded |
+| Swiss bank 2 | 25% | 22% | Fair |
+| German bank | 25% | 21% (German cash management) | Fair |
+| Global bank (US/UK) | 25% | 6% | Under-rewarded — likely to leave at the 2027 refinancing |
+
+Daniel's response: direct the next two quarters of EUR forwards to the global bank and include it in the 2028 bond refinancing discussions. The estimates are rough — FX spread income is the hardest part to measure — but the direction is what the banks' own RMs track too.
+
+</Example>
+
+- **Drives:** [credit facility management](wf:credit-facility-management), [bank fee analysis](wf:bank-fee-analysis).
+- **Terms:** [relationship bank](term:relationship-bank), [house bank](term:house-bank), [wallet share](term:wallet-share), [ancillary business](term:ancillary-business), [bank RFP](term:bank-rfp).
+
+**Ask:** "How do you decide which bank gets which business?" · "Do you track wallet share? How accurately?" · "Which bank relationship is weakest, and what would you do if it left the syndicate?" · "What changed after Credit Suisse was taken over by UBS?"
+
+## KYC
+
+**Plain:** banks checking who the company is, who owns and controls it, and what it does — before opening accounts and repeatedly afterwards. **Professional:** [know-your-customer](term:kyc) and anti-money-laundering due diligence: commercial-register extracts, articles, beneficial owners (in Switzerland identified at a 25% threshold on Form K[](cite:crowe-swiss-account)), directors' IDs, business description, expected flows, sanctions exposure; periodic refreshes and ad hoc requests triggered by unusual transactions. Switzerland's new beneficial-ownership register under the Transparency Act enters into force on 1 October 2026[](cite:lenz-transparency-2026). A [legal entity identifier](term:lei) is required for derivatives reporting.
+
+<Callout type="survey" title="KYC is a recurring complaint">
+
+In a vendor-sponsored 2025 survey of 250 corporate treasurers, 84% said they were dissatisfied with their bank's KYC process and 92% had been asked for the same information more than once[](cite:encompass-kyc-2025). The sponsor sells KYC software; treat the figures as indicative, but the complaint is common in practitioner conversations.
+
+</Callout>
+
+Example: Sarah spends a day each year per bank on KYC refreshes: shareholder lists after each financing round, IDs for new board members, a description of US activities. GlobalChem's treasury operations team handles several KYC requests a week across ~20 banks and 40 entities, with legal entity management supplying documents.
+
+- **Drives:** [bank account management](wf:bank-account-management), [acquisition integration](wf:acquisition-integration).
+- **Terms:** [KYC](term:kyc), [board resolution](term:board-resolution), [LEI](term:lei).
+
+**Ask:** "How many KYC requests do you get a year, and who answers them?" · "Which documents are always the problem?" · "Has KYC ever delayed a payment, an account or a deal?"
+
+## Mandates
+
+**Plain:** the formal instructions telling the bank who may operate each account and how. **Professional:** the account [mandate](term:payment-mandate) (signing authority, joint/sole signatures, limits, e-banking users and rights, EBICS subscribers), backed by board resolutions and — in Switzerland — the signing authorities registered in the commercial register. Mandates must stay aligned with internal [delegation of authority](term:delegation-of-authority) and with people changes; a leaver who remains an authorised e-banking user is a classic audit finding.
+
+Example: When Helvetic's former Swiss controller left, it took five weeks and three document rounds to remove him from mandates at three banks; in the meantime Daniel asked the banks to block his token. GlobalChem runs a quarterly mandate review: Marta's team compares bank-confirmed signatory lists with HR's leaver list and the internal authority matrix.
+
+- **Drives:** [bank account management](wf:bank-account-management), [policy compliance](wf:policy-compliance).
+- **Terms:** [payment mandate](term:payment-mandate), [board resolution](term:board-resolution), [delegation of authority](term:delegation-of-authority), [EBICS signature](term:ebics-signature).
+
+**Ask:** "How do you make sure a leaver loses bank access the same day?" · "Where is the master list of who can do what at which bank?" · "How long does a mandate change take?"
+
+## Signatories
+
+**Plain:** the named people allowed to approve payments and sign bank documents. **Professional:** [signatories](term:signatory) with individual or collective signing rights (in Swiss practice typically [collective signature by two](term:collective-signature)), tiered by amount in the [signing authority matrix](term:signing-authority-matrix), enforced in the bank channel through electronic signatures. Enough signatories must exist for holidays and emergencies, but not so many that control weakens.
+
+Example: Alpine: Petra plus one other signatory up to CHF 250k; above that Martin must be one of the two. When Martin and the second signatory were both travelling during a CHF 600k payment, the payment waited a day — the company then added the CEO as backup signatory. Kleio has only Sarah and the CEO as signatories at the Swiss banks.
+
+- **Terms:** [signatory](term:signatory), [four-eyes principle](term:four-eyes-principle), [collective signature](term:collective-signature), [signing authority matrix](term:signing-authority-matrix).
+
+**Ask:** "Who can sign, up to what amount, at which bank?" · "What happens when signatories are unavailable on payroll day?" · "When did you last review signatory lists?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** 3 banks, 7 accounts; the post-SVB board wants cash split. Banks see Kleio as a deposit client and future borrower. Sarah handles everything; KYC around financing rounds is the main burden."
+  sme="**Alpine.** A cantonal house bank for payments, credit and mortgage; a large bank for FX and USD. Martin's annual meeting with each bank is the 'relationship management'; Petra does the admin."
+  midmarket="**Helvetic.** Five banks, four in the RCF. Wallet-share balancing, a recent account rationalisation, annual fee review in Excel. Administration takes a noticeable share of Daniel's and Lea's time."
+  multinational="**GlobalChem.** ~20 banks, 7 core; formal annual bank review, wallet-share analysis, RFPs for cash management; eBAM and a dedicated operations team for accounts, mandates and KYC."
+/>
+
+<CompanyCompare topic="map-banking" />
+
+Related workflows: <Workflows ids={["bank-account-management", "bank-fee-analysis", "credit-facility-management"]} />

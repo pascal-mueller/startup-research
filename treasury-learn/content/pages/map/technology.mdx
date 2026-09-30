@@ -1,0 +1,155 @@
+---
+title: Treasury technology
+nav: Technology
+order: 10
+cluster: infra
+summary: The systems treasury work runs on — ERP, treasury management systems, bank portals and connectivity (EBICS, SWIFT, host-to-host, APIs), payment systems, market data — and the spreadsheets that still hold much of it together.
+subtopics: [ERP, TMS, bank portals, APIs, SWIFT, EBICS, host-to-host, spreadsheets, payment systems, market data]
+related: [/systems, /systems/architecture, /systems/bank-connectivity, /systems/tms, /map/payments, /map/banking]
+---
+
+<TreasuryMap focus="technology" />
+
+Treasury technology is mostly about **moving data between banks, the ERP and the people who decide**: bank statements in, payment files out, deals captured, positions and forecasts calculated, postings sent to accounting. This page is the map-level overview; the [Systems & Data](/systems) section goes deeper into architecture, vendors and data quality.
+
+<Flow steps={["Banks|balances, statements, confirmations", "Connectivity|EBICS, SWIFT, H2H, API, portals", "TMS / Excel|position, forecast, deals, exposures", "Decisions|people approve and execute", "ERP / GL|postings, AP/AR, reconciliation"]} caption="The basic data loop. At small companies the middle three boxes are one person with a browser and a spreadsheet." />
+
+## Who does this work, by company size
+
+| | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| ERP | Cloud accounting (Bexio-class) | Dynamics 365 Business Central | SAP S/4HANA (CH, DE, CZ) + smaller ERPs | SAP S/4HANA group-wide |
+| Treasury system | Google Sheet | Excel cash sheet | Excel + multibank connectivity tool; TMS in evaluation | SAP treasury modules + forecasting tool |
+| Bank channel | Portals, bank APIs into accounting | EBICS file upload + portals | Connectivity tool over EBICS / SWIFT | SWIFT via service bureau, some H2H |
+| Market data | Bank portal rates | Bank portal, phone | Bank platforms, central-bank rates | Bloomberg, FX trading platform |
+| Who administers | Sarah | Petra + external IT partner | Lea (key user) + group IT | Ben (treasury systems lead) + team, SAP competence centre |
+
+<Callout type="survey" title="How common is a TMS?">
+
+In KPMG's 2025 Global Treasury Survey (340 treasury experts, mostly larger companies), 76% of participants used a treasury management system and about 10% used AI, mainly for liquidity forecasting, reporting and fraud prevention[](cite:kpmg-gts-2025-summary). Deloitte's 2024 survey found the TMS market concentrated on a few global vendors (SAP, Kyriba, FIS, ION) and forecasting still primarily spreadsheet-based for many[](cite:deloitte-gts-2024). Neither sample represents SMEs, most of which have no TMS at all.
+
+</Callout>
+
+## ERP
+
+**Plain:** the company's core business and accounting system — orders, invoices, suppliers, customers, the general ledger. **Professional:** the [ERP](term:erp) (SAP, Oracle, Microsoft Dynamics, and many mid-market and local systems) is the system of record for AR, AP, the GL and bank master data; it generates payment runs and receives bank statements for reconciliation. Treasury depends on it for forecast inputs and sends it postings (deals, interest, FX revaluation). Multi-ERP groups — common after acquisitions — make treasury's data collection much harder.
+
+Example: Helvetic runs SAP S/4HANA in three entities but different ERPs in Italy, France, the UK, the US and China, so Lea's forecast template is Excel: no single system knows every entity's open items. GlobalChem's move to one SAP instance made automated AP/AR forecast feeds possible for European entities.
+
+- **Terms:** [ERP](term:erp), [system of record](term:system-of-record), [posting rules](term:posting-rules), [procure-to-pay](term:procure-to-pay), [order-to-cash](term:order-to-cash).
+
+**Ask:** "How many ERPs does the group run, and which data do you pull from each?" · "Who owns bank master data in the ERP?" · "What does treasury post into the GL, and who checks it?"
+
+## TMS
+
+**Plain:** specialised software for treasury — cash positions, forecasts, deals, exposures, in-house bank, bank accounts. **Professional:** a [treasury management system](term:tms) combines cash management (statement import, positioning, forecasting), [deal capture](term:deal-capture) and valuation for FX/MM/debt/derivatives, risk and hedge accounting, in-house bank and netting, bank account management and payments, with accounting interfaces. Delivered as standalone SaaS (e.g. Kyriba, GTreasury, FIS, ION products) or ERP-integrated (SAP treasury modules); lighter "cash visibility and forecasting" tools serve smaller companies. See [TMS](/systems/tms) and [vendors](/systems/vendors) for categories and caveats.
+
+<Example title="Helvetic's TMS question" company="helvetic">
+
+What Daniel wants a TMS for: automatic bank statement import and positioning (replacing Lea's morning workbook), a structured forecast collection from eight subsidiaries, a hedge book with confirmation matching and hedge-accounting support, and a bank account inventory. What it would not solve: subsidiaries submitting late or optimistic forecasts, and the Chinese bank's patchy reporting. Cost: licence plus implementation, and months of Lea's time on configuration and testing. Thomas's question: "What will you stop doing?" — the right question to ask any interviewee who bought one.
+
+</Example>
+
+- **Terms:** [TMS](term:tms), [deal capture](term:deal-capture), [system of record](term:system-of-record), [TMS selection](term:tms-selection).
+
+<Callout type="confusion" title="Having a TMS ≠ being automated">
+
+Many companies use only part of their TMS (e.g. deals and statements) and still build the forecast and reports in Excel next to it. Ask which modules are live, which workflows still happen outside, and what the last implementation phase dropped.
+
+</Callout>
+
+**Ask:** "Which modules do you actually use daily?" · "What still happens in Excel next to the TMS, and why?" · "How long did the implementation take, and what would you do differently?" · "Who administers it, and how much of their time does that take?"
+
+## Bank portals
+
+**Plain:** each bank's website (e-banking) where you see balances and approve payments. **Professional:** bank-specific e-banking and corporate portals for balance and transaction views, payment entry and file upload, signing, user administration, FX and deposits, trade finance and document exchange. Universal but fragmented: each bank has its own login, token and layout. At small companies the portal *is* the treasury system; at large ones it is the fallback when automated channels fail, and still the place for some bank-specific tasks.
+
+Example: Sarah logs into three portals every Monday and types balances into the Google Sheet. At Helvetic, if the connectivity tool fails, the [business continuity](term:business-continuity) plan says Lea uploads payroll files through each bank's portal; two signatories per bank keep tokens at home.
+
+- **Terms:** [signatory](term:signatory), [business continuity](term:business-continuity), [multibank connectivity](term:multibank-connectivity).
+
+**Ask:** "How many bank portals do you log into each week, and for what?" · "What can only be done in a portal?" · "What's your fallback when the automated channel fails?"
+
+## APIs
+
+**Plain:** direct, real-time system-to-system connections to a bank. **Professional:** [bank APIs](term:api-banking) offer on-demand balances and transactions, payment initiation and status, sometimes FX; they are bank-specific (few standards across banks for corporate use), usually complement rather than replace file-based channels, and require IT effort per bank. [Open banking](term:open-banking) APIs under PSD2 serve mainly retail and SME use cases.
+
+Example: Kleio's accounting software pulls transactions from both Swiss banks via bank APIs, so Nina no longer downloads statements. GlobalChem uses an API from one core bank for intraday USD balances in its US pool while everything else runs over SWIFT.
+
+- **Terms:** [API banking](term:api-banking), [open banking](term:open-banking), [bank connectivity](term:bank-connectivity).
+
+**Ask:** "Do you use any bank APIs? For what, and was it worth the effort?" · "Do real-time balances change any decision you make?"
+
+## SWIFT
+
+**Plain:** the global banking messaging network — also available to large companies to talk to all their banks through one channel. **Professional:** [SWIFT](term:swift) carries payment instructions, statements and confirmations between financial institutions; corporates join via SCORE or member-administered closed user groups, directly or through a [service bureau](term:service-bureau) or cloud offerings such as Alliance Lite2[](cite:swift-lite2), exchanging FIN messages ([MT101](term:mt101), MT940) or ISO 20022 files ([FileAct](term:fileact)). For cross-border interbank payments, MT/ISO 20022 coexistence ended in November 2025[](cite:swift-eoc-2025); corporate-to-bank formats follow bank timelines.
+
+Example: GlobalChem connects to ~20 banks through one SWIFT service bureau: one channel, one format family, one security model. Helvetic's connectivity tool uses SWIFT for the global bank and EBICS for the Swiss and German banks.
+
+- **Terms:** [SWIFT](term:swift), [service bureau](term:service-bureau), [MT101](term:mt101), [FileAct](term:fileact), [ISO 20022](term:iso-20022), [Swift gpi](term:swift-gpi).
+
+**Ask:** "Why SWIFT rather than EBICS or host-to-host?" · "Who runs the SWIFT connection, and what happens when a bank changes its format?"
+
+## EBICS
+
+**Plain:** the standard way companies in Germany, Switzerland, France and Austria send payment files to and get statements from their banks. **Professional:** [EBICS](term:ebics) is an open, internet-based file-transfer protocol with bank-independent security (electronic [distributed signatures](term:distributed-signature)) used by corporates and banks in DACH and France; EBICS 3.0 harmonised national variants, and Swiss banks are ending the migration period to EBICS 3.0 in November 2026[](cite:six-ebics). Cheap and widespread for SMEs and mid-market companies in these countries; a separate contract and key initialisation per bank.
+
+Example: Petra uploads Alpine's pain.001 files via EBICS to the cantonal bank, then she and a second signatory sign electronically (distributed signature) — the bank executes only when both signatures are in. The EBICS 3.0 migration means Alpine's IT partner must update the Business Central banking add-on this autumn.
+
+- **Terms:** [EBICS](term:ebics), [EBICS signature](term:ebics-signature), [distributed signature](term:distributed-signature), [pain.001](term:pain-001), [camt.053](term:camt-053).
+
+**Ask:** "Which banks do you connect via EBICS, and who maintains the keys?" · "What did the EBICS 3.0 or ISO 20022 migration cost you in effort?"
+
+## Host-to-host
+
+**Plain:** a dedicated file connection between the company's systems and one bank. **Professional:** [host-to-host](term:host-to-host) (H2H) links, usually SFTP with encryption and signing, exchange payment files and statements directly with a bank's servers. Common with a principal bank in high-volume setups (payroll, payment factories) and in markets where EBICS is not used; each link is a bank-specific project to build and maintain.
+
+Example: GlobalChem's payment factory runs H2H with its main European bank for high-volume SEPA payments, alongside SWIFT for the rest; Ben's team maintains the certificates and monitors file acknowledgements.
+
+- **Terms:** [host-to-host](term:host-to-host), [multibank connectivity](term:multibank-connectivity), [payment hub](term:payment-hub).
+
+**Ask:** "Which banks are on H2H and why?" · "Who is alerted when a file isn't acknowledged?"
+
+## Spreadsheets
+
+**Plain:** Excel (or Google Sheets) — the tool almost every treasury uses somewhere. **Professional:** spreadsheets remain the positioning, forecasting, hedge-book and reporting tool at most companies without a TMS and the "last mile" at many with one. They are flexible and understood, but create [end-user computing](term:euc) risk: broken links, manual imports, no audit trail, key-person dependency, version confusion.
+
+Example: Lea's positioning workbook imports bank balances from the connectivity tool's export, adds known flows from emails, and produces the morning table in about an hour. The hedge book is another workbook; the 13-week forecast a third, fed by eight subsidiary templates. Each works; together they depend on Lea.
+
+- **Terms:** [end-user computing](term:euc), [static data](term:static-data).
+
+**Ask:** "Which spreadsheet would hurt most if it broke, and who else can maintain it?" · "What do you export into Excel every day, and from where?" · "What have you built internally that you'd never give up?"
+
+## Payment systems
+
+**Plain:** the software that creates, checks, approves and sends payment files. **Professional:** payment functionality spread across ERP payment programs, TMS payment modules, [payment hubs](term:payment-hub) (central format conversion, screening, routing and approval for many ERPs and banks) and bank channels; plus [sanctions screening](term:sanctions-screening) and fraud-detection tools. The design goal is one controlled route from approved invoice to bank, without files that can be edited in between.
+
+Example: GlobalChem's payment hub takes files from 25 SAP company codes, converts them to each bank's pain.001 variant, screens them, applies release rules and sends them via SWIFT or H2H. Alpine's "payment system" is the Business Central payment journal plus EBICS.
+
+- **Drives:** [payment processing](wf:payment-processing).
+- **Terms:** [payment hub](term:payment-hub), [payment factory](term:payment-factory), [pain.001](term:pain-001), [pain.002](term:pain-002), [STP](term:stp).
+
+**Ask:** "Can anyone edit a payment file between ERP and bank?" · "How many payment formats do you maintain?" · "Where does sanctions screening happen?"
+
+## Market data
+
+**Plain:** exchange rates, interest rates and other prices treasury needs to value and decide. **Professional:** FX spot and forward rates, interest-rate curves, reference rates (SARON, €STR, SOFR), volatilities for options, credit data (ratings, CDS) for counterparty limits — from terminals (Bloomberg, LSEG), bank platforms, [trading platforms](term:trading-platform), central banks and index administrators. Used for conversion, valuation (MtM, hedge accounting), limit monitoring and [fixings](term:fx-fixing). Licensing is expensive; small companies rely on bank portals and free central-bank data.
+
+Example: GlobalChem values its FX and rate derivatives daily from Bloomberg curves in the TMS; Helvetic values forwards monthly using bank MtM statements and checks them against a simple model. Kleio uses the rate shown in the bank portal.
+
+- **Terms:** [trading platform](term:trading-platform), [FX fixing](term:fx-fixing), [reference rate](term:reference-rate), [mark-to-market](term:mark-to-market).
+
+**Ask:** "Where do your rates come from, and whose valuation do you use for derivatives?" · "What market data do you pay for, and is it worth it?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** Cloud accounting with bank feeds, Stripe, three portals, one spreadsheet. Enough for the job; the risk is that nothing is documented."
+  sme="**Alpine.** ERP + EBICS + Excel, maintained partly by an external IT partner. No TMS; a 'cash visibility' tool could save Petra an hour a day, but nobody owns the project."
+  midmarket="**Helvetic.** The typical inflection point: a connectivity tool is in place, Excel is straining, a TMS is in evaluation, and multiple ERPs make data collection hard. Implementation effort, not licence cost, is the real constraint."
+  multinational="**GlobalChem.** SAP treasury, SWIFT, a payment hub, a forecasting tool, Bloomberg, a systems team led by Ben. The problems are integration, data quality from 40 entities, change management and keeping controls consistent across hundreds of users."
+/>
+
+<CompanyCompare topic="map-tech-stack" />
+
+Related workflows: <Workflows ids={["daily-cash-positioning", "payment-processing", "bank-reconciliation"]} />

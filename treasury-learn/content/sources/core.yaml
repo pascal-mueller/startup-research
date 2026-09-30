@@ -1,98 +1,138 @@
 # Core source registry. Every id cited with a citation link must exist in some file in content/sources/
 # type: survey | official | standard | vendor | practitioner | news | filing | academic
+# Verification status (R2, 2026-09-30): the egress proxy blocks direct fetches of most publisher sites. Numbers in the
+# notes below were checked against search-result text from the original publisher's own pages (financialprofessionals.org,
+# pwc.com, eact.eu, deloitte.com, tispayments.com, swift.com, six-group.com, snb.ch, hsfkramer.com) unless marked otherwise.
 - id: afp-bench-2025
   title: 2025 AFP Treasury Benchmarking Survey Report
   publisher: Association for Financial Professionals (AFP), underwritten by Wells Fargo
   year: 2025
   url: https://www.financialprofessionals.org/training-resources/resources/survey-research-economic-data/details/treasury-benchmarking
   type: survey
-  note: "523 US treasury practitioners, surveyed autumn 2024. Summary article: average treasury team ~12 FTE (≈5 front office, ≈6 back office); companies < USD 1bn revenue typically 1–3 FTE; cash & liquidity forecasting named most challenging activity by 62%."
+  note: "523 US treasury practitioners, surveyed autumn 2024. 62% name cash or liquidity forecasting their most challenging task; cash management and forecasting are the top departmental priority for 73%; the most mature ('strategic/optimized') departments automate over half of building liquidity forecasts."
 - id: afp-bench-2025-article
   title: Examining benchmarks for treasury teams
   publisher: AFP
   year: 2025
   url: https://www.financialprofessionals.org/training-resources/resources/articles/Details/examining-benchmarks-for-treasury-teams
   type: survey
-  note: AFP's own summary of the 2025 benchmarking results (team sizes, roles treasury leads vs supports, top challenges).
+  note: "AFP's own summary of the 2025 benchmarking results: front- plus back-office staff average nearly 12 FTE; companies with more than USD 5bn revenue have larger, more specialised teams; companies with less than USD 1bn revenue typically have 1–3 FTE. US sample of companies that have a treasury function."
+- id: afp-top-tasks-2025
+  title: "Top Treasury Tasks: Cash Management and Forecasting"
+  publisher: AFP
+  year: 2025
+  url: https://www.financialprofessionals.org/training-resources/resources/articles/Details/top-treasury-tasks-cash-management-and-forecasting
+  type: survey
+  note: "AFP article on the 2025 Treasury Benchmarking Survey: cash management and forecasting are the top priorities for 73% of treasury practitioners, at all levels of seniority. (Replaces an earlier citation of a ctmfile.com news write-up; the '68% in 2022' comparison that write-up gave could not be verified at AFP and has been dropped.)"
 - id: afp-bench-2026
   title: 2026 AFP Treasury Benchmarking Survey Report — People and Policies
-  publisher: AFP
+  publisher: AFP, sponsored by PNC
   year: 2026
   url: https://www.financialprofessionals.org/interactive/research/2026-treasury-benchmarking-survey-report-people-and-policies/
   type: survey
-  note: "425 responses, fielded May 2026, primarily US. 46% of organisations have treasury teams of fewer than 5 people; 49% name cash and liquidity forecasting as the most challenging activity."
-- id: afp-sr-2025
-  title: AFP Strategic Role of Treasury / priorities research (reported by Treasury News Network)
-  publisher: AFP via ctmfile.com
-  year: 2025
-  url: https://ctmfile.com/story/treasury-cash-forecasting-rising-expectations-growing-complexity-ais-promise
-  type: survey
-  note: "73% of practitioners cite cash management and forecasting (incl. scenario analysis) as their top priority, up from 68% in 2022."
+  note: "425 responses, fielded May 2026, primarily US. Cash and liquidity forecasting remains the most challenging task (49%) and the top priority; AI/automation entered the top five priorities (30%). A '46% of teams have fewer than five people' figure previously attributed to this report could not be verified and has been removed from the exemplar pages."
 - id: st-tis-cfv-2025
   title: 2025 Cash Forecasting & Visibility Survey
-  publisher: Strategic Treasurer and TIS
+  publisher: Strategic Treasurer and TIS (vendor-sponsored)
   year: 2025
   url: https://tispayments.com/resources/2025-cash-forecasting-visibility-survey-with-strategic-treasurer
   type: survey
-  note: "200+ respondents. 68% report higher management expectations for forecasting; share calling forecasting 'difficult' rose from 39% (2018) to 53% (2025); 'easy' fell from 28% to 14%. Vendor-sponsored."
+  note: "200+ respondents across industries, sizes and regions. 68% report higher management expectations for forecasting; share calling forecasting 'difficult' rose from 39% (2018) to 53% (2025); 'easy' fell from 28% to 14%. Sponsored by a payments/treasury software vendor (TIS); sample not representative."
 - id: deloitte-gts-2024
   title: 2024 Global Corporate Treasury Survey
   publisher: Deloitte
   year: 2024
-  url: https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/services/risk-advisory/2024/us-global-treasury-survey-2024.pdf
+  url: https://www.deloitte.com/us/en/services/consulting/articles/global-corporate-treasury-survey.html
   type: survey
-  note: "213 respondents. Less than a quarter rate their cash-forecasting maturity above average; 22% say cash-positioning capability 'requires development'; for many, forecasting is still primarily spreadsheet-based; business forecasts tend to focus on revenue and margin rather than cash."
+  note: "213 respondents worldwide, mostly large companies. 22% say the maturity of their cash-positioning capability requires development. (The earlier quoted phrase about forecasting being 'primarily supported by spreadsheets' could not be verified verbatim and is no longer quoted.)"
 - id: pwc-gts-2025
   title: "2025 Global Treasury Survey — Architects of change: Treasury leadership in an era of transformation"
   publisher: PwC
   year: 2025
   url: https://www.pwc.com/us/en/services/consulting/business-transformation/library/2025-global-treasury-survey.html
   type: survey
-  note: "350 treasurers. Cash and liquidity management is the top priority. Among organisations with > USD 10bn revenue: in-house banks 67%, payment factories 60%, payments-on-behalf-of 50% (as reported in PwC's summary)."
+  note: "350 treasurers worldwide. CFOs and treasurers rank cash and liquidity management as a top priority. Treasury teams at organisations with more than USD 10bn revenue are investing in in-house banks (67% adoption), payment factories (60%) and POBO models (50%). 74% are expanding or actively using AI."
 - id: eact-2025
   title: Main Results of the 2025 EACT Treasury Survey
   publisher: European Association of Corporate Treasurers (EACT)
   year: 2025
   url: https://eact.eu/articles/results-of-2025-eact-survey
   type: survey
-  note: "European multinationals. Top priorities: cash-flow forecasting (13-week / monthly rolling), long-term funding, treasury technology review/TMS replacement. AI ranked low because of missing data lakes and non-standardised data."
-- id: kpmg-gts-2025
-  title: Global Treasury Survey 2025
-  publisher: KPMG Germany
-  year: 2025
-  url: https://hub.kpmg.de/en/global-treasury-survey-2025
-  type: survey
-  note: Survey focused on treasury structure, technology and ESG.
+  note: "Group treasurers of mainly large European companies. Cash-flow forecasting (13-week / monthly rolling) is priority #1 (named first by 30.5%), followed by long-term funding (#2) and treasury technology review / replacement (#3)."
 - id: act-hsf-debt-2025
   title: Corporate Debt and Treasury Report 2025
-  publisher: ACT and Herbert Smith Freehills (as reported by The Global Treasurer)
+  publisher: Association of Corporate Treasurers (ACT) and Herbert Smith Freehills
   year: 2025
-  url: https://www.theglobaltreasurer.com/2025/05/09/corporate-treasury-cash-management-2025/
+  url: https://www.hsfkramer.com/insights/2025-05/corporate-debt-and-treasury-report-2025
   type: survey
-  note: "76% expect macroeconomic and geopolitical factors to have a considerable influence on debt strategy (41% in 2024); cash management back at the centre of treasurers' agendas."
+  note: "UK-centred survey of treasury and finance professionals. 76% expect macroeconomic and geopolitical factors to have a considerable influence on debt strategy (41% in 2024); 17% expect a material negative impact (12%); renewed focus on liquidity and cash management."
 - id: six-sps-cash-mgmt
-  title: "Swiss Payment Standards — Implementation Guidelines Cash Management (camt.052 / camt.053 / camt.054)"
-  publisher: SIX Interbank Clearing
-  year: 2025
-  url: https://www.six-group.com/en/products-services/banking-services/payment-standardization/downloads-faq/glossary.html
+  title: "Roadmap Swiss Payments — ISO 20022 message versions (parallel phase of 2009 and 2019 versions until November 2026)"
+  publisher: SIX
+  year: 2026
+  url: https://www.six-group.com/en/products-services/banking-services/payment-standardization/swiss-payments.html
   type: standard
-  note: "Defines Swiss bank-to-customer reports. ISO 20022 2009 message versions are discontinued in Switzerland on 21 Nov 2026; MT940/MT942/MT101 have no fixed end date yet."
-- id: swift-iso-mt9xx
-  title: ISO 20022 migration — scope of the November 2025 end of coexistence
-  publisher: Swift (as summarised by bank client guides, e.g. State Street)
-  year: 2025
-  url: https://www.statestreet.com/jp/ja/insights/client-guide-to-iso-20022
-  type: standard
-  note: "November 2025 ended MT/MX coexistence for cross-border payment instructions (MT103/MT202) between banks. Category 9 statement/reporting messages (MT940/MT942) remain supported for now; camt.053/camt.052 are their ISO 20022 equivalents."
-- id: act-what-is-treasury
-  title: What is treasury? / The role of the treasurer
-  publisher: Association of Corporate Treasurers (ACT)
-  url: https://www.treasurers.org/
+  note: "Under the Swiss Payment Standards, banks and software suppliers must accept and deliver the 2009 message versions (pain.001.001.03, pain.002.001.03, camt.05x.001.04) alongside the 2019 versions until the standard release in November 2026; afterwards only the 2019 versions (camt.05x.001.08). SIX's SME factsheet dates the switch at 14 Nov 2026 for payment orders; some banks communicate 21 Nov 2026. This page does not state an end date for MT940 — see zkb-iso20022-factsheet."
+- id: zkb-iso20022-factsheet
+  title: "ISO 20022 factsheet for corporate clients"
+  publisher: Zürcher Kantonalbank
+  year: 2026
+  url: https://zkb.ch/media/zkb/dokumente/en/FS_ISO_20022_EN.pdf
   type: official
-  note: The UK professional body for treasurers; its body of knowledge frames treasury around funding, liquidity, risk management, and corporate finance.
+  note: "A Swiss bank's client communication: 2009 ISO 20022 versions supported until 21 November 2026; the legacy Swift formats MT940/MT942 (account information) and MT101 (payments) do not yet have an end date. One bank's statement, consistent with other Swiss banks' notices (e.g. Migros Bank)."
+- id: swift-iso-mt9xx
+  title: "ISO 20022 end of coexistence: 10 days to go. What do you need to know?"
+  publisher: Swift
+  year: 2025
+  url: https://www.swift.com/sites/default/files/files/iso20022-adoption-10-days-to-go-nov-2025-final.pdf
+  type: standard
+  note: "Coexistence of MT and ISO 20022 for cross-border payments and reporting (CBPR+) ended 22 Nov 2025. Other in-scope MT types, including reporting/statement messages, were not withdrawn from FIN immediately: they are deprecated (no longer maintained), with disincentives to be introduced later. Interbank scope; corporate-to-bank MT940 delivery follows each bank's own timeline."
+- id: act-what-is-treasury
+  title: What is treasury?
+  publisher: Association of Corporate Treasurers (ACT)
+  year: 2026
+  url: https://www.treasurers.org/hub/careers/what-is-treasury
+  type: official
+  note: "Undated web page (accessed September 2026). Treasury manages the money and financial risks in a business: making sure the business has the money it needs for day-to-day obligations, managing funding and financial risk, and helping develop long-term financial strategy and policies."
 - id: eact-guiding-principles
   title: The Guiding Principles of Corporate Treasury (4th edition, English)
-  publisher: EACT
+  publisher: German Association of Corporate Treasurers (GACT / VDT), published via EACT
+  year: 2025
   url: https://eact.eu/articles/guiding-principles-of-treasury
   type: official
-  note: European treasury associations' statement of what corporate treasury is responsible for and core principles (liquidity first, risk management, segregation of duties).
+  note: "Non-binding best-practice principles for setting up and running a corporate treasury: aims to prevent liquidity shortfalls and deficiencies in financial risk management and to position treasury as part of corporate governance; covers financial risk management, liquidity planning and control, governance and controls (including segregation of duties). English edition 2025."
+- id: snb-mpa-2026-09-primary
+  title: Monetary policy assessment of 24 September 2026
+  publisher: Swiss National Bank
+  year: 2026
+  url: https://www.snb.ch/en/publications/communication/press-releases-restricted/pre_20260924
+  type: official
+  note: "SNB policy rate left at 0% (fifth consecutive meeting); banks' sight deposits remunerated at the policy rate up to a threshold, with a 0.25 percentage-point discount above it. Basis for the manual's 'CHF deposits earn about nothing' framing."
+- id: six-eurosic
+  title: "euroSIC — discontinuation of the euroSIC system on 31 December 2027"
+  publisher: SIX
+  year: 2026
+  url: https://www.six-group.com/en/products-services/banking-services/interbank-clearing/eurosic.html
+  type: official
+  note: "euroSIC settles euro payments for Swiss and Liechtenstein banks with SECB as settlement agent and a link to T2; same-day customer payments until 17:00 CET at interbank level (bank cut-offs for corporate clients are earlier). SIX will discontinue euroSIC on 31 December 2027."
+- id: six-blink
+  title: "SIX launches bLink, the central platform for the standardised sharing of data"
+  publisher: SIX
+  year: 2020
+  url: https://www.six-group.com/en/newsroom/media-releases/2020/20200519-six-blink.html
+  type: official
+  note: "Swiss open-banking platform (launched May 2020): accounting-software providers connect to banks via standardised APIs so SMEs can pull account data and submit payments in their accounting tool; the SME approves the connection in its e-banking."
+- id: gewstg-19
+  title: "Gewerbesteuergesetz (GewStG) § 19 Vorauszahlungen"
+  publisher: German Federal Ministry of Justice (gesetze-im-internet.de)
+  year: 2026
+  url: https://www.gesetze-im-internet.de/gewstg/__19.html
+  type: official
+  note: "German trade-tax prepayments are due on 15 February, 15 May, 15 August and 15 November, each a quarter of the last assessed tax. Collection is by the municipality (often by direct debit, a practice point rather than a legal requirement)."
+- id: ch-mwstg-86
+  title: "Bundesgesetz über die Mehrwertsteuer (MWSTG), Art. 86 Entrichtung der Steuer"
+  publisher: Swiss Confederation (fedlex)
+  year: 2026
+  url: https://www.fedlex.admin.ch/eli/cc/2009/615/de#art_86
+  type: official
+  note: "Swiss VAT owed for a settlement period must be paid within 60 days of the end of the period; quarterly settlement is the default under the effective method, so payments fall at the end of February, May, August and November."
