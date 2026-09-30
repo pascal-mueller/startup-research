@@ -180,3 +180,15 @@ Business / external: `subsidiary-finance` (local finance manager / subsidiary CF
    `node scripts/shot.mjs <scratch-dir> "/your/route,/other/route" [--dark] [--width=390] [--full]`
    It prints MISSING refs and runtime errors. Look at at least one screenshot (Read the PNG) to confirm rendering.
 4. Write `docs/notes/<your-stream>.md`: files created, key sources, unresolved uncertainties, requests for other authors.
+
+## Parallel-work rules (session 2)
+- Many authors work at the same time. **Never run git commands that change state** (no commit, checkout, stash, reset).
+- Do not edit `src/styles.css`, `src/lib/*`, or another stream's files. If your component needs CSS, create
+  `src/styles/<stream>.css` and import it from your own component file. Define component-specific TypeScript types
+  inside your component file.
+- If `npm run check` reports a duplicate glossary/source id that another stream added at the same time, remove or
+  rename **yours** and link to theirs.
+- Day-in-the-Life pages: /day/sarah (CFO, Kleio), /day/petra (Head of Accounting, Alpine), /day/daniel (Treasury
+  Manager, Helvetic), /day/lea (Treasury Analyst, Helvetic), /day/anna (Group Treasurer, GlobalChem),
+  /day/priya (Head of Cash & Liquidity / cash manager, GlobalChem).
+- Screenshots: `node scripts/shot.mjs <your scratch dir> "/route"` (Chromium is at /opt/pw-browsers/chromium).

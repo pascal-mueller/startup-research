@@ -4,7 +4,7 @@ const [out, routes, ...flags] = process.argv.slice(2)
 const dark = flags.includes('--dark')
 const width = Number((flags.find((f) => f.startsWith('--width=')) || '--width=1440').split('=')[1])
 const full = flags.includes('--full')
-const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' })
+const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || (process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : '/opt/pw-browsers/chromium') })
 const page = await browser.newPage({ viewport: { width, height: 1000 }, colorScheme: dark ? 'dark' : 'light' })
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
