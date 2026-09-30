@@ -40,11 +40,9 @@ currency-shock, liquidity-crisis). Separate "startup view" per workflow; explici
 - Web search budget for the session was exhausted mid-research; no deepfake/BEC case (e.g. Arup) cited for that reason.
 - Swiss ICS statement (Art. 728a CO, auditor confirms existence of ICS for ordinary audits) and bank collective-signature
   practice are stated as established concepts without a registered source.
-- credit-facility-management and covenant-monitoring workflow files did not exist at time of rating; re-check their
-  ai_note and frequency when written.
 
 ## Disagreements / comparisons with workflow ai_notes
-Broadly consistent with all 18 workflow ai_notes available. Differences of emphasis:
+Re-checked against all 20 workflow files at the end (ai_note, frequency, examples). Broadly consistent. Differences of emphasis:
 - fx-exposure-management: lens rates it GOOD (collection/reconciliation slice at mid-market groups without a TMS
   exposure module); the workflow note is slightly more cautious (TMS tools already do part of it).
 - bank-reconciliation / bank-fee-analysis / payment-processing: lens adds explicit "poor standalone business" verdicts,
@@ -59,3 +57,6 @@ Broadly consistent with all 18 workflow ai_notes available. Differences of empha
 - Whoever owns `content/pages/org/with-accounting.mdx`: at time of verification its frontmatter failed to parse
   ("Nested mappings are not allowed in compact mappings", line 4 `summary:` contains ": "), which 500s the eager
   MDX glob and blanks the whole app.
+
+## Late consistency fixes
+- dw-forecast-variance example re-aligned with the revised cash-forecasting example (week of 16 Nov, net variance −3.6, duplicate CHF 180k payment, Italy 8 of 10 weeks).
