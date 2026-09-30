@@ -1,0 +1,91 @@
+---
+title: A day in the life — six people who do treasury work
+nav: Overview
+order: 0
+summary: There is no typical treasury day. What a person does at 08:00 depends on the size of the company, their role in the chain from bank statement to decision, and where the day falls in the week and month. Six fictional people, living through the same Monday and Tuesday, show the differences.
+related: [/org/roles, /org/calendars, /workflows/daily-cash-positioning, /workflows/cash-forecasting, /companies, /interview/questions]
+---
+
+## Why there is no universal day
+
+"What does a treasurer do all day?" has no single answer, and an interviewee who is asked to "describe a typical day" will usually give you a job description rather than a day. Three things shape what actually happens:
+
+1. **How big the company is — which decides who does treasury at all.** At a 70-person startup the CFO does it in a few hours a week. At an SME it is a slice of the head of accounting's job. At a mid-market group it is a small dedicated team. At a multinational it is a department whose head does almost no transaction work. See [Treasury by company size](/size) and [who does which task](/org/responsibility-matrix).
+2. **Where the person sits in the chain from bank statement to decision.** Someone *prepares* (collects balances, builds the forecast), someone *decides* (moves money, hedges, draws a facility), someone *owns the policy and the banks*, and someone *approves*. At small companies one person does all four; at large ones they are four different people.
+3. **The calendar.** Payroll dates, payment-run days, the weekly forecast deadline, month-end, quarter-end reporting, the bank cut-offs, and one-off events (a deal, a rating review, a fraud attempt) decide what Monday looks like.
+
+The six people below are fictional but built to be consistent with the four [reference companies](/companies) and with the [workflows](/workflows). They live through the **same two days — Monday 26 and Tuesday 27 October 2026** — so you can compare them directly.
+
+<DayPersonaIndex />
+
+## The week they all live through
+
+The week was chosen because it is ordinary — no quarter-end, no crisis — but has the normal pressure points:
+
+- **Payroll.** Swiss salaries for October were paid on Friday 23 October (the 25th is a Sunday). German salaries are paid for value on the last business day, Friday 30 October, so German accounts must be funded by Thursday. US payrolls run bi-weekly or semi-monthly through payroll providers, which collect the money before pay date.
+- **Month-end is Friday.** Accounting starts the [month-end close](term:month-end-close) the following week; treasury prepares intercompany interest, bank balance confirmations and the monthly report.
+- **Q3 has just been reported internally.** Covenant and net-debt estimates are being refreshed; GlobalChem publishes a Q3 trading update on Thursday. The Swiss Q3 VAT payment is due by 30 November.
+- **The clocks changed in Europe on Sunday but not yet in the US** (1 November), so for one week New York is five hours behind Zurich instead of six.
+
+## Six people compared
+
+<DayCompare />
+
+The pattern to take away: **the smaller the company, the more a person's treasury work is about access and survival** (can we pay, is the money safe, how long is the runway); **the larger the company, the more it is about exceptions, structure and markets** (which items the system could not explain, which bank is over its limit, when to refinance). The morning check shrinks from "log into every portal" to "read the exception list" as the company grows, but it never disappears.
+
+## Who feeds whom
+
+Within one company, the days are links in a chain. The timelines cross-reference each other: click through from Lea's 08:45 position email to Daniel's 08:50 review, or from Priya's 10:30 dashboard to Anna reading it at 10:45.
+
+<Flow steps={["Banks|statements overnight (Asia first, US last)", "Lea, Treasury Analyst|07:30 position + proposal", "Daniel, Treasury Manager|08:20 decides funding", "Thomas, CFO|only if material: jour fixe Thursday"]} caption="Helvetic Machines — a two-person treasury. Lea prepares; Daniel decides; the CFO hears about exceptions and material items." />
+
+<Flow steps={["TMS + Singapore RTC|position ready 07:00; APAC done", "Priya's cash managers|07:30 exceptions", "Priya, Head of Cash & Liquidity|10:30 dashboard; CP, MMF, funding", "Anna, Group Treasurer|reads it; approves above Priya's limits", "Markus, CFO|funding strategy, rating, board"]} caption="GlobalChem — a 25-person department. Data collection is automated; people work on exceptions, and the Group Treasurer works on structure and funding." />
+
+At [Kleio](co:kleio) and [Alpine](co:alpine) the chain is short: Nina prepares payments and Sarah approves and decides; Petra prepares everything and Martin decides anything that moves real money. See the [workflow hand-offs](/org/handoffs) for the same chains by workflow.
+
+## The clock everyone works to
+
+Treasury mornings are organised backwards from the time payments must be with the bank. Two sets of times matter:
+
+| What | When (Swiss time unless stated) | Why it matters |
+|---|---|---|
+| Prior-day bank statements | Overnight to early morning; Asian banks are *ahead* of Europe so their files should arrive first, US banks' last | A missing file means an unknown balance. For a Swiss company a missing Chinese statement is a connectivity or bank problem, not a time-zone one |
+| CHF — SIC closes its day | Late afternoon; SIC extended its operating hours from 15:00 to 17:00 in 2017[](cite:ubs-sic-hours-2017) | Banks' same-day CHF cut-offs for corporate clients sit earlier in the afternoon |
+| EUR — T2 closes its day | 18:00 CET[](cite:aos-t2-hours) | Customer-payment cut-offs at banks are earlier; same-day EUR transfers are usually instructed in the morning |
+| GBP — CHAPS | Customer payments by 17:40 UK time; system closes 18:00[](cite:boe-chaps-faq) | UK subsidiaries' same-day payments |
+| USD — Fedwire | Third-party transfers until 18:45 ET (00:45 in Zurich, or 23:45 this week)[](cite:frb-fedwire-hours) | Swiss banks' USD same-day cut-offs for corporates are far earlier than Fedwire's |
+| Payroll | CH: around the 25th; DE: last business day; US: bi-weekly or semi-monthly | Funding must arrive a day or two before; payroll is the one payment that cannot be late |
+
+<Callout type="field" title="Your bank's cut-off, not the central bank's">
+
+The system times above are when the *central-bank* payment systems close. The time that runs a treasurer's morning is their **own bank's cut-off** for same-day value, which is earlier, differs by bank, currency and channel (EBICS file, portal, SWIFT), and is written in the bank's cut-off schedule. That is why the positioning work in every timeline below finishes before late morning: decisions about EUR and USD must be made while there is still time to fix a rejected transfer. Ask an interviewee which cut-off actually constrains them — it tells you where the time pressure in their day comes from. See [cut-off time](term:cut-off-time).
+
+</Callout>
+
+## What all six days have in common
+
+- **The money work happens in the morning.** Checking balances, explaining gaps, deciding transfers and releasing payments happen before the cut-offs. Afternoons go to forecasts, reporting, projects, banks and people.
+- **Preparing and deciding are split wherever there are two people.** Even in a two-person team, Lea prepares and Daniel decides; the second signature is a control, not a formality.
+- **Most exceptions arrive as email or chat.** A subsidiary's forgotten tax payment, a customer's changed payment run, a supplier's "new bank account". The structured systems carry the routine; the exceptions come through people.
+- **Fraud checks are built into ordinary approvals.** At every size, someone stops a payment because bank details changed. See [fraud investigation](wf:fraud-investigation).
+- **Spreadsheets are everywhere below the largest companies** — and still present at the largest.
+
+<Callout type="field" title="What practitioners say about the top job">
+
+Practitioner interviews describe a group treasurer's day as split between operational treasury with "live" decisions and structured work such as developing the team, improving systems and meeting stakeholders[](cite:rw-day-global-treasurer). Anna's timeline reflects that: she makes few transactional decisions herself, but the ones she makes — a bond pre-funding recommendation, a policy exception, a bank allocation — are the expensive ones.
+
+</Callout>
+
+## Using the timelines before an interview
+
+<Callout type="interview" title="Turn a timeline into questions">
+
+Pick any row and ask the six questions the row answers: *Why did you do that today? What did you need to have in front of you? Which system was open? What did you decide? Who else was involved? What happened next?* Then ask about the unusual event: "Tell me about the last time something like this happened." These map directly to the [customer-discovery questions](/interview/questions). Avoid "What's a typical day?" — it invites a job description.
+
+</Callout>
+
+<Callout type="synthesis" title="How these pages were built">
+
+The six people, their numbers and their calendars are **illustrative synthesis**, consistent with [the reference companies](/companies) and the [daily cash positioning](wf:daily-cash-positioning) and [cash forecasting](wf:cash-forecasting) workflows. Payment-system hours are cited to the operators or their summaries. Real days differ by company culture, bank setup and the person's habits — use these as a map of plausible activities and hand-offs, not as a description of any real company.
+
+</Callout>

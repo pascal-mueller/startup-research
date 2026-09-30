@@ -534,3 +534,60 @@
   professional: "Buyer-led payables financing where a finance provider pays approved supplier invoices early at a discount based on the buyer's credit, and the buyer pays the provider at (extended) maturity. Improves DPO and supplier liquidity; subject to disclosure requirements (IFRS amendments to IAS 7/IFRS 7 effective 2024) since the Greensill collapse raised concerns about hidden debt."
   example: "GlobalChem extends supplier terms from 60 to 90 days and offers suppliers early payment at €STR + 1% via its bank's SCF platform."
   related: [dpo, working-capital]
+
+- id: available-balance
+  term: Booked, value-dated and available balance
+  aka: [available balance, booked balance, ledger balance, booking date, cleared balance]
+  category: Banking & connectivity
+  plain: A bank account has more than one "balance". The booked balance counts everything the bank has recorded; the available balance is what you can actually pay out right now.
+  professional: "The booked (ledger) balance includes all entries posted to the account by booking date. The value-dated balance counts only entries whose value date has been reached, and is the basis for interest and overdraft charges. The available balance is what the bank will let you spend: the value-dated balance minus holds, blocked amounts and pending debits (for example card authorisations), plus any unused overdraft limit if the bank includes it. Statements (camt.053 / MT940) report booked and value-dated closing balances; intraday reports and portals often show the available figure. Positions should be built on value-dated or available balances, not booked ones."
+  example: "On Monday evening HM Deutschland's statement shows a booked balance of EUR 1.8m. It includes a EUR 0.2m customer credit booked Monday but value-dated Tuesday, so the value-dated balance is EUR 1.6m; and the bank's portal shows EUR 1.55m available because EUR 50k of card authorisations are on hold. Lea builds the position on EUR 1.6m and keeps the card holds in mind for the minimum balance."
+  related: [value-date, bank-statement, cash-position, overdraft, float]
+  confusedWith: "**The ERP's cash (book) balance** — accounting's ledger by posting date, which also contains payments not yet executed by the bank."
+
+- id: minimum-operating-balance
+  term: Minimum operating balance
+  aka: [account minimum, target balance, operating float]
+  category: Cash & liquidity
+  plain: The smallest amount treasury wants to keep in a particular bank account so that normal local payments never bounce.
+  professional: "An account-level floor set by treasury from the account's typical daily outflows, card and direct-debit activity, forecast reliability and the cost of an overdraft; sometimes also a bank requirement. It is distinct from the group's minimum liquidity (the cash buffer the CFO or board requires in total) and from liquidity headroom (available liquidity including undrawn committed facilities). Positioning compares each account's projected closing balance with its operating minimum; forecasting compares the group low point with the group minimum."
+  example: "At Helvetic, the three layers are: account operating minimums (for example EUR 0.25m on HM Deutschland's account, CHF 2m on the parent's main CHF account); the CFO's CHF 10m minimum liquidity, held at the parent, which the 13-week low point is tested against; and liquidity headroom, which adds the CHF 140m undrawn RCF."
+  related: [cash-buffer, liquidity-headroom, cash-position, overdraft, direct-debit]
+
+- id: direct-debit
+  term: Direct debit
+  aka: [SEPA direct debit, SDD, LSV, Lastschrift]
+  category: Payments
+  plain: A payment the creditor pulls from your account, with your prior permission, instead of you sending it.
+  professional: "A payment initiated by the creditor under a mandate signed by the debtor (SEPA Core / B2B direct debit in the euro area; LSV+/Swiss direct debit in CHF). The debtor's treasury does not release each collection, so direct debits are an unannounced outflow type: they appear only when the bank books them, unless someone has put the creditor's schedule (tax offices, utilities, leasing companies, card acquirers) into the forecast. B2B mandates cannot be refunded after collection; Core mandates allow refund requests within eight weeks."
+  example: "HM Deutschland's quarterly trade-tax (Gewerbesteuer) prepayment of about EUR 0.3m falls due on 15 November and is collected by the municipality by direct debit. Nobody had put it in the forecast; Lea finds it as an unexpected debit on the next statement, which is why Daniel then adds all four statutory dates (15 Feb, 15 May, 15 Aug, 15 Nov) to the central calendar."
+  related: [payment-mandate, sepa, cash-position, short-term-forecast]
+  confusedWith: "**Standing order** — a recurring payment the debtor sets up and the debtor's bank sends."
+
+- id: vat-cash
+  term: VAT in the cash forecast
+  aka: [VAT, MWST, TVA, gross vs net receipts]
+  category: Accounting & tax
+  plain: Customers pay invoices including VAT, and the company later pays the VAT it collected to the tax authority. Treasury has to forecast both flows; FP&A usually looks only at the net revenue.
+  professional: "Sales invoices are collected gross (net amount plus VAT); the VAT collected, less input VAT on purchases, is paid to the tax authority on a fixed calendar. A direct-method cash forecast therefore uses VAT-inclusive receipts and payments and shows VAT settlements as separate lumpy outflows (or refunds), while FP&A's P&L forecast is net of VAT. In Switzerland, the effective-method return is usually quarterly and payment is due within 60 days of the end of the period (end of February, May, August and November); EU countries typically settle monthly or quarterly. Exports are usually zero-rated, so exporters' VAT flows are smaller and can be net refunds."
+  example: "Helvetic's Swiss entity invoices a domestic customer CHF 1.0m net; the customer pays CHF 1.081m including 8.1% Swiss VAT. FP&A counts CHF 1.0m of revenue. Lea's forecast counts CHF 1.081m of receipts in the week the customer pays, and the net VAT for the quarter as one outflow on the 60-day due date: for the July–September quarter, around 30 November."
+  related: [short-term-forecast, direct-method, fpa, withholding-tax]
+  confusedWith: "**Revenue.** VAT collected is not the company's money; it is a liability passing through the bank account."
+
+- id: eurosic
+  term: euroSIC
+  aka: [Swiss euro clearing]
+  category: Payments
+  plain: The Swiss system for settling euro payments between banks in Switzerland and linking them to the euro area.
+  professional: "A euro real-time gross settlement system operated by SIX, with the Swiss Euro Clearing Bank (SECB) in Frankfurt as settlement agent and link to TARGET/T2. It lets Swiss banks send and receive same-day euro payments, including urgent payments to the euro area. SIX has announced that euroSIC will be discontinued on 31 December 2027, after which Swiss banks route euro payments through other channels (correspondent banks, direct T2 or SEPA access, or SECB as correspondent)."
+  example: "Lea's EUR 1.5m same-day transfer from Helvetic Machines AG's EUR account at a Swiss bank to HM Deutschland's German bank goes as an urgent (express) EUR payment; the Swiss bank settles it via its euro clearing channel into T2, so it arrives with same-day value if instructed before the bank's early-afternoon cut-off."
+  related: [sic, rtgs, cut-off-time, sepa, sct-inst]
+
+- id: intercompany-framework-agreement
+  term: Intercompany framework agreement
+  aka: [intercompany loan framework, intercompany current account agreement, revolving intercompany facility]
+  category: Accounting & tax
+  plain: A standing contract between the parent (or in-house bank) and a subsidiary that lets treasury lend money back and forth without writing a new loan agreement every time.
+  professional: "A master agreement between two group entities setting a limit, currency, interest basis (reference rate plus a margin supported by transfer-pricing analysis or the tax authority's safe-harbour rates), interest periods, repayment terms and documentation of individual drawings. It makes daily manual concentration and funding legally clean, gives accounting and tax a consistent basis for interest bookings, and is the prerequisite for any cash pool. Cross-border loans also raise withholding-tax and thin-capitalisation questions, which is why tax reviews the framework rather than each transfer."
+  example: "Helvetic Machines AG has one framework agreement per subsidiary (limit EUR 10m for HM Deutschland, at €STR plus a margin agreed with Claudia and the tax adviser). When Lea sends EUR 1.5m on a Tuesday morning, she emails Claudia's team a drawing confirmation; interest is calculated monthly on the running balance."
+  related: [intercompany-loan, transfer-pricing, withholding-tax, cash-concentration, thin-capitalisation]

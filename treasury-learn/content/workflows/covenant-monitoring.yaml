@@ -1,0 +1,313 @@
+id: covenant-monitoring
+title: Debt covenant monitoring
+question: Are we inside our loan covenants — at the last test date, the next ones, and if the business or a planned deal goes badly?
+group: Debt & funding
+order: 2
+summary: >-
+  Loan agreements contain promises: financial ratios the company must meet at test dates (e.g. net debt / EBITDA of
+  at most 3.25x), reporting duties, and restrictions on extra debt, security, disposals and acquisitions. Treasury
+  (with group accounting) translates the agreement's own definitions into a calculation, computes the ratios after
+  each half-year or year-end close, sends lenders a signed compliance certificate, and — more importantly — forecasts
+  headroom for future test dates and for planned transactions. Most of the time the numbers are comfortable; the job
+  is to see early the quarter when they will not be, and to talk to the banks before a breach rather than after.
+objective: >-
+  Never breach a covenant by surprise: calculate compliance correctly under the agreement's definitions, deliver
+  certificates on time, check every transaction against the restrictions, and give management enough warning of
+  thin headroom to act — operationally, financially, or by negotiating with lenders in advance.
+trigger: >-
+  Each test date (semi-annual or quarterly, per agreement) after the close; each forecast update; any planned
+  acquisition, disposal, new financing, dividend or restructuring; a sharp downturn.
+frequency: >-
+  Formal calculation 2–4 times a year; headroom projection monthly or quarterly at mid-market companies with
+  covenants; transaction checks whenever needed. Annual at SMEs with bank covenants tested on the statutory accounts.
+people:
+  - role: Treasury manager (at large groups, corporate finance)
+    does: Owns the covenant model and headroom forecast; interprets definitions with legal; prepares the certificate; raises early warnings; leads lender discussions on waivers or amendments.
+  - role: Treasury analyst
+    does: Maintains the model, pulls figures, runs scenarios, checks baskets before transactions.
+  - role: Head of group accounting / controller
+    does: Supplies consolidated figures and the adjustments' underlying data; agrees the calculation; answers auditors.
+  - role: FP&A
+    does: Supplies the EBITDA forecast and downside scenarios for future test dates.
+  - role: CFO
+    does: Signs the compliance certificate; decides on actions when headroom is thin; fronts negotiations with banks.
+  - role: Legal counsel
+    does: Interprets definitions and restrictions in unusual cases; drafts waiver and amendment requests.
+  - role: Board / audit committee
+    does: Receives headroom reporting; approves waivers, amendments and transactions affecting covenants.
+  - role: Facility agent and lenders
+    does: Receive certificates; vote on waivers and amendments (majority or all lenders).
+  - role: External auditors
+    does: At year-end may be asked to report on the certificate; assess covenant risk for going-concern and debt classification.
+systems:
+  - name: Facility agreement (definitions, financial covenants, undertakings, events of default)
+    use: The only authoritative source of the rules — often 20+ pages of definitions.
+  - name: Excel covenant model
+    use: The standard tool at almost all sizes; maps accounting lines to agreement definitions, computes ratios, scenarios and headroom.
+  - name: Consolidation system / group reporting
+    use: Source of consolidated EBITDA, debt, cash and adjustments.
+  - name: FP&A planning model
+    use: EBITDA and cash forecasts for future test dates.
+  - name: Treasury debt register / cash forecast
+    use: Forecast net debt at test dates.
+  - name: Compliance certificate template
+    use: Scheduled to the agreement; signed PDF to the agent.
+data:
+  - name: Covenant definitions
+    source: Facility agreement (and bond terms, bilateral lines)
+    notes: EBITDA, net debt, finance charges, relevant period, cash, permitted adjustments — rarely identical to reported figures.
+  - name: Consolidated financials for the relevant period
+    source: Group accounting / consolidation
+    notes: Last-twelve-months (LTM) figures at each test date.
+  - name: Adjustments
+    source: Accounting records, deal documents
+    notes: Exceptional items, pro forma effects of acquisitions and disposals, leases and pensions per definition, FX conventions, restricted cash.
+  - name: Forecast EBITDA and net debt
+    source: FP&A and treasury forecasts; scenarios
+  - name: Baskets and restrictions
+    source: Facility agreement
+    notes: Permitted additional debt, security, guarantees, disposals, acquisitions, distributions — each with amounts and conditions.
+  - name: Cross-default and other debt documents
+    source: Bond terms, bilateral facilities, leases
+    notes: A problem under one document can spread to all.
+steps:
+  - title: Build the covenant model from the definitions
+    who: Treasury manager with group accounting and legal
+    where: Facility agreement → Excel model
+    when: At signing and after each amendment
+    detail: >-
+      Translate each definition into a calculation: which reported lines make up EBITDA, which adjustments are allowed
+      (exceptional items, pro forma acquisitions, caps), what counts as debt (bank loans, bonds, leases, guarantees,
+      pension deficits?) and as cash (freely available only?), how foreign-currency debt is translated, and what
+      [frozen GAAP](term:frozen-gaap) or accounting-change clauses say. Document every interpretation and who agreed it.
+    judgment: >-
+      Ambiguous definitions are common. Choosing a reading that the company can defend to lenders and auditors — not the
+      most flattering one — is the core skill.
+    manual: Entirely manual; the model is usually a bespoke spreadsheet understood by one or two people.
+  - title: Collect the test-date figures after the close
+    who: Treasury analyst with group accounting
+    where: Consolidation system, accounting schedules
+    when: After half-year and year-end close (sometimes quarterly)
+    detail: >-
+      Pull LTM EBITDA, gross debt, cash and finance charges, plus the detail for each adjustment (e.g. restructuring costs,
+      acquisition EBITDA before ownership, cash in restricted countries). Where definitions need data the ledger doesn't
+      hold, ask the owners (tax, legal, subsidiaries).
+    manual: Adjustment detail is gathered from accountants by email and pasted into the model.
+  - title: Calculate and reconcile
+    who: Treasury analyst → treasury manager; reviewed by head of accounting
+    where: Excel covenant model
+    detail: >-
+      Compute each ratio ([leverage](term:leverage-ratio), [interest cover](term:interest-cover), sometimes gearing,
+      [equity ratio](term:equity-ratio) or minimum liquidity), reconcile covenant EBITDA and net debt to the published
+      figures line by line, and compare with the previous test and the last forecast. Any unexpected movement is
+      explained before the number leaves the building.
+    judgment: Whether an adjustment is supportable (e.g. is a recurring "one-off" still exceptional?).
+  - title: Prepare, sign and deliver the compliance certificate
+    who: Treasury manager prepares; CFO (and/or a director) signs
+    where: Certificate template, email or agent portal
+    when: With the financial statements, by the agreement's deadline
+    detail: >-
+      Fill in the scheduled [compliance certificate](term:compliance-certificate): each ratio with its calculation and a
+      confirmation that no default is continuing. Deliver to the [facility agent](term:facility-agent), which circulates it to
+      lenders; the ratio also resets the [margin ratchet](term:margin-ratchet). At year-end, some agreements require an
+      auditor's report on the certificate.
+  - title: Check transactions against the restrictions
+    who: Treasury manager with legal
+    where: Covenant checklist, agreement
+    when: Before any acquisition, disposal, new debt, security, guarantee or distribution
+    detail: >-
+      Confirm the transaction fits the relevant basket or condition (e.g. acquisitions permitted if pro forma leverage
+      stays below a level and no default is continuing; a local secured loan fits the security basket under the
+      [negative pledge](term:negative-pledge)); otherwise request consent in advance.
+    judgment: Whether a transaction needs consent — mistakes here create an undertaking breach even when the ratios are fine.
+  - title: Forecast headroom for the next test dates
+    who: Treasury analyst with FP&A
+    where: Excel covenant model linked to the FP&A forecast and treasury net-debt forecast
+    when: Monthly or quarterly; for every material transaction
+    detail: >-
+      Project the ratios at the next two to four test dates in a base case and downside cases (EBITDA down 15–30%,
+      working capital up, a planned acquisition closing, currency moves on foreign-currency debt and EBITDA).
+      Express [covenant headroom](term:covenant-headroom) as the EBITDA fall or net-debt rise that would cause a breach.
+    judgment: >-
+      Which downside is plausible enough to act on — the same judgment as in [liquidity planning](wf:liquidity-planning),
+      with the added question of how lenders will react.
+  - title: Report headroom and raise early warnings
+    who: Treasury manager → CFO → board / audit committee
+    where: Monthly CFO pack, quarterly board report
+    detail: >-
+      Report actual and forecast ratios, headroom and the margin-grid position. Agree internal warning levels (e.g. act
+      when forecast headroom falls below 15–20%) so the discussion starts while there are still options.
+  - title: Act when headroom gets thin
+    who: CFO decides; treasury manager prepares options
+    where: Management meetings, bank calls
+    detail: >-
+      Options roughly in order of cost: operational measures (collections, inventory, capex timing, dividend
+      deferral); changing the transaction (more equity, a smaller acquisition, deferred consideration); negotiating in
+      advance with lenders — a [waiver or amendment](term:covenant-waiver) through the agent, needing
+      [majority lenders](term:majority-lenders), usually against fees and tighter terms. Some agreements (mainly
+      sponsor-backed) allow an [equity cure](term:equity-cure). Window-dressing net debt at a test date (e.g. delaying
+      supplier payments by a week) is common and legally grey; lenders know it happens and watch for it.
+    judgment: >-
+      When to call the banks. Too early looks alarmist and invites repricing; too late turns a negotiation into a
+      rescue. Most treasurers and lenders say: before the breach, with a plan.
+  - title: Handle a breach if it happens
+    who: CFO, treasury manager, legal; sometimes external advisers
+    where: Lender negotiations
+    detail: >-
+      A financial-covenant breach is usually an [event of default](term:event-of-default): new drawings can be refused, and
+      [cross-default](term:cross-default) or cross-acceleration clauses in bonds and other loans must be checked. Auditors
+      may require debt to be shown as current. The company asks for a waiver or standstill, provides more frequent
+      reporting and a business plan, and typically pays fees and a higher margin. Lenders rarely accelerate a viable
+      borrower, but they gain leverage over every future decision.
+example:
+  title: "Helvetic, November 2026: a routine year-end test and an acquisition case that is not routine"
+  body: |
+    **Covenants (from companies.yaml):** net debt / EBITDA ≤ 3.25x and interest cover ≥ 4x, tested at 30 June and 31 December. Definitions (illustrative): EBITDA per Swiss GAAP FER consolidated accounts, plus exceptional items and pro forma EBITDA of acquired businesses for the full 12 months; net debt = financial debt minus cash "freely available to the group"; operating leases are off balance sheet under FER, and the agreement excludes IFRS 16 lease liabilities if the group ever switches.
+
+    **Part 1 — the year-end test (routine).** Lea updates the model with Marco's forecast:
+
+    | | 30 Jun 2026 (certificate) | 30 Sep 2026 (estimate) | 31 Dec 2026 (forecast) | Limit |
+    |---|---|---|---|---|
+    | LTM covenant EBITDA (CHF m) | 80 | 78 | 76 | |
+    | Net debt (CHF m) | 112 | 106 | 104 | |
+    | Net debt / EBITDA | 1.40x | 1.36x | 1.37x | ≤ 3.25x |
+    | Interest cover (EBITDA / net finance charges ≈ 3.4) | 23x | 23x | 22x | ≥ 4x |
+
+    At 1.37x the margin stays in the lowest step (0.85%, up to 1.50x). With CHF rates near zero, interest cover is not the constraint; leverage is.
+
+    One open interpretation: the month-end figures count all cash, including about CHF 7.9m in HM Suzhou that can only leave China as an annual dividend. Is that "freely available"? Excluding it would give 1.46x at 30 September — irrelevant today, but worth 0.1x in the acquisition case below. Daniel and Claudia agree to exclude it from the forecasts (the prudent reading) and to ask the agent informally how the lenders read the clause.
+
+    **Part 2 — "Project Lario" (not routine).** Thomas is negotiating to buy an Italian automation company for EUR 95m (≈ CHF 89m) plus CHF 3m costs, closing March 2027, funded by an RCF drawing. Target LTM EBITDA ≈ CHF 9m. Daniel checks the agreement first: acquisitions are permitted without consent if pro forma leverage is below 2.75x and no default is continuing — so the deal must be tested before signing.
+
+    | 30 Jun 2027 test | Base | Machine-tool downturn | Severe |
+    |---|---|---|---|
+    | Helvetic LTM EBITDA | 74 | 58 | 50 |
+    | Target LTM EBITDA (pro forma) | 9 | 7 | 5 |
+    | Covenant EBITDA | 83 | 65 | 55 |
+    | Net debt (incl. CHF 92m acquisition; China cash excluded) | 198 | 208 | 213 |
+    | **Leverage** | **2.39x** | **3.20x** | **3.87x — breach** |
+    | EBITDA fall to breach | 27% | 2% | — |
+    | Margin step | 1.30% (was 0.85%) | 1.55% | — |
+
+    Without the pro forma clause (if only post-closing EBITDA counted), the base case would be 2.68x — only just inside the 2.75x acquisition condition. Undrawn RCF after closing would fall to about CHF 45m — with the bond due in 2028.
+
+    **Daniel's memo to Thomas (key lines):**
+    1. The deal passes the 2.75x acquisition test in the base case (2.39x), but a downturn of the kind machine-tool makers saw in 2009 or 2020 would leave almost no headroom, and the severe case breaches.
+    2. Pricing: the step to 1.30% costs roughly CHF 0.7m a year more on ~CHF 155m of drawings.
+    3. Fold it into the planned [amend-and-extend](wf:credit-facility-management): ask for a larger facility (CHF 250m) and an "acquisition spike" — leverage limit 3.75x for two test dates after a material acquisition — while the company is still at 1.4x and negotiating from strength.
+    4. Consider EUR 20–30m of the price as deferred consideration or a vendor loan to limit day-one net debt.
+    5. Tell the four banks about the deal before signing, not after.
+
+    Thomas takes points 3–5 to the board. See also [acquisition integration](wf:acquisition-integration).
+judgment:
+  - decision: How to read ambiguous definitions
+    why: Two defensible readings can differ by 0.2–0.5x of leverage. The chosen reading must survive the lenders', auditors' and the company's own future scrutiny.
+  - decision: Which adjustments are supportable
+    why: Repeated "exceptional" items and generous pro forma assumptions erode credibility with lenders.
+  - decision: Which downside scenarios to plan for
+    why: Headroom is only meaningful against a plausible bad case; choosing it requires understanding the business cycle.
+  - decision: When and how to approach lenders
+    why: Timing and preparation determine whether a waiver is a formality or a costly renegotiation.
+  - decision: Whether a transaction needs consent
+    why: Undertaking breaches (unauthorised security, debt, disposals) are as serious as ratio breaches and easier to miss.
+failure_modes:
+  - mode: Covenant computed with reported figures instead of the agreement's definitions
+    consequence: False comfort or false alarm; a certificate that is wrong.
+    detection: Model built from definitions and reconciled line by line; legal and accounting review.
+  - mode: Headroom tracked only at test dates, not forecast
+    consequence: A breach discovered when the half-year numbers arrive — too late for operational fixes or a pre-emptive waiver.
+    detection: Monthly or quarterly headroom projection linked to the FP&A forecast.
+  - mode: Transaction executed without checking baskets (new local loan with security, guarantee for a subsidiary, disposal)
+    consequence: Breach of an undertaking — a potential event of default even with good ratios.
+    detection: Covenant checklist in the approval process for such transactions.
+  - mode: Certificate delivered late
+    consequence: Information-undertaking breach; poor signal to lenders; possible margin default rate.
+    detection: Facility calendar; certificate prepared in parallel with the accounts.
+  - mode: Cross-default not considered
+    consequence: A problem in a small bilateral line or a lease threatens the bond and the RCF.
+    detection: Map of cross-default thresholds across all debt documents.
+  - mode: Key-person dependency on the covenant model
+    consequence: Nobody else understands the interpretations; errors creep in when the person leaves.
+    detection: Documented interpretations; review by accounting each test.
+software: >-
+  Covenant monitoring is overwhelmingly done in **Excel**, linked to consolidation and FP&A outputs. Some TMS and
+  debt-management tools store covenant parameters and produce compliance calculations, and FP&A/planning tools can
+  model scenarios; legal-tech tools can help extract definitions from agreements. None removes the need to interpret
+  the definitions. See [Systems & Data](/systems).
+manual_work:
+  - Translating legal definitions into spreadsheet formulas.
+  - Collecting adjustment data from accounting, tax and subsidiaries by email.
+  - Reconciling covenant figures to reported accounts.
+  - Filling and signing the compliance certificate.
+  - Running headroom scenarios from FP&A exports.
+  - Checking every proposed transaction against baskets by reading the agreement.
+by_size:
+  startup: >-
+    No bank covenants; venture-debt agreements typically include a minimum-cash or runway-type covenant, reporting
+    duties and a material-adverse-change clause, sometimes with an equity-cure right for investors. The CFO's question
+    is when the covenant would bite relative to the next funding round.
+  sme: >-
+    Bilateral bank credit agreements often include an equity-ratio and/or leverage covenant tested once a year on the
+    audited accounts, plus information duties (accounts, budget). The CFO or head of accounting calculates it when the
+    accounts are sent; the bank's credit analyst recalculates it with its own adjustments (Swiss statutory accounts may
+    contain hidden reserves the analyst adjusts for). Headroom is rarely forecast formally.
+  midmarket: >-
+    Syndicated or club facilities with leverage and interest-cover covenants tested semi-annually or quarterly, a
+    compliance certificate signed by the CFO, leverage-based pricing, and a treasury-owned Excel model. The value of the
+    work lies in forecasting headroom for downturns and acquisitions.
+  multinational: >-
+    Investment-grade facilities and bonds often carry no financial maintenance covenants; monitoring shifts to
+    undertakings (negative pledge, change of control, cross-default thresholds), information duties, and the metrics
+    rating agencies use (agency-adjusted debt including pensions and leases), which effectively act as covenants because
+    a downgrade raises funding costs. Leveraged or sub-investment-grade groups have the full covenant apparatus.
+companies:
+  kleio: "No debt today. The proposed venture loan would add a minimum-cash covenant (illustrative CHF 8m). At CHF ~22m cash and CHF 0.9m monthly net burn, Sarah's model shows it would bite in about 15 months without revenue growth or a new round — so the covenant, not the interest rate, is the real cost of the loan."
+  alpine: "The cantonal bank's agreement requires an equity ratio of at least 35% and net debt / EBITDA of at most 3.0x (illustrative), tested on the audited statutory accounts each spring. Petra computes both when she sends the accounts (equity ratio ~44%, net debt close to zero); Martin discusses them at the annual credit review. No headroom forecast exists."
+  helvetic: "The worked example above: comfortable at ~1.4x on current facts; the covenant work that matters is testing the acquisition and negotiating better terms in the amend-and-extend while the numbers are strong."
+  globalchem: "The RCF and bonds have no financial maintenance covenant. Olivier's team tracks bond and RCF undertakings (negative pledge, cross-acceleration thresholds, change-of-control), delivers information to lenders, and projects the metrics S&P and Moody's use against the thresholds at which the agencies have said they would consider a downgrade — the BBB+/Baa1 rating is the 'covenant' management actually manages to."
+handoffs:
+  - from: Group accounting
+    gives: consolidated LTM figures, adjustment detail, confirmation of the calculation
+    to: Treasury analyst / manager
+  - from: FP&A
+    gives: EBITDA forecast and downside scenarios
+    to: Treasury analyst
+  - from: Treasury manager
+    gives: compliance certificate for signature; headroom report
+    to: CFO
+  - from: CFO
+    gives: signed certificate
+    to: Facility agent → lenders
+  - from: Corporate development / CFO
+    gives: planned acquisitions, disposals, financings for covenant testing
+    to: Treasury manager
+    note: Treasury must be involved before signing, not after.
+  - from: Treasury manager
+    gives: early warnings and options when headroom is thin
+    to: CFO / board
+  - from: Treasury manager / legal
+    gives: waiver or amendment requests
+    to: Facility agent → lenders
+interview: >-
+  Ask the treasury manager or CFO to show you **the covenant model** (not the certificate): how each definition maps to
+  accounting data, which interpretations were debated, and what the headroom forecast shows for the next four test
+  dates. Ask when they last had to check a transaction against the agreement and what they found. Ask whether they
+  have ever requested a waiver — and when they would call the banks. At investment-grade groups, ask instead about
+  rating-agency metrics and who watches them.
+ai_note: >-
+  Extracting definitions from agreements, mapping them to accounting data, recomputing ratios and running standard
+  scenarios are checkable tasks where assistance is plausible. Interpretation of ambiguous clauses, the choice of
+  scenarios and the decision to approach lenders are judgment and relationship matters with legal consequences; the
+  certificate is signed by an officer who is accountable for it.
+terms: [covenant, covenant-headroom, compliance-certificate, leverage-ratio, interest-cover, net-debt, ebitda, ebitda-adjustments, equity-ratio, frozen-gaap, margin-ratchet, negative-pledge, cross-default, event-of-default, covenant-waiver, majority-lenders, equity-cure, facility-agent, credit-rating, investment-grade]
+related: [credit-facility-management, month-end-reporting, liquidity-planning, acquisition-integration, cash-forecasting, liquidity-crisis]
+sources: [lma-facility-sample, act-hsf-debt-2025, pwc-ch-fer-fi-2025]
+evidence_note: >-
+  Covenant types, compliance certificates, waivers, majority-lender voting, cross-default and equity cures are
+  established features of LMA-style facility documentation[](cite:lma-facility-sample); the specific levels, deadlines
+  and fees vary by agreement and are illustrative here. That investment-grade facilities often lack financial
+  maintenance covenants is a practitioner observation, not a statistic. The ACT/HSF 2025 debt survey reports that
+  macroeconomic and geopolitical factors weigh heavily on treasurers' debt strategy[](cite:act-hsf-debt-2025). The FER
+  lease point reflects Swiss GAAP FER practice (operating leases not capitalised); treat accounting-framework details
+  as something to confirm with each company's auditors. The worked example is synthesis consistent with the Helvetic
+  facts used in [month-end reporting](wf:month-end-reporting).

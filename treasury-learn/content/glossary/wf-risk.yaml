@@ -180,7 +180,7 @@
   category: Debt & funding
   plain: A signed statement the company sends its lenders at each test date showing the covenant calculations and confirming there is no default.
   professional: "Delivered with the annual and (semi-)annual financial statements in the form scheduled to the facility agreement, setting out the calculation of each financial covenant under the agreement's definitions and confirming no default is continuing; signed by one or two directors or the CFO; sometimes reported on by the auditors at year-end. It also drives any leverage-based margin ratchet."
-  example: "Helvetic's certificate for 30 June 2026 showed net debt / EBITDA of 1.4x (limit 3.25x) and interest cover of 22x (minimum 4x); Thomas signed it and Lea emailed it to the agent with the half-year report."
+  example: "Helvetic's certificate for 30 June 2026 showed net debt / EBITDA of 1.40x (limit 3.25x) and interest cover of 23x (minimum 4x); Thomas signed it and Lea emailed it to the agent with the half-year report."
   related: [covenant, leverage-ratio, interest-cover, margin-ratchet, facility-agent]
 
 - id: covenant-headroom
@@ -189,7 +189,7 @@
   category: Debt & funding
   plain: How far the company's numbers could get worse before it would break a loan covenant.
   professional: "The distance between the actual or forecast covenant ratio and the limit, usually expressed as the percentage fall in EBITDA (or increase in net debt) that would cause a breach at the next test dates. Treasury projects it for two to four future test dates from FP&A's forecast and stress scenarios; lenders and auditors look at it for going-concern assessments."
-  example: "At a pro forma 2.3x against a 3.25x limit, Helvetic's EBITDA could fall about 30% before a breach — comfortable today, much less so if the planned acquisition closes in a machine-tool downturn."
+  example: "At a pro forma 2.4x against a 3.25x limit, Helvetic's EBITDA could fall about 27% before a breach — comfortable today, much less so if the planned acquisition closes in a machine-tool downturn."
   related: [covenant, leverage-ratio, liquidity-headroom, scenario-analysis]
 
 - id: event-of-default
