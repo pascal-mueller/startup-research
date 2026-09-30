@@ -1,0 +1,274 @@
+id: daily-cash-positioning
+title: Daily cash positioning
+question: What cash do we have right now — and do we need to do anything about it today?
+group: Cash & liquidity
+order: 1
+summary: >-
+  Every business morning, someone establishes how much cash the company actually has in each bank account,
+  entity and currency, adds the flows already known for today, and decides whether any account needs funding,
+  whether surplus can be swept or invested, and whether anything unexpected needs investigating — all before the
+  banks' cut-off times. It is the most basic and most frequent treasury workflow, and the foundation for forecasting,
+  funding and investment decisions.
+objective: >-
+  Know the day's usable [cash position](term:cash-position) by account, entity and currency, so that every account can
+  cover today's outflows, idle surplus is concentrated or invested, and anomalies are caught early.
+trigger: Start of each business day, after prior-day [bank statements](term:bank-statement) arrive; repeated intraday at larger companies as new information arrives.
+frequency: >-
+  Daily at mid-market and large companies (plus intraday checks); weekly or on payment days at small companies.
+people:
+  - role: Cash manager / treasury analyst
+    does: Collects balances, builds the position, investigates gaps, proposes transfers. (At SMEs, the head of accounting.)
+  - role: Treasury manager / head of treasury
+    does: Reviews the position, decides funding, investment or borrowing; approves transfers above limits.
+  - role: Local finance / subsidiary controllers
+    does: Explain unexpected local movements; flag large same-day payments or receipts not in the system.
+  - role: Accounts payable / payment operations
+    does: Tell treasury what payment runs are scheduled today and their amounts.
+  - role: CFO
+    does: Only involved when the position shows a real shortfall, a credit-line drawing, or an unusual event.
+systems:
+  - name: Bank portals / e-banking
+    use: Check balances and today's credits/debits; the fallback when files fail. At small companies the only tool.
+  - name: Bank connectivity ([EBICS](term:ebics), [SWIFT](term:swift), [host-to-host](term:host-to-host), [APIs](term:api-banking))
+    use: Deliver prior-day statements (MT940 / camt.053) and intraday reports (MT942 / camt.052) automatically.
+  - name: "[TMS](term:tms) or cash-visibility tool"
+    use: Imports statements, shows balances by entity/currency/bank, projects today's closing balance, proposes transfers.
+  - name: "[ERP](term:erp)"
+    use: Source of today's scheduled payment runs, expected customer receipts, and intercompany settlements.
+  - name: Excel
+    use: At most mid-market companies the actual positioning worksheet; everywhere, the place where "known flows not yet in any system" get added.
+  - name: Market data (bank portal, Bloomberg, central bank rates)
+    use: FX rates to express everything in the reporting currency; money-market rates for investment/borrowing decisions.
+data:
+  - name: Prior-day closing balances (booked and value-dated)
+    source: Bank statements (MT940, camt.053, BAI2 in the US)
+    notes: The anchor of the position. Missing or late statements are the most common problem.
+  - name: Intraday credits and debits
+    source: Intraday reports (MT942, camt.052), bank APIs, portal
+    notes: Many banks and countries only provide limited intraday data.
+  - name: Today's scheduled outflows
+    source: ERP payment runs, payroll provider, tax calendar, loan schedules, treasury deals maturing
+    notes: Payroll and tax dates are known months ahead; supplier payment runs are known a day or two ahead.
+  - name: Today's expected inflows
+    source: Maturing deposits/deals (certain); customer receipts (uncertain); intercompany
+    notes: Customer receipts are usually *not* counted until they arrive, unless value-dated and confirmed.
+  - name: Minimum / target balances per account
+    source: Treasury policy, bank requirements, local operating needs
+    notes: E.g. keep EUR 250k in the German operating account for card and direct-debit flows.
+  - name: FX rates
+    source: Bank or market-data feed
+    notes: For consolidated view only; actual conversions are separate trades.
+  - name: Bank cut-off times per currency and bank
+    source: Bank documentation, experience
+    notes: Determines the order in which decisions must be made.
+steps:
+  - title: Check that all statements arrived
+    who: Cash analyst
+    where: Connectivity tool / TMS / bank portals
+    when: "07:30"
+    detail: >-
+      Confirm that every bank has delivered its prior-day statement for every account. A missing statement means the
+      balance for that account is unknown. Common causes: a bank's file delivery failed, a new account wasn't set up
+      for reporting, or the bank is in a later time zone (Asian banks deliver during their day; US banks after the US close).
+    manual: When a file is missing, the analyst logs in to that bank's portal and copies the balance by hand, or emails the bank's service desk.
+  - title: Load balances and check they make sense
+    who: Cash analyst
+    where: TMS or Excel
+    detail: >-
+      Import balances by account. Check that each opening balance equals the prior day's closing balance (a gap means a
+      missing statement or a back-valued correction by the bank), and that balances look plausible. Convert to the
+      reporting currency for the group total.
+    judgment: Deciding whether an odd balance is a data problem (duplicate file, wrong account mapping) or a real event.
+  - title: Identify unexpected movements
+    who: Cash analyst
+    where: TMS / Excel / bank portal
+    detail: >-
+      Compare yesterday's actual movements with what was expected (yesterday's position and forecast). Flag large
+      unexpected debits (possible error or fraud), missing expected receipts, returned payments, bank fees, and
+      unexplained credits. Drill into transaction details and remittance information.
+    judgment: Which differences matter today. A CHF 2m customer payment that is one day late is normal; an unknown CHF 200k debit is not.
+  - title: Add today's known flows
+    who: Cash analyst
+    where: Excel / TMS
+    detail: >-
+      Add everything already known to leave or arrive today by [value date](term:value-date): payment runs released by AP,
+      payroll, tax, loan interest and repayments, maturing deposits and FX deals, intercompany settlements, card settlements.
+      Result: projected end-of-day balance per account.
+    manual: >-
+      Much of this arrives by email or chat ("Italy is paying EUR 1.2m to a supplier today", "payroll file was
+      bigger this month because of bonuses") and is typed into the sheet.
+  - title: Check each account against its minimum and limits
+    who: Cash analyst
+    where: Excel / TMS
+    detail: >-
+      For each account, compare the projected closing balance with the minimum operating balance and any overdraft
+      limit. Also check group-level concerns: cash sitting at a bank above its [counterparty limit](term:counterparty-limit),
+      or surplus in a subsidiary that should be concentrated.
+  - title: Propose funding, sweeps and investments
+    who: Cash analyst → treasury manager
+    where: Excel / TMS
+    detail: >-
+      Propose actions: fund short accounts from surplus accounts (same entity) or by [intercompany loan](term:intercompany-loan)
+      (different entities); concentrate surplus to the parent or [cash pool](term:cash-pooling) header; place surplus in an
+      overnight or short-term deposit or [money market fund](term:money-market-fund); or, if the group is short, draw on a
+      credit facility. If a currency is short in one place and long elsewhere, choose between a [spot](term:spot-fx) conversion
+      and an [FX swap](term:swap).
+    judgment: >-
+      How much buffer to keep given today's uncertainty; whether to fund the shortfall by moving cash, converting currency,
+      or drawing a facility; whether a surplus is temporary (needed next week) or investable.
+  - title: Approve and execute before cut-off
+    who: Treasury manager approves; analyst or payment operations executes
+    where: TMS / bank portal / EBICS signature app
+    when: "before 10:00–14:00 depending on currency"
+    detail: >-
+      Transfers and deals are entered and approved under the four-eyes principle (one person enters, another approves),
+      respecting signing limits. Cut-off times drive the order: currencies whose payment systems close earliest go first.
+    judgment: If something is still unexplained at cut-off, whether to move cash anyway (safety) or wait (avoid unnecessary transfers).
+  - title: Document and update the forecast
+    who: Cash analyst
+    where: Excel / TMS
+    detail: >-
+      Save the day's position, record transfers (so intercompany balances are booked correctly by accounting), and feed
+      actual balances and variances into the [short-term forecast](term:short-term-forecast).
+  - title: Monitor intraday and close the loop
+    who: Cash analyst
+    where: Intraday reports / portals
+    when: Afternoon
+    detail: >-
+      Check that expected large receipts arrived and that transfers were executed. Chase anything outstanding with the bank or
+      the subsidiary. At large companies this runs continuously; at small ones it is often skipped.
+example:
+  title: "A Tuesday at Helvetic Machines: EUR short in Germany, CHF long in Switzerland"
+  body: |
+    **08:10** — Lea opens the connectivity tool. 11 of 12 statements are in; the Chinese bank's arrives later. She refreshes the positioning workbook.
+
+    | Entity / account | Opening (prior-day close) | Known today | Projected close | Minimum | Status |
+    |---|---|---|---|---|---|
+    | HM AG — CHF, Swiss bank A | CHF 14.2m | −1.1m supplier run | CHF 13.1m | 2.0m | Surplus |
+    | HM AG — EUR, Swiss bank A | EUR 6.4m | +0.9m customer receipt (value today) | EUR 7.3m | 0.5m | Surplus |
+    | HM Deutschland — EUR, German bank | EUR 1.8m | −2.6m supplier run, −0.3m tax | **EUR −1.1m** | 0.25m | **Short EUR 1.35m** |
+    | HM Italia — EUR | EUR 2.9m | 0 | EUR 2.9m | 0.3m | Surplus |
+    | HM Inc. — USD | USD 3.1m | −0.4m | USD 2.7m | 1.0m | OK |
+    | HM Suzhou — CNY | (statement pending) | — | — | — | Unknown |
+
+    **08:40** — The German shortfall: the supplier run is normal, but a EUR 0.3m tax payment was not in last week's forecast. Lea checks with the German controller — it's a quarterly trade-tax prepayment that the local team forgot to submit. Real, not an error.
+
+    **08:55** — Options Lea writes up for Daniel:
+    1. Transfer EUR 1.5m from HM AG's EUR account to HM Deutschland as an intercompany loan (both at banks with same-day EUR transfers). *Recommended.*
+    2. Pull EUR 1.5m from HM Italia — possible, but Italy has a large supplier run on Thursday.
+    3. Let the German account go into its EUR 2m overdraft — expensive and it breaches the policy against using local overdrafts.
+
+    **09:10** — Daniel approves option 1 in the connectivity tool; the transfer is sent via EBICS. He also notes HM AG holds CHF 13m — above the CHF 10m buffer they want at the parent. He asks Lea to check next week's forecast before placing CHF 3m in a one-week deposit; the forecast shows a bond coupon and CHF payroll next week, so he decides to invest only CHF 2m.
+
+    **10:30** — The Chinese statement arrives: CNY balance as expected. Lea saves the day's position and updates the 13-week forecast's week-1 actuals.
+judgment:
+  - decision: How much buffer to leave in each account
+    why: Depends on the reliability of that entity's forecast, local payment habits, and the cost of an overdraft vs. idle cash. No formula captures a local team's track record.
+  - decision: Whether an unexplained movement is a data error, timing, or a real problem (fraud, bank error, customer default)
+    why: Requires context — knowing the customers, the bank's habits, what the subsidiary is doing this week.
+  - decision: Fund by transfer, FX conversion, FX swap, or credit-line drawing
+    why: Trade-off between cost, tax/legal documentation (intercompany loans), counterparty limits and how long the need will last.
+  - decision: Whether a surplus is investable and for how long
+    why: Depends on the forecast's reliability over the next days and weeks, and on the investment policy.
+  - decision: Whether to act before cut-off without full information
+    why: Waiting avoids unnecessary transfers; acting avoids a failed payment. The cost of each mistake is asymmetric.
+failure_modes:
+  - mode: A statement is missing and the balance is assumed from yesterday
+    consequence: Funding decisions based on stale data; an account goes overdrawn or a large debit (fraud, error) is noticed a day late.
+    detection: Completeness check at the start; opening-balance-equals-prior-close check.
+  - mode: A known flow is not in the position (e.g. a local tax payment, a large one-off supplier)
+    consequence: Account overdrawn, payment rejected, late-payment interest, embarrassed call with a supplier.
+    detection: Usually only when the bank rejects the payment or the overdraft shows up next morning.
+  - mode: Cut-off missed
+    consequence: Payment executed a day late, payroll late, value lost on a same-day deposit, possible penalty.
+    detection: Bank confirmation or rejection; complaint from the subsidiary.
+  - mode: Wrong value date assumption (booked ≠ value)
+    consequence: Cash counted as available when it isn't; interest charged on intraday or overnight overdraft.
+    detection: Reconciliation of value dates; bank interest statements.
+  - mode: Surplus left idle or above counterparty limits
+    consequence: Lost interest; excessive exposure to one bank (the issue that bit many SVB depositors in 2023).
+    detection: Counterparty-limit report; monthly idle-cash review.
+  - mode: Transfer typed wrongly (wrong account, amount, currency)
+    consequence: Funds misdirected; recovery can take days.
+    detection: Four-eyes approval; templates for recurring transfers; bank confirmations.
+software: >-
+  At large companies, **TMS** cash-positioning modules (e.g. Kyriba, SAP treasury modules, FIS, GTreasury, ION products)
+  import statements and propose transfers. Mid-market companies increasingly use **cash-visibility / multibank tools**
+  that aggregate balances via EBICS, SWIFT or APIs (e.g. products such as Trovata, Agicap, Atlar, Embat, or banks'
+  own multibank portals), still often combined with an Excel workbook. Small companies use **bank portals** and a
+  spreadsheet. See [Systems & Data](/systems) for categories; vendor names here are examples, not endorsements.
+manual_work:
+  - Logging into portals for banks or countries whose statements don't arrive automatically.
+  - Typing "known flows" from emails and chats into the positioning sheet.
+  - Maintaining the account list (new accounts, closed accounts, changed account mapping) — errors here silently drop balances.
+  - Looking up transaction details to explain unexpected items, often requiring a call or email to the bank or subsidiary.
+  - Copying approved transfers from the spreadsheet into the bank portal or TMS (re-keying risk).
+  - Emailing the day's position to the treasurer/CFO.
+by_size:
+  startup: >-
+    No daily routine. The founder or CFO logs into the one or two bank portals weekly, or before approving payments,
+    and looks at the balance. The relevant questions are "can we make payroll on the 25th?" and "how many months of
+    runway?". The position is a number in a spreadsheet next to the burn rate.
+  sme: >-
+    The head of accounting or a senior accountant checks the portals daily or on payment days, keeps an Excel sheet by
+    bank and currency, and asks the CFO before moving large amounts or drawing the credit line. Subsidiary balances are
+    often seen with a delay, sometimes only at month-end. 20–40 minutes.
+  midmarket: >-
+    A daily routine owned by a small treasury team. Statements arrive via EBICS/SWIFT or a multibank tool; the position
+    is built in Excel or a light TMS by 09:00–10:00; transfers between entities are manual intercompany loans. Main pain:
+    missing statements from some countries, known flows communicated by email, key-person dependency.
+  multinational: >-
+    Largely automated: the TMS imports hundreds of statements, cash pools sweep automatically overnight, and the
+    [in-house bank](term:in-house-bank) position is updated. Analysts (often in a regional treasury centre or shared-service
+    centre) work by exception: missing statements, unexpected items, accounts outside pools, restricted-currency
+    countries, and funding needs that pools don't cover. Intraday monitoring for large flows. The judgment moves to
+    exceptions and to structural questions (which accounts should be in the pool?).
+companies:
+  kleio: "Sarah checks three portals each Monday and before payroll. Once the Series B money arrived she split it across two Swiss banks and put CHF 8m in 3-month deposits, which she tracks in the same sheet."
+  alpine: "Petra checks the portals daily at 08:00; on payment days (Tue/Fri) she makes sure the CHF account can cover the run. When the German subsidiary is short she asks Martin, who approves a transfer from the parent's EUR account."
+  helvetic: "The worked example above. Lea builds the position; Daniel decides. The Chinese statement arrives late, and CNY can't be swept, so China is monitored but excluded from concentration."
+  globalchem: "The TMS position is ready at 07:00 Basel time; the cash & liquidity team reviews ~15 exceptions a day, executes funding for accounts outside the pools, and checks the in-house bank's external position against counterparty limits. Asia-Pacific positioning is done earlier by the Singapore regional centre."
+handoffs:
+  - from: Banks
+    gives: prior-day statements (MT940 / camt.053) and intraday reports
+    to: Cash analyst
+  - from: Accounts payable
+    gives: released payment runs and amounts for today
+    to: Cash analyst
+  - from: Subsidiary finance
+    gives: "large local payments/receipts not in the system; explanations of unexpected items"
+    to: Cash analyst
+    note: Typically by email or chat — the least structured and least reliable input.
+  - from: Cash analyst
+    gives: position by account/entity/currency + proposed transfers, investments or drawings
+    to: Treasury manager
+  - from: Treasury manager
+    gives: approved transfers (four-eyes) and investment/borrowing decisions
+    to: Payment operations / bank
+  - from: Treasury manager
+    gives: escalation if the group is short, a facility must be drawn, or something looks like fraud
+    to: Head of treasury / CFO
+  - from: Cash analyst
+    gives: record of transfers and intercompany loans
+    to: Accounting
+    note: So intercompany balances and interest are booked correctly.
+interview: >-
+  Ask the person who *builds* the position (analyst, cash manager, or head of accounting at an SME) to walk you through
+  **this morning**: which screens they opened, in what order, what was missing, what they had to ask someone, what
+  they decided. Then ask the manager what they look at when the position reaches them, and what they would never let
+  a system do automatically. See [Who should I interview?](/org/interview-finder).
+ai_note: >-
+  Collecting balances and assembling the position is increasingly automated already. The residual human work is
+  explaining exceptions (which needs context from emails, subsidiaries and banks) and deciding transfers under
+  cut-off pressure. An assistant that drafts explanations and proposes transfers for approval is plausible; autonomous
+  execution of transfers faces a high trust and control bar.
+terms: [cash-position, value-date, bank-statement, mt940, iso-20022, cash-concentration, intercompany-loan, counterparty-limit, rtgs-note, cash-pooling, sweeping]
+related: [cash-forecasting, liquidity-planning, surplus-cash-investment, funding-subsidiary, bank-reconciliation]
+sources: [deloitte-gts-2024, six-sps-cash-mgmt, swift-iso-mt9xx]
+evidence_note: >-
+  The steps and failure modes are established practice described consistently in treasury training material and
+  vendor documentation. Timings, the worked example and company variants are illustrative synthesis. Survey evidence
+  that positioning is still immature at some companies: 22% of Deloitte's 2024 respondents said their cash-positioning
+  capability "requires development"[](cite:deloitte-gts-2024). On message formats: MT940/942 remain in use after the
+  November 2025 Swift milestone, which applied to interbank payment messages[](cite:swift-iso-mt9xx); Swiss banks
+  have set no end date for MT940/942[](cite:six-sps-cash-mgmt).

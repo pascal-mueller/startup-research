@@ -1,0 +1,94 @@
+# The four fictional reference companies used across the whole manual.
+# These are the canonical facts. Every page, workflow and persona must stay consistent with them.
+# Numbers are illustrative but chosen to be plausible for Swiss companies of each size (see companies/index.mdx).
+companies:
+  - id: kleio
+    name: Kleio Software AG
+    path: /companies/kleio
+    size: startup
+    tagline: 70-person Zurich B2B SaaS company, venture-funded, no finance team beyond the CFO and one accountant.
+    facts:
+      - { label: Employees, value: "~70 (62 CH, 8 US)" }
+      - { label: Revenue, value: "CHF ~12m recognised; ARR CHF 14m" }
+      - { label: Cash, value: "CHF ~22m (from a CHF 35m Series B, 18 months ago)" }
+      - { label: Net burn, value: "CHF ~0.9m / month" }
+      - { label: Entities, value: "2: Kleio Software AG (CH), Kleio Inc. (Delaware, US sales)" }
+      - { label: Currencies, value: "CHF (costs), USD (~40% of revenue, cloud & US payroll), EUR (~20% of revenue)" }
+      - { label: Banks, value: "2 Swiss banks + 1 US bank; 7 accounts" }
+      - { label: Debt, value: "None (a venture-debt offer is on the table)" }
+      - { label: Who does treasury, value: "Sarah, the CFO, ~10% of her time; the accountant prepares payments" }
+      - { label: Systems, value: "Cloud accounting (Bexio-class), Stripe + invoicing, bank e-banking portals, one Google Sheet" }
+    profile: >-
+      Kleio sells workflow software to mid-sized insurers. Enterprise customers pay annually in advance
+      (big January and July inflows), smaller customers pay monthly by card through Stripe. After the 2023 SVB
+      collapse the board asked Sarah to split the cash across more than one bank. "Treasury" here means runway,
+      making payroll, not leaving CHF 20m in a zero-interest current account, and not getting hurt by USD moves.
+
+  - id: alpine
+    name: Alpine Robotics AG
+    path: /companies/alpine
+    size: sme
+    tagline: CHF 80m Swiss maker of warehouse robots selling into Germany and the US. No dedicated treasurer.
+    facts:
+      - { label: Employees, value: "~320" }
+      - { label: Revenue, value: "CHF ~80m (CHF 35%, EUR 45%, USD 20%)" }
+      - { label: Cost base, value: "Mostly CHF (Swiss factory and engineers); EUR and USD component purchases" }
+      - { label: Entities, value: "3: Alpine Robotics AG (CH), Alpine Robotics GmbH (DE), Alpine Robotics Inc. (US)" }
+      - { label: Banks, value: "2 (a cantonal bank as house bank + a large Swiss bank for FX/USD); 9 accounts" }
+      - { label: Currencies, value: "CHF, EUR, USD" }
+      - { label: Cash, value: "CHF 6–12m, swinging with large project milestone payments" }
+      - { label: Debt, value: "CHF 12m committed operating credit line (usually CHF 0–5m drawn); CHF 6m mortgage on the plant" }
+      - { label: Who does treasury, value: "Martin (CFO) decides; Petra (Head of Accounting) runs payments, bank recs and the cash sheet" }
+      - { label: Systems, value: "Microsoft Dynamics 365 Business Central, bank e-banking portals, EBICS file upload, Excel" }
+    profile: >-
+      Alpine designs and builds autonomous picking robots in Winterthur and sells them in projects worth
+      CHF 0.5–4m, paid in milestones (deposit, delivery, acceptance). German and US subsidiaries sell and service.
+      Cash is lumpy: one delayed acceptance certificate can move the month by CHF 2m. Treasury is one of many
+      jobs for a finance team of seven; there is no TMS and no written hedging policy beyond a board minute.
+
+  - id: helvetic
+    name: Helvetic Machines Group
+    path: /companies/helvetic
+    size: midmarket
+    tagline: CHF 650m machine-tool group, 8 subsidiaries in 6 currencies, run by a 2-person central treasury.
+    facts:
+      - { label: Employees, value: "~2,600" }
+      - { label: Revenue, value: "CHF ~650m (EUR ~50%, USD ~20%, CNY ~12%, CHF ~10%, GBP/CZK rest)" }
+      - { label: Entities, value: "Parent Helvetic Machines AG (CH) + 8 subsidiaries: DE, IT, FR, UK, CZ, US, CN (production + sales), plus a small Swiss service company" }
+      - { label: Banks, value: "5 banks (2 Swiss, 1 German, 1 global bank for US/UK, 1 Chinese bank in China)" }
+      - { label: Bank accounts, value: "12 operating accounts after a 2024 rationalisation (from 31)" }
+      - { label: Currencies, value: "CHF, EUR, USD, GBP, CNY, CZK" }
+      - { label: Debt, value: "CHF 200m syndicated RCF (4 banks, ~CHF 60m drawn); CHF 100m bond due 2028" }
+      - { label: Covenants, value: "Net debt / EBITDA ≤ 3.25x; interest cover ≥ 4x (tested semi-annually)" }
+      - { label: Who does treasury, value: "Daniel (Treasury Manager) + Lea (Treasury Analyst), reporting to the CFO; local finance teams execute payments" }
+      - { label: Systems, value: "SAP S/4HANA (CH, DE, CZ); smaller ERPs in IT/FR/UK/US/CN; a multibank connectivity tool over EBICS/SWIFT; Excel; TMS project in evaluation" }
+    profile: >-
+      Helvetic builds CNC machining centres in Switzerland, Germany and the Czech Republic and sells worldwide
+      through its own subsidiaries. Treasury was centralised in 2021 when the group refinanced. Cash is
+      concentrated manually (Daniel moves money by intercompany loan), EUR revenues are hedged with rolling
+      forwards, and the Chinese subsidiary's cash is hard to repatriate quickly. The group is too big for
+      spreadsheets to be comfortable and too small for a large treasury department.
+
+  - id: globalchem
+    name: GlobalChem AG
+    path: /companies/globalchem
+    size: multinational
+    tagline: CHF 7bn Basel specialty-chemicals group with ~40 subsidiaries and a 25-person treasury department.
+    facts:
+      - { label: Employees, value: "~17,000" }
+      - { label: Revenue, value: "CHF ~7bn, sold in 90+ countries; ~30 currencies with material flows" }
+      - { label: Entities, value: "~40 operating subsidiaries (plus holding and dormant entities)" }
+      - { label: Banks, value: "~20 banks; 7 core relationship banks in the RCF" }
+      - { label: Bank accounts, value: "~280" }
+      - { label: Debt, value: "CHF/EUR bonds (~CHF 3bn outstanding), EUR 1.5bn syndicated RCF (undrawn backstop), EUR commercial paper programme" }
+      - { label: Rating, value: "BBB+ / Baa1 (investment grade)" }
+      - { label: Who does treasury, value: "Anna (Group Treasurer) + ~25 staff: corporate finance, cash & liquidity / in-house bank, financial risk (FX & rates), treasury operations, treasury systems" }
+      - { label: Structure, value: "In-house bank, EUR/USD physical cash pools, monthly multilateral netting, payment factory with payments-on-behalf-of (POBO) in Europe" }
+      - { label: Systems, value: "SAP S/4HANA with SAP treasury modules; SWIFT connectivity via a service bureau; FX trading platform; Bloomberg; separate forecasting tool" }
+    profile: >-
+      GlobalChem makes additives and coatings in 30 plants on four continents. Treasury is a mature, centralised
+      function: an in-house bank lends to and borrows from subsidiaries, most European payments leave through a
+      central payment factory, FX exposure is netted before hedging, and the balance sheet is managed to keep an
+      investment-grade rating. The hard problems are no longer "where is the cash" but forecast quality from 40
+      reporting units, restricted-currency countries, bank counterparty risk, and keeping controls tight across
+      hundreds of users.

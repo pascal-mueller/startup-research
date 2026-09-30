@@ -1,0 +1,120 @@
+# Sources for stream wf-pay (payments & banking workflows).
+- id: afp-pfc-2025
+  title: "Survey: 79 Percent of Organizations Were Victims of Attempted or Actual Payments Fraud Activity in 2024"
+  publisher: Association for Financial Professionals (AFP), survey underwritten by Truist
+  year: 2025
+  url: https://www.financialprofessionals.org/about/learn-more/press-releases/Details/survey-79-percent-of-organizations-were-victims-of-attempted-or-actual-payments-fraud-activity-in-2024
+  type: survey
+  note: "Press release for the 2025 AFP Payments Fraud and Control Survey (data for 2024), 521 corporate practitioners, mainly US, published 15 Apr 2025. 79% experienced attempted or actual payments fraud; 63% named BEC the No. 1 avenue for fraud attempts; wires the method most targeted by BEC (63%, up from 39%); ACH credits targeted by BEC 50%; vendor imposter fraud 45% (+11 pp); 22% recovered 75%+ of lost funds (down from 41%)."
+- id: afp-pfc-2026
+  title: "Over 75 Percent of U.S. Firms Experienced Payments Fraud in 2025, While AI Adoption for Fraud Mitigation Lags"
+  publisher: AFP, survey underwritten by Truist
+  year: 2026
+  url: https://www.financialprofessionals.org/about/learn-more/press-releases/Details/over-75-percent-of-us-firms-experienced-payments-fraud-in-2025-while-ai-adoption-for-fraud-mitigation-lags
+  type: survey
+  note: "Press release for the 2026 AFP Payments Fraud and Control Survey (data for 2025), 465 US treasury practitioners, published 14 Apr 2026. 76% experienced attempted or actual payments fraud; 74% affected by BEC; checks subject to fraud at 58%; 17% use AI against payments fraud; losses reported by 66% of organisations above USD 1bn revenue vs 48% below; treasury discovered attempted fraud in 83% of cases."
+- id: ecb-ipr
+  title: Instant Payments Regulation
+  publisher: European Central Bank
+  year: 2025
+  url: https://www.ecb.europa.eu/paym/retail/instant_payments/html/instant_payments_regulation.en.html
+  type: official
+  note: "EU Regulation 2024/886 timeline: euro-area PSPs must receive SCT Inst by 9 Jan 2025 and send by 9 Oct 2025; price parity with regular credit transfers from 9 Jan 2025; Verification of Payee from 9 Oct 2025 (non-euro EU states: Jan/Jul 2027). VoP returns match / close match / no match / other before the payer authorises. Sanctions checks via at-least-daily screening of the PSP's own customers."
+- id: kpmg-vop-2025
+  title: Verification of Payee (VoP) — Corporate Treasury News
+  publisher: KPMG Germany
+  year: 2025
+  url: https://kpmg.com/de/en/insights/corporate-governance-and-compliance/verification-of-payee.html
+  type: practitioner
+  note: "Explains VoP live since 9 Oct 2025 for euro SEPA credit transfers: name/IBAN check with match / close match / no match; corporates may opt out for bulk (collective) files, in which case the payer bears the liability VoP would have reduced."
+- id: six-instant-payments
+  title: Instant Payments (SIC IP)
+  publisher: SIX
+  year: 2025
+  url: https://www.six-group.com/en/products-services/banking-services/billing-and-payments/instant-payments.html
+  type: official
+  note: "SIC5 platform live 17 Nov 2023; larger banks must receive instant CHF payments from Aug 2024, remaining banks by end-2026; sending is voluntary for banks; credit in under ten seconds, 24/7/365; over 100 institutions representing >95% of customer payments able to receive as of Aug 2024."
+- id: six-qr-bill-end-slips
+  title: The Payment Slip Phaseout Period Ends on September 30, 2022
+  publisher: SIX
+  year: 2022
+  url: https://www.six-group.com/en/blog/qr-bill-standing-orders.html
+  type: official
+  note: "QR-bill launched 30 Jun 2020; red and orange inpayment slips withdrawn 30 Sep 2022, leaving QR-bill and eBill as the Swiss invoice-payment formats."
+- id: ubs-structured-addresses
+  title: Structured addresses (ISO 20022)
+  publisher: UBS Switzerland
+  year: 2026
+  url: https://ubs.com/ch/en/services/payments/connection-ubs/iso-20022/structured-addresses.html
+  type: vendor
+  note: "Bank client guidance: from 21 Nov 2025 only structured addresses (type S) in the Swiss QR code; unstructured QR-bills accepted in a transition period; options for structured/hybrid addresses in pain.001; notes Swift's postponement of the Nov 2026 address deadline."
+- id: postfinance-iso-updates
+  title: "ISO 20022 updates: important changes and what you need to do"
+  publisher: PostFinance
+  year: 2026
+  url: https://www.postfinance.ch/en/business/kampagnen/iso-updates.html
+  type: vendor
+  note: "Bank client guidance: QR-bills must contain structured addresses since Nov 2025, unstructured supported until Nov 2026; strongly recommends structured addresses in pain.001; 2019 message versions available since Nov 2022. Dates differ slightly between banks."
+- id: jpm-iso-2026
+  title: ISO 20022 migration — client resource center
+  publisher: J.P. Morgan
+  year: 2026
+  url: https://www.jpmorgan.com/solutions/treasury-payments/client-resource-center/iso-20022-migration
+  type: vendor
+  note: "States ISO 20022 became the exclusive cross-border (CBPR+) standard from Nov 2025; Swift delayed Standards Release 2026 and unstructured addresses may continue until at least Nov 2027; encourages clients to move to pain.001.001.09 with hybrid or structured addresses."
+- id: ubs-gpi-corporates
+  title: gpi for Corporates
+  publisher: UBS Switzerland
+  year: 2025
+  url: https://www.ubs.com/ch/en/services/corporates/international/payment-tracking/gpi-for-corporates.html
+  type: vendor
+  note: "Describes what Swift gpi gives a corporate: UETR on each payment, status updates through the correspondent chain, visibility of deducted charges and FX rates, integration into back-end systems."
+- id: nacha-ic3-2024
+  title: FBI's IC3 Finds Almost $8.5 Billion Lost to Business Email Compromise in Last Three Years
+  publisher: Nacha (summarising the FBI IC3 2024 Internet Crime Report)
+  year: 2025
+  url: https://www.nacha.org/news/fbis-ic3-finds-almost-85-billion-lost-business-email-compromise-last-three-years
+  type: official
+  note: "IC3 2024: BEC was the 7th most reported crime (21,442 complaints) but 2nd by losses (close to USD 2.8bn); ~USD 8.5bn BEC losses reported 2022–2024. US-reported complaints only."
+- id: nacha-fraud-monitoring-2026
+  title: "Risk Management Topics: Fraud Monitoring (Phase 2)"
+  publisher: Nacha
+  year: 2026
+  url: https://www.nacha.org/rules/risk-management-topics-fraud-monitoring-phase-2
+  type: official
+  note: "Nacha rule requiring risk-based processes to identify ACH entries that are unauthorised or authorised under 'False Pretenses' (BEC, vendor and payroll impersonation). Phase 1 from 20 Mar 2026 (ODFIs and large originators); Phase 2 from 19/22 Jun 2026 for all non-consumer originators. Annual review required."
+- id: bacs-ceo-fraud-2026
+  title: BACS warnt vor anhaltendem CEO-Betrug
+  publisher: Netzwoche (reporting the Swiss Federal Office for Cyber Security, BACS)
+  year: 2026
+  url: https://www.netzwoche.ch/news/2026-01-28/bacs-warnt-vor-anhaltendem-ceo-betrug
+  type: news
+  note: "28 Jan 2026. CEO-fraud reports to BACS rose from 719 (2024) to 971 (2025). BACS recommends collective signature / four-eyes for payments and master-data changes, verifying requests via a second channel using a known phone number, no exceptions to process for management instructions, and 'external' email banners. Mentions AI-generated voice messages and a multi-million-franc loss in canton Schwyz."
+- id: hsbc-camt086
+  title: Standardising billing data
+  publisher: HSBC
+  year: 2025
+  url: https://www.business.hsbc.com/en-gb/insights/standardising-billing-data
+  type: vendor
+  note: "25 Aug 2025. Explains ISO 20022 camt.086 (Bank Services Billing) for structured fee reporting, its relation to TWIST BSB and AFP Service Codes, and use for reconciling charges against agreed pricing."
+- id: afp-bank-fee-analysis
+  title: Making the Case for Bank Fee Analysis
+  publisher: AFP
+  year: 2022
+  url: https://www.financialprofessionals.org/training-resources/resources/articles/Details/making-the-case-for-bank-fee-analysis
+  type: practitioner
+  note: "AFP article (Jan 2022): AFP Service Codes since 1986; 2020 update the largest ever (only 32% of codes unchanged); recommends receiving EDI 822 in the US, verifying negotiated pricing is applied, treating banks as vendors."
+- id: tt-share-of-wallet
+  title: Share of wallet
+  publisher: Treasury Today
+  year: 2013
+  url: https://treasurytoday.com/banking/share-of-wallet/
+  type: practitioner
+  note: "Practitioner feature (older but still the standard framing): share-of-wallet calculations by product, 'underfed / on target / overfed' bank classification (Ahold example), the problem of estimating indirect fees."
+- id: encompass-kyc-2025
+  title: 2025 Encompass Corporate Treasurer KYC Survey
+  publisher: Encompass Corporation (KYC software vendor)
+  year: 2025
+  url: https://insights.encompasscorporation.com/2025-encompass-corporate-treasurer-kyc-survey
+  type: survey
+  note: "Vendor-sponsored survey of 250 corporate treasurers; geography and method not shown on the landing page. 84% dissatisfied with their bank's KYC process; 92% asked for the same information more than once. Treat as indicative."

@@ -1,0 +1,96 @@
+---
+title: How treasury changes as a company grows
+nav: How treasury grows
+order: 3
+summary: The treasury job is the same set of questions at every size. What changes is how many entities, banks, accounts and currencies there are, who does the work, and how much of it moves from someone's head and a spreadsheet into dedicated people and systems.
+related: [/start, /start/neighbours, /size, /companies, /org/structures]
+---
+
+## The same questions, very different machinery
+
+Whether the company has 30 or 50,000 employees, treasury answers the same questions: *How much cash do we have? How much will we have? Is it enough and in the right place? What risks are we running?* What changes with scale is:
+
+- **Number of legal entities** — each one has its own bank accounts, books, tax position and legal limits on moving cash.
+- **Number of banks and accounts** — from 1–2 banks to dozens of banks and hundreds of accounts.
+- **Number of currencies** — from one to thirty or more, including some that can't be freely moved.
+- **Volume and value of payments** — and therefore the fraud and error risk.
+- **Access to financing** — from founder equity and a bank overdraft to bond markets and credit ratings.
+- **Who does the work** — from the founder at night to specialised teams in several countries.
+
+<Callout type="synthesis" title="Ranges, not rules">
+
+The tiers below are this manual's synthesis of survey data and typical practice. Real companies vary widely: a 300-person commodity trader can have a more sophisticated treasury than a 3,000-person domestic retailer. Industry, number of countries, and whether the company has debt matter as much as headcount.
+
+</Callout>
+
+## Four snapshots
+
+### 1. A 30-person startup
+
+A venture-funded software company with one legal entity, one or two bank accounts, maybe a USD account for US customers and cloud bills.
+
+- **Who does treasury:** the founder/CEO, or a part-time CFO; bookkeeping often by an external fiduciary (in Switzerland, a *Treuhänder*).
+- **What treasury means here:** runway ("how many months until we run out?"), making payroll, paying suppliers, and — after raising a round — not leaving CHF 10m sitting in one current account at one bank.
+- **Systems:** e-banking portal, accounting software, a spreadsheet.
+- **Typical decisions:** how much to move into a term deposit or money market fund; whether to open an account at a second bank; when to start fundraising.
+- **Typical failure:** runway calculated from the P&L rather than cash; concentration at one bank. The March 2023 collapse of Silicon Valley Bank was a sharp lesson for startups that kept all their cash with one institution.
+
+### 2. A 300-person international SME
+
+Like [Alpine Robotics](co:alpine): CHF 50–150m revenue, a parent and two or three foreign subsidiaries, two or three banks, around 10 accounts, 2–4 currencies.
+
+- **Who does treasury:** the CFO decides; the head of accounting or a senior accountant does the daily work alongside month-end close, AP and tax.
+- **What treasury means here:** a weekly cash sheet, funding the subsidiaries, keeping the credit line available, deciding whether to hedge big foreign-currency orders, approving payments, handling bank relationships personally.
+- **Systems:** ERP (e.g. Microsoft Dynamics, Abacus, SAP Business One), e-banking portals with file upload (often [EBICS](term:ebics) in Switzerland/Germany), Excel. Usually no [TMS](term:tms).
+- **Typical failure:** the weekly forecast lives in one person's spreadsheet; FX is hedged ad hoc when the CFO remembers; signatory lists are out of date.
+
+### 3. A 3,000-person mid-market group
+
+Like [Helvetic Machines](co:helvetic): CHF 300m–2bn revenue, 5–20 subsidiaries in several countries, 4–10 banks, dozens of accounts (Helvetic cut its from 31 to 12), 5–10 currencies, a syndicated credit facility with covenants and perhaps a bond.
+
+- **Who does treasury:** a small central team — typically one to five people (a treasury manager or head of treasury plus analysts) reporting to the CFO. Local finance teams in subsidiaries still run their own payments and supply forecast data.
+- **What treasury means here:** a real daily cash position across entities, a 13-week forecast collected from subsidiaries, a hedging programme under a written policy, cash concentration via [intercompany loans](term:intercompany-loan) or a [cash pool](term:cash-pooling), covenant reporting to banks.
+- **Systems:** ERP (often several different ones after acquisitions), a multibank connectivity tool or a lighter cloud TMS, Excel still everywhere.
+- **Typical failure:** subsidiary forecasts arrive late or are copied from last month; different ERPs mean no single source of truth; the two-person team has no backup when someone is on holiday.
+
+<Callout type="survey">
+
+The AFP's 2025 benchmarking survey found that US companies with under USD 1bn revenue typically have 1–3 treasury staff; the average treasury department across all respondents had nearly 12 full-time staff[](cite:afp-bench-2025-article). Its 2026 edition found 46% of organisations have treasury teams of fewer than five people[](cite:afp-bench-2026). These are US samples of companies that have a treasury function — firms with no treasury staff at all are largely absent.
+
+</Callout>
+
+### 4. A 50,000-person multinational
+
+Revenue in the tens of billions, hundreds of legal entities, 50+ countries, dozens of banks, hundreds or thousands of accounts, 30+ currencies, bonds in several markets, a credit rating, a commercial paper programme. ([GlobalChem](co:globalchem), at CHF 7bn and ~17,000 staff, is a smaller version of this tier.)
+
+- **Who does treasury:** a Group Treasurer with specialised teams — cash & liquidity, FX and interest-rate risk, funding/capital markets, treasury operations (back office), treasury systems — often with regional treasury centres (e.g. Singapore, Miami, Dublin) and a payment factory or shared-service centre. Headcount is typically dozens of people; including operations staff in shared services, it can be well over a hundred (field observation, not a survey figure).
+- **What treasury means here:** an [in-house bank](term:in-house-bank), automated cash pools and [netting](term:netting), a central payment factory, systematic hedging programmes, capital-markets issuance, rating-agency relationships, and heavy control and audit requirements.
+- **Systems:** ERP (often SAP) plus a full TMS, [SWIFT](term:swift) connectivity, trading platforms, market data (Bloomberg/Refinitiv), dedicated forecasting and bank-account-management tools.
+- **Typical problems:** forecast quality from dozens of reporting units; restricted-currency countries and [trapped cash](term:trapped-cash); keeping thousands of bank-user rights and signatories under control; integrating acquisitions; system change programmes that take years.
+
+<Callout type="survey">
+
+PwC's 2025 survey reports that among organisations with more than USD 10bn revenue, 67% run an in-house bank, 60% a payment factory and 50% a payments-on-behalf-of model[](cite:pwc-gts-2025). These structures are rare below the large-multinational tier.
+
+</Callout>
+
+## Side by side
+
+<CompanyCompare topic="who-does-treasury" />
+
+## What changes, in one table
+
+| Dimension | Startup | SME | Mid-market | Multinational |
+|---|---|---|---|---|
+| People doing treasury | Founder / part-time CFO | CFO + accountant, part-time | 1–5 dedicated | Dozens, specialised, multi-location |
+| Legal entities | 1–2 | 2–5 | 5–30 | 100+ |
+| Banks | 1–3 | 2–4 | 4–10 | 15–50+ |
+| Bank accounts | 2–8 | 5–20 | 15–100 | Hundreds to thousands |
+| Currencies | 1–3 | 2–4 | 4–10 | 20–60 |
+| Cash visibility | Log in to portals | Portals + spreadsheet, weekly | Daily, via files/connectivity tool | Automated daily + intraday |
+| Forecast | Runway model | Weekly cash sheet | 13-week + monthly, from subsidiaries | Multi-horizon, many units, dedicated tool |
+| FX management | Convert when needed | Ad hoc forwards | Policy-based hedging programme | Netting + systematic programmes, options |
+| Funding | Equity, maybe venture debt | Bank credit line, mortgage | Syndicated RCF, maybe a bond | Bonds, CP, RCF backstop, rating |
+| Systems | Portal + accounting app | ERP + portals + Excel | ERP(s) + connectivity/light TMS + Excel | ERP + full TMS + SWIFT + trading platforms |
+
+(Ranges are indicative; see [Treasury by Size](/size) for detail and caveats.)

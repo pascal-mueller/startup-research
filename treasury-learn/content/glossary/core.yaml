@@ -1,0 +1,545 @@
+# Core glossary. Fields: id, term, aka, category, plain, professional, example, related, confusedWith (optional).
+# Categories: Cash & liquidity | Forecasting | Payments | Banking & connectivity | FX | Debt & funding | Investments | Working capital | Risk & control | Systems | Organisation
+
+- id: cash-position
+  term: Cash position
+  aka: [cash positioning, daily cash position]
+  category: Cash & liquidity
+  plain: How much money the company actually has available in its bank accounts today, after taking into account what will still go in and out today.
+  professional: The consolidated view, usually by account, entity and currency, of opening cleared balances plus same-day expected receipts and payments (known value-dated flows), used to determine the day's funding need or surplus and to make funding, sweeping and investment decisions before bank cut-off times.
+  example: "Helvetic's EUR account at its German bank opened at EUR 3.1m. Today EUR 2.4m of supplier payments and a EUR 0.8m intercompany repayment go out; EUR 0.5m of customer receipts are value-dated today. The projected closing position is EUR 0.4m — above the EUR 0.25m minimum Daniel keeps, so no top-up is needed."
+  related: [value-date, bank-statement, cash-concentration, liquidity, mt940]
+  confusedWith: "**Book (ledger) balance in the ERP.** The accounting cash balance includes items not yet cleared at the bank and uses posting dates; the treasury cash position uses bank balances and value dates."
+
+- id: liquidity
+  term: Liquidity
+  category: Cash & liquidity
+  plain: Having cash — or being able to get cash quickly — when bills are due.
+  professional: The ability of a company to meet its payment obligations as they fall due, from cash on hand, liquid investments that can be sold at short notice without material loss, and committed undrawn credit facilities. Treasurers often express it as "liquidity headroom" = cash + undrawn committed facilities − minimum operating cash.
+  example: "GlobalChem reports CHF 900m of cash plus an undrawn EUR 1.5bn committed RCF. Its liquidity is therefore roughly CHF 2.3bn, even though only CHF 900m sits in bank accounts."
+  related: [cash-position, rcf, liquidity-headroom, working-capital]
+  confusedWith: "**Profitability / solvency.** A profitable company can run out of cash (e.g. growing fast with slow-paying customers); solvency is about assets exceeding liabilities over the long run, liquidity is about paying on time."
+
+- id: liquidity-headroom
+  term: Liquidity headroom
+  aka: [headroom]
+  category: Cash & liquidity
+  plain: The buffer between what you have access to and what you need.
+  professional: Available liquidity (cash plus undrawn committed facilities, sometimes minus trapped or minimum operating cash) less forecast needs over a period; often tested against a board-approved minimum and under stress scenarios.
+  example: "Alpine's board requires at least CHF 5m of headroom at all times. With CHF 7m cash, CHF 3m of it needed as operating float, and CHF 9m undrawn on its CHF 12m line, headroom is CHF 13m."
+  related: [liquidity, rcf, covenant, trapped-cash]
+
+- id: working-capital
+  term: Working capital
+  aka: [net working capital, NWC]
+  category: Working capital
+  plain: The money tied up in running the business day to day — stock on the shelves and money customers still owe, minus what you still owe suppliers.
+  professional: "Operationally defined as trade receivables + inventory − trade payables (trade working capital); accounting definition is current assets − current liabilities. Changes in working capital are a major driver of the difference between profit and operating cash flow."
+  example: "Alpine grows revenue 20%. Receivables rise by CHF 3m and inventory by CHF 2m while payables rise CHF 1m: CHF 4m of cash is absorbed, even though the company is more profitable."
+  related: [dso, dpo, cash-conversion-cycle]
+
+- id: dso
+  term: DSO (days sales outstanding)
+  aka: [DSO]
+  category: Working capital
+  plain: On average, how many days customers take to pay you.
+  professional: "Trade receivables ÷ revenue × days in the period (e.g. 365). A backward-looking average that is distorted by seasonality and large one-off invoices; many companies track 'best possible DSO' or overdue ageing alongside it."
+  example: "Helvetic has CHF 160m of receivables on CHF 650m annual revenue: 160 / 650 × 365 ≈ 90 days DSO — typical of capital equipment sold on 60–90-day terms with some overdue."
+  related: [dpo, cash-conversion-cycle, working-capital]
+
+- id: dpo
+  term: DPO (days payables outstanding)
+  aka: [DPO]
+  category: Working capital
+  plain: On average, how many days you take to pay your suppliers.
+  professional: Trade payables ÷ cost of goods sold (or purchases) × days in the period. Higher DPO keeps cash in the business longer but can hurt supplier relationships or breach payment-practice laws (e.g. EU Late Payment Directive limits).
+  example: "Helvetic pays most suppliers on 60-day terms; trade payables of CHF 70m against CHF 420m cost of goods sold gives a DPO of about 61 days."
+  related: [dso, cash-conversion-cycle, supply-chain-finance]
+
+- id: cash-conversion-cycle
+  term: Cash conversion cycle
+  aka: [CCC, cash-to-cash cycle]
+  category: Working capital
+  plain: How many days pass between paying for materials and getting paid by customers.
+  professional: "CCC = DSO + DIO (days inventory outstanding) − DPO. It measures how long each franc is tied up in operations; reducing it releases cash."
+  example: "Helvetic: DSO 90 + DIO 120 − DPO 61 ≈ 149 days. Cutting DSO by 10 days would release roughly CHF 18m (650m ÷ 365 × 10)."
+  related: [dso, dpo, working-capital]
+
+- id: cash-pooling
+  term: Cash pooling
+  category: Cash & liquidity
+  plain: Combining the cash of several group companies (or accounts) so surpluses in one can cover deficits in another, instead of each borrowing and investing separately.
+  professional: "A bank-provided structure that concentrates or offsets balances of multiple accounts, usually belonging to different legal entities, around a header/master account. The two main forms are physical pooling (zero- or target-balancing sweeps that actually move money and create intercompany loans) and notional pooling (balances are offset for interest calculation without moving money). Legal, tax (transfer pricing, thin capitalisation) and regulatory constraints differ by country."
+  example: "GlobalChem's EUR pool sweeps every European subsidiary's account to zero each evening into the in-house bank's master account; the next morning each subsidiary has an intercompany receivable or payable with the in-house bank."
+  related: [physical-pooling, notional-pooling, sweeping, cash-concentration, in-house-bank, intercompany-loan]
+
+- id: physical-pooling
+  term: Physical pooling
+  aka: [zero-balancing, ZBA, target balancing]
+  category: Cash & liquidity
+  plain: The bank automatically moves money every day from subsidiary accounts into one central account (and back if they are short).
+  professional: "Automatic end-of-day (or intraday) sweeps between participant accounts and a header account, either to zero (zero-balancing) or to a target balance. Each sweep creates an intercompany position that must be recorded, charged interest at arm's length, and reconciled."
+  example: "Helvetic's German subsidiary ends the day with EUR 1.2m; the zero-balancing sweep moves it to the parent's EUR header account. Helvetic AG now owes HM Deutschland EUR 1.2m intercompany."
+  related: [cash-pooling, notional-pooling, sweeping, intercompany-loan]
+  confusedWith: "**Notional pooling** — no money moves; only interest is calculated on the net."
+
+- id: notional-pooling
+  term: Notional pooling
+  category: Cash & liquidity
+  plain: The bank pretends the accounts are one account for calculating interest, without actually moving money.
+  professional: "The bank offsets debit and credit balances of participating accounts (possibly multi-currency and multi-entity) for interest purposes. It requires cross-guarantees and is costly for banks under Basel III balance-sheet rules, so availability has shrunk and it is now used mainly by large corporates with strong credit; it is not permitted in some jurisdictions."
+  example: "A GlobalChem subsidiary in Sweden is overdrawn SEK 20m and another is in credit by an equivalent amount in the same notional pool: the bank charges/pays interest on the net, near zero."
+  related: [cash-pooling, physical-pooling]
+
+- id: sweeping
+  term: Sweeping
+  aka: [cash sweep]
+  category: Cash & liquidity
+  plain: Automatically moving balances between accounts according to a rule.
+  professional: "Standing instructions for a bank to transfer funds between accounts at set times (end of day, intraday), to zero, to a target balance or above a threshold. Sweeps are the mechanism behind physical pooling and cash concentration."
+  example: "Every evening Alpine's bank sweeps anything above CHF 500k from the German subsidiary's EUR account to the Swiss parent's EUR account — a simple sweep, not a full cash pool."
+  related: [physical-pooling, cash-concentration]
+  confusedWith: "**Cash sweep in a loan agreement** — a clause that forces excess cash to be used to repay debt."
+
+- id: cash-concentration
+  term: Cash concentration
+  category: Cash & liquidity
+  plain: Gathering cash from many accounts into a few central ones so it can be seen and used.
+  professional: "The process — manual transfers, scheduled sweeps or physical pooling — of moving surplus balances from operating/collection accounts to concentration accounts controlled by treasury, to reduce idle cash, external borrowing and counterparty exposure."
+  example: "Before its cash pool, Helvetic's Daniel concentrated cash manually: every Thursday he instructed transfers from the Italian and French subsidiaries to the parent, documenting each as an intercompany loan."
+  related: [cash-pooling, sweeping, intercompany-loan, in-house-bank]
+
+- id: intercompany-loan
+  term: Intercompany loan
+  aka: [IC loan]
+  category: Cash & liquidity
+  plain: A loan from one company in the group to another.
+  professional: "A loan between legal entities under common control, documented with an agreement and priced at arm's length (transfer pricing). Used to fund subsidiaries or upstream surplus cash. Subject to tax rules (withholding tax on interest, thin capitalisation, Swiss safe-harbour interest rates published by the Federal Tax Administration), and eliminated in consolidation."
+  example: "Helvetic AG lends USD 5m for 12 months to Helvetic Machines Inc. to fund a US service centre at SOFR + 2%, supported by a signed loan agreement and a transfer-pricing benchmark."
+  related: [cash-pooling, in-house-bank, trapped-cash, netting]
+
+- id: trapped-cash
+  term: Trapped cash
+  category: Cash & liquidity
+  plain: Cash the group owns but cannot easily move to where it is needed.
+  professional: "Cash in a subsidiary that cannot be upstreamed or used elsewhere without significant cost, delay or legal risk — because of capital/FX controls, dividend restrictions (retained earnings, statutory reserves), withholding taxes, or local regulatory requirements. Typically excluded or haircut in group liquidity headroom."
+  example: "Helvetic's Chinese subsidiary holds CNY 60m. It can pay a dividend only once a year after the statutory audit and after allocating to statutory reserves, and the service-fee route needs documentation — so Daniel treats most of it as unavailable for group liquidity."
+  related: [liquidity-headroom, intercompany-loan, cash-pooling]
+
+- id: in-house-bank
+  term: In-house bank
+  aka: [IHB]
+  category: Cash & liquidity
+  plain: A central group company that acts like a bank for the rest of the group — holding their cash, lending to them, and making payments for them.
+  professional: "A treasury entity (or SAP module) that keeps intercompany current accounts for subsidiaries, provides internal funding and deposits, centralises external bank relationships, and often runs payments-on-behalf-of (POBO) and collections-on-behalf-of (COBO). Reduces external bank accounts and FX trades; requires strong legal, tax and accounting set-up."
+  example: "GlobalChem's in-house bank in Basel holds internal accounts for 35 subsidiaries. When the French subsidiary pays a German supplier, the IHB pays from its own EUR account and debits the French company's internal account."
+  related: [cash-pooling, netting, payment-factory, pobo, intercompany-loan]
+
+- id: netting
+  term: Netting
+  aka: [multilateral netting, intercompany netting]
+  category: Cash & liquidity
+  plain: Instead of every group company paying every other one separately, add up who owes whom and settle only the net amounts.
+  professional: "Periodic (typically monthly) offsetting of intercompany payables and receivables through a netting centre. Each participant pays or receives one net amount, in its own currency, reducing the number of payments, FX conversions and bank charges. Local regulations can restrict participation."
+  example: "In one month GlobalChem's subsidiaries have 1,200 intercompany invoices worth CHF 900m gross. After netting, 38 payments worth CHF 140m settle, and FX conversions fall accordingly."
+  related: [in-house-bank, intercompany-loan, fx-exposure]
+
+- id: value-date
+  term: Value date
+  category: Payments
+  plain: The date from which money in an account actually counts — when you can use it and interest starts or stops.
+  professional: "The date on which a credit or debit becomes effective for balance and interest purposes. It can differ from the booking/posting date (when the entry appears on the statement) and from the transaction/trade date. Treasury positions and forecasts are built on value dates."
+  example: "A customer's EUR 500k SEPA credit transfer is booked on Monday evening but value-dated Tuesday. Monday's cash position must not count it."
+  related: [settlement, cash-position, bank-statement]
+  confusedWith: "**Booking date** (when the bank records the entry) and **invoice due date** (a commercial promise, not a bank event)."
+
+- id: settlement
+  term: Settlement
+  category: Payments
+  plain: The moment a transaction is actually completed — the money (and, for trades, the asset) really changes hands.
+  professional: "Final, irrevocable transfer of funds (and securities or currencies) discharging the obligation. For FX, settlement is typically T+2 for spot in most pairs (T+1 for USD/CAD, among others); payment systems settle in real time (RTGS, instant) or in batches."
+  example: "Helvetic sells EUR 2m for CHF spot on Monday; both legs settle on Wednesday (T+2). Until then there is settlement risk that one side pays and the other does not."
+  related: [value-date, spot-fx, counterparty]
+
+- id: counterparty
+  term: Counterparty
+  category: Risk & control
+  plain: The other side of a deal — the bank you deposit with, trade FX with, or borrow from.
+  professional: "Any party to a financial contract with the company. Counterparty risk is the risk that it fails to perform (e.g. a bank failure trapping deposits, or a hedge bank defaulting on a forward in the money). Managed with limits, ratings, diversification and collateral (CSAs)."
+  example: "GlobalChem has EUR 120m of deposits and EUR 40m positive mark-to-market on FX forwards with one bank; its total exposure to that counterparty is EUR 160m."
+  related: [counterparty-limit, settlement, investment-policy]
+
+- id: counterparty-limit
+  term: Counterparty limit
+  category: Risk & control
+  plain: The maximum amount you are allowed to have at risk with any single bank or fund.
+  professional: "A policy-defined cap on exposure (deposits, investments, derivative MTM, sometimes undrawn credit) to one counterparty, usually tiered by credit rating and sometimes by CDS spread or bank size. Breaches are monitored daily and reported."
+  example: "Helvetic's policy allows at most CHF 30m with an A-rated bank and CHF 15m with a BBB-rated bank; after a large customer payment lands at the BBB bank, Daniel must move CHF 8m out the same day."
+  related: [counterparty, treasury-policy, investment-policy, money-market-fund]
+
+- id: fx-exposure
+  term: FX exposure
+  aka: [currency exposure]
+  category: FX
+  plain: How much you stand to gain or lose if exchange rates move.
+  professional: "The sensitivity of cash flows, earnings or balance-sheet values to exchange-rate changes. Usually split into transaction exposure (committed or forecast foreign-currency cash flows), translation exposure (restating foreign subsidiaries' results and net assets into the reporting currency) and economic exposure (long-run competitive impact)."
+  example: "Alpine expects EUR 3m of receipts over the next 6 months and has almost all costs in CHF. A 5% EUR fall against CHF costs about CHF 140k at EUR/CHF 0.94."
+  related: [transaction-exposure, translation-exposure, hedge-ratio, natural-hedge, forward]
+
+- id: transaction-exposure
+  term: Transaction exposure
+  category: FX
+  plain: Risk on specific foreign-currency payments you will make or receive.
+  professional: "Exposure from contracted (balance-sheet) or forecast foreign-currency cash flows — invoices, orders, budgets. It affects cash and profit and is the most commonly hedged exposure."
+  example: "Helvetic signs a USD 4m machine order for delivery in 5 months — a firm-commitment transaction exposure."
+  related: [fx-exposure, translation-exposure, forward]
+
+- id: translation-exposure
+  term: Translation exposure
+  category: FX
+  plain: Changes in reported numbers when foreign subsidiaries' results are converted into the group's currency — even if no money moves.
+  professional: "Arises when the financial statements of foreign operations are translated into the group's presentation currency (IAS 21). P&L translation affects reported earnings; net-investment translation goes to other comprehensive income (the currency translation reserve). Hedged selectively (e.g. net investment hedges), because it is largely non-cash."
+  example: "GlobalChem's US subsidiary earns USD 200m. If the average USD/CHF rate falls from 0.85 to 0.78, reported group profit drops about CHF 14m from translation alone."
+  related: [fx-exposure, transaction-exposure]
+
+- id: spot-fx
+  term: Spot FX
+  aka: [spot]
+  category: FX
+  plain: Buying or selling a currency now, at today's rate, for delivery in about two business days.
+  professional: "An FX transaction at the current market rate for standard settlement (T+2 for most pairs, T+1 for USD/CAD and some others). Companies execute spot to convert receipts or fund payments, via bank portals, phone, or multi-bank platforms (e.g. 360T, FXall, Bloomberg FXGO)."
+  example: "Helvetic's analyst converts EUR 1m to CHF at 0.9412 spot on Tuesday; CHF 941,200 arrives Thursday."
+  related: [forward, swap, settlement]
+
+- id: forward
+  term: FX forward
+  aka: [forward contract, outright forward]
+  category: FX
+  plain: A contract that locks today an exchange rate for a future date.
+  professional: "An OTC agreement to exchange two currencies at a fixed rate on a future date. The forward rate = spot adjusted by the interest-rate differential (forward points), not a forecast of future spot. Obligatory on both sides; gains or losses are marked to market and may qualify for hedge accounting (IFRS 9)."
+  example: "Alpine sells EUR 2m 90 days forward. Spot EUR/CHF is 0.9400 and CHF rates are lower than EUR rates, so the forward is quoted slightly lower, around 0.9355. Alpine will receive about CHF 1.871m in 90 days regardless of where the euro trades."
+  related: [spot-fx, swap, option, hedge-ratio]
+  confusedWith: "**Forecast rate.** A forward is priced from interest differentials, not from anyone's view on where the rate will go."
+
+- id: swap
+  term: FX swap
+  aka: [currency swap, FX swap]
+  category: FX
+  plain: Exchanging currencies now and swapping them back later at an agreed rate — like borrowing one currency against another.
+  professional: "A simultaneous spot (or near-date) and forward transaction in opposite directions. Used to fund subsidiaries in another currency, roll hedges, or manage liquidity across currencies without taking FX risk. Distinct from a cross-currency swap (long-dated exchange of principal and interest) and an interest-rate swap (fixed vs floating interest in one currency)."
+  example: "GlobalChem has surplus CHF and needs USD for a month: it buys USD 50m spot and sells USD 50m one month forward — effectively borrowing USD against CHF."
+  related: [forward, spot-fx, interest-rate-swap]
+  confusedWith: "**Interest-rate swap** and **cross-currency swap** — different instruments, same word."
+
+- id: option
+  term: FX option
+  aka: [currency option]
+  category: FX
+  plain: A right, but not an obligation, to exchange currency at a set rate — like insurance you pay a premium for.
+  professional: "Gives the buyer the right to buy (call) or sell (put) a currency at a strike rate on/until expiry, for an upfront premium. Protects against adverse moves while keeping upside; used for uncertain exposures (tenders, forecasts). Zero-premium structures (collars) sell away upside to fund protection."
+  example: "Alpine bids on a USD 3m project; award in 3 months is uncertain. It buys a USD put / CHF call struck at 0.79 for a premium of roughly 1–2% of the notional: if it loses the bid, it only loses the premium."
+  related: [forward, hedge-ratio, fx-exposure]
+
+- id: hedge-ratio
+  term: Hedge ratio
+  category: FX
+  plain: What percentage of a risk you have protected.
+  professional: "Hedged amount ÷ exposure. Treasury policies typically set minimum/maximum ratios by horizon (layering), e.g. 70–90% of next-quarter forecast flows, 30–60% of flows 7–12 months out, reflecting forecast uncertainty."
+  example: "Helvetic forecasts EUR 40m net receipts next quarter and has EUR 30m of forwards: hedge ratio 75%, inside its 60–90% band."
+  related: [fx-exposure, forward, treasury-policy]
+
+- id: natural-hedge
+  term: Natural hedge
+  category: FX
+  plain: Reducing currency risk by having costs and revenues in the same currency, instead of using financial contracts.
+  professional: "Offsetting exposures within the business — matching currency of revenues and costs, borrowing in the currency of assets, or locating production near markets — so that net exposure is smaller."
+  example: "Alpine buys EUR 12m of components from German suppliers a year; that offsets part of its EUR 36m sales, so only ~EUR 24m of net EUR exposure needs attention."
+  related: [fx-exposure, hedge-ratio]
+
+- id: dso-link-placeholder
+  term: Days inventory outstanding (DIO)
+  aka: [DIO, inventory days]
+  category: Working capital
+  plain: How many days, on average, goods sit in stock before being sold.
+  professional: Inventory ÷ cost of goods sold × days in period. Part of the cash conversion cycle.
+  example: "Helvetic's inventory of CHF 138m against CHF 420m COGS ≈ 120 days — high, because machines are built to order and spare parts are stocked for 15 years."
+  related: [cash-conversion-cycle, dso, dpo]
+
+- id: tms
+  term: TMS (treasury management system)
+  aka: [TMS, treasury management system]
+  category: Systems
+  plain: Specialised software that treasury uses to see bank balances, forecast cash, manage debt, investments and hedges, and send payments.
+  professional: "A system of record and workflow tool for treasury: bank connectivity and statement import, cash positioning, forecasting, deal capture and valuation (FX, money market, debt, derivatives), in-house banking, payments, bank account management, and accounting postings to the ERP. Deployed as SaaS (e.g. Kyriba, GTreasury, FIS, ION products) or within the ERP (e.g. SAP treasury modules)."
+  example: "GlobalChem's TMS imports ~280 bank statements every morning, builds the cash position, holds 1,500 live FX forwards, and posts hedge accounting entries to SAP."
+  related: [erp, api-banking, swift, host-to-host]
+  confusedWith: "**ERP.** The ERP is the accounting system of record for invoices and the general ledger; the TMS manages bank-side cash, deals and risk. They exchange data but are not the same system."
+
+- id: erp
+  term: ERP
+  aka: [enterprise resource planning]
+  category: Systems
+  plain: The company's main business and accounting system — where invoices, orders, payments due and the books live.
+  professional: "Integrated system covering general ledger, accounts payable/receivable, procurement, sales, inventory and often payroll (e.g. SAP S/4HANA, Oracle, Microsoft Dynamics 365, Infor, Sage, Abacus). For treasury it is the source of AP/AR due dates, the origin of payment runs, and the destination for bank-statement postings."
+  example: "Alpine's AP clerk runs the weekly payment proposal in Dynamics 365 Business Central; the system produces a pain.001 file that Petra uploads to the bank."
+  related: [tms, reconciliation, payment-run]
+
+- id: swift
+  term: SWIFT
+  aka: [Swift]
+  category: Banking & connectivity
+  plain: The global secure messaging network banks (and large companies) use to send payment instructions and statements.
+  professional: "Member-owned cooperative network connecting 11,000+ institutions. Corporates join directly (SCORE, via their own infrastructure or a service bureau / Alliance Lite2) to use one channel with many banks for payments (MT101 / pain.001) and statements (MT940/942, camt.053/052). It carries messages; it does not move money itself."
+  example: "GlobalChem connects to Swift via a service bureau; all 20 banks send camt.053 statements over it, so the TMS has one channel to maintain instead of 20."
+  related: [ebics, host-to-host, api-banking, mt940, iso-20022]
+  confusedWith: "**A payment system.** Swift carries instructions; settlement happens in payment systems/correspondent accounts."
+
+- id: ebics
+  term: EBICS
+  aka: [Electronic Banking Internet Communication Standard]
+  category: Banking & connectivity
+  plain: A standard secure file-exchange channel between companies and banks, widely used in Germany, France, Switzerland and Austria.
+  professional: "A multi-bank protocol for exchanging payment files and statements (pain.001, camt.053 etc.) with electronic signatures (including distributed signatures for approvals). Cheaper than Swift for companies banking mainly in the DACH/France region. EBICS 3.0 aligned the German, French and Swiss variants."
+  example: "Alpine's ERP-connected banking tool sends payment files to both Swiss banks over EBICS; Martin signs larger batches with his EBICS key from his phone."
+  related: [swift, host-to-host, api-banking, iso-20022]
+
+- id: api-banking
+  term: API banking
+  aka: [bank APIs]
+  category: Banking & connectivity
+  plain: Connecting to the bank through modern software interfaces that can be queried in real time, instead of exchanging files.
+  professional: "REST/JSON (or ISO 20022 over API) interfaces for real-time balances, transaction details, payment initiation and status tracking. Coverage and standards vary widely by bank and country; often complements rather than replaces file channels (Swift, EBICS, H2H), especially for statements and bulk payments."
+  example: "Kleio's US bank offers an API; a modern cash-visibility tool pulls intraday balances every hour, while the Swiss banks are still connected through daily statement files."
+  related: [host-to-host, swift, ebics, tms]
+
+- id: host-to-host
+  term: Host-to-host
+  aka: [H2H, direct connection]
+  category: Banking & connectivity
+  plain: A direct, dedicated file connection between the company's systems and one bank.
+  professional: "A proprietary, bank-specific secure connection (e.g. SFTP with PGP) for bulk payment files and statements. Powerful for high volumes but each connection is built and maintained separately."
+  example: "GlobalChem's US payroll bank connects host-to-host because it processes 8,000 payments a run."
+  related: [swift, ebics, api-banking]
+
+- id: bank-statement
+  term: Bank statement
+  aka: [account statement, prior-day report, intraday report]
+  category: Banking & connectivity
+  plain: The bank's record of an account's balances and each money movement.
+  professional: "Electronic bank reports come as end-of-day/prior-day statements (MT940, camt.053, BAI2 in the US) and intraday reports (MT942, camt.052), plus debit/credit notifications (camt.054). They carry opening/closing booked balances, value dates and remittance information used for positioning and reconciliation."
+  example: "At 06:30 Helvetic's connectivity tool has received 12 prior-day statements; one is missing because the Chinese bank sends it at 10:00 Swiss time."
+  related: [mt940, iso-20022, reconciliation, cash-position]
+
+- id: mt940
+  term: MT940
+  aka: [MT942]
+  category: Banking & connectivity
+  plain: The long-standing Swift format for end-of-day bank statements (MT942 is the intraday version).
+  professional: "Swift category-9 message for customer statements; widely used also outside Swift (e.g. via EBICS). Being replaced by ISO 20022 camt.053 (statement) and camt.052 (intraday). The November 2025 end of Swift MT/MX coexistence applied to cross-border payment instructions between banks, not (yet) to MT940/942 reporting, and Swiss banks have announced no fixed end date for MT940/942."
+  example: "Helvetic's German bank still delivers MT940; its Swiss banks send camt.053, so the connectivity tool maps both into one format."
+  related: [iso-20022, bank-statement, swift]
+
+- id: iso-20022
+  term: ISO 20022
+  aka: [camt, pain, pacs, MX]
+  category: Banking & connectivity
+  plain: The modern XML-based standard for payment and statement messages, with much richer data than older formats.
+  professional: "A global financial messaging standard. Corporate-relevant message families: pain (payment initiation, e.g. pain.001 credit transfer, pain.002 status report), camt (cash management, e.g. camt.052/053/054 reports), pacs (interbank). Richer structured remittance and party data improves reconciliation and screening. Switzerland adopted it for domestic payments in 2018–2022; 2009 versions are retired in Switzerland in November 2026."
+  example: "A camt.053 can carry the customer's invoice reference in a structured field, letting Alpine's ERP match the receipt to the invoice automatically."
+  related: [mt940, swift, ebics, reconciliation]
+
+- id: reconciliation
+  term: Bank reconciliation
+  aka: [reconciliation, bank rec, cash application]
+  category: Risk & control
+  plain: Checking that every money movement at the bank matches something in the company's books, and explaining any differences.
+  professional: "Matching bank-statement transactions to ledger entries (payments, receipts, fees, interest, FX, intercompany) and investigating unmatched items; usually daily or monthly, with sign-off as a key financial control. Cash application — matching receipts to open customer invoices — is a related AR process."
+  example: "Petra's daily reconciliation at Alpine finds a CHF 12,480 debit with no matching payment: it turns out to be a quarterly bank fee package — booked, not fraud."
+  related: [bank-statement, erp, iso-20022]
+
+- id: covenant
+  term: Covenant
+  aka: [financial covenant, loan covenant]
+  category: Debt & funding
+  plain: A promise in a loan agreement — for example to keep debt below a multiple of earnings — that, if broken, lets lenders demand changes or repayment.
+  professional: "Contractual undertakings in facility agreements or bond terms: financial covenants (leverage, interest cover, gearing, minimum liquidity; tested periodically with a compliance certificate), information covenants (deliver accounts), and general covenants (negative pledge, restrictions on disposals). A breach is an event of default unless waived; headroom is monitored and forecast."
+  example: "Helvetic's RCF requires net debt / EBITDA ≤ 3.25x. At 2.4x it has headroom; a 25% EBITDA drop combined with higher working capital would push it close to 3.2x."
+  related: [rcf, liquidity-headroom]
+
+- id: rcf
+  term: RCF (revolving credit facility)
+  aka: [revolver, committed credit line]
+  category: Debt & funding
+  plain: A pre-agreed credit line the company can draw, repay and redraw — like a very large corporate overdraft, with a fixed maximum and end date.
+  professional: "A committed facility (typically 3–5 years, often with extension options) from one bank or a syndicate. The borrower pays interest (reference rate such as SARON/SOFR/€STR/EURIBOR + margin) on drawn amounts and a commitment fee on undrawn amounts. Large investment-grade companies use it mainly as a liquidity backstop (e.g. for commercial paper) and rarely draw it."
+  example: "Helvetic draws CHF 20m for 3 months under its CHF 200m RCF to pay for a factory extension, then repays from EUR receipts in the next quarter."
+  related: [covenant, commercial-paper, liquidity-headroom]
+  confusedWith: "**Uncommitted line / overdraft** — the bank can cancel it at any time, so it does not count as reliable liquidity."
+
+- id: commercial-paper
+  term: Commercial paper
+  aka: [CP, ECP, USCP]
+  category: Debt & funding
+  plain: Very short-term IOUs that large, highly-rated companies sell to investors to borrow cheaply for days or months.
+  professional: "Unsecured short-term debt securities (typically 1–270 days in the US, up to 364 days in Euro CP), issued under a programme through dealer banks to money-market investors. Requires a short-term credit rating and is normally backed by an undrawn RCF in case the market closes."
+  example: "GlobalChem issues EUR 150m of 3-month ECP at a yield slightly above €STR because it is cheaper than drawing its RCF."
+  related: [rcf, money-market-fund]
+
+- id: money-market-fund
+  term: Money market fund
+  aka: [MMF]
+  category: Investments
+  plain: A fund that invests in very safe, very short-term debt, where companies park spare cash and can usually withdraw the same day.
+  professional: "Collective investment in short-term, high-quality money-market instruments. In Europe regulated under the EU Money Market Funds Regulation (CNAV, LVNAV, VNAV types); in the US under SEC Rule 2a-7. Offers diversification and daily liquidity; not a bank deposit (not insured) and can impose fees/gates in stress."
+  example: "Kleio moves USD 4m of its US cash from a current account into a USD government MMF that returns close to the Fed funds rate and can be redeemed same day."
+  related: [investment-policy, counterparty-limit, liquidity]
+
+- id: treasury-policy
+  term: Treasury policy
+  category: Risk & control
+  plain: The board-approved rulebook for what treasury may and may not do.
+  professional: "A governing document setting objectives, authorities, limits and controls: liquidity minimums, funding, FX and interest-rate hedging ranges and instruments, counterparty and investment limits, bank relationships, signing authorities, segregation of duties and reporting. Often supported by sub-policies (investment policy, hedging policy) and procedures."
+  example: "Helvetic's policy says: hedge 60–90% of next-quarter forecast EUR net inflows, only forwards and plain-vanilla options, deals only with RCF banks, all deals confirmed by someone other than the dealer."
+  related: [investment-policy, counterparty-limit, hedge-ratio, signatory]
+
+- id: investment-policy
+  term: Investment policy
+  category: Investments
+  plain: Rules for where and how long spare cash may be invested.
+  professional: "Part of or annex to the treasury policy setting the priorities (safety, then liquidity, then yield — the SLY principle), eligible instruments, maximum maturities, minimum ratings, counterparty and concentration limits, and approval authorities."
+  example: "Kleio's board-approved one-pager: only deposits at banks rated A- or better, government MMFs, and Swiss Confederation bills; max 12 months; no more than 40% at one bank."
+  related: [treasury-policy, counterparty-limit, money-market-fund]
+
+- id: signatory
+  term: Signatory
+  aka: [authorised signatory, signing authority]
+  category: Banking & connectivity
+  plain: A person the bank recognises as allowed to approve payments or sign on behalf of the company.
+  professional: "Individual registered with the bank (via the board resolution/mandate) as authorised to operate accounts, often with limits and joint-signature rules (e.g. 'collective signature by two'). Maintaining signatory lists across many banks and countries when people join or leave is a notorious manual control task."
+  example: "When Alpine's former controller left, Petra had to send updated signature cards and board extracts to both banks; one bank took three weeks to remove him from the e-banking contract."
+  related: [payment-mandate, treasury-policy]
+
+- id: payment-mandate
+  term: Bank mandate
+  aka: [account mandate, payment mandate]
+  category: Banking & connectivity
+  plain: The formal instructions (usually from a board resolution) telling a bank who can operate an account and how.
+  professional: "The legal documentation governing an account relationship: authorised signatories, signing rules and limits, channels (e-banking, EBICS, Swift) and user rights. Changes require documentation and KYC; banks will refuse instructions that do not comply. (In the SEPA world 'mandate' also means a customer's direct-debit authorisation — a different thing.)"
+  example: "GlobalChem's mandate at its Brazilian bank requires two signatories for payments above BRL 1m, one from Basel and one local."
+  related: [signatory, kyc]
+  confusedWith: "**SEPA direct-debit mandate** — a debtor's authorisation for a creditor to collect by direct debit."
+
+- id: kyc
+  term: KYC (know your customer)
+  aka: [KYC]
+  category: Banking & connectivity
+  plain: The checks a bank must do to know who you are, who owns you, and who is allowed to act for you.
+  professional: "Anti-money-laundering obligations requiring banks to identify and verify the customer, beneficial owners and authorised persons, and to refresh this periodically. For corporates with many banks and entities, KYC document requests (registry extracts, IDs of directors, ownership charts) are a significant recurring workload."
+  example: "GlobalChem's bank relationship team handles about 60 KYC refresh requests a year across 20 banks, each wanting certified extracts and passports for directors in different formats."
+  related: [payment-mandate, signatory]
+
+- id: payment-factory
+  term: Payment factory
+  category: Payments
+  plain: A central unit that sends payments for many group companies through one process and one set of bank connections.
+  professional: "Centralisation of payment processing — collecting payment files from subsidiaries' ERPs, validating, screening, approving and routing them to banks — either 'on behalf of' (POBO: the central entity pays from its own accounts) or 'in the name of' (each entity's own accounts, centrally operated)."
+  example: "GlobalChem's payment factory receives payment proposals from 28 ERPs, applies central fraud and sanctions checks, and sends 60,000 payments a month via Swift."
+  related: [pobo, in-house-bank, payment-run]
+
+- id: pobo
+  term: POBO / COBO
+  aka: [payments on behalf of, collections on behalf of]
+  category: Payments
+  plain: One group company pays suppliers (or collects from customers) for the others, from its own bank accounts.
+  professional: "Payments-on-behalf-of / collections-on-behalf-of: a central entity (usually the in-house bank) makes or receives payments for subsidiaries, recording intercompany positions. Reduces bank accounts and FX; requires legal, tax, VAT and regulatory review per country (some countries require local payments from local accounts)."
+  example: "A German supplier of GlobalChem's French subsidiary receives payment from GlobalChem Treasury AG's EUR account, with the French entity named as the ultimate debtor in the pain.001."
+  related: [payment-factory, in-house-bank, netting]
+
+- id: payment-run
+  term: Payment run
+  aka: [payment proposal, pay run]
+  category: Payments
+  plain: The regular batch in which the accounting system collects all invoices due and prepares them for payment.
+  professional: "ERP process (e.g. SAP F110) that selects open, approved vendor items due for payment by a date, applies payment methods and bank selection, produces a proposal for review, and generates payment files (e.g. pain.001) for approval and transmission."
+  example: "Alpine runs payments every Tuesday and Friday; Petra reviews the proposal, removes two disputed invoices, and releases 84 payments worth CHF 1.9m."
+  related: [erp, payment-factory, signatory]
+
+- id: rtgs-note
+  term: Cut-off time
+  aka: [bank cut-off]
+  category: Payments
+  plain: The latest time a bank accepts a payment instruction for it to be executed with today's value date.
+  professional: "Bank- and currency-specific deadlines for same-day execution, driven by payment-system operating hours and time zones (e.g. SIC for CHF, TARGET2 for EUR, Fedwire for USD). Missing a cut-off can mean late payment, overdraft interest or a failed funding."
+  example: "Daniel must instruct the USD funding of the US subsidiary before the Swiss bank's USD same-day cut-off, otherwise the US payroll funding arrives a day late."
+  related: [value-date, settlement, cash-position]
+
+- id: short-term-forecast
+  term: Short-term cash forecast
+  aka: [13-week forecast, 13-week cash flow, TWCF]
+  category: Forecasting
+  plain: A prediction of cash in and out for the next weeks, usually built bottom-up from known invoices, payroll and planned payments.
+  professional: "A receipts-and-disbursements (direct-method) forecast covering days to ~13 weeks, typically weekly buckets, updated weekly, built from AR/AP ledgers, payroll, tax, debt service, intercompany and business-unit inputs, and compared to actuals (variance analysis). The '13-week cash flow' (one quarter) is a standard format, and mandatory in lender-monitored or restructuring situations."
+  example: "Every Monday Lea updates Helvetic's 13-week forecast with AR from SAP, AP due dates, the payroll calendar and a capex schedule, then compares last week's forecast to actual bank movements."
+  related: [medium-term-forecast, direct-method, variance-analysis, cash-position]
+
+- id: medium-term-forecast
+  term: Medium-term cash forecast
+  aka: [liquidity plan, 12-month forecast]
+  category: Forecasting
+  plain: A cash outlook for the next several months to a year or two, usually derived from the budget and business plans.
+  professional: "A forecast over roughly 3–24 months, often monthly, frequently prepared by the indirect method (from forecast P&L, working-capital assumptions and capex) and reconciled with FP&A's budget/rolling forecast. Used for funding, covenant and dividend planning."
+  example: "Helvetic's 18-month liquidity plan, rebuilt quarterly with FP&A, shows the 2028 bond maturity and whether the RCF can cover it."
+  related: [short-term-forecast, indirect-method, covenant]
+
+- id: direct-method
+  term: Direct (receipts & disbursements) method
+  aka: [R&D method]
+  category: Forecasting
+  plain: Forecasting cash by listing actual expected payments in and out.
+  professional: "Forecast constructed from expected cash receipts and disbursements by category (customer receipts, suppliers, payroll, tax, interest, intercompany). More accurate in the short term; data-hungry."
+  example: "Alpine's weekly cash sheet lists each expected customer milestone payment by name and date, plus payroll on the 25th."
+  related: [indirect-method, short-term-forecast]
+
+- id: indirect-method
+  term: Indirect method
+  category: Forecasting
+  plain: Forecasting cash by starting with planned profit and adjusting for non-cash items and changes in working capital.
+  professional: "Derives cash flow from forecast net income/EBITDA, adjusting for depreciation, working-capital movements, capex, tax and financing flows — mirroring the cash-flow statement. Natural fit for medium/long-term forecasts linked to the budget."
+  example: "Helvetic's 2027 plan: EBITDA CHF 85m − capex 30m − tax 12m − interest 5m − working-capital build 10m = CHF 28m free cash flow before dividends."
+  related: [direct-method, medium-term-forecast]
+
+- id: variance-analysis
+  term: Forecast variance analysis
+  aka: [actual vs forecast, forecast accuracy]
+  category: Forecasting
+  plain: Comparing what you predicted with what actually happened, and finding out why they differ.
+  professional: "Systematic comparison of forecast to actual cash flows by category, entity and period; separating timing differences (cash arrived a week late) from permanent differences (cash will never come), and feeding explanations back into the forecast assumptions. Accuracy is often tracked as % variance by category and horizon."
+  example: "Lea finds Helvetic's receipts were CHF 4m below forecast: CHF 3m is one Italian customer paying 10 days late (timing), CHF 1m is a cancelled order (permanent)."
+  related: [short-term-forecast, cash-position]
+
+- id: fpa
+  term: FP&A
+  aka: [financial planning and analysis]
+  category: Organisation
+  plain: The finance team that builds budgets and forecasts of revenue and profit and explains performance to management.
+  professional: "Owns the budget, rolling forecasts, management reporting and business-performance analysis, mostly on an accrual (P&L) basis. Treasury depends on FP&A's outlook for medium-term cash forecasts but needs cash timing that FP&A rarely models."
+  example: "FP&A says Q3 revenue will be CHF 170m; Daniel still has to work out when that revenue turns into cash, given 90-day payment terms."
+  related: [medium-term-forecast, indirect-method]
+
+- id: interest-rate-swap
+  term: Interest-rate swap
+  aka: [IRS]
+  category: Debt & funding
+  plain: An agreement to swap floating-rate interest payments for fixed-rate ones (or vice versa) on a notional amount.
+  professional: "OTC derivative exchanging fixed and floating interest cash flows in one currency on a notional principal; used to change the fixed/floating mix of debt without refinancing. Floating legs now reference risk-free rates (SARON, SOFR, €STR) or EURIBOR."
+  example: "Helvetic swaps CHF 50m of its SARON-based RCF drawings to fixed 1.1% for 3 years to protect against rising Swiss rates."
+  related: [rcf, swap]
+
+- id: supply-chain-finance
+  term: Supply chain finance
+  aka: [SCF, reverse factoring, payables finance]
+  category: Working capital
+  plain: A bank programme that pays your suppliers early (for a small fee to them) while you pay the bank later.
+  professional: "Buyer-led payables financing where a finance provider pays approved supplier invoices early at a discount based on the buyer's credit, and the buyer pays the provider at (extended) maturity. Improves DPO and supplier liquidity; subject to disclosure requirements (IFRS amendments to IAS 7/IFRS 7 effective 2024) since the Greensill collapse raised concerns about hidden debt."
+  example: "GlobalChem extends supplier terms from 60 to 90 days and offers suppliers early payment at €STR + 1% via its bank's SCF platform."
+  related: [dpo, working-capital]

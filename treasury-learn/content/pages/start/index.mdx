@@ -1,0 +1,100 @@
+---
+title: What corporate treasury is
+nav: What is treasury?
+order: 1
+summary: Treasury is the part of finance that makes sure the company can always pay what it owes, at an acceptable cost, while controlling the financial risks that come with holding, moving and borrowing money.
+related: [/start/neighbours, /start/growth, /map, /org]
+---
+
+## The one-paragraph version
+
+Every company has money coming in (customers paying) and going out (suppliers, salaries, taxes, loan interest). Accounting records those flows after they happen. **Treasury is responsible for the money itself**: knowing where it is today, predicting where it will be, making sure there is always enough in the right account, in the right currency, on the right day — and deciding what to do with any surplus or shortfall. Around that core sit the financial risks that come with money: exchange rates, interest rates, the risk that a bank fails, and the risk that a payment goes to a fraudster.
+
+The professional bodies frame it the same way. The European treasury associations' *Guiding Principles* put [liquidity](term:liquidity) first — the company must be able to meet its obligations — followed by managing financial risk, funding the business and running the controls around cash[](cite:eact-guiding-principles). The UK Association of Corporate Treasurers organises its body of knowledge around funding, liquidity, risk management and corporate finance[](cite:act-what-is-treasury).
+
+<Callout type="concept" title="The three questions treasury answers every day">
+
+1. **How much cash do we have, and where is it?** [Daily cash positioning](wf:daily-cash-positioning)
+2. **How much will we have, and when?** [Cash forecasting](wf:cash-forecasting) and [liquidity planning](wf:liquidity-planning)
+3. **What should we do about it?** Borrow, invest, move money between entities, hedge a currency, delay or accelerate a payment.
+
+</Callout>
+
+## Why companies need treasury at all
+
+A company can be profitable on paper and still fail because it runs out of cash on a Tuesday. That gap between profit and cash is what treasury manages.
+
+<Example title="Profitable, growing, and short of cash" company="alpine" open>
+
+[Alpine Robotics](co:alpine) wins three large robot projects in the same quarter. The P&L looks excellent. But Alpine has to buy CHF 4m of components and pay its engineers now, while the customers pay 30% on order, 50% on delivery (four months later) and 20% after acceptance. For about five months, Alpine is funding CHF 3m+ of work out of its own pocket. On top of that, 45% of its revenue is in euros while almost all costs are in Swiss francs, so a 5% fall in EUR/CHF would wipe out a meaningful part of the margin.
+
+Nobody at Alpine is called "treasurer". But someone has to see this coming, make sure the CHF 12m credit line is available, decide whether to lock in the euro rate with a [forward](term:forward), and tell the CEO whether the company can afford a fourth project. That is treasury work.
+
+</Example>
+
+The same needs show up in every company, only at different scale:
+
+| Need | Why it exists | What it looks like in practice |
+|---|---|---|
+| **Never miss a payment** | Salaries, suppliers, tax and loan payments have hard dates | Daily balance checks, a [13-week forecast](term:short-term-forecast), a minimum cash buffer, a committed [credit line](term:rcf) |
+| **Don't leave cash idle or stranded** | Cash scattered across 50 accounts earns little and can't be used where needed | [Cash concentration](term:cash-concentration), [cash pooling](term:cash-pooling), [intercompany loans](term:intercompany-loan), deposits or [money market funds](term:money-market-fund) |
+| **Borrow at the right time and price** | Growth, acquisitions and bad years need funding; banks lend more readily before you are desperate | Credit facilities, bonds, [covenant](term:covenant) monitoring, bank relationships |
+| **Control financial risk** | Currency and interest-rate moves can erase margins; banks can fail | [FX hedging](wf:fx-hedging), interest-rate hedging, [counterparty limits](term:counterparty-limit) |
+| **Move money safely** | Payments are the main target of fraud and error | Approval workflows, [signatory](term:signatory) control, bank connectivity, [reconciliation](term:reconciliation) |
+
+## The treasury loop
+
+Most of what treasury does is one loop, repeated daily, weekly and monthly at different horizons:
+
+<Flow steps={["Company operates|sells, buys, pays staff", "Money enters / leaves|at banks, by value date", "Treasury observes|balances, flows, exposures", "Treasury forecasts|days, weeks, months", "Treasury decides|fund, invest, hedge, borrow", "Treasury executes|transfers, deals, payments", "Treasury monitors & reconciles|did it happen as planned?"]} loop="Differences between forecast and actual feed the next forecast" caption="The treasury loop. Each workflow in this manual is one pass through some part of this loop." />
+
+The loop runs at several speeds at once:
+
+- **Intraday / daily** — cash positioning, funding accounts before bank cut-off times, releasing payments. (Minutes and hours matter.)
+- **Weekly** — updating the short-term forecast, planning the next week's funding and investments, FX hedges for the coming weeks.
+- **Monthly / quarterly** — reporting to the CFO and board, [covenant](term:covenant) calculations, hedge programme reviews, intercompany settlements, bank fee reviews.
+- **Yearly and event-driven** — refinancing, rating reviews, policy updates, acquisitions, crises.
+
+## What does the person actually do?
+
+Abstract descriptions like "treasury optimises liquidity" are unhelpful. Here is what a typical morning looks like for Daniel, the Treasury Manager at [Helvetic Machines](co:helvetic) (CHF 650m revenue, two people in treasury):
+
+<Callout type="actually" title="Tuesday, 07:45–10:30 at Helvetic Machines">
+
+1. Opens the bank connectivity tool and checks that all 12 prior-day [bank statements](term:bank-statement) arrived. The Chinese bank's is missing; he notes it will arrive around 10:00.
+2. Refreshes the "cash position" Excel workbook that pulls those balances. Group cash is CHF 41m, CHF 3m lower than expected.
+3. Traces the difference: a large Italian customer did not pay on its due date (CHF 2.1m), and a supplier payment went out a day early from Germany. He emails the Italian subsidiary's finance manager to ask about the customer.
+4. Checks today's known outflows: German payroll (EUR 4.2m) goes out Thursday; the German account needs a top-up. He instructs a EUR 3m transfer from the Swiss parent's EUR account, documented as an [intercompany loan](term:intercompany-loan).
+5. Looks at the [13-week forecast](term:short-term-forecast): with the Italian delay, the low point in week 6 is CHF 18m — still well above the CHF 10m minimum the CFO wants, so no need to draw on the credit facility.
+6. Checks the EUR [hedge ratio](term:hedge-ratio) report Lea prepared yesterday: next quarter is 72% hedged, inside the 60–90% policy band. No trade needed today.
+7. Approves (as second signatory) a batch of 64 supplier payments prepared by the Swiss accounting team, after querying one new supplier's changed bank details.
+
+</Callout>
+
+Every item in that list is a workflow in this manual. The rest of the site shows who does each step at companies of different sizes, which systems are open on their screens, what they decide, and what goes wrong.
+
+## What treasury is *not*
+
+Beginners tend to lump treasury together with everything else in finance. The boundaries matter in interviews, because asking a treasurer about budget variances or tax provisions signals you don't know the territory:
+
+- It is **not accounting**. Accounting records transactions (accruals, the general ledger, financial statements). Treasury manages the real cash and financial risk. They share data constantly — see [Treasury and its neighbours](/start/neighbours).
+- It is **not FP&A**. FP&A forecasts revenue and profit; treasury forecasts *cash timing*. They are related but not the same forecast.
+- It is **not investment management** in the asset-manager sense. Corporate treasurers invest surplus cash with safety and liquidity first and yield last. A treasurer chasing yield is a red flag, not a skill.
+- It is **not trading for profit**. Corporate hedging exists to reduce risk arising from the business. Speculative positions are normally forbidden by the [treasury policy](term:treasury-policy).
+
+<Callout type="survey" title="What treasurers say they prioritise">
+
+In the AFP's 2025 benchmarking research, 73% of US treasury practitioners put cash management and forecasting (including scenario analysis) at the top of their department's priorities, up from 68% in 2022[](cite:afp-sr-2025); 62% named cash and liquidity forecasting their most challenging activity[](cite:afp-bench-2025-article). European multinationals surveyed by the EACT in 2025 likewise ranked cash-flow forecasting as priority number one, ahead of long-term funding and treasury technology[](cite:eact-2025). PwC's 2025 survey of 350 treasurers also found cash and liquidity management at the top[](cite:pwc-gts-2025).
+
+These are surveys of treasury professionals, mostly at mid-sized and large companies. They tell you what practitioners worry about, not what small companies without a treasurer experience.
+
+</Callout>
+
+## How to read the rest of this manual
+
+- **[Treasury Map](/map)** — the ten areas of treasury in one picture.
+- **[Organization & Roles](/org)** — who actually does each piece of work, by company size.
+- **[Workflows](/workflows)** — the core of the manual. Start with [daily cash positioning](wf:daily-cash-positioning) and [cash forecasting](wf:cash-forecasting).
+- **[Company Scenarios](/companies)** — four fictional companies used throughout, so you can see the same problem at different scales.
+
+Throughout, callouts are labelled by evidence type: **Concept** (established practice), **Survey finding** (from a named survey, with citation), **Field note** (practitioner pattern, not statistically established) and **Synthesis** (this manual's own reasoning).

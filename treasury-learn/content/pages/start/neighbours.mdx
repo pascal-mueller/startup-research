@@ -1,0 +1,87 @@
+---
+title: Treasury and its neighbours
+nav: Treasury vs accounting, FP&A, controlling…
+order: 2
+summary: Treasury sits among accounting, FP&A, controlling, corporate finance and the CFO. They share data every day but answer different questions, on different time bases, with different systems.
+related: [/start, /start/growth, /org, /org/neighbours]
+---
+
+## The short answer
+
+| Function | Core question | Time basis | Main system | Typical output |
+|---|---|---|---|---|
+| **Treasury** | Do we have the cash, in the right place and currency, and are financial risks under control? | Cash, by [value date](term:value-date) | Bank portals, [TMS](term:tms), Excel | [Cash position](term:cash-position), cash forecast, hedges, funding |
+| **Accounting** (financial accounting, "the controller's team" in US usage) | What happened, recorded correctly? | Accruals, by posting date | [ERP](term:erp) / general ledger | Books, financial statements, statutory and tax filings |
+| **FP&A** | What will revenue and profit be, and why did we miss plan? | Accruals, monthly/quarterly | Planning tool, ERP, Excel | Budget, rolling forecast, management reporting |
+| **Controlling** (DACH usage) | Are business units and costs performing and steered correctly? | Accruals, monthly | ERP cost accounting (e.g. SAP CO), Excel | Cost-centre reports, product profitability, variance analysis |
+| **Corporate finance / M&A** | How should the company be financed and which deals should it do? | Deal / strategy horizon | Models, data rooms | Capital structure, acquisitions, financing strategy |
+| **CFO** | All of the above, accountable to CEO, board and investors | All | All | Decisions and accountability |
+
+<Callout type="confusion" title="'Controller' means different things in Zurich and in New York">
+
+In the US and UK, the **Controller** is usually the head of accounting (books, close, financial statements). In German-speaking countries, **Controlling** is closer to management accounting plus FP&A — planning, cost analysis and steering business units — and the head of accounting is a separate role. When a Swiss or German finance person says "Controlling", don't assume they mean the accounting team. Ask what they own.
+
+</Callout>
+
+## Treasury vs accounting
+
+This is the relationship you will hear about most, because the two teams hand data to each other every day.
+
+**Accounting records; treasury manages.** When a customer invoice is issued, accounting books revenue and a receivable. Treasury cares about when the cash will *actually arrive*, in which account, in which currency — and what to do if it doesn't.
+
+| Topic | Accounting | Treasury |
+|---|---|---|
+| Cash balance | Ledger (book) balance, by posting date | Bank balance, by value date — the money you can actually use today |
+| Payments | Books invoices, runs the [payment proposal](term:payment-run) in the ERP | Often controls bank channels, approvals and funding; in larger groups may run the [payment factory](term:payment-factory) |
+| Bank statements | Books them to the GL; often owns the formal [bank reconciliation](term:reconciliation) | Uses them first thing in the morning for the [cash position](term:cash-position) |
+| FX | Revalues foreign-currency balances; applies hedge accounting (IFRS 9) documentation with treasury | Measures exposure, decides and executes hedges |
+| Debt | Books interest accruals, classifies debt, discloses covenants | Negotiates facilities, draws/repays, monitors covenants |
+| Intercompany | Books and eliminates intercompany positions | Creates many of them (loans, pooling, netting) and must document them |
+
+<Callout type="field" title="Where it rubs">
+
+In practice the friction points are predictable: the cash balance in the ERP does not match the bank; accounting needs treasury's deal details (FX forwards, loans, deposits) posted correctly and on time at month-end; and nobody is quite sure who owns reconciling the treasury accounts. At small companies, the same person does both jobs, so the friction becomes a time-management problem instead of a hand-off problem.
+
+</Callout>
+
+## Treasury vs FP&A
+
+Both "forecast", which causes endless confusion.
+
+- **FP&A** forecasts the **P&L**: revenue, margins, costs, EBITDA — on an accrual basis, usually monthly, for the budget year and beyond. Its customers are management and the board.
+- **Treasury** forecasts **cash**: receipts and payments by date and bank account, usually weekly for the next 13 weeks and monthly further out. Its purpose is to make sure the company can pay and to plan funding and investments.
+
+<Example title="Same quarter, two different forecasts" company="helvetic">
+
+FP&A at [Helvetic](co:helvetic) forecasts Q3 revenue of CHF 170m and EBITDA of CHF 22m. That is the right number for the board.
+
+Daniel's treasury forecast for the same quarter shows *cash receipts* of CHF 148m — because customers pay on 60–90-day terms, much of Q3's revenue arrives in Q4, while Q2's revenue arrives in Q3. It also shows a CHF 9m tax prepayment, a CHF 3m dividend from the Czech subsidiary, and German payroll going out on the 28th, before the big customer receipts in the first week of the next month. The low point is mid-month, not month-end.
+
+Both forecasts are "right". They answer different questions. The [medium-term forecast](term:medium-term-forecast) is where the two meet: treasury usually derives it from FP&A's plan using the [indirect method](term:indirect-method).
+
+</Example>
+
+## Treasury vs corporate finance
+
+"Corporate finance" has two meanings:
+
+1. **The academic discipline** — capital structure, cost of capital, valuation, dividend policy. Treasury applies parts of it.
+2. **A department** — usually M&A, strategic financing and sometimes investor relations. In many companies, especially in the US, the Treasurer traditionally owns capital markets (bonds, bank facilities, ratings) while a separate corporate development team owns M&A. In others, "Corporate Finance" is a team *inside* treasury that manages debt.
+
+Ask how it works at the company in front of you rather than assuming — see [Debt & capital markets roles](/org/roles-debt).
+
+## Treasury vs the CFO
+
+The CFO is accountable for everything financial. What they *personally* do in treasury depends almost entirely on company size:
+
+- At a 30–70-person company the CFO (or founder) **is** the treasurer: checking balances, releasing payments, talking to the bank.
+- At a mid-sized company the CFO sets risk appetite, approves large decisions (borrowing, hedging programmes, big payments), and signs bank documents, while a treasury manager does the work.
+- At a large group the CFO sees a monthly treasury report, chairs a treasury or risk committee, and gets involved in refinancing, ratings, M&A funding and crises. The Group Treasurer runs the function.
+
+The full picture, with org charts and a responsibility matrix, is in [Organization & Roles](/org).
+
+<Callout type="interview">
+
+A good early question in any interview is: *"Who do you hand work to, and who hands work to you?"* The answer tells you where treasury ends and accounting, FP&A or AP begins at that particular company — which varies more than job titles suggest.
+
+</Callout>

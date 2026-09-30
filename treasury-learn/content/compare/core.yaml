@@ -1,0 +1,30 @@
+# "Same problem, four companies" comparison topics. cells keyed by company id.
+- id: who-does-treasury
+  title: Who does treasury?
+  question: Who does the treasury work, and how much of their time does it take?
+  cells:
+    kleio: "**Sarah, the CFO**, about half a day a week. The accountant prepares payment batches in e-banking; Sarah approves. An external payroll provider and fiduciary handle payroll and statutory accounts."
+    alpine: "**Martin (CFO)** makes the decisions; **Petra (Head of Accounting)** spends perhaps 20–30% of her time on cash: daily balance check, twice-weekly payment runs, the weekly cash sheet, bank queries."
+    helvetic: "**Daniel (Treasury Manager)** and **Lea (Treasury Analyst)** full time, reporting to the CFO. Subsidiary finance managers supply forecasts and run local payments."
+    globalchem: "**Anna (Group Treasurer)** and ~25 staff across five teams, plus payment-factory operators in a shared-service centre and local finance teams feeding data."
+  takeaway: "The work doesn't disappear at small companies — it is done part-time by people with other jobs, which is why it is often done late, in spreadsheets, or not at all."
+
+- id: positioning
+  title: Daily cash positioning
+  question: How does each company find out how much cash it has this morning?
+  cells:
+    kleio: "Sarah logs into three e-banking portals on Monday mornings (not daily) and types balances into a Google Sheet. USD and EUR converted at the rate shown by the bank. 15 minutes."
+    alpine: "Petra checks the two Swiss banks' portals daily; the German and US subsidiaries' balances come via the same banks' multi-country views. An Excel sheet by entity and currency. ~30 minutes, longer on payment days."
+    helvetic: "A multibank connectivity tool collects MT940/camt.053 statements from 5 banks overnight; Lea's Excel workbook imports them, adds today's known flows and produces a position by entity/currency by 09:00. ~1–1.5 hours."
+    globalchem: "The TMS imports ~280 statements automatically; cash & liquidity analysts review exceptions (missing statements, unexpected items), sweep results and the in-house bank position, and execute funding before cut-offs. The position is largely automated; judgment goes into exceptions."
+  takeaway: "As scale grows, *collecting* the balances gets automated; *explaining* unexpected movements and *deciding* what to do stays with people."
+
+- id: forecasting
+  title: Cash forecasting
+  question: How does each company forecast cash for the next 13 weeks?
+  cells:
+    kleio: "No 13-week forecast. A monthly runway model in the Google Sheet: opening cash, expected collections from the billing system, payroll, rent, cloud, and a burn line. Updated monthly, checked against the board model quarterly."
+    alpine: "A weekly Excel cash sheet for 8–13 weeks: open AR from Dynamics by due date, adjusted by Petra's knowledge of which customers pay late; AP due; payroll; VAT; project milestones from the project managers. Martin reviews it Monday."
+    helvetic: "A 13-week forecast by entity and currency. Subsidiaries submit weekly Excel templates; Lea consolidates, adds central flows (debt, intercompany, dividends, hedges), compares last week's forecast to actuals; Daniel adjusts assumptions and presents to the CFO monthly."
+    globalchem: "A forecasting tool (or TMS module) collects submissions from ~40 entities; many categories are fed automatically from ERP AP/AR and payroll; a central team does variance analysis and a group liquidity view out to 12–18 months, reconciled with FP&A."
+  takeaway: "The mechanics scale up; the hard parts — getting honest inputs from people who don't care about cash, and knowing which customers really pay when — don't go away."

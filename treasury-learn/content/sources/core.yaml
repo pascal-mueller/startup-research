@@ -1,0 +1,98 @@
+# Core source registry. Every id cited with a citation link must exist in some file in content/sources/
+# type: survey | official | standard | vendor | practitioner | news | filing | academic
+- id: afp-bench-2025
+  title: 2025 AFP Treasury Benchmarking Survey Report
+  publisher: Association for Financial Professionals (AFP), underwritten by Wells Fargo
+  year: 2025
+  url: https://www.financialprofessionals.org/training-resources/resources/survey-research-economic-data/details/treasury-benchmarking
+  type: survey
+  note: "523 US treasury practitioners, surveyed autumn 2024. Summary article: average treasury team ~12 FTE (≈5 front office, ≈6 back office); companies < USD 1bn revenue typically 1–3 FTE; cash & liquidity forecasting named most challenging activity by 62%."
+- id: afp-bench-2025-article
+  title: Examining benchmarks for treasury teams
+  publisher: AFP
+  year: 2025
+  url: https://www.financialprofessionals.org/training-resources/resources/articles/Details/examining-benchmarks-for-treasury-teams
+  type: survey
+  note: AFP's own summary of the 2025 benchmarking results (team sizes, roles treasury leads vs supports, top challenges).
+- id: afp-bench-2026
+  title: 2026 AFP Treasury Benchmarking Survey Report — People and Policies
+  publisher: AFP
+  year: 2026
+  url: https://www.financialprofessionals.org/interactive/research/2026-treasury-benchmarking-survey-report-people-and-policies/
+  type: survey
+  note: "425 responses, fielded May 2026, primarily US. 46% of organisations have treasury teams of fewer than 5 people; 49% name cash and liquidity forecasting as the most challenging activity."
+- id: afp-sr-2025
+  title: AFP Strategic Role of Treasury / priorities research (reported by Treasury News Network)
+  publisher: AFP via ctmfile.com
+  year: 2025
+  url: https://ctmfile.com/story/treasury-cash-forecasting-rising-expectations-growing-complexity-ais-promise
+  type: survey
+  note: "73% of practitioners cite cash management and forecasting (incl. scenario analysis) as their top priority, up from 68% in 2022."
+- id: st-tis-cfv-2025
+  title: 2025 Cash Forecasting & Visibility Survey
+  publisher: Strategic Treasurer and TIS
+  year: 2025
+  url: https://tispayments.com/resources/2025-cash-forecasting-visibility-survey-with-strategic-treasurer
+  type: survey
+  note: "200+ respondents. 68% report higher management expectations for forecasting; share calling forecasting 'difficult' rose from 39% (2018) to 53% (2025); 'easy' fell from 28% to 14%. Vendor-sponsored."
+- id: deloitte-gts-2024
+  title: 2024 Global Corporate Treasury Survey
+  publisher: Deloitte
+  year: 2024
+  url: https://www.deloitte.com/content/dam/assets-zone3/us/en/docs/services/risk-advisory/2024/us-global-treasury-survey-2024.pdf
+  type: survey
+  note: "213 respondents. Less than a quarter rate their cash-forecasting maturity above average; 22% say cash-positioning capability 'requires development'; for many, forecasting is still primarily spreadsheet-based; business forecasts tend to focus on revenue and margin rather than cash."
+- id: pwc-gts-2025
+  title: "2025 Global Treasury Survey — Architects of change: Treasury leadership in an era of transformation"
+  publisher: PwC
+  year: 2025
+  url: https://www.pwc.com/us/en/services/consulting/business-transformation/library/2025-global-treasury-survey.html
+  type: survey
+  note: "350 treasurers. Cash and liquidity management is the top priority. Among organisations with > USD 10bn revenue: in-house banks 67%, payment factories 60%, payments-on-behalf-of 50% (as reported in PwC's summary)."
+- id: eact-2025
+  title: Main Results of the 2025 EACT Treasury Survey
+  publisher: European Association of Corporate Treasurers (EACT)
+  year: 2025
+  url: https://eact.eu/articles/results-of-2025-eact-survey
+  type: survey
+  note: "European multinationals. Top priorities: cash-flow forecasting (13-week / monthly rolling), long-term funding, treasury technology review/TMS replacement. AI ranked low because of missing data lakes and non-standardised data."
+- id: kpmg-gts-2025
+  title: Global Treasury Survey 2025
+  publisher: KPMG Germany
+  year: 2025
+  url: https://hub.kpmg.de/en/global-treasury-survey-2025
+  type: survey
+  note: Survey focused on treasury structure, technology and ESG.
+- id: act-hsf-debt-2025
+  title: Corporate Debt and Treasury Report 2025
+  publisher: ACT and Herbert Smith Freehills (as reported by The Global Treasurer)
+  year: 2025
+  url: https://www.theglobaltreasurer.com/2025/05/09/corporate-treasury-cash-management-2025/
+  type: survey
+  note: "76% expect macroeconomic and geopolitical factors to have a considerable influence on debt strategy (41% in 2024); cash management back at the centre of treasurers' agendas."
+- id: six-sps-cash-mgmt
+  title: "Swiss Payment Standards — Implementation Guidelines Cash Management (camt.052 / camt.053 / camt.054)"
+  publisher: SIX Interbank Clearing
+  year: 2025
+  url: https://www.six-group.com/en/products-services/banking-services/payment-standardization/downloads-faq/glossary.html
+  type: standard
+  note: "Defines Swiss bank-to-customer reports. ISO 20022 2009 message versions are discontinued in Switzerland on 21 Nov 2026; MT940/MT942/MT101 have no fixed end date yet."
+- id: swift-iso-mt9xx
+  title: ISO 20022 migration — scope of the November 2025 end of coexistence
+  publisher: Swift (as summarised by bank client guides, e.g. State Street)
+  year: 2025
+  url: https://www.statestreet.com/jp/ja/insights/client-guide-to-iso-20022
+  type: standard
+  note: "November 2025 ended MT/MX coexistence for cross-border payment instructions (MT103/MT202) between banks. Category 9 statement/reporting messages (MT940/MT942) remain supported for now; camt.053/camt.052 are their ISO 20022 equivalents."
+- id: act-what-is-treasury
+  title: What is treasury? / The role of the treasurer
+  publisher: Association of Corporate Treasurers (ACT)
+  url: https://www.treasurers.org/
+  type: official
+  note: The UK professional body for treasurers; its body of knowledge frames treasury around funding, liquidity, risk management, and corporate finance.
+- id: eact-guiding-principles
+  title: The Guiding Principles of Corporate Treasury (4th edition, English)
+  publisher: EACT
+  url: https://eact.eu/articles/guiding-principles-of-treasury
+  type: official
+  note: European treasury associations' statement of what corporate treasury is responsible for and core principles (liquidity first, risk management, segregation of duties).
