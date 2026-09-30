@@ -37,6 +37,8 @@ interface EdgeDef {
   dashed?: boolean
   // optional control-point offset for curved edges
   bend?: number
+  // position of the label along the edge (0 = start, 1 = end); default 0.5
+  labelAt?: number
 }
 
 const W = 150
@@ -61,11 +63,11 @@ const EDGES: EdgeDef[] = [
   { from: 'cash-management', to: 'investments', label: 'surplus' },
   { from: 'cash-management', to: 'debt', label: 'shortfall → draw' },
   { from: 'cash-forecasting', to: 'fx', label: 'forecast FX flows = exposure' },
-  { from: 'risk', to: 'fx', label: 'policy, hedge ratios, limits' },
+  { from: 'risk', to: 'fx', label: 'policy, limits' },
   { from: 'debt', to: 'risk', label: 'covenants' },
   { from: 'working-capital', to: 'payments', label: 'AP payment runs' },
   { from: 'fx', to: 'payments', label: 'deal settlements' },
-  { from: 'banking', to: 'cash-management', label: 'statements, balances', dashed: true },
+  { from: 'banking', to: 'cash-management', label: 'statements, balances', dashed: true, labelAt: 0.22 },
   { from: 'banking', to: 'debt', label: 'credit facilities', dashed: true },
   { from: 'technology', to: 'banking', label: 'connectivity', dashed: true },
   { from: 'payments', to: 'banking', label: 'payment files', dashed: true },
@@ -97,8 +99,9 @@ function edgePath(e: EdgeDef) {
   const p1 = edgePoint(a, cx, cy)
   const p2 = edgePoint(b, cx, cy)
   // label at the curve midpoint (quadratic Bezier t = 0.5)
-  const lx = 0.25 * p1.x + 0.5 * cx + 0.25 * p2.x
-  const ly = 0.25 * p1.y + 0.5 * cy + 0.25 * p2.y
+  const t = e.labelAt ?? 0.5
+  const lx = (1 - t) * (1 - t) * p1.x + 2 * (1 - t) * t * cx + t * t * p2.x
+  const ly = (1 - t) * (1 - t) * p1.y + 2 * (1 - t) * t * cy + t * t * p2.y
   return { d: `M${p1.x},${p1.y} Q${cx},${cy} ${p2.x},${p2.y}`, lx, ly }
 }
 

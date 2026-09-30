@@ -139,3 +139,5 @@
 .prose .sys-df-card ul, .prose .sys-df-hub ol { margin-top: 4px; margin-bottom: 0; }
 .prose .sys-df-card li, .prose .sys-df-hub li { font-family: var(--sans); font-size: 12.5px; line-height: 1.4; margin: 2px 0; }
 .prose .sys-df-hub li { font-size: 13px; }
+.prose h4.sys-profile-title { text-transform: none; letter-spacing: 0; color: var(--ink); font-size: 17px; font-family: var(--sans); }
+.prose .sys-costack-co h4 { text-transform: none; letter-spacing: 0; color: var(--ink); font-family: var(--sans); }

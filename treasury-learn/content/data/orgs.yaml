@@ -243,33 +243,33 @@
                   - title: Corporate Finance
                     who: Olivier
                     kind: treasury
-                    fte: 3
+                    fte: 3 FTE
                     note: Bonds, CP, RCF, rating agencies, M&A funding
                   - title: Cash & Liquidity / In-house bank
                     who: Priya
                     kind: treasury
-                    fte: 6
+                    fte: 6 FTE in Basel
                     note: Positioning, pools, IC funding, investments, forecast
                     children:
-                      - title: Regional Treasury Centre Singapore
+                      - title: Singapore RTC (within Priya's team)
                         kind: treasury
-                        fte: 3
+                        fte: 3 FTE
                         note: APAC liquidity, restricted currencies, local banks
                         dottedTo: APAC regional CFO
                   - title: Financial Risk (FX & rates)
                     who: Jonas
                     kind: treasury
-                    fte: 4
+                    fte: 4 FTE
                     note: Exposure, hedging, IRS, hedge accounting input
                   - title: Treasury Operations & Payment Factory
                     who: Marta (Kraków)
                     kind: treasury
-                    fte: 7
+                    fte: 7 FTE
                     note: Back office, treasury control (middle office), payment factory, bank account admin
                   - title: Treasury Systems
                     who: Ben
                     kind: treasury
-                    fte: 2
+                    fte: 2 FTE
                     note: TMS/SAP treasury, SWIFT service bureau, IHB, market data
               - title: Other functions under the CFO
                 kind: finance
@@ -287,15 +287,19 @@
                   - title: Global Business Services (Kraków SSC)
                     kind: finance
                     note: AP, AR, record-to-report for European entities
-          - title: General Counsel
-            kind: finance
-            note: Bank and bond documentation, KYC, entity governance
-          - title: Divisions / regions
-            kind: business
+          - title: Other reports to the CEO
+            kind: exec
+            stack: true
             children:
+              - title: General Counsel
+                kind: finance
+                note: Bank and bond documentation, KYC, entity governance
+              - title: Divisions / regions
+                kind: business
+                note: Business heads own the operating subsidiaries
               - title: Subsidiary & regional CFOs
                 kind: business
-                note: 40 reporting units; forecasts, exposures, local banking
+                note: 40 reporting units; forecasts, exposures, local banking; solid line to division/region head
                 dottedTo: Group CFO; treasury policy from Anna
       - title: Internal Audit
         kind: exec
