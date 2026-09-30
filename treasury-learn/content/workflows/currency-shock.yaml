@@ -1,0 +1,327 @@
+id: currency-shock
+title: Currency shock response
+question: EUR/CHF has just moved 8% in an hour. What do we do in the next hours, days and weeks?
+group: Events & crises
+order: 2
+summary: >-
+  When a major exchange rate jumps far outside its normal range — the reference case for Swiss companies is the
+  SNB's removal of the EUR/CHF floor on 15 January 2015 — treasury has to find out, within hours, what the move does
+  to the company: the value of existing hedges, any collateral or margin calls, unhedged cash flows, balance-sheet
+  items, covenants and liquidity. It then briefs the CFO, avoids panic trades in a disorderly market, and over the
+  following days and weeks helps management decide on new hedges, prices, budgets and structural changes. Most of the
+  work is measurement and communication; the dangerous part is the temptation to trade.
+objective: >-
+  Establish quickly and correctly what the move means in cash and P&L terms (now, next 12 months, beyond), protect
+  liquidity if hedges carry collateral, avoid value-destroying reactions, and give management a clear basis for
+  commercial and strategic responses.
+trigger: >-
+  An exchange-rate move far outside normal volatility — typically a central-bank surprise, peg removal, devaluation or
+  political event. Many treasury policies define a threshold (e.g. a move of more than 3–5% in a day in a main
+  currency pair) that requires an ad-hoc exposure report to the CFO.
+frequency: >-
+  Rare as a full event (a few times per career in a major pair); smaller versions — a 3–5% move in a week, a
+  devaluation in an emerging-market currency where a subsidiary operates — happen most years at international groups.
+people:
+  - role: Treasury manager / head of FX risk
+    does: Runs the response; decides what to measure first; recommends (not executes in panic) hedging actions; briefs the CFO.
+  - role: Treasury analyst
+    does: Checks open orders and settlements; revalues the hedge book; recalculates exposures and the forecast at the new rate; builds the briefing tables.
+  - role: CFO
+    does: Receives the first assessment within hours; decides communication to CEO, board and (if listed) the market; chairs the hedging decision.
+  - role: FP&A / controlling
+    does: Re-runs the full-year outlook and margin by product/market at the new rate; owns the budget-rate question.
+  - role: Head of accounting
+    does: Revaluation of FX balances, hedge-accounting documentation and effectiveness, subsequent-events disclosure if near a reporting date.
+  - role: Sales / pricing / business units
+    does: Decide price-list changes, surcharges, quote validity; report customer reactions (postponed orders).
+  - role: Banks' FX sales desks
+    does: Provide live prices (spreads widen sharply), confirm executions, revalue positions; call about credit lines or collateral.
+  - role: Board
+    does: Informed the same or next day; later approves any policy changes (hedge ratios, instruments, limits).
+systems:
+  - name: Market data (Bloomberg / Refinitiv terminal, bank portals, SNB and ECB rates)
+    use: Live rates and forward points; at SMEs the bank's e-banking FX page or a phone call is the only source.
+  - name: FX trading platform (e.g. multi-bank portals such as 360T or FXall) or phone to the bank
+    use: Check resting orders, execute any trades; on a shock day many quotes are withdrawn or have very wide spreads.
+  - name: Hedge register — "[TMS](term:tms)" or Excel
+    use: List of all open forwards, swaps and options with rates and maturities; source for the [mark-to-market](term:mark-to-market).
+  - name: "[ERP](term:erp)"
+    use: Open foreign-currency receivables, payables, intercompany balances and cash for the balance-sheet exposure.
+  - name: FX exposure / forecast workbook
+    use: 12–24-month forecast of foreign-currency flows by entity, used to size unhedged exposure; usually Excel below large multinationals.
+  - name: Email, phone, one-page memo / PowerPoint
+    use: CFO and board communication; most of the first day is spent here.
+data:
+  - name: Hedge book (trades, rates, maturities, counterparties)
+    source: Hedge register / TMS, reconciled to bank confirmations
+    notes: Must be complete — trades done by subsidiaries or not yet entered are a classic gap.
+  - name: Forecast foreign-currency flows (next 12–24 months)
+    source: FX exposure submissions, cash forecast, FP&A plan
+    notes: The denominator of the hedge ratio; beyond 6–12 months it is an estimate.
+  - name: Balance-sheet exposures
+    source: ERP — FX receivables/payables, FX cash, intercompany loans in non-functional currency
+    notes: Revalued through P&L at month-end; intercompany loans are often the largest and least remembered item.
+  - name: Net assets of foreign subsidiaries
+    source: Consolidation system
+    notes: "[Translation exposure](term:translation-exposure) — hits equity (OCI), not cash."
+  - name: Collateral agreements and credit lines for derivatives
+    source: ISDA / CSA documents, bank credit approvals
+    notes: Determines whether a move creates a cash call; most mid-market corporates have no CSA.
+  - name: Covenant definitions and last compliance certificate
+    source: Facility agreement, controlling
+    notes: Whether EBITDA and net debt are measured in CHF at average or closing rates matters.
+  - name: Price lists, open quotes and order backlog by currency
+    source: Sales / ERP order book
+    notes: Backlog priced at the old rate is the first place the shock turns into lost margin.
+steps:
+  - title: Confirm what happened and freeze discretionary trading
+    who: Treasury manager
+    where: Market-data screen, bank FX desk calls
+    when: "Day 0, first 30 minutes"
+    detail: >-
+      Confirm the move from more than one source and what caused it (on 15 January 2015 it was an SNB press release
+      ending the CHF 1.20 floor and cutting the deposit rate to –0.75%[](cite:snb-2015-floor)). Tell the team and
+      subsidiaries not to trade: in the first hours prices are erratic, spreads are several times normal and some
+      providers stop quoting. The only trades that should happen are those that must settle.
+    judgment: >-
+      Whether anything genuinely has to be done today (a settlement, a contractual conversion) versus everything that
+      merely feels urgent. Experienced treasurers resist "doing something" in a market without reliable prices.
+  - title: Check resting orders, today's settlements and maturing hedges
+    who: Treasury analyst
+    where: FX platform, bank portals, hedge register
+    when: "Day 0, first hour"
+    detail: >-
+      List every open order left with banks (limit, stop-loss, take-profit) — in a gap move a stop order fills at
+      whatever price is next available, far from its trigger. List forwards maturing today and this week and make sure
+      the currency to be delivered will be in the right account; list any FX swaps due to roll.
+    manual: >-
+      Orders are often recorded nowhere except the bank platform or an email to the dealer; the analyst logs in to each
+      platform and calls the desks.
+  - title: Revalue the hedge book and check collateral exposure
+    who: Treasury analyst → treasury manager
+    where: TMS or Excel hedge register, bank MTM reports
+    when: "Day 0, hours 1–3"
+    detail: >-
+      Recalculate the [mark-to-market](term:mark-to-market) of all forwards, swaps and options at new spot and
+      [forward points](term:forward-points). Then check the documents: is any hedge under a
+      [CSA](term:credit-support-annex)? If yes, a move against the company means a [margin call](term:margin-call)
+      — cash out, typically next business day. Most ordinary corporates below the regulatory clearing thresholds have
+      no mandatory margining and hedge without a CSA[](cite:jonesday-emir-vm-2017), so the MTM is an accounting and
+      counterparty-credit matter, not a cash call. Also check exposure to each bank: a hedge that moved in the company's
+      favour is now money the bank owes it.
+    judgment: Whether a bank's MTM (which includes its bid/offer and credit adjustments) is reasonable versus your own calculation.
+  - title: Measure exposures at the new rate
+    who: Treasury analyst
+    where: Exposure workbook, ERP reports, consolidation data
+    when: "Day 0, hours 2–4"
+    detail: >-
+      Three separate numbers, never mixed: (1) **cash-flow exposure** — forecast foreign-currency inflows minus
+      outflows for the next 12 months, minus hedges, times the rate change: the unhedged hit to CHF cash and margin;
+      (2) **balance-sheet revaluation** — FX receivables, payables, cash and intercompany loans not in the entity's
+      [functional currency](term:functional-currency): a P&L effect at month-end, partly non-cash; (3) **translation**
+      of foreign subsidiaries' net assets: equity, no cash. Beyond 12 months, estimate the run-rate effect if prices
+      and costs do not adapt ([economic exposure](term:economic-exposure)).
+    judgment: >-
+      How much to trust the 12-month forecast behind the numbers — the hedge ratio looks precise but its denominator
+      is an estimate.
+    manual: >-
+      At most mid-market companies the exposure workbook is refreshed monthly; on shock day the analyst re-pulls open
+      items from several ERPs and asks subsidiaries by email for their foreign-currency balances.
+  - title: Check liquidity, covenants and counterparties
+    who: Treasury manager
+    where: 13-week forecast, covenant model, counterparty report
+    when: "Day 0 afternoon"
+    detail: >-
+      Re-run the [13-week forecast](wf:cash-forecasting) in CHF at the new rate; check the next
+      [covenant](term:covenant) test pro forma (FX effect on EBITDA and on net debt if debt or cash is in foreign
+      currency); check bank exposures against [counterparty limits](term:counterparty-limit). For an exporter hit by a
+      stronger home currency, the liquidity effect is usually slow (margins erode over months) unless collateral calls
+      or FX-linked financing exist — which is exactly what this step confirms.
+  - title: First briefing to the CFO
+    who: Treasury manager → CFO
+    where: One-page email / memo, then a call
+    when: "Day 0, within 3–5 hours of the move"
+    detail: >-
+      One page: what happened; hedge-book MTM; unhedged 12-month exposure and its CHF effect; balance-sheet revaluation
+      estimate; translation effect; liquidity and covenant headroom; collateral (yes/no); recommendations — typically
+      "no trades today, hedging decision in the committee within a week". Numbers rounded and labelled as preliminary.
+    judgment: Which numbers are robust enough to give the CFO today, and how to present ranges without sounding evasive.
+  - title: Inform the board and decide external communication
+    who: CFO (with treasury numbers), CEO, legal / IR
+    where: Email to the chair, board call, ad-hoc announcement if needed
+    when: "Day 0–2"
+    detail: >-
+      The chair is informed the same day; a board note follows. If the company is listed (equity or listed bonds), the
+      CFO and legal decide whether the impact is price-sensitive and needs disclosure. Near a reporting date the event
+      becomes a subsequent-events note — Tecan's 2014 report, for example, stated that its accounts did not reflect
+      rate changes after 31 December and that the 2015 impact depended on the euro's further development[](cite:tecan-ar-2014-subsequent).
+  - title: Decide the hedging response
+    who: Hedging committee (CFO, treasury manager, FP&A); treasury executes
+    where: Committee meeting, then FX platform or bank calls
+    when: "Days 2–10"
+    detail: >-
+      Once markets are orderly: is the company within [policy](term:treasury-policy) hedge ratios after the move?
+      Should it add hedges for later months at the new, worse rate, wait, or use [options](term:option) (expensive,
+      because implied volatility jumps)? Hedging after the move locks in the loss for those months — it buys
+      certainty, not recovery. Common practice is to add layers gradually over several weeks rather than on one day's rate.
+    judgment: >-
+      The central judgment: certainty now versus the chance the rate partly reverts. There is no right answer ex ante,
+      and whichever choice is made will look wrong to someone with hindsight.
+  - title: Pricing, budget and commercial responses
+    who: CFO, sales, FP&A, business units (treasury supplies rates and scenarios)
+    where: Management meetings, pricing models
+    when: "Days 3–30"
+    detail: >-
+      Management decides on price increases or surcharges in CHF terms, shortening quote validity, invoicing currency
+      for new contracts, and whether to re-base the [budget rate](term:budget-rate) and targets — Clariant, for example,
+      reviewed its 2015 bonus targets in February 2015 because of the franc situation[](cite:clariant-ar-2015-bonus).
+      Second-order effects appear: Burckhardt Compression attributed a 7.9% fall in order intake mainly to customers
+      postponing orders after the floor removal[](cite:burckhardt-ar-2014).
+  - title: Structural measures and policy review
+    who: Management and board; treasury proposes the financial part
+    where: Strategy meetings, board
+    when: "Weeks 2–12"
+    detail: >-
+      Operational measures (cost cuts, longer working hours, [short-time work](term:short-time-work), moving
+      purchasing into the foreign currency as a [natural hedge](term:natural-hedge), relocation) are decided by
+      management; after 2015 Swiss MEM companies widely cut prices and some planned partial relocation[](cite:swissmem-2015-franc),
+      and machine-tool maker Tornos lengthened working hours at Swiss sites[](cite:tornos-2015-franc-measures). Treasury's
+      part: revisit hedge horizon and ratios, instrument set (options?), whether to borrow in the foreign currency,
+      counterparty limits, and a post-mortem of what the team did not know on day 0.
+example:
+  title: "Helvetic, Thursday 10:30: EUR/CHF drops from 0.935 to 0.860 (–8%)"
+  body: |
+    *Illustrative scenario; figures consistent with Helvetic's facts (EUR ~50% of CHF 650m revenue, rolling EUR forwards, CHF 200m RCF with ~CHF 60m drawn, net debt/EBITDA covenant ≤ 3.25x).*
+
+    **10:36** — Daniel's screen shows EUR/CHF at 0.86, trading between 0.83 and 0.88 with spreads ten times normal. He messages Lea and the eight subsidiary finance managers: *no FX trades today without my approval.*
+
+    **10:50** — Lea finds one resting order: a stop to sell EUR 3m at the global bank if EUR/CHF traded below 0.92. It filled at 0.874 — not a disaster, but not a price anyone chose. A EUR 4m forward matures tomorrow at 0.931; HM AG's EUR account holds EUR 7.3m, so delivery is covered.
+
+    **11:15–13:30** — Lea revalues and measures (CHF m, rounded):
+
+    | Item | Basis | Effect at 0.860 | Cash? |
+    |---|---|---|---|
+    | Forward book (sell EUR 81m, avg rate 0.928, avg ~5 months) | vs new forwards ≈ 0.853 | **+6.1** MTM gain | Only as the forwards settle |
+    | Unhedged EUR flows next 12 months (net EUR inflow 150m – 81m hedged = EUR 69m) | 69 × (0.935 – 0.860) | **–5.2** | Yes, over 12 months |
+    | Months 13–24 (net EUR 150m, unhedged) if prices/costs don't adapt | 150 × 0.075 | **–11.3** per year | Yes, from next year |
+    | Balance sheet: EUR receivables, EUR cash, EUR 40m loan to HM Deutschland (EUR 25m swapped) — net EUR 22m | 22 × 0.075 | **–1.7** at month-end | Mostly no |
+    | Translation of EUR subsidiaries' net assets (EUR 190m) | 190 × 0.075 | **–14.3** in equity (OCI) | No |
+
+    No CSA with any bank, so no margin call. The forwards moving in Helvetic's favour mean its three hedge banks now owe it CHF 6.1m in MTM — within counterparty limits.
+
+    **13:45** — Covenant check: LTM EBITDA CHF 78m, net debt ~CHF 115m → 1.5x. Even with a full-year EBITDA hit of CHF 11m, leverage ≈ 1.7x against 3.25x. RCF and bond are in CHF, so net debt hardly moves. 13-week liquidity: unchanged in the short run.
+
+    **14:10** — Daniel's one-page note to Thomas (CFO): "No liquidity or covenant issue. Hedged 54% of next 12 months at 0.928; unhedged 12-month hit ≈ CHF 5m; structural hit ≈ CHF 11m per year from 2027 unless prices move. Recommend no trades today; hedging committee Tuesday." Thomas forwards a shortened version to the chair at 15:00.
+
+    **Tuesday (Day 5)** — Committee (Thomas, Daniel, Marco from FP&A). EUR/CHF has settled at 0.87. Decision: keep policy ratios; add EUR 20m of forwards for months 7–12 in four weekly tranches instead of one trade; no options (implied volatility has doubled). Marco re-runs the outlook; sales introduces a CHF-denominated surcharge on new quotes for non-EU customers and shortens EUR quote validity to 30 days.
+
+    **Weeks 2–8** — Operations shift CHF 15m per year of casting and electronics purchasing to Czech and German suppliers invoiced in EUR (a natural hedge). Daniel proposes to the board extending the hedge horizon from 12 to 18 months and writes a post-mortem: the stop order nobody remembered, and three subsidiaries that did not know their own EUR intercompany balances.
+judgment:
+  - decision: Whether to trade at all on day 0
+    why: Prices are unreliable and spreads wide; most day-0 trades are emotional. But a trade that must settle, or a collateral need, cannot wait.
+  - decision: Hedge now at the new rate, wait, or use options
+    why: Locking in removes uncertainty but crystallises the loss; waiting keeps the chance of reversion but also of further loss. Option premiums spike exactly when they seem most attractive.
+  - decision: Which exposure number to lead with
+    why: MTM gains, cash-flow losses, revaluation and translation point in different directions; leading with the wrong one misleads the CFO and board.
+  - decision: Whether and how fast to change prices
+    why: A commercial judgment — customers compare with competitors in the same currency; too-fast increases lose orders, too-slow ones lose margin.
+  - decision: Whether to re-base the budget rate
+    why: Keeping the old rate makes every business look like it failed; re-basing removes the pressure to adapt. Affects bonuses and credibility.
+failure_modes:
+  - mode: Panic hedging at the worst prices
+    consequence: Locks in the loss at extreme intraday rates plus very wide spreads.
+    detection: Trade blotter review; policy requiring CFO approval for trades on disorderly-market days.
+  - mode: Forgotten resting orders (stops, limits) fill in the gap
+    consequence: Unplanned trades at unintended prices.
+    detection: Central register of all orders with banks; daily order confirmation from each platform.
+  - mode: Unrecognised collateral agreement
+    consequence: A margin call arrives the next day that nobody planned for — a liquidity event rather than an accounting one.
+    detection: Inventory of ISDA/CSA terms maintained by treasury operations; stress test of MTM under large moves.
+  - mode: Incomplete exposure data (intercompany loans, subsidiaries' own hedges, FX cash)
+    consequence: The first number given to the CFO is wrong and has to be corrected — credibility loss.
+    detection: Reconciliation of hedge register to bank confirmations; intercompany balance confirmations.
+  - mode: Mixing cash, P&L and equity effects in one number
+    consequence: Board over- or under-reacts (e.g. a large translation loss that has no cash effect).
+    detection: Standard briefing template with separate lines.
+  - mode: Only first-order effects considered
+    consequence: Missed volume effects (customers postponing orders), competitor pricing, supplier price demands.
+    detection: FP&A and sales input in the week-1 review.
+software: >-
+  Market data and FX execution are well served (terminals, bank platforms, multi-bank trading portals). **TMS** hedge
+  modules revalue the book automatically at large companies; at mid-market companies the hedge register and exposure
+  workbook are typically **Excel**, reconciled to bank confirmations. No software decides the hedging response or
+  pricing; scenario tools help with "what if" numbers. See [Systems & Data](/systems).
+manual_work:
+  - Logging in to each bank platform and calling dealers to list resting orders and confirm positions.
+  - Re-pulling foreign-currency open items and balances from several ERPs; emailing subsidiaries for what is missing.
+  - Revaluing the hedge register in Excel and reconciling to banks' MTM reports.
+  - Writing the first CFO note and the board note; answering repeated "what if it goes to X?" questions.
+  - Rebuilding the exposure forecast, budget and price lists at the new rate.
+by_size:
+  startup: >-
+    Usually no hedges and little foreign-currency cost. The CFO checks how much cash is held in the affected currency
+    and what it does to runway, tells the board in the next update, and perhaps converts part of a large foreign
+    balance. The question is rarely "hedge?" and mostly "does this change our runway or pricing?"
+  sme: >-
+    The CFO and head of accounting do it in an afternoon with the bank's FX adviser on the phone: what forwards do we
+    have, what open projects or orders are priced in the currency, what does it do to this year's margin. Often no
+    written hedging policy, so the decision whether to hedge after the move is the CFO's (and the board's). Pricing of
+    open quotes is usually the biggest lever.
+  midmarket: >-
+    A treasury manager and analyst run the steps above within a day using the hedge register, the exposure workbook
+    and the covenant model; the CFO chairs the follow-up decisions. Main risks: incomplete data from subsidiaries and
+    pressure to trade.
+  multinational: >-
+    A financial-risk team revalues the book in the TMS within an hour, runs pre-built stress scenarios, checks CSAs and
+    collateral, and briefs the Group Treasurer and CFO with rating-agency metrics (net debt in reporting currency) and
+    hedge-accounting effects. Exposures are netted across dozens of currencies; the hard work is the regional commercial
+    response and emerging-market subsidiaries with devaluation or convertibility issues.
+companies:
+  kleio: "EUR is ~20% of revenue (≈ CHF 2.4m a year), so an 8% move costs ≈ CHF 0.2m a year — noise against CHF 0.9m monthly burn. Sarah notes it in the board update; the bigger FX question for Kleio is USD."
+  alpine: "Martin has EUR 5m of forwards with the large Swiss bank and EUR 14m of signed projects priced in EUR; the unhedged EUR 9m of backlog loses ≈ CHF 0.7m. His real problem is the dozen open EUR quotes: he and the sales head reprice them within a week. Petra updates the cash sheet in CHF; no board policy exists, so Martin asks the board chair whether to hedge the rest of the backlog."
+  helvetic: "The worked example above: a day of measurement and communication, a hedging committee after five days, purchasing shifted into EUR over the following weeks."
+  globalchem: "Jonas's risk team revalues ~1,000 trades in the TMS within an hour. Two banks have CSAs (thresholds of EUR 25m, illustrative); because GlobalChem's EUR-selling hedges moved in its favour, those banks post collateral to GlobalChem — the reverse move would have produced margin calls that Priya's team would fund from the pool. Olivier updates net debt / EBITDA for the rating agencies; the EUR bonds translate into fewer CHF, reducing reported net debt."
+handoffs:
+  - from: Banks' FX desks / market data
+    gives: live prices, fills of resting orders, MTM reports, any collateral calls
+    to: Treasury analyst
+  - from: Subsidiary finance
+    gives: foreign-currency balances, open orders, locally executed hedges
+    to: Treasury analyst
+    note: Often by email on the day; the most common source of missing exposures.
+  - from: Treasury manager
+    gives: one-page assessment (MTM, exposures, liquidity, covenants, collateral) and recommendation
+    to: CFO
+  - from: CFO
+    gives: board information; market disclosure decision if listed
+    to: Board / investors
+  - from: FP&A
+    gives: revised outlook at the new rate; budget-rate proposal
+    to: CFO / management
+  - from: Treasury
+    gives: new-rate scenarios and hedge coverage by month
+    to: Sales / pricing / business units
+  - from: Head of accounting
+    gives: revaluation, hedge-accounting effects, subsequent-events wording
+    to: CFO / auditors
+interview: >-
+  Ask treasurers who were in post in January 2015 (or during a devaluation in a subsidiary country) to walk through
+  **the first day**: where they were at 10:30, who they called first, what number they gave the CFO and when, what
+  they found they did not know, whether they traded that day and whether they regret it. Ask the CFO what the board
+  asked for. See [Who should I interview?](/org/interview-finder).
+ai_note: >-
+  Revaluing a hedge book and recalculating exposures is deterministic once the data is complete, and TMSs already do
+  it at large companies. The day-0 problem is incomplete data scattered across banks, ERPs and emails, and the
+  decisions afterwards (hedge, wait, reprice) are judgment under uncertainty with board accountability. An assistant
+  that assembles a complete exposure picture fast is plausible; autonomous trading in a disorderly market is not.
+terms: [fx-exposure, transaction-exposure, translation-exposure, economic-exposure, forward, forward-points, option, hedge-ratio, natural-hedge, mark-to-market, isda, credit-support-annex, margin-call, budget-rate, hedge-accounting, covenant, counterparty-limit, short-time-work]
+related: [fx-exposure-management, fx-hedging, covenant-monitoring, cash-forecasting, liquidity-crisis, policy-compliance, month-end-reporting]
+sources: [snb-2015-floor, tecan-ar-2014-subsequent, clariant-ar-2015-bonus, burckhardt-ar-2014, swissmem-2015-franc, tornos-2015-franc-measures, jonesday-emir-vm-2017]
+evidence_note: >-
+  The 15 January 2015 event and SNB measures are from the SNB's press release[](cite:snb-2015-floor). Examples of
+  corporate responses come from company reports and releases (Tecan, Clariant, Burckhardt Compression, Tornos) and a
+  Swissmem member survey[](cite:tecan-ar-2014-subsequent,clariant-ar-2015-bonus,burckhardt-ar-2014,tornos-2015-franc-measures,swissmem-2015-franc);
+  these were verified from publisher search snippets because direct page access was unavailable, and the Swissmem
+  percentages should be treated as indicative. The margining point is regulatory background summarised by a law firm[](cite:jonesday-emir-vm-2017);
+  Swiss FinfraG rules follow a similar logic. The hour-by-hour sequence, the Helvetic example and company variants are
+  illustrative synthesis of established practice, not survey findings.

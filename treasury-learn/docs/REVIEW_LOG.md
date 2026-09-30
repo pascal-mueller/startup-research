@@ -7,3 +7,7 @@ size nuance, discovery usefulness). Individual reviews are in `docs/reviews/`.
 
 | Module | Round | Scores (acc / realism / pedagogy / concrete / sources) | Verdict | Notes |
 |---|---|---|---|---|
+| Start Here | 1 | 7 / 7 / 8 / 8 / 5 | REVISE | Cross-page fact inconsistencies; controlling gap; source primacy. Stats unverifiable (egress blocked). |
+| Daily cash positioning | 1 | 7 / 7 / 8 / 9 / 5 | REVISE | Time-zone logic reversed; CHF deposits at 0% with RCF drawn; placeholder glossary ids. |
+| Cash forecasting | 1 | 7 / 8 / 8 / 8 / 6 | REVISE | Consistency with companies.yaml; accuracy measurement; FX currency view. |
+| Glossary/sources (core) | 1 | 7 / – / 8 / 8 / 4 | REVISE | Helvetic pool contradiction; missing terms; second-hand sources. |

@@ -1,0 +1,110 @@
+---
+title: Kleio Software AG — treasury in a 70-person start-up
+nav: Kleio (start-up)
+order: 1
+summary: A venture-funded Zurich SaaS company with CHF 22m in the bank, no treasurer and a CFO who spends about half a day a week on cash. Treasury here means runway, bank safety, payroll and not being hurt by the dollar.
+related: [/size/startup, /day/sarah, /org/roles-cfo, /companies/same-problem, /companies]
+---
+
+## Profile
+
+Kleio sells workflow software to mid-sized insurers in Switzerland, Germany and the US. It raised a CHF 35m Series B about 18 months ago and has about CHF 22m left. Enterprise customers pay annually in advance, mostly in January and July; smaller customers pay monthly by card through Stripe. The finance function is **Sarah (CFO)** and **Nina (accountant)**, with an external [fiduciary](term:fiduciary-treuhaender) for statutory accounts and tax and an external payroll provider.
+
+Nobody at Kleio has "treasury" in their title. But every week someone has to answer: how much cash do we have, how long will it last, is it safe where it is, and do we need to do anything about the USD and EUR piling up? That is Sarah's job, squeezed between the board deck, the audit, pricing work and hiring.
+
+<CompanyFacts id="kleio" />
+
+## Entities, banks and accounts
+
+| Entity | Bank | Account | Purpose |
+|---|---|---|---|
+| Kleio Software AG (CH) | Large Swiss bank ("Bank A") | CHF current | Main operating account: supplier payments, funding of Swiss payroll |
+| | | EUR current | EUR customer receipts (German customers) |
+| | | USD current | USD receipts from Stripe payouts and some US customers; cloud bills |
+| Kleio Software AG (CH) | Cantonal bank ("Bank B", added 2023) | CHF current | Reserve account — about half the cash since the board's post-SVB request |
+| | | CHF deposit account | 3-month term deposits (currently CHF 8m across both banks) |
+| Kleio Inc. (Delaware) | US commercial bank | USD operating | US customer receipts, US vendors |
+| | | USD payroll | Funded before each US payroll run by the US payroll provider |
+
+Seven accounts, three banks, three currencies. The Stripe balance is not a bank account but behaves like one: cash sits there for a few days before each payout, and Sarah has to remember it exists.
+
+<Callout type="confusion" title="'We have CHF 22m in the bank' is less safe than it sounds">
+
+Swiss deposit protection covers privileged deposits of up to CHF 100,000 per depositor per bank ([deposit protection](term:deposit-protection)). For a company with CHF 22m, that is irrelevant: if a bank fails, Kleio is an unsecured creditor for almost all of it. The protection comes from **which banks** the money is at and **how it is split** — which is why, after Silicon Valley Bank failed in March 2023, many start-up boards (Kleio's included) asked their CFOs to use a second bank.
+
+</Callout>
+
+## Who does treasury
+
+| Person | Role | Treasury tasks | Share of time |
+|---|---|---|---|
+| **Sarah** | CFO ([role page](/org/roles-cfo), [a day with Sarah](/day/sarah)) | Checks balances weekly, maintains the runway model, decides deposits and bank splits, approves every payment, talks to banks, answers the board | ~10% (about half a day a week), much more around fundraising |
+| **Nina** | Accountant | Enters supplier payments as e-banking batches, matches receipts, prepares month-end for the fiduciary | A few hours a week on payments |
+| External fiduciary | [Fiduciary / Treuhänder](term:fiduciary-treuhaender) | Bookkeeping review, VAT returns, statutory accounts, tax filings; no payment authority | Monthly / quarterly |
+| External payroll provider | — | Calculates payroll and social charges (CH and US), tells Sarah how much must be in the account and when | Monthly |
+| CEO (co-founder) | Backup signatory | Signs when Sarah is away; is told about anything unusual | Rarely |
+| Board (investors) | — | Asked for the bank split; sees runway quarterly; will approve any venture debt | Quarterly |
+
+There is no treasury policy document. There is a one-paragraph board resolution: cash may be held only at Swiss banks with a strong rating or a cantonal guarantee, in current accounts, deposits up to 6 months, or money market funds — and no single bank may hold more than 60% of the cash.
+
+## Systems
+
+- **E-banking portals** at three banks (each with its own token and login) — the source of truth for balances.
+- **Cloud accounting** (a Bexio-class Swiss SME package) — invoices, supplier bills, the general ledger; bank feeds for the two Swiss banks.
+- **Stripe** and the billing tool — card payments, subscription status, payout schedule.
+- **One Google Sheet** — balances by account (typed in on Mondays), deposit maturities, the monthly runway model, a list of the next large renewals.
+
+That is the whole stack. It is adequate for the complexity, and replacing it would not be Sarah's first priority.
+
+## The cash-flow pattern
+
+Costs are flat (about CHF 1.9m a month, 80% people), receipts are seasonal. The illustrative 12-month view below shows why a single "burn" number misleads:
+
+| Month | Receipts (CHF m) | Payments (CHF m) | Net | Closing cash | Comment |
+|---|---|---|---|---|---|
+| Oct | 0.4 | 1.9 | −1.5 | 20.5 | |
+| Nov | 0.4 | 1.9 | −1.5 | 19.0 | |
+| Dec | 0.4 | 2.3 | −1.9 | 17.1 | 13th-month salaries in December |
+| Jan | 5.4 | 1.9 | +3.5 | 20.6 | Enterprise renewals billed annually in advance |
+| Feb–Jun | 0.4 / month | 1.9 / month | −1.5 / month | 13.1 (June) | |
+| Jul | 2.9 | 1.9 | +1.0 | 14.1 | Second renewal cohort |
+| Aug–Sep | 0.4 / month | 1.9 / month | −1.5 / month | 11.1 (Sep) | |
+
+Over the year, cash falls by about CHF 11m — roughly the CHF 0.9m average monthly net burn in the company facts. But "cash ÷ last month's burn" gives anything from 12 months (in February) to "infinite" (in January). Sarah therefore uses a rolling 12-month average burn and a month-by-month runway model, not a single ratio. See [annual upfront billing](term:annual-prepayment) and [cash runway](term:cash-runway).
+
+The USD side: Kleio Inc. receives US customers' USD and pays eight US salaries; the Swiss parent receives Stripe USD payouts and pays cloud bills in USD. Net, USD accumulates by roughly USD 1–2m a year. EUR accumulates too (German customers, few EUR costs).
+
+## Typical problems
+
+- **Runway misread.** The prepayment seasonality makes the company look healthier in February than in December. Board members who look only at cash balances ask the wrong questions.
+- **Bank concentration and counterparty risk.** Solved crudely by splitting across two banks; still no view of each bank's creditworthiness beyond "big" and "cantonal".
+- **Idle cash earning little.** With the SNB policy rate at 0%, CHF deposits earn close to nothing (illustrative, autumn 2026). USD balances could earn materially more in US Treasury bills or a USD money market fund — but that adds an account, a custody relationship and a decision nobody has time for. See [surplus cash investment](wf:surplus-cash-investment).
+- **FX by accident.** USD and EUR are converted when the CHF account runs low, at the bank's rate, without comparing quotes. The spread is a real but invisible cost.
+- **Payment fraud.** Two signatures, but the two signatories sit next to each other and know each other's habits; a convincing CEO-impersonation email to Nina while Sarah travels is the classic risk. See [fraud investigation](wf:fraud-investigation).
+- **Key-person risk.** Sarah is the only person who understands the whole picture.
+- **Venture debt decision.** A lender has offered a facility (illustratively CHF 5m, drawable over 12 months, interest-only then amortising, with warrants). Sarah must weigh cost and covenants (e.g. minimum cash, information rights) against extra runway. This is Kleio's first contact with [credit facility management](wf:credit-facility-management) and [covenants](term:covenant).
+
+## The workflows, as run at Kleio
+
+| Workflow | How it happens at Kleio |
+|---|---|
+| [Daily cash positioning](wf:daily-cash-positioning) | Weekly, not daily: Sarah logs into three portals on Monday and before payroll, types balances into the sheet. 15 minutes. |
+| [Cash forecasting](wf:cash-forecasting) | A monthly runway model, not a 13-week forecast. Key inputs: renewal list, payroll, the Stripe run-rate. |
+| [Liquidity planning](wf:liquidity-planning) | "When do we need to raise?" Rule of thumb: start with 12–15 months of runway left. |
+| [Surplus cash investment](wf:surplus-cash-investment) | CHF 8m in 3-month deposits split across both Swiss banks; a USD money market fund under discussion. |
+| [Funding a subsidiary](wf:funding-subsidiary) | USD sent to Kleio Inc. when a large US renewal is late; otherwise Inc. remits surplus quarterly under its intercompany agreement. |
+| [Payment processing](wf:payment-processing) | Nina prepares batches in e-banking twice a month; Sarah approves in the bank's app. |
+| [Large payment approval](wf:large-payment-approval) | Anything unusual (e.g. a USD 300k cloud prepayment) gets a call-back to the vendor and Sarah's second signature. |
+| [Bank reconciliation](wf:bank-reconciliation) | Automated bank feeds into the accounting software; Nina clears exceptions monthly; the fiduciary reviews. |
+| [Bank account management](wf:bank-account-management) | Sarah personally; the account list lives in the Google Sheet. |
+| [FX exposure management](wf:fx-exposure-management) / [FX hedging](wf:fx-hedging) | No formal process and no hedges; conversions as needed. |
+| [Month-end reporting](wf:month-end-reporting) | Runway and cash in the monthly management pack and the quarterly board deck. |
+| [Liquidity crisis](wf:liquidity-crisis) | The scenario Kleio actually rehearsed: "our main bank freezes for a week" (the SVB lesson). |
+
+For the side-by-side comparison with the other three companies, see [Same problem, four scales](/companies/same-problem).
+
+<Callout type="interview" title="If you interview a Kleio-type CFO">
+
+They will know everything about their cash, because they do everything themselves — but treasury is a small part of their week. Good questions: "Walk me through the last time you moved money between banks — what triggered it?" "How do you calculate runway, and has the board ever disagreed with it?" "What did you change after SVB?" Poor questions: anything assuming a TMS, a hedging policy or a treasury team. See [Treasury by size: start-up](/size/startup).
+
+</Callout>
