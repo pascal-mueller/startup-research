@@ -1,0 +1,342 @@
+id: payment-processing
+title: Payment processing (invoice to bank)
+question: An invoice needs to be paid — how does it actually get from the supplier's PDF into the supplier's bank account?
+group: Payments & banking
+order: 1
+summary: >-
+  A supplier invoice is captured, matched and approved in accounts payable, collected into a scheduled
+  [payment run](term:payment-run), turned into a bank file, signed by authorised people, sent to the bank, executed on
+  the right rail before cut-off, and finally cleared against the invoice when the bank reports it. Most of the work sits
+  in accounts payable, not treasury; treasury owns the bank side (accounts, connectivity, formats, signatory rules,
+  liquidity for the run) and the exceptions. It is high-volume, mostly routine, and the place where fraud and
+  master-data errors turn into real money leaving the company.
+objective: >-
+  Pay every approved obligation exactly once, in full, to the right beneficiary, on the right date — at the lowest
+  reasonable cost, with enough cash in the paying account, and with an audit trail showing who prepared, approved and
+  released each payment.
+trigger: >-
+  Approved invoices falling due (collected by a scheduled payment run, typically once or twice a week), plus
+  off-cycle needs: urgent supplier payments, tax, payroll funding, intercompany settlements, treasury deals.
+frequency: >-
+  Payment runs weekly or twice weekly at most SMEs and mid-market entities; daily at shared-service centres and
+  payment factories. Payroll monthly (Switzerland; often semi-monthly or bi-weekly in the US). Manual/urgent
+  payments several times a week everywhere.
+people:
+  - role: Accounts payable clerk / AP team
+    does: Captures and codes invoices, chases approvals, runs the payment proposal, fixes blocked items, answers supplier "where is my money?" calls.
+  - role: Budget owner / requester (cost-centre manager, project manager)
+    does: Confirms that the goods or service were received and the invoice is correct; approves non-PO invoices within their authority.
+  - role: Procurement
+    does: Owns purchase orders and supplier onboarding; resolves price and quantity mismatches with the supplier.
+  - role: Master-data team (or a second AP person at smaller companies)
+    does: Creates suppliers and changes bank details under dual control, after call-back verification.
+  - role: Head of accounting / AP lead
+    does: Reviews the payment proposal, removes disputed items, decides early-payment discounts; often one of the two signatories at SMEs.
+  - role: Treasury (treasury manager / analyst, or the CFO at small companies)
+    does: Ensures the paying accounts are funded before the run, owns bank connectivity, file formats and bank mandates, handles treasury and intercompany payments, monitors rejects at bank level.
+  - role: Authorised signatories (CFO, finance managers, local MDs)
+    does: Release the payment file in e-banking / EBICS / the payment tool according to the bank mandate — usually two of them.
+  - role: Payment factory / shared-service centre (large groups)
+    does: Receives payment files from many ERPs, validates, screens and routes them to banks; handles bank-side rejects centrally.
+systems:
+  - name: "[ERP](term:erp) AP module (SAP S/4HANA, Microsoft Dynamics 365 Business Central, Bexio-class tools at small firms)"
+    use: "Invoice ledger, approval workflow, vendor master, payment proposal (e.g. SAP F110, Business Central 'Suggest Vendor Payments'), payment-file generation (e.g. SAP DMEE / format trees)."
+  - name: Invoice capture / OCR / QR-bill scanner
+    use: Reads PDF invoices and Swiss QR-bills into the ERP; routes them for approval. Swiss QR-bills carry IBAN, amount and reference in machine-readable form.
+  - name: Bank connectivity ([EBICS](term:ebics), [SWIFT](term:swift), [host-to-host](term:host-to-host), e-banking upload)
+    use: Transmits the [pain.001](term:pain-001) file to the bank and returns [pain.002](term:pain-002) status reports and [camt.054](term:camt-054) booking details.
+  - name: Multibank payment / connectivity tool or [TMS](term:tms) payment module
+    use: At mid-market and large companies, a hub between ERPs and banks — central signing workflow, format conversion, duplicate checks, sanctions screening, status monitoring.
+  - name: Bank e-banking portals and signing apps
+    use: Where signatories actually release files at most SMEs; also the fallback for manual payments and for banks without file channels.
+  - name: Excel / email
+    use: Lists of invoices to hold or prioritise, approval emails for non-PO invoices, the run total sent to whoever manages cash.
+data:
+  - name: Supplier invoice
+    source: Supplier (PDF by email, e-invoice, paper; in Switzerland increasingly QR-bill or eBill)
+    notes: Invoice number, amount, currency, due date, payment terms, bank details — the bank details on the invoice are NOT used for payment; the vendor master is.
+  - name: Purchase order and goods receipt / service confirmation
+    source: Procurement and warehouse in the ERP
+    notes: Basis of the [3-way match](term:three-way-match). Non-PO invoices (services, utilities, fees) need a separate approval.
+  - name: Vendor master data (name, address, IBAN/account, BIC, payment terms, payment method)
+    source: ERP vendor master
+    notes: Every payment goes where this record says. [Structured addresses](term:structured-address) become mandatory in Swiss payment files from November 2026.
+  - name: Approval matrix / delegation of authority
+    source: Organisational regulations, [signing authority matrix](term:signing-authority-matrix)
+    notes: Who may approve an invoice (spend authority) is a different list from who may sign at the bank (bank mandate) — both must fit.
+  - name: Paying-account balances and cash forecast
+    source: Treasury's [cash position](term:cash-position)
+    notes: A run that exceeds the account balance is rejected or overdraws the account.
+  - name: Bank cut-off times and holiday calendars
+    source: Bank documentation
+    notes: A file uploaded after the CHF or EUR cut-off executes the next business day.
+  - name: Status and booking reports
+    source: Bank (pain.002, camt.054, camt.053 / MT940)
+    notes: Tell you what was rejected, what was executed and what to clear in the ledger.
+steps:
+  - title: Capture and code the invoice
+    who: AP clerk
+    where: Invoice-capture tool / ERP
+    when: Daily as invoices arrive
+    detail: >-
+      The invoice is scanned or received electronically, the supplier identified, and header data (invoice number,
+      date, amount, currency, VAT, due date) recorded. Swiss QR-bills are read directly. The system checks for duplicates
+      (same supplier, invoice number and amount) and assigns the invoice to the matching purchase order or, for non-PO
+      invoices, to a cost centre and approver.
+    manual: >-
+      Invoices with poor scans, multiple POs, missing PO numbers or credit notes are keyed or corrected by hand;
+      duplicates arrive through two channels (email and post, or a reminder treated as a new invoice).
+  - title: Match and approve
+    who: AP clerk → budget owner / procurement
+    where: ERP approval workflow, email
+    when: Within the payment terms (typically 30 days in Switzerland)
+    detail: >-
+      For PO invoices the ERP performs a [3-way match](term:three-way-match) of price and quantity within tolerances;
+      mismatches block the invoice until procurement or the warehouse resolves them. Non-PO invoices go to the
+      cost-centre owner, who approves within their spend authority. Blocked and unapproved invoices are chased weekly.
+    judgment: >-
+      Whether a price difference is within tolerance or needs a credit note; whether to pay the undisputed part of a
+      disputed invoice; whether a service was really delivered.
+  - title: Check the payee in the vendor master
+    who: Master-data team / second AP person
+    where: ERP vendor master
+    when: At onboarding and whenever bank details change
+    detail: >-
+      New suppliers and any change of bank details are set up by someone who does not run payments, verified by a
+      [call-back](term:call-back-verification) to a contact from the contract or earlier correspondence (never from the
+      email announcing the change), and approved by a second person. Many companies block the first payment to a new
+      or changed account until it is reviewed. See [vendor master data](term:vendor-master-data).
+    manual: >-
+      The call-back, the documentation of it, and the second approval are manual at nearly every company size.
+    judgment: >-
+      Whether a change request is plausible — a letter on the supplier's letterhead, a new bank in another country, a
+      [notice of assignment](term:assignment-of-receivables) from a factoring company — and how much evidence is enough.
+  - title: Run the payment proposal
+    who: AP clerk / AP lead
+    where: ERP (e.g. SAP F110, Business Central payment journal)
+    when: Payment day, e.g. Tuesday 08:00
+    detail: >-
+      The ERP selects approved, unblocked items due up to the next payment date, groups them by supplier (netting
+      credit notes), and assigns the paying company code, house bank, account and payment method (domestic CHF, SEPA,
+      cross-border, instant). The output is a proposal list, not yet a payment.
+  - title: Review the proposal and check the cash
+    who: AP lead / head of accounting; treasury for the total
+    where: ERP proposal list, Excel, email to treasury
+    detail: >-
+      Remove disputed or on-hold items, check unusually large items and first payments to new bank details, decide
+      whether to take early-payment discounts (e.g. 2% for payment within 10 days), and send the total per paying
+      account and currency to whoever manages cash. Treasury confirms that each account can cover the run on the
+      execution date or funds it (see [daily cash positioning](wf:daily-cash-positioning)).
+    judgment: >-
+      Which invoices to delay when cash is tight or a supplier is in dispute; whether a discount is worth taking;
+      whether a large item needs extra scrutiny under the [large-payment rules](wf:large-payment-approval).
+  - title: Generate the payment file
+    who: AP clerk (system step)
+    where: ERP / payment tool
+    detail: >-
+      The ERP writes one [pain.001](term:pain-001) file per bank (or per debtor account), in the version and
+      country variant the bank accepts — in Switzerland pain.001.001.09 under the Swiss Payment Standards[](cite:six-sps-ig-ct-2026).
+      The file contains a control sum and transaction count. The ERP marks the invoices as paid-in-transit.
+    manual: >-
+      When a bank changes its format rules (e.g. mandatory [structured addresses](term:structured-address) in
+      Switzerland from November 2026[](cite:six-address-factsheet)), files start being rejected and someone has to fix
+      vendor records or the format mapping — often an external consultant for the ERP.
+  - title: Transmit and sign
+    who: AP lead uploads; two authorised signatories release
+    where: EBICS client / payment tool / e-banking portal and signing app
+    when: Before the bank's cut-off (for many Swiss banks, late morning to early afternoon for same-day CHF and EUR)
+    detail: >-
+      The file is uploaded and then released by the signatories required by the bank mandate — typically "collective
+      signature by two". With [EBICS](term:ebics) each signatory signs the file electronically, possibly hours apart
+      ([distributed signature](term:ebics-signature)); in a multibank tool the signing workflow runs centrally and the tool
+      signs towards the bank. Signatories see the total and count, and can drill into individual payments.
+    judgment: >-
+      What the signatory actually checks. In practice many release a CHF 2m file after looking at the total, the
+      number of payments and the few largest items; the control only works if someone looked at the items before.
+  - title: Bank processing and status reports
+    who: Bank → treasury / AP
+    where: Bank systems; pain.002 in the connectivity tool or ERP
+    detail: >-
+      The bank validates the file (format, account, balance), screens it against sanctions lists, and — for euro
+      transfers from EU/EEA banks since 9 October 2025 — may return a [Verification of Payee](term:verification-of-payee)
+      result for each beneficiary unless the company has opted out for bulk files[](cite:epc-vop-bulk-faq). It then
+      executes each payment on the requested date through the relevant rail: [SIC](term:sic) for CHF, SEPA for EUR,
+      [correspondent banking](term:correspondent-banking) over Swift for other currencies (in ISO 20022 format between
+      banks since the November 2025 end of coexistence[](cite:swift-eoc-2025)), or instant rails where requested.
+      A [pain.002](term:pain-002) status report returns accepted and rejected items.
+  - title: Work rejects and returns
+    who: AP clerk; treasury for bank-level problems
+    where: Connectivity tool / ERP / phone and email with supplier and bank
+    when: Same day for rejects; days later for returns
+    detail: >-
+      Rejects (pain.002 RJCT, e.g. invalid IBAN, closed account, insufficient funds) are corrected and re-sent;
+      returns arrive days later as credits with a return reason when the beneficiary bank cannot apply the money.
+      Each needs a fix in master data and a new payment — after checking that the original really did not go.
+    manual: >-
+      Chasing the correct bank details, re-approving the corrected payment, and explaining the delay to the supplier.
+    judgment: >-
+      Whether a "please pay to our new account instead" request that follows a reject is genuine — a common fraud
+      pattern.
+  - title: Clear the invoices and reconcile
+    who: AP / accounting (automated where possible)
+    where: ERP electronic bank statement
+    when: Next morning
+    detail: >-
+      The bank's [camt.054](term:camt-054) (detail per payment) or camt.053 statement is imported; payments are matched
+      to the paid-in-transit items and cleared, fees and FX differences posted. The run then disappears into the daily
+      [bank reconciliation](wf:bank-reconciliation).
+  - title: Answer supplier queries
+    who: AP clerk; treasury for cross-border tracing
+    where: Email, phone, bank portal (Swift gpi tracker)
+    detail: >-
+      "We haven't received the money" calls are answered from the ERP payment date, the bank debit, and for
+      cross-border payments the [Swift gpi](term:swift-gpi) tracker. Short receipts are explained by
+      [charge bearer](term:charge-bearer) settings (SHA/BEN) or intermediary fees.
+example:
+  title: "Alpine's Tuesday run: 84 payments, one rejection, one address problem"
+  body: |
+    **Monday 16:00** — Petra's AP colleague runs the payment proposal in Business Central for everything due up to Friday: 86 items. Petra removes two invoices from a component supplier that is disputing a short delivery (see the 3-way match block on the servo motors) and sends Martin the total.
+
+    | Paying account (Alpine Robotics AG) | Payments | Amount | CHF equivalent (illustrative rates) |
+    |---|---|---|---|
+    | CHF, cantonal bank — domestic incl. QR-bills | 52 | CHF 1,016,400 | 1,016,400 |
+    | EUR, cantonal bank — SEPA | 27 | EUR 741,900 | ~693,700 (at 0.935) |
+    | USD, large Swiss bank — cross-border | 5 | USD 236,500 | ~189,200 (at 0.80) |
+    | **Total** | **84** | | **~CHF 1.90m** |
+
+    **Tuesday 08:05** — Petra checks balances: the CHF account holds CHF 2.3m, the EUR account EUR 0.6m. EUR is EUR 0.14m short. She converts CHF 150k to EUR in the large bank's portal and transfers it to the cantonal bank EUR account (a same-day EUR transfer between two Swiss banks).
+
+    **08:40** — Business Central generates three pain.001.001.09 files. The USD file is rejected by the bank's pre-validation: one US supplier has no town name in the vendor record. Petra's colleague fixes the address (a job she knows is coming for ~200 more vendors before November 2026) and regenerates the file.
+
+    **09:15** — Petra uploads the files via EBICS. The EUR file contains two payments above CHF 250k equivalent, so Alpine's rules require Martin as one of the two signatories on that file: Petra signs first, Martin signs in the bank's app from a customer meeting at 10:20, after opening the two large items.
+
+    **11:30** — The pain.002 shows 83 accepted, 1 rejected: AC04 (account closed) for a German cable supplier. Petra's colleague calls the supplier's accounting on the number in the vendor record, receives the new IBAN by letter the same afternoon, and Petra approves the master-data change as second person. The payment goes out Wednesday — one day late, no penalty.
+
+    **Wednesday 07:30** — The camt.054 detail clears the 83 payments in Business Central; the CHF 38.50 of cross-border fees are posted to bank charges.
+judgment:
+  - decision: Whether to pay a disputed or partially matched invoice
+    why: Depends on the supplier relationship, the size of the difference, and what procurement knows about the dispute — not something the match rules can settle.
+  - decision: Whether a bank-detail change or first payment is genuine
+    why: Fraudsters imitate exactly the documents a system would check. The judgment is about context (does this supplier really change banks? why now? why a foreign account?) and about how hard to verify.
+  - decision: Which payments to delay when cash is tight
+    why: A trade-off between supplier relationships, late-payment interest, strategic suppliers and liquidity — typically CFO-level at SMEs.
+  - decision: Whether to take early-payment discounts
+    why: A "2% 10 days, net 30" discount is worth roughly 37% a year annualised, but only if cash is not needed elsewhere and the invoice is approved in time.
+  - decision: What a signatory checks before releasing a file
+    why: No rule defines how deep a signatory must look; the control's real strength depends on this individual behaviour.
+failure_modes:
+  - mode: Duplicate payment (same invoice paid twice — via email and paper copy, or a reminder booked as a new invoice)
+    consequence: Cash lost until the supplier refunds; some never do.
+    detection: ERP duplicate checks; supplier statement reconciliation; recovery audits.
+  - mode: Payment to a fraudulent account after a fake bank-detail change
+    consequence: Loss, often unrecoverable once the money has been moved on; the real supplier is still owed. Business email compromise affected 74% of US organisations in AFP's 2026 survey[](cite:afp-pfc-2026-highlights).
+    detection: Call-back verification, dual control of master data, first-payment holds, Verification of Payee "no match" results.
+  - mode: Rejected payment not noticed (pain.002 not monitored)
+    consequence: Supplier not paid, late fees, supply stop; noticed only when the supplier calls.
+    detection: Automated pain.002 import with alerts; comparing the camt.054 detail with the file.
+  - mode: Insufficient funds on the paying account
+    consequence: Whole file rejected or partially executed, or expensive overdraft.
+    detection: Run totals sent to treasury before release; bank balance check in the tool.
+  - mode: File format change at the bank or a new rule (structured addresses, new message version)
+    consequence: Files rejected on payment day; urgent manual workarounds in the portal.
+    detection: Bank circulars, test environment, annual format release calendar (SIX publishes changes each November).
+  - mode: Signatory approves without looking ("rubber-stamping")
+    consequence: Errors and fraud pass the last control.
+    detection: Only by periodic review of what was released and by audit; hard to detect in normal operation.
+  - mode: Cut-off missed
+    consequence: Payments a day late; in payroll or tax, penalties and reputational damage.
+    detection: Bank status reports; complaints.
+software: >-
+  Invoice capture and AP automation tools feed the **ERP**, which remains the system of record for invoices, vendors and
+  payment runs (SAP, Microsoft Dynamics, Oracle, and small-business accounting tools such as Bexio in Switzerland).
+  Between ERP and bank sit **bank connectivity and payment hubs** — EBICS clients, multibank tools, TMS payment modules
+  (e.g. Kyriba, SAP's multi-bank connectivity, Serrala, Coupa/Bottomline, and newer players such as Atlar) — that
+  centralise signing, format conversion, sanctions screening and status tracking. Small companies upload files or key
+  payments in their banks' **e-banking portals**. Vendor names are examples, not endorsements; see [Systems & Data](/systems).
+manual_work:
+  - Keying and correcting invoices that capture tools cannot read; resolving match blocks with procurement.
+  - Chasing approvers for non-PO invoices.
+  - Call-back verification and documentation of every new supplier and bank-detail change.
+  - Reviewing the payment proposal and removing held items by hand.
+  - Checking balances and funding paying accounts before the run.
+  - Uploading and signing files in several bank portals when there is no central tool.
+  - Fixing rejects and returns and re-approving the corrected payments.
+  - Answering supplier "where is my payment?" questions.
+  - Cleaning vendor addresses and bank data for format changes.
+by_size:
+  startup: >-
+    The accountant (or an external fiduciary) enters invoices in a cloud accounting tool, scans QR-bills, and prepares a
+    payment batch in the e-banking portal once or twice a month; the CFO or a founder approves in the bank's app as
+    second signatory. No payment run in the ERP sense, no 3-way match (no purchase orders), little separation of duties.
+    Payroll goes through a payroll provider. The main risks are fraud (a small team trusts emails) and paying late
+    because the approver is travelling.
+  sme: >-
+    A proper ERP payment run once or twice a week, 50–150 payments, prepared by an AP clerk and released by the head of
+    accounting and the CFO via EBICS or e-banking. Subsidiaries often pay locally through their own bank portals, with a
+    parent-company person as second signatory. Treasury does not exist as a function; the head of accounting checks the
+    cash before the run.
+  midmarket: >-
+    AP is decentralised per subsidiary, each with its own ERP and payment run. A central treasury team runs the bank
+    connectivity (a multibank tool or EBICS/Swift), defines file formats and signing rules, pays treasury and
+    intercompany flows itself, and monitors bank rejects. Local finance managers are the signatories for their entity.
+    Harmonising controls across entities with different ERPs is the main pain.
+  multinational: >-
+    Invoice processing is in a shared-service centre; payment files from many ERPs flow into a
+    [payment factory](term:payment-factory), often paying "on behalf of" subsidiaries ([POBO](term:pobo)) from a few
+    central accounts. Central controls (duplicate checks, sanctions screening, anomaly rules, VoP handling), SWIFT
+    connectivity, and a small payments team working exceptions. PwC's 2025 survey reports payment factories at 60% of
+    organisations above USD 10bn revenue[](cite:pwc-gts-2025). Treasury owns the payment policy and bank relationships,
+    not the invoices.
+companies:
+  kleio: "Nina enters invoices in the accounting tool, scans QR-bills and prepares a batch in each bank's e-banking twice a month; Sarah approves in the bank's app (collective signature by two). US bills of Kleio Inc. are paid by ACH or card from the US bank. Payroll is run by the payroll provider; Sarah only checks that the salary account is funded before the 25th."
+  alpine: "The worked example above. Payment runs on Tuesdays and Fridays in Business Central, uploaded via EBICS. The German and US subsidiaries' bookkeepers pay local bills from their own bank portals; Petra is the second signatory on the German accounts, and the US managing director signs US payments with Martin."
+  helvetic: "Each subsidiary runs its own AP and payment run (SAP F110 in CH, DE, CZ; local ERPs elsewhere). SAP entities send files through the multibank connectivity tool, where local finance managers sign; Italy, France, UK and the US still upload to bank portals. Lea monitors pain.002 rejects centrally for the tool-connected entities and makes treasury payments (intercompany loans, FX settlements, debt service). Helvetic has not introduced POBO."
+  globalchem: "About 60,000 payments a month from 28 ERPs flow into the payment factory run by Marta's team in the Kraków shared-service centre; most European subsidiaries' suppliers are paid on behalf of the subsidiaries from GlobalChem's in-house bank accounts. The factory applies duplicate and sanctions checks and anomaly rules centrally and sends files via SWIFT. Local signatories no longer release routine AP payments; controls sit in the ERP approvals and the factory's release workflow."
+handoffs:
+  - from: Requester / budget owner
+    gives: confirmation of receipt and invoice approval
+    to: AP clerk
+  - from: Procurement / warehouse
+    gives: purchase orders and goods receipts for the 3-way match; supplier onboarding data
+    to: AP / master-data team
+  - from: AP lead
+    gives: payment proposal totals per account, currency and execution date
+    to: Treasury (or the head of accounting who manages cash)
+    note: Often an email or a line in the cash sheet; forgotten large items are a classic cause of overdrafts.
+  - from: Treasury
+    gives: funded accounts; bank formats, connectivity and signing rules
+    to: AP / payment factory
+  - from: AP lead
+    gives: payment files for release
+    to: Authorised signatories
+  - from: Authorised signatories
+    gives: released (signed) files
+    to: Bank
+  - from: Bank
+    gives: pain.002 status reports, camt.054 booking detail, returns
+    to: AP / payment factory; treasury for bank-level issues
+  - from: AP
+    gives: cleared items and unresolved payment differences
+    to: Accounting (bank reconciliation, month-end)
+interview: >-
+  Ask the person who **prepares** the run (AP lead, head of accounting, payment-factory operator) to walk you through
+  the last payment run: how many payments, what they removed and why, who signed, what was rejected, and what they had
+  to type by hand. Ask a **signatory** what they look at before releasing a file, honestly. Ask **treasury** who tells
+  them how large the run is and when. Treasurers at large groups may know the policy but not the AP detail — go to the
+  shared-service centre for that. See [Who should I interview?](/org/interview-finder).
+ai_note: >-
+  Invoice capture, matching and payment-file generation are already heavily automated; the remaining human work is
+  exceptions (blocks, disputes, rejects), master-data verification and release decisions. Anomaly detection on payment
+  files and bank-detail changes is a plausible assistive use, and vendors are adding it; AFP's 2026 survey found only
+  17% of organisations using AI against payments fraud[](cite:afp-pfc-2026-highlights). Releasing payments is a legal
+  act by bank-registered signatories, so autonomy there faces a hard trust, liability and mandate barrier.
+terms: [payment-run, pain-001, pain-002, camt-054, three-way-match, vendor-master-data, call-back-verification, ebics-signature, four-eyes-principle, signatory, payment-mandate, verification-of-payee, sic, sct-inst, charge-bearer, swift-gpi, structured-address, manual-payment, payment-factory, pobo, rtgs-note]
+related: [large-payment-approval, bank-reconciliation, daily-cash-positioning, fraud-investigation, bank-account-management]
+sources: [six-sps-ig-ct-2026, six-address-factsheet, epc-vop-bulk-faq, swift-eoc-2025, afp-pfc-2026-highlights, pwc-gts-2025, six-ebics]
+evidence_note: >-
+  The invoice-to-payment sequence and its controls are established practice described in ERP documentation and AP
+  training material; the timings, volumes and example are illustrative synthesis consistent with the reference
+  companies. Format facts are from SIX (Swiss Payment Standards, November 2026 address and message-version change[](cite:six-address-factsheet)),
+  the EPC (VoP bulk opt-out[](cite:epc-vop-bulk-faq)) and Swift (end of MT/MX coexistence for interbank payment
+  instructions on 22 November 2025[](cite:swift-eoc-2025)); Swiss banks set the migration to EBICS 3.0 for November 2026[](cite:six-ebics).
+  Fraud prevalence figures are from AFP's US-centric survey and should not be read as Swiss rates.

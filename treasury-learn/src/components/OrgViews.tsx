@@ -4,6 +4,7 @@ import { data, workflowById, companyById } from '../lib/content'
 import { SIZE_LABELS } from '../lib/sections'
 import type { InterviewTopic, OrgExample, OrgNode, RaciMatrix, Role, Workflow } from '../lib/types'
 import { Md } from './Md'
+import '../styles/org.css'
 
 const roles = () => data<Role[]>('roles') ?? []
 const roleById = () => new Map(roles().map((r) => [r.id, r]))
@@ -19,13 +20,25 @@ export function RoleLink({ id, children }: { id: string; children?: React.ReactN
 }
 
 /* ---------------- Org charts ---------------- */
-function Node({ n }: { n: OrgNode }) {
+// Local extension of OrgNode (lib/types is shared; stream-specific fields live here).
+type OrgNodeX = OrgNode & {
+  /** Functional ("dotted-line") reporting target, e.g. "Group Treasurer". Rendered under the node. */
+  dottedTo?: string
+  /** Headcount or size hint, e.g. "3 FTE". */
+  fte?: string
+  children?: OrgNodeX[]
+}
+type OrgExampleX = Omit<OrgExample, 'tree'> & { tree: OrgNodeX; variantOf?: string; typical?: string }
+
+function Node({ n }: { n: OrgNodeX }) {
   return (
     <li>
       <div className={`org-node org-${n.kind ?? 'finance'} ${n.dotted ? 'org-dotted' : ''}`}>
         <span className="org-title">{n.title}</span>
         {n.who && <span className="org-who">{n.who}</span>}
+        {n.fte && <span className="org-fte">{n.fte}</span>}
         {n.note && <span className="org-note">{n.note}</span>}
+        {n.dottedTo && <span className="org-dotted-to">┄ dotted line to {n.dottedTo}</span>}
       </div>
       {n.children?.length ? (
         <ul>
@@ -38,14 +51,44 @@ function Node({ n }: { n: OrgNode }) {
   )
 }
 
-export function OrgChart({ id }: { id: string }) {
-  const ex = (data<OrgExample[]>('orgs') ?? []).find((o) => o.id === id)
+function OutlineNode({ n }: { n: OrgNodeX }) {
+  return (
+    <li>
+      <div className={`org-line org-${n.kind ?? 'finance'} ${n.dotted ? 'org-dotted' : ''}`}>
+        <span className="org-title">{n.title}</span>
+        {n.who && <span className="org-who"> · {n.who}</span>}
+        {n.fte && <span className="org-fte"> · {n.fte}</span>}
+        {n.note && <div className="org-note">{n.note}</div>}
+        {n.dottedTo && <div className="org-dotted-to">┄ dotted line to {n.dottedTo}</div>}
+      </div>
+      {n.children?.length ? (
+        <ul>
+          {n.children.map((c, i) => (
+            <OutlineNode key={i} n={c} />
+          ))}
+        </ul>
+      ) : null}
+    </li>
+  )
+}
+
+const narrow = () => typeof window !== 'undefined' && !!window.matchMedia?.('(max-width: 700px)').matches
+
+export function OrgChart({ id, compact }: { id: string; compact?: boolean }) {
+  const ex = (data<OrgExampleX[]>('orgs') ?? []).find((o) => o.id === id)
+  const [mode, setMode] = useState<'tree' | 'outline'>(() => (narrow() ? 'outline' : 'tree'))
   if (!ex) return <div className="term-missing">Missing org example: {id}</div>
   const co = ex.company ? companyById.get(ex.company) : undefined
   return (
-    <figure className="org-figure">
+    <figure className="org-figure" id={`org-${ex.id}`}>
       <div className="org-head">
-        <span className="compare-kicker">{SIZE_LABELS[ex.size]?.label}</span>
+        <div className="org-head-row">
+          <span className="compare-kicker">{SIZE_LABELS[ex.size]?.label}{ex.variantOf ? ` · variant: ${ex.variantOf}` : ''}</span>
+          <span className="org-mode" role="tablist" aria-label="Chart layout">
+            <button aria-selected={mode === 'tree'} onClick={() => setMode('tree')}>Chart</button>
+            <button aria-selected={mode === 'outline'} onClick={() => setMode('outline')}>Outline</button>
+          </span>
+        </div>
         <span className="compare-q">
           {ex.title}
           {co && (
@@ -58,21 +101,32 @@ export function OrgChart({ id }: { id: string }) {
         <span className="org-summary">
           <Md text={ex.summary} inline />
         </span>
+        {ex.typical && (
+          <span className="org-typical">
+            <b>Typical when:</b> <Md text={ex.typical} inline />
+          </span>
+        )}
       </div>
-      <div className="org-scroll">
-        <ul className="org-tree">
-          <Node n={ex.tree} />
+      {mode === 'tree' ? (
+        <div className="org-scroll">
+          <ul className="org-tree">
+            <Node n={ex.tree} />
+          </ul>
+        </div>
+      ) : (
+        <ul className="org-outline">
+          <OutlineNode n={ex.tree} />
         </ul>
-      </div>
+      )}
       <div className="org-legend">
-        <span className="org-key org-exec">Executive</span>
-        <span className="org-key org-treasury">Treasury work</span>
+        <span className="org-key org-exec">Executive / governance</span>
+        <span className="org-key org-treasury">Does treasury work</span>
         <span className="org-key org-finance">Other finance</span>
         <span className="org-key org-business">Business / subsidiary</span>
         <span className="org-key org-external">External</span>
-        <span className="org-key org-dotted">Dotted = functional / part-time link</span>
+        <span className="org-key org-dotted">Dashed = functional (dotted-line) or part-time link</span>
       </div>
-      {ex.whoDoesWhat?.length ? (
+      {!compact && ex.whoDoesWhat?.length ? (
         <div className="table-wrap org-wdw">
           <table>
             <thead>
@@ -94,7 +148,7 @@ export function OrgChart({ id }: { id: string }) {
           </table>
         </div>
       ) : null}
-      {ex.notes?.length ? (
+      {!compact && ex.notes?.length ? (
         <ul className="org-notes">
           {ex.notes.map((n, i) => (
             <li key={i}>
@@ -108,96 +162,269 @@ export function OrgChart({ id }: { id: string }) {
 }
 
 /* ---------------- Responsibility matrix ---------------- */
+// Codes (spec §5): Owner, Performs, contributes Data, Approves, Reviews, Informed; empty = usually not involved.
+// 'R' is REVIEWS here — not the "Responsible" of classic RACI.
+const CODE_ORDER = ['O', 'P', 'D', 'A', 'R', 'I'] as const
 const CODE_LABEL: Record<string, string> = {
   O: 'Owner — accountable for the outcome',
   P: 'Performs — does the hands-on work',
   D: 'Contributes data / input',
   A: 'Approves / authorises',
-  I: 'Reviewed / informed',
+  R: 'Reviews — checks the output, challenges it',
+  I: 'Informed — receives the result',
+}
+const CODE_SHORT: Record<string, string> = { O: 'Owns', P: 'Performs', D: 'Contributes data', A: 'Approves', R: 'Reviews', I: 'Informed' }
+
+type RaciRowX = RaciMatrix['rows'][number]
+type RaciMatrixX = Omit<RaciMatrix, 'columns' | 'rows'> & {
+  intro?: string
+  columns: { id: string; label: string; role?: string }[]
+  rows: RaciRowX[]
+}
+const codesOf = (v?: string) =>
+  (v ?? '')
+    .trim()
+    .split(/[,/ ]+/)
+    .filter(Boolean)
+    .sort((a, b) => CODE_ORDER.indexOf(a as never) - CODE_ORDER.indexOf(b as never))
+
+function Codes({ v }: { v?: string }) {
+  const cs = codesOf(v)
+  if (!cs.length) return <span className="raci-none" title="Usually not involved">·</span>
+  return (
+    <>
+      {cs.map((code) => (
+        <span key={code} className={`raci-code raci-${code}`} title={CODE_LABEL[code] ?? code}>
+          {code}
+        </span>
+      ))}
+    </>
+  )
 }
 
-export function RaciMatrixView() {
-  const mats = data<RaciMatrix[]>('raci') ?? []
-  const [size, setSize] = useState(mats[1]?.size ?? mats[0]?.size)
+function TaskLabel({ r }: { r: RaciRowX }) {
+  return r.workflow && workflowById.has(r.workflow) ? (
+    <Link to={`/workflows/${r.workflow}`} onClick={(e) => e.stopPropagation()}>
+      {r.task}
+    </Link>
+  ) : (
+    <>{r.task}</>
+  )
+}
+
+export function RaciMatrixView({ initial = 'midmarket' }: { initial?: string }) {
+  const mats = data<RaciMatrixX[]>('raci') ?? []
+  const [size, setSize] = useState(mats.find((x) => x.size === initial)?.size ?? mats[0]?.size)
+  const [view, setView] = useState<'matrix' | 'role' | 'across'>(() => (narrow() ? 'role' : 'matrix'))
   const [focus, setFocus] = useState<string | null>(null)
   const [openRow, setOpenRow] = useState<number | null>(null)
+  const [allNotes, setAllNotes] = useState(false)
+  const [roleSel, setRoleSel] = useState<string | null>(null)
+  const [taskSel, setTaskSel] = useState<string>(mats[0]?.rows[0]?.task ?? '')
   const m = mats.find((x) => x.size === size)
   if (!m) return null
   const co = m.company ? companyById.get(m.company) : undefined
+  const role = roleSel && m.columns.some((c) => c.id === roleSel) ? roleSel : m.columns.find((c) => m.rows.some((r) => codesOf(r.cells[c.id]).includes('O')))?.id ?? m.columns[0].id
+  const tasks = mats[0]?.rows.map((r) => r.task) ?? []
+
   return (
     <div className="raci">
-      <div className="size-tabs-bar raci-tabs" role="tablist">
-        {mats.map((x) => (
-          <button key={x.size} role="tab" aria-selected={x.size === size} onClick={() => { setSize(x.size); setFocus(null); setOpenRow(null) }}>
-            {x.label}
-          </button>
-        ))}
+      <div className="raci-toolbar">
+        <div className="raci-views" role="tablist" aria-label="Matrix view">
+          <button role="tab" aria-selected={view === 'matrix'} onClick={() => setView('matrix')}>Matrix</button>
+          <button role="tab" aria-selected={view === 'role'} onClick={() => setView('role')}>One role</button>
+          <button role="tab" aria-selected={view === 'across'} onClick={() => setView('across')}>One workflow across sizes</button>
+        </div>
       </div>
-      <div className="raci-context muted small">
-        {co ? (
-          <>
-            Modelled on <Link to={co.path ?? '/companies'}>{co.name}</Link> — {co.tagline}{' '}
-          </>
-        ) : null}
-        Click a column header to highlight one role; click a row for the caveat.
-      </div>
-      <div className="table-wrap raci-wrap">
-        <table className="raci-table">
-          <thead>
-            <tr>
-              <th className="raci-task">Workflow</th>
-              {m.columns.map((c) => (
-                <th key={c.id} className={`raci-col ${focus === c.id ? 'focus' : ''}`} onClick={() => setFocus(focus === c.id ? null : c.id)} title="Highlight this role">
-                  <span>{c.label}</span>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {m.rows.map((r, i) => (
-              <Fragment key={r.task}>
-                <tr className={`raci-row ${openRow === i ? 'open' : ''}`} onClick={() => setOpenRow(openRow === i ? null : i)}>
-                  <td className="raci-task">
-                    {r.workflow && workflowById.has(r.workflow) ? (
-                      <Link to={`/workflows/${r.workflow}`} onClick={(e) => e.stopPropagation()}>
-                        {r.task}
-                      </Link>
-                    ) : (
-                      r.task
-                    )}
-                    {r.note && <span className="raci-has-note">ⓘ</span>}
-                  </td>
-                  {m.columns.map((c) => {
-                    const v = (r.cells[c.id] ?? '').trim()
-                    return (
-                      <td key={c.id} className={`raci-cell ${focus === c.id ? 'focus' : ''} ${focus && focus !== c.id ? 'dim' : ''}`}>
-                        {v
-                          ? v.split(/[,/ ]+/).filter(Boolean).map((code) => (
-                              <span key={code} className={`raci-code raci-${code}`} title={CODE_LABEL[code] ?? code}>
-                                {code}
-                              </span>
-                            ))
-                          : <span className="raci-none">·</span>}
-                      </td>
-                    )
-                  })}
-                </tr>
-                {openRow === i && r.note && (
-                  <tr key={r.task + '-note'} className="raci-note-row">
-                    <td colSpan={m.columns.length + 1}>
-                      <Md text={r.note} inline />
-                    </td>
-                  </tr>
-                )}
-              </Fragment>
+
+      {view !== 'across' && (
+        <>
+          <div className="size-tabs-bar raci-tabs" role="tablist" aria-label="Company size">
+            {mats.map((x) => (
+              <button key={x.size} role="tab" aria-selected={x.size === size} onClick={() => { setSize(x.size); setFocus(null); setOpenRow(null) }}>
+                {x.label}
+              </button>
             ))}
-          </tbody>
-        </table>
-      </div>
+          </div>
+          <div className="raci-context small">
+            {co ? (
+              <>
+                Modelled on <Link to={co.path ?? '/companies'}>{co.name}</Link> — {co.tagline}{' '}
+              </>
+            ) : null}
+            {m.intro && <Md text={m.intro} inline />}
+          </div>
+        </>
+      )}
+
+      {view === 'matrix' && (
+        <>
+          <div className="raci-hint muted small">
+            Click a column header to highlight one role; click a row (ⓘ) for how this varies.{' '}
+            <label className="raci-allnotes">
+              <input type="checkbox" checked={allNotes} onChange={(e) => setAllNotes(e.target.checked)} /> show all notes
+            </label>
+          </div>
+          <div className="table-wrap raci-wrap">
+            <table className="raci-table">
+              <thead>
+                <tr>
+                  <th className="raci-task">Workflow</th>
+                  {m.columns.map((c) => (
+                    <th key={c.id} className={`raci-col ${focus === c.id ? 'focus' : ''}`} onClick={() => setFocus(focus === c.id ? null : c.id)} title="Highlight this role">
+                      <span>{c.label}</span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {m.rows.map((r, i) => {
+                  const show = allNotes || openRow === i
+                  return (
+                    <Fragment key={r.task}>
+                      <tr className={`raci-row ${openRow === i ? 'open' : ''}`} onClick={() => setOpenRow(openRow === i ? null : i)}>
+                        <td className="raci-task">
+                          <TaskLabel r={r} />
+                          {r.note && <span className="raci-has-note">ⓘ</span>}
+                        </td>
+                        {m.columns.map((c) => (
+                          <td key={c.id} className={`raci-cell ${focus === c.id ? 'focus' : ''} ${focus && focus !== c.id ? 'dim' : ''}`}>
+                            <Codes v={r.cells[c.id]} />
+                          </td>
+                        ))}
+                      </tr>
+                      {show && r.note && (
+                        <tr className="raci-note-row">
+                          <td colSpan={m.columns.length + 1}>
+                            <Md text={r.note} inline />
+                          </td>
+                        </tr>
+                      )}
+                    </Fragment>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+
+      {view === 'role' && (
+        <div className="raci-role">
+          <label className="raci-select">
+            Role:{' '}
+            <select value={role} onChange={(e) => setRoleSel(e.target.value)}>
+              {m.columns.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          {CODE_ORDER.map((code) => {
+            const rows = m.rows.filter((r) => codesOf(r.cells[role]).includes(code))
+            if (!rows.length) return null
+            return (
+              <div key={code} className="raci-role-group">
+                <div className="raci-role-h">
+                  <span className={`raci-code raci-${code}`}>{code}</span> {CODE_SHORT[code]}
+                </div>
+                <ul>
+                  {rows.map((r) => (
+                    <li key={r.task}>
+                      <span className="raci-role-task">
+                        <TaskLabel r={r} />
+                      </span>
+                      {r.note && (
+                        <span className="raci-role-note">
+                          <Md text={r.note} inline />
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
+          {(() => {
+            const none = m.rows.filter((r) => !codesOf(r.cells[role]).length)
+            return none.length ? (
+              <div className="raci-role-group raci-role-none">
+                <div className="raci-role-h">
+                  <span className="raci-none">·</span> Usually not involved
+                </div>
+                <div className="small muted">{none.map((r) => r.task).join(' · ')}</div>
+              </div>
+            ) : null
+          })()}
+        </div>
+      )}
+
+      {view === 'across' && (
+        <div className="raci-across">
+          <label className="raci-select">
+            Workflow:{' '}
+            <select value={taskSel} onChange={(e) => setTaskSel(e.target.value)}>
+              {tasks.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="table-wrap">
+            <table className="raci-across-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '17%' }}>Size</th>
+                  <th>Owns</th>
+                  <th>Performs</th>
+                  <th>Approves</th>
+                  <th>Data from / reviewed by</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mats.map((mx) => {
+                  const r = mx.rows.find((x) => x.task === taskSel)
+                  if (!r) return null
+                  const who = (code: string) =>
+                    mx.columns.filter((c) => codesOf(r.cells[c.id]).includes(code)).map((c) => c.label)
+                  const list = (xs: string[]) => (xs.length ? xs.join(', ') : '—')
+                  const d = who('D')
+                  const rv = who('R')
+                  return (
+                    <Fragment key={mx.size}>
+                      <tr>
+                        <td className="raci-across-size">{mx.label}</td>
+                        <td>{list(who('O'))}</td>
+                        <td>{list(who('P'))}</td>
+                        <td>{list(who('A'))}</td>
+                        <td className="small">
+                          {d.length ? <>Data: {d.join(', ')}. </> : null}
+                          {rv.length ? <>Reviews: {rv.join(', ')}.</> : null}
+                          {!d.length && !rv.length ? '—' : null}
+                        </td>
+                      </tr>
+                      {r.note && (
+                        <tr className="raci-note-row">
+                          <td colSpan={5}>
+                            <Md text={r.note} inline />
+                          </td>
+                        </tr>
+                      )}
+                    </Fragment>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       <div className="raci-legend">
-        {Object.entries(CODE_LABEL).map(([k, v]) => (
+        {CODE_ORDER.map((k) => (
           <span key={k}>
-            <span className={`raci-code raci-${k}`}>{k}</span> {v}
+            <span className={`raci-code raci-${k}`}>{k}</span> {CODE_LABEL[k]}
           </span>
         ))}
         <span>
@@ -458,11 +685,22 @@ export function Handoffs({ workflow }: { workflow: string }) {
 
 export function AllHandoffs() {
   const all = [...workflowById.values()].filter((w) => w.handoffs?.length)
+  const [q, setQ] = useState('')
+  const needle = q.trim().toLowerCase()
+  const shown = needle
+    ? all.filter((w) => w.handoffs!.some((h) => `${h.from} ${h.to} ${h.gives}`.toLowerCase().includes(needle)))
+    : all
   return (
-    <>
-      {all.map((w) => (
+    <div className="all-handoffs">
+      <div className="ho-filter">
+        <input type="search" placeholder="Filter by party, e.g. “accounts payable”, “subsidiary”, “CFO”" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Filter hand-offs" />
+        <span className="muted small">
+          {shown.length} of {all.length} written workflows with hand-offs
+        </span>
+      </div>
+      {shown.map((w) => (
         <Handoffs key={w.id} workflow={w.id} />
       ))}
-    </>
+    </div>
   )
 }

@@ -1,0 +1,848 @@
+# Competitor landscape (stream: competitors). Startup lens — NOT neutral product education (that is /systems/vendors).
+#
+# verify:
+#   snippet    = key ownership/funding fact checked against a search-result snippet from the named publisher (see sources)
+#   background = author's background knowledge (to mid-2026), NOT re-verified in the authoring session. Treat as a lead.
+#   watchlist  = named in the research brief; product, funding and customers NOT verified. Do not repeat as fact.
+# gaps[].basis:
+#   scope      = follows from the vendor's own documented scope or target market (e.g. "not a TMS: no deal capture")
+#   question   = an open question to test in interviews; NOT a claim that the gap exists
+# types: sor (system of record) | workflow | analytics | execution
+# sizes: startup | sme | midmarket | multinational
+
+asOf: "2026-09-30"
+
+types:
+  - id: sor
+    label: System of record
+    short: Record
+    blurb: Holds the authoritative data for something treasury is accountable for — deals, bank accounts, positions, postings. Hard to replace; audited; slow to change.
+  - id: workflow
+    label: Workflow tool
+    short: Workflow
+    blurb: Moves a task through people and controls — prepare, approve, release, reconcile. Its value is fewer hand-offs and cleaner controls, not new data.
+  - id: analytics
+    label: Analytics
+    short: Analytics
+    blurb: Reads data from other systems to produce a view or prediction (position, forecast, variance). Easier to adopt; easier to rip out.
+  - id: execution
+    label: Execution system
+    short: Execution
+    blurb: Where money or risk actually moves — a trade is dealt, a payment is released, a deposit is placed. Tight bank/counterparty integration; high consequence of error.
+
+categories:
+  - id: status-quo
+    label: The status quo (Excel, bank portals, ERP)
+    short: Status quo
+    types: [workflow, execution]
+    workflows: [daily-cash-positioning, cash-forecasting, payment-processing, bank-reconciliation, fx-hedging]
+    page: /competitors/landscape
+    summary: "The real incumbent for most companies below multinational size: spreadsheets, each bank's e-banking portal, and the ERP's payment run. Free at the margin, flexible, and already trusted."
+  - id: traditional-tms
+    label: Established TMS suites
+    short: Established TMS
+    types: [sor, workflow]
+    workflows: [daily-cash-positioning, cash-forecasting, payment-processing, fx-exposure-management, fx-hedging, surplus-cash-investment, funding-subsidiary, credit-facility-management, month-end-reporting, bank-account-management, policy-compliance]
+    page: /competitors/tms
+    summary: "Full treasury suites: deal capture and valuation, cash positioning, in-house bank, payments, hedge accounting, ERP postings. Sold to large and upper-mid-market groups via RFP, implemented over months."
+  - id: modern-tms
+    label: Modern / API-first treasury platforms
+    short: Modern TMS
+    types: [analytics, workflow]
+    workflows: [daily-cash-positioning, cash-forecasting, payment-processing, bank-reconciliation, liquidity-planning]
+    page: /competitors/tms
+    summary: "Newer cloud platforms (mostly founded after 2015) that start from bank connectivity and cash visibility, add payments and forecasting, and sell to scale-ups and mid-market companies without a treasury department."
+  - id: cash-forecasting
+    label: Cash forecasting & cash analytics
+    short: Forecasting
+    types: [analytics]
+    workflows: [cash-forecasting, liquidity-planning, liquidity-crisis]
+    page: /competitors/cash-forecasting
+    summary: "Tools whose centre of gravity is the cash forecast: categorise bank transactions, pull ERP open items, build scenarios, measure forecast vs actual."
+  - id: bank-connectivity
+    label: Bank connectivity
+    short: Connectivity
+    types: [execution, workflow]
+    workflows: [daily-cash-positioning, payment-processing, bank-reconciliation, bank-account-management, bank-fee-analysis]
+    page: /competitors/connectivity-payments
+    summary: "The plumbing: Swift service bureaus, EBICS/host-to-host and API aggregation, bank-format maintenance. Often bundled inside TMS or payment hubs rather than bought alone."
+  - id: payments
+    label: Payment hubs & payment security
+    short: Payments
+    types: [execution, workflow]
+    workflows: [payment-processing, large-payment-approval, fraud-investigation, bank-reconciliation]
+    page: /competitors/connectivity-payments
+    summary: "Centralise payment files from several ERPs, apply approval workflows, sanctions and fraud checks, and route to banks. Payment factories in large groups run on these."
+  - id: fx-hedging
+    label: FX trading, hedging & hedge accounting
+    short: FX / hedging
+    types: [execution, analytics]
+    workflows: [fx-exposure-management, fx-hedging, currency-shock]
+    page: /competitors/fx-hedging
+    summary: "Multi-dealer trading venues, hedging-automation software, advisory-plus-software firms and hedge-accounting tools. Execution venues are mature; the exposure-capture step upstream is where tools differ most."
+  - id: investments
+    label: Cash investment portals
+    short: Investments
+    types: [execution]
+    workflows: [surplus-cash-investment]
+    page: /competitors/fx-hedging
+    summary: "Portals that let a treasurer place surplus cash in money-market funds or fixed-term deposits across providers, with counterparty-limit reporting."
+  - id: working-capital
+    label: Working capital (AR, AP, supply-chain finance)
+    short: Working capital
+    types: [workflow, execution]
+    workflows: [cash-forecasting, liquidity-planning]
+    page: /competitors/working-capital
+    summary: "Collections/AR automation, supplier early-payment and supply-chain-finance programmes. Mostly owned by AR, AP and procurement — treasury is a stakeholder, often the funder."
+  - id: treasury-ai
+    label: Treasury intelligence & AI features
+    short: AI / intelligence
+    types: [analytics]
+    workflows: [cash-forecasting, daily-cash-positioning, month-end-reporting, bank-fee-analysis]
+    page: /competitors/ai-and-agents
+    summary: "ML forecasting, anomaly detection and natural-language assistants — so far mostly shipped as features inside the vendors above, not as separate products."
+  - id: treasury-agents
+    label: Treasury agents (AI-native startups)
+    short: Agents
+    types: [workflow, analytics]
+    workflows: [daily-cash-positioning, cash-forecasting, bank-reconciliation]
+    page: /competitors/ai-and-agents
+    summary: "Startups claiming that software performs treasury tasks end-to-end rather than assisting a human. In this session none could be verified; see the page for what that means."
+
+vendors:
+  # ---------------- Status quo ----------------
+  - id: status-quo
+    name: Excel + bank portals + ERP payment run
+    category: status-quo
+    types: [workflow, execution]
+    verify: background
+    sizes: [startup, sme, midmarket, multinational]
+    region: Everywhere
+    hq: n/a
+    ownership: n/a — Microsoft Excel; each bank's e-banking (in Switzerland e.g. UBS, ZKB, PostFinance portals); ERP (SAP, Oracle, Microsoft Dynamics, Abacus, Bexio)
+    sells: "Nothing treasury-specific. The treasurer logs into each bank portal, downloads balances or statements, pastes them into a workbook, and releases payments that the ERP generated as a [pain.001](term:pain-001) file."
+    workflow: "Every workflow at small scale; at larger scale the forecast, hedge calculations and ad-hoc analysis still often live in Excel next to a TMS."
+    positioning: "Not positioned — it is the default. Every vendor below is really selling against this."
+    strengths:
+      - "Zero incremental cost and zero implementation."
+      - "Total flexibility: the model matches the company's quirks exactly, and the person who built it trusts it."
+      - "Bank portals are the bank's own execution channel, with the bank's security and signatory rules."
+    gaps:
+      - basis: scope
+        text: "No multi-bank consolidation, audit trail or version control by design; the workbook is only as reliable as the last person who touched it."
+      - basis: question
+        text: "Ask how many hours per week go into downloading and pasting, and what went wrong the last time the spreadsheet had an error. The answer tells you whether the pain is real or theoretical."
+    notes: "Survey evidence that forecasting remains largely spreadsheet-based at many companies: [](cite:deloitte-gts-2024). For a founder, the honest competitor for a 70–500-person company is almost always this row, not Kyriba."
+    sources: [deloitte-gts-2024]
+
+  # ---------------- Established TMS ----------------
+  - id: sap
+    name: SAP (S/4HANA treasury & cash management)
+    category: traditional-tms
+    also: [bank-connectivity, payments]
+    types: [sor, workflow]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global; strongest in Europe (DACH especially)
+    hq: Walldorf, Germany
+    ownership: Public company (SAP SE)
+    sells: "Treasury inside the ERP: Cash Management (bank accounts, cash position, liquidity forecast), Treasury and Risk Management (deal capture, valuation, hedge accounting), In-House Cash / advanced payment management, Bank Communication Management, and SAP's multi-bank connectivity service. Working-capital finance via Taulia (separate entry)."
+    workflow: "Daily cash position and payments for groups already running SAP as the ERP; deal capture and hedge accounting for SAP-centric treasuries."
+    positioning: "One data model with the general ledger: no interface between TMS and books. Bought by groups that have standardised on SAP."
+    strengths:
+      - "Native integration with the GL, AP/AR and in-house bank; postings are not an interface project."
+      - "Deep functional scope for large groups (in-house bank, payment factory, hedge accounting)."
+    gaps:
+      - basis: question
+        text: "Implementation typically depends on SAP consultants and the group's SAP release cycle — ask treasurers how long a change (new bank, new report) takes to get through IT."
+      - basis: question
+        text: "Ask whether the 13-week forecast actually runs in SAP or is exported to Excel for judgement."
+    workflows: [daily-cash-positioning, payment-processing, fx-hedging, funding-subsidiary, month-end-reporting]
+    sources: []
+
+  - id: oracle
+    name: Oracle (ERP cash & treasury)
+    category: traditional-tms
+    types: [sor, workflow]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global; strong in the US
+    hq: Austin, Texas, USA
+    ownership: Public company (Oracle Corporation)
+    sells: "Cash management, bank statement processing and reconciliation, and payments within Oracle's ERPs (Fusion Cloud ERP; the older E-Business Suite also has a Treasury module). Exact current treasury scope of Fusion should be checked in Oracle's documentation."
+    workflow: "Bank reconciliation, cash position and payments for companies whose books are in Oracle."
+    positioning: "Treasury functions as part of the ERP estate rather than a specialist TMS."
+    strengths:
+      - "Same system as the books; reconciliation and payments close to the ledger."
+    gaps:
+      - basis: question
+        text: "Ask Oracle-based treasurers whether they run a separate specialist TMS alongside the ERP, and which tasks moved there."
+    workflows: [bank-reconciliation, payment-processing, daily-cash-positioning]
+    sources: []
+
+  - id: fis
+    name: FIS treasury (Quantum, Integrity, Trax)
+    category: traditional-tms
+    also: [payments, bank-connectivity]
+    types: [sor, workflow]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global
+    hq: Jacksonville, Florida, USA
+    ownership: "Public company (FIS, NYSE). FIS's corporate reshuffles in 2024–2025 concerned merchant and issuer businesses (Worldpay, Global Payments' issuer unit); no change to the treasury line was verified in this session."
+    sells: "Several TMS generations: an enterprise suite (Quantum) for complex deal books, a SaaS TMS aimed at mid-market (Integrity), and a payments/connectivity hub (Trax). Product names and bundling change — check the current FIS catalogue."
+    workflow: "Deal capture, valuation and accounting for debt, FX and money-market portfolios; cash positioning; payment hub."
+    positioning: "Bank-grade, broad-scope vendor for complex treasuries and financial institutions."
+    strengths:
+      - "Breadth of instrument coverage and long track record in large treasuries."
+    gaps:
+      - basis: question
+        text: "Multiple overlapping products: ask customers which one they run, how old the installation is, and whether they are being asked to migrate."
+    workflows: [fx-hedging, credit-facility-management, surplus-cash-investment, daily-cash-positioning, payment-processing]
+    sources: []
+
+  - id: ion-treasury
+    name: ION Treasury (Wallstreet Suite, IT2, Reval, Openlink, City Financials)
+    category: traditional-tms
+    types: [sor, workflow]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global
+    hq: ION Group — Dublin / London
+    ownership: Private (ION Group), assembled through acquisitions of several formerly independent TMS vendors in the 2010s
+    sells: "A family of TMS products with different heritage: Wallstreet Suite and Openlink for complex, trading-heavy treasuries (Openlink also for commodity/energy trading), Reval as a cloud TMS with strong hedge accounting, IT2 and City Financials for mid-size and large corporates."
+    workflow: "Deal capture, risk and hedge accounting; cash and liquidity; for commodity firms, trading and risk."
+    positioning: "Portfolio owner rather than a single product: customers stay on the product they bought."
+    strengths:
+      - "Very deep instrument and accounting coverage in the high-end products."
+    gaps:
+      - basis: question
+        text: "Ask customers about product roadmap confidence and support experience since the product they use was acquired — a common theme in practitioner conversations, but not verified here."
+    workflows: [fx-hedging, fx-exposure-management, credit-facility-management, month-end-reporting, daily-cash-positioning]
+    sources: []
+
+  - id: kyriba
+    name: Kyriba
+    category: traditional-tms
+    also: [payments, bank-connectivity, fx-hedging, working-capital, treasury-ai]
+    types: [sor, workflow]
+    verify: snippet
+    sizes: [multinational, midmarket]
+    region: Global (founded in Paris; large US and European base)
+    hq: San Diego, California, USA
+    ownership: "Private. Bridgepoint majority since April 2019 (USD 160m round, ~USD 1.2bn valuation)[](cite:comp-bridgepoint-kyriba-2019); General Atlantic reported as minority investor since October 2024 (aggregator data — confirm)[](cite:comp-kyriba-ga-aggregators). CEO Melissa Di Donato[](cite:comp-treasurytoday-didonato)."
+    sells: "SaaS TMS: cash positioning and forecasting, payments hub with fraud controls, bank connectivity, FX risk (exposure capture from ERPs, hedging), and supply-chain finance. Markets AI features under its own brand (scope not verified here)."
+    workflow: "Daily cash position across many banks; group payments with approvals; FX exposure and hedging for mid-to-large groups."
+    positioning: "The best-known pure SaaS TMS; sells 'liquidity performance' to CFOs and treasurers of groups too complex for spreadsheets."
+    strengths:
+      - "Pure SaaS with a large prebuilt bank-connectivity library (vendor claim — ask customers how many of their banks were actually 'prebuilt')."
+      - "Covers most treasury workflows in one product, so it is frequently on RFP shortlists."
+    gaps:
+      - basis: question
+        text: "Ask mid-market customers which modules they actually use after year two; suite vendors are often bought for breadth and used for cash visibility and payments."
+      - basis: question
+        text: "Ask where the 13-week forecast is really built (Kyriba or an Excel export)."
+    workflows: [daily-cash-positioning, cash-forecasting, payment-processing, fx-exposure-management, fx-hedging, bank-account-management]
+    sources: [comp-bridgepoint-kyriba-2019, comp-kyriba-ga-aggregators, comp-treasurytoday-didonato]
+
+  - id: gtreasury
+    name: GTreasury (Ripple)
+    category: traditional-tms
+    also: [treasury-ai, payments]
+    types: [sor, workflow]
+    verify: snippet
+    sizes: [midmarket, multinational]
+    region: Global; strongest in North America
+    hq: Chicago, Illinois, USA
+    ownership: "Hg invested in 2023[](cite:comp-hg-gtreasury-exit); Ripple announced acquisition for ~USD 1bn on 16 Oct 2025, GTreasury to operate as a subsidiary[](cite:comp-ripple-gtreasury-pymnts,comp-ripple-gtreasury-bw). Launched 'Ripple Treasury' on 27 Jan 2026[](cite:comp-ripple-treasury-launch). Formal closing date not verified."
+    sells: "SaaS TMS (cash, forecasting, payments, debt and investments, risk). Since January 2026 also 'Ripple Treasury', which adds stablecoin (RLUSD) settlement and digital-asset custody to the TMS (vendor claims as reported). Acquired Solvexia (reconciliation/automation) — date not verified[](cite:comp-gtreasury-solvexia)."
+    workflow: "Cash positioning, payments and forecasting for mid-market and large corporates; now also moving money over Ripple's rails."
+    positioning: "Moved from 'independent mid-to-large TMS' to 'TMS inside a digital-asset infrastructure company'. The seller cited 1,000+ customers in 160 countries[](cite:comp-hg-gtreasury-exit)."
+    strengths:
+      - "Established installed base and full-TMS scope (per seller and acquirer statements)."
+      - "Unusual combination: fiat TMS plus crypto/stablecoin settlement under one owner — whether corporates want it is an open question."
+    gaps:
+      - basis: question
+        text: "Ask GTreasury customers whether the Ripple ownership changed their view of the vendor (roadmap, risk committee, bank relationships). Crypto association can be a concern for conservative treasury policies — verify rather than assume."
+      - basis: question
+        text: "Ask whether any corporate treasury actually settles in stablecoins in production, and for which flows."
+    workflows: [daily-cash-positioning, cash-forecasting, payment-processing, surplus-cash-investment, credit-facility-management, bank-reconciliation]
+    sources: [comp-hg-gtreasury-exit, comp-ripple-gtreasury-pymnts, comp-ripple-gtreasury-bw, comp-ripple-treasury-launch, comp-gtreasury-solvexia]
+
+  - id: coupa-treasury
+    name: Coupa Treasury (formerly BELLIN)
+    category: traditional-tms
+    also: [payments]
+    types: [sor, workflow]
+    verify: snippet
+    sizes: [midmarket, multinational]
+    region: Strongest in DACH / Europe
+    hq: "Ettenheim, Germany (BELLIN heritage); Coupa HQ San Mateo, USA"
+    ownership: "Coupa acquired BELLIN; completed June 2020[](cite:comp-coupa-bellin-2020). Coupa itself was taken private by Thoma Bravo in 2023 (background — verify). Current (2026) branding and bundling of the treasury product not verified."
+    sells: "Cloud TMS: cash and liquidity management and forecasting, payments, risk and exposure management, intercompany netting[](cite:comp-coupa-bellin-2020)."
+    workflow: "Cash visibility, payments and netting for mid-size and large European groups; sold alongside Coupa's spend-management suite."
+    positioning: "Treasury as part of 'business spend management' — pitched to CFOs who already buy procurement/AP from Coupa."
+    strengths:
+      - "Long DACH mid-market presence from the BELLIN years (tm5 product)."
+    gaps:
+      - basis: question
+        text: "Ask customers whether being inside a procurement suite changed the treasury roadmap or support."
+    workflows: [daily-cash-positioning, cash-forecasting, payment-processing, funding-subsidiary]
+    sources: [comp-coupa-bellin-2020]
+
+  - id: nomentia
+    name: Nomentia (incl. Cashforce)
+    category: traditional-tms
+    also: [cash-forecasting, payments, bank-connectivity]
+    types: [workflow, analytics]
+    verify: background
+    sizes: [midmarket, multinational]
+    region: Europe (Nordics, Benelux, DACH)
+    hq: Espoo, Finland
+    ownership: Private, PE-backed (investor and current status not verified). Combined with Cashforce (Belgian forecasting specialist) around 2022–2023 (verify date).
+    sells: "Cash visibility, payments and bank connectivity, and — via Cashforce — cash forecasting and working-capital analytics."
+    workflow: "Payments and daily cash for European mid-market groups; forecasting with ERP open-item data."
+    positioning: "European 'cash management' platform rather than a full deal-capture TMS."
+    strengths:
+      - "Forecasting heritage (Cashforce) combined with payment and connectivity heritage in one vendor."
+    gaps:
+      - basis: question
+        text: "Ask how much deal capture (FX forwards, loans) customers run in Nomentia versus in a separate system or Excel."
+    workflows: [daily-cash-positioning, cash-forecasting, payment-processing, bank-reconciliation]
+    sources: []
+
+  # ---------------- Modern / API-first ----------------
+  - id: trovata
+    name: Trovata
+    category: modern-tms
+    also: [cash-forecasting, treasury-ai]
+    types: [analytics, workflow]
+    verify: background
+    sizes: [midmarket, sme]
+    region: Mainly North America
+    hq: California, USA
+    ownership: Venture-backed (rounds and investors not verified in this session)
+    sells: "Bank-API-based cash visibility, transaction tagging, cash forecasting and reporting, with an AI assistant layer; later added payments (verify current scope)."
+    workflow: "Daily cash position and forecasting for US mid-market companies with many bank accounts."
+    positioning: "Early mover on direct bank APIs instead of file-based connectivity; 'modern alternative' to legacy TMS."
+    strengths:
+      - "API-first bank data (where US banks offer APIs) means intraday data without file set-up — a vendor claim worth testing bank by bank."
+    gaps:
+      - basis: scope
+        text: "Positioned on cash data and forecasting; not documented as a deal-capture / hedge-accounting system of record (verify current scope)."
+      - basis: question
+        text: "Ask how coverage works for non-US banks and banks without APIs."
+    workflows: [daily-cash-positioning, cash-forecasting, liquidity-planning]
+    sources: []
+
+  - id: atlar
+    name: Atlar
+    category: modern-tms
+    also: [bank-connectivity, payments]
+    types: [workflow, analytics]
+    verify: snippet
+    sizes: [sme, midmarket]
+    region: Europe (Nordics, UK, DACH), fintechs and scale-ups
+    hq: Stockholm, Sweden
+    ownership: "Venture-backed; seed led by Index Ventures, Nov 2022[](cite:comp-atlar-funding). Later rounds not verified."
+    sells: "Bank connectivity, real-time cash visibility, payments and reconciliation; added cash investing through a TreasurySpring partnership (May 2025)[](cite:comp-atlar-treasuryspring)."
+    workflow: "Payments and cash visibility for scale-ups and fintechs that have outgrown bank portals but do not want a classic TMS project."
+    positioning: "'Modern treasury platform' for fast-growing companies; lists scale-up customers such as GetYourGuide and Acne Studios (vendor claim)[](cite:comp-atlar-funding)."
+    strengths:
+      - "Payments and connectivity first, which is where scale-ups feel pain before forecasting."
+    gaps:
+      - basis: scope
+        text: "Target market is scale-ups and mid-market; no evidence found of hedge accounting or complex debt deal capture (verify)."
+      - basis: question
+        text: "Ask customers which banks were connected by API vs files, and how long onboarding took."
+    workflows: [payment-processing, daily-cash-positioning, bank-reconciliation, surplus-cash-investment]
+    sources: [comp-atlar-funding, comp-atlar-treasuryspring]
+
+  - id: embat
+    name: Embat
+    category: modern-tms
+    also: [cash-forecasting]
+    types: [analytics, workflow]
+    verify: background
+    sizes: [sme, midmarket]
+    region: Spain, Southern Europe, Latin America (verify)
+    hq: Madrid, Spain
+    ownership: Venture-backed (rounds not verified in this session)
+    sells: "Multi-bank connectivity, cash position, reconciliation, forecasting and payments for SME and mid-market finance teams."
+    workflow: "Daily cash, reconciliation and forecasting where the finance team (not a treasury department) does treasury."
+    positioning: "Treasury platform for companies without treasurers — sold to CFOs and finance managers."
+    strengths:
+      - "Targets the reconciliation-plus-cash-position chore that finance teams do daily."
+    gaps:
+      - basis: question
+        text: "Verify current product scope, funding and geographic footprint before citing."
+    workflows: [daily-cash-positioning, bank-reconciliation, cash-forecasting, payment-processing]
+    sources: []
+
+  - id: treasury4
+    name: Treasury4
+    category: modern-tms
+    types: [analytics, workflow]
+    verify: watchlist
+    sizes: [midmarket, multinational]
+    region: USA (verify)
+    hq: USA (verify)
+    ownership: "Private. Acquired TreasuryGo (deal record; date not verified)[](cite:comp-treasury4-treasurygo)."
+    sells: "Not verified. The deal-record title positions the TreasuryGo acquisition as expanding 'enterprise treasury management capabilities'."
+    workflow: Not verified.
+    positioning: Not verified.
+    strengths: []
+    gaps:
+      - basis: question
+        text: "Verify product scope from Treasury4's own documentation before relying on this entry."
+    workflows: [daily-cash-positioning]
+    sources: [comp-treasury4-treasurygo]
+
+  # ---------------- Cash forecasting ----------------
+  - id: agicap
+    name: Agicap
+    category: cash-forecasting
+    also: [modern-tms, payments]
+    types: [analytics, workflow]
+    verify: background
+    sizes: [sme, midmarket, startup]
+    region: Europe (France, Germany, Italy, Spain, UK, verify DACH depth)
+    hq: Lyon, France
+    ownership: Venture-backed; raised a large growth round in 2022 (amount and later rounds not verified in this session)
+    sells: "Cash forecasting and cash management for SMEs and mid-market: bank aggregation, transaction categorisation, scenario forecasting; has extended into payables/payments (verify current modules)."
+    workflow: "Weekly/monthly cash forecast and cash position for CFOs and finance managers without a treasury team."
+    positioning: "Cash management for the CFO of an SME — the 'Excel replacement' pitch."
+    strengths:
+      - "Aimed squarely at the forecasting pain that surveys rank as the hardest treasury activity (see [](cite:afp-bench-2026))."
+    gaps:
+      - basis: scope
+        text: "SME/mid-market positioning; not documented as a full TMS (no hedge accounting or complex deal book) — verify current scope."
+      - basis: question
+        text: "Ask SME CFOs whether a categorised-bank-data forecast replaced their Excel model or runs alongside it."
+    workflows: [cash-forecasting, daily-cash-positioning, liquidity-planning]
+    sources: [afp-bench-2026]
+
+  - id: highradius
+    name: HighRadius
+    category: cash-forecasting
+    also: [working-capital, treasury-ai]
+    types: [analytics, workflow]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global; large US base
+    hq: Houston, Texas, USA
+    ownership: Venture-backed; 2021 growth round at a reported multi-billion valuation (verify figures)
+    sells: "Order-to-cash automation (credit, collections, cash application, deductions) plus treasury modules (cash forecasting, cash positioning, reconciliation), marketed heavily around AI."
+    workflow: "AR-driven cash forecasting: uses invoice-level collection predictions to forecast receipts."
+    positioning: "Comes from the AR side — sells to CFO/controller organisations, then into treasury."
+    strengths:
+      - "Receipt forecasts built from invoice-level AR data, which is the input treasury usually lacks."
+    gaps:
+      - basis: question
+        text: "Ask treasurers (not AR) whether the treasury modules are used, and how forecast accuracy was measured."
+    workflows: [cash-forecasting, bank-reconciliation, daily-cash-positioning]
+    sources: []
+
+  - id: tesorio
+    name: Tesorio
+    category: cash-forecasting
+    also: [working-capital]
+    types: [analytics, workflow]
+    verify: background
+    sizes: [midmarket]
+    region: USA
+    hq: San Francisco, California, USA
+    ownership: Venture-backed (not verified)
+    sells: "Collections/AR workflow and cash forecasting for mid-market companies."
+    workflow: "Collections prioritisation and receipt forecasting."
+    positioning: "Cash-flow performance from the AR side."
+    strengths:
+      - "Links collections activity to the forecast."
+    gaps:
+      - basis: question
+        text: "Verify current scope and ownership."
+    workflows: [cash-forecasting]
+    sources: []
+
+  # ---------------- Bank connectivity & payments ----------------
+  - id: tis
+    name: TIS (Treasury Intelligence Solutions)
+    category: payments
+    also: [bank-connectivity, cash-forecasting]
+    types: [execution, workflow]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global; strong in Europe
+    hq: Walldorf, Germany
+    ownership: Private (investors not verified in this session)
+    sells: "Cloud payment hub and bank connectivity: collects payment files from many ERPs, applies approval workflows and controls, routes via Swift/EBICS/H2H/APIs; cash visibility. Co-publishes an annual cash forecasting & visibility survey with Strategic Treasurer[](cite:st-tis-cfv-2025)."
+    workflow: "Group-wide outgoing payments and bank statements for companies with many ERPs and banks."
+    positioning: "Payments and connectivity specialist that complements (or replaces parts of) a TMS."
+    strengths:
+      - "Multi-ERP, multi-bank payment centralisation is its core, not an add-on."
+    gaps:
+      - basis: question
+        text: "Ask whether customers also run a separate TMS and how responsibilities are split."
+    workflows: [payment-processing, large-payment-approval, daily-cash-positioning, bank-account-management]
+    sources: [st-tis-cfv-2025]
+
+  - id: serrala
+    name: Serrala (formerly Hanse Orga)
+    category: payments
+    also: [working-capital, bank-connectivity]
+    types: [execution, workflow]
+    verify: background
+    sizes: [midmarket, multinational]
+    region: Europe (DACH core), USA
+    hq: Hamburg, Germany
+    ownership: "Private, PE-backed (investor not verified). Hanse Orga Group rebranded as Serrala in 2018 — 'Hanse Orga' is not a separate competitor today."
+    sells: "SAP-centric payments, bank statement processing, AR (cash application, collections) and cash management."
+    workflow: "Payment runs and bank statement automation in SAP environments; cash application."
+    positioning: "Finance automation for SAP customers, from payments to receivables."
+    strengths:
+      - "Deep SAP integration for payment and statement processing."
+    gaps:
+      - basis: question
+        text: "Ask SAP customers whether Serrala sits beside SAP's own treasury modules and why."
+    workflows: [payment-processing, bank-reconciliation, daily-cash-positioning]
+    sources: []
+
+  - id: bottomline
+    name: Bottomline
+    category: payments
+    also: [bank-connectivity]
+    types: [execution, workflow]
+    verify: background
+    sizes: [midmarket, multinational]
+    region: USA, UK
+    hq: Portsmouth, New Hampshire, USA
+    ownership: Private; taken private by Thoma Bravo in 2022 (verify)
+    sells: "Business payments and payment networks (e.g. an AP payment network in the US), UK Bacs/Faster Payments software, Swift service-bureau connectivity, payment-fraud monitoring."
+    workflow: "Payment execution and bank messaging; payment-fraud detection."
+    positioning: "Payments and financial messaging infrastructure for corporates and banks."
+    strengths:
+      - "Payment-rail and messaging depth, especially in the UK."
+    gaps:
+      - basis: scope
+        text: "Payments-focused; not positioned as a cash forecasting or deal-capture tool."
+    workflows: [payment-processing, fraud-investigation, large-payment-approval]
+    sources: []
+
+  - id: fides
+    name: Fides
+    category: bank-connectivity
+    types: [execution]
+    verify: watchlist
+    sizes: [midmarket, multinational]
+    region: Switzerland / Europe
+    hq: Switzerland (verify)
+    ownership: Not verified (historically connected to Credit Suisse; verify current ownership)
+    sells: "Multi-bank connectivity and Swift service-bureau services: bank statement collection and payment file delivery for corporates (verify)."
+    workflow: "Getting statements in and payment files out, across many banks."
+    positioning: "Neutral connectivity layer under a TMS or ERP."
+    strengths: []
+    gaps:
+      - basis: question
+        text: "Verify ownership and current service scope before citing — relevant for Swiss interviews."
+    workflows: [daily-cash-positioning, payment-processing, bank-account-management]
+    sources: []
+
+  # ---------------- FX / hedging ----------------
+  - id: 360t
+    name: 360T
+    category: fx-hedging
+    types: [execution]
+    verify: background
+    sizes: [midmarket, multinational]
+    region: Global; strongest in Europe
+    hq: Frankfurt, Germany
+    ownership: Deutsche Börse Group (since 2015)
+    sells: "Multi-dealer FX (and money-market) trading platform: the treasurer requests quotes from several banks at once and deals on the best price, with an audit trail."
+    workflow: "Execution step of FX hedging — after the hedge decision is made."
+    positioning: "Neutral execution venue for corporates and banks."
+    strengths:
+      - "Competitive quotes and a documented best-execution trail, which auditors and policies often require."
+    gaps:
+      - basis: scope
+        text: "Execution only: the exposure calculation and the hedge decision happen before the trade reaches the platform."
+    workflows: [fx-hedging, surplus-cash-investment]
+    sources: []
+
+  - id: fxall
+    name: FXall (LSEG)
+    category: fx-hedging
+    types: [execution]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global
+    hq: London, UK (LSEG)
+    ownership: London Stock Exchange Group (via the 2021 Refinitiv acquisition)
+    sells: "Multi-dealer FX trading platform for buy-side and corporates."
+    workflow: "FX trade execution and straight-through processing into the TMS."
+    positioning: "Execution venue competing with 360T and Bloomberg FXGO."
+    strengths:
+      - "Straight-through processing into major TMS."
+    gaps:
+      - basis: scope
+        text: "Execution only (same as 360T)."
+    workflows: [fx-hedging]
+    sources: []
+
+  - id: bloomberg-fxgo
+    name: Bloomberg FXGO
+    category: fx-hedging
+    types: [execution, analytics]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global
+    hq: New York, USA
+    ownership: Bloomberg L.P. (private)
+    sells: "FX trading for Bloomberg Terminal users; market data and analytics around it."
+    workflow: "FX execution plus market data for treasuries that already have a Terminal."
+    positioning: "Execution bundled with the market-data terminal."
+    strengths:
+      - "Data and execution in one screen."
+    gaps:
+      - basis: scope
+        text: "Requires Bloomberg Terminal access — a cost only larger treasuries usually carry."
+    workflows: [fx-hedging, currency-shock]
+    sources: []
+
+  - id: kantox
+    name: Kantox
+    category: fx-hedging
+    types: [workflow, execution]
+    verify: background
+    sizes: [midmarket, sme]
+    region: Europe, UK
+    hq: Barcelona, Spain
+    ownership: Private (current investors not verified in this session)
+    sells: "'Currency management automation': takes exposures from the ERP or pricing system, applies hedging rules, and executes and settles hedges with partner banks."
+    workflow: "Rule-based hedging of forecast and firm FX exposures, including pricing in foreign currency."
+    positioning: "Automates the step between exposure and trade that most mid-market companies do in Excel."
+    strengths:
+      - "Targets exposure capture, the step practitioners describe as hardest, rather than execution alone."
+    gaps:
+      - basis: question
+        text: "Ask how exposure data quality is ensured when ERP or sales forecasts are wrong, and who signs off rule changes."
+    workflows: [fx-exposure-management, fx-hedging]
+    sources: []
+
+  - id: chatham
+    name: Chatham Financial
+    category: fx-hedging
+    types: [analytics]
+    verify: background
+    sizes: [midmarket, multinational]
+    region: USA, Europe, Asia
+    hq: Kennett Square, Pennsylvania, USA
+    ownership: Private
+    sells: "Hedging and debt advisory plus software for hedge accounting, valuations and debt management; executes through banks on the client's behalf in advisory mandates."
+    workflow: "Hedge programme design, hedge accounting documentation, interest-rate and FX hedge valuation."
+    positioning: "Advisory-plus-technology, not pure software — a human expert is part of the product."
+    strengths:
+      - "Combines expert judgement (strategy, accounting) with the tooling."
+    gaps:
+      - basis: scope
+        text: "Advisory-led model; not a cash management or payments system."
+    workflows: [fx-hedging, fx-exposure-management, credit-facility-management, month-end-reporting]
+    sources: []
+
+  - id: hedgebook
+    name: Hedgebook
+    category: fx-hedging
+    types: [analytics, sor]
+    verify: background
+    sizes: [sme, midmarket]
+    region: Australia/New Zealand, UK, global SaaS
+    hq: Auckland, New Zealand (verify)
+    ownership: Not verified
+    sells: "Hedge valuation, hedge accounting and hedge-register software for companies with modest derivative books."
+    workflow: "Record hedges, value them at month-end, produce hedge-accounting entries."
+    positioning: "Affordable hedge register for companies that would otherwise track forwards in Excel."
+    strengths:
+      - "Focused on the month-end valuation chore."
+    gaps:
+      - basis: question
+        text: "Verify ownership and current scope."
+    workflows: [fx-hedging, month-end-reporting]
+    sources: []
+
+  - id: ebury
+    name: Ebury
+    category: fx-hedging
+    also: [payments]
+    types: [execution]
+    verify: background
+    sizes: [sme, midmarket]
+    region: Europe, UK, Latin America
+    hq: London, UK
+    ownership: Majority-owned by Banco Santander (since around 2019–2020; verify)
+    sells: "Cross-border payments, multi-currency accounts and FX hedging (forwards) for SMEs and mid-market firms."
+    workflow: "Pay foreign suppliers and hedge FX without a bank dealing relationship."
+    positioning: "Non-bank FX provider for SMEs underserved by bank dealing desks."
+    strengths:
+      - "Serves companies too small to get attention from bank FX sales."
+    gaps:
+      - basis: question
+        text: "Ask SMEs how they compare spreads with their house bank, and who decides the hedge amount."
+    workflows: [fx-hedging, payment-processing]
+    sources: []
+
+  - id: bound
+    name: Bound
+    category: fx-hedging
+    types: [workflow, execution]
+    verify: watchlist
+    sizes: [sme, startup]
+    region: UK / Europe (verify)
+    hq: London, UK (verify)
+    ownership: Not verified
+    sells: "Reported as an FX hedging product for SMEs; scope not verified in this session."
+    workflow: Not verified.
+    positioning: Not verified.
+    strengths: []
+    gaps:
+      - basis: question
+        text: "Verify product scope, funding and customers from primary sources."
+    workflows: [fx-hedging]
+    sources: []
+
+  - id: millimetric
+    name: Millimetric
+    category: fx-hedging
+    types: [analytics]
+    verify: watchlist
+    sizes: [midmarket]
+    region: Not verified
+    hq: Not verified
+    ownership: Not verified
+    sells: "Named in the research brief as an FX/hedging or treasury-AI startup; nothing about the product was verified in this session."
+    workflow: Not verified.
+    positioning: Not verified.
+    strengths: []
+    gaps:
+      - basis: question
+        text: "Verify existence, scope and funding from primary sources."
+    workflows: [fx-hedging]
+    sources: []
+
+  # ---------------- Investments ----------------
+  - id: treasuryspring
+    name: TreasurySpring
+    category: investments
+    types: [execution]
+    verify: background
+    sizes: [midmarket, multinational, sme]
+    region: UK, Europe, USA
+    hq: London, UK
+    ownership: Venture-backed (not verified)
+    sells: "Platform for investing surplus cash in fixed-term funds backed by bank deposits, government securities or repos, across many counterparties under one legal set-up. Partners with treasury platforms such as Atlar[](cite:comp-atlar-treasuryspring)."
+    workflow: "Placing surplus cash for fixed terms without negotiating each bank or issuer relationship."
+    positioning: "Access to institutional short-term investments for companies without a large investment operation."
+    strengths:
+      - "Diversifies counterparty exposure without a new bank relationship per counterparty."
+    gaps:
+      - basis: question
+        text: "Ask treasurers how the investment policy treats fund-style products versus direct deposits."
+    workflows: [surplus-cash-investment]
+    sources: [comp-atlar-treasuryspring]
+
+  # ---------------- Working capital ----------------
+  - id: taulia
+    name: Taulia (SAP)
+    category: working-capital
+    types: [execution, workflow]
+    verify: background
+    sizes: [multinational]
+    region: Global
+    hq: San Francisco, USA (SAP subsidiary)
+    ownership: Acquired by SAP in 2022 (verify date)
+    sells: "Supply-chain finance, dynamic discounting and (for SAP customers) embedded early-payment programmes."
+    workflow: "Suppliers get paid early; buyer extends payment terms; funded by banks or the buyer's own cash."
+    positioning: "Working-capital programmes embedded in the SAP procure-to-pay flow."
+    strengths:
+      - "Distribution through SAP's installed base."
+    gaps:
+      - basis: scope
+        text: "Programme owned jointly by procurement, AP and treasury — treasury is often the funder or approver, not the daily user."
+    workflows: [liquidity-planning, cash-forecasting]
+    sources: []
+
+  - id: c2fo
+    name: C2FO
+    category: working-capital
+    types: [execution]
+    verify: background
+    sizes: [multinational, midmarket]
+    region: Global; large US base
+    hq: Kansas City, USA
+    ownership: Venture-backed (not verified)
+    sells: "Early-payment marketplace: suppliers offer discounts in exchange for being paid early by large buyers."
+    workflow: "Deploying surplus cash into supplier early payments at a discount."
+    positioning: "Alternative use of buyer cash versus money-market yields."
+    strengths:
+      - "Turns the buyer's surplus cash into a yield-generating use."
+    gaps:
+      - basis: question
+        text: "Ask treasurers how the discount yield compares with their investment yield, and who owns the programme."
+    workflows: [surplus-cash-investment, liquidity-planning]
+    sources: []
+
+  # ---------------- AI-native / agents (watchlist) ----------------
+  - id: palm
+    name: Palm
+    category: treasury-agents
+    types: [workflow, analytics]
+    verify: watchlist
+    sizes: [midmarket]
+    region: Not verified
+    hq: Not verified
+    ownership: Not verified
+    sells: "Named in the research brief as an AI-native treasury startup. Product, funding and customers not verified in this session."
+    workflow: Not verified.
+    positioning: Not verified.
+    strengths: []
+    gaps:
+      - basis: question
+        text: "Verify what is actually shipped vs announced; ask for a customer reference that uses it without a human re-doing the work."
+    workflows: [cash-forecasting, daily-cash-positioning]
+    sources: []
+
+  - id: nilus
+    name: Nilus
+    category: treasury-agents
+    types: [workflow, analytics]
+    verify: watchlist
+    sizes: [midmarket]
+    region: Not verified
+    hq: Not verified
+    ownership: Not verified
+    sells: "Named in the research brief as an AI-native treasury startup. Product, funding and customers not verified in this session."
+    workflow: Not verified.
+    positioning: Not verified.
+    strengths: []
+    gaps:
+      - basis: question
+        text: "Verify what is actually shipped vs announced."
+    workflows: [daily-cash-positioning, bank-reconciliation]
+    sources: []
+
+  - id: statement
+    name: Statement
+    category: treasury-agents
+    types: [analytics]
+    verify: watchlist
+    sizes: [midmarket]
+    region: Not verified
+    hq: Not verified
+    ownership: Not verified
+    sells: "Named in the research brief as a cash-management startup. Product, funding and customers not verified in this session."
+    workflow: Not verified.
+    positioning: Not verified.
+    strengths: []
+    gaps:
+      - basis: question
+        text: "Verify existence and scope."
+    workflows: [daily-cash-positioning]
+    sources: []

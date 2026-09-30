@@ -1,0 +1,83 @@
+# Glossary terms added by the companies-size stream.
+- id: fiduciary-treuhaender
+  term: Fiduciary (Treuhänder)
+  aka: [Treuhand, Treuhandbüro, fiduciaire, external accountant]
+  category: Organisation
+  plain: An outside accounting firm that keeps the books, runs payroll and prepares tax returns for small companies that have no finance department of their own.
+  professional: "In Switzerland a Treuhänder / fiduciaire provides outsourced bookkeeping, payroll, VAT returns, statutory accounts and tax filings, and often acts as the de facto finance function of micro and small companies. It records transactions and prepares filings; it normally does not decide on cash, banking or hedging, and usually does not hold payment authority."
+  example: "Kleio's fiduciary books its supplier invoices monthly and prepares the VAT return; Sarah (CFO) still decides where the CHF 22m of cash sits and approves every payment."
+  related: [fpa, signatory]
+  confusedWith: "**Fiduciary deposit (Treuhandanlage)** — a Swiss bank product where the bank places a deposit in its own name but at the client's risk. Same word, unrelated meaning."
+
+- id: shared-service-centre
+  term: Shared-service centre (SSC)
+  aka: [SSC, global business services, GBS, finance hub]
+  category: Organisation
+  plain: A central office, often in a lower-cost location, that performs routine finance work — accounts payable, receivables, bookkeeping, sometimes payments and treasury back office — for many group companies at once.
+  professional: "An internal service unit that standardises and centralises transactional processes for multiple legal entities. In treasury, an SSC may host payment operations (a payment factory), bank-statement processing and reconciliation, deal confirmation and settlement, and bank-account administration, while treasury policy, dealing and funding decisions stay with the central treasury. Common European locations include Poland, Czechia, Hungary, Portugal and Ireland."
+  example: "GlobalChem's shared-service centre in Kraków runs AP for 25 European subsidiaries and hosts Marta's treasury operations team, which confirms FX deals booked by the risk team in Basel."
+  related: [payment-factory, in-house-bank, segregation-of-duties, treasury-centralisation]
+
+- id: treasury-centralisation
+  term: Treasury centralisation
+  aka: [centralised treasury, decentralised treasury, centralisation of treasury]
+  category: Organisation
+  plain: How much of the group's money work is done by one central team rather than by each subsidiary on its own.
+  professional: "A spectrum, not a switch. Decisions (policy, funding, hedging, bank selection) are usually centralised first; information (visibility of balances and exposures) next; then execution (central dealing, cash pooling, in-house bank, payment factory, POBO/COBO). Local finance typically keeps day-to-day AP/AR, local tax and some local banking. Limits come from regulation (capital controls, local-currency requirements), tax, time zones and the cost of systems."
+  example: "Helvetic centralised decisions and FX dealing in 2021 but local teams still release their own supplier payments; GlobalChem also centralised execution through an in-house bank and a payment factory."
+  related: [in-house-bank, payment-factory, pobo, cash-pooling, regional-treasury-centre, shared-service-centre]
+  confusedWith: "**Cash concentration** — one technique a centralised treasury uses; a company can be centralised in decision-making without pooling any cash."
+
+- id: bank-account-rationalisation
+  term: Bank account rationalisation
+  aka: [account rationalisation, bank rationalisation]
+  category: Banking & connectivity
+  plain: A clean-up project that closes unnecessary bank accounts and moves business to fewer banks.
+  professional: "A periodic review of the bank-account inventory (purpose, owner entity, activity, signatories, fees, connectivity) that closes dormant or duplicate accounts and often consolidates relationships around the banks that provide credit. Benefits: fewer statements to reconcile, fewer signatory lists and KYC files, lower fees, better visibility. Constraints: local legal or tax requirements for in-country accounts, customer and direct-debit migration, and banks' expectation of ancillary business in return for lending."
+  example: "Helvetic went from 31 to 12 accounts in 2024: 7 accounts had fewer than ten transactions a year, and closing a CZK account at a local bank also removed a former controller who was still a signatory."
+  related: [dormant-account, relationship-bank, wallet-share, signatory, bank-account-management-term]
+
+- id: deposit-protection
+  term: Deposit protection (esisuisse)
+  aka: [deposit insurance, depositor protection, Einlagensicherung, FDIC insurance]
+  category: Risk & control
+  plain: A government-backed scheme that repays bank deposits up to a limit if a bank fails. The limit is small compared with a company's cash.
+  professional: "In Switzerland, privileged deposits are protected up to CHF 100,000 per depositor per bank through the esisuisse scheme; the US FDIC limit is USD 250,000 per depositor per bank per ownership category; EU schemes cover EUR 100,000. For a company holding millions, deposit protection is almost irrelevant — the protection comes from bank selection, counterparty limits and diversifying into instruments such as money market funds or government bills."
+  example: "Kleio's CHF 22m would be protected for only CHF 100k per bank if one of its Swiss banks failed, which is why its board asked for the split across banks and for part of the cash to go into instruments other than deposits."
+  related: [counterparty-limit, counterparty, money-market-fund, treasury-bill]
+
+- id: current-account-credit
+  term: Current-account credit limit (Kontokorrentkredit)
+  aka: [Kontokorrentlimite, overdraft facility, operating credit line, crédit en compte courant]
+  category: Debt & funding
+  plain: A limit that lets the company's bank account go negative up to an agreed amount — the most common bank financing for Swiss and German SMEs.
+  professional: "A bank credit facility drawn by running the current account into debit (or through short fixed advances under the same limit). Can be committed (for a term, with a commitment fee) or uncommitted/cancellable. SMEs use it to bridge working-capital swings; interest is paid only on the drawn amount. Larger companies replace it with an RCF shared by several banks."
+  example: "Alpine's CHF 12m committed operating line at its cantonal bank is usually drawn CHF 0–5m; when a CHF 2m acceptance payment slips a month, the line absorbs it."
+  related: [overdraft, rcf, committed-facility, commitment-fee, house-bank]
+
+- id: milestone-payments
+  term: Milestone payments
+  aka: [progress payments, stage payments, advance payments, down payments]
+  category: Working capital
+  plain: Customer payments for large projects that arrive in slices tied to events — order, delivery, acceptance — rather than one invoice.
+  professional: "Contractual payment schedules in project and capital-goods businesses (e.g. 30% on order, 50% on delivery, 20% on acceptance). Timing depends on operational events outside finance's control, so they dominate the forecast error of project companies. Down payments are often secured by advance-payment guarantees from the seller's bank; final payments may be held back against performance guarantees."
+  example: "Alpine's CHF 3m project pays CHF 0.9m on order, CHF 1.5m on delivery and CHF 0.6m when the customer signs the acceptance certificate; one unsigned certificate moves CHF 0.6–2m between months."
+  related: [short-term-forecast, working-capital, trade-finance, letter-of-credit]
+
+- id: restricted-currency
+  term: Restricted currency
+  aka: [non-convertible currency, controlled currency, restricted market]
+  category: FX
+  plain: A currency the government controls, so a company cannot freely convert it or send it abroad.
+  professional: "A currency subject to capital or exchange controls: conversion and cross-border transfers need documentation, registration or central-bank approval, and can be delayed or blocked. Hedging often requires non-deliverable forwards (NDFs) offshore. Examples vary over time; Chinese CNY (onshore), Indian INR, Brazilian BRL and several African and South Asian currencies have long required documented flows. Cash in these countries is a main source of trapped cash."
+  example: "Helvetic's Suzhou subsidiary can pay a dividend in CNY only once a year after the statutory audit; GlobalChem's Singapore centre maintains a list of 11 restricted markets where every intercompany payment needs supporting contracts and invoices."
+  related: [trapped-cash, repatriation, withholding-tax, regional-treasury-centre]
+
+- id: annual-prepayment
+  term: Annual upfront billing (SaaS)
+  aka: [annual prepayment, upfront billing, billed in advance]
+  category: Working capital
+  plain: Customers pay for a whole year of software at the start, so the cash arrives long before the revenue is earned.
+  professional: "Billing annual (or multi-year) subscriptions in advance creates deferred revenue on the balance sheet and a large, seasonal cash inflow concentrated in renewal months. Good for cash, but it makes month-by-month cash and burn misleading: runway looks best just after renewals and worst just before them."
+  example: "Kleio collects about CHF 5m in January and CHF 2.5m in July from enterprise renewals; its cash balance swings by several million over the year even though monthly costs are flat at about CHF 1.9m."
+  related: [cash-runway, burn-rate, working-capital, operating-cash-flow]

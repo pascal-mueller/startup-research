@@ -1,0 +1,266 @@
+---
+title: Cash management
+nav: Cash management
+order: 1
+cluster: liquidity
+summary: Knowing how much cash the group has in every account, entity and currency today, and moving it to where it is needed — through transfers, pools, sweeps and intercompany loans — without leaving it idle, stranded or exposed.
+subtopics: [bank balances, cash positioning, liquidity, cash pooling, intercompany funding, trapped cash, bank accounts, cash concentration, sweeping]
+related: [/map/cash-forecasting, /map/investments, /map/banking, /org/roles-cash-manager, /companies/same-problem]
+---
+
+<TreasuryMap focus="cash-management" />
+
+Cash management is the **daily, operational heart of treasury**. It answers "how much cash do we have, where exactly is it, and is it in the right place for today?" and then does something about it. [Forecasting](/map/cash-forecasting) tells it what is coming; [investments](/map/investments) and [debt](/map/debt) absorb the surplus or cover the gap; [payments](/map/payments) and [banking](/map/banking) are the plumbing it runs on.
+
+<Callout type="concept" title="The core idea in one sentence">
+
+A group with CHF 40m of cash can still fail to pay German payroll on Thursday if the money is in the wrong entity, the wrong currency or the wrong bank — or stuck in China. Cash management exists to close the gap between *having* cash and having *usable* cash where the payment is due.
+
+</Callout>
+
+## Who does this work, by company size
+
+| Subtopic | [Kleio](co:kleio) (startup) | [Alpine](co:alpine) (SME) | [Helvetic](co:helvetic) (mid-market) | [GlobalChem](co:globalchem) (multinational) |
+|---|---|---|---|---|
+| Bank balances / positioning | Sarah ([CFO](/org/roles-cfo)), weekly, portals | Petra (head of accounting), daily, portals + Excel | Lea ([analyst](/org/roles-analyst)) builds, Daniel ([treasury manager](/org/roles-treasury-manager)) decides | Priya's [cash & liquidity](/org/roles-cash-manager) team; TMS automated, people on exceptions |
+| Pooling / sweeping / concentration | None | None; ad hoc transfers | Manual concentration by intercompany loan | Automated EUR/USD physical pools into the [in-house bank](term:in-house-bank) |
+| Intercompany funding | Sarah funds Kleio Inc. before US payroll | Petra, on Martin's instruction | Daniel, with Claudia (group accounting) and tax | In-house bank loans/deposits; [tax](/org/with-tax) sets pricing |
+| Trapped cash | Not an issue | Not an issue | HM Suzhou (CNY), annual dividend | Regional treasury centre + tax; several restricted countries |
+| Bank accounts | Sarah | Petra (admin), Martin (signs) | Daniel | [Treasury operations](/org/roles-operations) (Marta) |
+
+Cash management is usually the **first** treasury task a company formalises: the SME that has no hedging policy still checks its bank balances daily. The [daily cash positioning](wf:daily-cash-positioning) workflow is the canonical routine.
+
+## Bank balances
+
+**Plain:** the amount of money actually in each bank account. **Professional:** the *booked* balance (what the bank has posted) versus the *value-dated* balance (what counts for interest and overdraft purposes), reported prior-day in a [bank statement](term:bank-statement) (MT940 or ISO 20022 camt.053) and intraday in camt.052 / MT942 reports. Swiss banks follow the Swiss Payment Standards for these reports[](cite:six-sps-cash-mgmt).
+
+Treasury cares about three different numbers for the same account: the **ledger** balance in the ERP (what accounting has booked), the **bank** booked balance, and the **value-dated / available** balance. They differ because of timing, uncleared items and [value dates](term:value-date).
+
+<Example title="Why the ERP says one thing and the bank another" company="alpine">
+
+On Monday morning Business Central shows CHF 3.9m in Alpine's main CHF account; the cantonal bank's portal shows CHF 4.6m. Petra reconciles: CHF 0.5m is a customer payment that arrived Friday afternoon and is not yet posted (AR will apply it today); CHF 0.2m is a supplier payment run released Friday with value Monday, already in the ERP but not yet debited by the bank. For cash management the **bank** number, adjusted for what is certain today, is the one that matters.
+
+</Example>
+
+- **Drives:** [daily cash positioning](wf:daily-cash-positioning), [bank reconciliation](wf:bank-reconciliation).
+- **Terms:** [bank statement](term:bank-statement), [value date](term:value-date), [MT940](term:mt940), [cash visibility](term:cash-visibility), [float](term:float).
+
+<Callout type="confusion" title="Beginner confusion: 'cash' in the balance sheet vs cash in the bank">
+
+The balance-sheet cash figure is an accounting number at month-end, after reconciliation. The treasurer's cash number is today's bank balance by account. Interviewees will talk past each other if you mix them up. Ask which one they mean.
+
+</Callout>
+
+**Ask in an interview:**
+- "How many accounts do you have, and for how many do you get balances automatically before 09:00?"
+- "Which account is always the problem — late statement, missing data, a bank in another time zone?"
+- "Do you work from booked or value-dated balances? Does the difference ever matter to you?"
+- "When the bank and the ERP disagree, who sorts it out, and when?"
+
+## Cash positioning
+
+**Plain:** working out, each morning, what cash each account will have by the end of today and whether anything needs to be moved. **Professional:** the [cash position](term:cash-position) = opening available balance + today's certain inflows − today's scheduled outflows (payment runs, payroll, tax, loan and deal settlements), by account, entity and currency, produced before bank [cut-off times](term:rtgs-note) so funding, sweeping and investment decisions can still be executed with same-day value.
+
+<Example title="Helvetic, Tuesday 08:40" company="helvetic" open>
+
+| Account | Opening (bank) | Known today | Projected close | Minimum | Action |
+|---|---|---|---|---|---|
+| HM AG, CHF (Swiss bank 1) | CHF 18.2m | −1.4m supplier run | 16.8m | 0.5m | Surplus: repay part of the RCF drawing at next rollover |
+| HM AG, EUR (Swiss bank 1) | EUR 9.6m | +0.8m customer | 10.4m | 0.5m | Source for German funding |
+| HM Deutschland, EUR (German bank) | EUR 1.3m | −0.6m suppliers; Thursday payroll −4.2m | 0.7m today, −3.5m Thursday | 0.25m | Fund EUR 3.8m by Wednesday |
+| HM Suzhou, CNY (Chinese bank) | CNY 44m | – | 44m | – | Trapped; ignore for group liquidity |
+
+Lea proposes a EUR 3.8m transfer from HM AG's EUR account to HM Deutschland, documented as an addition to the existing [intercompany loan](term:intercompany-loan). Daniel approves in the connectivity tool before the 14:00 EUR cut-off.
+
+</Example>
+
+Who: at small companies the CFO or head of accounting, often only on payment days; at mid-market an analyst prepares and the treasury manager decides; at multinationals a cash-management team, with the TMS doing the arithmetic and humans handling exceptions (see [company comparison](/companies/same-problem)).
+
+- **Drives:** [daily cash positioning](wf:daily-cash-positioning), [funding a subsidiary](wf:funding-subsidiary), [surplus cash investment](wf:surplus-cash-investment).
+- **Terms:** [cash position](term:cash-position), [cut-off time](term:rtgs-note), [cash buffer](term:cash-buffer), [overnight](term:overnight).
+
+<Callout type="confusion" title="Positioning is not forecasting">
+
+Positioning is **today** (and maybe tomorrow): certain, actual numbers, operational decisions before cut-off. [Forecasting](/map/cash-forecasting) is **weeks and months**: estimates, uncertainty, planning decisions. The same analyst may do both, but they are different workflows with different inputs.
+
+</Callout>
+
+**Ask:**
+- "Walk me through this morning's position — what did you open first, and what did you have to chase?"
+- "What's the latest time you can still move money today, and which currency's cut-off drives your morning?"
+- "What unexpected item did you investigate this week, and how did you find out what it was?"
+- "Which decisions come out of the position, and who approves them?"
+
+## Liquidity
+
+**Plain:** having enough cash — or guaranteed access to cash — to pay everything when it is due. **Professional:** available [liquidity](term:liquidity) = cash that is usable (excluding [trapped](term:trapped-cash) or restricted cash) + undrawn **committed** facilities; [liquidity headroom](term:liquidity-headroom) = available liquidity minus the forecast low point and the policy [cash buffer](term:cash-buffer). Uncommitted lines and overdrafts are usually excluded because the bank can withdraw them in exactly the scenario that matters.
+
+<Example title="Helvetic's liquidity headroom" company="helvetic">
+
+| Item | CHF m |
+|---|---|
+| Group cash | 41 |
+| less: cash in China (not quickly usable) | −5 |
+| Usable cash | 36 |
+| RCF undrawn (CHF 200m − 60m drawn) | 140 |
+| **Available liquidity** | **176** |
+| 13-week forecast low point (week 6), cash reduction | −18 |
+| Policy minimum cash | −10 |
+| **Headroom** | **148** |
+
+Headroom is ample; Helvetic's liquidity question is not "will we run out" but "is CHF 140m of undrawn RCF worth its commitment fee?" and "will covenants keep the RCF available?". At Alpine, the same table with CHF 6–12m of cash and a CHF 12m line can show headroom of a few million francs — one delayed robot acceptance matters.
+
+</Example>
+
+Who: the CFO owns liquidity at every size; the head of treasury / treasury manager measures and reports it; the board sets the minimum in the [treasury policy](term:treasury-policy).
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [liquidity crisis](wf:liquidity-crisis), [credit facility management](wf:credit-facility-management).
+- **Terms:** [liquidity](term:liquidity), [liquidity headroom](term:liquidity-headroom), [committed vs uncommitted facility](term:committed-facility), [liquidity risk](term:liquidity-risk), [cash runway](term:cash-runway).
+
+<Callout type="confusion" title="Liquidity ≠ profitability ≠ liquidity ratios">
+
+A profitable company can be illiquid (Alpine funding three projects), and a loss-making startup can be very liquid (Kleio with 24 months of runway). The [current ratio](term:liquidity-ratio) is an outsider's balance-sheet snapshot; treasurers manage liquidity with forecasts and headroom.
+
+</Callout>
+
+**Ask:**
+- "How do you define available liquidity — do you count the credit line? Cash in all countries?"
+- "What minimum cash do you hold, who set it, and when was it last challenged?"
+- "What is the scenario you worry about, and how many weeks would you last?"
+
+## Bank accounts
+
+**Plain:** the list of accounts the company holds, in which entity, currency and bank, and what each is for. **Professional:** an **account structure** designed around entities, currencies and flows (collection, disbursement, payroll, tax, concentration/master accounts), maintained in an account inventory with signatories and e-banking rights — see [bank account management](term:bank-account-management-term). Every account costs fees, KYC effort and control risk, so treasurers rationalise.
+
+Example: Helvetic cut its accounts from 31 to 12 in 2024: one operating account per entity at a core bank (plus EUR and CHF at the parent, and the Chinese onshore account), closing old accounts left behind by acquisitions and local habits. GlobalChem still has ~280 because of 40 subsidiaries, local tax and payroll accounts, and countries where only local banks work.
+
+Who: small companies — the CFO; mid-market — the treasury manager with local finance; multinationals — treasury operations maintain the inventory, while opening an account needs head-of-treasury or CFO approval under the policy. Detail in [Bank relationships](/map/banking).
+
+- **Drives:** [bank account management](wf:bank-account-management), [bank fee analysis](wf:bank-fee-analysis).
+- **Terms:** [bank account management](term:bank-account-management-term), [signatory](term:signatory), [payment mandate](term:payment-mandate), [virtual accounts](term:virtual-accounts), [dormant account](term:dormant-account).
+
+**Ask:**
+- "Do you have one list of every bank account and who can sign on it? Who keeps it current?"
+- "When did you last close accounts, and why did they exist?"
+- "Which accounts exist only because of a local requirement (tax, payroll, customer habit)?"
+
+## Cash concentration
+
+**Plain:** bringing scattered cash together into a few central accounts so it can be used or invested as one pot. **Professional:** the movement of balances from operating accounts to a master/header account (same entity) or to a central treasury entity (cross-entity), by manual transfer, automated [sweeping](term:sweeping) or [physical pooling](term:physical-pooling). Cross-entity concentration creates [intercompany loans](term:intercompany-loan) with tax and legal consequences.
+
+<Example title="Manual concentration at Helvetic" company="helvetic">
+
+On the 5th business day of each month Daniel reviews subsidiary balances above their operating minimum: HM France holds EUR 2.9m (minimum EUR 0.4m), HM UK GBP 1.1m (minimum GBP 0.2m). He instructs HM France and HM UK to transfer EUR 2.5m and GBP 0.9m to HM AG as deposits under their intercompany agreements and uses the proceeds to repay CHF 3m of the RCF at the next interest-period end. It takes about two hours, depends on local finance managers executing the transfers, and happens monthly — so cash sits idle in subsidiaries for up to four weeks. That delay is the argument for an automated pool.
+
+</Example>
+
+- **Drives:** [daily cash positioning](wf:daily-cash-positioning), [funding a subsidiary](wf:funding-subsidiary), [surplus cash investment](wf:surplus-cash-investment).
+- **Terms:** [cash concentration](term:cash-concentration), [sweeping](term:sweeping), [physical pooling](term:physical-pooling), [treasury centre](term:treasury-centre).
+
+**Ask:**
+- "How does cash get from the subsidiaries to the centre — automatically, monthly by instruction, or only as dividends?"
+- "How much cash sits outside the centre on an average day, and why?"
+- "Who has to act at the subsidiary for the money to move?"
+
+## Sweeping
+
+**Plain:** a standing instruction to the bank to move money automatically between accounts every day. **Professional:** automated **zero-balancing** (sweep the whole balance to the master account), **target-balancing** (leave a set amount) or **threshold** sweeps, executed end-of-day by the bank within one bank's network (cross-border sweeps are possible but usually within a single bank). Each sweep is a real transfer, and cross-entity sweeps create intercompany positions that must be booked and priced.
+
+Example: GlobalChem's EUR pool zero-balances 22 European subsidiary accounts into the in-house bank's EUR master account at 17:30 each day; on Wednesday that concentrates EUR 36m, and the subsidiaries' accounts start Thursday at zero, with overdraft-free funding from the master if they pay out more than they receive.
+
+Who: designed once by the head of cash & liquidity with the bank, tax and legal; run daily by the bank; reviewed by cash-management analysts (did all sweeps execute? are the intercompany balances booked?). Small companies rarely sweep — their bank may not offer it cheaply, and with two or three accounts a manual transfer is enough.
+
+- **Terms:** [sweeping](term:sweeping), [cash pooling](term:cash-pooling), [in-house bank](term:in-house-bank).
+
+<Callout type="confusion" title="'Sweep' means different things">
+
+To a European treasurer a sweep is usually an intra-group zero-balancing transfer. In the US, "sweep account" often means the bank automatically moving surplus into a money market fund or overnight investment. Ask which they mean.
+
+</Callout>
+
+**Ask:**
+- "Which accounts sweep, what kind (zero or target balance), and when did one last fail?"
+- "Who books and reconciles the intercompany positions the sweeps create?"
+- "Why are some accounts outside the sweep structure?"
+
+## Cash pooling
+
+**Plain:** combining several group companies' accounts so the surpluses of one cover the deficits of another. **Professional:** [physical pooling](term:physical-pooling) moves the cash (via sweeps; creates intercompany loans); [notional pooling](term:notional-pooling) leaves balances in place and the bank calculates interest on the notional net — it needs cross-guarantees and is constrained by bank capital rules, so it has become less available than a decade ago. Pools are usually single-currency; multi-currency pools exist at a few global banks.
+
+<Example title="Why Helvetic doesn't have a pool yet" company="helvetic">
+
+A EUR pool across HM AG, HM Deutschland, HM Italia and HM France would concentrate about EUR 6–9m daily. Obstacles Daniel lists for Thomas: the four entities bank at three different banks (a pool needs one bank, so accounts move); Italian and French entities need board resolutions and loan documentation; tax must set arm's-length pool interest (the Swiss safe-harbour minimum for equity-funded CHF lending to group companies is 0.75% for 2026[](cite:estv-safe-harbour-2026)); Swiss withholding-tax rules on bank-like deposit taking shape how a Swiss pool leader is set up[](cite:bk-non-bank-rules). Estimated benefit: lower RCF drawings by the pooled EUR, perhaps CHF 150–200k a year of interest at current rates. Decision: revisit with the TMS project.
+
+</Example>
+
+Adoption rises with size: PwC's 2025 survey reports in-house banks at 67% and payment factories at 60% of organisations above USD 10bn revenue[](cite:pwc-gts-2025) — structures that normally sit on top of a pool.
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [funding a subsidiary](wf:funding-subsidiary), [acquisition integration](wf:acquisition-integration).
+- **Terms:** [cash pooling](term:cash-pooling), [physical pooling](term:physical-pooling), [notional pooling](term:notional-pooling), [transfer pricing](term:transfer-pricing), [withholding tax](term:withholding-tax).
+
+**Ask:**
+- "Why did you (or didn't you) set up a pool? Who had to agree — tax, legal, local directors?"
+- "Which entities or countries are excluded, and why?"
+- "How is pool interest set, and who checks it every year?"
+- "What happens when a subsidiary's local director wants 'their' cash back?"
+
+## Intercompany funding
+
+**Plain:** group companies lending to each other — usually the centre lending to subsidiaries that need cash, and borrowing from those with surplus. **Professional:** [intercompany loans](term:intercompany-loan), deposits and pool balances documented in agreements, priced at arm's length ([transfer pricing](term:transfer-pricing)), with FX, thin-capitalisation, withholding-tax and local legal constraints (capital maintenance, corporate-benefit rules). Alternatives: equity injections, dividends, payment of intercompany invoices, [netting](term:netting).
+
+<Example title="Funding Alpine's US subsidiary" company="alpine">
+
+Alpine Robotics Inc. needs USD 1.2m for a customer installation before the customer pays. Martin decides to lend rather than inject equity. Petra transfers USD 1.2m from the parent's USD account at the large Swiss bank, the accountant books an intercompany receivable, and the fiduciary drafts a one-page loan agreement at an interest rate that the tax adviser confirms is defensible. Nobody tracks the loan's FX revaluation until the auditors ask at year-end.
+
+</Example>
+
+Who: Kleio — Sarah, no documentation beyond a transfer; Alpine — Petra executes, Martin decides, external tax adviser; Helvetic — Daniel with Claudia (group accounting) and tax; GlobalChem — the in-house bank lends to subsidiaries under standard agreements, tax sets the pricing grid, the [FX risk](/map/fx) team hedges the resulting currency positions.
+
+- **Drives:** [funding a subsidiary](wf:funding-subsidiary), [month-end reporting](wf:month-end-reporting).
+- **Terms:** [intercompany loan](term:intercompany-loan), [transfer pricing](term:transfer-pricing), [in-house bank](term:in-house-bank), [netting](term:netting), [repatriation](term:repatriation).
+
+**Ask:**
+- "Walk me through the last time a subsidiary needed money. Loan, equity or something else — and who decided?"
+- "Who drafts intercompany loan agreements and sets the rate?"
+- "How do you hedge or account for the FX on intercompany loans?"
+
+## Trapped cash
+
+**Plain:** cash the group owns but cannot quickly move to where it is needed. **Professional:** [trapped cash](term:trapped-cash) arises from currency controls (e.g. CNY, INR, ARS, EGP at times), dividend restrictions (distributable reserves, audited accounts, statutory reserves), withholding tax cost, thin local markets, or minimum-capital rules. Managed through dividend planning, royalties/service fees, intercompany loans where allowed, local investment and, when unavoidable, by excluding it from available liquidity.
+
+Example: HM Suzhou holds CNY 44m (about CHF 5m at an illustrative rate). A dividend requires audited statutory accounts and allocation to statutory reserves first; Daniel plans one dividend a year in Q2 and treats the rest as unavailable in the liquidity headroom table above. GlobalChem's Singapore regional treasury centre manages several such countries with local banks and tax advisers.
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [funding a subsidiary](wf:funding-subsidiary).
+- **Terms:** [trapped cash](term:trapped-cash), [repatriation](term:repatriation), [withholding tax](term:withholding-tax), [regional treasury centre](term:regional-treasury-centre), [NDF](term:ndf).
+
+**Ask:**
+- "Where is cash hard to get out, how much, and how do you treat it in liquidity reporting?"
+- "What's the actual process and lead time to repatriate from that country?"
+- "Who inside the group — tax, local CFO, treasury — decides when to upstream?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** Cash management = weekly balance check in three portals, keeping CHF split across two Swiss banks, and moving money to Kleio Inc. before US payroll. Maybe 1–2 hours a week of Sarah's time. The risk is not complexity but neglect: a forgotten USD top-up or a large idle balance at one bank."
+  sme="**Alpine.** Petra checks balances daily and updates a cash sheet; transfers between the parent and the two subsidiaries are manual and ad hoc; there is no pool. The credit line is the buffer. Key-person risk (Petra) is the biggest weakness."
+  midmarket="**Helvetic.** Daily positioning by the analyst, manual concentration by intercompany loan, a minimum-cash policy, trapped CNY. Big enough that idle cash in subsidiaries costs real interest; not yet big enough that a pool plus TMS is obviously worth the project."
+  multinational="**GlobalChem.** Automated pools and sweeps, an in-house bank that is effectively the subsidiaries' bank, netting, a regional centre in Singapore. The work shifts from moving cash to maintaining the structure (tax, legal, bank changes), managing exceptions and handling restricted countries."
+/>
+
+<CompanyCompare topic="map-cash-structure" />
+
+## Where the work gets hard
+
+<Callout type="field" title="Field note: what practitioners complain about">
+
+Recurring themes in treasury conversations and trade press: missing or late statements from a few banks; subsidiaries making large payments without telling treasury; intercompany positions from sweeps that accounting books late or wrongly; pools that nobody dares change because the original tax analysis is lost; and cash in countries where the process to move it is known only to one local person. None of these is solved by a better dashboard alone.
+
+</Callout>
+
+<Callout type="survey" title="How mature is cash positioning?">
+
+In Deloitte's 2024 global survey (213 treasury organisations, mostly large), cash positioning was one of the capabilities respondents still said "requires development"[](cite:deloitte-gts-2024). Treat it as a signal that even large companies have not "solved" daily cash visibility, not as a precise measure.
+
+</Callout>
+
+Related workflows: <Workflows ids={["daily-cash-positioning", "funding-subsidiary", "liquidity-planning", "surplus-cash-investment"]} />

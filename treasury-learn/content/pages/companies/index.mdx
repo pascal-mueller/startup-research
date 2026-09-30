@@ -1,0 +1,58 @@
+---
+title: Company scenarios — four reference companies
+nav: The four companies
+order: 0
+summary: Four fictional Swiss companies — a 70-person SaaS start-up, a CHF 80m robotics SME, a CHF 650m machine-tool group and a CHF 7bn chemicals multinational — are used throughout the manual so that you can watch the same treasury problem change with scale.
+related: [/companies/same-problem, /size, /start/growth, /org/structures, /day]
+---
+
+## Why four fictional companies
+
+Treasury is easy to describe in the abstract and hard to picture. "Treasury manages liquidity" means something completely different for a CFO with three e-banking logins than for a 25-person department running an in-house bank. So every workflow, role page and day-in-the-life story in this manual is anchored in the same four companies. When you read that Lea "refreshes the positioning workbook", you can look up exactly which 12 bank accounts it covers and why the Chinese statement is always late.
+
+The four companies map onto the four size tiers in [Treasury by Size](/size):
+
+<CompanyCards />
+
+They are **fictional but deliberately plausible**. Revenue, headcount, bank counts, facility sizes and team sizes were chosen to sit inside the ranges that surveys and real annual reports suggest for companies of that size (see [Treasury by Size](/size) for the evidence and its limits). The individual numbers are illustrative; do not quote them as facts about Swiss industry.
+
+<Callout type="synthesis" title="How the four were chosen">
+
+- **All Swiss-headquartered**, so the reporting currency (CHF) is not the currency of most revenue. That makes FX a real problem at every size — which is typical for Swiss exporters and a good teaching device.
+- **Different business models on purpose.** SaaS (prepaid subscriptions, no inventory), project-based capital goods (lumpy milestones), industrial manufacturing (working capital, several plants), and specialty chemicals (many countries, continuous flows). The model often matters as much as size: a project business with CHF 80m revenue can have a harder forecasting problem than a steady business ten times its size.
+- **Each is at a moment of change.** Kleio is deciding whether to take venture debt; Alpine has outgrown "the head of accounting does the cash"; Helvetic is evaluating a TMS and refinancing; GlobalChem's problems are data quality, restricted markets and control across hundreds of users.
+
+</Callout>
+
+## The cast at a glance
+
+| | [Kleio Software](co:kleio) | [Alpine Robotics](co:alpine) | [Helvetic Machines](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Size tier | Start-up / very small | International SME | International mid-market | Large multinational |
+| Employees | ~70 | ~320 | ~2,600 | ~17,000 |
+| Revenue | CHF ~12m (ARR 14m) | CHF ~80m | CHF ~650m | CHF ~7bn |
+| Legal entities | 2 | 3 | 9 | ~40 operating + holding/dormant |
+| Banks / accounts | 3 / 7 | 2 Swiss + US local / 9 | 5 / 12 | ~20 / ~280 |
+| Material currencies | CHF, USD, EUR | CHF, EUR, USD | CHF, EUR, USD, GBP, CNY, CZK | ~30 |
+| Financing | Equity (Series B) | Credit line + mortgage | RCF + CHF bond | Bonds, CP, RCF backstop, rating |
+| Who does treasury | Sarah (CFO), ~10% of her time | Martin (CFO) decides; Petra (Head of Accounting) runs it | Daniel (Treasury Manager) + Lea (Analyst) | Anna (Group Treasurer) + ~25 staff |
+| Day-in-the-life | [/day/sarah](/day/sarah) | [/day/petra](/day/petra) | [/day/daniel](/day/daniel), [/day/lea](/day/lea) | [/day/anna](/day/anna), [/day/priya](/day/priya) |
+
+## How to use these pages
+
+- **Company pages** ([Kleio](/companies/kleio), [Alpine](/companies/alpine), [Helvetic](/companies/helvetic), [GlobalChem](/companies/globalchem)) give the full profile: entity, bank and currency map, who does what, systems, the shape of the cash flows, typical problems, and how each workflow is run there.
+- **[Same problem, four scales](/companies/same-problem)** puts the four side by side for the six workflows the spec singles out — cash forecasting, FX, payment approval, liquidity planning, bank accounts and investments — plus a few more that come up in every interview (controls, reporting, holiday cover).
+- **Workflow pages** each have a "At the four companies" section; the company pages link back to them.
+
+<Callout type="interview" title="Using the companies in customer discovery">
+
+When you interview a real treasurer, place their company on this ladder in the first five minutes: how many entities, banks, accounts and currencies; who is on the team; which systems. Then ask about the workflow as it would run at the nearest reference company and listen for the differences. "Is it more like this, or different?" is a far better prompt than "What are your pain points?"
+
+</Callout>
+
+## What the companies deliberately do *not* cover
+
+- **Banks, insurers and asset managers.** Their treasury is regulated balance-sheet management (ALM) and is a different job.
+- **Commodity-heavy businesses** (airlines, food, metals), where commodity hedging is a large part of treasury.
+- **Distressed companies.** Lender-driven 13-week cash flows and restructuring are touched on in [liquidity crisis](wf:liquidity-crisis), not modelled as a company.
+- **US-only companies.** The manual is Swiss/European by default; US differences (ACH, cheques, FDIC limits, no negative-rate history) are noted where they matter.

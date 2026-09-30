@@ -14,7 +14,7 @@
   aka: [SIC5, SIC IP, euroSIC]
   category: Payments
   plain: Switzerland's central payment system through which Swiss franc payments between banks are settled.
-  professional: "The Swiss RTGS system for CHF, operated by SIX on behalf of the Swiss National Bank. Settles high-value and retail CHF payments individually and irrevocably in central-bank money. Since 2023 the SIC5 platform also carries SIC Instant Payments (24/7). euroSIC is the parallel system for euro payments in Switzerland."
+  professional: "The Swiss RTGS system for CHF, operated by SIX on behalf of the Swiss National Bank. Settles high-value and retail CHF payments individually and irrevocably in central-bank money. The SIC5 platform (live November 2023) has also carried SIC Instant Payments (24/7) since August 2024. euroSIC is the parallel system for euro payments in Switzerland. Companies never connect to SIC directly: they send pain.001 files to their bank, which settles through SIC before its own cut-off."
   example: "Helvetic's CHF 4m down payment to a Swiss supplier leaves HM AG's account and is settled through SIC on the same day, provided Lea submits it before the bank's CHF cut-off."
   related: [rtgs-note, sct-inst, qr-bill, settlement]
 
@@ -170,3 +170,103 @@
   professional: "Account with no customer-initiated activity for a defined period (bank or regulatory definitions vary). For corporates, a symptom of poor bank account management: it keeps mandates and e-banking users alive, incurs fees and KYC requests, and may not be in the reconciliation or cash-visibility scope. Account rationalisation projects target them first."
   example: "Helvetic's 2024 review found 7 of 31 accounts had fewer than ten transactions in a year, including a CZK account at a local bank with a former controller still listed as a signatory."
   related: [ebam, signatory, payment-mandate, kyc]
+
+# ---- added in session 2 ----
+- id: manual-payment
+  term: Manual (off-cycle) payment
+  aka: [urgent payment, ad-hoc payment, one-off payment, free-format payment, Einzelzahlung]
+  category: Payments
+  plain: A payment typed in by hand — in the bank portal or as a single item — instead of coming out of the normal ERP payment run.
+  professional: "Any payment that bypasses the controlled invoice → approval → payment-run chain: urgent supplier payments, deposits, tax, intercompany transfers, treasury settlements, refunds. Because the beneficiary details are keyed rather than taken from approved master data, manual payments carry most of the fraud and error risk; policies typically restrict who may create them, require templates or dual entry, and route them to higher approval levels."
+  example: "Of Alpine's ~40 payments a month that are keyed directly in e-banking, most are VAT, social-security and intercompany transfers. Martin must co-sign any of them above CHF 250k."
+  related: [payment-run, vendor-master-data, four-eyes-principle, call-back-verification]
+
+- id: ebics-signature
+  term: EBICS distributed electronic signature (VEU / DES)
+  aka: [VEU, verteilte elektronische Unterschrift, DES, distributed signature, EBICS signature classes, signature class A/B/E]
+  category: Banking & connectivity
+  plain: The way payment files sent by EBICS get approved — each authorised person signs the file electronically, possibly at different times and places, until the bank has enough signatures to execute it.
+  professional: "EBICS lets a company upload an order (e.g. a pain.001 file) and have it authorised by one or more bank-registered signatories, each with their own key and a signature class (e.g. E = single, A/B = joint). The bank executes only when the signatures satisfy the mandate. Signatories usually see the file's control sum and number of transactions, and — depending on the app — the individual payments; signing a total without looking at the items is a known control weakness."
+  example: "Petra uploads Alpine's Tuesday file from Business Central with a transport signature; she and Martin then sign it in the bank's EBICS app (both class B, 'joint by two'). Only after the second signature does the bank release the 84 payments."
+  related: [ebics, signatory, payment-mandate, four-eyes-principle]
+
+- id: matching-rules
+  term: Auto-matching rules
+  aka: [matching rules, reconciliation rules, posting rules, search strings, interpretation algorithms]
+  category: Accounting & tax
+  plain: The rules a system uses to match each bank transaction to the right booking automatically, so people only look at the leftovers.
+  professional: "Configured logic in the ERP (e.g. SAP electronic bank statement interpretation algorithms and search strings, Dynamics bank reconciliation matching rules) or a reconciliation/TMS tool that pairs statement lines with open items or posts them to GL accounts by bank transaction code, reference, amount, date window and counterparty. The match rate depends far more on data quality (references, camt.054 batch detail, consistent counterparty names) than on the software; rules need maintenance as banks, customers and formats change."
+  example: "Helvetic's SAP rules clear the whole German payment run from its camt.054 detail and post all bank-fee lines (BTC 'charges') to the fee account; a rule that matched on the old bank's reference format silently stopped working after the bank changed it."
+  related: [reconciliation, camt-054, remittance-information, reconciling-item]
+
+- id: reconciling-item
+  term: Reconciling item
+  aka: [open item, unreconciled item, outstanding item, timing difference]
+  category: Accounting & tax
+  plain: A difference between what the bank shows and what the books show that has to be listed and explained.
+  professional: "Items that explain why the GL cash balance differs from the bank statement balance at a reconciliation date: timing differences (payments booked in the ledger but not yet debited, receipts in transit), bank-side items not yet booked (fees, interest, returns, unknown credits/debits) and errors. A reconciliation is 'clean' when all items are identified, aged and owned; old unexplained items are an audit finding and a fraud warning sign."
+  example: "At 31 May, HM AG's EUR account shows EUR 6,412,880 at the bank and EUR 6,395,210 in SAP; the EUR 17,670 difference is two customer receipts not yet applied and one returned supplier payment."
+  related: [reconciliation, suspense-account, matching-rules]
+
+- id: board-resolution
+  term: Board resolution (banking)
+  aka: [banking resolution, Verwaltungsratsbeschluss, certificate of incumbency, secretary's certificate]
+  category: Organisation
+  plain: The board's formal decision that the company may open or close an account at a bank and who may act on it.
+  professional: "A resolution (or extract of minutes) of the entity's board authorising the banking relationship, the accounts, and the persons and signing rules for operating them, often on the bank's own template. In Switzerland, banks also rely on the commercial-register entry (who has individual or collective signing authority); US banks ask for a secretary's certificate/incumbency certificate. Needed again whenever signatories change, and must be consistent with the internal signing authority matrix."
+  example: "To open a USD account at the global bank, HM Inc.'s board signs the bank's resolution template naming its local finance manager and Daniel as joint signatories; the bank rejects the first version because the corporate secretary's certification is missing."
+  related: [payment-mandate, signatory, kyc, signing-authority-matrix]
+
+- id: charge-bearer
+  term: Charge bearer (OUR / SHA / BEN)
+  aka: [charge option, charges code, OUR, SHA, BEN, SLEV]
+  category: Payments
+  plain: The instruction that says who pays the banks' fees on an international payment — you, the recipient, or each side its own bank.
+  professional: "Field in a payment instruction: OUR (payer bears all charges, including intermediaries), SHA/SHAR (each party pays its own bank; intermediaries may deduct from the amount), BEN/CRED (beneficiary bears all, deducted from principal). SEPA credit transfers always use SLEV (shared, no deductions). With SHA or BEN the beneficiary receives less than the invoice amount, which creates short-payment disputes and reconciliation differences."
+  example: "Helvetic pays a USD 60,000 invoice to a Brazilian distributor with SHA; the distributor receives USD 59,975 and asks for the USD 25 difference. From then on Lea pays that distributor with OUR and books the extra fee as bank charges."
+  related: [correspondent-banking, swift-gpi, bank-services-billing]
+
+- id: earnings-credit-rate
+  term: Earnings credit rate (ECR)
+  aka: [ECR, earnings credit, compensating balances]
+  category: Banking & connectivity
+  plain: In the US, a notional interest rate a bank applies to your balances to offset the service fees it charges.
+  professional: "US account-analysis mechanism: average collected balances (net of reserve requirements, where applicable) earn a credit at the ECR that is set against monthly service charges; the net is debited as the analysis fee. Excess credits usually expire. It makes fee comparisons across US and European banks tricky because some of the 'fee' is paid in forgone interest."
+  example: "Alpine Inc. keeps about USD 600k with its US bank; at an illustrative 1.5% ECR that generates ~USD 750 of credit a month against USD 1,100 of ACH, wire and positive-pay fees, so only ~USD 350 is debited."
+  related: [account-analysis, bank-services-billing, positive-pay]
+
+- id: bank-rfp
+  term: Bank RFP (cash-management tender)
+  aka: [request for proposal, bank tender, RFP, pricing tender]
+  category: Banking & connectivity
+  plain: A formal competition in which the company asks several banks to quote for its payments and account services on the same set of volumes.
+  professional: "Structured tender for cash-management services (accounts, payments, collections, connectivity, liquidity structures, pricing), typically every 3–7 years or when the bank panel, ERP or structure changes. The company provides a volume template by service and country, often mapped to AFP service codes, and evaluates price, service coverage, connectivity and credit commitment. Treasurers often limit invitations to banks in their credit facility."
+  example: "GlobalChem's 2025 European cash-management RFP went to four of its seven RCF banks with a volume template of ~30 service lines per country; the winning bank's price was not the lowest, but it could support POBO in all 14 countries."
+  related: [wallet-share, bank-services-billing, relationship-bank]
+
+- id: advance-payment-guarantee
+  term: Advance payment guarantee
+  aka: [down-payment guarantee, APG, Anzahlungsgarantie, bank guarantee]
+  category: Debt & funding
+  plain: A promise from the supplier's bank to repay your down payment if the supplier fails to deliver.
+  professional: "Independent bank guarantee issued at the request of a supplier in favour of a buyer who pays in advance, usually for the down-payment amount and reducing as deliveries are made. Typically issued and authenticated via Swift (MT760) to the buyer's bank or delivered as an original document; the buyer's treasury checks wording, expiry and issuing-bank quality before releasing the down payment. Machine and plant contracts commonly make the down payment conditional on receipt of the guarantee."
+  example: "Helvetic releases a CHF 4m down payment to a heat-treatment line supplier only after its bank confirms receipt of an authenticated CHF 4m advance payment guarantee from the supplier's bank, valid until three months after scheduled delivery."
+  related: [letter-of-credit, trade-finance, counterparty]
+
+- id: assignment-of-receivables
+  term: Assignment of receivables (notice of assignment)
+  aka: [Zession, notice of assignment, factoring notice, cession]
+  category: Working capital
+  plain: The supplier has sold or pledged its invoices to a bank or factoring company, and asks you to pay them instead.
+  professional: "When a supplier factors or pledges its receivables, the debtor receives a notice of assignment instructing payment to the assignee's account. After a valid notice, paying the supplier's old account may not discharge the debt; before verifying it, paying a new account is a classic fraud entry point. Treasury/AP verify the notice with the supplier (call-back) and the factor, then change the vendor master under dual control."
+  example: "A Helvetic supplier's invoice suddenly shows a factoring company's IBAN in Germany. Before paying, AP calls the supplier's CFO on the number from the contract and receives the signed notice of assignment directly from the factor."
+  related: [factoring, vendor-master-data, call-back-verification]
+
+- id: structured-address
+  term: Structured address (ISO 20022)
+  aka: [structured postal address, hybrid address, address type S, TwnNm, Ctry]
+  category: Payments
+  plain: Writing the payee's address in separate fields (street, number, postcode, town, country) instead of free-text lines, which Swiss and cross-border payment formats are making mandatory.
+  professional: "ISO 20022 postal address with discrete elements; 'hybrid' allows some address lines but requires at least Town Name and Country. In Switzerland structured or hybrid addresses become mandatory in pain.001 from November 2026 (orders with unstructured addresses must be executed before 14 Nov 2026) and QR-bills have required structured addresses since November 2025; cross-border CBPR+ timelines were extended. The practical work is cleaning thousands of vendor addresses in the ERP."
+  example: "Alpine's test file under the new rules has 212 vendors rejected for missing town or country fields, most of them German suppliers entered years ago with the whole address in one line."
+  related: [pain-001, iso-20022, vendor-master-data, qr-bill]

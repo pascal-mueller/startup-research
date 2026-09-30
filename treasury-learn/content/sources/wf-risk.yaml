@@ -1,0 +1,116 @@
+# Sources for stream wf-risk (FX exposure, FX hedging, credit facilities, covenants).
+# Verification note: in this authoring session WebFetch was blocked by the network proxy for all tested domains, so
+# every source below was checked via the original publisher's search-result snippet (permitted by AUTHORING.md),
+# not by opening the full document. Notes state only what the snippet showed. See docs/notes/wf-risk.md.
+
+- id: efd-finfrag-2022
+  title: Federal Council commissions revision of Financial Market Infrastructure Act
+  publisher: Swiss Federal Department of Finance (FDF / EFD)
+  year: 2022
+  url: https://www.efd.admin.ch/efd/en/home/the-fdf/nsb-news_list.msg-id-90555.html
+  type: official
+  note: "Press release of 30 Sep 2022. The derivatives trade-reporting duty for small non-financial counterparties (e.g. industrial companies) was postponed by ordinance amendment to enter into force on 1 January 2028, to give Parliament time to decide on the FMIA revision; reporting duties already applicable to other participants are unaffected. The Federal Council's FMIA revision draft followed in June 2024 (consultation to Oct 2024)."
+
+- id: fmia-art108
+  title: "Financial Market Infrastructure Act (FinfraG/FMIA), Art. 108 — Mitigation of operational and counterparty risk"
+  publisher: Swiss Confederation (text via lawbrary.ch)
+  year: 2019
+  url: https://lawbrary.ch/law/art/FINFRAG-v2019.01-en-art-108
+  type: official
+  note: "Counterparties to non-centrally cleared OTC derivatives must confirm contractual terms in a timely manner; must have portfolio-reconciliation procedures except where the counterparty is a small non-financial counterparty; must have dispute-resolution procedures; portfolio compression applies only with 500+ outstanding uncleared trades."
+
+- id: isda-emir-refit-mdr
+  title: EMIR Refit — mandatory delegated reporting
+  publisher: ISDA
+  year: 2020
+  url: https://www.isda.org/a/meuTE/EMIR-Refit_mandatory-delegated-reporting_final.docx
+  type: practitioner
+  note: "From 18 June 2020 EU financial counterparties are responsible and legally liable for reporting OTC derivatives on behalf of both themselves and their NFC- clients (non-financial counterparties below the clearing threshold); the NFC- must supply the data the FC cannot reasonably be expected to possess. Applies to OTC, not exchange-traded, derivatives."
+
+- id: linklaters-emir3-2025
+  title: EMIR 3 – ESMA consults on new clearing thresholds regime
+  publisher: Linklaters
+  year: 2025
+  url: https://www.linklaters.com/knowledge/publications/alerts-newsletters-and-guides/2025/april/09/title
+  type: practitioner
+  note: "EMIR 3 entered into force on 24 December 2024. The new clearing-threshold methodology (based on uncleared OTC volumes, excluding ETDs and voluntarily cleared OTC) applies only once the Level 2 technical standards apply. A July 2026 Linklaters alert is headlined 'Commission adopts regulatory technical standards on the clearing thresholds regime' (headline only verified)."
+
+- id: ifrscommunity-ifrs9-hedge
+  title: Hedge Accounting (IFRS 9)
+  publisher: IFRScommunity.com
+  year: 2024
+  url: https://ifrscommunity.com/knowledge-base/ifrs-9-hedge-accounting/
+  type: practitioner
+  note: "IFRS 9 qualifying criteria: formal designation and documentation at inception (risk-management objective and strategy, hedging instrument, hedged item, nature of risk, how effectiveness is assessed including sources of ineffectiveness and hedge-ratio determination); economic relationship; credit risk does not dominate; hedge ratio consistent with actual quantities. Retrospective designation not allowed; IAS 39's 80–125% bright line replaced by a principles-based test."
+
+- id: bdo-ifrs9-hedge-doc
+  title: Hedge accounting documentation under IFRS 9
+  publisher: BDO UK
+  year: 2018
+  url: https://www.uk-tst2.bdo.global/en-gb/insights/business-edge/business-edge-2018/hedge-accounting-documentation-under-ifrs-9
+  type: practitioner
+  note: Practitioner explanation of what IFRS 9 hedge documentation must contain; consistent with the IFRScommunity summary.
+
+- id: pwc-ch-fer-fi-2025
+  title: Swiss GAAP FER — Financial Instruments
+  publisher: PwC Switzerland
+  year: 2025
+  url: https://www.pwc.ch/en/publications/2025/Swiss-GAAP-FER-Financial-Instruments.pdf
+  type: practitioner
+  note: "Swiss GAAP FER 27 contains the essential hedge-accounting rules; IFRS-style comprehensive documentation and effectiveness tests are not required. Derivatives are measured at current (fair) value, or on the same basis as the hedged underlying. Hedges of future transactions (section 18) are dealt with only rudimentarily: the future cash flows must be highly probable, and the hedge result can be recognised in equity or disclosed in the notes. Seen via publisher snippet; a revised FER 27 is referenced in KPMG's 2027 FER checklist and was not reviewed."
+
+- id: t360-corporate
+  title: One Integrated System for Corporate Treasury
+  publisher: 360T (Deutsche Börse Group)
+  year: 2025
+  url: https://www.360t.com/information-material-ct-week/
+  type: vendor
+  note: "Vendor material: 360T is Deutsche Börse Group's FX unit covering FX and short-term money-market trading workflows; claims 2,600+ buy-side customers and 200+ liquidity providers in 75 countries. Vendor-stated figures."
+
+- id: lseg-fxall-corporate
+  title: Corporate treasury solutions on FXall (fact sheet)
+  publisher: LSEG
+  year: 2024
+  url: https://www.lseg.com/content/dam/fx/en_us/documents/fact-sheets/corporate-treasury-solutions-on-fxall-fact-sheet.pdf
+  type: vendor
+  note: "Vendor fact sheet: multibank RFQ ('QuickTrade') for spot, forwards, swaps, NDFs and options; send RFQs to relationship banks in competition, see price differences, deal on best price; audit trail and transaction history; post-trade reporting and execution-quality analysis; 200+ liquidity providers (vendor-stated)."
+
+- id: lma-facility-sample
+  title: Loan Market Association facility agreement (teaching copy)
+  publisher: Queen Mary University of London (LMA-form document)
+  year: 2020
+  url: https://qmplus.qmul.ac.uk/mod/resource/view.php?id=2678916
+  type: standard
+  note: "LMA-form mechanics, e.g. a borrower draws by delivering a duly completed Utilisation Request to the Agent not later than 10:00 on the third Business Day before the proposed Utilisation Date. Actual notice periods vary by agreement and by loan type (term-rate vs compounded-RFR loans)."
+
+- id: heidelberg-sfa-2014
+  title: Syndicated facility agreement executed on 25 February 2014
+  publisher: HeidelbergCement / Heidelberg Materials
+  year: 2014
+  url: https://www.heidelbergmaterials.com/sites/default/files/assets/document/bc/db/syndicated_facility_agreement_executed_on_25_february_2014.pdf
+  type: filing
+  note: "Published facility agreement of a large European borrower; commitment fee of 35% per annum of the applicable margin on undrawn commitments. One real example of the common 'percentage of margin' commitment-fee convention, not a market statistic."
+
+- id: loomis-rcf-2025
+  title: "Loomis signs a five-year credit facility of EUR 415 million"
+  publisher: Loomis AB (company release via Inderes)
+  year: 2025
+  url: https://inderes.dk/en/releases/loomis-ab-loomis-signs-a-five-year-credit-facility-of-eur-415-million
+  type: filing
+  note: "Example of the common structure: five-year syndicated RCF with two one-year extension options. Symrise (EUR 750m, 5 years + 2×1-year options) and KGHM (USD 1.5bn, 5 years + two 1-year options at each lender's discretion) were reported with the same shape."
+
+- id: globalcapital-ae-2025
+  title: Apax Global Alpha tweaks revolver as amend and extend trend grows
+  publisher: GlobalCapital
+  year: 2025
+  url: https://www.globalcapital.com/article/28msrwf3i64sdcdha00eg/syndicated-loans/investment-grade-loans/apax-global-alpha-tweaks-revolver-as-amend-and-extend-trend-grows
+  type: news
+  note: "Trade-press report that amending existing facilities rather than full refinancings ('amend and extend') was expected to be a major loan-market theme in 2025."
+
+- id: zanders-saron
+  title: Calculation of compounded SARON
+  publisher: Zanders
+  year: 2021
+  url: https://zandersgroup.com/en/insights/blog/calculation-of-compounded-saron
+  type: practitioner
+  note: "Compounded SARON in arrears: interest is known only near the end of the interest period; lookback variant shifts the observation period a few days earlier so interest can be calculated and invoiced on the payment date. Used in LMA-style CHF loans, FRNs and derivatives."

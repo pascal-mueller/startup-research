@@ -1,0 +1,124 @@
+# Sources for the org-structure stream (/org overview, structures, neighbours, with-*, responsibility matrix, hand-offs).
+# Access note (Sept 2026 session): WebFetch was blocked by the network egress proxy for every publisher domain tried
+# (pwc.com, deloitte.com, eact.eu, treasurers.org, kpmg.de, iras.gov.sg, treasuryxl.com, theglobaltreasurer.com).
+# The notes below record what the publisher's own page states, as returned in search-result extracts from that page.
+# Registered ids reused from other files: pwc-gts-2025, deloitte-gts-2024, afp-bench-2025, afp-bench-2025-article,
+# afp-bench-2026, eact-2025, eact-guiding-principles, act-what-is-treasury, afp-pfc-2025, afp-pfc-2026, bacs-ceo-fraud-2026.
+- id: tt-centralised-treasury
+  title: Organising a centralised treasury
+  publisher: Treasury Today
+  url: https://treasurytoday.com/banking/organising-a-centralised-treasury/
+  type: practitioner
+  note: >-
+    Describes three levels of treasury structure — decentralised (subsidiaries make treasury decisions, own local banks
+    and funding; a small group team advises), partially centralised (group sets policy and may instruct; back office may
+    be centralised; subsidiaries still deal with local banks) and fully centralised (policy, decisions and most banking
+    at group or regional treasury level). Two operating models for a treasury centre: central agent (acts in the
+    subsidiaries' name, cost-plus) and in-house bank. Regional treasury centres often act as payment factory, in-house
+    bank, netting or re-invoicing centre. States that many multinationals end up hybrid or decentralised because full
+    centralisation is impractical. Undated evergreen practitioner guide.
+- id: afp-mea-centralisation-2024
+  title: Experts from the MEA Region Discuss Centralized vs. Decentralized Treasury Functions
+  publisher: Association for Financial Professionals (AFP)
+  year: 2024
+  url: https://www.financialprofessionals.org/training-resources/resources/articles/Details/experts-from-the-mea-region-discuss-centralized-vs.-decentralized-treasury-functions
+  type: practitioner
+  note: >-
+    28 Aug 2024 panel write-up. Centralisation brings control and cost efficiency; decentralisation brings flexibility and
+    local responsiveness; geography and regulation drive the choice. Example of a hybrid: cash management decentralised by
+    country (each country manages its own entities and banks) while treasury functions (funding, risk) are centralised.
+- id: act-wiki-office-structure
+  title: "ACT Wiki: Front office; Middle office; Back office; Segregation of duties"
+  publisher: Association of Corporate Treasurers (ACT)
+  url: https://wiki.treasurers.org/wiki/Middle_office
+  type: standard
+  note: >-
+    Front office: identifies exposures with the business, market information and pricing, cash management, dealing (money
+    markets, FX, rates, long-term funding), deal entry into the TMS. Middle office (predominantly in large organisations):
+    checks deals against authorisation rules, monitors limits and reports breaches, exposure and performance reporting,
+    maintains bank account and dealing mandates and standing data such as SSIs. Back office: confirms and settles deals,
+    bank reconciliations, accounting for transactions, reporting where no middle office exists, supervising TMS controls.
+    Segregation of duties: no one should be able both to commit and to conceal an error or fraud; front and back office
+    should be different people with different reporting lines. Related pages: /wiki/Back_office, /wiki/Front_office,
+    /wiki/Segregation_of_duties.
+- id: edb-ftc-factsheet
+  title: Finance and Treasury Centre (FTC) Incentive — factsheet
+  publisher: Singapore Economic Development Board (EDB)
+  url: https://edb.gov.sg/content/dam/edb-en/how-we-help/incentive-and-schemes/factsheets/FTC%20Factsheet.pdf
+  type: official
+  note: >-
+    Approved FTCs pay a concessionary 8% or 10% tax rate on qualifying income from qualifying treasury services to
+    approved network companies; for the 8% rate on a first award: at least 4 FTC professionals in Singapore and at least
+    S$1.5m annual total business expenditure by year 1. Withholding-tax exemption on interest on qualifying loans.
+    Search extracts from Singapore budget material state the incentive, due to lapse after 31 Dec 2026, is extended to
+    31 Dec 2031 (not verified on the primary budget document).
+- id: tt-nestle-ntc-ap-2023
+  title: "Treasury Today Asia's Top Treasury Team 2023 winner: Nestlé Treasury Centre Asia-Pacific"
+  publisher: Treasury Today
+  year: 2023
+  url: https://treasurytoday.com/asa-asia-winners-2023/treasury-today-asias-top-treasury-team-2023-winner-nestle-treasury-centre-asia-pacific/
+  type: practitioner
+  note: >-
+    Nestlé's Asia-Pacific treasury is fully centralised in the Singapore treasury centre (set up 1998), a centre of
+    competence for all Nestlé entities in 20+ markets, with segregation of duties between front, middle and back
+    office. Award write-up (company-submitted), not an audit of the model.
+- id: tmi-novartis-treasury
+  title: Transforming finance and treasury at Novartis
+  publisher: Treasury Management International (TMI)
+  url: https://treasury-management.com/articles/transforming-finance-and-treasury-at-novartis/
+  type: practitioner
+  note: >-
+    Treasury is a corporate unit within Group Finance in Basel, divided into International Treasury, Capital Markets,
+    and Control & Reporting; objective to manage risk on behalf of the group and fund operating units; aims included
+    full group-level visibility of financial risk, centralising cash management and rationalising bank relationships.
+    Article is several years old; structure may have changed.
+- id: tis-siemens-gamesa-ihb
+  title: Siemens Gamesa success story (in-house bank and payment factory on SAP)
+  publisher: TIS (vendor case study)
+  year: 2023
+  url: https://tispayments.com/success-stories/siemens-gamesa/
+  type: vendor
+  note: >-
+    Vendor case study: harmonised payments across 235 legal entities in 85 countries; new in-house bank on SAP (incl.
+    SAP Advanced Payment Management) and payment factory within ~2.5 years; ~600 bank accounts closed; 85% of in-house
+    bank inflows allocated and booked automatically. Vendor claims — use only as an illustration of scale.
+- id: db-siemens-payment-factory
+  title: "Siemens Treasury: leading innovation in real-time payments (case study)"
+  publisher: Deutsche Bank flow
+  url: https://flow.db.com/case-studies/siemens-treasury-leading-innovation-in-real-time-payments
+  type: vendor
+  note: >-
+    Bank case study: Siemens' payment factory processes payments executed and authorised by German and US units as well
+    as cross-border payments, with the aim of avoiding cross-border payments by operating units. Bank-published.
+- id: absl-poland-2025
+  title: "ABSL report: Poland's business services sector grows in value and strategic importance (Business Services Sector in Poland 2025)"
+  publisher: ABSL (Association of Business Service Leaders)
+  year: 2025
+  url: https://absl.pl/en/news/p/absl-report-polands-business-services-sector-grows-value-and-strategic-importance
+  type: survey
+  note: >-
+    End Q1 2025: 2,081 business service centres run by 1,258 investors from 50 countries, ~488,700 employees (+6.2%
+    y/y); Kraków ~96,000 employees (from Kraków city / press coverage of the same report). Finance & accounting is a core
+    service line; treasury operations are a smaller subset. Supports "Kraków SSC" as a realistic location, not any
+    treasury-specific number.
+- id: oecd-tpg-chx-roedl
+  title: "OECD Transfer Pricing Guidelines new Chapter X: Guidance on Financial Transactions (summary)"
+  publisher: Rödl & Partner (summary of OECD guidance)
+  year: 2020
+  url: https://www.roedl.com/insights/verrechnungspreise/oecd-guidelines-chapter-x-financial-transactions
+  type: practitioner
+  note: >-
+    OECD released the transfer-pricing guidance on financial transactions on 11 Feb 2020 as Chapter X of the Transfer
+    Pricing Guidelines — the first dedicated guidance on treasury functions, intra-group loans, cash pooling, hedging,
+    financial guarantees and captive insurance. Cash-pool benefits to be shared among members; cash-pool leader rewarded
+    according to its functions, assets and risks. Expect higher documentation requirements.
+- id: deloitte-gts-2024-web
+  title: Global Corporate Treasury Survey 2024 (web summary)
+  publisher: Deloitte
+  year: 2024
+  url: https://www.deloitte.com/us/en/services/consulting/articles/global-corporate-treasury-survey.html
+  type: survey
+  note: >-
+    213 respondents. Being a value-adding partner to the CFO is part of the treasury mandate for more than 95%; 49% are
+    prioritising a scalable treasury (39% in 2022); treasurers are more willing to outsource operational activities —
+    treasury technology, bank account administration, in-house banking and treasury payments.

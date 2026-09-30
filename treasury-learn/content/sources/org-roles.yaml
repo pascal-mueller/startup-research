@@ -1,0 +1,108 @@
+# Sources for the org-roles stream (role pages, roles.yaml, who-knows-what).
+# Verification note: in this authoring session WebFetch was blocked by the network proxy for every domain, so the
+# notes below record what the publisher's own search-result text showed (title, URL, snippet). Job advertisements
+# are single-company evidence: they show what that employer expects, not what the profession does everywhere.
+- id: act-competency-framework
+  title: ACT Competency Framework
+  publisher: Association of Corporate Treasurers (ACT)
+  url: https://www.treasurers.org/cpd-and-training/competency-framework/
+  type: standard
+  note: "Built with senior treasurers, banks and L&D teams. Three competency areas (technical, business, behavioural), mapped to four job levels: tactical, operational, managerial, strategic. Used here to frame analyst → manager → head-of-treasury progression."
+- id: act-wiki-front-office
+  title: Front office (ACT Wiki)
+  publisher: Association of Corporate Treasurers (ACT)
+  url: https://wiki.treasurers.org/wiki/Front_office
+  type: standard
+  note: "Front office: works with the business to identify exposures, provides market information and pricing advice, cash management, dealing (money markets, FX, interest rates, long-term funding) and deal entry into the TMS."
+- id: act-wiki-middle-office
+  title: Middle office (ACT Wiki)
+  publisher: Association of Corporate Treasurers (ACT)
+  url: https://wiki.treasurers.org/wiki/Middle_office
+  type: standard
+  note: "Middle office (predominantly in large organisations): checks deals follow authorisation rules, monitors limits and reports breaches, analyses and reports exposures and performance, maintains bank account and dealing mandates, processes changes in standing data such as SSIs."
+- id: act-wiki-back-office
+  title: Back office (ACT Wiki)
+  publisher: Association of Corporate Treasurers (ACT)
+  url: https://wiki.treasurers.org/wiki/Back_office
+  type: standard
+  note: "Back office: confirms treasury transactions promptly, settles deals when due, performs bank reconciliations, accounts for transactions, provides reporting where no middle office exists, supervises TMS controls. Front- and back-office roles should be performed by different people with different reporting lines."
+- id: act-wiki-sod
+  title: Segregation of duties (ACT Wiki)
+  publisher: Association of Corporate Treasurers (ACT)
+  url: https://wiki.treasurers.org/wiki/Segregation_of_duties
+  type: standard
+  note: "'No employee should be in a position both to commit and to conceal fraud or errors'; several people and/or systems should be involved in a transaction's life cycle. Summary used: the front office does the deal but doesn't settle the money; the back office settles but doesn't deal."
+- id: job-six-treasury-manager
+  title: Treasury Manager (80–100%), Zurich
+  publisher: SIX Group (careers site)
+  year: 2025
+  url: https://jobs.six-group.com/job/Zurich-Treasury-Manager-%2880-100%29/1402764333/
+  type: practitioner
+  note: "Job ad (SIX = Swiss financial-market infrastructure group; its corporate treasury, not a bank ALM desk). Role 'supports and oversees treasury operations and financial risk management', acts as link between Treasury, Finance, banking partners; day-to-day cash management, bank relationship management, hedging; maintaining and developing the TMS; strategic treasury projects. Requires 3+ years in treasury/corporate finance/cash management."
+- id: job-bosch-cash-manager
+  title: Cash Manager (f/m/div.)
+  publisher: Bosch Group (SmartRecruiters careers page)
+  year: 2025
+  url: https://smartrecruiters.com/BoschGroup/744000047736903-cash-manager-f-m-div-
+  type: practitioner
+  note: "Job ad at a very large German multinational. Duties: manage/maintain bank accounts incl. openings, closings and bank KYC; analyse and manage global liquidity and cash position; develop, execute and monitor daily cash operations incl. cash disposition and liquidity forecasts; support global cash-pooling structures."
+- id: job-krakow-treasury-team-leader
+  title: Treasury Team Leader, Kraków
+  publisher: Manpower (via rocketjobs.pl)
+  year: 2025
+  url: https://rocketjobs.pl/oferta-pracy/manpower-treasury-team-leader-krakow-finanse-inne-846da174
+  type: practitioner
+  note: "Recruiter ad for a shared-service-centre treasury operations lead (employer not named in snippet): manage banking relationships by handling inquiries and maintaining mandates; review, process and approve manual payments and payment runs; liaise with banks to confirm and track transactions. 9+ years in treasury operations in a global organisation."
+- id: job-krakow-treasury-manager
+  title: Treasury Manager (m/f), Kraków
+  publisher: infopraca.pl (job board)
+  year: 2025
+  url: https://www.infopraca.pl/praca/treasury-manager-m-f/krakow/14742480
+  type: practitioner
+  note: "Job ad (employer not named in snippet): lead intercompany funding and cash repatriation across 38 countries, work with business units to identify FX exposures, develop and maintain cash-pooling arrangements; SAP knowledge; 5+ years in treasury operations. Illustrates a 'treasury manager' who is a specialist inside a large group."
+- id: job-db-treasury-back-office
+  title: Treasury Back Office Administrator (f/m/d), Prague
+  publisher: Deutsche Börse Group (careers site)
+  year: 2025
+  url: https://career.deutsche-boerse.com/job/Prague-Treasury-Back-Office-Administrator-%28fmd%29/1205860701
+  type: practitioner
+  note: "Job ad: process treasury deals in the system with validation of counterparty, currency and amount; generate SWIFT payments; generate and match confirmations with brokers and counterparties; update static data (business partners, securities) in the SAP treasury module; reconcile treasury accounts; close interaction with front and middle office. Deutsche Börse is a market-infrastructure group, so some tasks (repos, securities) are more financial-sector than typical industrial corporate."
+- id: job-disney-fx-risk
+  title: Manager, FX Risk Management
+  publisher: The Walt Disney Company (via entertainmentcareers.net)
+  year: 2025
+  url: https://www.entertainmentcareers.net/the-walt-disney-company/fx-risk-management-manager/job/525341/
+  type: practitioner
+  note: "Job ad at a US multinational: managing transactional and balance-sheet FX exposures; supporting global hedging strategy; supporting cash-flow hedge accounting programmes and partnering with Accounting on hedge designation, valuation reviews, journal entries and audit support."
+- id: ctm-brm-leading-practices
+  title: "Leading practices, part 2: bank relationship management"
+  publisher: Treasury News Network (ctmfile.com), with Strategic Treasurer
+  url: https://ctmfile.com/story/leading-practices-part-2-bank-relationship-management
+  type: practitioner
+  note: "Practitioner piece: bank relationship management sits within the corporate treasurer's purview; tools are share-of-wallet analysis, regular communication and bank scorecards."
+- id: job-bank-treasury-rm
+  title: Treasury Relationship Manager
+  publisher: East West Bank (careers site)
+  url: https://careers-eastwestbank.icims.com/jobs/13204/treasury-relationship-manager/job
+  type: practitioner
+  note: "Bank-side job ad: assess clients' treasury-management and deposit product needs, win new clients, grow deposits, prepare proposals and onboard products; CTP preferred. Evidence that 'treasury relationship manager' is usually a BANK sales title, not a corporate treasury role."
+- id: learnsignal-career-2026
+  title: Treasury management career guide 2026
+  publisher: LearnSignal (training provider)
+  year: 2026
+  url: https://www.learnsignal.com/blog/treasury-management-career-guide-2026/
+  type: practitioner
+  note: "Career guide: entry roles (Treasury Analyst, Cash Management Assistant) focus on short-term cash forecasting, bank reconciliations, payment processing and data analysis; after a few years people move to Treasury Manager / Senior Treasury Analyst / Cash Flow Manager. Training-provider content, used only for the typical career ladder."
+- id: dbs-payment-factory
+  title: Payment factory (Treasury Prism concepts)
+  publisher: DBS Bank
+  url: https://treasuryprism.dbs.com/treasury-concepts/payment-factory
+  type: practitioner
+  note: "Bank explainer: a payment factory centralises payments in a single process executing payments for all or most operating entities; 'payment factories are Shared Service Centres (SSCs) for payments'."
+- id: job-titles-cash-liquidity
+  title: "Examples of cash/liquidity job titles: Cash Manager (LyondellBasell, Rotterdam); Cash Operations Manager (ICL, Amsterdam); Cash Pool Manager (Charles River, via treasuryXL); Treasury Manager – Liquidity, Funding, FX & Working Capital (Aramex)"
+  publisher: Company career sites / treasuryXL
+  year: 2025
+  url: https://careers.lyondellbasell.com/job/Rotterdam-Cash-Manager-3013-AA/1366631100
+  type: practitioner
+  note: "Titles only (from search results), used to show how many labels the same cash-and-liquidity work carries. Other URLs: careers.icl-group.com (Cash Operations Manager), treasuryxl.com/?p=54485 (Cash Pool Manager), careers.aramex.com (Treasury Manager – Liquidity, Funding, FX & Working Capital)."

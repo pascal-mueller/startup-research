@@ -1,0 +1,102 @@
+# Interview-preparation stream sources (customer-discovery method + where to meet treasurers).
+# Research note: in this session WebFetch was blocked by the network proxy for every domain, so entries below were
+# verified from search-result snippets of the original publisher's page (or, where stated, from a secondary page
+# quoting the book). Notes say exactly what was confirmed.
+- id: mom-test
+  title: "The Mom Test: How to talk to customers & learn if your business is a good idea when everyone is lying to you"
+  publisher: Rob Fitzpatrick (self-published)
+  year: 2013
+  url: https://www.momtestbook.com/
+  type: practitioner
+  note: "Customer-conversation method. Its three rules — 'Talk about their life instead of your idea', 'Ask about specifics in the past instead of generics or opinions about the future', 'Talk less and listen more' — confirmed from quotation pages (Goodreads quote page, book summaries); the book itself was not opened in this session. Also popularised the warning that compliments, hypotheticals ('would you…') and generic claims ('I usually…') are unreliable data."
+- id: torres-story-based
+  title: Story-Based Customer Interviews Uncover Much-Needed Context
+  publisher: Product Talk (Teresa Torres)
+  year: 2023
+  url: https://www.producttalk.org/story-based-customer-interviews/
+  type: practitioner
+  note: "Story-based interviewing: ask for a specific past instance ('Tell me about the last time…') rather than generalisations; the interviewer 'excavates' the story step by step, situating the participant in the moment and asking for details. Confirmed from publisher search snippets; year approximate."
+- id: torres-wrong-questions
+  title: Why You Are Asking the Wrong Customer Interview Questions
+  publisher: Product Talk (Teresa Torres)
+  year: 2022
+  url: https://www.producttalk.org/customer-interview-questions/
+  type: practitioner
+  note: "Argues humans are bad at answering direct questions out of context (fast answers that feel true but often aren't); example of a shopper who says fit is her top criterion but bought her last jeans because they were on sale. Recommends asking about specific instances of actual behaviour. Confirmed from publisher search snippets; year approximate."
+- id: torres-cdh
+  title: Continuous Discovery Habits
+  publisher: Teresa Torres (Product Talk LLC)
+  year: 2021
+  url: https://www.producttalk.org/customer-interviews/
+  type: practitioner
+  note: "Book and companion guide on recruiting, running and synthesising customer interviews (weekly interviewing, story-based questions, interview snapshots). Cited for method only."
+- id: blank-customer-development
+  title: "Get Out of My Building (and related customer-development essays)"
+  publisher: Steve Blank
+  year: 2009
+  url: https://steveblank.com/2009/10/08/get-out-of-my-building/
+  type: practitioner
+  note: "Customer development: founders' assumptions are hypotheses that must be tested by talking to customers outside the office ('get out of the building'); customer discovery has a problem-discovery phase before solution discovery. Concept confirmed from steveblank.com search snippets. Book: The Four Steps to the Epiphany (2005)."
+- id: moesta-switch
+  title: "Understanding Your Customer: Jobs-to-be-Done (talk)"
+  publisher: Business of Software (Bob Moesta)
+  year: 2014
+  url: https://businessofsoftware.org/talks/understanding-your-customer-jtbd/
+  type: practitioner
+  note: "Bob Moesta and Chris Spiek's 'switch interview': reconstruct the timeline of a real decision from the 'first thought' that the old way wasn't working, through search and decision, to the switch; listen for the struggling moment and the forces pushing and pulling. Confirmed from search snippets (talk page and secondary descriptions); year approximate."
+- id: vdt-home
+  title: Verband Deutscher Treasurer e.V. (German Association of Corporate Treasurers) — homepage, membership, networks
+  publisher: VDT e.V.
+  year: 2026
+  url: https://www.vdtev.de/en/homepage/
+  type: official
+  note: "Leading German treasury association: more than 2,000 members from almost 900 companies, about 85% of memberships from corporate treasury; specialist working groups (e.g. cash & liquidity management, equity & debt, risk management); regional networks; Treasury Day in Frankfurt (18 June 2026 edition on trade finance). Confirmed from vdtev.de search snippets."
+- id: hslu-swiss-treasury-summit
+  title: Swiss Treasury Summit 2026
+  publisher: Lucerne University of Applied Sciences and Arts (HSLU), Institute of Financial Services Zug IFZ
+  year: 2026
+  url: https://www.hslu.ch/en/lucerne-school-of-business/calendar/events/2026/09/15/konferenz-swiss-treasury-summit
+  type: official
+  note: "Annual Swiss treasury conference, 15 Sept 2026, Campus Zug-Rotkreuz. Brings together graduates of the CAS Swiss Certified Treasurer programme, practitioners, service providers, CFOs and controllers, and representatives of the Swiss Association of Corporate Treasurers (SwissACT). CHF 480; 50% discount for active treasurers and CFOs. Confirmed from HSLU search snippets."
+- id: swisstreasurer-forum-2026
+  title: "Association SwissTreasurer — Forum and General Assembly 2026"
+  publisher: Association SwissTreasurer (event page on Infomaniak Events)
+  year: 2026
+  url: https://infomaniak.events/en-ch/shop/association-swisstreasurer-AEU1NPTGKH/event/1619242
+  type: official
+  note: "Forum and AGM on 18 June 2026 at Compenswiss, Geneva. EACT lists a Swiss member association under the SwissTreasurer / ACTSR (Association of Corporate Treasurers — Suisse Romande) name; ACTSR was founded in 1981 as the Corporate Forex Club, joined EACT in 2009 and reported ~125 members (TMI profile). Whether SwissTreasurer is ACTSR's current name was not verified."
+- id: act-tn-switzerland
+  title: ACT Treasury Network Switzerland
+  publisher: Association of Corporate Treasurers (ACT)
+  year: 2026
+  url: https://www.treasurers.org/node/364627
+  type: official
+  note: "Local network of the UK ACT in Zurich; networking evenings (e.g. 6 Nov 2025, central Zurich) and a treasury careers event (4 Mar 2026, hosted at HSBC Zurich). Confirmed from treasurers.org search snippets."
+- id: eact-nta
+  title: EACT — National treasury associations (member list)
+  publisher: European Association of Corporate Treasurers (EACT)
+  year: 2026
+  url: https://www.eact.eu/nta
+  type: official
+  note: "EACT member associations across ~26 European countries, incl. Austria (Austrian Corporate Treasury Association ACTA; ÖPWZ Forum Finanzen), Germany (VDT; the CFO association), Switzerland (SwissTreasurer/ACTSR), UK (ACT). Confirmed from eact.eu search snippets."
+- id: act-annual-conference-2026
+  title: ACT Annual Conference 2026
+  publisher: Association of Corporate Treasurers (ACT)
+  year: 2026
+  url: https://www.treasurers.org/ACTAC26
+  type: official
+  note: "12–13 May 2026, Liverpool; described as the UK's largest treasury conference and exhibition. 2025 edition: 1,164 delegates, 124 speakers, 85 sponsors and exhibitors (ACT's own figures)."
+- id: afp-conference-2026
+  title: AFP 2026 Annual Conference
+  publisher: Association for Financial Professionals (AFP)
+  year: 2026
+  url: https://conference.financialprofessionals.org/
+  type: official
+  note: "8–11 Nov 2026, Mandalay Bay, Las Vegas; AFP describes 7,000+ treasury, payments, FP&A and corporate finance attendees (organiser figure). US-centred."
+- id: eurofinance-2026
+  title: EuroFinance International Treasury Management 2026
+  publisher: EuroFinance (The Economist Group)
+  year: 2026
+  url: https://www.eurofinance.com/international-treasury-event/
+  type: official
+  note: "16–18 Sept 2026, CCIB Barcelona; 35th edition; organiser cites 2,600+ treasury professionals. Heavily sponsored by banks and vendors; endorsed by national treasury associations."

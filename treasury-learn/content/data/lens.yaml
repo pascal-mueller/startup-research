@@ -1,0 +1,869 @@
+# Agentic Treasury / Startup Lens — owned by the "lens" stream.
+# Ratings are the author's SYNTHESIS (1–5), not survey data. See /lens/method for definitions and limitations.
+# `favours`: which end of the scale makes a workflow a better candidate for an AI system doing the work itself.
+#   high = a high score favours agents; low = a high score is an obstacle; neutral = context, read the note.
+
+criteria:
+  - key: frequency
+    label: Task frequency
+    short: Freq
+    favours: high
+    question: How often does the assignment recur?
+    scale: "1 = a few times a year or event-driven · 3 = monthly · 5 = daily or intraday"
+  - key: value
+    label: Economic value
+    short: Value
+    favours: high
+    question: What is it worth to do it better, faster or cheaper — time saved plus money gained or losses avoided?
+    scale: "1 = a few hours a month, little money at stake · 5 = large recurring time or material money (interest, losses, penalties)"
+  - key: judgment
+    label: Degree of expert judgment
+    short: Judg
+    favours: low
+    question: How much of the work is judgment that depends on context, relationships and experience rather than rules?
+    scale: "1 = rule-following · 3 = routine judgment with precedents · 5 = novel, political or strategic judgment"
+  - key: data_availability
+    label: Data availability
+    short: Data
+    favours: high
+    question: Can a system actually reach the inputs (bank files, ERP, emails, documents) without heroic integration?
+    scale: "1 = in people's heads, calls and PDFs · 5 = structured, in systems with APIs or standard files"
+  - key: data_quality
+    label: Data quality
+    short: DQ
+    favours: high
+    question: When the data is available, is it complete, timely, consistent and correct?
+    scale: "1 = late, partial, contradictory · 5 = clean, standardised, reconciled"
+  - key: verifiability
+    label: Ability to evaluate correctness
+    short: Verif
+    favours: high
+    question: Can an expert (or a program) tell quickly and objectively whether the output was right?
+    scale: "1 = only in hindsight, or never · 5 = checkable immediately against a ground truth"
+  - key: consequence
+    label: Consequences of being wrong
+    short: Conseq
+    favours: low
+    question: What happens if the output is wrong and nobody catches it?
+    scale: "1 = rework · 3 = cost or embarrassment in the tens of thousands · 5 = irrecoverable loss, default, fraud, regulatory breach"
+  - key: regulatory
+    label: Regulatory burden
+    short: Reg
+    favours: low
+    question: How much law, audit and internal control (ICS/SOX, KYC, tax, hedge accounting, bank mandates) constrains who may do it?
+    scale: "1 = internal analysis only · 5 = legally or contractually reserved to authorised humans"
+  - key: trust
+    label: Trust burden
+    short: Trust
+    favours: low
+    question: How much would a treasurer, CFO, auditor or bank have to trust a system before letting it do this?
+    scale: "1 = would accept a draft from anyone · 5 = only a named, accountable person is acceptable"
+  - key: automation
+    label: Current automation level
+    short: Auto
+    favours: neutral
+    question: How much is already done by deterministic software (TMS, ERP, bank rules, RPA)?
+    scale: "1 = mostly manual/spreadsheet · 5 = largely automated already (little headroom left)"
+  - key: human_involvement
+    label: Current human involvement
+    short: Human
+    favours: neutral
+    question: How much human time does the assignment consume today (across all sizes)?
+    scale: "1 = occasional glance · 5 = hours per cycle from skilled people"
+  - key: suitability
+    label: Agent suitability
+    short: Suit
+    favours: high
+    question: Overall — could an AI system perform a meaningful part of the assignment itself, with humans reviewing?
+    scale: "1 = no meaningful part · 5 = most of the preparation and much of the decision proposal"
+  - key: narrow
+    label: Ability to start narrow
+    short: Narrow
+    favours: high
+    question: Is there a small, low-risk, well-defined first slice that is still useful on its own?
+    scale: "1 = only valuable as a whole · 5 = obvious read-only first slice"
+  - key: expand
+    label: Ability to expand into the job
+    short: Expand
+    favours: high
+    question: Once trusted on the slice, can the system take on more of the same person's recurring assignments?
+    scale: "1 = dead end · 5 = natural path into most of the role's week"
+  - key: feedback
+    label: Expert-feedback learning loop
+    short: Loop
+    favours: high
+    question: Do expert corrections and real outcomes arrive often and in a form that can become training / evaluation data?
+    scale: "1 = rare, ambiguous outcomes · 5 = frequent corrections plus objective outcomes"
+  - key: defensibility
+    label: Defensibility
+    short: Moat
+    favours: high
+    question: Would doing it build proprietary workflow context, data or integration that incumbents (TMS, ERP, banks) cannot easily copy?
+    scale: "1 = feature any TMS/ERP/bank can ship · 5 = accumulating, customer-specific context that compounds"
+
+classes:
+  good:
+    label: Good agent candidate
+    meaning: >-
+      A meaningful part of the assignment could be performed by an AI system with a human reviewing the output; errors are
+      catchable before they cost money; there is a narrow first slice and a path into more of the job. Says nothing about
+      whether it is a good *business* — several good candidates are crowded or small.
+  possible:
+    label: Possible
+    meaning: >-
+      Parts are agent-shaped, but something important is in the way — low frequency, weak feedback, heavy judgment,
+      incumbents already automating it, or a small prize. Worth testing in interviews, not assuming.
+  hard:
+    label: Hard / dangerous
+    meaning: >-
+      The core of the assignment is an accountable decision, a legally reserved act, or a rare high-stakes event. An AI
+      system can prepare material for the human, but should not be positioned as doing the job. Selling "autonomy" here
+      is either dangerous or will not be bought.
+
+workflows:
+  # ------------------------------------------------------------------ Cash & liquidity
+  - id: daily-cash-positioning
+    class: good
+    assignment: "Prepare today's cash position and a funding / sweep / investment proposal before cut-off."
+    headline: >-
+      The most agent-shaped recurring assignment in treasury — daily, structured inputs, checkable output, human approves
+      the transfers. But incumbents are building exactly this, so the product question is the exceptions, not the table.
+    scores: { frequency: 5, value: 3, judgment: 3, data_availability: 4, data_quality: 3, verifiability: 4, consequence: 3, regulatory: 2, trust: 3, automation: 4, human_involvement: 3, suitability: 4, narrow: 5, expand: 5, feedback: 4, defensibility: 2 }
+    notes:
+      frequency: Every business day, intraday at large groups.
+      value: 30–90 minutes of analyst time a day at mid-market; money impact is idle balances and avoided overdrafts, rarely large.
+      judgment: Routine judgment — buffer size, whether an odd balance is a data error, timing vs cut-off.
+      data_availability: Statements arrive as MT940/camt.053; known flows partly in ERP, partly in emails.
+      data_quality: Missing statements, late Asian/US files, unmapped accounts, flows announced by chat.
+      verifiability: Tomorrow's statements show whether the projected closing balance was right.
+      consequence: A wrong proposal is usually caught at approval; if not, an overdraft or an unnecessary transfer.
+      regulatory: Internal controls on transfers (four-eyes), not external regulation, for the preparation step.
+      trust: Treasurers accept a prepared position; moving money without them is a different conversation.
+      automation: Large groups already get the position from the TMS at 07:00; mid-market builds it in Excel.
+      human_involvement: The residual human work is exceptions and explanations, not arithmetic.
+      suitability: Assemble, explain exceptions, draft transfers — yes. Release transfers — no.
+      narrow: Read-only "morning briefing" with exceptions and draft explanations is useful on day one.
+      expand: Leads directly into forecasting, funding, investment proposals and month-end reporting.
+      feedback: Every day the manager accepts, edits or rejects each proposal — a dense correction signal.
+      defensibility: SAP, Kyriba and others ship cash-positioning agents; the table itself is a commodity.
+    already_automated: >-
+      At multinationals with a TMS and cash pools, statement import, balance aggregation and zero-balancing sweeps run
+      automatically overnight. The rule-based part is solved there; what remains is exception handling, accounts outside
+      pools and restricted currencies.
+    agent_does: >-
+      Checks all statements arrived; chases the missing ones; loads balances; flags unexpected movements and drafts a
+      likely explanation from remittance data, email and history; adds known flows; proposes transfers against minimum
+      balances, counterparty limits and cut-offs; writes the two-paragraph note to the manager.
+    human_keeps: Approving and releasing transfers (four-eyes), facility drawings, anything that looks like fraud.
+    narrow_start: >-
+      A read-only morning briefing for a mid-market team without a TMS: position by entity/currency, missing statements,
+      top 5 unexplained movements with draft explanations. No bank write access.
+    expansion: >-
+      Draft transfers for approval in the bank portal / TMS → weekly forecast roll-forward using the daily actuals →
+      short-term investment proposals → month-end cash report. That is most of a cash analyst's recurring week.
+    must_be_true:
+      - Bank statement access for every account (including the late and exotic ones) without a year-long IT project.
+      - The agent can see where "known flows" actually arrive — email, Teams, ERP payment runs — with permission.
+      - The treasury manager's accept/edit/reject is captured, not just done in the bank portal.
+    startup_view: >-
+      Crowded at the top (TMS and ERP vendors) and small at the bottom (SMEs check a portal in 10 minutes). The gap is
+      mid-market groups without a TMS — Helvetic-shaped — and the exception-explanation layer everywhere.
+    ai_note_view: Agrees with the workflow's ai_note (assemble and propose plausible; autonomous execution faces a high bar).
+    evidence: >-
+      Deloitte's respondents named cash positioning among the most popular GenAI use cases[](cite:deloitte-gts-2024);
+      SAP markets a Joule "Cash Management Agent" that computes closing balances and proposes bank transfers[](cite:sap-cash-agent)
+      and Kyriba markets its TAI agent for positioning and exception resolution[](cite:kyriba-tai-2025) — vendor claims,
+      but they show the incumbents are here.
+    dw: dw-liquidity-recommendation
+
+  - id: cash-forecasting
+    class: good
+    assignment: "Roll the 13-week forecast forward, explain last week's variances, and tell me what changed."
+    headline: >-
+      Strongest feedback loop in treasury — every forecast is scored by reality a week later. The mechanical work
+      (collecting, reshaping, variance classification, commentary) is agent-shaped; the hard part is organisational input
+      quality, which no model fixes.
+    scores: { frequency: 4, value: 4, judgment: 4, data_availability: 3, data_quality: 2, verifiability: 5, consequence: 3, regulatory: 1, trust: 3, automation: 2, human_involvement: 5, suitability: 4, narrow: 4, expand: 5, feedback: 5, defensibility: 3 }
+    notes:
+      frequency: Weekly at mid-market and large; monthly at SMEs.
+      value: Top-ranked priority and pain in every survey; a day or more of analyst time per week at mid-market.
+      judgment: Which customers really pay when, whether to override a subsidiary, how much prudence.
+      data_availability: AR/AP ledgers are reachable; the qualitative input sits in emails and calls.
+      data_quality: Late, copied or optimistic subsidiary templates are the named failure mode.
+      verifiability: Actuals arrive weekly; accuracy by entity and category is objectively measurable.
+      consequence: A bad forecast surprises you at the low point; rarely immediately fatal if headroom exists.
+      regulatory: Internal analysis; lender reporting only in distressed situations.
+      trust: Treasurers already accept tool-generated baseline forecasts; overrides stay human.
+      automation: Mostly Excel below the largest groups; ML receipt prediction offered by several vendors.
+      human_involvement: Chasing, reshaping and variance explanation dominate the effort.
+      suitability: Collection, reshaping, variance classification and draft commentary — yes.
+      narrow: Start with variance explanation of last week (read-only, checkable) before predicting anything.
+      expand: Into positioning, liquidity planning, FX exposure forecasts, CFO reporting.
+      feedback: Outcomes weekly plus the manager's overrides — the best-labelled data in treasury.
+      defensibility: Customer-specific payment-behaviour history and override log compound; baseline ML does not.
+    already_automated: >-
+      Largest groups use TMS forecasting modules or dedicated tools with automatic ERP feeds for some categories, and
+      several vendors sell ML predictions of customer receipt timing. Below that, Excel.
+    agent_does: >-
+      Rolls the model forward; pulls AR/AP and deal schedules; chases late submissions with specific questions; checks
+      submissions for copy-paste and missing lumpy items (tax, bonuses); classifies variances as timing vs permanent with
+      evidence; drafts the weekly note.
+    human_keeps: Overrides of subsidiary numbers, prudence level, which scenarios to act on, the resulting funding/investment decisions.
+    narrow_start: >-
+      Weekly variance explainer: last week's forecast vs bank actuals by entity and category, with a proposed reason and
+      timing/permanent flag per line. Expert marks each explanation right or wrong.
+    expansion: >-
+      Submission QA and chasing → baseline forecast per category → scenario drafts → 18-month liquidity view with FP&A.
+    must_be_true:
+      - Bank actuals can be categorised to forecast lines reliably (the unglamorous prerequisite).
+      - The treasury team stores forecast versions so accuracy is measurable at all.
+      - Subsidiary finance accept an agent asking them questions (organisational, not technical).
+    startup_view: >-
+      The most crowded AI category in treasury (TMS vendors, AR/forecasting specialists, FP&A tools). Differentiation has
+      to come from the variance/explanation loop and messy multi-entity mid-market data, not from "ML forecasting".
+    ai_note_view: Agrees. The workflow's ai_note warns that accuracy gains are mostly vendor-reported — this lens repeats that.
+    evidence: >-
+      Forecasting is the top treasury priority and the most-named challenge[](cite:afp-bench-2025-article,eact-2025);
+      PwC reports that 74% of treasuries are expanding or actively using AI, mostly ML and predictive analytics for
+      forecasting, fraud and exposure visibility — but only 26% call their AI capabilities mature[](cite:pwc-gts-2025).
+      HighRadius markets forecasting as "fully autonomous"[](cite:highradius-autonomous-2027) — a vendor claim, not an
+      independent result.
+    dw: dw-forecast-variance
+
+  - id: liquidity-planning
+    class: possible
+    assignment: "Build the 12–18-month liquidity plan and tell the CFO whether we need to refinance, and when."
+    headline: >-
+      An agent can assemble scenarios and do the arithmetic, but the assignment is a judgment about funding strategy with
+      few, slow outcomes. Good analyst support; not an agent job.
+    scores: { frequency: 2, value: 4, judgment: 5, data_availability: 3, data_quality: 3, verifiability: 2, consequence: 4, regulatory: 2, trust: 4, automation: 2, human_involvement: 4, suitability: 2, narrow: 3, expand: 3, feedback: 2, defensibility: 3 }
+    notes:
+      frequency: Monthly or quarterly update; ad hoc before refinancing or large capex.
+      value: Drives refinancing timing, facility size and dividend capacity — high stakes, low volume.
+      judgment: Which scenarios matter, how conservative to be, bank-market timing.
+      data_availability: FP&A plan, debt schedule, forecast — mostly structured.
+      data_quality: Plan numbers are P&L-oriented; converting to cash requires assumptions.
+      verifiability: Outcomes arrive over quarters, confounded by decisions taken in between.
+      consequence: Refinancing too late is existential; too early wastes fees.
+      regulatory: Board and lender-facing; not reserved by law, but heavily governed.
+      trust: CFO and board rely on the treasurer's name, not on a model.
+      automation: Spreadsheet models linked to FP&A plans.
+      human_involvement: Several days a quarter for manager and head of treasury.
+      suitability: Scenario assembly and sensitivity math, yes; the plan's conclusion, no.
+      narrow: Debt-maturity and headroom calculator fed by the forecast.
+      expand: Into covenant projections and facility management.
+      feedback: A handful of events per year, each unique.
+      defensibility: Context-heavy but low volume; hard to learn from.
+    already_automated: FP&A and planning tools generate the P&L plan; cash conversion and funding overlay stay manual.
+    agent_does: Converts the plan to cash, lays out maturities, headroom and covenant projections under 3–5 scenarios; drafts the memo.
+    human_keeps: Choosing the scenarios, the prudence level, and the funding recommendation.
+    narrow_start: Automatically refreshed headroom-by-month chart from forecast + debt schedule, with change log.
+    expansion: Covenant projections, refinancing timelines, board liquidity pack.
+    must_be_true:
+      - The 13-week forecast and FP&A plan are reconciled — otherwise the agent inherits the gap.
+      - The CFO values faster scenario turnaround (usually only in stress).
+    startup_view: Low-frequency, high-judgment — a feature of a forecasting product, not a standalone business.
+    evidence: >-
+      ACT/HSF found 76% expected macro and geopolitical factors to have a considerable influence on debt strategy[](cite:act-hsf-debt-2025)
+      — the kind of judgment that does not reduce to data.
+
+  - id: surplus-cash-investment
+    class: possible
+    assignment: "Place this week's surplus within policy — how much, how long, with whom."
+    headline: >-
+      Policy-bound and rule-like, so a proposal is easy to generate and to check. But the prize depends on rates (near zero
+      in CHF in 2026), execution goes through bank portals and dealing, and the "judgment" is mostly the forecast behind it.
+    scores: { frequency: 3, value: 3, judgment: 3, data_availability: 4, data_quality: 4, verifiability: 4, consequence: 3, regulatory: 3, trust: 3, automation: 3, human_involvement: 2, suitability: 3, narrow: 4, expand: 3, feedback: 3, defensibility: 2 }
+    notes:
+      frequency: Weekly or on surplus events; daily overnight placements at large groups.
+      value: Rate-dependent — CHF surplus earns ~0% (SNB 0%); EUR and USD surpluses earn materially more.
+      judgment: Tenor choice depends on forecast confidence; counterparty choice on limits and relationships.
+      data_availability: Balances, forecast, limits and bank quotes are structured.
+      data_quality: Good once the position is right.
+      verifiability: Policy compliance checkable immediately; yield vs alternatives checkable after the fact.
+      consequence: Breaching a counterparty limit or locking cash needed next week.
+      regulatory: Investment policy, board-approved limits; MMF and deposit rules.
+      trust: Moderate — policy makes proposals predictable.
+      automation: Automated sweeps into overnight or MMF at large groups; manual deposit calls elsewhere.
+      human_involvement: Minutes to an hour a week.
+      suitability: Proposal and policy check yes; dealing and confirmation matching stays in existing channels.
+      narrow: Policy-compliant placement proposal with quotes comparison.
+      expand: Into counterparty-exposure monitoring and month-end investment report.
+      feedback: Accept/reject of proposals; realised yield.
+      defensibility: MMF portals and bank platforms already offer this.
+    already_automated: Overnight sweeps to MMFs/deposits and portal-based MMF trading exist at larger companies.
+    agent_does: Computes investable surplus from forecast, proposes tenor ladder within limits, compares quotes, drafts the deal ticket.
+    human_keeps: Approval, dealing with the bank, relationship-bank allocation choices.
+    narrow_start: Weekly "investable surplus + policy-compliant options" note.
+    expansion: Counterparty limit monitoring; policy compliance reporting.
+    must_be_true:
+      - Forecast confidence is good enough to justify tenor beyond overnight.
+      - Rates make the optimisation worth anyone's attention.
+    startup_view: Thin — the value is in the forecast that sizes the surplus, not in the placement.
+    evidence: >-
+      Illustrative autumn-2026 levels in this manual: SNB policy rate 0%, €STR ≈ 1.9–2.0%, SOFR ≈ 3.5–4% (see the
+      authoring conventions) — the economic value of optimisation is currency-dependent.
+
+  - id: funding-subsidiary
+    class: possible
+    assignment: "Italy needs EUR 3m next month — decide how to fund it and get it there."
+    headline: >-
+      Mechanically simple (a transfer or an intercompany loan), but wrapped in tax, transfer pricing, thin-cap, local FX
+      rules and legal documentation. An agent can prepare the pack; the decision is cross-functional.
+    scores: { frequency: 3, value: 3, judgment: 4, data_availability: 3, data_quality: 3, verifiability: 3, consequence: 3, regulatory: 4, trust: 4, automation: 2, human_involvement: 3, suitability: 3, narrow: 3, expand: 3, feedback: 2, defensibility: 3 }
+    notes:
+      frequency: Monthly to quarterly per entity; weekly across a large group.
+      value: Wrong structure costs tax or trapped cash; the transfer itself is cheap.
+      judgment: Loan vs equity vs pool, tenor, currency, rate, repatriation later.
+      data_availability: Forecasts and balances structured; tax constraints in memos and heads.
+      data_quality: Intercompany balances often disagree between entities.
+      verifiability: Arm's-length rate and documentation checkable; the structural choice only in hindsight.
+      consequence: Tax adjustments, trapped cash, local regulatory issues (e.g. CNY).
+      regulatory: Transfer pricing, withholding tax, local FX controls, board approvals.
+      trust: Tax and legal sign off, not only treasury.
+      automation: In-house banks automate the standard cases at multinationals.
+      human_involvement: A few hours per case, spread across treasury, tax and local finance.
+      suitability: Prepare loan agreement draft, rate calculation, booking instructions — yes.
+      narrow: Intercompany-loan paperwork and interest calculation generator.
+      expand: Intercompany loan register, interest billing, in-house-bank statements.
+      feedback: Legal/tax edits to drafts; few outcome labels.
+      defensibility: Customer-specific policies and templates; in-house-bank modules compete.
+    already_automated: In-house banks at multinationals handle routine intercompany funding and interest automatically.
+    agent_does: Sizes the need from the forecast, lists options with tax/FX constraints, drafts loan docs and booking entries.
+    human_keeps: Choice of structure, tax sign-off, execution approval.
+    narrow_start: Intercompany loan register with automatic interest calculation and document drafts.
+    expansion: In-house-bank style statements for subsidiaries.
+    must_be_true:
+      - Tax policies are written down, not only known by the tax director.
+    startup_view: Niche; in-house-bank modules of TMS vendors cover large groups.
+
+  # ------------------------------------------------------------------ Payments & banking
+  - id: payment-processing
+    class: hard
+    assignment: "Get this week's supplier and payroll runs out, correctly and on time."
+    headline: >-
+      Already one of the most automated flows in finance (ERP payment run → pain.001 → bank), with fraud and control
+      requirements that make an autonomous agent in the release path a liability. The residual — rejected payments,
+      repair, status chasing — is small and rule-bound.
+    scores: { frequency: 5, value: 2, judgment: 2, data_availability: 5, data_quality: 4, verifiability: 4, consequence: 5, regulatory: 4, trust: 5, automation: 5, human_involvement: 2, suitability: 2, narrow: 3, expand: 2, feedback: 3, defensibility: 1 }
+    notes:
+      frequency: Daily to weekly runs.
+      value: Little human time left in the standard path; value is in avoiding errors and fraud.
+      judgment: Mostly rules; judgment appears in exceptions (urgent, unusual, changed bank details).
+      data_availability: Fully structured (ERP, pain.001/pain.002, camt.054).
+      data_quality: Good, except vendor master data — the classic fraud vector.
+      verifiability: Status reports confirm execution; but "was this payment legitimate" is not immediately checkable.
+      consequence: Misdirected funds are often irrecoverable; payroll failures are reputational.
+      regulatory: Bank mandates, signatory rules, sanctions screening, SOX/ICS segregation of duties.
+      trust: Nobody wants a model between the ERP and the bank's signature step.
+      automation: STP from ERP to bank is standard; payment factories at large groups.
+      human_involvement: Releasers approve; operations handles rejects.
+      suitability: Exception triage only; not execution or release.
+      narrow: Explain rejected payments (pain.002 reason codes) and draft the fix.
+      expand: Into vendor-master change monitoring — which is fraud prevention, a different product.
+      feedback: Rejects and repairs are labelled but low volume.
+      defensibility: ERP, bank and payment-hub vendors own the path.
+    already_automated: >-
+      Payment proposal, file creation, bank transmission, status reporting and auto-reconciliation are standard in
+      ERP + connectivity stacks; large groups run payment factories.
+    agent_does: Triage rejected or returned payments, explain reason codes, prepare corrections for a human to re-release.
+    human_keeps: Every release and signature; vendor bank-detail changes; urgent manual payments.
+    narrow_start: Reject/return explainer on pain.002 and camt.054.
+    expansion: Limited; the adjacent jobs belong to AP and payment operations.
+    must_be_true:
+      - An auditor accepts that the agent has no release rights and that its suggestions are logged.
+    startup_view: >-
+      Bad target for "agent does the job". Payment infrastructure businesses exist, but they are infrastructure, not
+      digital workers.
+    ai_note_view: Check against the payment-processing ai_note when written; this lens rates execution as hard.
+    evidence: >-
+      PwC notes RPA is already used for repetitive work such as reconciliation, payment processing and exposure data
+      gathering[](cite:pwc-gts-2025). 74% of US firms were affected by BEC in 2025[](cite:afp-pfc-2026) — the reason
+      release controls stay human.
+
+  - id: large-payment-approval
+    class: hard
+    assignment: "Approve (or stop) this CHF 4m payment request."
+    headline: >-
+      The assignment *is* the accountable human act that controls exist to guarantee. An AI system can assemble the
+      evidence for the approver; positioning it as the approver is dangerous and, under bank mandates, not possible.
+    scores: { frequency: 2, value: 5, judgment: 5, data_availability: 3, data_quality: 3, verifiability: 2, consequence: 5, regulatory: 5, trust: 5, automation: 1, human_involvement: 4, suitability: 1, narrow: 3, expand: 2, feedback: 1, defensibility: 2 }
+    notes:
+      frequency: Weekly to monthly per approver; rare per payee.
+      value: One avoided fraudulent payment can exceed a year of treasury software spend.
+      judgment: Is the request plausible, authorised, consistent with contract and context?
+      data_availability: Contract, PO, invoice, email thread, bank details history — scattered.
+      data_quality: The very documents may be forged (BEC).
+      verifiability: A wrong approval is often discovered only when the real supplier asks where the money is.
+      consequence: Irrecoverable loss; personal accountability of the approver.
+      regulatory: Signing authority matrix, bank mandates (collective signature), SOX/ICS.
+      trust: Approval is by definition a named human's act.
+      automation: Workflow tools route approvals; the approval itself is human.
+      human_involvement: Minutes per payment, but high cognitive load.
+      suitability: Evidence dossier and anomaly flags, yes; approve, no.
+      narrow: Pre-approval dossier — contract link, payee history, bank-detail change log, callback status.
+      expand: Toward vendor-master and fraud-monitoring products, not into the approver's job.
+      feedback: True fraud labels are rare; false positives are frequent.
+      defensibility: Bank-side and payment-hub fraud tools are strong incumbents.
+    already_automated: Approval routing and limits in ERP/TMS/e-banking; the decision is not automated anywhere credible.
+    agent_does: Builds an approval dossier and highlights anomalies (new IBAN, changed bank details, unusual timing, mismatch to contract).
+    human_keeps: The approval, the callback verification, the decision to stop a payment.
+    narrow_start: Anomaly checklist attached to every payment above a threshold.
+    expansion: Stays a control aid.
+    must_be_true:
+      - The dossier does not create false comfort ("the AI checked it") — a real risk of automation bias.
+    startup_view: Fraud prevention is a real market, but it is a detection/control product, not a digital treasurer.
+    ai_note_view: Check against the large-payment-approval ai_note when written.
+    evidence: >-
+      Only 17% of organisations use AI against payments fraud, while 76% experienced attempted or actual payments fraud
+      in 2025[](cite:afp-pfc-2026). The EU AI Act exempts fraud-detection systems from the credit-scoring high-risk
+      category[](cite:eu-ai-act-annex3), so regulation is not the blocker — accountability is.
+
+  - id: bank-reconciliation
+    class: possible
+    assignment: "Reconcile yesterday's bank statements to the ledger and clear the open items."
+    headline: >-
+      Technically the cleanest agent task — objective ground truth, daily volume, explicit exceptions. But rule-based
+      matching already clears most items at companies that set it up, and ERP/reconciliation vendors own the residual.
+      Good for an agent, weak for a startup.
+    scores: { frequency: 5, value: 2, judgment: 2, data_availability: 5, data_quality: 4, verifiability: 5, consequence: 2, regulatory: 3, trust: 2, automation: 4, human_involvement: 3, suitability: 4, narrow: 5, expand: 2, feedback: 5, defensibility: 1 }
+    notes:
+      frequency: Daily.
+      value: Hours per week at SMEs; low per item at large companies with high auto-match.
+      judgment: Deciding what an unmatched item is — fee, short payment, duplicate, fraud.
+      data_availability: Statements and open items are structured.
+      data_quality: Remittance information often missing or truncated.
+      verifiability: A match is right or wrong; balances must agree.
+      consequence: Wrong clearing hides errors until audit; rarely immediate cash loss.
+      regulatory: SOX/ICS key control at listed companies; audit trail required.
+      trust: Accounting accepts auto-match rules; would accept suggested matches with review.
+      automation: Rule-based matching is standard in ERPs and reconciliation tools.
+      human_involvement: The residual exceptions, often in accounting rather than treasury.
+      suitability: Explaining and proposing matches for exceptions — good fit.
+      narrow: Exception explainer on the unmatched items.
+      expand: Into accounting's cash application, not further into treasury.
+      feedback: Every accepted/rejected match is a label.
+      defensibility: Commodity; ERP and reconciliation vendors already add ML matching.
+    already_automated: >-
+      Rule-based auto-matching (amount, reference, date tolerance) is standard; mature implementations leave a residue of
+      exceptions. This is exactly the case the spec warns about: already well automated.
+    agent_does: Proposes matches for residual items using remittance text, email and history; drafts journal suggestions for fees.
+    human_keeps: Posting approval under ICS; write-offs; anything suspicious.
+    narrow_start: Daily exception list with proposed match and reason.
+    expansion: Cash application for AR — a separate, already-contested market.
+    must_be_true:
+      - The customer has not already reached high auto-match (many SMEs have not).
+    startup_view: Bad standalone business; fine as a feature of a broader cash-operations agent.
+    ai_note_view: Check against the bank-reconciliation ai_note when written.
+    evidence: PwC lists reconciliation among the repetitive tasks already streamlined by RPA[](cite:pwc-gts-2025).
+
+  - id: bank-account-management
+    class: possible
+    assignment: "Open an account for the new Polish entity, close the three dormant ones, and update signatories after Jens left."
+    headline: >-
+      Document-heavy admin that LLMs handle well (forms, KYC packs, signatory lists), but the process runs through each
+      bank's own KYC and mandate procedures, often with wet signatures. The most valuable slice is a control: keeping the
+      signatory register true.
+    scores: { frequency: 2, value: 2, judgment: 2, data_availability: 2, data_quality: 2, verifiability: 4, consequence: 3, regulatory: 4, trust: 4, automation: 2, human_involvement: 4, suitability: 3, narrow: 4, expand: 2, feedback: 3, defensibility: 2 }
+    notes:
+      frequency: Monthly to quarterly events; signatory changes with every leaver.
+      value: Painful weeks per account opening; the money value is in stale mandates (a leaver still able to sign).
+      judgment: Little — which bank, which account structure.
+      data_availability: Bank-specific forms, commercial register extracts, IDs; PDFs and portals.
+      data_quality: Signatory lists drift across banks and entities.
+      verifiability: Register vs bank mandates can be reconciled objectively.
+      consequence: Stale signatory rights, dormant accounts as fraud vectors.
+      regulatory: Bank KYC, commercial register, power-of-attorney law.
+      trust: Banks require authorised humans to sign mandates.
+      automation: eBAM exists but adoption is limited; mostly email and paper.
+      human_involvement: Treasury ops/admin hours per case, plus legal.
+      suitability: Draft forms, assemble KYC packs, reconcile signatory lists — yes.
+      narrow: Signatory-register reconciliation across banks.
+      expand: Into KYC-refresh management — adjacent, not deeper into the treasurer's job.
+      feedback: Bank rejections of incomplete packs provide labels.
+      defensibility: Low; bank portals and TMS BAM modules.
+    already_automated: Account inventories exist in TMS BAM modules; eBAM messaging is rare in practice.
+    agent_does: Maintains the account and signatory register, drafts bank forms and KYC packs, flags leavers and dormant accounts.
+    human_keeps: Signing mandates and resolutions; bank relationship choices.
+    narrow_start: Quarterly signatory/mandate reconciliation report.
+    expansion: KYC document lifecycle.
+    must_be_true:
+      - Banks accept structured submissions or at least do not reject agent-prepared packs.
+    startup_view: Useful control, small budget line.
+
+  - id: bank-fee-analysis
+    class: good
+    assignment: "Check last quarter's bank fees against what we negotiated and tell me where we are overcharged."
+    headline: >-
+      Near-ideal agent task — tedious, rule-checkable against a price schedule, low risk, easy to verify. The catch is size:
+      fees are a small line and the analysis quarterly, so it is a good wedge or feature, a weak standalone company.
+    scores: { frequency: 2, value: 2, judgment: 2, data_availability: 3, data_quality: 2, verifiability: 5, consequence: 1, regulatory: 1, trust: 1, automation: 2, human_involvement: 3, suitability: 5, narrow: 5, expand: 3, feedback: 4, defensibility: 2 }
+    notes:
+      frequency: Monthly or quarterly; many companies never do it.
+      value: Recoverable overcharges plus negotiation leverage; small relative to interest and FX costs.
+      judgment: Whether a charge is legitimate; which bank to push back on.
+      data_availability: US banks send EDI 822 / account analysis; European banks often PDFs; camt.086 emerging.
+      data_quality: Non-standard service descriptions across banks.
+      verifiability: Charge vs agreed price is objectively checkable.
+      consequence: A wrong finding costs an awkward email.
+      regulatory: None beyond normal records.
+      trust: Treasurers happily delegate this.
+      automation: Specialist fee-analysis services exist; most mid-market do nothing systematic.
+      human_involvement: Days per year when done; often skipped.
+      suitability: Parse, map to service codes, compare, draft dispute — end to end.
+      narrow: One bank, one quarter, one price schedule.
+      expand: Into bank wallet-share analysis and RFP preparation.
+      feedback: Bank responses to disputes; treasurer edits.
+      defensibility: Mapping tables across banks accumulate, but fee services already exist.
+    already_automated: US account-analysis tools; outside the US, largely manual or ignored.
+    agent_does: Extracts charges from statements/invoices, maps them to service codes, compares to the negotiated schedule, drafts the dispute and a wallet-share view.
+    human_keeps: Deciding which banks to challenge and how hard (relationship banks provide the RCF).
+    narrow_start: One-bank PDF fee reconciliation.
+    expansion: Bank relationship scorecard, RFP support.
+    must_be_true:
+      - The negotiated price schedule actually exists in writing somewhere.
+    startup_view: Good wedge into bank-relationship work; not enough on its own.
+    ai_note_view: Check against the bank-fee-analysis ai_note.
+    evidence: >-
+      AFP recommends treating banks as vendors and verifying negotiated pricing is applied[](cite:afp-bank-fee-analysis);
+      ISO 20022 camt.086 is designed to standardise billing data[](cite:hsbc-camt086) — adoption outside the US is still limited.
+    dw: dw-bank-fee-review
+
+  # ------------------------------------------------------------------ FX & risk
+  - id: fx-exposure-management
+    class: good
+    assignment: "Collect this month's FX exposures from the subsidiaries, reconcile them to the ledgers, and tell me what's open."
+    headline: >-
+      The grind before any hedging decision — chasing, reconciling and cleaning exposure submissions — is repetitive,
+      checkable against ERP data and outcomes, and low-risk if a human still sets the hedge. A strong narrow slice.
+    scores: { frequency: 4, value: 4, judgment: 3, data_availability: 3, data_quality: 2, verifiability: 4, consequence: 3, regulatory: 3, trust: 3, automation: 2, human_involvement: 4, suitability: 4, narrow: 4, expand: 4, feedback: 4, defensibility: 3 }
+    notes:
+      frequency: Monthly cycle; weekly at groups hedging tightly.
+      value: Bad exposure data means wrong hedges; collection absorbs days of risk-team time.
+      judgment: Which forecast exposures are firm enough to hedge; what's natural offset.
+      data_availability: Balance-sheet exposures in ERP; forecast exposures in subsidiary templates.
+      data_quality: Stale forecasts, wrong currency tags, intercompany mismatches.
+      verifiability: Forecast exposures can be compared later to invoiced flows; balance-sheet ones immediately.
+      consequence: Over/under-hedging and hedge-accounting problems — caught if human reviews.
+      regulatory: Hedge accounting documentation (IFRS 9) depends on exposure records.
+      trust: Moderate — a clean exposure report is welcome; hedging on it stays human.
+      automation: TMS exposure modules at large groups; Excel elsewhere.
+      human_involvement: Chasing subsidiaries, reconciling, explaining changes.
+      suitability: Collection, reconciliation, anomaly detection, draft exposure report — yes.
+      narrow: Reconcile balance-sheet exposures to the ERP and flag anomalies.
+      expand: Hedge proposals under policy, hedge-effectiveness prep, currency-shock impact.
+      feedback: Exposure vs realised flows monthly; risk manager's corrections.
+      defensibility: Customer-specific mapping of entities, currencies and business patterns compounds.
+    already_automated: Large groups pull balance-sheet exposures from ERP into the TMS; forecast exposures still come from templates.
+    agent_does: Pulls ERP balances by currency, chases submissions with specific questions, reconciles intercompany, flags stale or implausible numbers, drafts the exposure report.
+    human_keeps: The hedge decision; which forecast exposures qualify; policy exceptions.
+    narrow_start: Monthly balance-sheet exposure reconciliation for 3–8 entities.
+    expansion: Forecast exposure QA → hedge proposal drafts → shock scenarios.
+    must_be_true:
+      - Subsidiary ERP data is reachable (the multi-ERP mid-market problem).
+      - The risk manager records why she overrides an exposure number.
+    startup_view: Promising wedge at mid-market groups that hedge but lack a TMS exposure module. Check interest in interviews.
+    ai_note_view: Check against the fx-exposure-management ai_note when written.
+    evidence: >-
+      PwC names exposure visibility among the main AI focus areas and exposure data gathering as an RPA use
+      case[](cite:pwc-gts-2025).
+    dw: dw-exposure-collection
+
+  - id: fx-hedging
+    class: possible
+    assignment: "Should we hedge next year's USD revenues — how much, which instrument, when?"
+    headline: >-
+      Policy-driven rolling hedges are already mechanical (and execution electronic); discretionary hedging is judgment
+      about markets and risk appetite that cannot be scored by outcome. An agent can draft the policy-compliant proposal;
+      the decision stays human.
+    scores: { frequency: 3, value: 4, judgment: 4, data_availability: 4, data_quality: 3, verifiability: 2, consequence: 4, regulatory: 4, trust: 4, automation: 3, human_involvement: 3, suitability: 2, narrow: 3, expand: 3, feedback: 2, defensibility: 2 }
+    notes:
+      frequency: Monthly rolling programmes; event-driven decisions.
+      value: Material P&L and cash volatility.
+      judgment: Hedge ratio within policy corridors, tenor, instrument, timing.
+      data_availability: Exposures, rates, forward points available.
+      data_quality: Depends on exposure quality.
+      verifiability: A hedge is not "right" because the market moved favourably — outcome ≠ decision quality.
+      consequence: Over-hedging, hedge-accounting failure, counterparty exposure.
+      regulatory: Board-approved policy, ISDAs, EMIR/Dodd-Frank reporting, hedge-accounting docs.
+      trust: Board-level risk appetite; CFO signs off.
+      automation: Multi-bank dealing platforms and auto-hedging tools execute policy-driven trades.
+      human_involvement: Decision meetings; execution is minutes.
+      suitability: Proposal drafting and compliance checking, yes; discretionary trades, no.
+      narrow: "Policy says hedge X — here are the trades" draft for approval.
+      expand: Into hedge documentation and reporting.
+      feedback: Weak — no ground truth for a hedge decision.
+      defensibility: Platforms and banks own execution.
+    already_automated: Electronic multi-bank dealing and programmatic hedging are established; confirmations are matched automatically.
+    agent_does: Compares exposure to hedge book, proposes trades to reach policy ratios, pre-checks limits and documentation.
+    human_keeps: Discretionary decisions, trading, policy exceptions.
+    narrow_start: Hedge-ratio gap report with draft tickets.
+    expansion: Hedge-accounting documentation drafts.
+    must_be_true:
+      - The company has a written policy with ratios; many SMEs have only a board minute.
+    startup_view: Auto-hedging fintechs and bank platforms already exist; the agent angle adds little beyond exposure quality.
+    ai_note_view: Check against the fx-hedging ai_note when written.
+
+  # ------------------------------------------------------------------ Debt & funding
+  - id: credit-facility-management
+    class: possible
+    assignment: "Keep track of our facilities — utilisation, notice periods, rollovers, fees — and prepare drawdown notices."
+    headline: >-
+      Document extraction (facility agreements) and calendar discipline are LLM-friendly; the valuable parts —
+      negotiating, refinancing and bank relationships — are human and infrequent.
+    scores: { frequency: 2, value: 3, judgment: 4, data_availability: 3, data_quality: 3, verifiability: 3, consequence: 4, regulatory: 3, trust: 4, automation: 2, human_involvement: 3, suitability: 3, narrow: 4, expand: 3, feedback: 2, defensibility: 2 }
+    notes:
+      frequency: Interest-period rollovers monthly/quarterly; negotiations every few years.
+      value: Missed notice deadlines or wrong fee calculations are costly but rare.
+      judgment: Which facility to draw, when to extend, how to treat the banks.
+      data_availability: Agreements (PDF), agent-bank notices, TMS deal records.
+      data_quality: Amendments scattered across documents.
+      verifiability: Interest and fee calculations checkable against agent-bank notices.
+      consequence: Missed notice → no funds when needed; misunderstood clauses → default risk.
+      regulatory: Contractual rather than regulatory; board approvals.
+      trust: Lenders deal with named people.
+      automation: TMS deal tracking at larger companies.
+      human_involvement: Moderate, spiky around renewals.
+      suitability: Extraction, calendar, notice drafts, fee checks — yes.
+      narrow: Facility abstract + deadline calendar from the PDF agreements.
+      expand: Covenant monitoring, refinancing prep.
+      feedback: Few events; agent-bank notices as check.
+      defensibility: Legal-tech and TMS debt modules compete.
+    already_automated: Debt modules in TMS track deals and interest; agreement terms are rarely structured.
+    agent_does: Abstracts agreements, maintains the calendar, reconciles agent-bank interest notices, drafts utilisation requests.
+    human_keeps: Drawing decisions, negotiation, signing notices.
+    narrow_start: Facility abstract and calendar.
+    expansion: Covenant projections and refinancing timelines.
+    must_be_true:
+      - Legal accepts that an extracted abstract is a convenience, not an interpretation.
+    startup_view: Feature, not a company, for most corporates.
+
+  - id: covenant-monitoring
+    class: possible
+    assignment: "Calculate this quarter's covenants and tell me our headroom for the next four quarters."
+    headline: >-
+      The arithmetic is simple and checkable; the definitions are negotiated legal text with adjustments, and a mistake
+      can mean default. An agent that extracts definitions and projects headroom helps; the certificate stays with the CFO.
+    scores: { frequency: 2, value: 4, judgment: 3, data_availability: 4, data_quality: 4, verifiability: 3, consequence: 5, regulatory: 3, trust: 5, automation: 2, human_involvement: 3, suitability: 3, narrow: 4, expand: 3, feedback: 2, defensibility: 2 }
+    notes:
+      frequency: Quarterly or semi-annual tests; monthly projections.
+      value: Early warning of a breach is worth a lot; the calculation takes hours.
+      judgment: Interpreting EBITDA adjustments and definitions as the agreement defines them.
+      data_availability: Close figures from accounting; definitions in the agreement.
+      data_quality: Good after close.
+      verifiability: Recalculation checkable; definition interpretation needs legal/auditor view.
+      consequence: A missed breach or wrong certificate is an event of default.
+      regulatory: Contractual; compliance certificates signed by officers.
+      trust: CFO signs; lenders rely on it.
+      automation: Excel models; TMS rarely.
+      human_involvement: Hours per test period.
+      suitability: Projection and sensitivity, yes; certification, no.
+      narrow: Definition extraction + recalculation with traceable adjustments.
+      expand: Into liquidity planning and facility management.
+      feedback: Few test events.
+      defensibility: Low.
+    already_automated: Rarely; calculation in spreadsheets from the close pack.
+    agent_does: Extracts definitions, recalculates from close data, projects headroom from the forecast, flags adjustments needing interpretation.
+    human_keeps: Interpretation, certificate, lender communication.
+    narrow_start: Headroom projection under forecast scenarios.
+    expansion: Liquidity planning support.
+    must_be_true:
+      - Every adjustment is traceable to a clause — no black box in front of lenders.
+    startup_view: Low frequency; part of a broader finance tool.
+    ai_note_view: Check against the covenant-monitoring ai_note when written.
+
+  # ------------------------------------------------------------------ Controls & reporting
+  - id: month-end-reporting
+    class: good
+    assignment: "Produce the month-end treasury report for the CFO — cash, debt, FX, counterparties, KPIs, commentary."
+    headline: >-
+      Assembly from data treasury already has, plus commentary — the most generative-AI-shaped task, low risk because a
+      human reads it before it goes up. Moderate value; BI tools cover the numbers, so the product is the narrative and
+      the reconciliation checks.
+    scores: { frequency: 3, value: 2, judgment: 2, data_availability: 4, data_quality: 3, verifiability: 4, consequence: 2, regulatory: 2, trust: 2, automation: 3, human_involvement: 3, suitability: 4, narrow: 5, expand: 4, feedback: 3, defensibility: 2 }
+    notes:
+      frequency: Monthly.
+      value: 1–3 days of analyst time a month at mid-market.
+      judgment: What to highlight, how to explain variances.
+      data_availability: TMS/Excel positions, debt schedule, hedge book.
+      data_quality: Needs reconciliation to accounting.
+      verifiability: Numbers tie out; commentary judged by the manager.
+      consequence: Embarrassment, occasionally a wrong decision upstream.
+      regulatory: Internal; feeds audit committee at some groups.
+      trust: Managers readily accept drafts.
+      automation: BI dashboards at larger groups; slides manually built elsewhere.
+      human_involvement: Assembling and writing.
+      suitability: Draft the pack and commentary end to end.
+      narrow: Commentary draft with tie-out checks.
+      expand: Into board liquidity packs and forecast reporting.
+      feedback: Manager edits monthly.
+      defensibility: Low.
+    already_automated: Dashboards in TMS/BI at larger groups; the narrative is still written by hand.
+    agent_does: Collects figures, ties them to accounting, flags breaks, drafts commentary and the slides.
+    human_keeps: Final messaging to the CFO; what to escalate.
+    narrow_start: Draft commentary with tie-out checks.
+    expansion: Board packs, lender reports.
+    must_be_true:
+      - Underlying positions are already reliable; the agent should not paper over bad data with fluent text.
+    startup_view: A feature of whichever system holds the data.
+
+  - id: fraud-investigation
+    class: hard
+    assignment: "We may have paid a fraudster — find out what happened and get the money back."
+    headline: >-
+      A rare, urgent, adversarial event handled by phone with banks, police and insurers under time pressure. Detection
+      before payment is a real (bank/vendor) market; the investigation itself is not an agent job.
+    scores: { frequency: 1, value: 5, judgment: 5, data_availability: 2, data_quality: 2, verifiability: 2, consequence: 5, regulatory: 4, trust: 5, automation: 1, human_involvement: 5, suitability: 1, narrow: 3, expand: 1, feedback: 1, defensibility: 2 }
+    notes:
+      frequency: Rare per company (attempts common, losses rare).
+      value: Very high per event.
+      judgment: Recall strategy, who to call, what to disclose.
+      data_availability: Emails, logs, bank messages — messy and partly adversarial.
+      data_quality: Attackers manipulate the evidence.
+      verifiability: Outcome known only after recall succeeds or fails.
+      consequence: Irrecoverable funds; legal exposure.
+      regulatory: Police, data protection, insurance, audit.
+      trust: Crisis handled by named people.
+      automation: None meaningful.
+      human_involvement: Intense for days.
+      suitability: Timeline reconstruction and evidence pack drafts only.
+      narrow: Incident timeline from email and bank logs.
+      expand: None into the job; adjacent to fraud prevention.
+      feedback: Almost none.
+      defensibility: Low.
+    already_automated: Bank-side fraud monitoring and verification-of-payee reduce incidents; response is manual.
+    agent_does: Reconstructs timeline, drafts recall requests and incident report.
+    human_keeps: All decisions and external contacts.
+    narrow_start: Incident timeline builder.
+    expansion: None.
+    startup_view: Prevention is a market (and a crowded one); investigation is not.
+    evidence: >-
+      AFP's 2026 survey: 76% of US organisations experienced attempted or actual payments fraud in 2025; 17% use AI
+      against it[](cite:afp-pfc-2026).
+
+  - id: policy-compliance
+    class: possible
+    assignment: "Show me we complied with the treasury policy this quarter — limits, ratios, approvals — and explain every breach."
+    headline: >-
+      Rules are written down, which makes checking feasible; but the checks themselves should be deterministic code
+      (limit engines exist in TMSs). The LLM part is translating policy text to checks and writing breach explanations.
+    scores: { frequency: 3, value: 3, judgment: 3, data_availability: 4, data_quality: 3, verifiability: 4, consequence: 3, regulatory: 3, trust: 3, automation: 3, human_involvement: 3, suitability: 3, narrow: 4, expand: 3, feedback: 3, defensibility: 2 }
+    notes:
+      frequency: Continuous checks; quarterly reporting.
+      value: Avoids breaches and audit findings.
+      judgment: Materiality and remediation of breaches.
+      data_availability: Deals, balances, limits in TMS/Excel.
+      data_quality: Counterparty and limit data maintained manually.
+      verifiability: Rules are checkable once codified.
+      consequence: Undetected breach; audit finding.
+      regulatory: ICS/SOX, board policy.
+      trust: Auditors must be able to reproduce checks.
+      automation: Limit checks in TMS at larger groups; manual review elsewhere.
+      human_involvement: Quarterly reviews.
+      suitability: Policy-to-rule translation, breach explanation drafts.
+      narrow: Counterparty-limit and hedge-ratio checks for a mid-market company without TMS.
+      expand: Into reporting and audit prep.
+      feedback: Breach confirmations.
+      defensibility: Low.
+    already_automated: Pre-deal limit checks and exposure monitoring in TMSs.
+    agent_does: Converts policy clauses to explicit tests (reviewed by a human), runs them, drafts breach reports.
+    human_keeps: Materiality, remediation, policy changes.
+    narrow_start: Quarterly compliance checklist generation.
+    expansion: Audit prep packs.
+    must_be_true:
+      - The tests are reproducible code, not model judgments re-run each quarter.
+    startup_view: Feature of treasury reporting.
+
+  # ------------------------------------------------------------------ Events & crises
+  - id: acquisition-integration
+    class: hard
+    assignment: "Integrate the acquired company's banks, cash, debt and hedges into our treasury."
+    headline: >-
+      Project work, unique each time, full of negotiation and legal steps. Plenty of document drudgery an assistant can
+      speed up, but no repetition to learn from and no job to take over.
+    scores: { frequency: 1, value: 4, judgment: 4, data_availability: 2, data_quality: 2, verifiability: 2, consequence: 4, regulatory: 4, trust: 4, automation: 1, human_involvement: 5, suitability: 2, narrow: 3, expand: 1, feedback: 1, defensibility: 1 }
+    notes:
+      frequency: Rare.
+      value: High for the project.
+      judgment: Sequencing, which banks to keep, how to refinance.
+      data_availability: Data room documents, target's systems.
+      data_quality: Unknown until you are inside.
+      verifiability: Project milestones only.
+      consequence: Payment disruption, lost control.
+      regulatory: Change-of-control clauses, KYC, mandates.
+      trust: High.
+      automation: None.
+      human_involvement: Months of project work.
+      suitability: Inventory building and document review only.
+      narrow: Bank-account and facility inventory from the data room.
+      expand: None.
+      feedback: None repeated.
+      defensibility: None.
+    already_automated: No.
+    agent_does: Builds account/facility/hedge inventories from documents, drafts checklists.
+    human_keeps: Everything that matters.
+    narrow_start: Data-room inventory.
+    expansion: None.
+    startup_view: Consultants' territory.
+
+  - id: currency-shock
+    class: hard
+    assignment: "EUR/CHF just moved 8% — what does it mean for us and what do we do by tonight?"
+    headline: >-
+      The impact calculation is fast arithmetic an agent can prepare in minutes if exposure data is clean; the response
+      is a board-level judgment in a rare event with no feedback loop.
+    scores: { frequency: 1, value: 4, judgment: 5, data_availability: 3, data_quality: 3, verifiability: 2, consequence: 5, regulatory: 3, trust: 5, automation: 1, human_involvement: 4, suitability: 2, narrow: 4, expand: 2, feedback: 1, defensibility: 2 }
+    notes:
+      frequency: Rare (2015 SNB floor removal is the Swiss reference case).
+      value: Material.
+      judgment: Whether to hedge now, revise pricing, communicate.
+      data_availability: If the exposure process works, yes.
+      data_quality: Depends on exposure management.
+      verifiability: Calculations checkable; decisions not.
+      consequence: Large P&L and covenant effects.
+      regulatory: Disclosure for listed companies.
+      trust: Board and CFO.
+      automation: Scenario tools in TMS.
+      human_involvement: Intense for days.
+      suitability: Impact calculation and briefing only.
+      narrow: Pre-built shock scenarios fed by the exposure process.
+      expand: Via fx-exposure-management, not via the shock.
+      feedback: Too rare.
+      defensibility: Low.
+    already_automated: Scenario functions exist in TMS and risk systems.
+    agent_does: Recomputes exposures, P&L and covenant impact, drafts the CFO briefing.
+    human_keeps: All decisions.
+    narrow_start: One-click shock scenario on existing exposure data.
+    expansion: None on its own.
+    startup_view: Value only as a by-product of good exposure data.
+
+  - id: liquidity-crisis
+    class: hard
+    assignment: "Expected receivables didn't arrive — keep the company liquid for the next four weeks."
+    headline: >-
+      A crisis is when forecasts break, banks need reassurance, and every payment is a negotiated decision. An agent can
+      run the daily 13-week update and payment prioritisation lists; the crisis management is human.
+    scores: { frequency: 1, value: 5, judgment: 5, data_availability: 3, data_quality: 2, verifiability: 2, consequence: 5, regulatory: 4, trust: 5, automation: 1, human_involvement: 5, suitability: 2, narrow: 3, expand: 2, feedback: 1, defensibility: 2 }
+    notes:
+      frequency: Rare, but the event that makes forecasting matter.
+      value: Existential.
+      judgment: Which payments to delay, which lenders to call, what to tell employees.
+      data_availability: Forecast and payment lists exist; the real information is conversations.
+      data_quality: Degrades under stress.
+      verifiability: Only survival.
+      consequence: Insolvency, director liability.
+      regulatory: Directors' duties (e.g. over-indebtedness rules), lender agreements.
+      trust: Lenders and board deal with people.
+      automation: None.
+      human_involvement: Total.
+      suitability: Daily cash update and prioritisation drafts.
+      narrow: Daily-updated 13-week view in crisis mode.
+      expand: Via cash-forecasting only.
+      feedback: Too rare.
+      defensibility: Low.
+    already_automated: No.
+    agent_does: Daily forecast refresh, payment prioritisation lists, lender-report drafts.
+    human_keeps: All prioritisation decisions and communication.
+    narrow_start: Crisis-mode daily forecast.
+    expansion: None beyond forecasting.
+    startup_view: Restructuring advisers' territory.

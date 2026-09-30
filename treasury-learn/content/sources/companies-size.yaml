@@ -1,0 +1,45 @@
+# Sources for the companies-size stream (/companies, /size).
+# Research note: WebFetch was egress-blocked in this authoring session; entries marked "(search snippet)"
+# were verified only against the publisher's search-result snippet, not the full document. See docs/notes/companies-size.md.
+- id: pwc-gts-2023
+  title: Global Treasury Survey 2023
+  publisher: PwC
+  year: 2023
+  url: https://www.pwc.be/en/fy24/documents/global-treasury-survey-2023.pdf
+  type: survey
+  note: "(search snippet) Among very large multinationals (revenue USD 10bn or more): 73% have an in-house bank, 55% a payment factory, 42% payments-on-behalf-of. Consistent with the 2025 edition's 67% / 60% / 50% for the same size band."
+- id: seco-kmu-finanzierung-2021
+  title: "KMU-Finanzierung in der Schweiz: Bankenkredite (SECO study on SME financing in Switzerland 2021)"
+  publisher: State Secretariat for Economic Affairs (SECO), study by Hochschule Luzern (IFZ)
+  year: 2021
+  url: https://www.kmu.admin.ch/de/kmu-finanzierung-in-der-schweiz-bankenkredite
+  type: official
+  note: "(search snippet) Survey of 2,712 Swiss SMEs in spring 2021. 32% of SMEs had bank financing (bank loans, current-account credit limits, mortgages, export finance). The SME population includes micro-firms, so this understates bank use among 200–500-person industrial SMEs."
+- id: clariant-frm-2020
+  title: "Clariant Integrated Report 2020 — Note 3: Financial Risk Management"
+  publisher: Clariant AG
+  year: 2021
+  url: https://reports.clariant.com/2020/integrated-report/financial-report/notes-to-the-consolidated-financial-statements/3-financial-risk-management.html
+  type: filing
+  note: "(search snippet) Financial risk management is carried out by a central Corporate Treasury under policies approved by the Executive Committee and Board; written principles for FX risk, derivative counterparty risk and investing excess liquidity; policy is to selectively hedge net transaction exposures in major currencies using spot, forwards, options and swaps. Search results also describe a large euro cash pool with a leading European bank used by most European subsidiaries (not verified against the full note)."
+- id: clariant-cash-mgmt-job
+  title: Cash Management Specialist (m/f/d), Łódź — job posting
+  publisher: Clariant (careers site)
+  year: 2025
+  url: https://careers.clariant.com/job/Lodz-Cash-Management-Specialist-%28mfd%29/1280254601/
+  type: practitioner
+  note: "(search snippet) Real example of treasury operations work located in a Polish shared-service hub: intercompany netting settlements, payment and FX settlement operations, support for cash-pool and in-house-bank projects. Used to illustrate where multinational back-office treasury sits, not as a statistic."
+- id: schindler-holding-2021
+  title: "Schindler Annual Report 2021 — Financial statements of Schindler Holding Ltd., Note 1 Business activities"
+  publisher: Schindler Holding Ltd.
+  year: 2022
+  url: https://reports.schindler.com/en/2021/report/financial-statements/financial-statements-of-schindler-holding-ltd/notes-to-the-financial-statements/1-business-activities
+  type: filing
+  note: "(search snippet) The holding company holds the investments in Group companies and is responsible for financing and for hedging foreign-currency risks of Group companies — an example of a large Swiss group (~70,000 employees) centralising funding and FX hedging at the top."
+- id: kyriba-act-2013
+  title: Treasurers keen to dispense with spreadsheets, claims Kyriba/ACT survey
+  publisher: The Global Treasurer (reporting a Kyriba / ACT member survey)
+  year: 2013
+  url: https://www.theglobaltreasurer.com/2013/05/02/treasurers-keen-to-dispense-with-spreadsheets-claims-kyriba-act-survey/
+  type: survey
+  note: "(search snippet) OLD and vendor-sponsored. UK ACT members: 48% of small companies (revenue up to GBP 100m) relied on Excel-type tools for daily cash management vs about a fifth of GBP 1–10bn companies and 11% of companies above GBP 10bn. Used only to illustrate the direction of the size gradient, not current levels."

@@ -1,0 +1,316 @@
+id: fraud-investigation
+title: Fraud investigation and response
+question: A payment looks fraudulent — or has already gone to a fraudster. Who does what in the next hours and weeks?
+group: Controls & reporting
+order: 2
+summary: >-
+  When a suspicious payment request is caught, or a payment has already left for an account controlled by criminals
+  (typically after business email compromise, a fake change of supplier bank details, or a "CEO" call), treasury is
+  usually the function that phones the banks, because it owns the bank relationships and knows the payment channels.
+  The first hours decide how much money comes back: stop what is still in flight, get the paying bank to send a
+  recall and ask the receiving bank to freeze funds, file a police report, preserve evidence, find out whether other
+  payments were affected. The following weeks are about the insurer, the auditors, the root cause and fixing the
+  control that failed. Most companies run this workflow rarely, which is part of the problem.
+objective: >-
+  Recover as much money as possible, stop further losses, preserve evidence for police, insurer and auditors, and
+  fix the control gap — while keeping the business paying its genuine suppliers.
+trigger: >-
+  An alert or suspicion: a supplier chases an invoice that the ledger shows as paid; the bank calls about an unusual
+  payment; the daily cash position shows an unknown debit; an employee reports a strange request; the approver
+  refuses a payment during a call-back; a vendor-master change looks odd.
+frequency: >-
+  Attempts are frequent — surveys of mainly US companies report that about three quarters experience attempted or
+  actual payments fraud each year — but a paid fraud that triggers the full investigation is rare for any one company
+  (every few years at a mid-market group). Near misses happen monthly at larger companies and should be logged.
+people:
+  - role: Whoever notices (AP clerk, subsidiary finance, treasury analyst, approver, the bank)
+    does: Raises the alarm immediately — without contacting the fraudster, deleting emails or "fixing" the vendor record.
+  - role: Treasury manager / head of treasury
+    does: Leads the bank side — calls the banks' fraud or payment-investigation desks, requests recalls and freezes, checks other payment channels; usually coordinates the first 24 hours at mid-market companies.
+  - role: Treasury operations / payments lead
+    does: Retrieves payment files, references (UETR, end-to-end ID), approval audit trails; blocks beneficiaries and users; screens other payments.
+  - role: Subsidiary finance / accounts payable
+    does: Explains how the payment was set up; provides invoices, vendor-master change records, emails; contacts the genuine supplier.
+  - role: IT security
+    does: Checks whether company mailboxes or systems were compromised; preserves email headers and logs; resets credentials.
+  - role: Legal (in-house or external counsel)
+    does: Files or supports the criminal complaint; advises on freezing orders, civil claims, data-protection and disclosure obligations; manages the dispute with the supplier.
+  - role: CFO
+    does: Decides escalation, communication and whether to pay the genuine supplier; informs the executive board and audit committee.
+  - role: Insurance / risk manager (often the CFO or legal at smaller companies)
+    does: Notifies the crime or cyber insurer within the policy's deadline and assembles the claim.
+  - role: Internal audit (or an external forensic firm)
+    does: Independent root-cause review; tests the remediated controls later.
+  - role: Banks (paying and receiving), police / prosecutor
+    does: Send and process recall requests; freeze funds where the law allows; investigate and, via prosecutors, order account freezes.
+systems:
+  - name: Bank portals, phone lines and fraud desks
+    use: Cancel pending payments, request recalls, report the fraud; banks' 24/7 fraud numbers matter more than the relationship manager's mobile.
+  - name: Payment channels (e-banking, EBICS, SWIFT, payment hub, TMS)
+    use: Payment references and status; block further files; pull audit trails of who created and approved what.
+  - name: "[ERP](term:erp) vendor master and AP"
+    use: Change log of supplier bank details; invoices and payment runs that used the fraudulent account.
+  - name: Email and collaboration systems
+    use: The fraudulent messages with full headers; evidence for police and insurer.
+  - name: Case log (Excel or incident tool)
+    use: Timeline of who did what, when — later needed by insurer, auditors and police.
+data:
+  - name: Payment identifiers
+    source: Payment file, bank status report, bank statement
+    notes: Amount, value date, beneficiary name/IBAN/BIC, end-to-end reference, Swift UETR for cross-border payments. Without them the bank cannot trace quickly.
+  - name: How the payment was authorised
+    source: ERP/TMS/bank audit trail
+    notes: Who entered, who approved, which checks ran (call-back, payee verification) and what they returned.
+  - name: The fraudulent communication
+    source: Mailbox, phone records, meeting recordings
+    notes: Original emails as files with headers, not forwarded screenshots.
+  - name: Vendor-master change history
+    source: ERP change log
+    notes: Who changed which bank details, when, on what evidence.
+  - name: Other exposure
+    source: All payments to the same IBAN/beneficiary; all recent bank-detail changes; other entities and banks
+  - name: Insurance terms
+    source: Crime / fidelity and cyber policies
+    notes: Notice deadline, social-engineering sublimit, deductible, required evidence.
+steps:
+  - title: Raise the alarm and classify the case
+    who: Whoever notices → treasury manager
+    where: Phone / chat — not the email thread that may be compromised
+    when: Minute 0–15
+    detail: >-
+      Establish the status: **attempt stopped** (nothing paid), **payment pending or in flight** (not yet credited),
+      or **paid and credited**. Note the amount, value date, beneficiary, channel and references. Do not reply to the
+      fraudster, do not delete messages, do not quietly correct the vendor record.
+    judgment: Whether this is really fraud or an ordinary error (a supplier genuinely changed banks, a misposted payment). Treat it as fraud until proven otherwise; the cost of a false alarm is a few phone calls.
+  - title: Stop everything that can still be stopped
+    who: Treasury manager / payments lead
+    where: Bank portal / payment hub / ERP
+    when: Within the first hour
+    detail: >-
+      Cancel any pending payments to the beneficiary; block the vendor record and the IBAN in the ERP and payment
+      hub; hold today's payment files for review if other changes may be affected; lock user accounts that may be
+      compromised. For a payment still in flight, ask the bank to cancel before execution.
+  - title: Call the paying bank's fraud or payment-investigations desk
+    who: Treasury manager
+    where: Phone (bank's fraud line), confirmed in writing
+    when: Within the first hour — hours matter
+    detail: >-
+      Report the fraud, give the payment references and ask the bank to (1) send a [recall](term:payment-recall) to the
+      receiving bank — for SEPA a recall message, for cross-border payments a Swift gpi Stop and Recall request — and
+      (2) ask the receiving bank to freeze whatever is still in the account. Get a case reference and the name of the
+      person handling it. A recall is a request, not a reversal: the receiving bank returns only what is still there and,
+      depending on the jurisdiction, may need the account holder's consent or a prosecutor's order.
+    judgment: Whether to call every bank the group uses (fraudsters often try several entities or channels at once).
+    manual: Phone calls, emailed forms and signed recall letters; bank procedures differ and relationship managers are often not the right contact.
+  - title: Escalate and assemble the incident team
+    who: Treasury manager → CFO
+    where: Call / meeting
+    when: Within 1–2 hours
+    detail: >-
+      Inform the CFO (and head of treasury if different). Set up a small team: treasury, the affected subsidiary's
+      finance manager, IT security, legal, accounting; HR only if an insider is suspected. One person keeps the
+      timeline. Agree who talks to banks, police, insurer, supplier — one voice per counterparty.
+  - title: Preserve evidence
+    who: IT security with treasury and AP
+    where: Mail system, ERP, payment systems
+    when: Day 0
+    detail: >-
+      Export the fraudulent emails with headers, the vendor-change record, the payment file, approval logs and call
+      notes. Check whether the company's own mailboxes were compromised (forwarding rules, suspicious logins) or
+      whether the supplier's mailbox was used. Reset credentials where needed.
+  - title: Scope the damage
+    who: Treasury analyst / payments lead
+    where: ERP, payment hub, bank statements
+    when: Day 0–1
+    detail: >-
+      Search for all payments to the same beneficiary or IBAN, all bank-detail changes in the last 90 days, other
+      entities using the same supplier, and other requests from the same sender. Check the daily cash position for
+      unexplained debits. Many cases turn out to involve more than one payment or one attempt at another entity.
+    judgment: How far back and how wide to search, and whether to hold all payments to recently changed accounts.
+  - title: File a police report and inform authorities
+    who: Legal / CFO / subsidiary managing director
+    where: Police (in the country where the payment was made), online reporting portals
+    when: Day 0–1
+    detail: >-
+      File a criminal complaint; banks and insurers usually ask for the reference, and a prosecutor's order may be
+      needed to freeze funds at the receiving bank. In Switzerland this means the cantonal police (the federal cyber
+      office also collects reports); in the US, the FBI's IC3 portal can trigger a rapid bank-to-bank freeze
+      attempt for domestic wires.
+  - title: Notify the insurer and start the loss file
+    who: CFO / risk or insurance manager / legal
+    where: Broker / insurer
+    when: Within the policy notice period (often days)
+    detail: >-
+      Notify under the crime (fidelity) policy and check the cyber policy: many crime policies cover
+      "social-engineering" losses only under a sublimit and with conditions (e.g. that a call-back was performed). Keep
+      a loss file: amount, recoveries, costs, evidence.
+    manual: Assembling the claim — timeline, evidence, control descriptions — is largely manual and can take weeks.
+  - title: Deal with the genuine supplier and the accounting
+    who: Subsidiary finance / CFO / legal; accounting
+    where: Calls, contract, ERP
+    when: Day 1 onwards
+    detail: >-
+      The real supplier still expects payment. In most jurisdictions paying a fraudster's account does not settle the
+      debt, unless the supplier's own compromised mailbox changes the legal picture — legal decides. Accounting books
+      the loss (and later any recovery or insurance receivable), and the auditors will ask about it.
+    judgment: Whether to pay the supplier now, negotiate a split where the supplier's compromised mailbox contributed, or dispute.
+  - title: Root-cause analysis
+    who: Internal audit or treasury manager with IT security (external forensic firm for large cases)
+    where: Interviews, logs, process documentation
+    when: Weeks 1–4
+    detail: >-
+      Reconstruct how the fraud passed each control: how the bank-detail change was verified, whether the call-back used
+      an independently sourced number, whether payee verification ran or was opted out, whether approvers saw the
+      change, whether urgency or secrecy overrode procedure. Distinguish a missing control from a control that existed
+      but was not followed.
+    judgment: How to assign responsibility without creating a culture where people hide near misses.
+  - title: Fix controls and report closure
+    who: Treasury manager / head of treasury, approved by CFO; reported to audit committee
+    where: Policy and procedure documents, ERP/payment-system settings
+    when: Weeks 2–8
+    detail: >-
+      Implement remediation (call-back rule, hold period for first payments to changed accounts, second approval for
+      vendor-master changes, payee verification in all files, alerts for new beneficiary countries, training) across
+      all entities, not only the affected one. Report the incident, recovery and remediation to the CFO and audit
+      committee; update the [treasury policy](term:treasury-policy) or payment procedures. See [policy compliance](wf:policy-compliance).
+example:
+  title: "HM Italia: a supplier's bank details were 'changed' — EUR 486,300 paid 11 days ago"
+  body: |
+    **Background.** On 24 September HM Italia's AP clerk received an email from a long-standing casting supplier's real
+    address, on the usual letterhead, announcing a new bank account. She called the phone number in the email signature —
+    which rang the fraudsters — and updated the vendor record; a second person approved the change. On 2 October the
+    weekly SEPA supplier run paid EUR 486,300 to the new IBAN. The file went as a bulk file for which HM Italia's bank
+    had not applied payee verification (the company had opted out for bulk files).
+
+    | Time | Who | What |
+    |---|---|---|
+    | Tue 13 Oct 10:05 | Giulia (HM Italia) | The supplier's credit controller calls about the overdue invoice. The ledger shows it paid — to an IBAN at a bank in another EU country. Giulia calls Daniel, not by email. |
+    | 10:25 | Daniel | Calls the Italian bank's fraud desk with amount, value date, IBAN, end-to-end reference. The bank sends a fraud recall to the receiving bank and asks it to freeze the funds. Case reference received. |
+    | 10:40 | Lea / Giulia | Vendor record blocked; Thursday's HM Italia run held for review. Lea searches all group vendor masters and payment files for the same IBAN — no other hit. |
+    | 11:00 | Daniel → Thomas | Thomas (CFO) sets up the incident team: Daniel, Giulia, IT security, external counsel in Milan, Claudia. |
+    | 13:30 | IT security | No Helvetic mailbox compromised; the email came from the supplier's real, hacked mailbox. Emails exported with headers. |
+    | 16:00 | Giulia + counsel | Criminal complaint filed with Italian police; the reference sent to the bank. |
+    | Wed 14 Oct | Thomas | Crime insurer notified via the broker (policy notice deadline: 30 days; social-engineering sublimit CHF 250k, deductible CHF 25k — illustrative). |
+    | Fri 16 Oct | Receiving bank | Via the Italian bank: EUR 61,200 remains and is frozen; the rest was moved out between 3 and 6 October. |
+
+    **Outcome (illustrative).** Loss about EUR 425k before insurance. The genuine supplier is paid after legal advice; Thomas negotiates a cost share because the supplier's mailbox was the entry point. The EUR 61,200 is returned four months later after a prosecutor's order. Insurance pays up to the sublimit minus deductible, after questions about whether the call-back met the policy's condition.
+
+    **Root cause.** The call-back used a number from the fraudulent email, not the one in the vendor master; the change approver saw only "bank details updated"; payee verification was switched off for bulk files; no alert for a new IBAN in a different country from the supplier. **Remediation** (all 8 subsidiaries, not only Italy): call-backs only to numbers already on file; a 5-business-day hold and a treasury check on the first payment to any changed account; payee verification on all euro files; monthly vendor-change report to Daniel; training. Reported to the audit committee in November.
+judgment:
+  - decision: Is this fraud, an error, or a genuine change?
+    why: Suppliers do change banks; payments do get misposted. The first minutes require judgment under uncertainty — but the asymmetry favours treating it as fraud.
+  - decision: Which banks and channels to call, in what order
+    why: Recovery odds fall quickly once funds move on; the treasurer must know which bank has a working fraud line and which payment rails are irrevocable.
+  - decision: How wide to scope and whether to stop payment runs
+    why: Holding all payments protects against further losses but disrupts suppliers and payroll; not holding risks a second hit.
+  - decision: What to tell the genuine supplier and whether to pay again
+    why: A legal and commercial judgment balancing liability, supplier relationship and insurance conditions.
+  - decision: Whether the root cause is a missing control, a bypassed control, or a person
+    why: Determines remediation, disciplinary questions and what goes to the audit committee; a blame-heavy response makes people stop reporting near misses.
+failure_modes:
+  - mode: Hours lost before the bank is called
+    consequence: Funds moved on through mule accounts; recall returns little or nothing.
+    detection: Incident timeline; a pre-agreed list of banks' fraud numbers in the treasury procedures.
+  - mode: The "verification" goes back to the fraudster (call-back to a number in the fraudulent email, reply to the same thread)
+    consequence: The control is performed and still fails; the fraud is approved with a clean audit trail.
+    detection: Call-back rules that require independently sourced numbers; audit sampling of call-back evidence.
+  - mode: Treating recall as a reversal
+    consequence: False expectation of recovery; delayed police report and insurance notice.
+    detection: Knowing the rail — SEPA, SIC and Swift payments are final once credited; recall only asks for voluntary return or freeze.
+  - mode: Evidence lost (emails deleted, mailbox reset before export)
+    consequence: Weaker police case and insurance claim; no root cause.
+    detection: Evidence-preservation step in the incident procedure.
+  - mode: Insurance notice missed or policy conditions not met
+    consequence: Claim reduced or denied.
+    detection: Policy terms known to treasury and CFO before an incident.
+  - mode: Remediation only in the affected entity
+    consequence: The same fraud succeeds at another subsidiary months later.
+    detection: Group-wide control review; internal-audit follow-up.
+software: >-
+  Prevention and detection tools are more developed than response tools: payee verification services (mandatory
+  for euro SEPA credit transfers in the EU since October 2025), bank-account validation and vendor-onboarding tools,
+  anomaly detection in payment hubs and TMS, US positive pay, and email security. Banks offer recall mechanisms
+  (SEPA recall, Swift gpi Stop and Recall). The response itself — calls, forms, evidence, timeline, insurance
+  claim — is run on phone, email and Excel at almost every company. See [payment processing](wf:payment-processing)
+  for preventive controls.
+manual_work:
+  - Phoning bank fraud desks and completing each bank's recall forms.
+  - Searching vendor masters and payment files across entities and ERPs for related payments.
+  - Exporting and organising evidence for police, insurer and auditors.
+  - Keeping the incident timeline and loss file.
+  - Writing the root-cause report and tracking remediation in every subsidiary.
+by_size:
+  startup: >-
+    The CFO or founder does everything: calls the bank (often the only contact is a relationship manager or general
+    hotline), files the police report online, tells the board. Losses can be existential relative to cash; controls
+    are often a single approver in e-banking. Fraud attempts usually target the CEO/CFO's name and the accountant.
+  sme: >-
+    The head of accounting discovers it, the CFO calls the house bank and decides; an external lawyer and the
+    broker help. No incident procedure; the first question is often "who at the bank do we call?". Controls improve
+    after the first case — typically a call-back rule and collective signature for bank-detail changes.
+  midmarket: >-
+    The treasury manager leads the bank side, subsidiary finance the local side, the CFO decides; IT security and
+    external counsel are pulled in. Incidents often originate in subsidiaries with local ERPs and local payment
+    authority, where central treasury has limited visibility of vendor changes.
+  multinational: >-
+    A documented incident procedure: payment factory or treasury operations stops and recalls, a fraud or financial
+    crime team coordinates, legal and corporate security lead the investigation, internal audit reviews. Scale means
+    many near misses per month, logged and analysed; the payment factory centralises controls that used to sit in
+    40 subsidiaries. Deepfake and executive-impersonation attempts are a recognised scenario in procedures and training.
+companies:
+  kleio: "Nina receives an email 'from Sarah' asking for an urgent CHF 48k payment; the call-back rule stops it. If it had been paid, Sarah would call the Swiss bank's hotline, file an online police report and inform the board chair — there is no one else."
+  alpine: "A 'German customer' asks Petra's team to refund an overpayment to a new account. Petra checks the ledger — there was no overpayment — and Martin reports the attempt to the house bank and the police. After an earlier near miss the board required collective signature for bank-detail changes."
+  helvetic: "The worked example above: Daniel leads the bank side, Giulia the local side, Thomas decides; the lessons are applied to all eight subsidiaries."
+  globalchem: "A payment-factory operator in Kraków is asked by a 'regional CFO' in a video call to release an urgent EUR 3.2m acquisition deposit outside the normal run. The procedure forbids releases outside the payment system; the call-back to the regional CFO's number on file shows the call was fake. Marta logs it, corporate security reports it, and the case is used in the next training round."
+handoffs:
+  - from: AP / subsidiary finance / bank / approver
+    gives: the alert, payment details and the suspicious communication
+    to: Treasury manager
+    note: By phone or chat — not by replying in a possibly compromised email thread.
+  - from: Treasury manager
+    gives: fraud report, payment references, recall and freeze request
+    to: Paying bank's fraud desk
+  - from: Paying bank
+    gives: recall message and freeze request
+    to: Receiving bank
+  - from: Treasury manager
+    gives: incident summary and options
+    to: CFO
+  - from: IT security
+    gives: evidence (email headers, logs) and compromise assessment
+    to: Legal / incident team
+  - from: Legal / subsidiary management
+    gives: criminal complaint
+    to: Police / prosecutor
+  - from: CFO / risk manager
+    gives: loss notification and claim
+    to: Insurer (via broker)
+  - from: Internal audit / treasury
+    gives: root-cause report and remediation plan
+    to: CFO / audit committee
+interview: >-
+  Ask treasurers and payment leads about **the last attempt they caught and the last one that got through**: who noticed,
+  whom they called first, how long it took to reach the bank, what came back, what the insurer asked, and which control
+  changed afterwards. Ask what they would never let a system release without a human call-back. Fraud stories are
+  sensitive — people speak more freely about near misses and "a company I know" than about their own losses.
+ai_note: >-
+  AI helps on both sides: attackers use cloned voices and video, while banks and vendors use anomaly detection and
+  payee verification. For the response workflow, assistance in scoping (searching payments and vendor changes across
+  systems), assembling evidence and drafting the timeline is plausible and checkable. Deciding what is fraud, talking
+  to banks and police, and settling with suppliers and insurers remain human, high-stakes and rare — few examples to
+  learn from.
+terms: [business-email-compromise, vendor-bank-detail-fraud, deepfake-fraud, payment-recall, money-mule, crime-insurance, call-back-verification, vendor-master-data, verification-of-payee, four-eyes-principle, segregation-of-duties, swift-gpi, sct-inst, positive-pay, internal-control-system]
+related: [payment-processing, large-payment-approval, daily-cash-positioning, policy-compliance, bank-reconciliation]
+sources: [afp-pfc-2026, afp-pfc-2025, nacha-ic3-2024, ic3-2023-rat, bacs-ceo-fraud-2026, cnn-arup-deepfake-2024, swift-stop-recall, ecb-ipr, kpmg-vop-2025]
+evidence_note: >-
+  Prevalence: 76% of AFP's mainly US respondents experienced attempted or actual payments fraud in 2025 and 74% were
+  affected by BEC[](cite:afp-pfc-2026); in the 2025 edition vendor-imposter fraud rose to 45%[](cite:afp-pfc-2025). Recovery is
+  poor: AFP's 2026 release reports that only 30% of organisations recovered 75% or more of lost funds[](cite:afp-pfc-2026).
+  Speed matters: the FBI's IC3 Recovery Asset Team placed holds on 71% of potential losses in the 2023 incidents it acted
+  on — mostly quickly reported US BEC wires, not a general recovery rate[](cite:ic3-2023-rat). Swiss reports of CEO fraud
+  to the federal cyber office rose from 719 (2024) to 971 (2025), with AI-generated voices mentioned[](cite:bacs-ceo-fraud-2026).
+  Deepfakes are real: Arup confirmed that an employee in Hong Kong transferred HK$200m (about US$25m) after a video call
+  with deepfaked colleagues in early 2024[](cite:cnn-arup-deepfake-2024). Recall mechanics: Swift gpi Stop and Recall[](cite:swift-stop-recall);
+  EU payee verification since Oct 2025 with a bulk-file opt-out[](cite:ecb-ipr,kpmg-vop-2025). The step sequence
+  reflects established incident-response practice; the Helvetic example, insurance terms and timings are illustrative
+  synthesis. Legal points (whether paying a fraudster discharges the debt, freezing powers) vary by jurisdiction.

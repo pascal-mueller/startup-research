@@ -1,0 +1,100 @@
+# "Same problem, four companies" topics used on the /map area pages (stream: map).
+- id: map-cash-structure
+  title: Where the cash sits
+  question: How is cash held and moved between accounts and entities?
+  cells:
+    kleio: "7 accounts at 3 banks, 2 entities. No pooling. Sarah tops up Kleio Inc.'s US account by manual transfer two days before US payroll and keeps the CHF split across the two Swiss banks (a board request after SVB)."
+    alpine: "9 accounts at 2 banks. No pool. Petra moves EUR from the German subsidiary to the parent when the German balance exceeds about EUR 1m, and funds the US subsidiary ad hoc; each transfer is booked as an intercompany loan by the accountant."
+    helvetic: "12 operating accounts at 5 banks, 8 subsidiaries. No automated pool: Daniel concentrates cash manually by intercompany loan a few times a month. The CNY cash in Suzhou stays in China and comes home once a year as a dividend."
+    globalchem: "~280 accounts at ~20 banks. EUR and USD physical pools sweep to zero every evening into in-house bank master accounts; the in-house bank lends to and borrows from ~40 subsidiaries; monthly multilateral netting settles intercompany invoices; Singapore runs the Asian pool."
+  takeaway: "Structure grows in steps — manual transfers, then manual concentration by intercompany loan, then automated pools and an in-house bank — and each step needs tax and legal work, not just a bank product."
+
+- id: map-forecast-horizon
+  title: Forecast horizons
+  question: Which cash forecasts exist, and who uses them for what?
+  cells:
+    kleio: "One monthly runway model (18–24 months) in the Google Sheet. The board looks at runway; nobody needs a weekly view except around the January and July prepayment peaks."
+    alpine: "A weekly 8–13-week cash sheet by Petra (receipts from open AR and project milestones, AP, payroll, VAT) plus the annual budget. Martin reads the sheet every Monday to decide whether to draw the credit line."
+    helvetic: "A weekly 13-week forecast by entity and currency (Lea), a monthly 12-month liquidity outlook built with FP&A's forecast (Daniel), and a covenant projection twice a year. Actual-vs-forecast is tracked weekly."
+    globalchem: "Daily positioning, a weekly 13-week forecast from ~40 reporting units, a 12–18-month liquidity plan reconciled with FP&A, and a 3–5-year funding plan that sizes bond issues and the RCF."
+  takeaway: "The horizon follows the decision: runway for a startup, credit-line usage for an SME, hedging and concentration for mid-market, funding and rating for a multinational."
+
+- id: map-working-capital
+  title: Working capital levers
+  question: Who influences receivables, payables and inventory — and what role does treasury play?
+  cells:
+    kleio: "Annual upfront billing gives Kleio negative working capital: customers fund the business. Sarah's lever is billing policy (annual in advance, card for small customers), not collections."
+    alpine: "Milestone terms on CHF 0.5–4m projects dominate. Martin negotiates deposits (with an advance-payment guarantee from the bank) in sales contracts; Petra chases acceptance certificates. Component inventory for three projects ties up CHF 3m."
+    helvetic: "DSO ~70 days, material inventory in three plants. Working capital is an FP&A/controlling KPI with targets per subsidiary; treasury (Daniel) sees the cash effect, runs a small receivables-sale programme and argues for supplier terms."
+    globalchem: "Group working-capital programme with targets per business unit; procurement standardises payment terms; a bank-run supply chain finance programme for key suppliers; treasury owns the SCF bank relationships and the rating-agency view of it."
+  takeaway: "Treasury rarely owns AR, AP or inventory. It measures the cash effect, provides financing tools (factoring, SCF, guarantees) and argues for policy — sales, procurement and operations pull the levers."
+
+- id: map-investing
+  title: Surplus cash
+  question: What happens to cash the company doesn't need right now?
+  cells:
+    kleio: "CHF 22m, mostly in CHF sight accounts earning around zero at a 0% SNB rate. Sarah laddered CHF 8m into 3- and 6-month term deposits at the two Swiss banks and keeps USD surplus in a government MMF at the US bank; the board approved a one-page investment policy."
+    alpine: "Rarely surplus for long: cash first repays the drawn part of the credit line. When milestones arrive together, Petra places CHF 2–3m for a month as a term deposit at the house bank."
+    helvetic: "Group cash of CHF 30–45m is used to reduce RCF drawings before anything is invested — repaying a SARON-based loan beats a zero-yield deposit. Minimum group cash of CHF 10m stays in sight accounts."
+    globalchem: "Priya's team invests EUR 300–600m of surplus in overnight and term deposits and EUR/USD MMFs within counterparty limits set by rating, and a small securities portfolio under a board-approved investment policy; weekly limit utilisation report."
+  takeaway: "Safety and liquidity come before yield at every size; the real question is usually 'repay debt or hold cash', and what limits apply to each bank."
+
+- id: map-fx
+  title: FX exposure and hedging
+  question: How does each company deal with currency risk?
+  cells:
+    kleio: "USD revenue (~40%) is partly offset by USD cloud and US payroll costs, a natural hedge. Sarah converts surplus USD and EUR to CHF at spot a few times a year; no derivatives."
+    alpine: "45% of revenue in EUR, costs mostly CHF. A board minute allows Martin to hedge signed EUR projects with forwards at the large Swiss bank; Petra books them in a spreadsheet. Unsigned pipeline is not hedged."
+    helvetic: "Rolling EUR/CHF forwards within a 60–90% band for the next quarter; USD and GBP hedged more lightly; CNY exposure accepted. Lea computes net exposure per currency from the 13-week forecast; Daniel executes; hedge accounting under IFRS 9."
+    globalchem: "Jonas's team nets exposures from ~30 currencies through the in-house bank, hedges forecast flows 12 months ahead in layers and balance-sheet positions with FX swaps, uses NDFs for restricted currencies, and runs a 95% CFaR report monthly."
+  takeaway: "The mechanics (a forward is a forward) do not change with size; what changes is who measures the exposure, whether a written policy exists, and whether netting happens before hedging."
+
+- id: map-debt
+  title: Borrowing
+  question: What debt does each company have, and who manages it?
+  cells:
+    kleio: "None. A CHF 5m venture-debt offer with a CHF 5m minimum-cash covenant is under discussion; Sarah models whether the covenant would bite before the next equity round."
+    alpine: "CHF 12m committed operating line at the house bank (usually CHF 0–5m drawn) and a CHF 6m mortgage on the plant. Martin owns the relationship; Petra sends quarterly figures to the bank."
+    helvetic: "CHF 200m syndicated RCF (four banks, ~CHF 60m drawn) and a CHF 100m SIX-listed bond due 2028. Daniel manages drawdowns and the semi-annual covenant certificate; refinancing the bond is Thomas's (CFO) decision with board approval."
+    globalchem: "~CHF 3bn of CHF/EUR bonds, an undrawn EUR 1.5bn RCF as backstop and a EUR commercial-paper programme. Olivier's corporate-finance team runs issuance, rating-agency relations and the maturity profile."
+  takeaway: "Debt management moves from 'keep the house bank happy' to 'manage investors and rating agencies' — but covenants and refinancing dates dominate at every size that borrows."
+
+- id: map-risk-register
+  title: The risk that keeps them awake
+  question: Which financial or operational risk worries each finance lead most?
+  cells:
+    kleio: "Bank concentration and runway: after SVB, keeping CHF 22m at one bank felt unacceptable; the second risk is a payment-fraud email reaching the accountant."
+    alpine: "Liquidity from lumpy projects (one late acceptance moves CHF 2m) and key-person risk: Petra is the only one who knows the EBICS upload and the cash sheet."
+    helvetic: "FX (EUR/CHF) on margins, covenant headroom if a downturn hits EBITDA, and weak visibility into subsidiaries' local payments."
+    globalchem: "Refinancing and rating (BBB+ must hold after an acquisition), bank counterparty risk across ~20 banks, restricted cash in several countries, and fraud across hundreds of payment users."
+  takeaway: "Small companies worry about running out of cash and single points of failure; large ones about markets, ratings and control across many people."
+
+- id: map-payments
+  title: Payments
+  question: Who prepares, approves and releases payments?
+  cells:
+    kleio: "Nina prepares supplier payments in each bank's e-banking twice a month; Sarah approves in the bank portal (collective signature). Payroll through the fiduciary/payroll provider."
+    alpine: "Petra creates twice-weekly payment runs in Business Central and uploads the pain.001 file via EBICS; bank-side dual signature — Petra plus one signatory up to CHF 250k, Martin as one of two above."
+    helvetic: "Each subsidiary runs its own AP payments from its ERP through the connectivity tool; Swiss payments are prepared by accounting and approved by Daniel or Thomas as second signatory; treasury payments (loans, FX settlements) prepared by Lea, released by Daniel."
+    globalchem: "Most European payments leave through Marta's payment factory in Kraków (POBO from the in-house bank); treasury payments via SAP and SWIFT; sanctions screening and payment-release rules in the TMS; exceptions handled by payment operators."
+  takeaway: "Treasury rarely creates operational payments — AP does. Treasury designs the controls, owns the bank channels and releases the unusual and financial payments."
+
+- id: map-banking
+  title: Banks and accounts
+  question: How many banks, and who looks after them?
+  cells:
+    kleio: "3 banks, 7 accounts. Sarah is the only person the banks talk to; KYC renewals land in her inbox and take a day each."
+    alpine: "A cantonal house bank (payments, credit line, mortgage) and a large Swiss bank (FX, USD). Martin meets both once a year; Petra handles mandates and e-banking users."
+    helvetic: "5 banks, 12 accounts after the 2024 rationalisation from 31. Four banks in the RCF expect ancillary business; Daniel allocates FX and cash-management mandates to keep them roughly in line with their lending."
+    globalchem: "~20 banks, ~280 accounts, 7 core relationship banks. Anna runs an annual bank review with wallet-share analysis; Marta's team maintains the account inventory and mandates; KYC requests arrive weekly."
+  takeaway: "Relationship management is a CFO side-task at small companies and a formal, data-driven process at large ones; account and signatory administration never goes away."
+
+- id: map-tech-stack
+  title: Systems
+  question: What does each company's treasury stack look like?
+  cells:
+    kleio: "Cloud accounting, Stripe, three e-banking portals, one Google Sheet. Bank data pulled into accounting via bank APIs."
+    alpine: "Dynamics 365 Business Central, EBICS file upload, two e-banking portals, Excel. No TMS; the Excel cash sheet is the treasury system."
+    helvetic: "SAP S/4HANA in three entities and smaller ERPs elsewhere, a multibank connectivity tool (EBICS/SWIFT), Excel for positioning, forecasting and hedges; TMS project in evaluation."
+    globalchem: "SAP S/4HANA with SAP treasury modules (in-house bank, deals, cash), SWIFT via a service bureau, an FX trading platform, Bloomberg, a separate forecasting tool, and Excel for anything the systems don't cover."
+  takeaway: "Every size still uses spreadsheets; the difference is whether they sit on top of automated bank data and a system of record, or are the system of record."

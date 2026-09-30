@@ -1,0 +1,123 @@
+# Sources for the "Events & crises" workflows (acquisition-integration, currency-shock, liquidity-crisis).
+# Session note: WebFetch was blocked by the network proxy in this session; every entry below was verified from
+# search-result snippets served from the ORIGINAL publisher's domain (snb.ch, sec.gov, finma.ch, treasury.gov,
+# company report sites, neugroup.com, swissmem.ch). See docs/notes/wf-events.md for what could not be opened.
+- id: snb-2015-floor
+  title: Swiss National Bank discontinues minimum exchange rate and lowers interest rate to –0.75%
+  publisher: Swiss National Bank
+  year: 2015
+  url: https://www.snb.ch/en/publications/communication/press-releases/2015/pre_20150115
+  type: official
+  note: >-
+    Press release of 15 January 2015. Ends the CHF 1.20 per euro minimum exchange rate introduced in September 2011;
+    lowers the interest rate on sight-deposit balances above the exemption threshold to –0.75% and moves the
+    three-month Libor target range to –1.25% to –0.25%. Rationale: the floor could only be enforced by interventions
+    of rapidly increasing magnitude.
+- id: tecan-ar-2014-subsequent
+  title: "Annual Report 2014 — Note 29: Subsequent events"
+  publisher: Tecan Group Ltd
+  year: 2015
+  url: https://www.tecanannualreport.com/en/annual-report-2014/financial-report-2014/notes-to-the-consolidated-financial-statements/29-subsequent-events/index.html
+  type: filing
+  note: >-
+    Example of how a listed Swiss group disclosed the floor removal: amounts in the 2014 accounts do not reflect
+    exchange-rate changes after 31 December 2014; the impact on 2015 "depends on the future development of the euro".
+- id: clariant-ar-2015-bonus
+  title: "Annual Report 2015 — Compensation report: bonus plans"
+  publisher: Clariant AG
+  year: 2016
+  url: https://reports.clariant.com/2015/annual-report/compensation-report/bonus-plans.html
+  type: filing
+  note: >-
+    Targets set in Q4 2014 were reviewed in February 2015 because of the special impact of the Swiss franc situation
+    after the SNB abandoned the EUR/CHF floor — an example of budget/target rates being reset after a shock.
+- id: burckhardt-ar-2014
+  title: Annual Report 2014 (fiscal year April 2014 – March 2015)
+  publisher: Burckhardt Compression Holding AG
+  year: 2015
+  url: https://www.burckhardtcompression.com/fileadmin/uploads/burckhardt/documents/reports/archive/annual-report-2014-burckhardt-compression-en.pdf
+  type: filing
+  note: >-
+    Swiss industrial exporter. Attributes an order-intake decline of 7.9% mainly to customers postponing orders as a
+    direct consequence of the SNB's decision to abandon the EUR/CHF floor (verified from search snippet only).
+- id: swissmem-2015-franc
+  title: "MEM industries: seriously affected by strong franc"
+  publisher: Swissmem
+  year: 2015
+  url: https://swissmem.ch/en/mem-industries-seriously-affected-by-strong-franc-1.html
+  type: practitioner
+  note: >-
+    Industry-association survey of Swiss machine, electrical and metal (MEM) companies after the floor removal:
+    more than three-quarters of members surveyed in July 2015 had reduced prices; over half reported sharp margin
+    declines; 18% planned to relocate some production if EUR/CHF stayed around 1.05. Verified from search snippet
+    only — a follow-up search on the same page did not reproduce the wording, so treat the numbers as indicative.
+- id: tornos-2015-franc-measures
+  title: Tornos announces measures to contain the impact of the appreciation of the Swiss franc
+  publisher: Tornos Holding Ltd
+  year: 2015
+  url: https://investors.tornos.com/en/content/media-releases/tornos-announces-measures-contain-impact-appreciation-swiss-franc
+  type: filing
+  note: >-
+    Swiss machine-tool maker (the closest real analogue to Helvetic). Media release announcing longer weekly working
+    hours at Swiss sites (reported as up to 43 hours from 1 March 2015) and cost measures. Verified from search
+    snippets; hour figure not independently re-checked.
+- id: jonesday-emir-vm-2017
+  title: EMIR Variation Margin Rules Effective March 1, 2017
+  publisher: Jones Day
+  year: 2017
+  url: https://www.jonesday.com/en/insights/2017/02/emir-variation-margin-rules-effective-march-1-2017
+  type: practitioner
+  note: >-
+    Law-firm summary: EU margin rules for uncleared OTC derivatives apply between financial counterparties and
+    non-financial counterparties above the clearing threshold (NFC+). Physically settled FX forwards and swaps are
+    exempt from initial margin. Supports the point that most ordinary corporates (NFC–) hedge without mandatory
+    collateral unless they have negotiated a CSA.
+- id: roku-8k-2023
+  title: "Roku, Inc. — Form 8-K (10 March 2023)"
+  publisher: U.S. Securities and Exchange Commission (EDGAR)
+  year: 2023
+  url: https://www.sec.gov/Archives/edgar/data/1428439/000142843923000010/wk-20230310.htm
+  type: filing
+  note: >-
+    Roku disclosed about USD 487m held at Silicon Valley Bank — about 26% of its cash and cash equivalents — mostly
+    uninsured, on the day SVB was closed and the FDIC appointed receiver.
+- id: ust-fed-fdic-2023-joint
+  title: Joint Statement by the Department of the Treasury, Federal Reserve, and FDIC (12 March 2023)
+  publisher: U.S. Department of the Treasury / Federal Reserve Board / FDIC
+  year: 2023
+  url: https://www.federalreserve.gov/newsevents/pressreleases/monetary20230312b.htm
+  type: official
+  note: >-
+    SVB resolved in a manner that fully protects all depositors: "Depositors will have access to all of their money
+    starting Monday, March 13." Shareholders and certain unsecured debtholders not protected. Relevant because
+    uninsured corporate depositors had spent a weekend not knowing.
+- id: cs-1q23-earnings
+  title: Credit Suisse Earnings Release 1Q23 (Exhibit 99.1 to Form 6-K)
+  publisher: Credit Suisse Group AG (SEC EDGAR)
+  year: 2023
+  url: https://www.sec.gov/Archives/edgar/data/1053092/000137036823000042/a230424q1er-ex99_1.htm
+  type: filing
+  note: >-
+    Customer deposits declined by CHF 67bn in 1Q23; net asset outflows of CHF 61.2bn, in particular in the second
+    half of March 2023 — significant withdrawals of cash deposits and non-renewal of maturing time deposits.
+- id: finma-ubs-cs-2023
+  title: FINMA approves merger of UBS and Credit Suisse (19 March 2023)
+  publisher: FINMA
+  year: 2023
+  url: https://www.finma.ch/en/news/2023/03/20230319-mm-cs-ubs/
+  type: official
+  note: >-
+    Credit Suisse faced a crisis of confidence with considerable outflows of client funds; UBS took it over with SNB
+    liquidity assistance backed by a federal default guarantee; business continued without interruption and accounts
+    remained accessible. AT1 instruments of about CHF 16bn written down.
+- id: neugroup-svb-2023
+  title: "SVB Shockwaves: Updating Bank Counterparty Credit Risk Strategy"
+  publisher: NeuGroup
+  year: 2023
+  url: https://www.neugroup.com/svb-shockwaves-updating-bank-counterparty-credit-risk-strategy/
+  type: survey
+  note: >-
+    NeuGroup "Best Practices in Assessing Bank Counterparty Risk" survey of member treasuries (mostly large US
+    corporates; sample size not stated in the snippet): the crisis triggered a reassessment of bank counterparty
+    credit management at 81% of treasuries; 69% planned fundamental changes; the most common strategy was greater
+    deposit diversification, alongside more cash in government money market funds.

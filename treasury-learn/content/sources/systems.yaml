@@ -1,0 +1,102 @@
+# Sources for the Systems & Data section (stream: systems).
+# Research constraint (Sept 2026 session): WebFetch was blocked by the network proxy and the shared web-search budget
+# ran out early, so the sources below were verified from search-result text published by the original publisher
+# ("(search snippet)"), not by reading the full page. Notes say exactly what each supports.
+- id: ripple-gtreasury-2025
+  title: Ripple Breaks into Corporate Treasury with $1B GTreasury Acquisition
+  publisher: Ripple (press release)
+  year: 2025
+  url: https://ripple.com/ripple-press/ripple-breaks-into-corporate-treasury-with-gtreasury-acquisition/
+  type: vendor
+  note: "(search snippet) Announced 16 October 2025: Ripple to acquire GTreasury for USD 1bn; Ripple's third major 2025 acquisition after Hidden Road and Rail; closing subject to regulatory approvals. Seller was Hg (hgcapital.com, 'Hg agrees sale of GTreasury to Ripple')."
+- id: ripple-treasury-rebrand
+  title: GTreasury is now Ripple Treasury
+  publisher: Ripple Treasury
+  year: 2026
+  url: https://treasury.ripple.com/gtreasury-is-now-ripple-treasury
+  type: vendor
+  note: "(search snippet) GTreasury, now part of Ripple, renamed Ripple Treasury. Launch of 'Ripple Treasury, powered by GTreasury' reported by The Block on 27 January 2026 (theblock.co/post/387357)."
+- id: gtreasury-solvexia-2026
+  title: GTreasury (Ripple Treasury) acquires Solvexia — reconciliation and regulatory reporting
+  publisher: Ripple Treasury
+  year: 2026
+  url: https://treasury.ripple.com/news/gtreasury-acquires-solvexia-reconciliation-and-regulatory-reporting
+  type: vendor
+  note: "(search snippet) Announced 7 January 2026: acquisition of Solvexia (no-code financial automation, reconciliation and regulatory reporting); terms not disclosed."
+- id: kyriba-ga-2024
+  title: General Atlantic Nears Deal to Buy Stake in Tech Firm Kyriba
+  publisher: Bloomberg
+  year: 2024
+  url: https://www.bloomberg.com/news/articles/2024-10-15/general-atlantic-said-to-near-stake-purchase-in-tech-firm-kyriba
+  type: news
+  note: "(search snippet) 15 Oct 2024: General Atlantic to take a minority stake valuing Kyriba at upwards of USD 3bn; Bridgepoint (majority owner since a 2019 deal valuing Kyriba at USD 1.2bn) remains majority shareholder and reinvests. Kyriba cited as serving nearly 3,000 clients (company figure)."
+- id: kyriba-live-2026
+  title: KyribaLive 2026 — AI-orchestrated treasury announcements
+  publisher: Kyriba
+  year: 2026
+  url: https://www.kyriba.com/news/kyribalive-2026-ai-orchestrated-treasury/
+  type: vendor
+  note: "(search snippet; also PR Newswire 28 Apr 2026) Announced at KyribaLive, 27–29 April 2026: agentic-AI layer 'TAI', Circle USDC settlement integration, direct access to J.P. Morgan Asset Management money-market funds, AFP stablecoin certificate. Vendor announcements, not adoption data."
+- id: fis-quantum-cloud-2025
+  title: FIS Launches Next Generation of Its Enterprise Treasury and Risk Management Platform to Unlock Real-time Cash Visibility
+  publisher: FIS (press release)
+  year: 2025
+  url: https://www.fisglobal.com/about-us/media-room/press-release/2025/fis-launches-next-generation-of-its-enterprise-treasury-and-risk-management-platform
+  type: vendor
+  note: "(search snippet) 29 April 2025: Treasury and Risk Manager – Quantum Cloud Edition, running on public cloud; classic Quantum remains available; the Treasury & Risk Management suite 'helps over 1,000 organizations' (company figure). The suite also includes the Integrity Edition (SaaS)."
+- id: ion-treasury
+  title: ION Treasury — treasury and risk management solutions
+  publisher: ION Group
+  year: 2026
+  url: https://iongroup.com/treasury/
+  type: vendor
+  note: "(search snippet) Portfolio includes Treasura, City Financials, ITS, Reval, IT2, Openlink and Wallstreet Suite; Wallstreet Suite for the largest and most complex organisations; Openlink for commodity-intensive organisations; City Financials for Central European companies; Reval SaaS."
+- id: coupa-bellin-2020
+  title: Coupa Acquires BELLIN Group To Boost Treasury Services
+  publisher: PYMNTS
+  year: 2020
+  url: https://www.pymnts.com/news/b2b-payments/2020/coupa-acquires-bellin-group-boost-treasury-services/
+  type: news
+  note: "(search snippet) Coupa acquired German TMS vendor BELLIN; positioned as Coupa Treasury Management within its business-spend-management platform."
+- id: trovata-atom-2025
+  title: Trovata Acquires ATOM, Unlocking Full Treasury Management Capabilities to Redefine Corporate Treasury
+  publisher: Trovata (press release, also PR Newswire)
+  year: 2025
+  url: https://trovata.io/press/trovata-acquires-atom
+  type: vendor
+  note: "(search snippet) 24 July 2025: acquisition of ATOM, the enterprise TMS of Financial Sciences; rationale: add in-house banking, intercompany netting, FX hedging and bank fee analysis to Trovata's cash visibility/forecasting platform; Series B extended by USD 9m from PNC and State Street."
+- id: embat-series-b-2026
+  title: Spanish treasury platform Embat lands €30m Series B for European expansion
+  publisher: FinTech Futures
+  year: 2026
+  url: https://www.fintechfutures.com/venture-capital-funding/embat-lands-30m-series-b-for-european-expansion
+  type: news
+  note: "(search snippet) May 2026: EUR 30m Series B led by Cathay Innovation; >EUR 50m raised since 2021 founding; ~150 employees; ~400 corporate clients in Europe; UK and Ireland expansion. Automation percentages quoted in coverage are company claims."
+- id: sap-mbc
+  title: SAP Multi-Bank Connectivity (product page and SAP Community 'All you need to know')
+  publisher: SAP
+  year: 2025
+  url: https://www.sap.com/products/financial-management/multi-bank-connectivity.html
+  type: vendor
+  note: "(search snippet) SAP-owned, managed cloud service connecting SAP ERP (ECC, S/4HANA Cloud or on-premise) to banks; embedded EBICS and Swift connectivity (EBICS requires an EBICS contract with each bank); SWIFT, SFTP (host-to-host), EBICS, APIs and 'member bank' integration can be combined; payment status and cash positions update in the ERP."
+- id: sap-ecc-maintenance
+  title: Maintenance Timelines for SAP ERP 6.0 ("ECC")
+  publisher: SAP (SAP Community blog by SAP)
+  year: 2025
+  url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/maintenance-timelines-for-sap-erp-6-0/ba-p/13524564
+  type: vendor
+  note: "(search snippet) SAP ERP 6.0 EHP 6–8: mainstream maintenance until 31 Dec 2027; optional extended maintenance 1 Jan 2028 – 31 Dec 2030 at extra cost, described by SAP as a bridge, not an alternative to moving to S/4HANA."
+- id: swift-lite2
+  title: Alliance Lite2 for Business Applications / connectivity options for corporates
+  publisher: Swift
+  year: 2025
+  url: https://www.swift.com/our-solutions/interfaces-and-integration/alliance-lite2-for-business-applications/features
+  type: standard
+  note: "(search snippet) Corporate connectivity options: direct (Alliance Connect with own infrastructure), cloud (Alliance Lite2, Alliance Cloud), indirect via Swift-certified service bureaus; Alliance Lite2 users can access SCORE or member-administered closed user groups; Lite2 for Business Applications embeds Swift connectivity in partner software so the customer runs no Swift infrastructure in-house."
+- id: zkb-ebics3
+  title: "Factsheet: EBICS 3.0"
+  publisher: Zürcher Kantonalbank
+  year: 2025
+  url: https://zkb.ch/media/zkb/dokumente/en/FS_EBICS_3.0_EN.pdf
+  type: vendor
+  note: "(search snippet) One Swiss bank's timeline: EBICS 2.4 discontinued 21 Nov 2025; EBICS 2.5 remains 'until further notice' but from Nov 2026 only for PDF documents and LSV files; from Nov 2026 pain.001 v09 and camt.052/053/054 v08 (ISO 20022 2019 versions) supported exclusively via EBICS 3.0; participants with insufficient key lengths blocked from 1 Feb 2025. Other banks' dates may differ."

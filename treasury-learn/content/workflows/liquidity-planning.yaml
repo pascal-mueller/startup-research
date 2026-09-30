@@ -1,0 +1,353 @@
+id: liquidity-planning
+title: Liquidity planning
+question: Will we have enough money — cash plus committed facilities — when our obligations arrive, even if things go wrong?
+group: Cash & liquidity
+order: 3
+summary: >-
+  Treasury takes the short-term cash forecast and the business plan, adds every financing obligation (debt
+  maturities, interest, dividends, facility expiries), and asks whether the group's *available* liquidity — usable cash
+  plus undrawn committed facilities — stays above a policy minimum over the next 12–24 months, in a base case and under
+  stress. The output is not a better forecast but a set of decisions: how big the buffer should be, which facilities to
+  keep or extend, when to refinance, and which management actions to prepare in case the downside happens.
+objective: >-
+  Make sure the company can always meet its obligations as they fall due, at acceptable cost, with enough lead time to
+  arrange funding *before* it is needed — and be able to show the CFO, the board, lenders and (for rated companies) the
+  rating agencies that this is so.
+trigger: >-
+  Monthly or quarterly liquidity review; the annual budget; a refinancing becoming visible on the horizon (a bond or
+  facility maturing within roughly 18–24 months); a covenant test date; a large planned use of cash (acquisition,
+  dividend, capex programme); or a shock (downturn, lost customer, bank failure) that makes the board ask "are we safe?".
+frequency: >-
+  Monthly update at most mid-market and large companies, often alongside the monthly treasury report; quarterly at
+  SMEs (if done formally at all); continuously in a crisis. The horizon is typically 12 months at SMEs and 12–24 months
+  (sometimes to the next major maturity) at larger groups.
+people:
+  - role: Treasury manager / head of cash & liquidity
+    does: Owns the liquidity plan and headroom calculation; designs stress scenarios; proposes buffers, facility changes and funding actions.
+  - role: Treasury analyst
+    does: Maintains the model — links the 13-week forecast and the FP&A plan, updates the facility and maturity schedule, runs scenarios, drafts the report.
+  - role: FP&A / controlling
+    does: Supplies the monthly or quarterly P&L, capex and working-capital outlook beyond the 13 weeks; agrees scenario assumptions (e.g. "sales −15%").
+  - role: Head of accounting / group reporting
+    does: Confirms covenant definitions (net debt, adjusted EBITDA) and projected covenant figures; knows off-balance items (leases, guarantees).
+  - role: Corporate finance / debt team (large companies)
+    does: Owns facility agreements and bond maturities, rating-agency dialogue and the refinancing plan.
+  - role: Tax / legal
+    does: Flag cash that cannot be moved (trapped cash, withholding tax on dividends), and the legal conditions for drawing facilities.
+  - role: Head of treasury / CFO
+    does: Agrees the minimum liquidity level and scenarios, decides on refinancing and management actions, presents to the board or audit committee.
+  - role: Board / audit committee
+    does: Approves the liquidity policy (minimum headroom) and large financing decisions; in Switzerland the board must monitor solvency (Art. 725 CO).
+systems:
+  - name: Excel liquidity model
+    use: At almost all companies below the largest, the liquidity plan is a workbook that links forecast, plan, facilities and covenants.
+  - name: "[TMS](term:tms) or forecasting tool"
+    use: Source of the short-term forecast, debt and deal register (maturities, interest), and facility utilisation. Some TMSs offer scenario modules; many companies still export to Excel for stress testing.
+  - name: Planning / consolidation system (FP&A)
+    use: Budget, rolling forecast and mid-term plan — the source of EBITDA, capex and working-capital assumptions beyond 13 weeks.
+  - name: Facility and bond documentation
+    use: Commitment amounts, expiry and extension options, drawing conditions, covenant definitions, test dates. Usually PDFs in a shared drive or the legal team's system.
+  - name: Board / CFO reporting pack
+    use: PowerPoint or PDF summary of headroom, low points, covenant projections and actions.
+data:
+  - name: Opening cash by entity and currency
+    source: Latest [cash position](term:cash-position)
+    notes: Split into freely available, [trapped](term:trapped-cash) (e.g. China), and minimum operating cash that cannot be used without harming operations.
+  - name: Short-term cash forecast (weeks 1–13)
+    source: The [13-week cash forecast](wf:cash-forecasting)
+    notes: Gives the near-term low points; the liquidity plan should not re-forecast what the 13-week forecast already covers.
+  - name: Medium-term outlook (months 4–24)
+    source: FP&A budget / rolling forecast, converted from P&L to cash ([indirect method](term:indirect-method))
+    notes: Usually monthly or quarterly granularity. Often optimistic; treasury may apply its own haircuts.
+  - name: Financing calendar
+    source: Treasury debt register, bond terms, facility agreements, dividend policy
+    notes: Debt maturities, amortisation, coupons, interest, commitment fees, dividend dates, lease payments, pension top-ups. Known precisely — and the items most dangerous to forget.
+  - name: Committed facilities
+    source: Facility agreements, bank confirmations
+    notes: Commitment, drawn amount, expiry, extension options, drawing notice period, conditions (covenants, "no material adverse change" representations). Only [committed](term:committed-facility) lines count as headroom in most policies; overdrafts and uncommitted lines do not.
+  - name: Covenant definitions and test dates
+    source: Facility agreement, accounting
+    notes: E.g. [net debt](term:net-debt) / [EBITDA](term:ebitda) at 30 June and 31 December. A breach can make the facility unavailable exactly when it is needed.
+  - name: Policy thresholds
+    source: [Treasury policy](term:treasury-policy) / liquidity policy
+    notes: Minimum [headroom](term:liquidity-headroom), minimum cash, maximum reliance on one bank, refinancing lead time (e.g. "refinance at least 12 months before maturity").
+  - name: Stress assumptions
+    source: Treasury with FP&A and CFO
+    notes: Revenue shock, late customer payments, facility loss, FX move, trapped cash, bank failure. Agreed in advance so the stress test is not negotiated each month.
+steps:
+  - title: Confirm the frame — horizon, headroom definition, minimum
+    who: Treasury manager with CFO
+    where: Treasury policy, meeting
+    when: Annually, and whenever the business changes materially
+    detail: >-
+      Agree what "enough liquidity" means: which cash counts (excluding trapped cash and operating minimums), which
+      facilities count (committed, not expiring within the horizon, with covenant room), the minimum headroom (an
+      absolute amount, or weeks of outflows), the horizon (12–24 months), and the standard stress scenarios. This is set
+      once and revisited annually; without it, every monthly review becomes a debate about definitions.
+    judgment: How large the minimum should be. Too high means paying for unused facilities and holding idle cash; too low means a bad quarter becomes a crisis.
+  - title: Take over the near term from the 13-week forecast
+    who: Treasury analyst
+    where: Excel / TMS / forecasting tool
+    when: Monthly, after the forecast week closes (e.g. first week of the month)
+    detail: >-
+      Link the latest [13-week forecast](wf:cash-forecasting) as months 1–3, including intra-month low points (the
+      month-end balance can hide a trough of several million mid-month, e.g. around payroll and VAT dates).
+  - title: Build months 4–24 from the business plan
+    who: Treasury analyst with FP&A
+    where: Excel, planning-system exports
+    detail: >-
+      Convert FP&A's EBITDA outlook to cash: subtract tax, capex, working-capital build, leases; add seasonality (Swiss
+      13th-month salaries and bonuses, annual tax payments, year-end collections). Reconcile the starting point to the
+      13-week forecast so the two views don't contradict each other.
+    judgment: >-
+      Whether to use FP&A's numbers as given or apply a treasury haircut. Budgets tend to be optimistic about revenue and
+      silent about working capital; treasury is the function that has to live with the cash consequence.
+    manual: Planning-system exports reshaped into monthly cash lines by hand; P&L-to-cash bridges rebuilt every budget cycle.
+  - title: Add the financing calendar
+    who: Treasury analyst (debt team at large companies)
+    where: Debt register, facility agreements, Excel
+    detail: >-
+      Enter every financing flow and event: bond and loan maturities and coupons, RCF interest and commitment fees,
+      facility expiries and extension option dates, dividends (amount and payment date after the AGM), share buybacks,
+      pension contributions, earn-outs, known M&A payments. Mark which items are discretionary (dividend, buyback, capex)
+      and which are contractual.
+    manual: Facility terms are read from PDFs and typed into the model; extension-option and notice dates are tracked in a calendar or spreadsheet.
+  - title: Calculate available liquidity and headroom by month
+    who: Treasury analyst
+    where: Excel
+    detail: >-
+      For each month: projected cash, minus [trapped cash](term:trapped-cash) and minimum operating cash, plus undrawn
+      committed facilities available in that month (a facility expiring in month 14 disappears from month 14). Compare
+      with the policy minimum. Identify the lowest point, when it occurs, and what drives it.
+  - title: Project covenants at each test date
+    who: Treasury analyst with accounting
+    where: Excel
+    detail: >-
+      Using the facility agreement's own definitions (not the IFRS numbers), project leverage and interest cover at each
+      test date in the base case. Calculate how far EBITDA could fall, or net debt rise, before a breach
+      ([covenant](term:covenant) headroom). See [covenant monitoring](wf:covenant-monitoring).
+    judgment: Interpreting definitions (what counts as "adjusted" EBITDA, how leases and cash pooling are treated) — often needs accounting and sometimes lawyers.
+  - title: Run stress scenarios and a reverse stress test
+    who: Treasury manager
+    where: Excel
+    detail: >-
+      Apply the agreed stresses one by one and combined: revenue down, largest customers paying 30 days late, an
+      [FX](term:fx-exposure) move, a relationship bank failing or refusing to extend, cash in restricted countries treated
+      as unavailable, the RCF blocked by a covenant breach. Then ask the reverse question: *what would have to happen for
+      headroom to hit zero or a covenant to break?* The answer ("EBITDA down 30% and no dividend cut") is often more useful
+      to a board than any single scenario.
+    judgment: Which scenarios are severe but plausible for *this* business — a machine-tool maker's downturn looks different from a SaaS company's churn.
+  - title: Identify gaps, mitigants and lead times
+    who: Treasury manager
+    where: Excel, discussions with CFO and business
+    detail: >-
+      For every scenario that breaches the minimum: which levers exist, who controls them, and how long they take.
+      Management levers (defer capex, cut or delay the dividend, tighten collections, stretch payables) sit with the
+      business and the board. Funding levers (extend or upsize the RCF, new term loan, bond or [Schuldschein](term:schuldschein),
+      sale of receivables) sit with treasury but take weeks to months and need willing banks — which is why they are
+      arranged in good times.
+    judgment: Whether to buy "insurance" now (a bigger facility, earlier refinancing) at a known cost, or rely on levers that may not be available in a downturn.
+  - title: Update the funding plan
+    who: Treasury manager / head of treasury (corporate finance at large groups)
+    where: Excel, bank meetings
+    detail: >-
+      Translate the result into a dated plan: which maturities to refinance, when (many policies require refinancing
+      well before a maturity enters the final 12 months), in which market, and which banks to approach. Rating agencies
+      assess liquidity on a 12-month sources-versus-uses basis (S&P's "adequate" descriptor needs sources of at least
+      1.2x uses[](cite:sp-liquidity-descriptors)), so a large maturity inside 12 months without a refinancing in place
+      becomes visible externally too.
+  - title: Review with the CFO and report to the board
+    who: Treasury manager → CFO → board / audit committee
+    where: Meeting, board pack
+    when: Monthly with the CFO; quarterly or semi-annually to the board
+    detail: >-
+      Present headroom by month (base and stress), the low point, covenant headroom at each test date, the refinancing
+      timeline and recommended actions. In Switzerland, the board's statutory duty to monitor solvency (Art. 725 CO,
+      revised 2023)[](cite:ch-co-board-duties) is commonly read by practitioners as requiring a rolling liquidity plan of
+      at least 12 months[](cite:weka-725-liquidity), and auditors and boards increasingly ask to see one.
+    judgment: How to present uncertainty honestly without alarming the board — and when a scenario is serious enough to trigger actions now rather than monitoring.
+  - title: Monitor early-warning triggers between reviews
+    who: Treasury manager, treasury analyst
+    where: Daily position, weekly forecast
+    detail: >-
+      Watch a few trigger indicators agreed in advance: headroom below an amber level, covenant headroom below a
+      threshold, large forecast misses two weeks in a row, a relationship bank downgraded, a key customer in
+      difficulty. Crossing a trigger means an off-cycle review and escalation, and possibly the [liquidity crisis](wf:liquidity-crisis) playbook.
+example:
+  title: "Helvetic's 12-month liquidity plan in October 2026: plenty of cash, but a covenant and a bond in view"
+  body: |
+    Daniel prepares the quarterly liquidity review for Thomas (CFO) and the board's audit committee. Lea has linked the
+    13-week forecast (October–December) and Marco's (FP&A) 2027 budget. Group cash is CHF 45m, of which about CHF 7m
+    (CNY ~60m) sits in HM Suzhou and is treated as [trapped](term:trapped-cash); the policy minimum cash is CHF 10m;
+    the CHF 200m RCF is CHF 60m drawn. Helvetic's liquidity policy requires at least CHF 50m of headroom at all times.
+    All figures are illustrative.
+
+    **Base case (CHF m, quarter-end):**
+
+    | Quarter | Opening cash | Operating CF (after tax, interest, leases) | Capex | Dividend / coupon | Closing cash | − trapped − minimum | Undrawn RCF | **Headroom** |
+    |---|---|---|---|---|---|---|---|---|
+    | Q4 2026 | 45.0 | +24.0 | −8.0 | −1.5 (bond coupon) | 59.5 | −17.0 | 140 | **182.5** |
+    | Q1 2027 | 59.5 | −4.0 (bonuses, tax, inventory build) | −7.0 | — | 48.5 | −17.0 | 140 | **171.5** |
+    | Q2 2027 | 48.5 | +11.0 | −8.0 | −20.0 (dividend, May) | 31.5 | −17.0 | 140 | **154.5** |
+    | Q3 2027 | 31.5 | +10.0 | −7.0 | — | 34.5 | −17.0 | 140 | **157.5** |
+
+    Headroom is never in doubt in the base case. Net debt at the end of the horizon is 160 − 34.5 = CHF 125.5m;
+    with EBITDA of about CHF 70m, leverage is ~1.8x against a covenant of 3.25x.
+
+    **Combined stress** (agreed with Thomas last year): a machine-tool downturn cuts EBITDA from 70 to 50; the 20 largest
+    customers pay 30 days later (about CHF 15m of cash tied up); inventory for cancelled orders absorbs CHF 8m.
+    Cumulative cash impact ≈ −CHF 40m (the EBITDA fall is partly offset by lower tax).
+
+    | Stress result at the end of the horizon | Cash | Net debt | Leverage (covenant ≤ 3.25x) | Headroom |
+    |---|---|---|---|---|
+    | Stress, no management action | −5.5 → RCF drawn ~CHF 23m more to restore minimum cash | 165.5 | **3.3x — breach** | ~CHF 117m *if* the RCF were still available |
+    | Stress + dividend cancelled (+20) | | 145.5 | 2.9x | |
+    | Stress + dividend cancelled + CHF 8m capex deferred | | 137.5 | 2.75x | |
+
+    **What Daniel concludes and recommends:**
+    1. *Cash is not the problem; the covenant is.* In the downturn scenario the group runs out of covenant room before it
+       runs out of cash — and a covenant breach could block the RCF, turning a covenant issue into a liquidity issue.
+    2. The dividend decision is the most powerful lever and falls in February (board proposal to the April AGM), so the
+       board should see the stress case before approving the dividend proposal.
+    3. The CHF 100m bond matures in 2028. If it were repaid from the RCF, undrawn headroom would fall from 140 to about 40
+       — below the CHF 50m policy minimum. He proposes to start refinancing in 2027 (a new CHF bond or a Schuldschein),
+       at least 12 months before maturity, and to talk to the four RCF banks about extending the facility at the same time.
+    4. Amber trigger: if order intake falls more than 15% for two consecutive months, the stress case becomes the base
+       case and capex approvals above CHF 1m go to the CFO.
+
+    Thomas accepts points 1–3 and asks Daniel to prepare a financing proposal (bond vs Schuldschein, indicative pricing
+    from two banks) for the March board.
+judgment:
+  - decision: How much minimum liquidity the company should hold
+    why: A trade-off between the cost of idle cash and commitment fees and the cost of running short. There is no formula; it depends on how volatile the business is, how reliable forecasts are and how much the board fears a downturn.
+  - decision: Which stress scenarios are severe but plausible
+    why: Requires knowing the business — its customers, its cycle, its banks. Scenarios that are too mild give false comfort; implausible ones get ignored.
+  - decision: Whether to trust FP&A's plan or apply a treasury haircut
+    why: The plan is also a performance target, so it tends to be optimistic. Overriding it is organisationally sensitive.
+  - decision: When to refinance, and how early to pay for certainty
+    why: Refinancing early costs money (carrying two instruments, fees) but removes the risk of facing a closed market at maturity. The right timing depends on market conditions and the company's credit story.
+  - decision: Which cash counts as available
+    why: Trapped cash, minimum operating balances, cash held for customer prepayments or regulatory reasons — the definition changes the headroom number materially and is a judgment agreed with the CFO.
+  - decision: When a scenario justifies action now versus monitoring
+    why: Cutting a dividend or delaying capex has real business costs; waiting too long removes options.
+failure_modes:
+  - mode: Counting facilities that won't be there when needed
+    consequence: Headroom looks ample, but the RCF expires within the horizon, is conditional on a covenant that will break in the same downturn, or depends on a bank that is itself in trouble.
+    detection: Month-by-month facility availability; linking the covenant projection to headroom; bank counterparty review.
+  - mode: Counting cash that can't be moved
+    consequence: Group headroom includes cash in China, a pledged account or a subsidiary with minority shareholders; in a crunch it cannot reach the parent in time.
+    detection: Explicit trapped-cash and minimum-cash deductions by entity; asking tax/legal what could really be upstreamed within a month.
+  - mode: Month-end view hides intra-month troughs
+    consequence: Quarterly or month-end headroom looks fine, but payroll, VAT and a coupon in the same week drive the actual low point below minimum.
+    detection: Linking the weekly 13-week forecast into the first months; watching the weekly low point, not just month-ends.
+  - mode: Refinancing left too late
+    consequence: A maturity enters the last 12 months without replacement; rating agencies and auditors raise questions (going-concern disclosures in the worst case); the company negotiates from weakness.
+    detection: A dated funding plan with milestones; policy rule on refinancing lead time.
+  - mode: Stress scenarios negotiated down
+    consequence: The scenario is softened until it passes; the plan gives false comfort.
+    detection: Scenarios agreed in advance with the CFO/board and kept stable; reverse stress test as a cross-check.
+  - mode: Plan built and filed, not used
+    consequence: Decisions (dividend, capex, acquisitions) are taken without looking at liquidity consequences.
+    detection: Ask whether the last dividend or acquisition proposal came with a headroom and covenant impact.
+software: >-
+  Liquidity planning is overwhelmingly done in **Excel** at mid-market companies, linking the 13-week forecast (from
+  Excel, a forecasting tool or a TMS) with FP&A's plan. **TMS** platforms and some forecasting tools offer
+  scenario and headroom views, and large groups use their TMS debt module as the source of the financing calendar;
+  but the P&L-to-cash bridge, covenant projections and stress scenarios are commonly still modelled in spreadsheets
+  because they depend on facility-specific definitions and management assumptions. Planning systems (FP&A) provide the
+  long-range numbers. See [Systems & Data](/systems).
+manual_work:
+  - Reconciling the 13-week forecast with FP&A's monthly plan so the two views agree at the seam.
+  - Re-keying facility terms, maturities, extension dates and covenant definitions from PDF agreements into the model.
+  - Rebuilding the P&L-to-cash bridge every budget cycle.
+  - Running scenarios by copying the model and changing assumptions by hand.
+  - Projecting covenant ratios with accounting (adjustments, lease treatment, pro-forma effects).
+  - Writing the board slide and explaining changes versus last month.
+by_size:
+  startup: >-
+    Liquidity planning *is* the [runway](term:cash-runway) model: cash divided by [net burn](term:burn-rate), with
+    scenarios for slower sales or a delayed funding round. The founder/CFO and the board decide when to start fundraising
+    (fundraising commonly takes months, so it starts well before cash runs short), when to cut costs, and whether to take
+    [venture debt](term:venture-debt) as extra runway. There are no covenants or facilities to model unless venture debt is taken.
+  sme: >-
+    A 12-month monthly plan in Excel, usually built by the CFO or head of accounting, often prepared for the bank
+    (annual credit review) and the board. Headroom = cash plus undrawn credit line. Stress testing is informal ("what if
+    the two biggest projects slip a quarter?"). Swiss boards increasingly expect a formal 12-month liquidity plan because
+    of their statutory solvency-monitoring duty.
+  midmarket: >-
+    A monthly liquidity plan owned by the treasury manager, 12–24 months, linked to the 13-week forecast and FP&A's
+    budget, with covenant projections and two or three standard stress scenarios. The key outputs are headroom, covenant
+    room and the refinancing timeline for the next bond or facility. Presented to the CFO monthly and the audit committee
+    quarterly.
+  multinational: >-
+    Group liquidity planning run by the cash & liquidity or corporate finance team, with a formal liquidity policy
+    (minimum liquidity, maximum reliance on short-term funding such as [commercial paper](term:commercial-paper), backstop
+    facility sized to cover CP outstanding), a multi-year funding plan, and liquidity metrics aligned with rating-agency
+    methodology. Stress testing is more formal (defined scenarios, reverse stress tests, sometimes [cash flow at risk](term:cash-flow-at-risk)).
+    The hard parts are forecast quality from dozens of entities, restricted-currency cash and bank counterparty concentration.
+companies:
+  kleio: >-
+    Sarah's "liquidity plan" is the runway model: CHF 22m at CHF ~0.9m net burn ≈ 24 months, but the January and July
+    annual prepayments flatter the runway for half the year. The board's rule is to start fundraising with at least 12
+    months of runway left; the venture-debt offer would add runway but brings covenants and a lender to manage.
+  alpine: >-
+    Martin maintains a 12-month monthly plan in Excel with Petra. Headroom = cash (CHF 6–12m) plus the undrawn part of
+    the CHF 12m committed line. The stress case is "the three largest project acceptances slip by one quarter" — which
+    can swing headroom by CHF 5m+. The plan goes to the board quarterly and to the house bank for the annual credit review.
+  helvetic: >-
+    The worked example above: headroom is ample, but the downturn case shows the covenant as the binding constraint, and
+    the 2028 bond drives the funding plan. Daniel owns the plan; Marco supplies the budget; Claudia confirms covenant figures.
+  globalchem: >-
+    Priya's and Olivier's teams run a 24-month group liquidity plan: the EUR 1.5bn undrawn RCF backstops the EUR
+    commercial-paper programme, bond maturities are refinanced well ahead of the final year, and the liquidity metrics
+    are presented in the same sources-and-uses shape the rating agencies use. Cash in restricted-currency countries is
+    excluded from available liquidity.
+handoffs:
+  - from: Cash forecasting (treasury analyst)
+    gives: 13-week forecast with weekly low points
+    to: Liquidity model (treasury analyst)
+  - from: FP&A
+    gives: budget / rolling forecast (EBITDA, capex, working capital) for months 4–24 and agreed downturn assumptions
+    to: Treasury analyst / manager
+    note: The seam between the two forecasts is where inconsistencies hide.
+  - from: Accounting
+    gives: covenant definitions, adjusted EBITDA, lease and pension figures
+    to: Treasury manager
+  - from: Tax / legal
+    gives: what cash is trapped; conditions to draw facilities; dividend capacity by entity
+    to: Treasury manager
+  - from: Treasury manager
+    gives: headroom (base and stress), covenant room, funding plan, recommended actions
+    to: CFO / head of treasury
+  - from: CFO
+    gives: liquidity report, dividend and financing proposals
+    to: Board / audit committee
+  - from: Treasury manager
+    gives: refinancing or facility-extension requests
+    to: Relationship banks
+    note: Months of lead time; banks prefer to discuss before the company needs it.
+interview: >-
+  Ask the treasurer or treasury manager to show you **their last liquidity report to the CFO or board**: how they define
+  available liquidity (what they exclude), where the long-range numbers come from, which stress scenarios they run and
+  who chose them, and what the last scenario was that actually changed a decision. Ask when they start refinancing a
+  maturity and why. At an SME, ask the CFO what the bank or board asks to see. Don't confuse this with the 13-week
+  forecast — ask how the two connect.
+ai_note: >-
+  The mechanical parts — linking forecasts, pulling facility terms from agreements, recomputing headroom and covenant
+  ratios, running predefined scenarios and drafting commentary — are automatable in principle, and extracting terms
+  from facility PDFs is a plausible narrow task. The core decisions (buffer size, which scenarios matter, when to
+  refinance, whether to cut a dividend) are low-frequency, high-consequence judgments owned by the CFO and board;
+  software can inform them but is unlikely to be trusted to make them.
+terms: [liquidity-headroom, liquidity-plan, liquidity-stress-test, sources-and-uses, funding-plan, covenant-headroom, committed-facility, trapped-cash, cash-buffer, refinancing-risk, liquidity-risk, covenant, rcf, cash-runway]
+related: [cash-forecasting, daily-cash-positioning, credit-facility-management, covenant-monitoring, liquidity-crisis, surplus-cash-investment]
+sources: [ch-co-board-duties, weka-725-liquidity, sp-liquidity-descriptors, eact-2025, act-hsf-debt-2025, pwc-gts-2025]
+evidence_note: >-
+  The distinction between forecasting (best estimate of flows) and liquidity planning (available liquidity vs
+  obligations, under stress) and the step sequence are established treasury practice; the Helvetic figures, scenario
+  sizes and trigger levels are illustrative synthesis. Legal context: Art. 725 CO requires Swiss boards to monitor
+  solvency[](cite:ch-co-board-duties); the 12-month liquidity-plan reading is practitioner commentary[](cite:weka-725-liquidity).
+  Rating-agency liquidity thresholds are from S&P's published methodology as reproduced by S&P Maalot[](cite:sp-liquidity-descriptors).
+  Long-term funding ranked among European treasurers' top priorities in 2025[](cite:eact-2025), and 76% of ACT/HSF
+  respondents expected macro and geopolitical factors to influence debt strategy considerably[](cite:act-hsf-debt-2025).
+  Note: in this session sources were verified from publisher search-result extracts because direct page fetches were
+  blocked by the network proxy.

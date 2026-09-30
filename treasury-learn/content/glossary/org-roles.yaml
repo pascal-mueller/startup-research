@@ -1,0 +1,129 @@
+# Glossary terms added by the org-roles stream.
+- id: front-office
+  term: Front office (treasury)
+  aka: [dealing desk, treasury front office]
+  category: Organisation
+  plain: The part of treasury that decides and executes — agrees FX deals, deposits and loans with banks, and manages the cash position.
+  professional: >-
+    Treasury activities that commit the company to transactions: exposure identification with the business, market
+    information and pricing, cash management, dealing in money markets, FX, interest rates and funding, and entering
+    deals into the TMS. Must be segregated from confirmation and settlement.
+  example: >-
+    At GlobalChem, a dealer on Jonas's FX desk books a USD 25m forward with one of the seven relationship banks on the
+    trading platform. That is front office. The confirmation match and the settlement two days later are done in Kraków
+    by Marta's back office.
+  related: [middle-office, back-office, segregation-of-duties, dealing-mandate]
+  confusedWith: "**Front office in a bank** — in banks it means client-facing sales and trading. In a corporate treasury it means the people who deal and decide, even though they have no external clients."
+- id: middle-office
+  term: Middle office (treasury)
+  aka: [treasury risk control, treasury control]
+  category: Organisation
+  plain: The control layer between dealing and settlement — checks limits and policy compliance and reports risk.
+  professional: >-
+    Independent monitoring of treasury activity: checks that deals follow authorisation rules, monitors counterparty
+    and dealing limits and reports breaches, measures and reports exposures and performance, maintains bank-account and
+    dealing mandates and standing settlement data. Usually a distinct team only at large companies; elsewhere its tasks
+    are split between back office, treasury controlling and the head of treasury.
+  example: >-
+    Every morning GlobalChem's middle-office analyst runs the counterparty-limit report: deposits and derivative exposure
+    with one bank reached 108% of its limit after a large receipt. The breach is reported to Anna and Priya moves the
+    surplus the same day.
+  related: [front-office, back-office, counterparty-limit, treasury-policy]
+- id: back-office
+  term: Back office (treasury)
+  aka: [treasury operations, settlements]
+  category: Organisation
+  plain: The team that makes sure every treasury deal and transfer is confirmed, settled, reconciled and booked correctly.
+  professional: >-
+    Treasury operations: timely confirmation of treasury transactions, settlement when due, bank reconciliation,
+    accounting entries for treasury transactions, maintenance of static data and TMS controls, and reporting where no
+    middle office exists. Should report through a different line than the front office.
+  example: >-
+    At Helvetic there is no back office: Lea checks bank confirmations of Daniel's FX forwards against the dealing
+    sheet, and Claudia's accounting team books them. At GlobalChem, eight people in Kraków under Marta do this full-time.
+  related: [front-office, middle-office, deal-confirmation, static-data, reconciliation]
+- id: deal-confirmation
+  term: Deal confirmation
+  aka: [trade confirmation, confirmation matching]
+  category: Risk & control
+  plain: The written record from the bank of a deal agreed by phone or on a platform, checked against the company's own record.
+  professional: >-
+    Independent verification of the economic terms of a treasury transaction (counterparty, amount, currency, rate,
+    value date, settlement instructions) by matching the counterparty's confirmation against the internally recorded
+    deal, performed by someone other than the dealer, via SWIFT MT300-type messages, a matching platform or signed PDF.
+  example: >-
+    Daniel books a EUR 4m forward at 0.9360 for 30 December. The bank's confirmation shows 0.9306. Lea spots the
+    difference before settlement; it turns out to be a typo in the bank's back office, corrected the same day.
+  related: [back-office, front-office, segregation-of-duties]
+- id: static-data
+  term: Static data
+  aka: [standing data, master data, SSIs, standard settlement instructions]
+  category: Systems
+  plain: The reference information treasury systems depend on — bank accounts, counterparties, settlement instructions, users and limits.
+  professional: >-
+    Rarely changing reference data in the TMS, ERP and banking channels: bank-account master records, counterparty and
+    business-partner records, standard settlement instructions (SSIs), dealing and signing limits, user rights, market-data
+    mappings. Changes are a classic fraud and error vector and are therefore controlled by the back or middle office
+    under four-eyes rules.
+  example: >-
+    A bank tells GlobalChem it is changing its USD correspondent. Marta's team updates the SSI in SAP after a call-back
+    to the bank on a known number; a second person approves the change. Without it, next week's USD deposit maturity
+    would be paid to a closed account.
+  related: [back-office, vendor-master-data, call-back-verification]
+- id: dealing-mandate
+  term: Dealing mandate
+  aka: [dealing authority, authorised dealers list, trading authority]
+  category: Risk & control
+  plain: The list of who in the company may agree FX, deposit or loan deals with which bank, up to what size.
+  professional: >-
+    The authority, normally derived from the treasury policy and board-approved limits, that names the individuals
+    permitted to deal, the instruments, maximum tenors and amounts, and the counterparties; sent to banks so they know
+    whom to accept deals from. Distinct from bank-account signatory mandates, which govern payments.
+  example: >-
+    Helvetic's dealing mandate lets Daniel deal FX forwards up to 12 months and CHF 20m per deal; anything larger, or an
+    option, needs Thomas's prior approval. Lea is not on the mandate.
+  related: [treasury-policy, signatory, front-office, signing-authority-matrix]
+  confusedWith: "**Payment mandate / signatory list** — who may sign payments on an account. A person can be allowed to deal FX but not to release payments, and vice versa."
+- id: shared-service-centre
+  term: Shared service centre
+  aka: [SSC, global business services, GBS]
+  category: Organisation
+  plain: A central unit, often in a lower-cost location, that performs routine finance tasks (AP, AR, accounting, payments) for many group companies.
+  professional: >-
+    A group-internal service organisation that standardises and executes transactional finance processes for multiple
+    legal entities under service-level agreements; frequently hosts AP, AR, general ledger, bank reconciliation and
+    sometimes the treasury back office and payment factory. Typical European locations include Poland, Czechia, Hungary,
+    Portugal and Ireland.
+  example: >-
+    GlobalChem's Kraków SSC runs AP for 22 European entities, prepares the daily payment files, and hosts Marta's
+    treasury operations team, which releases them through the payment factory. Payment policy and bank selection stay
+    with Group Treasury in Basel.
+  related: [payment-factory, back-office, pobo]
+  confusedWith: "**Payment factory** — a narrower concept: the central payment engine and process. It may sit inside an SSC, inside treasury, or be mostly a system."
+- id: treasury-committee
+  term: Treasury committee
+  aka: [finance committee, ALCO (in banks)]
+  category: Organisation
+  plain: A regular meeting where the CFO and treasury (sometimes the CEO or board members) review risks and approve treasury decisions beyond treasury's own limits.
+  professional: >-
+    A governance forum, typically chaired by the CFO, that approves or reviews the treasury policy, hedging strategy,
+    funding plans, counterparty limits and exceptions, and receives compliance reporting. Monthly or quarterly at large
+    companies; at mid-market companies often an informal monthly CFO–treasury meeting fills the role.
+  example: >-
+    GlobalChem's quarterly treasury committee (Markus, Anna, the Head of Tax, the Chief Accounting Officer) approves
+    raising the EUR hedge ratio for months 7–12 from 40% to 50% and a new counterparty limit for a Singapore bank.
+  related: [treasury-policy, hedge-ratio, counterparty-limit]
+- id: cash-disposition
+  term: Cash disposition
+  aka: [Disposition, Liquiditätsdisposition, daily cash disposition]
+  category: Cash & liquidity
+  plain: The German/Swiss-German term for the daily work of deciding where cash must move today — funding, sweeping, investing.
+  professional: >-
+    From German *Disposition*: the daily act of allocating liquidity across accounts and entities based on the cash
+    position (transfers, concentration, short-term placements and borrowings). German-speaking treasurers use it
+    where English speakers say "daily cash positioning and funding".
+  example: >-
+    Bosch's English-language cash-manager ad describes "daily cash operations, including cash disposition and
+    liquidity forecasts". At Helvetic it is the 09:00 decision after Lea's position: Daniel sends EUR 1.5m to
+    HM Deutschland and places CHF 2m for one week.
+  related: [cash-position, cash-concentration, sweeping]

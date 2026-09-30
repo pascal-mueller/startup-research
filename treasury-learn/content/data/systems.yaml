@@ -1,0 +1,367 @@
+# Systems & Data — structured data used by <StackDiagram/>, <CompanyStacks/>, <SystemsTable/>, <VendorProfiles/>.
+# Owner: systems stream. Product facts: only what is supported by a registered source or is long-established;
+# every product carries `checked` saying how current the description is.
+
+# ---------------------------------------------------------------- stack layers (top = decisions, bottom = data sources)
+layers:
+  - id: decide
+    name: Decide & report
+    note: Where people look at the numbers and decide.
+    boxes:
+      - id: reporting
+        name: Reports & decision packs
+        detail: Daily cash report, 13-week forecast pack, covenant and board liquidity reports. Usually Excel/PowerPoint, sometimes BI (Power BI, Tableau) on top of TMS data.
+        href: /systems/spreadsheets
+  - id: treasury
+    name: Treasury workflow
+    note: The layer that combines everything below into positions, forecasts, deals and exposures.
+    boxes:
+      - id: tms
+        name: TMS or cash tool
+        detail: Cash position, forecast, deals (FX, money market, debt), in-house bank, bank account register, accounting postings. Below mid-market this box is a spreadsheet.
+        href: /systems/tms
+      - id: excel
+        name: Spreadsheets
+        detail: Present at every size — as the whole treasury system at small companies, as the glue and the judgment layer at large ones.
+        href: /systems/spreadsheets
+  - id: execution
+    name: Execution
+    note: Where money and deals actually get committed.
+    boxes:
+      - id: payhub
+        name: Payment generation & approval
+        detail: ERP payment run, TMS payment module or payment hub/factory; format generation (pain.001), approval workflow, sanctions screening.
+        href: /systems/bank-connectivity
+      - id: trading
+        name: Dealing
+        detail: FX and money-market trades by phone/chat with the bank, bank FX portal, or a multi-dealer platform (e.g. 360T, FXall, Bloomberg FXGO).
+        href: /systems/market-data
+  - id: connectivity
+    name: Bank connectivity
+    note: The pipes. Files and messages in both directions.
+    boxes:
+      - id: channels
+        name: Portals · EBICS · Swift · host-to-host · APIs
+        detail: Outbound payment files; inbound statements (camt.053/MT940), intraday reports (camt.052/MT942), status reports (pain.002) and notifications (camt.054).
+        href: /systems/bank-connectivity
+  - id: sources
+    name: Data sources
+    note: Treasury owns almost none of these.
+    boxes:
+      - id: erp
+        name: ERP
+        detail: AP and AR open items, payment runs, GL, vendor master data, intercompany balances. Owned by accounting / finance systems.
+        href: /systems/erp
+      - id: banks
+        name: Banks
+        detail: Balances, transactions, payment execution and status, fees, facility and deal confirmations.
+        href: /systems/bank-connectivity
+      - id: market
+        name: Market data
+        detail: FX spot and forward rates, interest-rate curves and fixings (SARON, €STR, SOFR, Euribor), credit spreads.
+        href: /systems/market-data
+      - id: bu
+        name: Business units & FP&A
+        detail: Forecast submissions, budgets, capex plans, big deals and one-offs — mostly by email and Excel template.
+        href: /systems/data-quality
+
+# ---------------------------------------------------------------- what each reference company runs in each box
+# Values are short labels. `null` = the box does not exist as a separate thing at this company.
+stacks:
+  kleio:
+    reporting: "Board runway slide, built by Sarah from the Google Sheet"
+    tms: null
+    excel: "One Google Sheet: balances, runway, 13-week view"
+    payhub: "Accounting software pays bills; Nina prepares, Sarah approves in the bank portal"
+    trading: "Bank portal FX conversion when USD piles up"
+    channels: "E-banking portals; bank feeds into the accounting software"
+    erp: "Cloud accounting (Bexio-class) + Stripe + invoicing tool"
+    banks: "2 Swiss banks + 1 US bank, 7 accounts"
+    market: "Rates shown in the bank portal"
+    bu: "None — Sarah knows the pipeline and headcount plan"
+  alpine:
+    reporting: "Weekly cash sheet for Martin; monthly board figures"
+    tms: null
+    excel: "Petra's cash workbook and 13-week forecast"
+    payhub: "Business Central payment journal → pain.001"
+    trading: "Phone/portal FX with the large Swiss bank"
+    channels: "EBICS file upload to both Swiss banks; portals for DE/US"
+    erp: "Microsoft Dynamics 365 Business Central"
+    banks: "2 banks, 9 accounts"
+    market: "Bank portal rates; ECB/ESTV rates for accounting"
+    bu: "DE and US managing directors email big expected receipts"
+  helvetic:
+    reporting: "Daily cash report and 13-week pack in Excel"
+    tms: "None yet — TMS project in evaluation"
+    excel: "Position, forecast consolidation, hedge register, covenant model"
+    payhub: "Local ERPs create payment files; Daniel approves group-level transfers"
+    trading: "FX forwards with relationship banks via bank platforms"
+    channels: "Multibank connectivity tool over EBICS and Swift"
+    erp: "SAP S/4HANA (CH, DE, CZ) + smaller local ERPs (IT, FR, UK, US, CN)"
+    banks: "5 banks, 12 operating accounts"
+    market: "Bank platforms + free central-bank data"
+    bu: "8 subsidiaries submit forecast templates weekly"
+  globalchem:
+    reporting: "TMS reports + Excel/BI packs for CFO and board"
+    tms: "SAP treasury modules (in S/4HANA) + separate forecasting tool"
+    excel: "Scenario models, ad hoc analysis, reconciliations of edge cases"
+    payhub: "Payment factory in Kraków (POBO in Europe)"
+    trading: "Multi-dealer FX platform; deals flow into SAP"
+    channels: "Swift via a service bureau for ~20 banks; a few host-to-host links"
+    erp: "SAP S/4HANA (most entities) + legacy ERPs in acquired units"
+    banks: "~20 banks, ~280 accounts"
+    market: "Bloomberg + rate feed into the TMS"
+    bu: "~40 reporting units via the forecasting tool"
+
+# ---------------------------------------------------------------- categories
+categories:
+  - id: erp
+    name: ERP (with or without treasury modules)
+    what: The accounting system of record. Some ERPs include treasury modules (SAP, Oracle, Dynamics 365 Finance); many companies use only its AP/AR/GL and payment-run functions.
+    sizes: [startup, sme, midmarket, multinational]
+  - id: tms-enterprise
+    name: Enterprise TMS / TRMS
+    what: Full treasury and risk management system — cash, forecasting, deal management and valuation, hedge accounting, in-house bank, payments, bank account management, accounting.
+    sizes: [midmarket, multinational]
+  - id: cash-platform
+    name: Cloud cash-management / treasury platform
+    what: Newer SaaS platforms built around bank connectivity, cash visibility, forecasting and payments, typically for SMEs to mid-market; several are adding deal management and TMS depth.
+    sizes: [sme, midmarket]
+  - id: connectivity
+    name: Bank connectivity / payment hub
+    what: Software or service that runs the file and message exchange with banks (EBICS, Swift, host-to-host, APIs), format conversion and payment approval — standalone, as a Swift service bureau, or embedded in ERP/TMS.
+    sizes: [midmarket, multinational]
+  - id: market-data
+    name: Market data & dealing
+    what: Rates and prices for valuation and decisions; platforms to execute FX and money-market trades.
+    sizes: [midmarket, multinational]
+
+# ---------------------------------------------------------------- products
+# checked: how the description was verified. "search" = vendor/publisher page found via web search in Sept 2026
+# (page text seen as search snippet, not opened in full). "knowledge" = long-established facts from the author's
+# background knowledge, NOT re-verified in Sept 2026 — check the vendor site before relying on details.
+products:
+  - id: sap
+    name: SAP S/4HANA — Cash Management, Treasury and Risk Management; SAP Multi-Bank Connectivity
+    vendor: SAP
+    category: erp
+    segment: Mid-market to largest multinationals already on SAP
+    current: "SAP ERP 6.0 (ECC) mainstream maintenance ends 31 Dec 2027 (optional extended maintenance to 2030), so many groups are in S/4HANA migrations that also reopen the treasury-system question[](cite:sap-ecc-maintenance). SAP Multi-Bank Connectivity (MBC) is SAP's managed cloud gateway to banks with embedded EBICS and Swift and support for SFTP/host-to-host and APIs[](cite:sap-mbc)."
+    why: The treasury tools live in the same system as AP, AR and the GL, so bank statements post and payment runs originate without an interface. Large SAP shops (like GlobalChem) often use SAP itself as the TMS.
+    flows: "In: bank statements (camt.053/MT940) into electronic bank-statement processing with posting rules; market data feed; deals entered by treasury. Out: pain.001 from payment runs (F110) and treasury payments; GL postings for deals, hedge accounting, in-house-bank positions."
+    users: Treasury front/back office, accounting (statement posting, reconciliation), AP (payment runs), a treasury-systems team or SAP consultants for configuration.
+    not: "Does not make SAP easier to change: configuration (posting rules, liquidity items, bank formats) usually needs SAP specialists. Subsidiaries on non-SAP ERPs still have to be connected. Forecasting from business units remains a data-collection problem."
+    sizes: [midmarket, multinational]
+    companies: [helvetic, globalchem]
+    sources: [sap-mbc, sap-ecc-maintenance]
+    checked: search
+  - id: oracle
+    name: Oracle Fusion Cloud (Cash Management) / Oracle E-Business Suite
+    vendor: Oracle
+    category: erp
+    segment: Mid-market to large groups on Oracle ERP; NetSuite (also Oracle) for startups and scale-ups
+    current: Not re-verified in this session. Oracle's treasury-relevant functions in its cloud ERP centre on cash management (bank statement processing, reconciliation, cash positioning and forecasting); many Oracle customers run a separate TMS for deals and risk.
+    why: Same argument as SAP — bank statements, AP and AR in one ledger.
+    flows: "In: bank statements for reconciliation. Out: payment files from Payables; cash-position and forecast views from ledger and subledger data."
+    users: Accounting and AP/AR teams; treasury where no TMS exists.
+    not: Deal management, hedge accounting and in-house banking for complex groups are typically handled in a dedicated TMS (verify scope per version).
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: []
+    checked: knowledge
+  - id: dynamics
+    name: Microsoft Dynamics 365 Finance / Dynamics 365 Business Central
+    vendor: Microsoft
+    category: erp
+    segment: "Business Central: SMEs (like Alpine); Finance: mid-market and larger"
+    current: Not re-verified in this session. Both include bank-account management, bank statement import and reconciliation, vendor payment files and a cash-flow forecast view; country payment formats often come from local partner extensions.
+    why: The SME's accounting system already knows every open invoice; paying suppliers and reconciling the bank from it removes double entry.
+    flows: "In: bank statement files (camt.053 or bank-specific) for reconciliation. Out: payment files (pain.001) for upload to the bank via portal or EBICS client."
+    users: Accountants, AP clerk, head of accounting (Petra at Alpine); an implementation partner for formats and setup.
+    not: No treasury deal management, hedge register or multi-bank connectivity of its own at SME level — those stay in bank portals and Excel.
+    sizes: [sme, midmarket]
+    companies: [alpine]
+    sources: []
+    checked: knowledge
+  - id: kyriba
+    name: Kyriba
+    vendor: Kyriba (majority-owned by Bridgepoint since 2019; General Atlantic minority stake 2024)
+    category: tms-enterprise
+    segment: Mid-market to large multinationals; strong in bank connectivity and payments
+    current: "Bridgepoint took majority control in 2019; General Atlantic bought a minority stake in late 2024 at a reported valuation above USD 3bn[](cite:kyriba-ga-2024). In April 2026 Kyriba announced agentic-AI features ('TAI'), a Circle USDC settlement integration and direct access to J.P. Morgan money-market funds from within the platform[](cite:kyriba-live-2026) — announcements, not evidence of adoption."
+    why: SaaS TMS that combines cash positioning, forecasting, payments (incl. a payment hub), bank connectivity and FX risk in one platform, without on-premise infrastructure.
+    flows: "In: bank statements via its own connectivity (Swift, EBICS, host-to-host, APIs); ERP AP/AR data; market data. Out: payments to banks; accounting entries back to the ERP."
+    users: Treasury team, payments/back office, and usually a named internal system owner.
+    not: Does not fix ERP data quality or late subsidiary forecasts; each bank connection still needs bank-side onboarding; implementation effort scales with the number of banks, entities and ERPs.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: [kyriba-ga-2024, kyriba-live-2026]
+    checked: search
+  - id: fis
+    name: FIS Treasury and Risk Manager (Quantum Edition, Quantum Cloud Edition, Integrity Edition)
+    vendor: FIS
+    category: tms-enterprise
+    segment: "Quantum: large and complex treasuries (deep deal management and risk); Integrity: SaaS for mid-market"
+    current: "FIS launched Treasury and Risk Manager – Quantum Cloud Edition on 29 April 2025 (public cloud); classic Quantum remains available. FIS states the suite serves more than 1,000 organisations[](cite:fis-quantum-cloud-2025)."
+    why: Long-established TRMS for companies with heavy deal volumes, debt portfolios, derivatives and hedge accounting.
+    flows: "In: deals, market data, bank statements, ERP exposures. Out: settlements and confirmations, valuations, hedge-accounting and GL entries."
+    users: Front, middle and back office in larger treasuries; a TMS administrator or treasury-systems team.
+    not: A deep TRMS is heavy to run for a two-person treasury; forecasting quality still depends on business inputs.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: [fis-quantum-cloud-2025]
+    checked: search
+  - id: ripple-treasury
+    name: Ripple Treasury (formerly GTreasury)
+    vendor: Ripple (acquired GTreasury, announced 16 Oct 2025)
+    category: tms-enterprise
+    segment: Mid-market to large companies
+    current: "Ripple announced the USD 1bn acquisition of GTreasury on 16 October 2025[](cite:ripple-gtreasury-2025); the product was rebranded Ripple Treasury in January 2026[](cite:ripple-treasury-rebrand). In January 2026 it also acquired Solvexia (reconciliation and regulatory-reporting automation)[](cite:gtreasury-solvexia-2026). The owner's stated strategy adds digital-asset capabilities — expect some interviewees to ask what this means for a conventional TMS."
+    why: SaaS TMS covering cash positioning, forecasting, payments, debt and investments, FX exposure and hedge accounting.
+    flows: "In: bank data, ERP data, deals, market data. Out: payments, accounting entries, risk and hedge reports."
+    users: Treasury team, back office, system administrator.
+    not: Same as any TMS — connectivity onboarding per bank, business-unit forecast quality and policy judgment remain the company's problem.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: [ripple-gtreasury-2025, ripple-treasury-rebrand, gtreasury-solvexia-2026]
+    checked: search
+  - id: ion
+    name: ION Treasury (Wallstreet Suite, Reval, IT2, Openlink, City Financials, Treasura, ITS)
+    vendor: ION Group
+    category: tms-enterprise
+    segment: "Several products for different segments — e.g. Wallstreet Suite for the largest and most complex treasuries, Openlink for commodity-intensive companies, City Financials for Central European companies, Reval as SaaS"
+    current: "ION's treasury portfolio is a collection of acquired systems that remain separate products[](cite:ion-treasury). When a treasurer says 'we run ION', ask which one."
+    why: Covers everything from mid-market SaaS to complex multi-asset treasuries (and commodity trading).
+    flows: "In: deals, market data, bank statements, exposures. Out: payments and settlements, valuations, accounting."
+    users: Treasury front/middle/back office; systems team.
+    not: Product choice inside the portfolio matters more than the brand; long-lived installations often carry customisations that make upgrades projects in their own right.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: [ion-treasury]
+    checked: search
+  - id: coupa-treasury
+    name: Coupa Treasury (formerly BELLIN)
+    vendor: Coupa
+    category: tms-enterprise
+    segment: Mid-market to large, strong in DACH (BELLIN was German)
+    current: "Coupa acquired the German TMS vendor BELLIN in 2020 and positions it as Coupa Treasury within its spend-management platform[](cite:coupa-bellin-2020). Later ownership changes at Coupa were not re-verified in this session."
+    why: Cash management, forecasting, payments and bank connectivity, with ties to Coupa's procure-to-pay suite.
+    flows: "In: bank statements, ERP data. Out: payments, cash reports."
+    users: Treasury team, payments staff.
+    not: As for other TMSs.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: [coupa-bellin-2020]
+    checked: search
+  - id: trovata
+    name: Trovata
+    vendor: Trovata (US; bank-backed investors)
+    category: cash-platform
+    segment: US-centric mid-market and larger companies; distributed partly through banks
+    current: "In July 2025 Trovata acquired ATOM, the TMS built by Financial Sciences, to add in-house banking, intercompany netting, FX hedging and bank fee analysis to its API-based cash-visibility and forecasting platform, and extended its Series B with USD 9m from PNC and State Street[](cite:trovata-atom-2025)."
+    why: Fast cash visibility and forecasting from bank APIs and files, with the deeper TMS functions now being added through ATOM.
+    flows: "In: balances and transactions via bank APIs and files. Out: cash reports, forecasts; payments where enabled."
+    users: Treasury and FP&A teams.
+    not: Bank-API coverage is strongest with large US banks; European and Swiss regional banks may still require files. Integration of an acquired TMS into a platform takes time — ask customers which parts they actually use.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: [trovata-atom-2025]
+    checked: search
+  - id: agicap
+    name: Agicap
+    vendor: Agicap (France)
+    category: cash-platform
+    segment: SMEs and mid-sized companies, mainly in Europe
+    current: Not re-verified in this session. Cash-flow tracking and forecasting from bank feeds and accounting data, with categorisation rules and scenarios; has broadened towards payables/receivables workflows.
+    why: Replaces the SME's cash spreadsheet with automatically categorised bank transactions and a rolling forecast, usable by a CFO without a treasury team.
+    flows: "In: bank transactions via aggregator/API connections and file imports; accounting/ERP open items. Out: cash reports and forecast scenarios."
+    users: CFO, finance manager, accountant (Sarah or Petra-type users).
+    not: Not a deal-management or hedge-accounting system; quality depends on categorisation rules and on the bank feeds staying connected.
+    sizes: [startup, sme, midmarket]
+    companies: []
+    sources: []
+    checked: knowledge
+  - id: atlar
+    name: Atlar
+    vendor: Atlar (Sweden)
+    category: cash-platform
+    segment: Scale-ups and mid-market companies, Europe and US
+    current: Not re-verified in this session. Treasury platform built around direct bank connections (host-to-host and APIs), cash visibility, payments and reconciliation, and forecasting.
+    why: Gives a growing company TMS-like cash visibility and controlled payments without an enterprise implementation.
+    flows: "In: bank statements and transactions via direct bank integrations; ERP data. Out: payments to banks; data to the ERP."
+    users: Finance and treasury teams at scale-ups.
+    not: Not a replacement for an enterprise TRMS where heavy derivatives, debt and hedge accounting are needed.
+    sizes: [sme, midmarket]
+    companies: []
+    sources: []
+    checked: knowledge
+  - id: embat
+    name: Embat
+    vendor: Embat (Spain)
+    category: cash-platform
+    segment: European mid-market
+    current: "Founded 2021; raised a EUR 30m Series B in May 2026 led by Cathay Innovation; reports about 150 employees and 400 corporate clients in Europe, with UK/Ireland expansion planned[](cite:embat-series-b-2026)."
+    why: Cash positioning, forecasting, reconciliation and accounting automation for mid-market finance teams.
+    flows: "In: bank data, ERP data. Out: reconciled entries and cash reports."
+    users: Finance and treasury teams at mid-market companies.
+    not: Vendor automation percentages are marketing claims; ask customers what still happens in Excel.
+    sizes: [sme, midmarket]
+    companies: []
+    sources: [embat-series-b-2026]
+    checked: search
+  - id: nomentia
+    name: Nomentia
+    vendor: Nomentia (Finland)
+    category: connectivity
+    segment: Mid-market to large, strong in the Nordics and continental Europe
+    current: Not re-verified in this session. Cash management, payments/payment hub and bank connectivity, plus cash forecasting (from its Cashforce acquisition).
+    why: Central payment hub and bank connectivity for groups with many banks and ERPs, plus cash visibility and forecasting.
+    flows: "In: payment files from multiple ERPs; bank statements. Out: payments to banks in bank-required formats; statements to ERPs/TMS."
+    users: Payments and treasury teams; IT for ERP integration.
+    not: Not a deal/risk system.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: []
+    checked: knowledge
+  - id: bottomline
+    name: Bottomline
+    vendor: Bottomline Technologies (private, Thoma Bravo)
+    category: connectivity
+    segment: Payments, Swift service bureau and cash-management connectivity; strong in UK and US
+    current: Not re-verified in this session.
+    why: Outsourced Swift connectivity and payment processing for companies that do not want to run their own Swift infrastructure.
+    flows: "In: payment files from ERP/TMS. Out: messages to banks over Swift or other channels; statements back."
+    users: Payments/treasury operations; IT.
+    not: Connectivity and payments, not forecasting or risk.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: []
+    checked: knowledge
+  - id: bloomberg
+    name: Bloomberg Terminal (incl. FXGO) / LSEG Workspace (incl. FXall)
+    vendor: Bloomberg; LSEG
+    category: market-data
+    segment: Treasuries that trade actively or need curves and prices for valuation
+    current: Not re-verified in this session. LSEG Workspace replaced the Refinitiv Eikon desktop.
+    why: Market data, news, analytics and multi-dealer FX execution; TMSs take rate feeds for valuation.
+    flows: "In: exchange/bank/benchmark data. Out: rates to the TMS; trade confirmations to the TMS."
+    users: FX/risk managers, dealers, front office; licensing managed centrally.
+    not: Rates do not tell you what to hedge. Licences are per user and not cheap, which is why smaller treasuries use bank portals and free central-bank data.
+    sizes: [midmarket, multinational]
+    companies: [globalchem]
+    sources: []
+    checked: knowledge
+  - id: fx360t
+    name: 360T
+    vendor: Deutsche Börse Group
+    category: market-data
+    segment: Corporates trading FX with several banks
+    current: Not re-verified in this session.
+    why: Multi-dealer request-for-quote platform — the treasurer asks several banks for a price at once and gets an audit trail of competitive quotes.
+    flows: "In: requests from treasury (or from the TMS). Out: executed trades and confirmations into the TMS."
+    users: Dealers, FX/risk managers; back office for confirmations.
+    not: Execution only; exposure identification and hedge decisions happen upstream.
+    sizes: [midmarket, multinational]
+    companies: []
+    sources: []
+    checked: knowledge
