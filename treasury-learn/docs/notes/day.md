@@ -3,7 +3,7 @@
 ## Files created / touched
 - `content/pages/day/index.mdx` (/day) — no universal day; the shared week; `<DayCompare>` table of six personas; who-feeds-whom flows (Helvetic, GlobalChem); "the clock everyone works to" (statement arrival, SIC/T2/CHAPS/Fedwire, payroll dates); common patterns; interview use; evidence note.
 - `content/pages/day/{sarah,petra,daniel,lea,anna,priya}.mdx` — persona card, Monday + Tuesday timelines, rest-of-week/month rhythm, one unusual event, "what keeps them awake", interview callout (good questions + what they won't know), one concept/confusion callout each.
-- `content/data/days.yaml` — all persona data; 97 timeline entries, each with time, kind, systems, call (short decision), why, input, decision, who, next, optional wf links. Cross-links at hand-over points (`/day/lea#monday-0845` → `/day/daniel#monday-0850`, `/day/priya#monday-1030` → `/day/anna#monday-1045`, Priya's loan recommendation → Anna's approval, etc.).
+- `content/data/days.yaml` — all persona data; 96 timeline entries, each with time, kind, systems, call (short decision), why, input, decision, who, next, optional wf links. Cross-links at hand-over points (`/day/lea#monday-0845` → `/day/daniel#monday-0850`, `/day/priya#monday-1030` → `/day/anna#monday-1045`, Priya's loan recommendation → Anna's approval, etc.).
 - `src/components/DayViews.tsx` — `PersonaCard`, `DayTimeline` (expandable rows, time column, kind + system chips, decision chip, expand-all, auto-opens the row targeted by a `#day-hhmm` hash), `DayRhythm`, `DayUnusual`, `DayAwake`, `DayPersonaIndex`, `DayCompare`. Types are local.
 - `src/styles/day.css` — tokens only; dark mode via global tokens; 600px breakpoint stacks the detail grid.
 - `src/components/MdxPage.tsx` — one import line + `...Day` spread (as allowed).
@@ -30,3 +30,7 @@
 - **`cash-forecasting.yaml`** example: "Daniel approves a CHF 5m 3-week deposit" — same CHF ≈ 0% issue.
 - **Org/roles authors**: persona pages link to `/org/roles-cfo`, `/org/roles-head-of-treasury`, `/org/roles-treasury-manager`, `/org/roles-analyst`, `/org/roles-cash-manager`, `/org/roles-fx-risk`, `/org/roles-operations`, `/org/with-accounting`, `/org/with-subsidiaries`, `/org/who-knows-what`. If role pages want to point to the day pages, the anchors are `/day/<persona>#monday-hhmm` / `#tuesday-hhmm`.
 - `content/pages/org/with-accounting.mdx` frontmatter currently fails to parse in Vite (colon inside `summary`), which blanks the whole app while it persists.
+
+## Implementation notes
+- Citations inside `days.yaml` render as superscripts, but `MdxPage` only collects cite ids from the MDX source for the References list. Every cite used in YAML (`bacs-ceo-fraud-2026`, `afp-pfc-2026`, `six-sps-cash-mgmt`) is therefore also cited in an "Evidence" callout in the MDX of the page that shows it (sarah, anna). A lib-level fix (collect cites from rendered data) would be cleaner — request for the core owner.
+- `/workflows/...` paths in frontmatter `related` render as raw paths (they are not MDX pages), so persona pages list only MDX pages there; workflows are linked inline and as chips in timeline rows.

@@ -39,35 +39,34 @@ interface EdgeDef {
   bend?: number
 }
 
-const W = 168
-const H = 46
+const W = 150
+const H = 44
 
 const NODES: NodeDef[] = [
-  { id: 'working-capital', label: 'Working capital', x: 110, y: 70, cluster: 'liquidity' },
-  { id: 'cash-forecasting', label: 'Cash forecasting', x: 350, y: 70, cluster: 'liquidity' },
-  { id: 'cash-management', label: 'Cash management', x: 600, y: 70, cluster: 'liquidity' },
-  { id: 'investments', label: 'Investments', x: 870, y: 36, cluster: 'liquidity' },
-  { id: 'debt', label: 'Debt & financing', x: 870, y: 170, cluster: 'markets' },
-  { id: 'fx', label: 'FX', x: 350, y: 232, cluster: 'markets' },
-  { id: 'risk', label: 'Risk', x: 610, y: 232, cluster: 'markets' },
-  { id: 'payments', label: 'Payments', x: 190, y: 408, cluster: 'infra' },
-  { id: 'banking', label: 'Bank relationships', x: 500, y: 408, cluster: 'infra' },
-  { id: 'technology', label: 'Treasury technology', x: 810, y: 408, cluster: 'infra' },
+  { id: 'working-capital', label: 'Working capital', x: 95, y: 70, cluster: 'liquidity' },
+  { id: 'cash-forecasting', label: 'Cash forecasting', x: 335, y: 70, cluster: 'liquidity' },
+  { id: 'cash-management', label: 'Cash management', x: 605, y: 70, cluster: 'liquidity' },
+  { id: 'investments', label: 'Investments', x: 885, y: 70, cluster: 'liquidity' },
+  { id: 'fx', label: 'FX', x: 335, y: 240, cluster: 'markets' },
+  { id: 'risk', label: 'Risk', x: 655, y: 240, cluster: 'markets' },
+  { id: 'debt', label: 'Debt & financing', x: 885, y: 240, cluster: 'markets' },
+  { id: 'payments', label: 'Payments', x: 180, y: 408, cluster: 'infra' },
+  { id: 'banking', label: 'Bank relationships', x: 470, y: 408, cluster: 'infra' },
+  { id: 'technology', label: 'Treasury technology', x: 815, y: 408, cluster: 'infra' },
 ]
 
 const EDGES: EdgeDef[] = [
-  { from: 'working-capital', to: 'cash-forecasting', label: 'AR / AP / inventory timing' },
+  { from: 'working-capital', to: 'cash-forecasting', label: 'AR / AP timing' },
   { from: 'cash-forecasting', to: 'cash-management', label: 'expected flows' },
   { from: 'cash-management', to: 'investments', label: 'surplus' },
   { from: 'cash-management', to: 'debt', label: 'shortfall → draw' },
   { from: 'cash-forecasting', to: 'fx', label: 'forecast FX flows = exposure' },
-  { from: 'risk', to: 'fx', label: 'policy, hedge ratios' },
-  { from: 'risk', to: 'investments', label: 'counterparty limits', bend: -40 },
-  { from: 'debt', to: 'risk', label: 'covenants, rate risk' },
-  { from: 'cash-management', to: 'payments', label: 'funds payment runs', bend: 60 },
+  { from: 'risk', to: 'fx', label: 'policy, hedge ratios, limits' },
+  { from: 'debt', to: 'risk', label: 'covenants' },
+  { from: 'working-capital', to: 'payments', label: 'AP payment runs' },
   { from: 'fx', to: 'payments', label: 'deal settlements' },
-  { from: 'banking', to: 'cash-management', label: 'statements, balances', dashed: true, bend: 30 },
-  { from: 'banking', to: 'debt', label: 'facilities', dashed: true },
+  { from: 'banking', to: 'cash-management', label: 'statements, balances', dashed: true },
+  { from: 'banking', to: 'debt', label: 'credit facilities', dashed: true },
   { from: 'technology', to: 'banking', label: 'connectivity', dashed: true },
   { from: 'payments', to: 'banking', label: 'payment files', dashed: true },
 ]
@@ -129,7 +128,7 @@ function FlowDiagram({ focus }: { focus?: AreaId }) {
         <text x="28" y="18" className="tmap-rail-label">
           LIQUIDITY CORE
         </text>
-        <text x="28" y="212" className="tmap-rail-label">
+        <text x="440" y="206" className="tmap-rail-label">
           FINANCIAL RISK & CAPITAL
         </text>
         {EDGES.map((e) => {

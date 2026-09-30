@@ -160,25 +160,31 @@
                     who: Lea
                     kind: treasury
                     note: Cash position, 13-week forecast, exposure reports, confirmations, reporting
-              - title: Group Accounting & Consolidation
-                who: Claudia
+              - title: Other functions under the CFO
                 kind: finance
-                note: Consolidation, parent-company accounting (incl. AP/AR of the AG), IFRS, hedge accounting
-              - title: FP&A
-                who: Marco
-                kind: finance
-                note: Budget, rolling forecast, management reporting, budget FX rates
-              - title: Group Tax
-                kind: finance
-                fte: 1 person + advisers
-              - title: Group IT / ERP
-                kind: finance
-                note: SAP S/4HANA, multibank connectivity tool
+                stack: true
+                children:
+                  - title: Group Accounting & Consolidation
+                    who: Claudia
+                    kind: finance
+                    note: Consolidation, parent-company accounting (incl. AP/AR of the AG), IFRS, hedge accounting
+                  - title: FP&A
+                    who: Marco
+                    kind: finance
+                    note: Budget, rolling forecast, management reporting, budget FX rates
+                  - title: Group Tax
+                    kind: finance
+                    fte: 1 person + advisers
+                  - title: Group IT / ERP
+                    kind: finance
+                    note: SAP S/4HANA, multibank connectivity tool
           - title: Legal / company secretary
             kind: finance
             note: Board resolutions, loan and bank documentation
           - title: Divisions & subsidiaries
             kind: business
+            note: Local finance reports to the local managing director
+            stack: true
             children:
               - title: HM Deutschland
                 who: Jens (finance mgr)
@@ -232,6 +238,7 @@
                 who: Anna
                 kind: treasury
                 fte: ~25 FTE
+                stack: true
                 children:
                   - title: Corporate Finance
                     who: Olivier
@@ -264,18 +271,22 @@
                     kind: treasury
                     fte: 2
                     note: TMS/SAP treasury, SWIFT service bureau, IHB, market data
-              - title: Group Accounting & Reporting
+              - title: Other functions under the CFO
                 kind: finance
-                note: Consolidation, IFRS 9 hedge accounting, IC reconciliation
-              - title: Group FP&A / Controlling
-                kind: finance
-                note: Budget, forecasts, budget rates
-              - title: Group Tax
-                kind: finance
-                note: Transfer pricing, WHT, pooling and repatriation structures
-              - title: Global Business Services (Kraków SSC)
-                kind: finance
-                note: AP, AR, record-to-report for European entities
+                stack: true
+                children:
+                  - title: Group Accounting & Reporting
+                    kind: finance
+                    note: Consolidation, IFRS 9 hedge accounting, IC reconciliation
+                  - title: Group FP&A / Controlling
+                    kind: finance
+                    note: Budget, forecasts, budget rates
+                  - title: Group Tax
+                    kind: finance
+                    note: Transfer pricing, WHT, pooling and repatriation structures
+                  - title: Global Business Services (Kraków SSC)
+                    kind: finance
+                    note: AP, AR, record-to-report for European entities
           - title: General Counsel
             kind: finance
             note: Bank and bond documentation, KYC, entity governance
@@ -316,6 +327,7 @@
     children:
       - title: Treasurer
         kind: treasury
+        stack: true
         children:
           - title: Assistant Treasurer — cash & banking
             kind: treasury
@@ -325,6 +337,7 @@
             kind: treasury
       - title: Controller / CAO
         kind: finance
+        stack: true
         children:
           - title: General accounting & close
             kind: finance
@@ -438,22 +451,30 @@
       - title: Group Treasurer
         kind: treasury
         children:
-          - title: Corporate finance & capital markets
+          - title: Head-office teams
             kind: treasury
-          - title: Group financial risk
+            stack: true
+            children:
+              - title: Corporate finance & capital markets
+                kind: treasury
+              - title: Group financial risk
+                kind: treasury
+              - title: In-house bank / liquidity
+                kind: treasury
+              - title: Treasury middle office & systems
+                kind: treasury
+          - title: Regional treasury centres
             kind: treasury
-          - title: In-house bank / liquidity
-            kind: treasury
-          - title: Treasury middle office & systems
-            kind: treasury
-          - title: RTC Americas
-            kind: treasury
-            dottedTo: Americas CFO
-          - title: RTC EMEA
-            kind: treasury
-          - title: RTC APAC
-            kind: treasury
-            dottedTo: APAC CFO
+            stack: true
+            children:
+              - title: RTC Americas
+                kind: treasury
+                dottedTo: Americas CFO
+              - title: RTC EMEA
+                kind: treasury
+              - title: RTC APAC
+                kind: treasury
+                dottedTo: APAC CFO
       - title: Global Business Services head
         kind: finance
         children:
