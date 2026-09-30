@@ -36,3 +36,4 @@
   .tmap-flow { display: none; }
   .tmap-conn { grid-template-columns: 1fr; }
 }
+.tmap-conn-none { margin: 4px 0 0; font-size: 13px; }

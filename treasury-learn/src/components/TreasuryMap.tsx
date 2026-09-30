@@ -65,6 +65,7 @@ const EDGES: EdgeDef[] = [
   { from: 'cash-forecasting', to: 'fx', label: 'forecast FX flows = exposure' },
   { from: 'risk', to: 'fx', label: 'policy, limits' },
   { from: 'debt', to: 'risk', label: 'covenants' },
+  { from: 'risk', to: 'investments', label: 'counterparty limits', labelAt: 0.72 },
   { from: 'working-capital', to: 'payments', label: 'AP payment runs' },
   { from: 'fx', to: 'payments', label: 'deal settlements' },
   { from: 'banking', to: 'cash-management', label: 'statements, balances', dashed: true, labelAt: 0.22 },
@@ -183,6 +184,7 @@ function Connections({ focus }: { focus: AreaId }) {
     <div className="tmap-conn">
       <div>
         <span className="tmap-conn-h">Receives from</span>
+        {!inbound.length && <p className="muted tmap-conn-none">Starts here — driven by the business's operations.</p>}
         <ul>
           {inbound.map((e) => (
             <li key={e.from}>
