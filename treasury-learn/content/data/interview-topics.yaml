@@ -31,7 +31,8 @@
         Owns the P&L budget and rolling forecast that the medium-term cash forecast is usually derived from. Useful to
         understand the hand-off and why the two forecasts disagree.
     - role: accounts-receivable
-      why: Knows actual customer payment behaviour (who pays late, disputes, seasonal patterns) — a key forecast input that treasury rarely sees directly.
+      why: >-
+        Knows actual customer payment behaviour (who pays late, disputes, seasonal patterns) — a key forecast input that treasury rarely sees directly.
   less:
     - role: cfo
       why: >-
@@ -43,7 +44,8 @@
         At a multinational, one or two layers away from the spreadsheet. Useful on why forecasting matters (funding,
         rating, dividends) and on past failures, not on the weekly mechanics.
     - role: treasury-systems
-      why: Knows how the forecasting tool is configured and fed, not how good the numbers are or what people do with them.
+      why: >-
+        Knows how the forecasting tool is configured and fed, not how good the numbers are or what people do with them.
   sizeNote: >-
     **Startup/small SME:** the CFO or finance lead (Sarah at [Kleio](co:kleio), Petra at [Alpine](co:alpine)) builds
     it in Excel — interview them. **Mid-market:** analyst builds, treasury manager reviews. **Multinational:** a cash
@@ -80,16 +82,19 @@
       why: >-
         In SMEs the head of accounting often runs the whole chain (AP, releases, reconciliation) — at [Alpine](co:alpine), Petra.
     - role: treasury-systems
-      why: Knows the file formats (pain.001, pain.002), connectivity (EBICS, SWIFT, host-to-host) and where files fail.
+      why: >-
+        Knows the file formats (pain.001, pain.002), connectivity (EBICS, SWIFT, host-to-host) and where files fail.
   less:
     - role: cfo
       why: >-
         Often the **second signature** on large payments but does not prepare them. Good for "what makes you refuse
         to approve a payment", not for how the run works. Exception: small companies, where the CFO releases every payment.
     - role: fpa
-      why: Not involved in payment execution.
+      why: >-
+        Not involved in payment execution.
     - role: fx-risk-manager
-      why: Involved only for FX settlements and cross-currency payments; does not see the supplier-payment process.
+      why: >-
+        Involved only for FX settlements and cross-currency payments; does not see the supplier-payment process.
   sizeNote: >-
     **Startup:** CFO or accountant prepares and releases in the bank's e-banking portal. **SME:** AP clerk prepares,
     head of accounting and CFO approve (collective signature). **Mid-market:** AP in each subsidiary prepares, local
@@ -115,9 +120,11 @@
         proposes hedges, calls banks for quotes, books forwards. At Helvetic, Daniel.
   also:
     - role: treasury-analyst
-      why: Often prepares the exposure report and hedge-requirement calculations, and reconciles deals — knows where the exposure data is wrong.
+      why: >-
+        Often prepares the exposure report and hedge-requirement calculations, and reconciles deals — knows where the exposure data is wrong.
     - role: subsidiary-finance
-      why: Provides the exposure forecast (e.g. expected USD sales). Ask how they produce it and whether they understand what it is used for.
+      why: >-
+        Provides the exposure forecast (e.g. expected USD sales). Ask how they produce it and whether they understand what it is used for.
     - role: head-of-accounting
       why: >-
         Owns FX revaluation and, where applied, hedge-accounting documentation; knows the painful month-end side of hedging.
@@ -127,13 +134,15 @@
         (or don't), and on what happened in the last currency shock.
   less:
     - role: accounts-payable
-      why: Sees foreign-currency invoices but rarely knows how exposure is aggregated or hedged.
+      why: >-
+        Sees foreign-currency invoices but rarely knows how exposure is aggregated or hedged.
     - role: treasury-operations
       why: >-
         Confirms and settles FX deals; knows operational failures (mis-settlements, confirmations) but not exposure
         identification or hedge decisions.
     - role: business-unit
-      why: Generates the exposure (pricing in USD, buying in EUR) but usually does not think in hedging terms — useful later, to understand exposure quality.
+      why: >-
+        Generates the exposure (pricing in USD, buying in EUR) but usually does not think in hedging terms — useful later, to understand exposure quality.
   sizeNote: >-
     **Startup/SME:** often no hedging at all, or a few forwards the CFO books with the house bank; ask **why not**.
     **Mid-market:** treasury manager does everything with a rolling-forward programme. **Multinational:** separate
@@ -157,23 +166,29 @@
         In mid-market firms usually **builds** the daily position: downloads statements, compares against expected
         flows, flags anomalies. Ask them to walk through **this morning**.
     - role: treasury-manager
-      why: Decides transfers and drawings, sets minimum balances, escalates shortfalls; knows what "a bad day" looks like.
+      why: >-
+        Decides transfers and drawings, sets minimum balances, escalates shortfalls; knows what "a bad day" looks like.
   also:
     - role: head-of-treasury
       why: >-
         Owns liquidity policy (minimum liquidity, headroom targets) and the relationship with the RCF banks. Good on
         stress events and what goes to the CFO/board.
     - role: subsidiary-finance
-      why: Knows local liquidity pain: trapped cash, local overdrafts, payroll funding requests to group.
+      why: >-
+        Knows local liquidity pain: trapped cash, local overdrafts, payroll funding requests to group.
     - role: cfo
-      why: At SMEs and in a crisis the CFO is the decision-maker on liquidity — ask about the last time cash got tight.
+      why: >-
+        At SMEs and in a crisis the CFO is the decision-maker on liquidity — ask about the last time cash got tight.
   less:
     - role: fpa
-      why: Plans profit, not daily cash; rarely knows the bank-account view.
+      why: >-
+        Plans profit, not daily cash; rarely knows the bank-account view.
     - role: fx-risk-manager
-      why: Adjacent (FX swaps are used for liquidity), but does not own the daily position.
+      why: >-
+        Adjacent (FX swaps are used for liquidity), but does not own the daily position.
     - role: bank-rm
-      why: The bank sees only its own accounts and what the client tells it; a biased and partial view of the company's liquidity work.
+      why: >-
+        The bank sees only its own accounts and what the client tells it; a biased and partial view of the company's liquidity work.
   sizeNote: >-
     **Startup:** liquidity = runway; the CFO/founder watches bank balances weekly. **SME:** head of accounting keeps a
     cash sheet, CFO decides on drawing the credit line. **Mid-market:** analyst + manager daily. **Multinational:**
@@ -197,21 +212,28 @@
         In mid-market firms decides how much cash is "surplus", gets quotes from relationship banks and places deposits
         within the [investment policy](term:investment-policy).
     - role: head-of-treasury
-      why: Owns the investment policy and counterparty-limit framework; knows why the policy looks as it does (often after a bank scare).
+      why: >-
+        Owns the investment policy and counterparty-limit framework; knows why the policy looks as it does (often after a bank scare).
   also:
     - role: cfo
-      why: Approves the investment policy and often large or unusual placements; at SMEs decides personally.
+      why: >-
+        Approves the investment policy and often large or unusual placements; at SMEs decides personally.
     - role: treasury-operations
-      why: Confirms and settles placements, tracks maturities; knows the manual steps.
+      why: >-
+        Confirms and settles placements, tracks maturities; knows the manual steps.
     - role: head-of-accounting
-      why: Books and values investments; knows classification issues (cash vs cash equivalent vs investment).
+      why: >-
+        Books and values investments; knows classification issues (cash vs cash equivalent vs investment).
   less:
     - role: fpa
-      why: Only sees interest income as a P&L line.
+      why: >-
+        Only sees interest income as a P&L line.
     - role: fx-risk-manager
-      why: Rarely involved unless investments are in foreign currency or linked to FX swaps.
+      why: >-
+        Rarely involved unless investments are in foreign currency or linked to FX swaps.
     - role: treasury-analyst
-      why: May prepare quotes and reports but usually does not decide — worth a follow-up, not a first interview.
+      why: >-
+        May prepare quotes and reports but usually does not decide — worth a follow-up, not a first interview.
   sizeNote: >-
     **Startup:** VC-funded startups may hold large cash balances and care about bank concentration risk — the CFO
     decides. **SME:** often "leave it in the current account" or a term deposit with the house bank. **Mid-market:**
@@ -234,25 +256,32 @@
         In large groups owns SWIFT/EBICS/host-to-host channels, the TMS, file formats and bank onboarding projects.
         Knows what breaks and how long bank projects take. At GlobalChem, Ben.
     - role: treasury-operations
-      why: Lives with the daily failures: missing statements, rejected files, format changes, bank outages.
+      why: >-
+        Lives with the daily failures: missing statements, rejected files, format changes, bank outages.
     - role: treasury-manager
       why: >-
         In mid-market firms owns the connectivity tool and bank channels as one of many jobs; knows the cost and pain of
         each bank's portal and token.
   also:
     - role: payments-lead
-      why: Owns the payment side of connectivity (formats, status reports, rejections) where a payment factory exists.
+      why: >-
+        Owns the payment side of connectivity (formats, status reports, rejections) where a payment factory exists.
     - role: head-of-accounting
-      why: Consumes statements for reconciliation; knows when statement data is incomplete or late.
+      why: >-
+        Consumes statements for reconciliation; knows when statement data is incomplete or late.
     - role: bank-rm
-      why: The bank's view of onboarding (implementation teams, KYC, format certification) — useful to learn the bank side, but biased toward its products.
+      why: >-
+        The bank's view of onboarding (implementation teams, KYC, format certification) — useful to learn the bank side, but biased toward its products.
   less:
     - role: cfo
-      why: Knows it is expensive and annoying; rarely knows how channels work.
+      why: >-
+        Knows it is expensive and annoying; rarely knows how channels work.
     - role: fx-risk-manager
-      why: Uses trading platforms, not payment/statement channels.
+      why: >-
+        Uses trading platforms, not payment/statement channels.
     - role: fpa
-      why: Not involved.
+      why: >-
+        Not involved.
   sizeNote: >-
     **Startup/SME:** bank e-banking portals, file upload, perhaps EBICS (common in CH/DE) — one or two banks, no
     project team. **Mid-market:** a multibank connectivity tool or TMS connectors, managed by treasury with IT.
@@ -268,25 +297,32 @@
   workflows: [daily-cash-positioning, cash-forecasting, month-end-reporting]
   best:
     - role: treasury-systems
-      why: Owns the TMS, integrations and user rights in large groups; knows the implementation history, workarounds and what the system does not do.
+      why: >-
+        Owns the TMS, integrations and user rights in large groups; knows the implementation history, workarounds and what the system does not do.
     - role: treasury-analyst
       why: >-
         The heaviest daily **user** of the TMS and of Excel around it. Knows which reports are exported and re-worked,
         which macros exist and what breaks at month-end.
     - role: treasury-manager
-      why: Usually led or suffered the last system selection; knows the business case, budget, vendor shortlist and why a TMS was or wasn't bought.
+      why: >-
+        Usually led or suffered the last system selection; knows the business case, budget, vendor shortlist and why a TMS was or wasn't bought.
   also:
     - role: head-of-treasury
-      why: Owns technology strategy and budget; knows the roadmap and the real reason projects stall (IT capacity, cost, bank onboarding).
+      why: >-
+        Owns technology strategy and budget; knows the roadmap and the real reason projects stall (IT capacity, cost, bank onboarding).
     - role: head-of-accounting
-      why: Owns the ERP side (GL postings from treasury, bank reconciliation modules) and data flows between ERP and TMS.
+      why: >-
+        Owns the ERP side (GL postings from treasury, bank reconciliation modules) and data flows between ERP and TMS.
   less:
     - role: cfo
-      why: Approves budgets and knows the headline complaint; rarely knows the day-to-day workarounds.
+      why: >-
+        Approves budgets and knows the headline complaint; rarely knows the day-to-day workarounds.
     - role: subsidiary-finance
-      why: Uses a portal or template to submit data; knows local ERP pain rather than treasury systems.
+      why: >-
+        Uses a portal or template to submit data; knows local ERP pain rather than treasury systems.
     - role: bank-rm
-      why: Pushes the bank's own portal; not a neutral source on the company's stack.
+      why: >-
+        Pushes the bank's own portal; not a neutral source on the company's stack.
   sizeNote: >-
     **Startup/SME:** ERP (or accounting software) + e-banking + Excel; no TMS. **Mid-market:** the classic zone of
     "Excel plus one tool", often with a TMS selection underway (as at Helvetic). **Multinational:** full TMS or SAP
@@ -318,16 +354,21 @@
         Signs facility agreements, owns the lender relationship at the top and presents to the board. Good interviewee
         for refinancing decisions and covenant pressure; at SMEs the main debt decision-maker.
     - role: head-of-accounting
-      why: Produces the numbers covenants are tested on (EBITDA, net debt definitions) — the covenant calculation is often a joint treasury/accounting spreadsheet.
+      why: >-
+        Produces the numbers covenants are tested on (EBITDA, net debt definitions) — the covenant calculation is often a joint treasury/accounting spreadsheet.
     - role: legal
-      why: Reviews facility documentation; knows the covenant and reporting obligations in the contract.
+      why: >-
+        Reviews facility documentation; knows the covenant and reporting obligations in the contract.
   less:
     - role: treasury-analyst
-      why: May compute interest or covenant drafts but rarely knows the negotiation or strategy.
+      why: >-
+        May compute interest or covenant drafts but rarely knows the negotiation or strategy.
     - role: cash-manager
-      why: Uses facilities for liquidity but does not usually negotiate or monitor covenants.
+      why: >-
+        Uses facilities for liquidity but does not usually negotiate or monitor covenants.
     - role: accounts-payable
-      why: Not involved.
+      why: >-
+        Not involved.
   sizeNote: >-
     **Startup:** venture debt or none; founder/CFO negotiates. **SME:** a bank credit line and maybe a mortgage — the
     CFO owns it (Martin at Alpine). **Mid-market:** a syndicated RCF and perhaps a bond; treasury manager + CFO
@@ -346,27 +387,33 @@
         Often the person who **catches** suspicious payment requests or bank-detail changes and escalates them; owns bank
         signatory rules in mid-market firms. Ask about near-misses rather than actual losses.
     - role: payments-lead
-      why: Owns payment controls (four-eyes, call-back, sanctions screening, anomaly checks) in larger groups.
+      why: >-
+        Owns payment controls (four-eyes, call-back, sanctions screening, anomaly checks) in larger groups.
     - role: accounts-payable
       why: >-
         Receives most fake-invoice and "new bank details" attempts; knows what the vendor-master-data process really looks
         like versus policy.
   also:
     - role: treasury-operations
-      why: Handles recalls, bank contact and evidence when a fraudulent payment has gone out.
+      why: >-
+        Handles recalls, bank contact and evidence when a fraudulent payment has gone out.
     - role: internal-audit
-      why: Knows control weaknesses found in audits; tends to talk in terms of control design rather than daily work.
+      why: >-
+        Knows control weaknesses found in audits; tends to talk in terms of control design rather than daily work.
     - role: head-of-accounting
-      why: In SMEs owns the payment chain and therefore the fraud controls.
+      why: >-
+        In SMEs owns the payment chain and therefore the fraud controls.
   less:
     - role: cfo
       why: >-
         Often the **impersonated** person in CEO/CFO fraud; knows incidents at a high level but not the controls in
         practice. Useful for "what would you never let software approve".
     - role: fpa
-      why: Not involved.
+      why: >-
+        Not involved.
     - role: bank-rm
-      why: Will describe the bank's fraud tools; may not know the client's internal process.
+      why: >-
+        Will describe the bank's fraud tools; may not know the client's internal process.
   sizeNote: >-
     Fraud is a **sensitive** topic everywhere. People describe near-misses and controls more readily than actual
     losses; do not ask for amounts or names of victims, and never ask for the details of a current control (thresholds,
@@ -383,27 +430,35 @@
   workflows: [daily-cash-positioning, funding-subsidiary, liquidity-planning]
   best:
     - role: cash-manager
-      why: Operates the pools: sweep rules, target balances, pool-bank relationships, intercompany positions arising from pooling.
+      why: >-
+        Operates the pools: sweep rules, target balances, pool-bank relationships, intercompany positions arising from pooling.
     - role: treasury-manager
-      why: In mid-market firms runs manual concentration (transfers or intercompany loans) and knows why a pool was or wasn't set up.
+      why: >-
+        In mid-market firms runs manual concentration (transfers or intercompany loans) and knows why a pool was or wasn't set up.
     - role: tax
       why: >-
         Pools create intercompany loans; tax sets interest rates (transfer pricing), watches thin-capitalisation and
         withholding-tax issues, and can block structures. Often the real constraint.
   also:
     - role: head-of-treasury
-      why: Owns pool design and bank selection; knows the history of structure changes.
+      why: >-
+        Owns pool design and bank selection; knows the history of structure changes.
     - role: subsidiary-finance
-      why: Experiences the pool from the other side (zero-balancing leaves the subsidiary without "its" cash); knows local objections.
+      why: >-
+        Experiences the pool from the other side (zero-balancing leaves the subsidiary without "its" cash); knows local objections.
     - role: legal
-      why: Pool agreements, cross-guarantees and local legal limits on upstream lending.
+      why: >-
+        Pool agreements, cross-guarantees and local legal limits on upstream lending.
   less:
     - role: cfo
-      why: Approves the structure; rarely knows the sweep mechanics.
+      why: >-
+        Approves the structure; rarely knows the sweep mechanics.
     - role: accounts-payable
-      why: Not involved.
+      why: >-
+        Not involved.
     - role: fpa
-      why: Not involved.
+      why: >-
+        Not involved.
   sizeNote: >-
     **Startup/SME:** usually no pool — too few accounts; cash is moved manually. **Mid-market:** manual concentration or
     a single-bank pool in one currency (Helvetic moves money by intercompany loan). **Multinational:** physical pools
@@ -422,23 +477,31 @@
         Handles the paperwork of opening, changing and closing accounts: KYC documents, mandates, signatory lists,
         static data updates. Knows how many weeks it really takes.
     - role: treasury-manager
-      why: In mid-market firms owns the bank-account inventory and relationship bank decisions; drove any account rationalisation (Helvetic went from 31 to 12 accounts).
+      why: >-
+        In mid-market firms owns the bank-account inventory and relationship bank decisions; drove any account rationalisation (Helvetic went from 31 to 12 accounts).
     - role: bank-relationship-manager
-      why: Where the role exists (large groups), owns bank wallet allocation, fee reviews and relationship strategy.
+      why: >-
+        Where the role exists (large groups), owns bank wallet allocation, fee reviews and relationship strategy.
   also:
     - role: subsidiary-finance
-      why: Opens or uses local accounts; knows the local KYC pain and signatory problems when people leave.
+      why: >-
+        Opens or uses local accounts; knows the local KYC pain and signatory problems when people leave.
     - role: legal
-      why: Board resolutions, powers of attorney, signatory authorities.
+      why: >-
+        Board resolutions, powers of attorney, signatory authorities.
     - role: bank-rm
-      why: The bank's side of onboarding and KYC; honest about why onboarding is slow, not neutral about fees.
+      why: >-
+        The bank's side of onboarding and KYC; honest about why onboarding is slow, not neutral about fees.
   less:
     - role: cfo
-      why: Signs documents and knows the key banks; rarely knows the account inventory or the process.
+      why: >-
+        Signs documents and knows the key banks; rarely knows the account inventory or the process.
     - role: fx-risk-manager
-      why: Not involved beyond trading lines.
+      why: >-
+        Not involved beyond trading lines.
     - role: fpa
-      why: Not involved.
+      why: >-
+        Not involved.
   sizeNote: >-
     **Startup:** one or two banks, accounts opened by the founder/CFO. **SME:** a house bank plus subsidiary banks,
     signatory lists often out of date. **Mid-market:** a treasury-owned inventory, periodic rationalisation.
@@ -458,25 +521,32 @@
         In mid-market firms decides and executes subsidiary funding (intercompany loans, capital injections), sets
         terms with tax and documents the loans. Daniel at Helvetic.
     - role: cash-manager
-      why: In large groups runs the in-house bank accounts, intercompany limits and funding requests from subsidiaries.
+      why: >-
+        In large groups runs the in-house bank accounts, intercompany limits and funding requests from subsidiaries.
     - role: subsidiary-finance
       why: >-
         **Requests** the funding: knows why local cash ran short, how early they warn group, and how they experience
         the approval process.
   also:
     - role: tax
-      why: Sets arm's-length interest, watches withholding tax, thin-cap rules and dividend vs loan choices.
+      why: >-
+        Sets arm's-length interest, watches withholding tax, thin-cap rules and dividend vs loan choices.
     - role: head-of-accounting
-      why: Books intercompany balances and eliminations; knows reconciliation mismatches between entities.
+      why: >-
+        Books intercompany balances and eliminations; knows reconciliation mismatches between entities.
     - role: legal
-      why: Documentation, local restrictions, capital-injection formalities.
+      why: >-
+        Documentation, local restrictions, capital-injection formalities.
   less:
     - role: cfo
-      why: Approves large or unusual funding (e.g. capital increases); not the mechanics.
+      why: >-
+        Approves large or unusual funding (e.g. capital increases); not the mechanics.
     - role: accounts-payable
-      why: Not involved in intercompany loans, though AP may pay intercompany invoices.
+      why: >-
+        Not involved in intercompany loans, though AP may pay intercompany invoices.
     - role: fpa
-      why: Sees subsidiary performance, not funding mechanics.
+      why: >-
+        Sees subsidiary performance, not funding mechanics.
   sizeNote: >-
     **Startup:** rarely relevant (single entity, perhaps a foreign subsidiary funded by periodic transfers). **SME:**
     the CFO transfers money to subsidiaries when they ask, often without formal loan agreements. **Mid-market:** documented

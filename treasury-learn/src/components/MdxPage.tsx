@@ -15,6 +15,7 @@ import * as Diagrams from './Diagrams'
 import * as Org from './OrgViews'
 import * as Lens from './LensViews'
 import * as Comp from './CompetitorViews'
+import * as Day from './DayViews'
 
 function slugify(children: unknown): string {
   const text = Array.isArray(children) ? children.join('') : String(children ?? '')
@@ -44,6 +45,7 @@ const mdxComponents = {
   ...Org,
   ...Lens,
   ...Comp,
+  ...Day,
 }
 
 export function MdxPage({ path }: { path: string }) {

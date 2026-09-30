@@ -1,0 +1,114 @@
+---
+title: Alpine Robotics AG — treasury in an international SME
+nav: Alpine (SME)
+order: 2
+summary: A CHF 80m Winterthur robot maker with subsidiaries in Germany and the US, lumpy project cash flows, 45% of revenue in euros and no treasurer. The CFO decides, the Head of Accounting runs the cash — alongside month-end close, AP and tax.
+related: [/size/sme, /day/petra, /org/roles-cfo, /org/with-accounting, /companies/same-problem]
+---
+
+## Profile
+
+Alpine designs and builds autonomous picking robots in Winterthur and sells them to warehouse operators in projects worth CHF 0.5–4m. Customers pay in [milestones](term:milestone-payments) — typically a deposit on order, the main payment on delivery and the rest on acceptance. The German and US subsidiaries sell and service; they have a managing director and a local bookkeeper each, and no finance manager.
+
+The finance team in Winterthur has seven people. **Martin (CFO)** owns banking, financing and FX decisions. **Petra (Head of Accounting)** runs the day-to-day cash work on top of the monthly close, AP, VAT and the audit. Treasury is maybe 20–30% of her week, and it is the part that cannot wait: if the payment run fails on Friday, suppliers are not paid on Friday.
+
+<CompanyFacts id="alpine" />
+
+## Entities, banks and accounts
+
+| Entity | Bank | Account | Purpose |
+|---|---|---|---|
+| Alpine Robotics AG (CH) | Cantonal bank (house bank) | CHF main current | Payroll, Swiss suppliers, EBICS payment channel; carries the CHF 12m committed [operating line](term:current-account-credit) |
+| | | CHF savings / deposit | Legacy account, rarely used since CHF rates returned to about zero |
+| | | EUR current | EUR supplier payments in Switzerland |
+| Alpine Robotics AG (CH) | Large Swiss bank | CHF current | FX settlements, second payment channel |
+| | | EUR current | Most EUR customer receipts; target of the German sweep; EUR forwards settle here |
+| | | USD current | USD receipts from the parent's US projects; USD component purchases |
+| Alpine Robotics GmbH (DE) | Large Swiss bank's German unit | EUR current | Local sales and service costs; swept to the parent above a threshold each evening; small uncommitted overdraft |
+| Alpine Robotics Inc. (US) | US commercial bank | USD operating | Customer receipts (some still by cheque into a [lockbox](term:lockbox)), local vendors |
+| | | USD payroll | Funded before each US payroll run |
+
+The plant mortgage (CHF 6m) is a loan with the house bank, not an operating account. The US bank's statements are imported into the large Swiss bank's portal, so Petra sees all nine accounts in two logins.
+
+## Who does treasury
+
+| Person | Treasury tasks | Where the time goes |
+|---|---|---|
+| **Martin**, CFO ([role page](/org/roles-cfo)) | Owns bank relationships and the credit line; approves the weekly cash sheet; decides FX forwards; co-signs payments above CHF 250k with his EBICS key; reports cash and headroom to the board | A few hours a week, more when a big project or an FX move lands |
+| **Petra**, Head of Accounting ([a day with Petra](/day/petra), [with accounting](/org/with-accounting)) | Checks balances daily; reviews and releases the Tuesday and Friday payment runs; builds the weekly cash sheet; handles bank queries, sweeps and intercompany transfers; maintains vendor bank-detail controls | 20–30% of her week |
+| AP clerk ([accounts payable](/org/with-ap)) | Runs payment proposals in Business Central; call-back checks on bank-detail changes | Twice a week |
+| AR / billing clerk ([accounts receivable](/org/with-ar)) | Invoices milestones, chases overdue customers, tells Petra what is likely to arrive | Weekly |
+| Project managers | Know when acceptance certificates will really be signed — the single most important forecast input | Asked by Petra on Mondays |
+| DE / US managing directors and bookkeepers ([subsidiaries](/org/with-subsidiaries)) | Local payments and receipts; tell Petra about large local items (often late) | Ad hoc |
+| House bank relationship manager | Annual credit review, guarantees, the covenant certificate | Quarterly contact |
+
+No one reports to anyone "in treasury". The [responsibility matrix](/org/responsibility-matrix) SME variant shows the typical pattern: the CFO is owner and approver; the head of accounting performs.
+
+## Systems
+
+- **Microsoft Dynamics 365 Business Central** — AP, AR, payment proposals, bank reconciliation, vendor master data.
+- **An ERP-connected banking module** that creates [pain.001](term:pain-001) files and sends them to both Swiss banks over [EBICS](term:ebics); Martin signs larger batches with his EBICS key from his phone.
+- **Two e-banking portals** — balances, FX deals by phone or portal, the German and US accounts.
+- **Excel** — the weekly cash sheet (8–13 weeks), the list of open project milestones by currency, and a tab of FX forwards.
+- **No TMS.** For a company of this complexity, surveys suggest that is normal rather than a failure (see [Treasury by size: SME](/size/sme)).
+
+Swiss customers pay against [QR-bills](term:qr-bill), so their receipts match automatically in Business Central; German customers' SEPA transfers mostly match; US cheques are keyed by the bookkeeper.
+
+## The cash-flow pattern
+
+Alpine's costs are steady: payroll of roughly CHF 3m around the 25th of each month (more in November/December with the 13th salary), component purchases that peak 2–4 months before deliveries, and quarterly VAT. Receipts are lumpy. An illustrative quarter from Petra's cash sheet (CHF m):
+
+| Week | Opening cash | Customer receipts | Payroll | Suppliers & other | Line drawn (−) / repaid (+) | Closing cash | Line drawn |
+|---|---|---|---|---|---|---|---|
+| 1 | 11.8 | 0.6 | — | −1.4 | — | 11.0 | 2.0 |
+| 4 | 9.1 | 2.4 (delivery milestone, EUR) | −3.1 | −1.2 | — | 7.2 | 2.0 |
+| 6 | 7.0 | 0.3 | — | −2.8 (components for 3 projects) | draw 1.5 | 6.0 | 3.5 |
+| 9 | 6.0 | **0.0** — CHF 2m acceptance payment slipped | −3.1 | −0.9 | draw 3.0 | 5.0 | **6.5** |
+| 13 | 5.2 | 7.9 (slipped acceptance + a delivery + a new deposit) | −3.1 | −0.8 | repay 3.0 | 6.2 | 3.5 |
+
+Petra keeps about CHF 6m on hand because a payroll and a supplier run can fall in the same week. The pattern is typical of project businesses: the credit line is not "debt" in a strategic sense; it is the shock absorber for milestones. The board's rule — at least CHF 5m of headroom (undrawn committed line plus cash above the operating minimum) at all times — is the whole of Alpine's [liquidity policy](wf:liquidity-planning). In week 9 of this quarter headroom falls to CHF 5.5m.
+
+<Example title="Monday 08:30: which milestones slipped?" company="alpine">
+
+Petra refreshes the cash sheet with the prior week's actuals and walks through it with Martin. Two things matter:
+
+1. **The Lübeck project**: acceptance testing failed on Thursday (a gripper calibration issue). The CHF 2m final payment will not come in week 9. The project manager thinks two weeks; Martin assumes four and tells Petra to move it to week 13.
+2. **A EUR 2.4m delivery milestone** arrived as planned. Martin considers the EUR 5m still expected this quarter; EUR/CHF has fallen from 0.94 to 0.93 in a month (illustrative). He sells EUR 2m three months forward at the large Swiss bank — not because a policy says so, but because two projects' margins depend on it.
+
+Outcome: moving the Lübeck payment to week 13 pushes week-9 headroom down to CHF 5.5m — just above the board's CHF 5m floor. Martin tells the CEO, asks the operations head to hold a CHF 0.6m discretionary equipment order until week 11, and decides not to call the bank yet. Petra adds a "milestones at risk" line to the sheet. She has tracked this informally for years; now Martin wants it visible.
+
+</Example>
+
+## Typical problems
+
+- **Lumpy, operationally driven receipts.** The forecast depends on project managers, not on invoice due dates.
+- **Everything depends on Petra.** She is the only person who fully understands the EBICS set-up, the cash sheet and the German sweep. Holiday cover is a senior accountant with a checklist.
+- **FX handled when Martin has time.** A board minute allows hedging signed contracts; there is no hedge ratio, no forecast-based hedging and no record of what was *not* hedged.
+- **Subsidiary visibility.** The German and US managing directors run local payments and tell Petra about large items late — a EUR 400k German tax prepayment has surprised her more than once.
+- **Guarantees consume the credit line.** Large customers want [advance-payment guarantees](term:trade-finance) for their deposits; the bank counts these against Alpine's credit limits.
+- **The US bank.** The US managing director wants a local credit card programme and ACH debits; every extra product means more KYC, more users and another channel Petra cannot see in real time.
+- **Growth outgrows the model.** If Alpine adds a UK or French subsidiary, the "head of accounting does the cash" model starts to break. The usual first step is a treasury-minded finance manager or a part-time [treasury manager](/org/roles-treasury-manager), not a TMS.
+
+## The workflows, as run at Alpine
+
+| Workflow | How it happens at Alpine |
+|---|---|
+| [Daily cash positioning](wf:daily-cash-positioning) | Petra checks both portals at 08:00; an Excel sheet by entity and currency; longer on Tuesday and Friday payment days. |
+| [Cash forecasting](wf:cash-forecasting) | Weekly Excel sheet for 8–13 weeks: AR by due date adjusted by Petra's knowledge, AP, payroll, VAT, project milestones. Martin reviews Monday. |
+| [Liquidity planning](wf:liquidity-planning) | 12-month plan from the budget, refreshed quarterly; the CHF 5m headroom rule. |
+| [Surplus cash investment](wf:surplus-cash-investment) | Rarely relevant: spare CHF first repays the drawn line (CHF deposits earn roughly nothing); spare EUR is used for EUR supplier payments or converted. |
+| [Funding a subsidiary](wf:funding-subsidiary) | Transfers from the parent's EUR account approved by Martin; automatic evening sweep from Germany. |
+| [Payment processing](wf:payment-processing) | Business Central proposal → Petra's review → EBICS file to the house bank, Tuesday and Friday. |
+| [Large payment approval](wf:large-payment-approval) | Above CHF 250k Martin co-signs; bank-detail changes need a call-back first. |
+| [Bank reconciliation](wf:bank-reconciliation) | camt.053 statements imported into Business Central; the accountants clear exceptions daily. |
+| [Bank account management](wf:bank-account-management) | Martin decides, Petra does the paperwork; signatory lists updated when someone leaves (sometimes late). |
+| [FX exposure management](wf:fx-exposure-management) / [FX hedging](wf:fx-hedging) | Project list by currency; ad hoc forwards on signed EUR/USD projects. |
+| [Credit facility management](wf:credit-facility-management) / [Covenant monitoring](wf:covenant-monitoring) | Martin negotiates the annual credit review with the house bank; Petra calculates the covenant figures from the half-year accounts and sends the certificate. |
+| [Month-end reporting](wf:month-end-reporting) | Cash, line usage and headroom in the monthly management pack; board quarterly. |
+| [Currency shock](wf:currency-shock) | Would be handled by Martin calling the bank and re-pricing open quotes — there is no pre-agreed playbook. |
+
+<Callout type="interview" title="If you interview an Alpine-type finance team">
+
+Talk to **both** people. The CFO knows why things are done (bank relationships, FX decisions, the board's rules); the head of accounting knows how they are done (which export, which portal, what breaks on Friday). Ask the head of accounting "What did you do the last time a big customer paid late?" and "Who covers when you are on holiday?" Ask the CFO "When did you last hedge — and why then?" Avoid treasury vocabulary they do not use: they have a "cash sheet", not a "13-week liquidity forecast".
+
+</Callout>

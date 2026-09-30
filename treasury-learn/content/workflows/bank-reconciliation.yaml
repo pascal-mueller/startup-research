@@ -1,0 +1,276 @@
+id: bank-reconciliation
+title: Bank reconciliation
+question: Does every movement on the bank statement match something in our books — and who explains the ones that don't?
+group: Payments & banking
+order: 3
+summary: >-
+  Every bank transaction is matched to a ledger entry — a supplier payment, a customer receipt, a fee, interest, an FX
+  deal, an intercompany transfer — and every difference between the bank balance and the general-ledger cash balance
+  is explained. Most matching is automated from electronic statements; people work the leftovers daily and sign off
+  a formal reconciliation per account at month-end. It is primarily an **accounting** control; treasury is a
+  supplier of explanations (its own deals and transfers) and a consumer of the result (unknown debits can be fraud).
+objective: >-
+  Ensure the cash in the books equals the cash at the bank, that every movement is recorded in the right account,
+  entity and period, and that unexplained items — errors, fraud, missing receipts, unbooked fees — are found quickly
+  rather than at the audit.
+trigger: Arrival of the daily bank statement (camt.053 / MT940); month-end close for the formal sign-off; year-end audit.
+frequency: >-
+  Daily matching at most companies with electronic statements; weekly or monthly at small companies. Formal
+  reconciliation and review of every bank account at month-end (quarterly at some small companies). Bank balance
+  confirmations for the auditors at year-end.
+people:
+  - role: Accountant / GL accountant (in SSCs a "record-to-report" or cash-accounting team)
+    does: Owns the daily matching queue and the month-end reconciliation of bank GL accounts; posts fees, interest and clearing entries.
+  - role: Accounts receivable / cash application
+    does: Applies customer receipts to open invoices; resolves short payments and receipts without references.
+  - role: Accounts payable
+    does: Clears payment runs; handles returned payments and duplicate debits.
+  - role: Treasury analyst / treasury operations
+    does: Explains and books (or provides booking instructions for) treasury items — FX deals, deposits, loans, intercompany funding, cash-pool sweeps; investigates unknown debits with the bank.
+  - role: Head of accounting / controller
+    does: Reviews and signs off the month-end reconciliations; approves write-offs of old differences.
+  - role: Internal audit / external auditor
+    does: Tests the control; sends bank confirmation requests at year-end.
+systems:
+  - name: "[ERP](term:erp) electronic bank statement module (e.g. SAP 'Manage Bank Statements' / FF_5 with search strings; Dynamics bank account reconciliation)"
+    use: Imports statements, applies [matching rules](term:matching-rules), posts automatically, shows the unmatched queue.
+  - name: Reconciliation tool or TMS reconciliation module
+    use: At larger companies, a separate tool for high-volume matching, reconciliation sign-off and ageing of open items.
+  - name: Bank connectivity ([EBICS](term:ebics), [SWIFT](term:swift), APIs)
+    use: Delivers camt.053 / MT940 end-of-day statements and [camt.054](term:camt-054) details for batch bookings.
+  - name: TMS / treasury deal list (Excel at mid-market)
+    use: Source of expected treasury flows to match against — FX settlements, deposit maturities, loan interest.
+  - name: Bank portal
+    use: Looking up transaction details, remittance text, or scanned documents not carried in the statement.
+  - name: Excel
+    use: The month-end reconciliation sheet at many mid-market companies (bank balance, GL balance, list of reconciling items, sign-off).
+data:
+  - name: End-of-day bank statement per account
+    source: Bank (camt.053 / MT940; BAI2 in the US)
+    notes: Includes opening and closing balances, transactions with bank transaction codes and references.
+  - name: Batch booking detail
+    source: Bank (camt.054)
+    notes: Without it, a payment run appears as one debit and cannot be cleared per invoice.
+  - name: Remittance information on receipts
+    source: Customers via their banks (QR reference, creditor reference, invoice numbers in free text)
+    notes: Its quality determines how much [cash application](term:cash-application) is automatic.
+  - name: Open items in AR and AP
+    source: ERP
+  - name: Treasury deals and transfers
+    source: TMS or treasury's Excel deal log
+    notes: FX value dates, deposit maturities, intercompany loans; if treasury does not share them, accounting cannot match them.
+  - name: Bank fee and interest details
+    source: Bank statements, fee statements (camt.086 or PDF)
+    notes: Often one lump debit per quarter; see [bank fee analysis](wf:bank-fee-analysis).
+steps:
+  - title: Import statements and check completeness
+    who: System; GL accountant checks the log
+    where: ERP electronic bank statement / reconciliation tool
+    when: "06:00–08:00"
+    detail: >-
+      Statements arrive overnight and are imported automatically. The accountant checks that every account delivered a
+      statement, that statement numbers are consecutive and that each opening balance equals the previous closing
+      balance. A missing statement is chased the same day — treasury needs the same file for its
+      [cash position](wf:daily-cash-positioning).
+  - title: Let the rules match and post
+    who: System
+    where: ERP / reconciliation tool
+    detail: >-
+      [Matching rules](term:matching-rules) clear payment runs using camt.054 detail, apply customer receipts using QR or
+      creditor references, post fees and interest by bank transaction code to the right GL accounts, and match
+      transfers between the company's own accounts. What is not matched lands in a queue.
+  - title: Match treasury items
+    who: Treasury analyst / treasury operations → GL accountant
+    where: TMS or deal log; ERP
+    detail: >-
+      FX settlements, deposit placements and maturities, loan drawdowns and interest, intercompany funding and
+      (where they exist) cash-pool sweeps are matched against treasury's deal records. At companies with a TMS this is
+      largely automatic; at mid-market companies the analyst sends a daily or weekly list of deals and transfers to
+      accounting, or books them herself.
+    manual: >-
+      Where treasury works in Excel, accounting often discovers treasury transactions on the statement before treasury
+      has told them — and has to ask.
+  - title: Work the exception queue
+    who: GL accountant; AR and AP for their items
+    where: ERP unmatched-items list, bank portal
+    when: Daily, typically 1–3 hours at a mid-market entity
+    detail: >-
+      Typical exceptions: customer receipts without usable references, partial or combined payments, receipts in a
+      different currency or net of charges ([charge bearer](term:charge-bearer) SHA/BEN), returned supplier payments,
+      bank fees with unknown codes, FX conversions at the bank, card and PSP settlements (net of fees and refunds),
+      tax refunds, and unknown debits. Each is researched and posted or routed to its owner.
+    judgment: >-
+      Deciding what an unexplained item is — a customer paying three invoices minus a disputed credit note, a bank
+      error, a payment made outside the process — needs knowledge of customers, suppliers and the company's own
+      activity.
+    manual: Looking up remittance details in the bank portal, emailing customers for payment advices, asking colleagues "does anyone know what this is?".
+  - title: Escalate unknown debits immediately
+    who: GL accountant → treasury / head of accounting
+    where: Email / phone to bank
+    detail: >-
+      An outgoing payment nobody recognises is treated as a potential error or fraud the same day: check whether it was
+      released in the payment tool, by whom, and contact the bank. Speed matters because recall chances fall quickly;
+      see [fraud investigation](wf:fraud-investigation).
+    judgment: Distinguishing an unbooked but legitimate debit (a direct debit, a bank fee, a treasury deal) from a real problem.
+  - title: Park and age what cannot be cleared
+    who: GL accountant
+    where: ERP suspense / clearing accounts
+    detail: >-
+      Items that cannot be resolved immediately are posted to a [suspense account](term:suspense-account) (e.g. unapplied
+      receipts) with a note, so the bank GL balance still agrees with the bank. The suspense balance is aged weekly.
+  - title: Reconcile each account at month-end
+    who: GL accountant (preparer) → head of accounting (reviewer)
+    where: Reconciliation tool or Excel template
+    when: Working days 1–3 of the close
+    detail: >-
+      For every bank account — including dormant and small foreign accounts — compare the statement closing balance
+      with the GL balance, list every [reconciling item](term:reconciling-item) with its age and owner, confirm FX
+      revaluation of foreign-currency accounts, and sign as preparer and reviewer.
+    judgment: Which old items to escalate or write off, and whether an explanation is good enough for the reviewer.
+  - title: Clear suspense and aged items
+    who: AR, AP, GL accountants; controller approves write-offs
+    where: ERP
+    when: Month-end and following weeks
+    detail: >-
+      Chase the owners of unapplied receipts and unexplained items; get customer remittance advices; correct postings.
+      Small residual differences are written off under an approval limit; large or old ones are escalated.
+  - title: Provide audit confirmations and evidence
+    who: Head of accounting; treasury for bank contacts
+    where: Audit confirmation platforms / letters to banks
+    when: Year-end
+    detail: >-
+      External auditors request balance and mandate confirmations directly from the banks (listing accounts,
+      balances, signatories, guarantees, facilities) and sample reconciliations. Accounts missing from the company's
+      own list — a forgotten account at a local bank — surface here.
+  - title: Fix the causes
+    who: GL accountant / accounting lead with treasury systems, AR, AP
+    where: ERP configuration, customer and vendor master data
+    detail: >-
+      Recurring exceptions are turned into rules (new bank transaction codes, new reference formats), customers are
+      asked to use QR or creditor references, missing camt.054 subscriptions are ordered from the bank, and vendor
+      bank data is corrected.
+example:
+  title: "Helvetic, end of May: HM AG's EUR account and the unapplied-receipts account"
+  body: |
+    HM AG's statements arrive via the multibank tool each morning and are imported into SAP. Claudia's team (Head of Group Accounting) owns the reconciliation; Lea (treasury) owns the treasury items.
+
+    **A normal day (Tuesday).** 212 transactions across HM AG's accounts; 191 match or post automatically (payment-run debits via camt.054, QR-referenced Swiss receipts, fees by bank transaction code). 21 go to the queue. One of them is the EUR 1.5m intercompany loan Lea sent to HM Deutschland that morning — not in SAP because treasury books intercompany loans from its Excel deal log on Fridays. The accountant emails Lea; Lea sends the loan confirmation; it is booked the same day. (Claudia has asked twice for daily deal lists.)
+
+    **Month-end reconciliation, EUR account at Swiss bank A (31 May):**
+
+    | Item | EUR |
+    |---|---|
+    | Balance per bank statement | 6,412,880 |
+    | Balance per SAP GL | 6,395,210 |
+    | **Difference to explain** | **17,670** |
+    | Receipt from an Italian customer, "payment May", three possible invoices — not yet applied | 12,440 |
+    | Receipt from a French customer, invoice number mistyped — not yet applied | 3,980 |
+    | Returned SEPA payment to a supplier (AC04, account closed), returned 30 May, not yet booked | 1,250 |
+    | **Unexplained** | **0** |
+
+    **Unapplied-receipts (suspense) account, group-wide:** CHF 312k at month-end, 41 customer payments without usable references. Claudia's team clears all but CHF 18k within five working days, mostly by asking customers for remittance advices. The remaining CHF 18k (six items, some older than 90 days) goes on the reviewer's list with named owners.
+
+    **The one that mattered.** On 28 May the queue also contained a CHF 7,900 debit on HM AG's CHF account with no ERP match. It was a direct debit by a software vendor whose contract had been terminated — legitimate authorisation, wrong continuation. Lea asked the bank to block further direct debits from that creditor and the amount was refunded. Not fraud, but found only because someone looked at the queue daily.
+judgment:
+  - decision: What an unmatched item is
+    why: Remittance text is ambiguous; knowing that "payment May" from this Italian customer usually means the oldest three invoices is local knowledge.
+  - decision: Whether an unknown debit is a booking gap or a problem
+    why: Needs the context of treasury deals, direct debits, bank practices and the payment tool's release log.
+  - decision: When an explanation is good enough for sign-off
+    why: The reviewer decides how much evidence is required; rubber-stamped reconciliations are a classic audit finding.
+  - decision: When to write off a residual difference
+    why: A trade-off between effort and accuracy, within approval limits — and a potential way to hide problems.
+failure_modes:
+  - mode: Treasury transactions not communicated to accounting
+    consequence: Items sit unexplained; intercompany balances disagree between entities; month-end delayed.
+    detection: Daily deal lists or TMS-to-ERP interfaces; intercompany reconciliation.
+  - mode: Suspense account grows and ages
+    consequence: Customer balances wrong (dunning customers who paid), DSO and cash-forecast inputs distorted, audit finding.
+    detection: Weekly ageing of suspense; target clearing times.
+  - mode: Rule breaks silently after a bank format change
+    consequence: Match rate drops; the queue grows; people start posting in bulk to suspense.
+    detection: Monitoring the auto-match rate per account and per bank over time.
+  - mode: Account missing from the reconciliation scope (new, dormant or local account)
+    consequence: Fraud or errors on that account go unnoticed for months.
+    detection: Comparing the reconciliation list with the bank account register and auditors' bank confirmations.
+  - mode: Reconciliation 'forced' to balance
+    consequence: A plug entry hides an error or a fraud.
+    detection: Reviewer checks the listed items, not just the zero; audit sampling.
+  - mode: Unknown debit investigated days later
+    consequence: Lost chance to recall a fraudulent or erroneous payment.
+    detection: Daily queue review with same-day escalation of unknown debits.
+software: >-
+  Matching is done mainly in the **ERP** (SAP's electronic bank statement and cash-application functions, Microsoft
+  Dynamics, Oracle) and, at larger companies, in **reconciliation / close tools** (e.g. BlackLine, Trintech, Adra) or
+  **TMS reconciliation modules**. Vendors market very high auto-match rates — one TMS vendor advertises 98%[](cite:gtreasury-automatch) —
+  but the achievable rate depends on the company's data: batch detail from banks, customers' references, and treasury
+  deals being in a system. There is no neutral industry benchmark for match rates. See [Systems & Data](/systems).
+manual_work:
+  - Researching receipts without references and emailing customers for remittance advices.
+  - Asking treasury (or anyone) what an unknown transaction is.
+  - Maintaining matching rules when banks or customers change formats.
+  - Preparing the month-end reconciliation sheet per account and collecting sign-offs.
+  - Clearing the suspense account and documenting old items.
+  - Handling bank confirmation requests for the auditors.
+by_size:
+  startup: >-
+    The accountant or external fiduciary reconciles monthly in a cloud accounting tool with a bank feed. The recurring
+    headache is payment-service-provider payouts (e.g. Stripe): one net payout covers many customer charges, fees and
+    refunds and must be broken down using the provider's report. Nobody in the company sees the queue daily.
+  sme: >-
+    The head of accounting or an accountant matches daily or on payment days in the ERP; there is no separation between
+    treasury and accounting because the same person does both. A monthly reconciliation per account is reviewed by the
+    CFO or auditor. Subsidiaries' accounts are reconciled by local bookkeepers and checked at month-end.
+  midmarket: >-
+    Each entity's accounting team reconciles its own accounts; group accounting sets the standard and reviews. Treasury
+    is a separate team whose deals, intercompany loans and transfers must be communicated to accounting — the
+    treasury/accounting interface is the main friction. Match rates vary by entity with ERP maturity.
+  multinational: >-
+    A shared-service centre (record-to-report team) runs high-volume matching in the ERP or a reconciliation tool with
+    formal ageing and sign-off in a close platform. Treasury operations reconciles the in-house bank and treasury
+    deal accounts and confirms deals independently of the dealers (back-office control). Work is exception-based;
+    the hard items are cross-border receipts, card/PSP settlements and entities with weak ERPs.
+companies:
+  kleio: "Nina reconciles monthly with the bank feed in the accounting tool; the fiduciary reviews quarterly. The time-consuming part is Stripe: each payout nets card receipts, Stripe fees and refunds across dozens of customers, and USD payouts land in the US bank."
+  alpine: "Petra matches daily in Business Central after checking the portals; payment runs clear via camt.054 and Swiss customers pay with QR references, so most items match. The German and US bookkeepers reconcile locally; Petra reviews their month-end reconciliations. One recent surprise: a CHF 12,480 debit that turned out to be the quarterly bank fee package."
+  helvetic: "The worked example above. Claudia's team owns reconciliation; entity finance teams reconcile local accounts; Lea supplies treasury deals and intercompany loans. The German AR team auto-applies about 78% of receipts; the rest take a clerk about half a day."
+  globalchem: "Bank reconciliation for ~280 accounts runs in the Kraków shared-service centre with a reconciliation tool and formal sign-off in the close calendar. Marta's treasury operations team reconciles in-house bank accounts and confirms every treasury deal independently of Jonas's dealers."
+handoffs:
+  - from: Banks
+    gives: end-of-day statements (camt.053 / MT940) and batch details (camt.054)
+    to: ERP / GL accountant
+  - from: Treasury analyst
+    gives: deal list, intercompany loans and transfers, booking instructions
+    to: GL accountant
+    note: The most common gap at mid-market companies; ideally an interface from the TMS.
+  - from: GL accountant
+    gives: unmatched receipts
+    to: AR / cash application
+  - from: GL accountant
+    gives: returned payments and unexplained debits
+    to: AP; treasury (unknown debits, same day)
+  - from: GL accountant
+    gives: month-end reconciliations with listed reconciling items
+    to: Head of accounting / controller (review and sign-off)
+  - from: Head of accounting
+    gives: reconciliations and bank confirmations
+    to: External auditor
+interview: >-
+  Ask an **accountant** (not the treasurer) to show you the unmatched queue for a typical day: how many items, which
+  types, how long it takes, and what they have to ask treasury or AR. Ask the **treasurer** how accounting learns about
+  treasury deals and transfers. At large groups the answer lives in the shared-service centre. Beware: many treasurers
+  will describe reconciliation as "accounting's job" — true at larger companies, false at SMEs.
+ai_note: >-
+  Rule-based matching is mature; the residual work is interpreting ambiguous items, which needs context from emails,
+  customer behaviour and treasury activity. Suggesting matches and drafting queries to customers is plausible
+  assistance; vendors already market ML-based matching. The sign-off remains an accountable human control, and match
+  rates are limited by data the software does not receive.
+terms: [reconciliation, cash-application, matching-rules, reconciling-item, suspense-account, camt-054, bank-statement, mt940, remittance-information, charge-bearer, qr-bill, intercompany-loan]
+related: [payment-processing, daily-cash-positioning, month-end-reporting, fraud-investigation, bank-fee-analysis]
+sources: [gtreasury-automatch, six-sps-cash-mgmt, six-address-factsheet]
+evidence_note: >-
+  Reconciliation as an accounting control, the reliance on camt.054 batch detail and structured references, and the
+  treasury/accounting interface are established practice. Swiss camt message versions move to the 2019 versions in
+  November 2026[](cite:six-address-factsheet); MT940 has no fixed end date at Swiss banks[](cite:six-sps-cash-mgmt).
+  No independent benchmark of auto-match rates was found; the vendor figure is cited as a claim[](cite:gtreasury-automatch).
+  Volumes, timings and the example are illustrative synthesis consistent with the reference companies.

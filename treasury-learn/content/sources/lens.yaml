@@ -1,0 +1,74 @@
+# Sources for the Agentic Treasury / Startup Lens stream.
+# WebFetch was blocked by the environment's egress policy during authoring; every note below records only what the
+# original publisher's own page showed in search results. Vendor sources support "what the vendor claims", never
+# market-wide or accuracy claims.
+- id: sap-cash-agent
+  title: "AI Assistant for Cash and Treasury (Joule) / Joule Agents: Cash Management Agent"
+  publisher: SAP
+  year: 2025
+  url: https://www.sap.com/use-cases/joule-assistant/cash-treasury-ai
+  type: vendor
+  note: "Vendor description: the Cash Management Agent retrieves opening balances, forecasts cash flows, calculates closing balances per bank account, shows surplus/deficit accounts and suggests bank-transfer options using transfer templates, 'in line with treasury policy'. SAP says its internal IT deployed it with S/4HANA. Vendor claim — no independent evidence of results."
+- id: kyriba-tai-2025
+  title: "New Agentic AI Solution Elevates Data-Driven Decision-Making (TAI launch)"
+  publisher: Kyriba
+  year: 2025
+  url: https://www.kyriba.com/news/kyriba-agentic-ai-solution-tai-transforms-finance-with-security-compliance-trust/
+  type: vendor
+  note: "Press release, 13 May 2025: TAI, an 'agentic AI' with an embedded LLM, positioned to 'augment — not replace — human expertise' across treasury, payments, risk and working capital; claims faster exception resolution ('hours to minutes'). Vendor claim."
+- id: highradius-autonomous-2027
+  title: HighRadius Announces a 2027 Goal of Releasing a Fully Autonomous Finance Platform at Radiance
+  publisher: HighRadius (Business Wire press release)
+  year: 2025
+  url: https://www.businesswire.com/news/home/20250226984748/en/HighRadius-Announces-a-2027-Goal-of-Releasing-a-Fully-Autonomous-Finance-Platform-at-Radiance
+  type: vendor
+  note: "Feb 2025: claims 180+ AI agents across AR, AP, treasury, close; describes cash application and cash forecasting as 'fully autonomous' with '90% touchless automation'; goal of 90%+ automation across the office of the CFO by 2027. Vendor claim, not independently verified."
+- id: gtreasury-gsmart-2025
+  title: "GTreasury Launches GSmart AI, Setting the Standard for Secure, Adaptable, and Agentic AI in Treasury Operations"
+  publisher: GTreasury (press release via FinTech Futures)
+  year: 2025
+  url: https://www.fintechfutures.com/press-releases/gtreasury-launches-gsmart-ai-setting-the-standard-for-secure-adaptable-and-agentic-ai-in-treasury-operations
+  type: vendor
+  note: "18 June 2025: 'agent-driven workflows' and 'agentic actions' across connectivity, liquidity, forecasting, payments, risk and netting. Vendor claim."
+- id: eu-ai-act-annex3
+  title: "Regulation (EU) 2024/1689 (Artificial Intelligence Act), Annex III — high-risk AI systems"
+  publisher: European Union (EUR-Lex)
+  year: 2024
+  url: https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng
+  type: official
+  note: "Annex III point 5(b): AI systems used to evaluate the creditworthiness of natural persons or establish their credit score are high-risk, except systems used to detect financial fraud. Corporate treasury tasks (positioning, forecasting, hedging) are not listed as high-risk; transparency and general obligations still apply."
+- id: dora-scope
+  title: "Digital operational resilience for the financial sector (DORA, Regulation (EU) 2022/2554) — summary and Article 2 scope"
+  publisher: European Union (EUR-Lex summary)
+  year: 2023
+  url: https://eur-lex.europa.eu/EN/legal-content/summary/digital-operational-resilience-for-the-financial-sector.html
+  type: official
+  note: "DORA applies to 'financial entities' listed in Article 2 (credit institutions, payment and e-money institutions, investment firms, insurers, etc.) and to critical ICT third-party providers. A non-financial corporate's treasury is not itself in scope; it meets DORA indirectly through its banks and as a customer of their ICT."
+- id: finma-ai-guidance-2024
+  title: "FINMA Guidance 08/2024: Governance and risk management when using artificial intelligence"
+  publisher: Swiss Financial Market Supervisory Authority (FINMA)
+  year: 2024
+  url: https://www.finma.ch/en/news/2024/12/20241218-mm-finma-am-08-24/
+  type: official
+  note: "18 Dec 2024. Addressed to supervised institutions (banks, insurers etc.), not to corporate treasuries. Names model risks (robustness, correctness, explainability, bias), data risks, third-party dependency; observes most institutions are at an early stage. Relevant to corporates because their banks' AI-driven services fall under it."
+- id: financebench-2023
+  title: "FinanceBench: A New Benchmark for Financial Question Answering"
+  publisher: Islam et al., arXiv 2311.11944
+  year: 2023
+  url: https://arxiv.org/abs/2311.11944
+  type: academic
+  note: "10,231 questions on public-company filings; 16 model configurations evaluated on a 150-case sample. GPT-4-Turbo with a retrieval system incorrectly answered or refused 81% of questions. Models tested are from 2023; newer models score better, but the paper documents the failure pattern (retrieval + multi-step numeric reasoning)."
+- id: tau-bench-2024
+  title: "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains"
+  publisher: Yao et al., arXiv 2406.12045
+  year: 2024
+  url: https://arxiv.org/abs/2406.12045
+  type: academic
+  note: "Agents with API tools and written policy rules (retail, airline). Best gpt-4o agent: >60% average success but pass^8 (succeeding on all 8 repeated trials) below 25% in retail — introduces pass^k as a reliability metric. 2024 models; the point is that repeatability, not average accuracy, is what an operations team needs."
+- id: afp-ai-roadblocks-2023
+  title: AFP Survey Identifies Main Roadblocks to AI Implementation in Treasury and Finance
+  publisher: AFP
+  year: 2023
+  url: https://www.financialprofessionals.org/training-resources/resources/articles/Details/afp-survey-identifies-main-roadblocks-to-ai-implementation-in-treasury-and-finance
+  type: survey
+  note: "Poll of AFP 2023 conference attendees (not a representative sample). Top roadblocks: lack of knowledge/competence to work with AI (55%), integration with current processes (48%), data security (44%). 60% said skills must be 'greatly enhanced'; 2% felt fully prepared."

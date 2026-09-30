@@ -1,0 +1,1291 @@
+# Day-in-the-Life data. Owner: "day" stream. Rendered by src/components/DayViews.tsx.
+# All six personas live through the SAME week: Monday 26 and Tuesday 27 October 2026.
+# (EU clocks went back on Sunday 25 October; US clocks change on 1 November, so this week New York is
+# only 5 hours behind Basel/Zurich instead of 6.) Swiss payroll for October was paid on Friday 23 October
+# (the 25th is a Sunday); German payroll is paid for value on the last business day, Friday 30 October.
+# Each timeline entry: time, title, kind, systems[], call (the decision in a few words), why, input,
+# decision, who, next, optional wf[] (workflow ids). Markdown with the usual link syntax is allowed.
+# Timelines are illustrative synthesis, consistent with content/companies.yaml and the gold-standard workflows.
+
+personas:
+  # ---------------------------------------------------------------- SARAH
+  - id: sarah
+    name: Sarah
+    title: CFO
+    company: kleio
+    page: /day/sarah
+    rolePage: /org/roles-cfo
+    tier: startup
+    oneLiner: CFO of a 70-person SaaS company. Treasury is roughly half a day a week of her job, squeezed between fundraising, the board, pricing, HR and the audit.
+    reportsTo: CEO; presents to the board quarterly
+    team: Nina (accountant, prepares payments and bookkeeping); external fiduciary (payroll, VAT, statutory accounts); a US payroll provider
+    treasuryShare: "~10% of her time"
+    firstCheck: "Monday only: three e-banking portals, then the runway line in the Google Sheet"
+    systems: [E-banking portals (2 Swiss banks + 1 US bank), Google Sheet (cash + runway), Stripe dashboard, Bexio-class cloud accounting, bank mobile signing apps]
+    decides: How much runway is left and when to raise; which bank holds how much; whether to take venture debt; approves every payment above CHF 50k with the CEO.
+    talksTo: [CEO, Nina (accountant), external fiduciary, the board, bank relationship managers, the venture-debt lender, customers' procurement teams]
+    awake:
+      - "**Runway, not rates.** CHF 22m of cash at CHF 0.9m net burn is roughly two years — but the January and July annual prepayments make the balance look better than the underlying burn for half of every year. If the next round slips six months, the conversation with the board changes."
+      - "**A bank failure or a frozen account.** After the 2023 SVB collapse the board asked her to split cash across banks. Her worry is not interest income but *access*: could Kleio still pay salaries on the 25th if one bank stopped working for a week?"
+      - "**A fraudulent payment.** With two people in finance, [segregation of duties](term:segregation-of-duties) is thin. CEO-fraud reports to the Swiss National Cyber Security Centre rose from 719 in 2024 to 971 in 2025[](cite:bacs-ceo-fraud-2026); a single CHF 200k loss is two months of US payroll."
+      - "**USD drift.** About 40% of revenue is in USD; USD costs (cloud, US payroll) offset part of it. She has no hedges and no policy — she converts surplus USD a few times a year and hopes the board does not ask why."
+    rhythm:
+      - { when: "Wednesday–Friday", what: "Board-pack drafting for the November board meeting; runway scenarios for the venture-debt discussion; interviews for a second accountant." }
+      - { when: "Friday 30 Oct", what: "US payroll pay date (semi-monthly). Kleio Inc.'s account was checked and funded on Monday." }
+      - { when: "Month-end + 5–8 days", what: "Nina closes the books with the fiduciary; Sarah reviews the P&L, cash-flow and the burn against budget; updates the runway sheet." }
+      - { when: "25th of each month", what: "Swiss salaries, paid by the fiduciary's payroll run from bank A; Sarah checks bank A's CHF balance a week before." }
+      - { when: "Quarterly", what: "Board meeting (cash, runway, hiring plan); Swiss VAT return via the fiduciary (due 60 days after quarter-end); social-security instalments." }
+      - { when: "January and July", what: "Enterprise customers' annual prepayments arrive (the two big inflows of the year); Sarah re-splits the surplus across banks and term deposits." }
+    unusual:
+      title: The 'Sarah' email that wasn't from Sarah
+      body: |
+        On a Thursday afternoon Nina receives an email that appears to come from Sarah's address: an urgent CHF 48,000 payment to a "new legal adviser" that must go out today "before the Series C term sheet is signed — keep this confidential". The display name is right; the reply-to domain differs by one letter.
+
+        Nina does what they agreed after a fiduciary client of theirs lost money the previous year: she calls Sarah's mobile from the phone's contacts, not from the email ([call-back verification](term:call-back-verification)). Sarah is in a customer meeting and knows nothing about it.
+
+        What Sarah then does, in order: forwards the email headers to the external IT provider and asks them to check whether any mailbox was compromised (it wasn't — a look-alike domain); tells the CEO, because a *real* Series C is not public and the email implies someone knows about fundraising; reports it to the Swiss cyber authority's online form; and changes one rule — any payment to a beneficiary not paid before now needs her approval **and** a call-back, regardless of amount. Nothing was lost; the cost was an afternoon. See [fraud investigation](wf:fraud-investigation) and [business email compromise](term:bec).
+    days:
+      - id: monday
+        label: Monday 26 October
+        intro: Sarah's Monday is mostly not treasury. The treasury part is the first 45 minutes and one hour after lunch.
+        entries:
+          - time: "07:30"
+            title: Weekly balance check in three portals
+            kind: check
+            systems: [E-banking bank A, E-banking bank B, US bank portal]
+            call: Nothing to move; note USD balance at Kleio Inc.
+            why: Kleio has no daily [cash position](term:cash-position). Monday is when Sarah confirms the week can be paid and that nothing strange left the accounts over the last seven days.
+            input: Closing balances of the 7 accounts (CHF, EUR and USD at bank A; CHF at bank B incl. two CHF 4m term deposits; USD at the US bank for Kleio Inc.). Last week's balances in the Google Sheet.
+            decision: Whether any account needs topping up this week. Today the only question is Kleio Inc.'s USD account ahead of Friday's US payroll.
+            who: Nobody — she does this alone before the leadership meeting.
+            next: She types the balances into the sheet and moves on to the burn check.
+            wf: [daily-cash-positioning]
+          - time: "07:50"
+            title: Update the Google Sheet and read the runway line
+            kind: analysis
+            systems: [Google Sheet]
+            call: "Runway still ~24 months; no action"
+            why: The number the CEO and board actually care about is [runway](term:cash-runway), not the balance.
+            input: "Balances just typed in; last month's net [burn](term:burn-rate) of CHF ~0.9m; the list of expected receipts from the invoicing tool."
+            decision: Whether the week's movement is consistent with the burn. Cash fell CHF 0.3m, mostly Friday's Swiss payroll — as expected.
+            who: None; the sheet is hers. Nina can view it.
+            next: If the trend were off by more than about CHF 0.2m she would ask Nina to check for an unusual payment. Not today.
+            wf: [cash-forecasting]
+          - time: "08:05"
+            title: Check Kleio Inc. can fund Friday's US payroll
+            kind: execution
+            systems: [US bank portal, E-banking bank A, bank A signing app]
+            call: Send USD 150k from the Swiss USD account
+            why: The US payroll provider debits Kleio Inc.'s account a couple of days before each pay date. If the money isn't there, 8 US employees are paid late — a far bigger problem than any interest cost.
+            input: "Kleio Inc. balance USD 95k; next payroll ≈ USD 118k gross-to-net plus employer taxes; a USD 40k US conference invoice due next week."
+            decision: Top up by USD 150k from Kleio AG's USD account at bank A (funded by US customer receipts), rather than converting CHF. Leaves a small buffer.
+            who: Nina enters the transfer in bank A's e-banking; Sarah approves it in the bank's signing app ([collective signature](term:collective-signature) of two).
+            next: Wire leaves today; Sarah checks Tuesday that it arrived. Nina books it as an intercompany receivable of Kleio AG.
+            wf: [funding-subsidiary]
+          - time: "09:00"
+            title: Leadership meeting — hiring plan
+            kind: meeting
+            systems: [Hiring plan (Google Sheet)]
+            call: Approve 2 of 4 requested hires
+            why: Every hire is about CHF 150–180k a year fully loaded in Zurich; four hires move runway by roughly two months.
+            input: The CTO's and CRO's hiring requests; Sarah's runway sheet.
+            decision: She supports two hires now, two after the Q4 renewals are signed. Treasury here is a people decision.
+            who: CEO, CTO, CRO, Head of People.
+            next: She updates the headcount line in the runway model on Wednesday.
+          - time: "10:30"
+            title: Customer call about a 45-day overdue invoice
+            kind: comms
+            systems: [Invoicing tool, Customer procurement portal]
+            call: Re-submit through the customer's supplier portal
+            why: An insurer's CHF 180k annual renewal is 45 days overdue. It is not a credit problem — Kleio's invoice is stuck because it was emailed rather than uploaded to the insurer's procurement portal.
+            input: The invoice, the insurer's purchase-order number, the portal onboarding email Nina never received.
+            decision: Accept the insurer's process; Nina registers Kleio in the portal and re-submits. Sarah moves the expected receipt four weeks later in the sheet.
+            who: The insurer's accounts-payable team and the Kleio account executive.
+            next: Receipt now expected late November. See [accounts receivable](/org/with-ar).
+          - time: "13:30"
+            title: Venture-debt term sheet — runway effect
+            kind: analysis
+            systems: [Google Sheet, Term sheet (PDF)]
+            call: Take it to the board as optional insurance, not as runway
+            why: A lender offers CHF 5m of [venture debt](term:venture-debt), drawable for 12 months, with warrants and a minimum-cash covenant. The board meets in November.
+            input: Term sheet (interest, fees, warrants, minimum cash of CHF 5m, material-adverse-change clause); runway model; the Series C timing the CEO expects.
+            decision: She models three cases (not drawn, drawn and repaid, drawn with a delayed Series C). The minimum-cash [covenant](term:covenant) effectively locks up CHF 5m, so the 'extra runway' is smaller than it looks. She will present it as a backstop.
+            who: Later this week the CEO; a call with the lead investor's partner.
+            next: Draft board memo Wednesday. See [credit facility management](wf:credit-facility-management).
+          - time: "15:00"
+            title: Term-deposit maturity next Monday
+            kind: decision
+            systems: [E-banking bank B, Google Sheet]
+            call: Roll CHF 4m for 3 months at bank B
+            why: One of the two CHF 4m three-month [term deposits](term:term-deposit) matures on 2 November. With the SNB policy rate at 0%, CHF deposits earn close to nothing; the reason to roll is to keep the board-mandated split between banks and keep the money outside the operating account.
+            input: Bank B's quoted rate (near zero); the runway sheet showing no need for the cash before January.
+            decision: Roll for three months. She considered a CHF money-market fund and decided it adds paperwork (new account, custody) for no meaningful gain at 0% rates.
+            who: Bank B's relationship manager by email; the rollover needs a signed instruction.
+            next: Instruction signed in bank B's portal on Wednesday. See [surplus cash investment](wf:surplus-cash-investment).
+      - id: tuesday
+        label: Tuesday 27 October
+        intro: Tuesday is Kleio's payment day. Nina prepares, Sarah approves.
+        entries:
+          - time: "08:15"
+            title: Confirm the USD transfer arrived
+            kind: check
+            systems: [US bank portal]
+            call: Arrived; payroll covered
+            why: A wire that left Monday should be credited in the US the same day or next morning. If not, Friday payroll is at risk and there are still two days to fix it.
+            input: Kleio Inc. balance and incoming wire detail.
+            decision: None needed — USD 150k credited Monday afternoon New York time.
+            who: None.
+            next: Closes the item in her task list.
+          - time: "09:00"
+            title: Approve the weekly supplier payments
+            kind: approval
+            systems: [E-banking bank A, bank A signing app, Cloud accounting]
+            call: Approve 31 of 32; hold one
+            why: Every outgoing payment needs two signatures (collective signature). Nina enters them; Sarah or the CEO is the second signatory, and both sign above CHF 50k.
+            input: "Nina's payment list: 32 supplier invoices, CHF 214k in total, each with the invoice attached in the accounting tool."
+            decision: She opens every payment above CHF 10k and every first-time beneficiary. One is a new freelance designer whose IBAN is at a foreign neobank; she holds it until Nina has confirmed the account by phone with the designer.
+            who: Nina.
+            next: The released payments go out today via [SIC](term:sic); the held one tomorrow after the call-back. See [payment processing](wf:payment-processing).
+            wf: [payment-processing, large-payment-approval]
+          - time: "10:00"
+            title: Board pack — the cash page
+            kind: analysis
+            systems: [Google Sheet, Slides]
+            call: Show runway with and without the January prepayments
+            why: Board members compare runway quarter to quarter. The seasonal prepayments distort it, and she wants no surprises in January.
+            input: Runway sheet; ARR and billing schedule from the CRO; the venture-debt option.
+            decision: Present runway as a range (about 21–24 months depending on renewals) rather than one number.
+            who: CEO reviews the draft Thursday.
+            next: Board meeting 12 November.
+          - time: "11:30"
+            title: Fiduciary call — Q3 VAT and October payroll
+            kind: comms
+            systems: [Phone, Cloud accounting]
+            call: Confirm VAT payable and payment date
+            why: The Swiss Q3 VAT return is due by 30 November. The fiduciary prepares it; Sarah needs the amount to plan bank A's CHF balance, and must sign the return.
+            input: Fiduciary's draft return; the October payroll journal (bonus accrual for the US sales team).
+            decision: Pay VAT in the week of 23 November from bank A. No cash transfer needed now.
+            who: External fiduciary.
+            next: Amount added to the Google Sheet's November line.
+          - time: "14:00"
+            title: FX — convert surplus USD?
+            kind: decision
+            systems: [E-banking bank A (FX), Google Sheet]
+            call: Leave USD as is until December
+            why: USD receipts from US customers accumulate at bank A; USD costs (cloud, US payroll) consume most of them — a [natural hedge](term:natural-hedge). The surplus is USD ~0.6m.
+            input: USD balance; next three months of USD costs; USD/CHF around 0.80 (illustrative).
+            decision: The surplus is under three months of USD costs; converting and later buying back would cost two spreads. She does not hedge and has no forecast precise enough to hedge against.
+            who: None. She would ask the bank's FX desk for a quote if converting.
+            next: Revisits in December. See [FX exposure management](wf:fx-exposure-management).
+            wf: [fx-exposure-management]
+          - time: "16:30"
+            title: Release the held payment
+            kind: approval
+            systems: [bank A signing app]
+            call: Release after call-back
+            why: Nina reached the designer on the phone number in the signed contract; the IBAN matches.
+            input: Nina's note of the call (who, when, which number).
+            decision: Approve.
+            who: Nina.
+            next: Payment executes tomorrow morning; the call note is attached to the invoice in the accounting tool.
+
+  # ---------------------------------------------------------------- PETRA
+  - id: petra
+    name: Petra
+    title: Head of Accounting
+    company: alpine
+    page: /day/petra
+    rolePage: /org/with-accounting
+    tier: sme
+    oneLiner: Runs a seven-person finance team at a CHF 80m robotics maker. Month-end close, audit and VAT are her job; cash, payments and bank reconciliations are done by her because nobody else is there to do them.
+    reportsTo: Martin (CFO)
+    team: 2 AP/AR accountants, 1 general-ledger accountant, 1 payroll/HR accountant, 1 controller, 1 apprentice; local bookkeepers at the German GmbH and US Inc.
+    treasuryShare: "~20–30% of her time"
+    firstCheck: "08:00 daily: balances in the two Swiss banks' portals, then yesterday's rejected payments"
+    systems: [Microsoft Dynamics 365 Business Central, Cantonal bank e-banking, Large Swiss bank e-banking + FX portal, EBICS file upload, bank signing app, Excel cash sheet]
+    decides: Which payments go in which run, which account pays; prepares every cash decision for Martin; approves payments up to CHF 250k with one other signatory.
+    talksTo: [Martin (CFO), AP and AR accountants, project managers, German and US bookkeepers, the two banks' relationship managers and FX desk, the auditor]
+    awake:
+      - "**A milestone that slips.** One delayed acceptance certificate moves CHF 1–2m. The cash sheet depends on project managers telling her the truth about acceptance dates, and they are optimists."
+      - "**Payroll on the 25th while the credit line is half-drawn.** The CHF 12m line is committed, but she does not want to be the person who tells Martin on the 23rd that it must be drawn today."
+      - "**A payment she signed that went to a fraudster.** She knows the vendor-master change process is the weak point: an AP accountant can change a bank account, and she is the only real check."
+      - "**Close, audit and cash all at once.** In the first week of each month the close competes with the payment runs. When something breaks, it is the treasury work that gets done late."
+    rhythm:
+      - { when: "Wednesday", what: "Bank reconciliations for the Swiss accounts (camt.053 import into Business Central, matching open items); intercompany reconciliation with the German bookkeeper." }
+      - { when: "Friday 30 Oct", what: "Second payment run of the week; German payroll pays out (funded Tuesday); month-end cut-off in Business Central." }
+      - { when: "Working days 1–6 of November", what: "October close: accruals, project revenue recognition with the controller, intercompany, bank reconciliations of all 9 accounts; results to Martin on WD6." }
+      - { when: "Monthly", what: "FX: converts EUR surplus above ~EUR 1m at spot; hedges each newly signed EUR/USD project above EUR 1m with forwards (the rule from the board minute)." }
+      - { when: "Quarterly / annual", what: "Swiss VAT return; covenant certificate for the cantonal bank (annual, with audited accounts); audit fieldwork in February; bank KYC renewals." }
+    unusual:
+      title: The US account that stopped paying
+      body: |
+        In February, the US bank restricts Alpine Robotics Inc.'s account: the bank's periodic [KYC](term:kyc) review found the beneficial-ownership certification out of date, and three emails to the US bookkeeper's old address went unanswered. Outgoing wires and ACH are blocked; incoming payments still arrive. US payroll is due in six days.
+
+        Petra's sequence: she calls the bank's service line (not the relationship manager, who is on holiday) and learns which forms are missing; gets Martin and the US managing director to sign the certification that afternoon (the US MD signs electronically); sends it through the bank's secure portal; and — because the bank cannot promise a date — prepares a fallback in which Alpine Robotics AG pays the US payroll provider directly from its USD account, documented as an [intercompany loan](term:intercompany-loan) that the US entity repays. The account is unblocked after four days and the fallback is not needed. Her follow-up: a list of every bank's KYC contact and renewal date in the cash workbook. See [bank account management](wf:bank-account-management).
+    days:
+      - id: monday
+        label: Monday 26 October
+        intro: Monday is cash-sheet day. By 09:30 Martin wants to know which milestones slipped.
+        entries:
+          - time: "07:45"
+            title: Balances in both portals
+            kind: check
+            systems: [Cantonal bank e-banking, Large Swiss bank e-banking]
+            call: Nothing unusual; EUR account at EUR 2.1m
+            why: Alpine's cash swings with milestone payments. Petra checks every morning that nothing unexpected left the accounts and that incoming customer payments arrived.
+            input: "Balances and weekend credits of 9 accounts: CHF, EUR and USD at the cantonal bank (house bank); CHF, EUR and USD at the large Swiss bank; the German GmbH's EUR and the US Inc.'s USD accounts, which she sees through the large bank's multibank view."
+            decision: Whether anything needs explaining. A EUR 380k milestone from a Dutch customer arrived Friday; she notes EUR at the large bank is now EUR 2.1m.
+            who: None.
+            next: Balances go into the cash sheet.
+            wf: [daily-cash-positioning]
+          - time: "08:10"
+            title: Refresh the weekly cash sheet
+            kind: analysis
+            systems: [Excel cash sheet, Business Central (AR/AP ageing export)]
+            call: Week-4 low point CHF 3.1m
+            why: The sheet is Alpine's only forecast — 13 weeks by week, CHF-equivalent, with projects listed line by line.
+            input: Bank balances (group CHF 7.4m equivalent); AR open items and AP due dates exported from Business Central; payroll (Swiss CHF 2.1m on the 25th); VAT; the project milestone list with expected acceptance dates.
+            decision: She adjusts receipts she does not believe (a German customer that always pays 3 weeks late). Result — low point CHF 3.1m in week 4, with CHF 3m of the CHF 12m credit line drawn.
+            who: None yet; she needs the project managers.
+            next: Emails two project managers to confirm acceptance dates before 09:30. See [cash forecasting](wf:cash-forecasting).
+            wf: [cash-forecasting]
+          - time: "09:30"
+            title: Monday cash meeting with Martin
+            kind: meeting
+            systems: [Excel cash sheet]
+            call: Don't draw more now; prepare a CHF 2m drawing for 6 Nov
+            why: The Duisburg project's acceptance test found a software fault; the final 20% (EUR 1.9m) moves from 30 October to mid-November at best.
+            input: The cash sheet with and without the Duisburg payment; the credit line (CHF 12m committed, CHF 3m drawn).
+            decision: "Martin decides: no drawing today; Petra prepares a CHF 2m drawing request for 6 November in case acceptance slips further. Martin also asks sales to invoice the Swiss customer's delivery milestone this week instead of next."
+            who: Martin (CFO). Martin informs the CEO.
+            next: Petra diarises the drawing decision for 3 November. See [liquidity planning](wf:liquidity-planning) and [credit facility management](wf:credit-facility-management).
+          - time: "10:15"
+            title: October close planning
+            kind: meeting
+            systems: [Close checklist (Excel), Business Central]
+            call: Assign close tasks; move bank recs to Wednesday
+            why: Her main job. The October close must reach Martin by working day 6.
+            input: Close checklist; the auditor's interim-audit request list for November.
+            decision: Who does which reconciliation; she keeps bank reconciliations herself because they touch the cash sheet.
+            who: The whole finance team.
+            next: Close starts Friday. See [month-end close](term:month-end-close).
+          - time: "13:30"
+            title: Build Tuesday's payment proposal
+            kind: analysis
+            systems: [Business Central (payment journal)]
+            call: Pay 72 invoices, defer 6 non-critical ones to Friday
+            why: Alpine pays suppliers on Tuesdays and Fridays. With the Duisburg delay she wants to keep cash for the end-of-month run.
+            input: Invoices due by next Tuesday (CHF 1.34m); supplier terms; which suppliers are critical to production.
+            decision: Pay all component suppliers and anything with a skonto (early-payment discount); push six service invoices to Friday within terms.
+            who: The AP accountant prepares the journal; Petra reviews.
+            next: Journal ready for export as a [pain.001](term:pain-001) file on Tuesday morning. See [payment processing](wf:payment-processing).
+          - time: "15:00"
+            title: German GmbH asks for payroll money
+            kind: comms
+            systems: [Email, Excel cash sheet]
+            call: Fund EUR 300k on Tuesday
+            why: The German bookkeeper needs EUR 300k on the GmbH account by Thursday for payroll paid for value 30 October, plus social charges.
+            input: GmbH balance EUR 95k; the GmbH's receipts are low this month.
+            decision: Transfer EUR 300k from Alpine AG's EUR account at the large bank on Tuesday as an intercompany loan; needs Martin's signature as second signatory because it is an intercompany transfer.
+            who: German bookkeeper; Martin.
+            next: Tuesday 11:00 execution.
+            wf: [funding-subsidiary]
+          - time: "16:00"
+            title: EUR surplus — convert?
+            kind: decision
+            systems: [Large Swiss bank FX portal]
+            call: Convert EUR 1.0m to CHF at spot
+            why: Alpine's costs are mostly CHF; the EUR account is above the ~EUR 1m level at which Martin wants surplus converted. No hedging policy beyond a board minute.
+            input: EUR balance EUR 2.1m; EUR payments due in the next 4 weeks (EUR 0.9m); EUR/CHF around 0.935 (illustrative).
+            decision: Proposes converting EUR 1.0m; Martin agrees by chat. She books the [spot](term:spot-fx) trade in the bank's FX portal, value T+2.
+            who: Martin; the bank's FX portal (no dealer call).
+            next: Trade confirmation arrives by email; she files it in the 'FX deals' tab of the cash sheet and tells the GL accountant to book it.
+            wf: [fx-exposure-management]
+      - id: tuesday
+        label: Tuesday 27 October
+        intro: Payment day. Everything must be signed before the banks' same-day cut-offs, and nothing can go out that she has not looked at.
+        entries:
+          - time: "07:50"
+            title: Balances and yesterday's status reports
+            kind: check
+            systems: [Both e-banking portals]
+            call: All clear
+            why: Before sending new payments she confirms that Friday's run was fully executed — rejected payments show up in the [payment status report](term:payment-status).
+            input: Balances; pain.002 status from Friday's upload.
+            decision: None needed.
+            who: None.
+            next: Moves to the payment file.
+          - time: "08:20"
+            title: Export and upload the payment file
+            kind: execution
+            systems: [Business Central, EBICS client, Cantonal bank signing app]
+            call: 72 payments, CHF 1.28m, uploaded for same-day value
+            why: The house bank executes CHF and EUR supplier payments from a pain.001 file uploaded over [EBICS](term:ebics) and then signed electronically.
+            input: The approved payment journal.
+            decision: Last check of the total against the proposal and of three payments over CHF 100k.
+            who: The AP accountant exports; Petra and the controller sign (two signatures up to CHF 250k).
+            next: One payment of CHF 310k to a component supplier exceeds CHF 250k, so Martin must be one of the signatories — she messages him.
+            wf: [payment-processing]
+          - time: "09:05"
+            title: A supplier 'changes bank details'
+            kind: exception
+            systems: [Email, Business Central vendor master, Phone]
+            call: Reject the change; flag to Martin
+            why: The AP accountant received a PDF letter from a German component supplier announcing a new bank account 'due to a bank merger', asking for Friday's payment to go there.
+            input: The email (sent from a look-alike domain), the supplier's phone number in [vendor master data](term:vendor-master-data).
+            decision: Petra calls the supplier's accounts-receivable contact on the number in Business Central. No change of bank. She blocks the change and tells the AP team to ignore the thread. See [call-back verification](term:call-back-verification).
+            who: AP accountant; the supplier; Martin informed.
+            next: She adds the look-alike domain to the email filter request to IT. See [fraud investigation](wf:fraud-investigation).
+          - time: "10:10"
+            title: One payment rejected
+            kind: exception
+            systems: [EBICS client (pain.002)]
+            call: Correct and resend before cut-off
+            why: The bank's status report shows 71 accepted and one rejected (account closed at beneficiary bank).
+            input: The rejected payment's reason code and the supplier's last invoice.
+            decision: She will not use the IBAN from the most recent email; the AP accountant calls the supplier on the known number, gets the new IBAN, and a second person changes the vendor master.
+            who: AP accountant; supplier.
+            next: Resent as a single payment at 11:30, well before the house bank's afternoon CHF cut-off.
+          - time: "11:00"
+            title: Fund the German GmbH
+            kind: execution
+            systems: [Large Swiss bank e-banking, bank signing app]
+            call: EUR 300k sent as intercompany loan
+            why: German payroll must be covered by Thursday.
+            input: The German bookkeeper's request; AG's EUR balance after the conversion.
+            decision: Send today rather than Wednesday, so a failure can still be fixed.
+            who: Petra enters; Martin signs.
+            next: The GL accountant books the intercompany loan; the GmbH bookkeeper confirms receipt Wednesday.
+            wf: [funding-subsidiary]
+          - time: "13:30"
+            title: Close preparation and audit request list
+            kind: admin
+            systems: [Business Central, Excel]
+            call: None — accounting work
+            why: The rest of the afternoon is her actual job.
+            input: Auditor's interim request list.
+            decision: Which schedules she prepares herself.
+            who: Controller.
+            next: Continues Wednesday.
+          - time: "15:30"
+            title: New project signed — hedge the EUR milestones?
+            kind: decision
+            systems: [Contract summary, Large Swiss bank FX portal]
+            call: Martin approves EUR 1.2m forward for March 2027
+            why: Sales signed a EUR 3.0m project with a 40% milestone expected in March 2027. The board minute says to hedge confirmed EUR/USD project receipts above EUR 1m.
+            input: Contract milestone schedule; the bank's [forward](term:forward) quote for March 2027 value; the project manager's view of how firm the date is.
+            decision: Hedge the March milestone only (EUR 1.2m) — the later ones depend on acceptance dates nobody trusts. She picks an end-of-March date and accepts that the forward may need to be extended with a [swap](term:swap) if acceptance slips.
+            who: Martin approves; Petra executes in the FX portal.
+            next: Confirmation filed in the cash sheet's hedge tab; the controller is told for year-end valuation. See [FX hedging](wf:fx-hedging).
+            wf: [fx-hedging]
+          - time: "16:45"
+            title: Last balance check
+            kind: check
+            systems: [Both e-banking portals]
+            call: All payments executed
+            why: A payment still 'pending' at close of day would be late.
+            input: Payment status in both banks.
+            decision: None.
+            who: None.
+            next: Home.
+
+  # ---------------------------------------------------------------- DANIEL
+  - id: daniel
+    name: Daniel
+    title: Treasury Manager
+    company: helvetic
+    page: /day/daniel
+    rolePage: /org/roles-treasury-manager
+    tier: midmarket
+    oneLiner: Runs a two-person central treasury for a CHF 650m machine-tool group with 8 subsidiaries in 6 currencies. Does the analysis, makes most operational decisions, and escalates the material ones to the CFO.
+    reportsTo: Thomas (CFO)
+    team: Lea (Treasury Analyst). Works daily with Claudia (Group Accounting), Marco (FP&A), and subsidiary finance managers Giulia (Italy), Jens (Germany), Wei (China).
+    treasuryShare: 100% (plus the TMS selection project)
+    firstCheck: "Statement completeness in the connectivity tool, then the positioning workbook Lea has refreshed, then her proposal"
+    systems: [Multibank connectivity tool (EBICS/SWIFT), Excel positioning workbook, Excel 13-week forecast, SAP S/4HANA (CH, DE, CZ), Bank FX portals and phone dealing, Bloomberg-lite market data in the bank portal]
+    decides: Intercompany funding and cash concentration, deposits, FX forward trades within the hedge policy, forecast overlays, which bank gets which business; escalates facility drawings, policy exceptions and anything above CHF 2m that is not routine.
+    talksTo: [Lea, Thomas (CFO), Claudia (Group Accounting), Marco (FP&A), Giulia/Jens/Wei (subsidiary finance), 5 banks' relationship managers and FX dealers, TMS vendors, auditors]
+    awake:
+      - "**[Key-person risk](term:key-person-risk).** Two people run treasury for a CHF 650m group. If Lea is ill during Daniel's holiday, the CFO is the backup signatory and nobody else can build the position. It is why Daniel builds the position himself on Lea's days off and insists the workbook is documented."
+      - "**A forecast that is precisely wrong.** The subsidiaries' templates look professional, but Italy has over-forecast receipts in most recent weeks. The 13-week view drives deposits, hedges and the CFO's confidence."
+      - "**The 2028 bond.** CHF 100m must be refinanced; the [refinancing](term:refinancing-risk) window is in 2027. He wants the 18-month liquidity plan to be credible before the banks start asking."
+      - "**China.** Cash in HM Suzhou cannot be swept; a dividend needs audited accounts, tax clearance and bank paperwork. It looks like group cash in the CFO's slide but cannot pay a Swiss bill next week ([trapped cash](term:trapped-cash))."
+      - "**A missed cut-off on payroll day.** The German payroll is EUR 4.2m. A funding transfer entered after the cut-off means 1,000 people paid a day late."
+    rhythm:
+      - { when: "Wednesday", what: "Forecast consolidation finished with Lea; variance review; calls to subsidiaries whose numbers look off; decides overlays." }
+      - { when: "Thursday", what: "Weekly treasury [jour fixe](term:jour-fixe) with Thomas (30 min): position, 13-week low point, hedges, RCF drawings, bank topics." }
+      - { when: "Friday", what: "FX: tops up the EUR hedge layers if the ratio report shows a quarter below its band — asks 2–3 banks for forward quotes and deals on the phone or FX platform; confirmations matched by Lea." }
+      - { when: "Month-end / WD1–5", what: "Intercompany loan interest calculated and sent to Group Accounting; month-end treasury report to Thomas (cash, debt, hedges, counterparty exposure, forecast accuracy)." }
+      - { when: "Semi-annual (June, December)", what: "Covenant calculation (net debt / EBITDA ≤ 3.25x, interest cover ≥ 4x) with Claudia; compliance certificate to the RCF agent." }
+      - { when: "Annual", what: "Hedging policy review with the audit committee; bank relationship review (wallet share vs RCF commitments); budget FX rates with Marco." }
+    unusual:
+      title: EUR/CHF drops 2.5% before lunch
+      body: |
+        On a Thursday in spring, EUR/CHF falls from about 0.935 to 0.912 between 09:00 and 11:30 on unexpected news. Thomas walks into the treasury office at 11:40: "How badly does this hit us, and should we hedge more now?"
+
+        Daniel's first 30 minutes: he opens Lea's latest hedge-ratio report instead of a market screen. The next two quarters are 72% and 55% hedged at rates around 0.94–0.95, so most near-term EUR revenue is already locked. He asks Lea to rerun the unhedged EUR exposure at the new rate (the translation effect on EUR subsidiaries' equity is a separate, non-cash question for Claudia). The answer he gives Thomas at 12:30: roughly CHF 1.5–2m of lower margin over the next 12 months on the unhedged part, no liquidity problem, no covenant issue.
+
+        His recommendation — and the judgment call — is **not** to buy more forwards in a panic at the new, worse rate; the policy band is met, and hedging after a move locks in the loss. Thomas agrees but asks for a board note. The workflow is [currency shock](wf:currency-shock); see also [FX hedging](wf:fx-hedging).
+    days:
+      - id: monday
+        label: Monday 26 October
+        intro: Lea starts at 07:30 and builds the position. Daniel starts at 08:00 with markets and mail, then reviews what she built and decides.
+        entries:
+          - time: "08:00"
+            title: Markets, mail, bank messages
+            kind: check
+            systems: [Bank portal market data, Outlook]
+            call: Nothing requires action
+            why: Overnight news, rate moves and bank emails decide whether the day has a surprise in it.
+            input: EUR/CHF around 0.935, USD/CHF around 0.80 (illustrative); an email from the global bank's KYC team; a note from Jens that the German supplier run was released a day early.
+            decision: Forwards the KYC request to Lea; notes the German run for the position.
+            who: None yet.
+            next: Waits for Lea's position.
+          - time: "08:50"
+            title: Review Lea's position email
+            kind: approval
+            systems: [Excel positioning workbook]
+            call: No transfers today; fund Germany Tuesday
+            why: The daily position is the basis for every funding decision. Lea proposes; Daniel decides.
+            input: "[Lea's 08:45 position](/day/lea#monday-0845): group cash CHF 45.6m after Friday's Swiss payroll; HM Deutschland will be short for Thursday's payroll; HM AG holds about CHF 4m more CHF than it needs this week; a CHF 20m RCF tranche rolls on Friday."
+            decision: Agrees with Lea's proposal to wait until Tuesday for the German top-up, when the supplier run is final.
+            who: Lea.
+            next: RCF rollover decision (next row).
+            wf: [daily-cash-positioning]
+          - time: "09:05"
+            title: RCF tranche rollover — repay part of it?
+            kind: decision
+            systems: [Excel positioning workbook, Excel 13-week forecast, RCF agent's portal]
+            call: Roll the CHF 20m tranche unchanged for one month
+            why: Of the CHF 60m drawn on the [RCF](term:rcf), a CHF 20m one-month tranche matures Friday. With CHF rates around 0%, surplus CHF earns nothing on deposit, so the only use of surplus CHF is to reduce drawings at a rollover.
+            input: HM AG's CHF surplus (about CHF 4m this week); the forecast's week-6 low point (December bond coupon plus Q3 VAT); the RCF cost (SARON about 0% plus the margin, minus the [commitment fee](term:commitment-fee) he would pay on the repaid amount); the three-business-day notice for a new drawing.
+            decision: Repaying CHF 4m for five weeks saves only the margin net of the commitment fee — a few thousand francs — and he would likely redraw before the coupon. He rolls the tranche unchanged and revisits after the December coupon.
+            who: Sends the rollover notice to the RCF agent bank by Wednesday (Lea prepares it).
+            next: Mentioned at Thursday's jour fixe. See [credit facility management](wf:credit-facility-management).
+            wf: [credit-facility-management]
+          - time: "09:30"
+            title: Q3 covenant headroom estimate
+            kind: analysis
+            systems: [Excel covenant model, SAP (Q3 figures from Group Accounting)]
+            call: ~1.7x vs 3.25x covenant; no concern
+            why: Covenants are tested semi-annually, but Thomas wants the quarterly direction before the Q3 results call with the banks.
+            input: "Claudia's preliminary Q3 LTM EBITDA (about CHF 70m, illustrative); gross debt CHF 160m (RCF CHF 60m drawn + CHF 100m bond); cash about CHF 41–46m."
+            decision: Net debt / EBITDA about 1.7x against the 3.25x limit; interest cover far above 4x. Headroom comfortable.
+            who: Claudia (Head of Group Accounting) for the figures.
+            next: One line for Thursday's jour fixe. See [covenant monitoring](wf:covenant-monitoring).
+            wf: [covenant-monitoring]
+          - time: "10:30"
+            title: Call with Wei about the Suzhou dividend
+            kind: comms
+            systems: [Teams, Excel liquidity plan]
+            call: Target December payment; start paperwork now
+            why: HM Suzhou has CNY cash the group would like to [repatriate](term:repatriation). Paying a dividend requires audited statutory accounts, tax filings and documents for the bank.
+            input: Wei's timeline; the local auditor's sign-off date; [withholding tax](term:withholding-tax) estimate from the tax adviser.
+            decision: Aim for a December payment; keep it out of the 13-week forecast until the bank confirms the documents are complete.
+            who: Wei (HM Suzhou finance manager); later the group tax adviser.
+            next: Lea gets a reminder to check progress every two weeks. See [trapped cash](term:trapped-cash).
+          - time: "11:30"
+            title: German bank relationship manager
+            kind: comms
+            systems: [Phone]
+            call: No new mandate; keep FX quotes coming
+            why: The German bank is one of four RCF lenders and wants more [ancillary business](term:ancillary-business) (FX, cash management).
+            input: Last year's wallet-share table (who earned what from Helvetic).
+            decision: Promises the German bank a place in Friday's FX quote round; no change to cash management.
+            who: Bank RM.
+            next: Notes in the bank relationship file. See [relationship banks](term:relationship-bank).
+          - time: "13:30"
+            title: TMS vendor demo
+            kind: project
+            systems: [Vendor demo, Requirements list (Excel)]
+            call: Shortlist stays at two
+            why: The group is evaluating a TMS. Daniel has to show Thomas that it would remove real work (statement import, forecast collection, deal capture), not just move Excel into a browser.
+            input: Helvetic's own requirements list with 60 items; a script of Helvetic's real Tuesday (statements, known flows, German funding) to make the vendor demo it live.
+            decision: This vendor handles bank statements and positioning well but its forecasting module would still need Excel templates for subsidiaries. Stays on the shortlist.
+            who: Vendor; Lea (first hour); Helvetic IT.
+            next: Scoring sheet updated Tuesday. See [treasury systems](/systems/tms).
+          - time: "16:00"
+            title: Reads Lea's hedge-ratio report — no, tomorrow
+            kind: admin
+            systems: [Outlook]
+            call: Deferred to Tuesday morning
+            why: Lea sends the weekly EUR hedge-ratio report late Monday. It is not urgent unless a quarter is outside the band.
+            input: Subject line shows all quarters inside the policy band.
+            decision: Reads it properly on Tuesday.
+            who: Lea.
+            next: "[Tuesday 09:15](/day/daniel#tuesday-0915)."
+      - id: tuesday
+        label: Tuesday 27 October
+        intro: "Lea started at 07:30 and has already refreshed the workbook. Daniel opens the same screens at 07:45 to see the picture before her proposal arrives — the same Tuesday described on the [Start page](/start)."
+        entries:
+          - time: "07:45"
+            title: Statement completeness check
+            kind: check
+            systems: [Multibank connectivity tool]
+            call: 11 of 12 in; China missing again
+            why: A missing statement means an unknown balance. He checks before he trusts any total.
+            input: Prior-day [statements](term:bank-statement) (MT940/camt.053) from 5 banks.
+            decision: The Chinese bank's file is missing. That is *not* a time-zone effect — Asian statements are normally the first to arrive in Switzerland — but a recurring relay problem since the bank changed its file format. Lea has already raised a ticket; it usually arrives by about 10:00 after the service desk re-sends it.
+            who: None; Lea owns the ticket.
+            next: Opens the workbook.
+            wf: [daily-cash-positioning]
+          - time: "07:55"
+            title: Look at the refreshed workbook
+            kind: review
+            systems: [Excel positioning workbook]
+            call: Group cash CHF 41m, CHF 3m below expectation
+            why: A gap versus expectation is either a data problem or a real event; he needs to know which before deciding anything.
+            input: Balances Lea imported at 07:40; yesterday's expected closing positions; her control column (opening = prior close).
+            decision: The gap is real, not a data error.
+            who: Lea (sits next to him).
+            next: Traces the difference with her notes.
+          - time: "08:10"
+            title: Trace the CHF 3m gap
+            kind: exception
+            systems: [Excel positioning workbook, Connectivity tool (transaction detail), Outlook]
+            call: Italian customer late (CHF 2.1m); German run a day early
+            why: Timing differences and permanent losses need different responses.
+            input: Transaction details for HM Italia and HM Deutschland; Lea's flags; Jens's note from Monday.
+            decision: A large Italian customer did not pay on its due date; Germany's supplier run went out Monday instead of Tuesday. Both look like timing, but he wants confirmation on Italy because this customer was also late in September.
+            who: Emails Giulia (HM Italia) himself — a customer-credit question goes manager to manager.
+            next: "[Lea tracks the reply](/day/lea#tuesday-0930)."
+          - time: "08:20"
+            title: Fund German payroll
+            kind: decision
+            systems: [Excel positioning workbook, Connectivity tool (EBICS payment)]
+            call: EUR 3m from HM AG to HM Deutschland
+            why: German payroll (EUR 4.2m) pays for value Friday; the German account holds about EUR 1.9m. Lea flagged it on Monday and sized it this morning.
+            input: HM AG's EUR account (about EUR 11.9m); the German account's minimum balance (EUR 0.25m); Thursday's EUR 8m forward delivery from HM AG's EUR account.
+            decision: EUR 3m covers payroll plus buffer and still leaves HM AG enough EUR for Thursday's forward settlement. Structured as an [intercompany loan](term:intercompany-loan).
+            who: "[Lea enters the transfer at 08:25](/day/lea#tuesday-0825); Daniel approves it as second signatory at 08:30."
+            next: Executes same day via EBICS; Lea updates the loan register for accounting.
+            wf: [funding-subsidiary]
+          - time: "08:45"
+            title: 13-week forecast with the Italian delay
+            kind: analysis
+            systems: [Excel 13-week forecast]
+            call: Low point CHF 18m in week 6; no RCF drawing
+            why: A late receipt can shift the low point. The CFO wants group cash above CHF 10m at all times.
+            input: Last week's forecast; the Italian delay; week 6 carries the December bond [coupon](term:coupon) and the Q3 VAT payment.
+            decision: Low point stays around CHF 18m, above the CHF 10m minimum, with CHF 140m undrawn on the [RCF](term:rcf). No drawing needed.
+            who: None.
+            next: Final numbers come after Tuesday's submissions (Lea).
+            wf: [cash-forecasting, liquidity-planning]
+          - time: "09:15"
+            title: EUR hedge-ratio report
+            kind: analysis
+            systems: [Excel hedge report (Lea's)]
+            call: Next quarter 72% — no trade today
+            why: The policy requires 60–90% of forecast EUR net receipts for the next quarter to be hedged, with lower bands further out.
+            input: >-
+              Lea's report: exposures from the forecast, outstanding [forwards](term:forward) from bank confirmations.
+            decision: Q1 2027 at 72% is inside the band; Q2 2027 at 48% is near the bottom of its band. He plans a quote round on Friday.
+            who: None today.
+            next: Friday — quotes from three banks, including the German bank. See [FX hedging](wf:fx-hedging).
+            wf: [fx-hedging]
+          - time: "09:40"
+            title: Second signature on 64 Swiss supplier payments
+            kind: approval
+            systems: [Connectivity tool (EBICS distributed signature)]
+            call: Approve 63; query one changed IBAN
+            why: HM AG's payment runs are prepared by the Swiss accounting team; treasury provides one of the two electronic signatures on the EBICS file ([distributed signature](term:ebics-signature)).
+            input: The payment file; the vendor-master change log for this run.
+            decision: One supplier's bank details changed last week. He asks AP to show the call-back record before releasing it.
+            who: Swiss AP team lead.
+            next: The payment is released at 11:00 after AP shows the record. See [large payment approval](wf:large-payment-approval).
+            wf: [payment-processing]
+          - time: "10:30"
+            title: Thomas stops by
+            kind: meeting
+            systems: []
+            call: Tell credit control about the Italian customer
+            why: The CFO wants to hear about a delayed CHF 2.1m receipt before it turns into a bigger story.
+            input: Giulia's reply via Lea (customer's payment run moved; pays Friday).
+            decision: Nothing to decide on liquidity; Thomas asks that the customer's pattern goes to the next credit-control review.
+            who: Thomas (CFO).
+            next: Daniel emails Giulia and the group credit controller.
+          - time: "13:30"
+            title: TMS scoring and business case
+            kind: project
+            systems: [Excel]
+            call: Business case must show hours saved, not features
+            why: Thomas will only take a TMS request to the executive board if it pays back in reduced manual work and risk.
+            input: Monday's demo notes; Lea's time log of how long the position and forecast take each week.
+            decision: Frames the case around positioning, forecast collection, deal capture and key-person risk.
+            who: Lea; IT.
+            next: Draft to Thomas in November.
+          - time: "15:30"
+            title: Review forecast submissions so far
+            kind: review
+            systems: [Excel 13-week forecast]
+            call: Challenge France tomorrow
+            why: Subsidiaries submitted by noon — except France.
+            input: Lea's first consolidation and variances.
+            decision: The Czech numbers look fine; France is missing. He will call the French finance manager on Wednesday.
+            who: Lea.
+            next: Wednesday — overlays and the final forecast.
+            wf: [cash-forecasting]
+
+  # ---------------------------------------------------------------- LEA
+  - id: lea
+    name: Lea
+    title: Treasury Analyst
+    company: helvetic
+    page: /day/lea
+    rolePage: /org/roles-analyst
+    tier: midmarket
+    oneLiner: The analyst in a two-person central treasury. Builds the daily position three days a week, runs the 13-week forecast process, produces the hedge-ratio report, and keeps the loan and deal registers accounting depends on.
+    reportsTo: Daniel (Treasury Manager)
+    team: None; works with subsidiary finance teams, Swiss AP, Group Accounting and the banks' service desks.
+    treasuryShare: 100%
+    firstCheck: "07:30 Mon/Wed/Fri: are all 12 prior-day statements in the connectivity tool?"
+    systems: [Multibank connectivity tool, Excel positioning workbook, Excel 13-week forecast + subsidiary templates, SAP S/4HANA reports (AR/AP, FI), Bank portals, Intercompany loan and FX deal registers (Excel)]
+    decides: Whether data is right; what to propose; which subsidiary to chase. She does not decide funding, investments or hedges — she prepares them and is the second signatory on treasury transfers.
+    talksTo: [Daniel, subsidiary finance managers, Swiss AP team, Group Accounting (Claudia's team), bank service desks, TMS vendors]
+    awake:
+      - "**A number she sent that was wrong.** A broken link or an outdated FX rate in the workbook goes straight into Daniel's decision and the CFO's slide."
+      - "**Chasing people who don't report to her.** The forecast depends on eight subsidiaries meeting a Tuesday-noon deadline for a task that is nobody's priority there."
+      - "**Being the only one who knows.** Many workbook macros and the loan register logic are in her head. When she is on holiday, Daniel does her work and his."
+      - "**Bank connectivity quietly breaking.** An expired EBICS key or a changed statement format means a missing balance on the one day it matters."
+    rhythm:
+      - { when: "Wednesday", what: "Early shift (position). Forecast consolidation after France submits; variance table for Daniel; bank reconciliation queries from accounting." }
+      - { when: "Thursday", what: "Late start; matches FX forward confirmations for Thursday's EUR 8m maturity; prepares Daniel's jour-fixe pack." }
+      - { when: "Friday", what: "Early shift. Collects the FX quotes Daniel requested and records the trades; sends the weekly forecast summary." }
+      - { when: "Month-end WD1–3", what: "Intercompany loan interest for all loans; bank balance confirmations for Group Accounting; counterparty exposure table; data for the monthly treasury report." }
+      - { when: "Recurring projects", what: "TMS selection (requirements, demo scripts, scoring); bank KYC document packs; annual bank-mandate and signatory update." }
+    unusual:
+      title: The German bank's EBICS keys expire
+      body: |
+        On a Wednesday in June, no statement arrives from the German bank and the payment upload for HM Deutschland fails with an authentication error. The German bank's EBICS subscriber keys for the treasury user had to be renewed, and the renewal reminder went to a mailbox nobody reads.
+
+        Lea's day: she gets the German balances from the bank's web portal and types them into the workbook (the fallback in the [daily cash positioning](wf:daily-cash-positioning) workflow); asks Jens to release the day's German supplier run from the German portal with local signatories; then generates new keys in the connectivity tool and prints the initialisation letters, which two authorised signatories must sign and send to the bank before it activates the keys ([EBICS key initialisation](term:ebics-key-initialisation)). Daniel and Thomas sign; the bank activates them two days later. Her follow-up: a key- and certificate-expiry calendar for all five banks in the connectivity tool.
+    days:
+      - id: monday
+        label: Monday 26 October
+        intro: Monday statements cover three calendar days (Friday plus weekend instant payments), and the forecast week starts.
+        entries:
+          - time: "07:30"
+            title: Statement completeness
+            kind: check
+            systems: [Multibank connectivity tool]
+            call: 11 of 12; China missing — chase
+            why: Every later number depends on it.
+            input: Prior-day statements (MT940/camt.053) for 12 accounts at 5 banks, covering Friday–Sunday.
+            decision: Whether a missing file is a real problem. HM Suzhou's statement is missing; since the Chinese bank changed its file format the relay has failed several times. She emails the global bank's service desk and carries on with 11 accounts.
+            who: None.
+            next: Imports into the workbook.
+            wf: [daily-cash-positioning]
+          - time: "07:40"
+            title: Opening balances don't match
+            kind: exception
+            systems: [Excel positioning workbook, Connectivity tool]
+            call: Duplicate German file — remove and re-import
+            why: HM Deutschland's opening balance does not equal Friday's closing balance, and Friday's transactions appear twice.
+            input: The workbook's control column (opening = prior close); the connectivity tool's import log showing two identical camt.053 files from the German bank.
+            decision: It is a data problem, not a real movement. She deletes the duplicate and re-imports.
+            who: Emails the German bank's electronic-banking service desk to ask why the file was sent twice.
+            next: Checks the control column again — clean.
+          - time: "08:00"
+            title: Add today's and this week's known flows
+            kind: analysis
+            systems: [Excel positioning workbook, SAP (payment proposals), Outlook]
+            call: Germany will be short for Thursday's payroll
+            why: The position is only useful with the flows already known for today and the next days.
+            input: Swiss payroll (CHF 6.8m) debited Friday as forecast; German supplier run planned Tuesday (Jens says it went out today instead); German payroll EUR 4.2m (value Friday); US payroll funding Thursday; EUR 8m forward maturing Thursday at HM AG.
+            decision: HM Deutschland needs about EUR 3m before Thursday; the exact amount depends on today's supplier run.
+            who: Jens (HM Deutschland) by chat.
+            next: Proposal to Daniel.
+          - time: "08:45"
+            title: Position email to Daniel
+            kind: comms
+            systems: [Excel, Outlook]
+            call: "Propose: no transfers today; fund Germany Tuesday; decide on Friday's RCF rollover"
+            why: Daniel decides; Lea's job is a clear proposal with options.
+            input: The completed position (group cash CHF 45.6m), the week's known flows, the forecast.
+            decision: What she recommends and what she flags as uncertain.
+            who: Daniel.
+            next: "[Daniel reviews at 08:50](/day/daniel#monday-0850)."
+          - time: "09:15"
+            title: Roll the 13-week forecast and send reminders
+            kind: recurring
+            systems: [Excel 13-week forecast, Outlook]
+            call: Deadline Tuesday 12:00
+            why: The forecast cycle starts every Monday. Last week becomes actuals; a new week 13 is added.
+            input: Last week's forecast; actual bank flows by entity from the position workbook.
+            decision: None — mechanical, but she checks the opening balance against today's position.
+            who: Sends the template to 8 subsidiary finance managers with the Tuesday-noon deadline.
+            next: Submissions arrive Tuesday. See [cash forecasting](wf:cash-forecasting).
+            wf: [cash-forecasting]
+          - time: "10:00"
+            title: Pull SAP data for the central lines
+            kind: analysis
+            systems: [SAP S/4HANA (AR/AP reports), Excel]
+            call: Swiss, German and Czech AR/AP loaded
+            why: For the three entities on SAP, treasury does not rely on templates for receivables and payables.
+            input: Open AR by due date and open AP with planned payment dates, exported to Excel.
+            decision: Adjusts two large receivables for known late payers.
+            who: None.
+            next: Pasted into the forecast's data tabs; the other entities come via templates.
+          - time: "10:40"
+            title: Chinese statement arrives after a chase
+            kind: exception
+            systems: [Connectivity tool, Global bank service desk]
+            call: CNY balance as expected; log the incident
+            why: The file should have been there at 07:30 — Asian statements normally arrive first. The global bank that relays it re-sent it after her call.
+            input: HM Suzhou statement; the bank's explanation (a format change at the Chinese bank).
+            decision: Logs the incident in her connectivity issues list; accepts the balance.
+            who: Global bank's electronic-banking service desk.
+            next: Position saved as final for the day.
+          - time: "11:15"
+            title: Bank KYC request
+            kind: admin
+            systems: [Outlook, Commercial register extract, Signatory list]
+            call: Send updated signatory list and register extract
+            why: The global bank's periodic [KYC](term:kyc) review wants the current signatory list and a recent commercial-register extract for HM AG and HM Inc. Missing it can mean restricted accounts later.
+            input: The bank's checklist; Helvetic's signatory register.
+            decision: Which documents need a board-member signature (the signatory list) and which she can send now.
+            who: Daniel (forwarded it); Legal for the certified extract.
+            next: Package sent Thursday. See [bank account management](wf:bank-account-management).
+          - time: "13:30"
+            title: TMS demo (first hour)
+            kind: project
+            systems: [Vendor demo]
+            call: Note what would replace her Monday
+            why: She is the person whose weekly work a TMS would change most.
+            input: The demo script she wrote from the real Monday.
+            decision: Notes that statement import and duplicate detection would help; subsidiary forecast collection would not.
+            who: Daniel, vendor.
+            next: Her notes go into Tuesday's scoring.
+          - time: "14:30"
+            title: Weekly EUR hedge-ratio report
+            kind: analysis
+            systems: [Excel hedge report, FX deal register]
+            call: Q1 72%, Q2 48% — all inside bands
+            why: The hedging policy sets bands per quarter; Daniel needs to know which quarters need new forwards.
+            input: Forecast EUR net receipts by quarter; outstanding forwards from the deal register, checked against bank confirmations.
+            decision: None — she flags that Q2 is close to the bottom of its band.
+            who: Sends to Daniel at 16:00.
+            next: "[Daniel reads it Tuesday](/day/daniel#tuesday-0915). See [hedge ratio](term:hedge-ratio)."
+            wf: [fx-hedging]
+          - time: "16:30"
+            title: Intraday check
+            kind: check
+            systems: [Connectivity tool (intraday reports)]
+            call: Nothing outstanding
+            why: Confirms that today's expected large receipts arrived and nothing unexpected went out.
+            input: >-
+              [Intraday reports](term:camt-052) (MT942/camt.052) from the banks that provide them.
+            decision: None.
+            who: None.
+            next: Leaves at 17:00.
+      - id: tuesday
+        label: Tuesday 27 October
+        intro: Lea builds the position every morning; on Tuesdays the forecast submissions are also due at noon.
+        entries:
+          - time: "07:30"
+            title: Statements — China missing again
+            kind: exception
+            systems: [Multibank connectivity tool, Global bank service desk (ticket)]
+            call: Raise a ticket; position without China for now
+            why: For a Swiss company, Asian statements are normally the *first* to arrive. A missing Chinese file is a connectivity problem, not a time-zone one — the second time in two days.
+            input: The connectivity tool's delivery log; last week's two similar tickets.
+            decision: Logs a ticket with the global bank that relays the Chinese bank's statements and asks for a re-send; builds the position with HM Suzhou at yesterday's balance, clearly marked as unconfirmed. China is excluded from concentration anyway ([trapped cash](term:trapped-cash)).
+            who: Global bank's electronic-banking service desk.
+            next: Workbook refresh.
+            wf: [daily-cash-positioning]
+          - time: "07:40"
+            title: Refresh the workbook and flag the gap
+            kind: analysis
+            systems: [Excel positioning workbook]
+            call: Group cash CHF 41m — CHF 3m short of expectation
+            why: The position is the input to every decision Daniel makes this morning.
+            input: 11 imported statements; yesterday's expected closing balances; known flows.
+            decision: Flags two causes in her notes — no receipt from the large Italian customer (CHF 2.1m) and the German supplier run debited a day early. She checks the control column so Daniel knows the gap is not a data error.
+            who: "[Daniel opens the same workbook at 07:55](/day/daniel#tuesday-0755)."
+            next: Sizes the German funding.
+          - time: "08:00"
+            title: Size the German payroll funding
+            kind: analysis
+            systems: [Excel positioning workbook]
+            call: "Propose EUR 3m"
+            why: She flagged on Monday that HM Deutschland would be short for payroll; the supplier run is now final.
+            input: German balance about EUR 1.9m; payroll EUR 4.2m for value Friday; minimum EUR 0.25m; HM AG's EUR balance and Thursday's EUR 8m forward delivery.
+            decision: EUR 3m leaves a small buffer in Germany and still covers HM AG's forward settlement with about EUR 1.5m to spare.
+            who: Daniel.
+            next: Daniel decides at 08:20.
+          - time: "08:25"
+            title: Enter the German funding
+            kind: execution
+            systems: [Connectivity tool (EBICS distributed signature)]
+            call: EUR 3m entered for same-day value
+            why: Daniel instructed it; treasury transfers need two treasury signatures (she enters, he approves — [four-eyes](term:four-eyes-principle)).
+            input: The German account details from the template (never typed free-hand).
+            decision: Uses the stored template; checks amount and value date.
+            who: Daniel approves as second signatory at 08:30.
+            next: Records the [intercompany loan](term:intercompany-loan) in the register for Group Accounting.
+            wf: [funding-subsidiary]
+          - time: "09:30"
+            title: Giulia replies about the Italian customer
+            kind: comms
+            systems: [Outlook, Excel 13-week forecast]
+            call: Move CHF 2.1m to Friday
+            why: Daniel asked HM Italia whether the customer's late payment is a problem.
+            input: Giulia's email — the customer moved its payment run; payment scheduled for Friday.
+            decision: Treat as timing. Moves the receipt into this week's Friday; keeps a note that this customer was late twice this quarter.
+            who: Giulia (HM Italia); informs Daniel.
+            next: Daniel mentions it to Thomas at 10:30.
+          - time: "10:05"
+            title: Chinese statement re-sent; save position
+            kind: check
+            systems: [Connectivity tool, Excel]
+            call: Position final; ticket stays open
+            why: The service desk re-sent the file. CNY balance as expected.
+            input: HM Suzhou statement.
+            decision: Keeps the ticket open until the bank explains the root cause — two failures in two days means it will happen again.
+            who: Global bank service desk.
+            next: Saves the day's position; week-1 actuals go into the forecast.
+          - time: "10:30"
+            title: Chase subsidiary submissions
+            kind: recurring
+            systems: [Outlook, Teams]
+            call: 7 of 8 by noon expected
+            why: The forecast is only as good as the inputs, and inputs arrive late unless chased.
+            input: Submission tracker.
+            decision: Whom to remind (France, UK) and how politely.
+            who: Subsidiary finance managers.
+            next: France promises Wednesday morning.
+            wf: [cash-forecasting]
+          - time: "13:30"
+            title: Consolidate and compute variances
+            kind: analysis
+            systems: [Excel 13-week forecast]
+            call: Italy over-forecast again
+            why: Last week's forecast vs actual shows where the forecast is unreliable.
+            input: Submissions; SAP data; bank actuals from the positioning workbook.
+            decision: Classifies variances as timing or permanent. Italy's receipts came in below forecast again.
+            who: None.
+            next: Variance table to Daniel at 15:30. See [variance analysis](term:variance-analysis).
+          - time: "14:45"
+            title: Prepare Thursday's forward maturity
+            kind: execution
+            systems: [FX deal register, Bank confirmation (PDF)]
+            call: EUR 8m delivery confirmed
+            why: At maturity HM AG delivers EUR 8m to the bank and receives CHF. If the EUR isn't there, the bank debits an overdraft.
+            input: The original [trade confirmation](term:deal-confirmation); the bank's settlement instructions.
+            decision: Confirms settlement details with the bank's back office by email; expects the CHF credit Thursday.
+            who: The Swiss bank's FX back office.
+            next: >-
+              Thursday: checks the CHF credit and marks the deal settled.
+          - time: "16:15"
+            title: Intraday check and pain.002 statuses
+            kind: check
+            systems: [Connectivity tool]
+            call: EUR 3m arrived in Germany; 64 payments accepted
+            why: Confirms that the morning's decisions actually executed.
+            input: Intraday reports; [payment status](term:payment-status) files.
+            decision: None.
+            who: None.
+            next: Messages Jens that the payroll funding arrived.
+
+  # ---------------------------------------------------------------- ANNA
+  - id: anna
+    name: Anna
+    title: Group Treasurer
+    company: globalchem
+    page: /day/anna
+    rolePage: /org/roles-head-of-treasury
+    tier: multinational
+    oneLiner: Leads a 25-person treasury at a CHF 7bn, BBB+-rated chemicals group. Does almost no transaction work herself; she owns policy, funding, the rating, the banks, the controls — and is the person the CFO calls when something is wrong.
+    reportsTo: Markus (CFO); presents to the audit committee
+    team: Priya (Cash & Liquidity / in-house bank), Jonas (Financial Risk — FX & rates), Olivier (Corporate Finance — debt & ratings), Marta (Treasury Operations & payment factory, Kraków), Ben (Treasury Systems); a Singapore regional treasury centre
+    treasuryShare: 100%
+    firstCheck: "Markets and credit news, then Priya's daily liquidity dashboard (after 10:30)"
+    systems: [Bloomberg, Priya's daily liquidity dashboard, SAP treasury reporting, PowerPoint/Excel for board and rating-agency material, Email and Teams — she rarely logs into a bank]
+    decides: Funding strategy and timing, bank panel and wallet allocation, policy and limit exceptions, hedging strategy proposals to the CFO/board, escalations; signs large intercompany loans and policy exceptions.
+    talksTo: [Markus (CFO), her five team heads, relationship banks' senior coverage bankers, rating agencies, investor relations, group tax, group accounting, internal audit, the audit committee]
+    awake:
+      - "**The refinancing calendar.** A CHF 300m bond matures in June 2027. Pre-fund too early and carry costs rise; too late and a market shock could close the window."
+      - "**The rating.** BBB+ constrains leverage, dividends and M&A. A large acquisition would test it."
+      - "**Control failure at scale.** Hundreds of users, a payment factory, ~280 accounts. A single social-engineering success or a bad mandate change can lose millions; payment fraud attempts are routine in AFP's surveys[](cite:afp-pfc-2026)."
+      - "**Forecast quality from 40 units.** The group plan and the hedging programme rest on local submissions she cannot personally check."
+      - "**A bank in trouble.** Counterparty exposure is diversified, but a sudden bank failure still means trapped balances and broken cash pools."
+    rhythm:
+      - { when: "Wednesday", what: "Hedging committee with Jonas: 2027 budget rates and hedge programme proposal for the CFO." }
+      - { when: "Thursday 29 Oct", what: "Q3 trading update published; she is on standby for analysts' questions on net debt and liquidity." }
+      - { when: "Friday", what: "1:1s with team heads (rotating); approvals of limit exceptions; reads Marta's weekly controls report." }
+      - { when: "Monthly", what: "Treasury report to Markus (liquidity, debt, FX, counterparty exposure, fraud incidents, KPIs); liquidity committee with FP&A; bank calls." }
+      - { when: "Quarterly / annual", what: "Audit-committee treasury report; rating-agency annual review (November); policy review; bank panel review against RCF commitments; RCF extension options." }
+    unusual:
+      title: A deepfake voice call to the payment factory
+      body: |
+        On a Friday afternoon, an operator in the Kraków payment factory receives a voice call that sounds like Markus, the CFO, followed by an email 'confirming' an urgent EUR 2.4m payment to a lawyer's escrow account for a confidential acquisition. The operator follows the procedure: no payment outside the approved workflow, and a [call-back](term:call-back-verification) on the directory number. Markus knows nothing.
+
+        Anna's role starts after the control has worked. She informs Markus and the Head of Internal Audit the same evening; asks Marta for a timeline and for a check whether other staff were contacted; has Ben confirm that no master data or payment templates were changed; and asks Group Security to report it. On Monday she decides two things — a reminder to all 300+ payment users that voice alone never authorises a payment (Swiss authorities specifically warn about AI-generated voices in CEO fraud[](cite:bacs-ceo-fraud-2026)), and an audit-committee note. See [fraud investigation](wf:fraud-investigation).
+    days:
+      - id: monday
+        label: Monday 26 October
+        intro: Anna's day is meetings and documents. The operational picture arrives from Priya and Jonas; her job is to decide what matters.
+        entries:
+          - time: "07:45"
+            title: Markets and credit news
+            kind: check
+            systems: [Bloomberg]
+            call: Nothing affecting funding
+            why: Credit spreads, bank news and rate moves change funding costs and counterparty risk before any report shows it.
+            input: EUR and CHF rates, GlobalChem's bond spreads, relationship banks' CDS and news.
+            decision: None today.
+            who: None.
+            next: Leadership stand-up.
+          - time: "08:30"
+            title: Treasury leadership stand-up (30 min)
+            kind: meeting
+            systems: [Teams]
+            call: Priority this week — Q3 update and CP rollover
+            why: The one weekly meeting where all five team heads coordinate.
+            input: Each head's top three items. Priya — EUR CP maturity Thursday and the Polish loan request; Jonas — 2027 budget rates; Olivier — rating-agency deck; Marta — month-end payment volume; Ben — ISO 20022 statement-format migration.
+            decision: Where she wants to be involved this week (the Polish loan and the rating deck) and where she only wants the outcome.
+            who: Priya, Jonas, Olivier, Marta, Ben.
+            next: Items go into her week plan.
+          - time: "09:15"
+            title: Q3 net debt with Group Accounting and IR
+            kind: meeting
+            systems: [Excel net-debt bridge]
+            call: Sign off net debt figure and liquidity wording
+            why: The Q3 trading update publishes net debt and liquidity on Thursday; treasury owns the cash and debt numbers.
+            input: Net debt bridge (about CHF 2.3bn, illustrative); undrawn EUR 1.5bn RCF; CP outstanding.
+            decision: Agrees the wording on liquidity headroom; asks accounting to add the CP maturity profile to the Q&A file.
+            who: Group accounting, investor relations.
+            next: IR finalises Wednesday. See [month-end reporting](wf:month-end-reporting).
+            wf: [month-end-reporting]
+          - time: "10:45"
+            title: Priya's daily liquidity dashboard
+            kind: check
+            systems: [Daily liquidity dashboard (email + SAP report)]
+            call: Informed of CP plan; no intervention
+            why: She reads it daily to know the group's position, not to redo it.
+            input: "[Priya's dashboard](/day/priya#monday-1030): group cash and investments, pool positions, CP outstanding and maturities, headroom against the policy minimum, counterparty exposures, exceptions."
+            decision: Whether anything needs her. The CP rollover is within Priya's authority.
+            who: Priya.
+            next: None.
+            wf: [liquidity-planning]
+          - time: "11:30"
+            title: Rating-agency review deck with Olivier
+            kind: project
+            systems: [PowerPoint, Excel credit metrics]
+            call: Lead with free cash flow, not leverage
+            why: The annual review with the rating agencies in November determines whether BBB+ holds.
+            input: >-
+              Olivier's draft: leverage, FCF, capex plan, dividend, liquidity, the 2027 bond maturity.
+            decision: >-
+              The narrative: FCF covers the dividend; the 2027 maturity will be refinanced in advance.
+            who: Olivier; later Markus.
+            next: Second draft Friday. See [credit rating](term:credit-rating).
+          - time: "14:00"
+            title: 2027 bond refinancing options
+            kind: decision
+            systems: [Olivier's analysis (Excel), Bank indications]
+            call: Recommend a CHF bond in Q1 2027
+            why: The CHF 300m bond matures June 2027. Options — pre-fund with a new CHF bond, use CP/RCF temporarily, or a EUR issue swapped.
+            input: Indicative pricing from relationship banks; the liquidity forecast.
+            decision: Recommends pre-funding in Q1 2027 with a new CHF bond and accepting a few months of negative carry, to remove [refinancing risk](term:refinancing-risk) before the rating review cycle.
+            who: Olivier; recommendation to Markus on Tuesday.
+            next: Tuesday 1:1 with Markus.
+          - time: "15:30"
+            title: 1:1 with Jonas — hedging proposal
+            kind: meeting
+            systems: [Jonas's exposure model]
+            call: Keep hedge ratios; revisit USD after budget
+            why: Budget rates for 2027 are set in November; the board wants to know how much of 2027 is already protected.
+            input: Net exposures after [netting](term:netting); hedge cover by currency; USD/CHF around 0.80.
+            decision: No change to the programme; asks for a scenario for a further 10% USD fall.
+            who: Jonas.
+            next: Wednesday hedging committee. See [FX hedging](wf:fx-hedging).
+            wf: [fx-hedging]
+          - time: "17:00"
+            title: Approvals queue
+            kind: approval
+            systems: [SAP workflow, Email]
+            call: Approve two bank mandate changes; hold one account opening
+            why: Mandate changes and account openings above team-head authority need her approval.
+            input: Requests from Marta's team with the business reason.
+            decision: Holds a request to open a new account in a country where GlobalChem already has two banks — she wants to know why the existing accounts cannot be used.
+            who: Marta.
+            next: See [bank account management](wf:bank-account-management).
+      - id: tuesday
+        label: Tuesday 27 October
+        intro: Tuesday is almost entirely people outside treasury — a bank, the systems project, the CFO, the audit committee.
+        entries:
+          - time: "08:00"
+            title: Relationship bank breakfast
+            kind: meeting
+            systems: []
+            call: No new mandate promised
+            why: A core RCF bank's coverage team wants to discuss its share of ancillary business.
+            input: >-
+              Olivier's [wallet-share](term:wallet-share) analysis: this bank's revenue from GlobalChem vs its RCF commitment.
+            decision: The bank is 'underfed' but not by much; she offers a role in the planned 2027 bond but no cash-management change.
+            who: Senior coverage banker.
+            next: Olivier updates the bank allocation plan.
+          - time: "10:00"
+            title: Treasury systems steering committee
+            kind: project
+            systems: [Ben's project status]
+            call: Go-live date held for the statement-format change
+            why: Swiss banks discontinue the 2009 ISO 20022 message versions on 21 November 2026[](cite:six-sps-cash-mgmt); statement imports must be on the new versions before then.
+            input: Ben's test status for the Swiss banks' camt.053 files; the service bureau's timetable.
+            decision: Holds the go-live date; one bank's files still fail tests, so she asks Ben for a fallback (portal download) if it isn't fixed by 13 November.
+            who: Ben, Marta, the service bureau.
+            next: Weekly status.
+          - time: "11:00"
+            title: Polish subsidiary loan — approval
+            kind: approval
+            systems: [In-house bank loan request, Tax memo]
+            call: Approve PLN 40m for 3 years
+            why: The request is above Priya's authority.
+            input: "[Priya's recommendation](/day/priya#monday-1500): in-house bank lends PLN, hedged with an FX swap by Jonas's team; tax confirms the interest margin is arm's length."
+            decision: Approves; asks that the loan is reviewed when the plant capex is complete.
+            who: Priya; tax.
+            next: Priya executes; accounting books it. See [funding a subsidiary](wf:funding-subsidiary).
+            wf: [funding-subsidiary]
+          - time: "11:30"
+            title: 1:1 with Markus (CFO)
+            kind: meeting
+            systems: []
+            call: Markus agrees the pre-funding approach
+            why: The bond recommendation, the Q3 wording and the rating review need his view.
+            input: Monday's refinancing analysis.
+            decision: Markus supports a Q1 2027 CHF bond; wants the board informed in December.
+            who: Markus.
+            next: Olivier prepares the board paper.
+          - time: "14:00"
+            title: Audit-committee treasury report (Q3)
+            kind: analysis
+            systems: [PowerPoint, Excel]
+            call: Report two policy breaches, both closed
+            why: The audit committee receives a quarterly treasury risk report.
+            input: Counterparty-limit report; hedge compliance; fraud attempts log; policy exceptions.
+            decision: Two short counterparty-limit breaches (large customer receipts landing at a non-core bank) — both reported, with the remediation.
+            who: Head of Internal Audit reviews the draft.
+            next: Sent with the audit-committee pack. See [policy compliance](wf:policy-compliance).
+            wf: [policy-compliance]
+          - time: "16:00"
+            title: Team development
+            kind: meeting
+            systems: []
+            call: Rotation of an analyst to Singapore
+            why: Part of the job is keeping a 25-person team staffed and experienced.
+            input: Development plans.
+            decision: Supports a 12-month rotation.
+            who: Priya; HR.
+            next: None.
+
+  # ---------------------------------------------------------------- PRIYA
+  - id: priya
+    name: Priya
+    title: Head of Cash & Liquidity
+    company: globalchem
+    page: /day/priya
+    rolePage: /org/roles-cash-manager
+    tier: multinational
+    oneLiner: Runs the cash & liquidity / in-house bank team (6 people in Basel plus the Singapore centre's cash analysts). Owns daily liquidity, cash pools, short-term investments, commercial paper and intercompany funding.
+    reportsTo: Anna (Group Treasurer)
+    team: 2 cash managers, 3 analysts, 1 in-house-bank specialist in Basel; dotted line to 2 cash analysts in Singapore
+    treasuryShare: 100%
+    firstCheck: "07:30: the TMS exception list — missing statements, failed sweeps, accounts outside pools below minimum"
+    systems: [SAP S/4HANA treasury (cash position, in-house bank), SWIFT via service bureau, bank portals (fallback), CP dealer platform and phone, MMF portal, forecasting tool, Excel]
+    decides: Daily funding and investment of the group within limits; CP issuance and maturities within the programme; pool structure changes; intercompany loans within her authority; what goes to Anna.
+    talksTo: [Anna, her team, Singapore regional treasury centre, Marta (payment factory), Jonas (FX swaps for funding), subsidiary finance, core banks' cash-management teams, CP dealers, MMF providers, tax]
+    awake:
+      - "**The one flow the system doesn't know about.** 90% of the position is automated; the risk sits in the other 10% — an unannounced local payment, an account outside the pool, a receipt landing at the wrong bank."
+      - "**Counterparty concentration.** A EUR 80m customer receipt landing at one bank can push it over its limit overnight."
+      - "**CP market access.** GlobalChem rolls commercial paper every few weeks. If the CP market seized, she would need the RCF — which works, but becomes a public signal."
+      - "**Restricted-currency countries.** Cash that cannot be pooled or moved quickly looks like liquidity in reports but isn't."
+    rhythm:
+      - { when: "Wednesday", what: "Weekly liquidity forecast lock: 4-week and 13-week views from the forecasting tool; accuracy by entity (target ±10% on 4-week receipts)." }
+      - { when: "Thursday 29 Oct", what: "CP maturity settles against new issuance; month-end sweep and pool interest checks begin." }
+      - { when: "Month-end / WD1–3", what: "In-house bank interest and statements to subsidiaries; intercompany balances confirmed with accounting; counterparty report to Anna." }
+      - { when: "Monthly (mid-month)", what: "Multilateral netting settlement: subsidiaries' intercompany invoices settled net through the in-house bank; she funds the net positions." }
+      - { when: "Twice a year", what: "The US/Europe daylight-saving mismatch (March and late October/early November) makes New York 5 hours behind for a week or two; US funding calls move accordingly." }
+    unusual:
+      title: The pool bank's statements don't arrive
+      body: |
+        One Monday the service bureau's connection to the EUR cash pool bank fails overnight: no prior-day statements for 60 pooled accounts and no confirmation that Friday's sweeps executed. The TMS shows the pool header at Friday's balance, which is almost certainly wrong.
+
+        Priya's decisions under time pressure: her cash managers download the header and five largest participant balances from the bank's portal manually; she asks the bank's cash-management team to confirm by phone that the sweeps ran; and, because the position cannot be fully verified before the EUR cut-offs, she funds conservatively — she delays a planned EUR 50m MMF placement rather than risk an overdrawn header. The connection returns at 13:00; the statements confirm the sweeps. The cost of caution was one day's interest on EUR 50m; she reports the incident to Anna and asks Ben for monitoring on missing-file alerts. See [daily cash positioning](wf:daily-cash-positioning).
+    days:
+      - id: monday
+        label: Monday 26 October
+        intro: The TMS position is ready at 07:00 Basel time; Singapore has already done Asia-Pacific.
+        entries:
+          - time: "07:30"
+            title: TMS exception list
+            kind: check
+            systems: [SAP treasury (cash position), Singapore handover email]
+            call: 14 exceptions; 3 need her
+            why: With ~280 accounts, nobody reads balances one by one. The team works by exception.
+            input: "Exception list: missing statements, failed sweeps, accounts outside the pools below minimum, unexpected large items; Singapore's handover (APAC positions done, one Indian account short of its minimum)."
+            decision: Which exceptions her cash managers can close themselves and which need her — an unexplained EUR 12m credit at a non-core bank, a failed sweep in Spain, and a funding request from Poland.
+            who: Her two cash managers; Singapore RTC.
+            next: Exceptions assigned in the 07:45 huddle.
+            wf: [daily-cash-positioning]
+          - time: "08:15"
+            title: EUR 12m at the wrong bank
+            kind: exception
+            systems: [SAP treasury, Bank portal, Counterparty limit report]
+            call: Move to the pool bank today
+            why: A large customer paid to an old account at a non-core bank, pushing that bank over its [counterparty limit](term:counterparty-limit).
+            input: Transaction detail and remittance information; the limit report.
+            decision: Transfer the funds to the EUR pool header today; ask credit & collections to tell the customer the correct account.
+            who: Cash manager executes; Marta's team informs AR.
+            next: The breach is logged for Anna's quarterly report.
+          - time: "09:00"
+            title: CP maturity Thursday — roll or repay?
+            kind: decision
+            systems: [SAP (CP register), Forecasting tool, Dealer indications (email/Bloomberg)]
+            call: Roll EUR 100m for 1 month; repay EUR 50m from surplus
+            why: EUR 150m of [commercial paper](term:commercial-paper) matures Thursday.
+            input: The EUR pool header's surplus (about EUR 110m, including the EUR 12m moved in this morning) and the 4-week forecast; dealer indications for 1–3 month CP (illustratively around €STR plus a small spread); MMF yields.
+            decision: Repay EUR 50m from the surplus (paying CP interest while holding the same cash in MMFs costs the spread between them), and roll EUR 100m for one month to cover the mid-November netting settlement and month-end outflows. EUR 50m of the surplus is reserved for Thursday's repayment.
+            who: Two CP dealers; Anna informed through the dashboard.
+            next: Trades agreed Tuesday for Thursday settlement.
+          - time: "09:45"
+            title: Spanish sweep failed
+            kind: exception
+            systems: [SAP, Bank portal]
+            call: Manual transfer today; bank to fix mandate
+            why: The Spanish subsidiary's zero-balancing [sweep](term:sweeping) failed because the bank updated a mandate.
+            input: Bank error message; Spanish balance.
+            decision: Cash manager sends a manual transfer to the header; bank's cash-management team fixes the sweep instruction.
+            who: Bank's implementation team; Spanish finance.
+            next: Checked in Tuesday's exceptions.
+          - time: "10:30"
+            title: Daily liquidity dashboard
+            kind: comms
+            systems: [SAP report, Excel, Email]
+            call: Sent to Anna and team heads
+            why: One page that tells Anna and the other heads where the group stands.
+            input: Group cash by currency and bank; pool positions; MMF and deposits; CP outstanding; headroom vs policy minimum; exceptions and actions.
+            decision: What to highlight — today, the counterparty breach (resolved) and the CP plan.
+            who: "[Anna reads it at 10:45](/day/anna#monday-1045)."
+            next: None.
+            wf: [liquidity-planning]
+          - time: "11:00"
+            title: Invest surplus EUR
+            kind: execution
+            systems: [MMF portal, SAP]
+            call: EUR 40m into two MMFs
+            why: After funding needs and the CP repayment reserve, surplus EUR remains.
+            input: Pool header after reserving EUR 50m for Thursday's CP repayment and a buffer; MMF counterparty limits; the [investment policy](term:investment-policy) (liquidity and credit quality first).
+            decision: Split EUR 40m across two same-day-liquidity [money market funds](term:money-market-fund), keeping each within its limit.
+            who: Cash manager executes; a second person approves.
+            next: Positions reflected in tomorrow's dashboard. See [surplus cash investment](wf:surplus-cash-investment).
+            wf: [surplus-cash-investment]
+          - time: "15:00"
+            title: Polish plant loan request
+            kind: analysis
+            systems: [In-house bank module, Excel, Tax memo]
+            call: Recommend PLN 40m, 3 years, hedged with FX swap
+            why: The Polish subsidiary needs PLN for a plant expansion; the in-house bank funds subsidiaries in local currency.
+            input: Capex plan; subsidiary's forecast; tax's view on arm's-length interest ([transfer pricing](term:transfer-pricing)); Jonas's team's FX swap pricing to fund PLN from EUR.
+            decision: Recommends the loan; amount above her authority, so it goes to Anna.
+            who: Polish finance manager; tax; Jonas's team.
+            next: "[Anna approves Tuesday at 11:00](/day/anna#tuesday-1100). See [funding a subsidiary](wf:funding-subsidiary)."
+            wf: [funding-subsidiary]
+      - id: tuesday
+        label: Tuesday 27 October
+        intro: A quieter exception list, so the day goes to CP, month-end preparation and forecast quality.
+        entries:
+          - time: "07:30"
+            title: Exceptions
+            kind: check
+            systems: [SAP treasury]
+            call: 11 exceptions; Spain sweep fixed
+            why: Daily routine.
+            input: Exception list; Singapore handover.
+            decision: None needs her.
+            who: Cash managers.
+            next: CP trades.
+            wf: [daily-cash-positioning]
+          - time: "09:00"
+            title: Agree CP rollover
+            kind: execution
+            systems: [Dealer phone/chat, SAP (CP register)]
+            call: EUR 100m, 1 month, with two dealers
+            why: Monday's decision; trades agreed two days before Thursday's settlement.
+            input: Dealer bids.
+            decision: Splits between two dealers at the better levels.
+            who: CP dealers; Marta's back office confirms and settles.
+            next: Thursday settlement.
+          - time: "10:00"
+            title: Daily liquidity call
+            kind: meeting
+            systems: [Teams]
+            call: Month-end payment volume covered
+            why: Coordination with the payment factory, which will release large month-end runs.
+            input: Marta's payment factory schedule (month-end supplier and payroll runs by entity).
+            decision: Pre-funds two non-pooled accounts for month-end payroll.
+            who: Marta (Kraków); cash managers; Singapore.
+            next: Transfers before cut-offs.
+            wf: [payment-processing]
+          - time: "13:30"
+            title: Month-end in-house bank preparation
+            kind: recurring
+            systems: [SAP in-house bank]
+            call: Interest rates for November set
+            why: Subsidiaries receive in-house bank statements and interest monthly.
+            input: Reference rates; transfer-pricing margins.
+            decision: None beyond checking the rates.
+            who: In-house bank specialist.
+            next: Statements run on WD1.
+          - time: "11:30"
+            title: Forecast accuracy — two outliers
+            kind: review
+            systems: [Forecasting tool, Excel]
+            call: Call Brazil; haircut India's receipts
+            why: The 4-week receipts forecast drives CP issuance and MMF placements. The accuracy target is ±10% by entity; two entities missed it for the third week.
+            input: Forecast vs actual by entity and category (the tool stores each week's version); the entities' comments.
+            decision: Brazil's miss is a timing issue around a large customer — she asks local finance for the customer-level detail. India has over-forecast receipts consistently; she applies a central haircut until the local team explains the pattern.
+            who: Analyst prepares; Priya calls Brazil's finance manager; FP&A informed because the same entities feed their outlook.
+            next: Haircut noted in Wednesday's forecast lock. See [cash forecasting](wf:cash-forecasting) and [variance analysis](term:variance-analysis).
+            wf: [cash-forecasting]
+          - time: "13:30"
+            title: Month-end in-house bank preparation
+            kind: recurring
+            systems: [SAP in-house bank]
+            call: November internal rates approved
+            why: Subsidiaries hold current accounts and loans with the [in-house bank](term:in-house-bank) and receive statements and interest monthly; the rates must be arm's length for tax.
+            input: Reference rates (€STR, SOFR, SARON and local rates); the transfer-pricing margins agreed with group tax.
+            decision: Checks that the rate table the specialist prepared matches the reference rates and margins; approves it.
+            who: In-house bank specialist; group tax for any new currency.
+            next: In-house bank statements run on working day 1; accounting books interest.
+          - time: "14:30"
+            title: Counterparty exposure check
+            kind: review
+            systems: [SAP treasury (limit report)]
+            call: All banks inside limits after Monday's move
+            why: Monday's EUR 12m breach should now be cleared; month-end receipts could create new ones.
+            input: Exposure per bank (balances, deposits, MMF holdings by fund, derivative mark-to-market from Jonas's team) against limits set by rating.
+            decision: No action; she asks the cash managers to watch the non-core bank until the customer's payment instructions are changed.
+            who: Cash managers.
+            next: Figures go into the monthly report to Anna. See [counterparty limit](term:counterparty-limit).
+          - time: "15:30"
+            title: USD funding for US payroll
+            kind: execution
+            systems: [SAP treasury, US bank portal]
+            call: Fund USD 25m from the USD pool header
+            why: The US subsidiaries' payroll pays on Friday via the payroll provider, which collects the funds from the US payroll account before pay date. That account sits outside the USD pool.
+            input: USD pool header balance; the payroll amount from the US payroll team; the US bank's cut-offs.
+            decision: Move the funds today rather than Thursday. This week New York is only five hours behind Basel (Europe changed clocks on Sunday, the US changes on 1 November), which shifts the afternoon calls by an hour.
+            who: A cash manager enters, a second approves; the US payroll team is told.
+            next: Confirmed through the US bank's intraday report at the end of the European day.
+            wf: [payment-processing]
+          - time: "17:00"
+            title: End of day — what's still open
+            kind: check
+            systems: [SAP treasury, Email]
+            call: Handover to Singapore
+            why: Singapore starts before Basel; open items must be in writing.
+            input: Open exceptions; tomorrow's known large flows (CP settlement Thursday, month-end payment runs).
+            decision: What Singapore must watch first thing (the Indian account minimum).
+            who: Singapore regional treasury centre.
+            next: Wednesday 07:30.

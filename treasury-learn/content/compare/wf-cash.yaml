@@ -1,0 +1,30 @@
+# "Same problem, four companies" topics for stream wf-cash.
+- id: liquidity-planning
+  title: Liquidity planning
+  question: How does each company answer "will we have enough money when obligations arrive?"
+  cells:
+    kleio: "**Runway, not headroom.** CHF 22m cash ÷ CHF ~0.9m net burn ≈ 24 months. No facilities, no covenants. The board's rule: start fundraising with at least 12 months of runway left. The real decision is when to raise, cut burn, or take the venture-debt offer."
+    alpine: "**A 12-month Excel plan** by Martin and Petra: cash (CHF 6–12m) plus the undrawn part of the CHF 12m committed line, against payroll, suppliers, the mortgage and project milestones. Stress = 'the three biggest acceptances slip a quarter'. Shown to the board quarterly and to the house bank annually."
+    helvetic: "**A monthly 12–24-month plan** owned by Daniel: headroom = cash minus trapped CNY and minimum cash, plus the undrawn RCF (~CHF 140m); covenant projections at each test date; a downturn scenario. The binding constraint in stress is the 3.25x leverage covenant, not cash — and both the bond and the RCF mature in 2028."
+    globalchem: "**Group liquidity policy and a multi-year funding plan** run by Priya and Olivier: minimum liquidity, the EUR 1.5bn RCF sized to back the CP programme, sources-and-uses metrics in the shape rating agencies use, restricted-country cash excluded, formal stress and reverse stress tests."
+  takeaway: "Small companies ask 'how many months until we run out?'; larger ones ask 'will our committed facilities still be there, and when must we refinance?' — the unit of analysis shifts from cash to cash plus credit lines plus covenants."
+
+- id: surplus-investing
+  title: Investing surplus cash
+  question: Where does each company put cash it doesn't need right now?
+  cells:
+    kleio: "**Safety and diversification are the whole job.** CHF 22m spread across two Swiss banks and a US bank; CHF deposits laddered to the burn and Confederation money-market claims, all earning ~0%; USD in a US government MMF. A one-page board policy: A- or better, max 12 months, max 40% per bank."
+    alpine: "**Repay the credit line first**, then leave the rest on current account; occasionally a 1-month EUR deposit. No written policy; the CFO decides."
+    helvetic: "**Repay RCF drawings with CHF** (deposits earn ~0%, the loan costs a margin); park EUR in an LVNAV MMF until the next interest-period date; USD at HM Inc. in a government MMF. The constraint is counterparty limits across five banks — and giving ancillary business to RCF banks."
+    globalchem: "**A formal programme** through the in-house bank: EUR/USD MMFs for daily liquidity, laddered deposits with the seven RCF banks within rating/CDS-based limits, some short government bills; surplus weighed against commercial paper outstanding. Restricted-country cash invested locally."
+  takeaway: "At a 0% CHF policy rate, yield is a EUR/USD question; in CHF the decisions are about repaying debt, spreading bank risk and keeping cash available."
+
+- id: subsidiary-funding
+  title: Funding subsidiaries
+  question: How does money get from the entity that has it to the entity that needs it?
+  cells:
+    kleio: "**A monthly cost-plus service fee** from Kleio AG to Kleio Inc., set by a transfer-pricing adviser. No loans. Sarah sends the USD in e-banking."
+    alpine: "**Intercompany current accounts** that grew over the years; after an audit comment, Martin signed loan agreements and Petra charges safe-harbour interest. Upstreaming, if any, by annual dividend."
+    helvetic: "**Documented intercompany loans** (no cash pool): Daniel lends USD 6m to HM Inc. at an arm's-length rate and hedges the USD at HM AG; day-to-day shortfalls are covered by intercompany loans under framework agreements; HM Suzhou's CNY comes home only through an annual dividend."
+    globalchem: "**In-house bank and cash pools** fund subsidiaries automatically under a group transfer-pricing policy; equity for new plants; local bank financing and annual repatriation plans in restricted-currency countries."
+  takeaway: "The money movement is easy; the legal form — loan or equity, at what rate, documented how, taxed where — is the actual work, and it gets more formal as the group grows."

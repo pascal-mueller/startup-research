@@ -1,0 +1,57 @@
+---
+title: Systems & Data
+nav: Overview
+order: 1
+summary: Which systems treasury work runs on, where the data comes from, which products exist and what they do not solve. Read this before asking a treasurer "what tools do you use?" — the useful question is "where did this morning's numbers come from?"
+related: [/systems/architecture, /map/technology, /workflows/daily-cash-positioning, /workflows/cash-forecasting, /size]
+---
+
+## What this section covers
+
+Treasury is a data-assembly job before it is a decision job. Every morning someone has to collect balances from every bank, payments due from the ERP, deals from their own records and forecasts from the business, check that nothing is missing, and only then decide what to move, fund, invest or hedge. The systems described here are the machinery for that assembly — and the places where it breaks.
+
+| Page | What you learn | Read it before interviewing… |
+|---|---|---|
+| [Architecture](/systems/architecture) | How ERP, banks, market data, business units and treasury tools fit; who owns which data; how the stack grows with company size | anyone |
+| [ERP](/systems/erp) | What treasury takes from the ERP (AP, AR, GL, vendor master) and gives back (postings, rates) | accounting, AP, subsidiary finance |
+| [Bank connectivity](/systems/bank-connectivity) | Portals, EBICS, Swift, host-to-host, APIs; file formats; who sets it up; what breaks | treasury operations, payments, treasury systems |
+| [TMS](/systems/tms) | What a treasury management system does module by module, implementation reality, administration, limits | treasury managers, heads of treasury, systems leads |
+| [Market data](/systems/market-data) | FX and rate data, fixings, dealing platforms; what small vs large treasuries use | FX/risk managers |
+| [Spreadsheets](/systems/spreadsheets) | Why Excel persists, the typical treasury workbooks, their risks | analysts, treasury managers, CFOs of SMEs |
+| [Vendors](/systems/vendors) | SAP, Oracle, Microsoft, Kyriba, FIS, Ripple Treasury (GTreasury), ION, Trovata, Agicap, Atlar, Embat and others — neutral profiles | anyone evaluating or using them |
+| [Data quality](/systems/data-quality) | Where data breaks: missing statements, mapping, bank codes, remittance information, forecast submissions | analysts, operations |
+
+For the startup-lens comparison of vendors (positioning, gaps, where new entrants play) see [Competitor Landscape](/competitors). This section stays neutral.
+
+## The model in one diagram
+
+<StackDiagram tabs={false} caption="The five layers. See the Architecture page for each reference company's version." />
+
+## Five things that surprise newcomers
+
+1. **Files, not APIs, still carry most corporate banking data.** Statements arrive as end-of-day files ([camt.053](term:camt-053), [MT940](term:mt940), [BAI2](term:bai2)); payments leave as files ([pain.001](term:pain-001)). [Bank APIs](term:api-banking) are growing, especially for intraday balances, but at most companies they complement rather than replace file channels.
+2. **The ERP is the source of most forecast data but knows nothing about the bank in real time.** It learns about cash when statements are imported and posted, usually the next morning.
+3. **"We have a TMS" does not mean "we don't use Excel".** Even large treasuries keep scenario models, board packs and exception lists in spreadsheets. Below mid-market, the spreadsheet *is* the treasury system.
+4. **Connectivity is a per-bank project.** Each bank requires contracts, onboarding, key exchange or certificates, format testing and user administration. Adding a bank or an acquired subsidiary means repeating it.
+5. **Most automation failures are data failures.** Missing statements, unmapped [bank transaction codes](term:bank-transaction-code), truncated [remittance information](term:remittance-information), late or copied forecast submissions — see [Data quality](/systems/data-quality).
+
+## Standards timeline you will hear about (2025–2026)
+
+| Change | Status as of autumn 2026 | Why a treasurer cares |
+|---|---|---|
+| Swift MT → [ISO 20022](term:iso-20022) for cross-border interbank payments (CBPR+) | Coexistence ended November 2025 for interbank payment messages[](cite:jpm-iso-2026,swift-iso-mt9xx) | Richer data travels through the chain; corporates are pushed to send structured data in pain.001 |
+| MT940/MT942 statements | Still supported; not part of the Nov 2025 cut-over; Swiss banks have announced no fixed end date[](cite:swift-iso-mt9xx,six-sps-cash-mgmt) | Many companies still receive MT940 from some banks and camt.053 from others — both must be mapped |
+| Swiss ISO 20022 versions | 2009 message versions discontinued in Switzerland in November 2026[](cite:six-sps-cash-mgmt) | ERP/TMS formats must be on 2019 versions (pain.001.001.09, camt.05x.001.08) |
+| EBICS 3.0 in Switzerland | At least one major Swiss bank supports the 2019 ISO versions only via EBICS 3.0 from November 2026 and discontinued EBICS 2.4 in November 2025[](cite:zkb-ebics3) | EBICS client software must be upgraded; keys re-initialised in some cases |
+| Structured addresses | Unstructured postal addresses being phased out in payment messages; Swift delayed parts to at least November 2027[](cite:jpm-iso-2026,postfinance-iso-updates) | Vendor master data in ERPs needs clean, structured addresses |
+| SAP ECC end of mainstream maintenance | End of 2027 (optional extended maintenance to 2030)[](cite:sap-ecc-maintenance) | S/4HANA migrations reopen "which TMS, which connectivity" questions |
+
+<Callout type="warning" title="Currentness of vendor facts">
+
+Treasury software ownership moves fast: GTreasury was bought by Ripple in 2025 and renamed Ripple Treasury in January 2026[](cite:ripple-gtreasury-2025,ripple-treasury-rebrand); Trovata bought the ATOM TMS in 2025[](cite:trovata-atom-2025); FIS launched a cloud edition of Quantum in 2025[](cite:fis-quantum-cloud-2025). The [Vendors](/systems/vendors) page marks which descriptions were checked in September 2026 and which were not. Before an interview, check the vendor's own site.
+
+</Callout>
+
+## Terms to know first
+
+[ERP](term:erp) · [TMS](term:tms) · [bank connectivity](term:bank-connectivity) · [EBICS](term:ebics) · [Swift](term:swift) · [host-to-host](term:host-to-host) · [API banking](term:api-banking) · [bank statement](term:bank-statement) · [camt.053](term:camt-053) · [pain.001](term:pain-001) · [pain.002](term:pain-002) · [camt.054](term:camt-054) · [multibank connectivity tool](term:multibank-connectivity) · [payment hub](term:payment-hub) · [posting rules](term:posting-rules) · [cash-flow category](term:cash-flow-category) · [system of record](term:system-of-record) · [static data](term:static-data) · [STP](term:stp) · [EUC](term:euc)

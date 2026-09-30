@@ -1,0 +1,119 @@
+---
+title: GlobalChem AG — treasury in a multinational group
+nav: GlobalChem (multinational)
+order: 4
+summary: A CHF 7bn Basel specialty-chemicals group with about 40 operating subsidiaries, 20 banks, 280 accounts and 30 material currencies. A 25-person treasury runs an in-house bank, cash pools, netting, a payment factory and systematic hedging. The hard problems are data quality, restricted markets, counterparties and control.
+related: [/size/multinational, /day/anna, /day/priya, /org/roles-head-of-treasury, /org/roles-cash-manager, /org/roles-fx-risk, /org/roles-operations, /companies/same-problem]
+---
+
+## Profile
+
+GlobalChem makes additives and coatings in about 30 plants on four continents and sells in more than 90 countries. It is investment-grade rated (BBB+ / Baa1), funds itself in the CHF and EUR bond markets and through euro commercial paper, and keeps an undrawn EUR 1.5bn syndicated RCF as a backstop.
+
+Treasury is a mature, centralised function under **Anna (Group Treasurer)**, reporting to **Markus (CFO)**. Most of the *mechanics* — statement collection, pooling, netting, payment execution, deal confirmation — are automated or industrialised. The people spend their time on exceptions, decisions, controls, projects and the parts of the world where the machinery does not reach.
+
+Real groups of this kind describe the same model in their annual reports. Clariant, for example, states that financial risk management is carried out by a central Corporate Treasury under policies approved by the Executive Committee and the Board, and that its policy is to selectively hedge net transaction exposures in major currencies[](cite:clariant-frm-2020); its treasury operations roles sit in a shared-service hub in Poland[](cite:clariant-cash-mgmt-job).
+
+<CompanyFacts id="globalchem" />
+
+## Entities, banks and accounts
+
+| Region | Operating entities | Banks | Accounts (≈280 total) | Structure |
+|---|---|---|---|---|
+| Switzerland (HQ) | Parent, GlobalChem Treasury AG (in-house bank), 3 operating companies | 2 Swiss core banks | ~25 | IHB master accounts in CHF, EUR, USD; bond and CP settlement |
+| Rest of Europe | ~20 (DE, FR, IT, ES, NL, BE, UK, PL, Nordics, …) | 2 pan-European cash-management banks + local banks where needed | ~95 | EUR physical pool swept daily into the IHB; a notional pool for Nordic currencies; payments on behalf of subsidiaries ([POBO](term:pobo)) from the IHB |
+| North America | 4 (US, Canada, Mexico) | 2 | ~35 | USD physical pool; US payroll bank host-to-host |
+| Latin America | 3 (Brazil, Argentina, Colombia) | Local banks + core banks' local branches | ~35 | Local; several [restricted currencies](term:restricted-currency) |
+| Asia-Pacific | ~8 (CN, IN, SG, JP, KR, AU, ID, TH) | Core banks' Asian network + local banks in China and India | ~65 | Run by the Singapore regional treasury centre; China and India handled locally |
+| Middle East & Africa | ~3 (TR, ZA, AE) | Local | ~25 | Local; guarantees and trade finance heavy |
+
+Seven "core" banks provide the RCF and receive most of the ancillary business; the other ~13 exist because of local legal, tax or operational needs. Every account is registered in a bank-account-management tool with its purpose, owner entity, signatories and connectivity.
+
+## Who does treasury
+
+| Team (≈ headcount) | Lead | Based | What they actually do |
+|---|---|---|---|
+| Group Treasurer (1) | **Anna** ([role](/org/roles-head-of-treasury), [a day with Anna](/day/anna)) | Basel | Owns policy, strategy and the team; CFO and audit-committee reporting; rating-agency and core-bank relationships; approves exceptions and large transactions. |
+| Corporate finance (3) | **Olivier** ([debt & capital markets](/org/roles-debt)) | Basel | Bonds, CP programme, RCF, maturity profile, rating metrics, M&A financing; bank relationship management and wallet tracking ([role](/org/roles-bank-relationship)). |
+| Cash & liquidity / in-house bank (6) | **Priya** ([cash manager](/org/roles-cash-manager), [a day with Priya](/day/priya)) | Basel | Daily group position, pools, IHB accounts and interest, subsidiary funding, investments, group cash forecasting and accuracy KPIs. |
+| Singapore regional treasury centre (3, part of Priya's team) | Regional cash manager | Singapore | Asian funding, FX in Asian hours, documentation for restricted markets; dotted line to the APAC regional CFO. |
+| Financial risk (4) | **Jonas** ([FX / risk](/org/roles-fx-risk)) | Basel | FX and interest-rate exposure, hedging programmes (about 1,500 live forwards), hedge accounting with Group Accounting, counterparty-exposure reporting. |
+| Treasury operations & payment factory (7) | **Marta** ([operations](/org/roles-operations)) | Kraków SSC location, reporting to Anna | Deal confirmation and settlement, treasury control (daily limit and mandate checks), bank-account administration and KYC, static data, and the payment factory ([payments](/org/roles-payments)). |
+| Treasury systems (2) | **Ben** | Basel | SAP treasury modules, the Swift service bureau, forecasting and bank-account-management tools, user rights, ISO 20022 format changes. |
+
+That is roughly 25 people in treasury proper. Marta's team sits physically in the Kraków [shared-service centre](term:shared-service-centre) but reports to Anna, not to the SSC head — a common way to keep treasury controls under treasury while using SSC infrastructure (other groups put the payment factory under the SSC instead). Around treasury: AP and AR clerks in the SSC who create payment proposals, 40 local finance teams who submit forecasts and exposures, Group Accounting (hedge accounting, intercompany reconciliation), Group FP&A, Group Tax, General Counsel and Internal Audit. The CFO chairs a quarterly treasury committee.
+
+### Segregation of duties is built into the org chart
+
+Jonas's desk can trade but cannot confirm or settle; Marta's back office confirms against the banks independently; the systems team administers user rights but cannot release payments. This front / middle / back-office split — standard in banks — appears in corporate treasury only at this size. At [Helvetic](co:helvetic) the same principle is achieved by borrowing someone from accounting.
+
+## Systems
+
+- **SAP S/4HANA with SAP's treasury modules** as the TMS: bank statements (~280 a day), cash position, in-house bank accounts, deal management, hedge accounting postings.
+- **Swift connectivity through a service bureau**; one US payroll bank connected host-to-host.
+- **A multi-bank FX trading platform** and **Bloomberg** for market data.
+- **A separate cash-forecasting tool** collecting submissions from ~40 entities, partly fed automatically from ERP payables, receivables and payroll.
+- **A bank-account-management tool** for accounts, mandates and signatories.
+- **About 28 ERPs** across the group feed the payment factory — the legacy of decades of acquisitions.
+
+## The cash-flow pattern
+
+- **Continuous and diversified:** thousands of customers, no single receipt dominates. Coatings demand peaks in spring and summer, so working capital builds in Q1–Q2 and releases in Q3–Q4.
+- **Structured internal flows:** daily sweeps into the IHB; monthly [netting](term:netting) of intercompany invoices; quarterly IHB interest; annual dividends from subsidiaries (with withholding-tax planning).
+- **Capital-markets calendar:** CP rollovers weekly; bond coupons; CHF 500m bond maturities in 2027 and 2029, refinanced 12–18 months ahead; the shareholder dividend in spring.
+- **Illustrative liquidity:** CHF ~900m of cash (a large part in the IHB and the pools, a part trapped in restricted markets) plus the undrawn EUR 1.5bn RCF.
+
+<Example title="A normal Tuesday in numbers" company="globalchem">
+
+- 07:00 — the TMS has imported ~280 prior-day statements; about 15 exceptions (missing statement, unmatched item, unexpected debit) go to Priya's analysts.
+- 08:30 — the EUR pool has swept ~20 accounts to zero; the IHB's external EUR position is +EUR 55m. Priya's team places EUR 40m overnight with a core bank within its counterparty limit.
+- 10:00 — the payment factory in Kraków releases the day's first batch: ~3,000 payments from 12 ERPs, after sanctions screening held 4 for review.
+- 11:00 — Jonas's desk rolls EUR/USD and EUR/CNY hedges for next quarter; Marta's team matches all confirmations by 14:00.
+- 15:00 — Olivier's team issues EUR 150m of 3-month commercial paper to refinance a maturing tranche.
+- Anna spends the day on an acquisition's financing structure, a rating-agency pre-meeting and an internal-audit finding about dormant user rights.
+
+</Example>
+
+## Typical problems
+
+- **Forecast quality from 40 reporting units.** The tool makes submission easy; it does not make submissions honest. Accuracy KPIs by entity (target ±10% on 4-week receipts) are the main lever.
+- **Restricted and difficult markets.** Cash in China, India, Brazil, Argentina and some African markets cannot be pooled freely; every cross-border payment needs documents; some currencies can only be hedged offshore with non-deliverable forwards.
+- **Bank counterparty risk.** With CHF 900m of cash and large derivative books, exposure to each bank (deposits plus positive derivative values) must stay within limits every day.
+- **Control across hundreds of users and signatories.** ~280 accounts, 20 banks, thousands of user rights; people leave and change roles faster than bank mandates are updated.
+- **KYC and bank administration.** Around 60 KYC refreshes a year, each bank wanting documents in its own format.
+- **Systems change never ends.** ERP consolidation, ISO 20022 format changes, SAP upgrades, a new acquisition to connect — Ben's team always has a project backlog.
+- **Acquisitions.** Every acquired company arrives with its own banks, accounts, ERP and habits; integration into pools and the payment factory takes 6–18 months.
+
+<Callout type="survey" title="Is GlobalChem typical?">
+
+PwC's 2025 survey reports that among organisations with more than USD 10bn revenue, 67% run an in-house bank, 60% a payment factory and 50% a payments-on-behalf-of model[](cite:pwc-gts-2025); its 2023 edition found 73%, 55% and 42% for the same size band[](cite:pwc-gts-2023). At CHF 7bn, GlobalChem is below that band, so having all three puts it at the more centralised end for its size. That is plausible for a Swiss chemicals group with heavy European operations, but it is a choice, not a law of nature.
+
+</Callout>
+
+## The workflows, as run at GlobalChem
+
+| Workflow | How it happens at GlobalChem |
+|---|---|
+| [Daily cash positioning](wf:daily-cash-positioning) | Automated in the TMS by 07:00; the team works the ~15 exceptions, IHB external position and pre-cut-off funding. |
+| [Cash forecasting](wf:cash-forecasting) | Forecasting tool, 40 entities, daily/weekly/monthly horizons, accuracy KPIs, reconciliation with FP&A. |
+| [Liquidity planning](wf:liquidity-planning) | Multi-year funding plan; maturity profile; RCF and CP capacity; rating metrics. |
+| [Surplus cash investment](wf:surplus-cash-investment) | Overnight placements from the IHB; a EUR 400m liquidity portfolio under the investment policy. |
+| [Funding a subsidiary](wf:funding-subsidiary) | Automatic through pools and IHB accounts; intercompany loans for entities outside the pools. |
+| [Payment processing](wf:payment-processing) | Payment factory with POBO in Europe (~60,000 payments a month); local payments elsewhere. |
+| [Large payment approval](wf:large-payment-approval) | Spending approved in the capex / contract process; release by two authorised treasury signatories. |
+| [Bank reconciliation](wf:bank-reconciliation) | Automated matching in SAP; exceptions worked in the SSC. |
+| [Bank account management](wf:bank-account-management) | Central register and tool; Priya approves; Marta's team executes; audited annually. |
+| [Bank fee analysis](wf:bank-fee-analysis) | Electronic fee statements from core banks where available; annual review in bank-relationship meetings. |
+| [FX exposure management](wf:fx-exposure-management) / [FX hedging](wf:fx-hedging) | Exposure collection, netting, layered hedging programmes, hedge accounting. |
+| [Credit facility management](wf:credit-facility-management) / [Covenant monitoring](wf:covenant-monitoring) | Olivier's team; the RCF has light covenants typical of investment-grade borrowers. |
+| [Month-end reporting](wf:month-end-reporting) | Monthly treasury report to the CFO; quarterly audit-committee pack. |
+| [Fraud investigation](wf:fraud-investigation) | Central payment-factory controls; investigations with Internal Audit, Legal and the banks. |
+| [Policy compliance](wf:policy-compliance) | Daily limit checks in the TMS; monthly compliance report; annual board approval of the policy. |
+| [Acquisition integration](wf:acquisition-integration) | A standard playbook: bank accounts, mandates, pools, payment factory, hedging, 6–18 months. |
+| [Currency shock](wf:currency-shock) / [Liquidity crisis](wf:liquidity-crisis) | Scenario playbooks owned by Jonas and Priya; the RCF backstop for CP market closure. |
+
+<Callout type="interview" title="If you interview at a GlobalChem-type group">
+
+The Group Treasurer knows strategy, policy, banks and rating agencies — but may not have built a cash position in years. For workflow detail, talk to the team leads (cash, risk, operations, systems) and, ideally, to the analysts and the SSC operators. Ask which entities cause the most exceptions, what the payment factory still cannot handle, and what happens in countries outside the pools. Expect procurement processes and long decision cycles for anything that touches bank connectivity or payments.
+
+</Callout>

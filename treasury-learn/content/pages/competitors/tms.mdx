@@ -1,0 +1,59 @@
+---
+title: TMS vendors — established suites and API-first platforms
+nav: TMS (established & modern)
+order: 4
+summary: The two TMS camps a founder will hear about — established suites that act as the treasury system of record, and newer API-first platforms that start from cash visibility and payments — and how to tell in an interview which one a company really runs.
+related: [/systems/tms, /systems/vendors, /competitors/landscape, /competitors/connectivity-payments]
+---
+
+For what a [TMS](term:tms) does, see [Systems → TMS](/systems/tms). This page is about the vendors as competitors.
+
+## Two camps
+
+| | Established TMS suites | Modern / API-first platforms |
+|---|---|---|
+| Examples (see entries) | SAP, Oracle, FIS, ION Treasury, Kyriba, GTreasury, Coupa Treasury, Nomentia | Trovata, Atlar, Embat, Treasury4 (unverified) |
+| Starting point | [Deal capture](term:deal-capture), valuation, accounting, in-house bank | Bank connectivity, cash visibility, payments |
+| Typical role in the stack | [System of record](term:system-of-record) + workflow | Analytics + workflow, sometimes payments execution |
+| Buyer | Treasurer with a team, through a [TMS selection](term:tms-selection), often with consultants | CFO / finance lead at a scale-up or mid-market firm, faster decision |
+| Implementation | Months; ERP interfaces, bank connectivity, static data, testing | Usually shorter (vendor claim); scope narrower |
+| Workflows touched | [Daily cash positioning](wf:daily-cash-positioning), [payments](wf:payment-processing), [FX hedging](wf:fx-hedging), [credit facilities](wf:credit-facility-management), [month-end reporting](wf:month-end-reporting), [subsidiary funding](wf:funding-subsidiary) | [Daily cash positioning](wf:daily-cash-positioning), [cash forecasting](wf:cash-forecasting), [payments](wf:payment-processing), [bank reconciliation](wf:bank-reconciliation) |
+
+<Callout type="confusion" title="'Modern' is a positioning word, not a technical category">
+
+Kyriba has been SaaS since long before the API-first entrants existed, and several established suites now offer bank APIs. The real difference is **scope and buyer**: the suites sell full treasury coverage to treasury departments; the newer platforms sell cash visibility and payments to finance teams that may not have a treasurer. Over time both are moving toward each other.
+
+</Callout>
+
+## Established suites
+
+<CompetitorTable category="traditional-tms" />
+
+### What changed in 2025–2026 (sourced)
+
+- **GTreasury → Ripple.** Hg, which invested in 2023, agreed to sell GTreasury to Ripple for about USD 1bn; announced 16 October 2025, with GTreasury to operate as a subsidiary[](cite:comp-hg-gtreasury-exit,comp-ripple-gtreasury-pymnts). On 27 January 2026 GTreasury launched "Ripple Treasury", adding stablecoin settlement and digital-asset custody to the TMS (as reported)[](cite:comp-ripple-treasury-launch). The formal closing date was not verified.
+- **Kyriba ownership.** Bridgepoint has held a majority since 2019[](cite:comp-bridgepoint-kyriba-2019); aggregator data reports General Atlantic as a minority investor from October 2024 (to confirm against a primary source)[](cite:comp-kyriba-ga-aggregators).
+- Other 2025–2026 changes to FIS, ION, SAP, Oracle, Coupa and Nomentia treasury products **could not be checked** in this session — see the facts-to-re-verify list.
+
+## API-first platforms
+
+<CompetitorTable category="modern-tms" />
+
+## Same decision, four companies
+
+| Company | What they run (illustrative) | Why |
+|---|---|---|
+| [Kleio](co:kleio) | Three bank portals (2 Swiss, 1 US), cloud accounting, one Google Sheet | Three banks, seven accounts; Sarah spends about 10% of her time on treasury — software would cost more than it saves |
+| [Alpine](co:alpine) | Business Central, bank portals, EBICS file upload, Excel; no TMS | Petra's bottleneck is lumpy project receipts and subsidiary data, not software |
+| [Helvetic](co:helvetic) | SAP S/4HANA (three entities) plus smaller ERPs, a multibank connectivity tool over EBICS/SWIFT, Excel; **TMS project in evaluation** | Five banks, 12 accounts, six currencies, a two-person treasury, EUR hedged with rolling forwards — the classic contested mid-market case: stay on Excel plus connectivity, an API-first platform, or a SaaS TMS |
+| [GlobalChem](co:globalchem) | SAP S/4HANA with SAP treasury modules as system of record, Swift via a service bureau, an FX trading platform, Bloomberg, a separate forecasting tool | Replacing the core would be a multi-year programme; newcomers sell point solutions on top (the forecasting tool is one) |
+
+<Callout type="interview" title="Questions for TMS users">
+
+- "Which of the TMS's modules do you use every day, which monthly, and which did you buy but never switch on?"
+- "Where is the 13-week forecast actually built?"
+- "How many of your bank accounts come in automatically every morning? What happens with the rest?"
+- "When did your vendor last change owner, and did you notice?"
+- For mid-market: "Did you consider staying on Excel? What finally made you buy?"
+
+</Callout>

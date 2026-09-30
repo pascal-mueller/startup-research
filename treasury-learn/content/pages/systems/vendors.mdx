@@ -1,0 +1,69 @@
+---
+title: Treasury software products — a neutral field guide
+nav: Vendors
+order: 8
+summary: What the main treasury-relevant products are, which category each belongs to, why companies use them, what data flows through them, who uses them — and what they do not solve. This is a reference for recognising names in interviews, not a ranking. The startup-lens comparison lives in the Competitor Landscape.
+related: [/systems/tms, /systems/erp, /systems/bank-connectivity, /competitors, /competitors/landscape]
+---
+
+## How to read this page
+
+Treasurers name products constantly ("we're on Kyriba", "we run SAP TRM", "we use Agicap"). The name tells you the **category** of system and roughly the **size and complexity** of the company; it does not tell you which modules are in use, how well connected the banks are, or what still lives in Excel. Always follow up with "which parts do you use every day?"
+
+Each profile below states the category, typical company size, current ownership and product state where it matters, why companies use it, the data flows, the users, and what it does not solve. Each ends with a currentness marker: **checked** means ownership/product facts were matched against the vendor's or a news publisher's own pages in September 2026[](cite:sap-mbc,sap-ecc-maintenance,kyriba-ga-2024,kyriba-live-2026,fis-quantum-cloud-2025,ripple-gtreasury-2025,ripple-treasury-rebrand,gtreasury-solvexia-2026,ion-treasury,coupa-bellin-2020,trovata-atom-2025,embat-series-b-2026); **not re-verified** means a long-established description that you should check on the vendor site before relying on details.
+
+<Callout type="warning" title="Vendor claims are not evidence">
+
+Product pages describe capabilities; they do not tell you adoption, implementation time or customer satisfaction. Customer counts, "automates X% of tasks" and similar figures are company claims. Features announced at user conferences (e.g. agentic AI, stablecoin settlement in 2026) are announcements, not evidence of use. Ask customers.
+
+</Callout>
+
+## Categories
+
+<SystemCategories />
+
+## Overview
+
+<SystemsTable />
+
+## Which products the reference companies use
+
+- **[Kleio](co:kleio)** (startup): no treasury product. Cloud accounting with bank feeds, bank portals, a Google Sheet. A cloud cash tool such as Agicap is the kind of product a company like Kleio might consider once it has several banks and currencies.
+- **[Alpine](co:alpine)** (SME): Microsoft Dynamics 365 Business Central for payments and bank reconciliation, EBICS upload, Excel. No TMS — with 9 accounts, the ERP and a spreadsheet cover the need.
+- **[Helvetic](co:helvetic)** (mid-market): SAP S/4HANA in three countries, a multibank connectivity tool, Excel. The TMS evaluation typically compares a cloud cash platform (cheaper, faster, less deal functionality) with an enterprise TMS (more depth, heavier project) and — because of SAP — SAP's own treasury components.
+- **[GlobalChem](co:globalchem)** (multinational): SAP S/4HANA treasury modules as the TMS, Swift via a service bureau, a multi-dealer FX platform, Bloomberg, and a separate forecasting tool.
+
+## Profiles
+
+### ERP-based
+
+<VendorProfiles category="erp" />
+
+### Enterprise TMS / TRMS
+
+<VendorProfiles category="tms-enterprise" />
+
+### Cloud cash-management and treasury platforms
+
+<VendorProfiles category="cash-platform" />
+
+### Bank connectivity and payment hubs
+
+<VendorProfiles category="connectivity" />
+
+### Market data and dealing
+
+<VendorProfiles category="market-data" />
+
+## Not profiled here
+
+Other names you will hear, not profiled on this page: Serrala, TIS (Treasury Intelligence Solutions, payments and connectivity), Salmon Software, SAP add-on vendors, banks' own treasury portals, planning tools used for cash forecasting (e.g. Anaplan, Jedox), and Swiss SME finance tools. Their absence says nothing about quality. The [Competitor Landscape](/competitors) covers positioning and gaps.
+
+<Callout type="interview">
+
+- "Why did you choose this product over the alternatives you looked at?"
+- "What does it do well, and what do you still do outside it?"
+- "Who administers it, and how dependent are you on the vendor or an implementation partner?"
+- "What would make you replace it?"
+
+</Callout>

@@ -1,0 +1,283 @@
+# Glossary terms for stream wf-risk (FX exposure, FX hedging, credit facilities, covenants).
+
+- id: booked-exposure
+  term: Booked vs forecast exposure
+  aka: [balance-sheet exposure, committed exposure, forecast exposure, anticipated exposure]
+  category: FX
+  plain: A booked exposure is a foreign-currency invoice or loan already in the books; a forecast exposure is foreign-currency money you expect to receive or pay but haven't invoiced yet.
+  professional: "Transaction exposure is usually split by certainty: (1) booked / balance-sheet exposures — monetary items (receivables, payables, intercompany loans, cash) in a currency other than the entity's functional currency, revalued at every closing with the difference in P&L; (2) firm commitments — signed orders or contracts not yet invoiced; (3) forecast exposures — budgeted or projected flows. Policies usually allow up to 100% hedging of booked items and firm commitments but only declining percentages of forecasts, because forecasts can be wrong."
+  example: "At 30 September Helvetic's parent has EUR 21m of EUR receivables net of EUR payables (booked), EUR 34m of signed but undelivered machine orders (firm), and EUR 118m of net EUR inflows forecast for the next 12 months, which includes the firm orders."
+  related: [transaction-exposure, fx-exposure, functional-currency, balance-sheet-hedging, layered-hedging]
+  confusedWith: "**Translation exposure** — about converting a subsidiary's whole accounts into CHF for group reporting, not about individual foreign-currency items in an entity's books."
+
+- id: exposure-report
+  term: FX exposure report
+  aka: [exposure statement, currency exposure report, hedge report]
+  category: FX
+  plain: The table treasury builds, usually monthly, showing by currency how much the company will receive or pay, how much is already hedged, and how much is left open.
+  professional: "A periodic report consolidating booked and forecast exposures by entity, currency pair and time bucket, netted where the policy allows, set against outstanding hedges to show hedge ratios versus policy bands, open (unhedged) positions, average hedged rates versus budget rate, and a sensitivity (e.g. P&L or cash impact of a 5–10% move). It is the input to the hedging decision and to the CFO/committee report."
+  example: "Helvetic's October report shows EUR 118m net inflows over 12 months, EUR 58.5m hedged (50%), and an open EUR 59.5m whose CHF value moves by about CHF 2.8m for every 5% move in EUR/CHF."
+  related: [booked-exposure, hedge-ratio, layered-hedging, budget-rate, fx-exposure]
+
+- id: balance-sheet-hedging
+  term: Balance-sheet hedging
+  aka: [monetary item hedging, revaluation hedging]
+  category: FX
+  plain: Hedging foreign-currency amounts already in the books, such as receivables or intercompany loans, so their month-end revaluation doesn't create gains and losses in profit.
+  professional: "Hedging monetary assets and liabilities denominated in a non-functional currency (IAS 21 / FER revaluation at closing rates through P&L). Typically done with short FX forwards or swaps rolled monthly, sized to the net position per entity and currency. Because the derivative's value change and the revaluation both go through P&L, hedge accounting is usually unnecessary — the offset is natural in the accounts."
+  example: "Helvetic AG's USD 5m loan to Helvetic Machines Inc. is revalued every month-end in CHF. Daniel hedges it with a rolling one-month USD/CHF swap, so a 5% USD fall (≈ CHF 0.2m revaluation loss) is offset by a similar gain on the swap."
+  related: [booked-exposure, intercompany-loan, swap, hedge-accounting, economic-hedge]
+
+- id: budget-rate
+  term: Budget rate
+  aka: [planning rate, standard rate]
+  category: FX
+  plain: The exchange rate the company uses in its budget — hedging is often judged by whether it protects that rate.
+  professional: "The FX rate set in the annual planning process (often the forward rate or spot at budget time, sometimes a rounded conservative rate) at which foreign-currency sales and costs are budgeted. Hedging programmes frequently aim to 'protect the budget rate' and report achieved average hedge rates against it; a budget rate far from the market forward cannot be protected, only locked at the forward."
+  example: "Helvetic budgeted 2027 EUR sales at 0.93. With spot 0.935 and the 12-month forward around 0.917 (illustrative), Daniel reminds Thomas that hedging the whole year today would lock about 1.5% below budget — the forward points are a cost of carry, not a bank fee."
+  related: [forward-points, exposure-report, layered-hedging, fpa]
+
+- id: hedge-documentation
+  term: Hedge documentation (designation)
+  aka: [hedge designation, hedge file, hedge relationship documentation]
+  category: Accounting & tax
+  plain: The paperwork that must exist from the day a hedge is done if the company wants special hedge-accounting treatment.
+  professional: "Under IFRS 9 a hedging relationship qualifies only if, at inception, it is formally designated and documented: risk-management objective and strategy, hedging instrument, hedged item (e.g. highly probable forecast EUR sales in a given month), the risk hedged, and how effectiveness is assessed (economic relationship, credit risk not dominating, hedge ratio, sources of ineffectiveness). Retrospective designation is not allowed. Swiss GAAP FER 27 requires much less: no IFRS-style documentation or effectiveness tests, although the hedged future cash flows must be highly probable. US GAAP ASC 815 is similar in spirit to IFRS 9 with its own detail."
+  example: "When Jonas's team at GlobalChem books a EUR/USD forward in SAP, the hedge-relationship record (hedged forecast sales bucket, risk component, 1:1 ratio, dollar-offset method) is created the same day; Helvetic, reporting under Swiss GAAP FER, keeps a simpler hedge register linking each forward to a monthly forecast bucket."
+  related: [hedge-accounting, economic-hedge, mark-to-market, forward, layered-hedging]
+  confusedWith: "**Hedge policy / economic hedging** — a hedge can reduce risk perfectly well without hedge accounting; documentation only affects how and when gains and losses appear in the accounts."
+
+- id: multi-dealer-platform
+  term: Multi-dealer FX platform
+  aka: [FX trading platform, multibank platform, RFQ platform, 360T, FXall, Bloomberg FXGO]
+  category: FX
+  plain: A trading screen where a company asks several banks for an FX price at once and deals with whoever is best, with every quote recorded.
+  professional: "Electronic request-for-quote (RFQ) venues connecting corporate treasuries to their relationship banks' pricing engines for spot, forwards, swaps, NDFs and some options (e.g. 360T, FXall, Bloomberg FXGO). The treasurer enters the trade, selected banks respond within seconds, the best price is dealt, and the platform stores the full audit trail (all quotes, times, user), which supports best-execution evidence and segregation of duties. Most connect to TMS/ERP for straight-through deal capture and confirmation matching. Banks only quote where credit lines/ISDA are in place."
+  example: "Daniel sends 'sell EUR 3.0m, buy CHF, value 31 Aug 2027' to Helvetic's three hedging banks on the platform; they answer within seconds with 0.91885, 0.91862 and 0.91901. He deals at 0.91901; the platform's deal ticket goes to the deal register, and Lea matches the bank's confirmation against it."
+  related: [forward, spot-fx, deal-confirmation, dealing-mandate, isda, relationship-bank]
+
+- id: hedge-roll
+  term: Rolling a hedge (hedge roll)
+  aka: [forward extension, roll-over, historical rate rollover, HRR, early take-up]
+  category: FX
+  plain: Moving a hedge to a different date when the underlying payment arrives earlier or later than planned.
+  professional: "Done with an FX swap: the near leg offsets the original forward on its date, the far leg re-establishes the hedge at the new date at the market forward rate. The original forward's gain or loss is realised in cash on the near date. A 'historical rate rollover' (rolling at the old contract rate to defer the gain or loss) hides a loss or effectively creates credit, is priced by banks as such, and is prohibited by many policies. Taking up a forward early (predelivery) works the same way in reverse."
+  example: "A EUR 2.0m Helvetic forward for 31 Dec 2026 at 0.9420 is rolled to 31 Mar 2027 because two German acceptances slipped. On 31 Dec the near leg closes it at about 0.9312 — Helvetic receives roughly CHF 22k — and the new March hedge is about 0.9267, reflecting three more months of forward points (≈ CHF 9k on EUR 2m)."
+  related: [swap, forward, forward-points, layered-hedging]
+
+- id: collar
+  term: Collar (zero-cost collar)
+  aka: [zero-premium collar, range forward, risk reversal]
+  category: FX
+  plain: A pair of options that protects you below one rate and gives up gains above another, often arranged so no premium is paid.
+  professional: "Buying an option (e.g. EUR put) and selling another (EUR call) with a different strike, so the premium received funds the premium paid. The company is protected below the floor, keeps upside up to the cap, and is obliged at the cap. Because it contains a sold option, many policies allow collars only if the sold notional does not exceed the underlying exposure, and some require CFO or committee approval. Leveraged variants (sold notional larger than bought) have caused large corporate losses and are commonly prohibited."
+  example: "With EUR/CHF at 0.935, Alpine could buy a 0.92 EUR put and sell a 0.955 EUR call for zero premium on EUR 2m: it receives at least 0.92, benefits up to 0.955, and must sell at 0.955 above that. Martin prefers the simpler forward."
+  related: [option, forward, hedge-ratio, treasury-policy]
+
+- id: lei
+  term: LEI (Legal Entity Identifier)
+  aka: [legal entity identifier]
+  category: Risk & control
+  plain: A 20-character global ID number a company needs before banks will trade derivatives with it.
+  professional: "ISO 17442 identifier issued by accredited local operating units and renewed annually. Required for derivatives trade reporting (EMIR, FinfraG, US rules), so banks typically will not execute forwards or swaps for an entity without a valid LEI. An expired LEI is a common, avoidable reason for a trade being rejected or delayed."
+  example: "When Helvetic Machines CZ wanted to hedge EUR/CZK with a Prague bank, the first trade was held up for a week because the Czech entity's LEI had lapsed."
+  related: [trade-reporting, isda, kyc]
+
+- id: trade-reporting
+  term: Derivatives trade reporting (EMIR / FinfraG)
+  aka: [EMIR reporting, FinfraG reporting, FMIA reporting, transaction reporting]
+  category: Risk & control
+  plain: The legal duty to report each derivative trade (including simple FX forwards) to a registered database — usually handled by the bank for smaller corporates.
+  professional: "EU EMIR requires reporting of derivative trades to a trade repository; since EMIR Refit (June 2020) an EU financial counterparty is responsible for reporting on behalf of non-financial counterparties below the clearing threshold (NFC-), which must supply data the bank cannot know. Swiss FinfraG/FMIA has its own reporting regime; the duty for small non-financial counterparties was postponed to 1 January 2028. Separately, FinfraG requires timely confirmation of OTC derivative terms. Obligations depend on counterparty classification (financial vs non-financial, above/below thresholds) and on where each party is located — which legal and treasury must check rather than assume."
+  example: "Helvetic's Swiss bank reports its EUR/CHF forwards; when HM Deutschland once dealt directly with its German bank, that bank reported under EMIR on the subsidiary's behalf, but only after Jens confirmed HM Deutschland's NFC- status and LEI."
+  related: [lei, deal-confirmation, otc, isda]
+
+- id: facility-agent
+  term: Facility agent
+  aka: [agent bank, agent]
+  category: Debt & funding
+  plain: The bank that runs the administration of a syndicated loan — the company talks to the agent, not to each lender.
+  professional: "One lender appointed under the facility agreement to administer it: receives utilisation requests and notices, allocates drawings pro rata to lenders, collects and distributes interest and fees, calculates compounded-rate interest, circulates compliance certificates and information, and runs consent requests. The agent acts for the lenders, not the borrower, and is paid an annual agency fee."
+  example: "Helvetic's utilisation requests, commitment-fee invoices and compliance certificates all go through Swiss bank A's loan agency desk, which then passes each lender its share."
+  related: [syndicated-loan, rcf, utilisation-request, majority-lenders]
+
+- id: utilisation-request
+  term: Utilisation request
+  aka: [drawdown notice, drawing request, borrowing request, notice of drawing]
+  category: Debt & funding
+  plain: The formal signed notice the company sends to borrow money under a credit facility.
+  professional: "The document prescribed in a schedule to the facility agreement specifying facility, currency, amount, utilisation date and interest period, signed by authorised signatories and delivered to the agent by a deadline (in LMA-form documents often 10:00 a set number of business days before; periods differ by agreement and for compounded risk-free-rate loans). Delivering it repeats certain representations (e.g. no default is continuing). Rollovers of maturing loans are also requested this way and are usually netted cashlessly."
+  example: "On Monday 12 October Lea prepares the utilisation request to roll Helvetic's maturing CHF 35m loan as a CHF 30m loan from 15 October (CHF 5m repaid from idle cash); Daniel and Thomas sign it as authorised signatories and it is emailed as PDF to the agent before 10:00 Zurich time."
+  related: [drawdown, rcf, facility-agent, interest-period, repeating-representations]
+
+- id: interest-period
+  term: Interest period
+  aka: [loan period, rollover period]
+  category: Debt & funding
+  plain: The time slice (often 1, 3 or 6 months) for which a loan under a credit line runs before interest is paid and the loan is repaid or rolled.
+  professional: "The period chosen in the utilisation request at the end of which interest is paid and the loan matures (and is typically rolled over if still needed). For term-rate loans (e.g. EURIBOR) the rate is fixed at the start; for compounded risk-free-rate loans (e.g. compounded SARON, SOFR) the rate is known only near the end, using a lookback or observation shift."
+  example: "Helvetic's EUR 27m loan runs for 3-month interest periods at EURIBOR plus margin, fixed in advance; its CHF 35m loan uses compounded SARON, so the exact interest arrives from the agent only a few days before 15 October."
+  related: [reference-rate, utilisation-request, rcf]
+
+- id: utilisation-fee
+  term: Utilisation fee
+  aka: [usage fee]
+  category: Debt & funding
+  plain: An extra charge on a credit line that kicks in when you borrow more than a set share of it.
+  professional: "A fee payable on drawn amounts when utilisation of a revolving facility exceeds thresholds (commonly one-third and two-thirds of total commitments), stepping up per tier. It raises the cost of heavily drawn backstop facilities and is calculated by the agent together with interest."
+  example: "Helvetic's RCF charges 0.10% p.a. on all loans once drawings exceed CHF 66.7m (one-third of CHF 200m). A new EUR 8m drawing on top of CHF 60.2m would take utilisation to CHF 67.7m, so Daniel repays CHF 5m of the CHF loan from idle parent cash at the same rollover and stays at CHF 62.7m."
+  related: [commitment-fee, rcf, margin-ratchet]
+
+- id: margin-ratchet
+  term: Margin ratchet (margin grid)
+  aka: [pricing grid, margin grid, step-up]
+  category: Debt & funding
+  plain: A table in the loan agreement that makes the interest margin go up when the company's debt ratio gets worse, and down when it improves.
+  professional: "Contractual adjustment of the applicable margin by reference to a leverage ratio (common in mid-market loans) or a credit rating (common for rated borrowers), reset after each compliance certificate. Because commitment fees are usually a percentage of margin, the ratchet also moves the cost of the undrawn line. Sustainability-linked loans add a small ESG-KPI adjustment on top."
+  example: "Helvetic pays 0.85% over the reference rate while leverage is ≤ 1.50x; the grid steps to 1.05% up to 2.25x, 1.30% up to 2.75x and 1.55% above (illustrative). Crossing 2.25x would cost about CHF 0.25m a year on current drawings and the undrawn fee combined."
+  related: [credit-spread, leverage-ratio, compliance-certificate, commitment-fee]
+
+- id: extension-option
+  term: Extension option
+  aka: [1+1 extension, extension request]
+  category: Debt & funding
+  plain: A right to ask the banks to add a year to a credit line; each bank decides for itself.
+  professional: "A feature of many syndicated RCFs (e.g. 5 years plus two one-year options, '5+1+1'): within a window before the first and second anniversaries the borrower requests a one-year extension; each lender decides individually at its discretion, and the extension applies only to the commitments of lenders that agree. Non-extending lenders keep the original maturity, creating a 'stub'."
+  example: "Helvetic signed its RCF in October 2021 for five years with two one-year options, both of which all four banks accepted — which is why it now runs to October 2028."
+  related: [rcf, amend-and-extend, maturity, refinancing-risk]
+
+- id: amend-and-extend
+  term: Amend and extend (A&E)
+  aka: [A&E, amend-to-extend]
+  category: Debt & funding
+  plain: Renegotiating an existing credit facility to push its maturity out (and update terms) instead of signing a brand-new one.
+  professional: "An amendment to an existing facility agreement that extends maturity and often resets pricing, size, lender group, covenants, and documentation (e.g. benchmark language, sustainability KPIs). Cheaper and faster than a full refinancing, it still requires each extending lender's credit approval and KYC, legal documentation and board approval; usually started 12–24 months before maturity so the facility never becomes 'current' in the accounts."
+  example: "With the RCF and the CHF 100m bond both maturing in 2028, Daniel proposes to Thomas an A&E of the RCF to 2031 + 1 + 1 by mid-2027, before the bond refinancing."
+  related: [extension-option, rcf, refinancing-risk, syndicated-loan, bank-rfp]
+
+- id: ancillary-facility
+  term: Ancillary facility (and ancillary lines)
+  aka: [ancillary line, bilateral line, side line, guarantee line]
+  category: Debt & funding
+  plain: A smaller credit line — an overdraft, guarantee line or FX line — provided by one bank alongside or inside the main facility.
+  professional: "In LMA-form RCFs, a bilateral facility (overdraft, guarantee, letter-of-credit, FX settlement line) a lender provides to a group company by carving out part of its RCF commitment. Many mid-market groups instead keep separate bilateral lines outside the RCF. Either way, treasury tracks limits and usage per bank, because guarantees for customers and local overdrafts are often what the business actually runs out of first."
+  example: "Helvetic has a CHF 10m guarantee line at Swiss bank A for customer advance-payment guarantees (CHF 6.2m used) and a EUR 2m overdraft for HM Deutschland at the German bank."
+  related: [rcf, advance-payment-guarantee, overdraft, ancillary-business]
+  confusedWith: "**Ancillary business** — the fee-earning services a bank hopes to win (FX, cash management) in return for lending; ancillary facilities are actual credit lines."
+
+- id: lma
+  term: LMA documentation
+  aka: [Loan Market Association, LMA-based facility agreement, LMA standard]
+  category: Debt & funding
+  plain: The standard templates most European syndicated loans are written from, so every agreement has the same skeleton and terms.
+  professional: "The Loan Market Association publishes recommended forms for syndicated facilities in Europe, the Middle East and Africa (investment-grade, leveraged, real estate, RFR-based). Negotiation focuses on deviations from the template: definitions (EBITDA, net debt), covenants and baskets, representations, events of default, transfer restrictions. US loans follow LSTA forms."
+  example: "Helvetic's 180-page agreement follows the LMA investment-grade compounded-rate form; Daniel's two-page 'cheat sheet' records the few clauses he actually needs in daily life."
+  related: [syndicated-loan, rcf, covenant, facility-agent]
+
+- id: compliance-certificate
+  term: Compliance certificate
+  aka: [covenant certificate]
+  category: Debt & funding
+  plain: A signed statement the company sends its lenders at each test date showing the covenant calculations and confirming there is no default.
+  professional: "Delivered with the annual and (semi-)annual financial statements in the form scheduled to the facility agreement, setting out the calculation of each financial covenant under the agreement's definitions and confirming no default is continuing; signed by one or two directors or the CFO; sometimes reported on by the auditors at year-end. It also drives any leverage-based margin ratchet."
+  example: "Helvetic's certificate for 30 June 2026 showed net debt / EBITDA of 1.4x (limit 3.25x) and interest cover of 22x (minimum 4x); Thomas signed it and Lea emailed it to the agent with the half-year report."
+  related: [covenant, leverage-ratio, interest-cover, margin-ratchet, facility-agent]
+
+- id: covenant-headroom
+  term: Covenant headroom
+  aka: [covenant cushion, EBITDA headroom]
+  category: Debt & funding
+  plain: How far the company's numbers could get worse before it would break a loan covenant.
+  professional: "The distance between the actual or forecast covenant ratio and the limit, usually expressed as the percentage fall in EBITDA (or increase in net debt) that would cause a breach at the next test dates. Treasury projects it for two to four future test dates from FP&A's forecast and stress scenarios; lenders and auditors look at it for going-concern assessments."
+  example: "At a pro forma 2.3x against a 3.25x limit, Helvetic's EBITDA could fall about 30% before a breach — comfortable today, much less so if the planned acquisition closes in a machine-tool downturn."
+  related: [covenant, leverage-ratio, liquidity-headroom, scenario-analysis]
+
+- id: event-of-default
+  term: Event of default
+  aka: [EoD, default]
+  category: Debt & funding
+  plain: A listed situation in a loan agreement — such as missing a payment or breaking a covenant — that lets lenders stop lending and demand repayment.
+  professional: "Contractually defined triggers (non-payment, financial covenant breach, misrepresentation, cross-default, insolvency, material adverse change in some agreements, audit qualification). While an event of default is continuing the lenders can refuse new drawings (draw-stop) and majority lenders can cancel and accelerate. In practice lenders rarely accelerate a viable borrower; they negotiate a waiver for fees and tighter terms."
+  example: "If Helvetic's leverage exceeded 3.25x at 31 December, it would be an event of default from delivery of the certificate: no new RCF drawings without a waiver, and the bondholders' cross-default clause would come into view."
+  related: [covenant, cross-default, covenant-waiver, majority-lenders]
+
+- id: covenant-waiver
+  term: Waiver and amendment request
+  aka: [waiver, consent request, covenant reset, covenant holiday, amendment letter]
+  category: Debt & funding
+  plain: Asking the lenders to agree in advance to ignore or change a covenant the company expects to break.
+  professional: "A formal request through the agent for lenders to waive a (prospective) breach or amend definitions or levels, usually approved by majority lenders (often 66⅔% of commitments) unless a clause needs all lenders. Typically comes with a consent fee, a margin increase, tighter information undertakings or security, and legal costs on the borrower. Early, well-prepared requests are far cheaper than post-breach negotiations."
+  example: "In Daniel's downside case Helvetic would ask for the leverage limit to be reset to 4.0x for two test dates; illustratively lenders might ask for a 10–25 bp consent fee, a higher margin until leverage returns below 3.0x, and monthly reporting."
+  related: [covenant, majority-lenders, event-of-default, equity-cure]
+
+- id: equity-cure
+  term: Equity cure
+  aka: [cure right]
+  category: Debt & funding
+  plain: A clause that lets shareholders put in fresh money to fix a covenant breach.
+  professional: "A right, mostly in sponsor-backed and leveraged loans, to remedy a financial-covenant breach by injecting new equity or subordinated debt, deemed to increase EBITDA or reduce net debt for the calculation. Usually capped (e.g. number of uses over the life, no consecutive quarters). Rare in investment-grade or listed-company facilities."
+  example: "Kleio's proposed venture-debt agreement lets its VC investors cure a minimum-cash breach by funding new equity within 30 days; Helvetic's RCF has no such clause."
+  related: [covenant, covenant-waiver, venture-debt]
+
+- id: majority-lenders
+  term: Majority lenders
+  aka: [required lenders, all-lender consent]
+  category: Debt & funding
+  plain: The share of the banks in a syndicate whose agreement is needed to change or waive loan terms.
+  professional: "Defined in the facility agreement, commonly lenders holding at least 66⅔% of total commitments (sometimes 50%). Waivers of financial covenants usually need majority lenders; changes to maturity, margin, amounts or the consent thresholds themselves need all affected lenders. In small syndicates one or two banks can therefore block or carry a decision."
+  example: "In Helvetic's four-bank RCF, Swiss bank A (CHF 60m) and Swiss bank B (CHF 50m) hold 55% — not enough; any waiver needs at least three of the four banks."
+  related: [syndicated-loan, covenant-waiver, facility-agent]
+
+- id: frozen-gaap
+  term: Frozen GAAP
+  aka: [frozen accounting, accounting change clause]
+  category: Accounting & tax
+  plain: A loan clause saying covenants are calculated using the accounting rules in force when the loan was signed, so a change in accounting rules doesn't cause a breach.
+  professional: "Provision requiring covenant calculations under the accounting principles applied in the original financial statements, or requiring the parties to negotiate adjustments if standards change. The classic case was IFRS 16 (2019), which put operating leases on balance sheet, increasing both net debt and EBITDA; agreements dealt with it by freezing GAAP, excluding lease liabilities, or resetting levels. Companies switching between Swiss GAAP FER and IFRS face the same issue."
+  example: "Helvetic reports under Swiss GAAP FER, where operating leases stay off balance sheet; its RCF says that if the group moves to IFRS, lease liabilities under IFRS 16 are excluded from net debt and lease costs deducted from EBITDA."
+  related: [covenant, net-debt, ebitda, ebitda-adjustments]
+
+- id: cross-default
+  term: Cross-default
+  aka: [cross-acceleration]
+  category: Debt & funding
+  plain: A clause saying that if you default on one loan, you are treated as defaulting on this one too.
+  professional: "An event of default triggered by default (cross-default) or acceleration (cross-acceleration, the narrower form common in bonds) under other financial indebtedness above a threshold amount. It links the RCF, bonds and bilateral lines, so a covenant problem in one document can spread to all debt; thresholds and wording are checked when assessing any breach."
+  example: "Helvetic's bond terms contain a cross-acceleration clause: a covenant breach under the RCF alone does not trigger it, but if the RCF banks accelerated, bondholders could demand repayment of the CHF 100m."
+  related: [event-of-default, bond, covenant]
+
+- id: negative-pledge
+  term: Negative pledge
+  aka: [no-security clause]
+  category: Debt & funding
+  plain: A promise not to give other lenders security over the company's assets, so existing unsecured lenders aren't pushed to the back of the queue.
+  professional: "A general undertaking in unsecured loans and bonds restricting security interests over the borrower's (and often subsidiaries') assets, subject to permitted baskets (e.g. existing mortgages, security up to a fixed amount, liens in the ordinary course). Treasury and legal check it before any secured financing, leasing or trade-finance arrangement."
+  example: "Before HM Suzhou takes a small secured working-capital loan from its Chinese bank, Daniel checks the RCF's permitted-security basket (CHF 15m) — the loan fits."
+  related: [covenant, bond, cross-default]
+
+- id: repeating-representations
+  term: Repeating representations
+  aka: [repeated representations, reps]
+  category: Debt & funding
+  plain: Statements of fact the company makes when signing a loan and re-confirms each time it borrows, such as "no default is happening".
+  professional: "Representations in a facility agreement (status, powers, no default, no material litigation, accuracy of financial statements, sanctions compliance) deemed repeated on each utilisation request and at the start of each interest period. A drawing can therefore be refused, and a false repetition is itself an event of default — which is why treasury checks with legal and accounting before signing a utilisation request in a difficult period."
+  example: "Before Thomas signs a drawing request in a quarter with a large customer lawsuit, Daniel asks legal whether the 'no material litigation' representation can still be repeated."
+  related: [utilisation-request, event-of-default, covenant]
+
+- id: ebitda-adjustments
+  term: Covenant EBITDA adjustments (add-backs)
+  aka: [add-backs, adjusted EBITDA, covenant EBITDA, pro forma EBITDA]
+  category: Accounting & tax
+  plain: The changes a loan agreement allows to the reported EBITDA before calculating covenants — for example adding back one-off restructuring costs.
+  professional: "The agreement's 'Consolidated EBITDA' definition starts from reported operating profit and adds or removes items: exceptional/non-recurring items (sometimes capped, e.g. at 10–15% of EBITDA), pro forma EBITDA of acquired or disposed businesses for the full relevant period, synergies (in leveraged deals), FX translation conventions, pension and lease treatments. The definition matters more than the headline ratio; treasury, accounting and sometimes lawyers agree the reading."
+  example: "Helvetic's definition allows the last-twelve-months EBITDA of an acquired company to be included pro forma, so buying a CHF 9m-EBITDA business adds it to the denominator from the first test date after closing."
+  related: [ebitda, covenant, leverage-ratio, frozen-gaap]
+
+- id: equity-ratio
+  term: Equity ratio
+  aka: [Eigenkapitalquote, solvency ratio]
+  category: Debt & funding
+  plain: Shareholders' equity as a percentage of total assets — a favourite covenant of Swiss and German banks lending to SMEs.
+  professional: "Equity ÷ total assets, often with bank-specific adjustments (e.g. deducting intangible assets or goodwill, adding subordinated shareholder loans). Swiss bilateral credit agreements for SMEs commonly include a minimum equity ratio alongside or instead of a leverage covenant, tested on the annual statutory accounts. Under Swiss GAAP FER goodwill may be offset against equity, which lowers reported equity."
+  example: "Alpine's credit agreement requires an equity ratio of at least 35% on the audited accounts (illustrative); at 44% there is room, but a year of losses plus higher inventory would erode it quickly."
+  related: [gearing, covenant, leverage-ratio]

@@ -1,0 +1,164 @@
+---
+title: Working capital
+nav: Working capital
+order: 3
+cluster: liquidity
+summary: The cash tied up between paying suppliers and staff and getting paid by customers — receivables, payables and inventory. Treasury rarely owns these processes, but it feels every day of delay and provides the financing tools around them.
+subtopics: [accounts receivable, accounts payable, inventory, DSO, DPO, cash conversion cycle]
+related: [/map/cash-forecasting, /map/cash-management, /org/with-ar, /org/with-ap, /org/with-procurement]
+---
+
+<TreasuryMap focus="working-capital" />
+
+[Working capital](term:working-capital) is where **operations turn into cash**. A company that sells on 60-day terms, holds four months of inventory and pays suppliers in 30 days has to finance the gap — from cash, from a credit line, or from its suppliers and customers. The key point for an interviewer: **treasury does not run receivables, payables or inventory.** Sales and credit control own customer terms and collections, procurement and AP own supplier terms and payments, operations own inventory. Treasury measures the cash effect, forecasts it, finances it, and argues for better terms.
+
+<Callout type="concept" title="The formula everything else hangs on">
+
+Net working capital (operating) = trade receivables + inventory − trade payables.
+
+In days: **[cash conversion cycle](term:cash-conversion-cycle) = [DSO](term:dso) + DIO − [DPO](term:dpo)**, where DIO is days inventory outstanding. Each day of the cycle ties up roughly one day of revenue (or cost) in cash.
+
+</Callout>
+
+## Who does this work, by company size
+
+| Lever | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Customer terms, collections (AR) | Sarah + Nina; billing system and Stripe | Martin (contract terms), Petra's team chases | [AR / credit control](/org/with-ar) per subsidiary | Shared-service AR + credit managers per region |
+| Supplier terms, payments (AP) | Nina | Petra's team; buyer negotiates terms | [AP](/org/with-ap) per subsidiary; [procurement](/org/with-procurement) for key suppliers | Group procurement standardises terms; AP in shared services |
+| Inventory | n/a (software) | Operations / production planning | Plant managers, supply chain | Supply-chain function, BU targets |
+| Measuring DSO/DPO/CCC | Sarah, occasionally | Martin, monthly | [Controlling / FP&A](/org/with-fpa) and Daniel | Group controlling; treasury for cash view |
+| Financing tools (factoring, SCF, guarantees) | – | Martin with the house bank | Daniel ([treasury manager](/org/roles-treasury-manager)) | Treasury (Anna's team) with procurement |
+
+## Accounts receivable
+
+**Plain:** money customers owe for invoices already sent. **Professional:** trade receivables recorded in the ERP when invoiced and cleared by [cash application](term:cash-application) when paid; managed through credit limits, [payment terms](term:payment-terms), [dunning](term:dunning) and collections, dispute resolution, and sometimes [credit insurance](term:credit-insurance) or [factoring](term:factoring). For treasury, AR is the largest and least reliable forecast input: an open-items list by **due** date is not a forecast of **payment** dates.
+
+<Example title="Alpine: one acceptance certificate, CHF 2m" company="alpine" open>
+
+Alpine's German customer owes a CHF 2.0m acceptance milestone (20% of a robot project). The invoice can only be issued once the customer signs the acceptance certificate. The project manager expects signature "next week" for the third week running; the customer's logistics director is on holiday. Until the certificate is signed, the CHF 2m is not even a receivable — it is work in progress. Petra keeps it in week 4 of the cash sheet with a note; Martin reads the note and keeps CHF 3m of the credit line undrawn as cover. In interviews, this kind of [milestone payment](term:milestone-payments) is where SME cash forecasting really breaks.
+
+</Example>
+
+- **Drives:** [cash forecasting](wf:cash-forecasting), [liquidity crisis](wf:liquidity-crisis) ("expected receivables don't arrive"), [bank reconciliation](wf:bank-reconciliation).
+- **Terms:** [cash application](term:cash-application), [remittance information](term:remittance-information), [dunning](term:dunning), [payment terms](term:payment-terms), [credit insurance](term:credit-insurance), [factoring](term:factoring), [lockbox](term:lockbox), [QR-bill](term:qr-bill).
+
+<Callout type="confusion" title="Receivables are an accounting balance; collections are a cash event">
+
+AR tells you who owes what. It does not tell you when they will pay. Treasury depends on credit control's knowledge ("they always pay on the 25th", "they have a dispute") — which usually lives in people's heads or CRM notes, not the ERP.
+
+</Callout>
+
+**Ask:**
+- "When a big customer pays late, how do you find out, and who tells whom?"
+- "Do you forecast receipts by due date or by expected date? Who adjusts it?"
+- "What share of incoming payments match to invoices automatically?"
+- "What does credit control know that treasury would like to know earlier?"
+
+## Accounts payable
+
+**Plain:** money the company owes suppliers for invoices received. **Professional:** trade payables recorded after invoice verification (often a [three-way match](term:three-way-match) of order, goods receipt and invoice), paid in scheduled [payment runs](term:payment-run) according to terms. AP determines most outflows in the short-term forecast; treasury influences it through payment-run timing, approval of large or unusual payments, and programmes such as [supply chain finance](term:supply-chain-finance) or [dynamic discounting](term:dynamic-discounting).
+
+Example: Helvetic's German subsidiary pays suppliers in a weekly Thursday run averaging EUR 2–3m. Jens (HM Deutschland) sends the proposed run to Lea on Wednesday so the German account can be funded; if Lea hears nothing, the account may be overdrawn Thursday morning. GlobalChem's AP runs in the Kraków shared-service centre and flows through the [payment factory](term:payment-factory), so treasury sees payment files automatically.
+
+- **Drives:** [payment processing](wf:payment-processing), [large payment approval](wf:large-payment-approval), [daily cash positioning](wf:daily-cash-positioning).
+- **Terms:** [payment run](term:payment-run), [three-way match](term:three-way-match), [vendor master data](term:vendor-master-data), [supply chain finance](term:supply-chain-finance), [dynamic discounting](term:dynamic-discounting).
+
+<Callout type="confusion" title="Paying late is not free working-capital optimisation">
+
+Stretching payables beyond agreed terms improves DPO on paper but costs supplier goodwill, prices, early-payment discounts and sometimes supply security; for small suppliers it can be abusive, and some countries cap B2B terms. When interviewees talk about "optimising DPO", ask whether they changed terms or simply paid late.
+
+</Callout>
+
+**Ask:**
+- "Who decides when a payment run goes out, and does treasury ever delay one?"
+- "How far ahead do you know the size of next week's payment runs?"
+- "Do you have supply chain finance or early-payment programmes? Who runs them — treasury or procurement?"
+
+## Inventory
+
+**Plain:** raw materials, parts and finished goods on hand — cash sitting in warehouses. **Professional:** [inventory](term:inventory) carried at cost; measured in days inventory outstanding (DIO = inventory ÷ cost of goods sold × 365). Driven by production planning, safety stocks, supplier lead times and sales forecasts. Treasury has little direct influence but must fund inventory build-ups and may finance them (inventory finance, borrowing-base facilities).
+
+Example: Alpine holds about CHF 14m of inventory, including CHF 3m of components bought ahead of three projects after suppliers quoted 20-week lead times. At Helvetic, a machining centre can sit in finished goods for weeks waiting for customer acceptance; inventory is the largest working-capital item.
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [cash forecasting](wf:cash-forecasting) (via capex and purchase plans).
+- **Terms:** [inventory](term:inventory), [working capital](term:working-capital).
+
+**Ask:**
+- "Does treasury see planned inventory build-ups before the purchase orders go out?"
+- "Who decides safety-stock levels, and has cash ever been part of that decision?"
+- "Is inventory financed separately, or just from the credit line?"
+
+## DSO
+
+**Plain:** how many days, on average, customers take to pay. **Professional:** [days sales outstanding](term:dso) = trade receivables ÷ revenue × days in period (365 for a year, 90 for a quarter). Sensitive to calculation choices (period-end vs average receivables, gross vs net of VAT, whether prepayments are netted), so compare companies with care.
+
+<Example title="What one day of DSO is worth" company="globalchem">
+
+GlobalChem: revenue CHF 7bn ÷ 365 ≈ **CHF 19m per day of DSO**. Reducing DSO from 58 to 55 days releases ~CHF 57m of cash once — roughly what the group pays in bond interest in a year at a ~2% average coupon on CHF 3bn (illustrative). Helvetic: CHF 650m ÷ 365 ≈ CHF 1.8m per day; its DSO around 70 days ties up ~CHF 125m in receivables. Alpine: CHF 80m ÷ 365 ≈ CHF 0.22m per day — but its real issue is lumpy milestones, which averages hide.
+
+</Example>
+
+- **Terms:** [DSO](term:dso), [cash conversion cycle](term:cash-conversion-cycle), [payment terms](term:payment-terms).
+
+**Ask:**
+- "How do you calculate DSO — and does treasury use it, or is it a controlling KPI?"
+- "Which customers or countries drive your DSO up?"
+- "Have DSO targets ever changed behaviour in sales?"
+
+## DPO
+
+**Plain:** how many days, on average, the company takes to pay its suppliers. **Professional:** [days payables outstanding](term:dpo) = trade payables ÷ cost of goods sold (or purchases) × 365. Larger companies can negotiate longer terms; in PwC's 2024/25 study large companies' DPO stabilised above pre-Covid levels while smaller companies' declined[](cite:pwc-wcs-2425) — smaller suppliers often end up financing bigger customers.
+
+Example: Helvetic's DPO is about 40 days; its Czech plant's local suppliers insist on 30 days while German component makers accept 60. GlobalChem's procurement moved key suppliers to 90-day terms and offered a bank-funded supply chain finance programme so suppliers could still be paid early — a structure that rating agencies and auditors now scrutinise because it can look like hidden debt.
+
+- **Terms:** [DPO](term:dpo), [supply chain finance](term:supply-chain-finance), [dynamic discounting](term:dynamic-discounting).
+
+**Ask:**
+- "Who owns supplier payment terms — procurement, AP, treasury?"
+- "Do you pay on the due date, earlier, or later in practice?"
+- "If you run supply chain finance, how is it presented in your net debt and to the rating agencies?"
+
+## Cash conversion cycle
+
+**Plain:** how long cash is tied up from paying for inputs to collecting from customers. **Professional:** [CCC](term:cash-conversion-cycle) = DSO + DIO − DPO. A negative CCC means customers and suppliers fund the business (typical of subscription software billed in advance, retailers paid in cash). Benchmarks: the Hackett Group's 2025 survey of the 1,000 largest US listed non-financial companies reports a CCC of 37 days (DPO ~59 days) and USD 1.7tn of "excess" working capital by its definition[](cite:hackett-wc-2025); PwC's global study estimated EUR ~1.56tn[](cite:pwc-wcs-2425). These are consultancy estimates of improvement potential, not targets for any one company.
+
+<Example title="Four cash conversion cycles (illustrative)" open>
+
+| Company | DSO | DIO | DPO | CCC | What drives it |
+|---|---|---|---|---|---|
+| [Kleio](co:kleio) | ~25 | 0 | ~30 | negative once deferred revenue is counted | Annual [prepayment](term:annual-prepayment) in January and July: customers fund the business |
+| [Alpine](co:alpine) | ~65 | ~100 | ~45 | ~120 days | Robot projects: components bought early, customers pay on milestones |
+| [Helvetic](co:helvetic) | ~70 | ~130 | ~40 | ~160 days | Heavy machines in production and awaiting acceptance |
+| [GlobalChem](co:globalchem) | ~58 | ~85 | ~75 | ~70 days | Scale, procurement power, SCF programme |
+
+The numbers are illustrative for the fictional companies, chosen to be plausible for their industries.
+
+</Example>
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [month-end reporting](wf:month-end-reporting).
+- **Terms:** [cash conversion cycle](term:cash-conversion-cycle), [working capital](term:working-capital), [operating cash flow](term:operating-cash-flow), [free cash flow](term:free-cash-flow).
+
+<Callout type="confusion" title="Working capital in accounting vs in treasury">
+
+Accountants' "working capital" is current assets minus current liabilities (including cash and short-term debt). Operational "net working capital" in treasury and controlling conversations usually means **trade** receivables + inventory − trade payables. Ask which definition is meant before comparing numbers.
+
+</Callout>
+
+**Ask:**
+- "Is there a working-capital programme, and who owns the targets — treasury, controlling or the business?"
+- "Which lever moved cash most in the last two years: collections, inventory or supplier terms?"
+- "How does the cash forecast pick up working-capital changes — from AR/AP data or from FP&A's plan?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** Working capital is a gift: customers pay annually in advance. The levers are billing policy (annual vs monthly, card vs invoice) and chasing the few enterprise customers who pay late. Sarah watches it through runway, not DSO."
+  sme="**Alpine.** Working capital is the main liquidity driver. Martin negotiates deposits and milestone structures in contracts (often requiring a bank guarantee), Petra chases acceptance certificates, and the credit line funds the gap. Nobody measures DIO systematically."
+  midmarket="**Helvetic.** Controlling reports DSO, DIO, DPO per subsidiary monthly; treasury converts them into cash impact, runs a small receivables sale programme and argues in the monthly finance meeting for tighter collections in Italy."
+  multinational="**GlobalChem.** A formal working-capital programme with BU targets tied to bonuses, procurement-led term standardisation, a bank-run SCF programme, and treasury managing the financing, bank limits and rating presentation."
+/>
+
+<CompanyCompare topic="map-working-capital" />
+
+Related workflows: <Workflows ids={["cash-forecasting", "liquidity-planning", "payment-processing", "liquidity-crisis"]} />

@@ -1,0 +1,123 @@
+# Glossary terms for stream wf-cash (liquidity planning, surplus cash investment, funding a subsidiary).
+# Existing terms reused rather than duplicated: liquidity-headroom, cash-buffer, surplus-cash, investment-policy,
+# money-market-fund, term-deposit, treasury-bill, trapped-cash, transfer-pricing, thin-capitalisation,
+# covenant-headroom, interest-period, intercompany-loan, repatriation, withholding-tax.
+
+- id: liquidity-plan
+  term: Liquidity plan
+  aka: [liquidity planning, Liquiditätsplanung, Liquiditätsplan, funding and liquidity plan]
+  category: Cash & liquidity
+  plain: A month-by-month view, usually 12–24 months ahead, of whether the company's cash and committed credit lines will cover everything it must pay — in a normal year and in a bad one.
+  professional: "A medium-term projection of available liquidity (usable cash plus undrawn committed facilities, less trapped and minimum operating cash) against obligations, including debt maturities, facility expiries, dividends and covenant test dates, with stress scenarios and a funding plan. Distinct from the 13-week cash forecast, which predicts flows; the liquidity plan tests sufficiency and drives financing decisions. In Switzerland, boards' statutory duty to monitor solvency (Art. 725 CO) is commonly read as requiring a rolling plan of at least 12 months."
+  example: "Helvetic's October 2026 plan shows ample headroom (CHF 150m+) in the base case, but in the downturn case leverage reaches 3.3x against a 3.25x covenant — so the plan's real message is about the dividend decision and the 2028 refinancing."
+  related: [liquidity-headroom, liquidity-stress-test, funding-plan, short-term-forecast, medium-term-forecast, covenant-headroom]
+  confusedWith: "**Cash forecast** — the forecast asks 'how much cash will we have?'; the liquidity plan asks 'is that enough, including credit lines, under stress, and what do we do if not?'"
+
+- id: liquidity-stress-test
+  term: Liquidity stress test
+  aka: [stress scenario, reverse stress test, downside case]
+  category: Risk & control
+  plain: Re-running the liquidity plan with bad assumptions — sales drop, customers pay late, a bank fails — to see whether the company still has enough money.
+  professional: "Applying predefined, severe-but-plausible shocks (revenue, payment delays, FX, loss of a facility or bank, trapped cash) individually and in combination to the liquidity plan and covenant projections. A reverse stress test works backwards: which combination of events would exhaust headroom or breach a covenant. Scenarios are best agreed with the CFO/board in advance so they aren't negotiated down each month."
+  example: "Alpine's stress case assumes its three largest project acceptances slip one quarter — a CHF 5m+ swing against CHF 6–12m of cash and a CHF 12m line."
+  related: [liquidity-plan, liquidity-risk, cash-flow-at-risk, covenant-headroom]
+
+- id: sources-and-uses
+  term: Sources and uses of liquidity
+  aka: [liquidity sources and uses, S&U]
+  category: Debt & funding
+  plain: "A simple table: everything that could provide cash over the next year on one side, everything that must be paid on the other."
+  professional: "Sources: opening cash, forecast funds from operations, undrawn committed facilities (available for the period), sometimes asset-sale proceeds. Uses: debt maturities, capex, working-capital outflows, dividends and buybacks, other commitments. Rating agencies use the ratio of sources to uses over 12 (or 24) months to assess liquidity; S&P's 'adequate' descriptor requires at least 1.2x."
+  example: "GlobalChem's liquidity slide for the rating agencies shows 12-month sources of CHF 2.6bn (cash, funds from operations, the undrawn EUR 1.5bn RCF) against uses of CHF 1.4bn (a bond maturity, capex, dividend) — about 1.9x (illustrative)."
+  related: [liquidity-plan, credit-rating, committed-facility, refinancing-risk]
+
+- id: funding-plan
+  term: Funding plan
+  aka: [financing plan, refinancing plan, maturity profile plan]
+  category: Debt & funding
+  plain: The dated plan for which loans and bonds the company will need to replace or add, when, and from where.
+  professional: "Treasury's forward plan derived from the liquidity plan: upcoming maturities and facility expiries, target timing for refinancing (typically well before a maturity enters its final 12 months), candidate markets (bank loans, bonds, Schuldschein, private placement), target maturity profile and bank-group changes. Reviewed with the CFO and board."
+  example: "Daniel's plan: amend-and-extend the RCF by mid-2027, then replace the CHF 100m 2028 bond with a new CHF bond or a Schuldschein in late 2027."
+  related: [refinancing-risk, liquidity-plan, bond, schuldschein, rcf]
+
+- id: mmf-types
+  term: MMF types (CNAV, LVNAV, VNAV; government funds)
+  aka: [CNAV, LVNAV, VNAV, public debt CNAV, low-volatility NAV, government money market fund, Treasury fund, prime fund]
+  category: Investments
+  plain: Money market funds come in regulated types that differ in what they hold and whether their unit price can move.
+  professional: "Under the EU Money Market Funds Regulation (2017/1131): public-debt CNAV funds (at least 99.5% government instruments, constant NAV), LVNAV funds (constant NAV allowed while within 20 bp of mark-to-market) and VNAV funds (floating NAV). Short-term LVNAV/CNAV funds must hold at least 10% daily and 30% weekly maturing assets, with weighted average maturity ≤ 60 days and weighted average life ≤ 120 days, and can apply liquidity fees or gates in stress. In the US, government MMFs (SEC Rule 2a-7) are the typical corporate choice; institutional prime funds have faced mandatory liquidity fees since the 2023 reforms."
+  example: "Helvetic parks EUR 10m for four weeks in a EUR LVNAV fund (≈1.8–1.9% net, illustrative) rather than a 1-month deposit, because its main Swiss bank is near its counterparty limit."
+  related: [money-market-fund, investment-policy, counterparty-limit, yield]
+
+- id: negative-carry
+  term: Negative carry
+  aka: [cost of carry, gross-up cost]
+  category: Investments
+  plain: Losing money by holding cash while also owing money — you pay more interest on the debt than you earn on the cash.
+  professional: "The difference between the interest rate paid on borrowings (reference rate plus margin, plus fees) and the return on cash or investments held at the same time. Sometimes accepted deliberately for liquidity safety (pre-funding a maturity, holding a buffer) but should be a decision, not an accident."
+  example: "Helvetic pays compounded SARON (≈0%) plus a margin on its CHF RCF loan while CHF deposits earn ≈0%: every CHF 10m of cash held instead of repaying costs roughly the margin — around CHF 70–110k a year, illustratively."
+  related: [surplus-cash, rcf, credit-spread, yield]
+
+- id: laddering
+  term: Laddering (maturity ladder)
+  aka: [maturity ladder, deposit ladder]
+  category: Investments
+  plain: Spreading investments over different maturities so some money comes back regularly and lines up with upcoming payments.
+  professional: "Structuring term deposits or securities so maturities fall at intervals (e.g. monthly) or just before known outflows (payroll, dividends, tax, debt service), balancing yield from longer tenors against liquidity."
+  example: "Kleio places CHF 8m as eight CHF 1m deposits maturing monthly, each just before the month's payroll and burn."
+  related: [term-deposit, surplus-cash, investment-policy]
+
+- id: cash-equivalents
+  term: Cash equivalents
+  aka: [cash and cash equivalents]
+  category: Accounting & tax
+  plain: Investments so short and safe that accounting treats them almost like cash on the balance sheet.
+  professional: "Short-term, highly liquid investments readily convertible to known amounts of cash with insignificant risk of changes in value — in practice usually with an original maturity of three months or less (IAS 7; similar under Swiss GAAP FER and US GAAP). Longer deposits appear as other current financial assets, which changes the reported 'cash' figure even though the money is equally safe."
+  example: "Kleio's 6-month CHF deposits are not cash equivalents, so its reported 'cash and cash equivalents' is lower than the CHF 22m Sarah reports to the board — she shows both lines to avoid questions."
+  related: [term-deposit, money-market-fund, surplus-cash]
+
+- id: ssi
+  term: Standard settlement instructions (SSI)
+  aka: [SSIs, standing settlement instructions]
+  category: Payments
+  plain: The pre-agreed bank account details each counterparty uses for paying and receiving money for deals.
+  professional: "Account details (bank, BIC, account/IBAN, intermediary) exchanged and verified in advance for each counterparty and currency, used to settle deposits, FX and securities. Changes must be independently verified (call-back) because altered SSIs are a known fraud route."
+  example: "When a bank emails Helvetic 'new EUR settlement details' for a maturing deposit, Lea does not update them until the back office has confirmed the change by calling the bank on a number already on file."
+  related: [settlement, call-back-verification, four-eyes-principle]
+
+- id: capital-injection
+  term: Capital injection
+  aka: [equity contribution, capital contribution, capital increase, Kapitaleinlage]
+  category: Debt & funding
+  plain: The parent puts money into a subsidiary as equity (ownership), not as a loan.
+  professional: "Funding a subsidiary by subscribing new share capital or making a capital contribution (with or without new shares). No interest and no repayment obligation; strengthens the subsidiary's equity (relevant for thin-capitalisation, local over-indebtedness and minimum-capital rules). Getting the money back requires dividends or a capital reduction. Some countries levy capital duties — e.g. Switzerland's 1% issuance stamp duty on contributions above an exemption threshold."
+  example: "GlobalChem funds a new plant in India partly by capital injection because local interest-limitation rules would make a large intercompany loan tax-inefficient."
+  related: [intercompany-loan, thin-capitalisation, repatriation]
+  confusedWith: "**Intercompany loan** — a loan must be repaid and bears interest; equity does neither and is much harder to get back."
+
+- id: safe-harbour-rates
+  term: Safe-harbour interest rates (Switzerland)
+  aka: [ESTV safe harbour rates, SFTA safe harbour rates, steuerlich anerkannte Zinssätze]
+  category: Accounting & tax
+  plain: The interest rates the Swiss tax authority publishes each year that it will accept on loans between related companies without further proof.
+  professional: "Annual circular letters of the Swiss Federal Tax Administration setting minimum rates for loans by Swiss companies to related parties and maximum rates for loans from related parties, in CHF and major foreign currencies. Deviations are possible with arm's-length evidence. They protect only the Swiss side — the counterparty's tax authority applies its own rules."
+  example: "For 2026 the minimum rate on an equity-financed CHF loan to a related party is 0.75%; Helvetic's USD loan to HM Inc. at 4.00% matches the published USD rate."
+  related: [transfer-pricing, intercompany-loan, hidden-profit-distribution, withholding-tax]
+
+- id: hidden-profit-distribution
+  term: Hidden profit distribution
+  aka: [constructive dividend, verdeckte Gewinnausschüttung, deemed dividend]
+  category: Accounting & tax
+  plain: When a company gives a shareholder or related company a benefit it wouldn't give a stranger, tax authorities can treat it as if it had paid a dividend.
+  professional: "A non-arm's-length benefit to a shareholder or related party (e.g. an intercompany loan at below-market interest, or excessive interest paid to a related lender) that tax authorities requalify as a distribution — in Switzerland with corporate income-tax adjustment and potentially 35% withholding tax on the deemed dividend."
+  example: "Alpine had lent its US subsidiary money interest-free for years; its tax adviser warned that the Swiss tax authority could treat the missing interest as a hidden profit distribution, so Alpine now charges the safe-harbour rate."
+  related: [safe-harbour-rates, transfer-pricing, withholding-tax]
+
+- id: statutory-reserve
+  term: Statutory reserve (China)
+  aka: [statutory surplus reserve, general reserve fund]
+  category: Accounting & tax
+  plain: A share of profits that Chinese companies must set aside each year and cannot pay out as dividends.
+  professional: "Under Chinese company law, a company (including a foreign-invested enterprise) must allocate at least 10% of after-tax profit to a statutory reserve until it reaches 50% of registered capital; the reserve is not distributable. Together with the once-a-year, post-audit dividend cycle and dividend withholding tax, this is a main reason cash is 'trapped' in Chinese subsidiaries."
+  example: "Of HM Suzhou's CNY 25m profit, CNY 2.5m must go to the reserve before a dividend; withholding tax is then deducted from the CNY 22.5m distribution."
+  related: [trapped-cash, repatriation, withholding-tax]

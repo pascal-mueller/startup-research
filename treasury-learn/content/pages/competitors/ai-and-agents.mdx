@@ -1,0 +1,68 @@
+---
+title: AI features and "treasury agents"
+nav: AI features & agents
+order: 9
+summary: What can and cannot be said about AI in treasury products as of September 2026. Short version — AI is mostly marketed as features inside existing vendors; no AI-native "treasury agent" product could be verified in this session, which is a statement about evidence, not about the market.
+related: [/lens, /lens/candidates, /competitors/method, /competitors/landscape]
+---
+
+## Say it plainly
+
+<Callout type="warning" title="What was and was not verified">
+
+- **Verified (from search snippets):** GTreasury's January 2026 "Ripple Treasury" launch was reported as including "AI-driven cash forecasting" alongside stablecoin settlement — a vendor claim as reported[](cite:comp-ripple-treasury-launch).
+- **Not verified:** the scope of any other vendor's AI features (Kyriba, HighRadius, Trovata and others market AI capabilities — background knowledge), and **whether any AI-native startup ships a product that performs treasury tasks end-to-end**. Palm, Nilus, Statement and Millimetric were named in the research brief; nothing about them could be confirmed and they appear only as watchlist entries.
+
+So this page does not tell you that treasury agents exist, and it does not tell you that they don't. It tells you how to find out.
+
+</Callout>
+
+## Features vs agents — the distinction that matters
+
+| | AI feature / copilot | [Treasury agent](term:treasury-agent) |
+|---|---|---|
+| What it does | Predicts (a forecast line), classifies (a bank transaction), answers a question about data | Performs a multi-step task: gathers data, applies rules or judgement, drafts or takes an action |
+| Where it lives | Inside a TMS, forecasting or AR product | Standalone product or a mode inside one |
+| Human role | Reads the output and decides | Reviews, approves, or handles exceptions |
+| Evidence of reality | A demo of the feature on the customer's own data | A customer who can show what the agent did last week and what they corrected |
+| Typical workflows | [Cash forecasting](wf:cash-forecasting), [bank reconciliation](wf:bank-reconciliation) matching | [Daily cash positioning](wf:daily-cash-positioning) preparation, variance explanation for [month-end reporting](wf:month-end-reporting), [bank fee analysis](wf:bank-fee-analysis) |
+
+<Callout type="synthesis" title="Why claims in this area need extra scrutiny">
+
+Treasury has two properties that make AI claims hard to judge from the outside. First, correctness is often only visible later (a forecast is judged weeks afterwards; a hedge decision months afterwards). Second, the consequential actions — releasing payments, dealing FX, moving cash between entities — sit behind approval chains and bank mandates that a vendor cannot remove. A product can therefore be "agentic" in the demo and a copilot in production. EACT's 2025 survey of European treasurers ranked AI low as a priority, citing missing data foundations and non-standardised data[](cite:eact-2025) — a reminder that the data problem precedes the model problem.
+
+</Callout>
+
+## Entries
+
+### Treasury intelligence / AI features (inside existing vendors)
+
+These vendors' entries mention AI; open each for details and verification status.
+
+<CompetitorTable category="treasury-ai" filters={false} />
+
+### Treasury agents (watchlist)
+
+<CompetitorTable category="treasury-agents" filters={false} />
+
+## How to verify an "agent" claim
+
+<Callout type="interview" title="Questions for a vendor demo">
+
+- "Show me this running on a customer's live bank data, not a demo tenant."
+- "Which steps happen without a human clicking? Which system credentials does it hold? Can it release a payment?"
+- "What happens when a bank statement is missing at 08:00?"
+- "How do you measure whether it was right? Show me the error log from last month."
+
+</Callout>
+
+<Callout type="interview" title="Questions for a treasurer who uses one">
+
+- "What did the tool do this morning before you logged in? What did you change?"
+- "Has it ever been wrong in a way that mattered? How did you notice?"
+- "What would you never let it do?"
+- "If it disappeared tomorrow, what would you have to do by hand?"
+
+</Callout>
+
+For which treasury assignments are plausible candidates for AI to perform — and which are dangerous — see [Agentic Treasury](/lens) and its [candidate list](/lens/candidates). This page only covers who claims to be there.

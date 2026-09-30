@@ -1,0 +1,68 @@
+# Sources for stream wf-cash (liquidity planning, surplus cash investment, funding a subsidiary).
+# Session note: WebFetch was blocked by the network egress proxy for all domains tried (snb.ch, deloitte.com, ey.com,
+# eur-lex.europa.eu, treasurers.org, financialprofessionals.org, bdo.ch, grantthornton.ch). Entries below were verified
+# from WebSearch result extracts served from the publisher's own domain. Reused from other streams (not duplicated):
+# ch-co-board-duties, afp-liquidity-2025, snb-mpa-2026-09, estv-safe-harbour-2026, sec-mmf-2023, neugroup-svb-2023,
+# ust-fed-fdic-2023-joint, t360-corporate, bk-non-bank-rules, eact-2025, act-hsf-debt-2025, pwc-gts-2025.
+
+- id: weka-725-liquidity
+  title: "Zahlungsfähigkeit: Die kontinuierliche Überwachung als Aufgabe des Verwaltungsrats"
+  publisher: WEKA Business Media (Switzerland); see also Walder Wyss, "Restrukturierung und Insolvenz unter dem revidierten Aktienrecht" (ZSIS 2/2024)
+  year: 2024
+  url: https://www.weka.ch/themen/finanzen-controlling/finanzmanagement/finanz-und-liquiditaetsplanung/article/zahlungsfaehigkeit-die-kontinuierliche-ueberwachung-als-aufgabe-des-verwaltungsrats/
+  type: practitioner
+  note: >-
+    (search extract) Practitioner commentary on Art. 725 para. 1 CO (in force 1 Jan 2023): the board's
+    non-transferable duty to monitor solvency continuously is read as requiring a rolling liquidity plan covering at
+    least one business year — twelve months for companies subject to ordinary audit — showing current liquid funds and
+    expected inflows and outflows; if the plan shows threatened insolvency the board must act. Commentators note the
+    revision largely codified existing duties. Second source: https://walderwyss.com/assets/content/publications/2_2024_zsis_Hohler_Schlegel_Restrukturierung-und-Insolvenz-unter-dem-revidierten-Aktienrecht.pdf
+
+- id: sp-liquidity-descriptors
+  title: "Methodology And Assumptions: Liquidity Descriptors For Global Corporate Issuers"
+  publisher: S&P Global Ratings (as published by its Israeli affiliate S&P Maalot)
+  year: 2019
+  url: https://www.maalot.co.il/Publications/CG20191219113143.PDF
+  type: standard
+  note: >-
+    (search extract) S&P assesses corporate liquidity by liquidity sources divided by uses (and sources minus uses).
+    An 'adequate' descriptor requires sources/uses of at least 1.2x; 'exceptional' and 'strong' are assessed over a
+    two-year period, 'adequate', 'less than adequate' and 'weak' over one year. Used to explain why a maturity inside
+    12 months without refinancing becomes visible to rating agencies.
+
+- id: mmfr-ms-im
+  title: European Money Market Fund Regulatory Update
+  publisher: Morgan Stanley Investment Management
+  year: 2018
+  url: https://www.morganstanley.com/im/publication/insights/regulatory/regulatory_europeanmmfregulatoryupdate_en.pdf
+  type: practitioner
+  note: >-
+    (search extract; consistent with PwC Luxembourg's MMFR summary) Summary of Regulation (EU) 2017/1131: LVNAV and
+    public-debt CNAV funds must hold at least 10% daily and 30% weekly maturing assets; WAM ≤ 60 days, WAL ≤ 120 days,
+    maximum final maturity 397 days; LVNAV may deal at a constant NAV while within 20 bp of the mark-to-market NAV;
+    public-debt CNAV funds invest at least 99.5% in government instruments. Fund-manager publication.
+
+- id: china-briefing-dividends
+  title: "Dividend Repatriation: Limits and Tax Considerations in China"
+  publisher: China Briefing (Dezan Shira & Associates)
+  year: 2025
+  url: https://www.china-briefing.com/news/dividend-repatriation-limits-tax-considerations/
+  type: practitioner
+  note: >-
+    (search extract) Foreign-invested enterprises must allocate at least 10% of annual after-tax profit to a statutory
+    reserve until it reaches 50% of registered capital; the reserve is not distributable. Dividends paid to a foreign
+    parent bear 10% withholding tax under the Enterprise Income Tax law, reduced where a tax treaty provides a lower
+    rate (e.g. 5% for qualifying Hong Kong holding companies). Advisory-firm publication; rules change.
+
+- id: safe-cash-pool-2024
+  title: PBOC and SAFE optimise the pilot policy for integrated RMB and foreign-currency cash pooling of multinational companies
+  publisher: State Administration of Foreign Exchange (SAFE), China; reported by the Shanghai municipal government
+  year: 2024
+  url: https://www.safe.gov.cn/en/2024/1217/2275.html
+  type: official
+  note: >-
+    (search extract) December 2024: pilot for integrated cross-border cash pools extended in 10 provinces/cities
+    (incl. Shanghai, Beijing, Jiangsu, Guangdong, Shenzhen); pilot companies may set their own foreign-debt and
+    overseas-lending ratios within macro-prudential guidelines and lend across currencies domestically. SAFE reported
+    54 multinational groups in the programme, with about USD 467bn of cross-border transfers benefiting 3,188 member
+    companies. Shows that cross-border pooling out of China is possible but limited to a small number of large groups.

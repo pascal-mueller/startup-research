@@ -1,0 +1,129 @@
+---
+title: Treasury by company size
+nav: Overview
+order: 0
+summary: How treasury work, people, systems and problems differ across four tiers — very small companies, international SMEs, international mid-market groups and large multinationals. Ranges, not rules, with the evidence behind them and its limits.
+related: [/start/growth, /companies, /companies/same-problem, /org/structures, /org/responsibility-matrix]
+---
+
+## Four tiers, one set of questions
+
+Every company must answer the same treasury questions: how much cash do we have, how much will we have, is it enough and in the right place, and what risks are we running? What changes with size is **who** answers them, **with what tools**, and **how many entities, banks, accounts and currencies** are involved. This section describes four tiers, each with a detailed page:
+
+| Tier | Typical profile | Who does treasury | Reference company |
+|---|---|---|---|
+| [Very small / start-up](/size/startup) | Up to ~100 people, 1–2 entities, often equity-funded | Founder or CFO, part-time | [Kleio](co:kleio) |
+| [SME](/size/sme) | ~100–500 people, CHF 20–250m revenue, a few foreign subsidiaries | CFO decides; head of accounting executes, alongside other duties | [Alpine](co:alpine) |
+| [International mid-market](/size/midmarket) | ~1,000–10,000 people, CHF 250m–3bn revenue, 5–30 entities | A treasury manager or small central team (1–5) | [Helvetic](co:helvetic) |
+| [Large multinational](/size/multinational) | ~10,000–100,000+ people, CHF 5bn+ revenue, dozens to hundreds of entities | A full department with specialist teams, regional centres and shared services | [GlobalChem](co:globalchem) and a ~50,000-person group |
+
+<Callout type="synthesis" title="Headcount is a poor predictor on its own">
+
+The tiers are this manual's synthesis. What actually drives treasury complexity is: the **number of countries and currencies**, whether the company **borrows** (and from whom), the **business model** (project milestones, subscriptions, commodities, retail cash), **acquisitions** (which bring banks and ERPs with them), and **regulation** (capital controls, restricted currencies). A 300-person commodity trader can need a more sophisticated treasury than a 3,000-person domestic retailer. Place a company by asking about entities, banks, currencies and debt — not headcount.
+
+</Callout>
+
+## The tiers side by side
+
+| Dimension | Start-up | SME | Mid-market | Multinational |
+|---|---|---|---|---|
+| People doing treasury | Founder / CFO, 5–15% of their time | CFO + head of accounting, part-time | 1–5 dedicated, reporting to CFO | 15–150+, specialised, several locations |
+| Legal entities | 1–2 | 2–5 | 5–30 | ~30 to several hundred |
+| Banks | 1–3 | 2–4 | 4–10 | 15–80 (5–20 "core") |
+| Bank accounts | 2–10 | 5–20 | 10–100 (low end after rationalisation) | Hundreds to several thousand |
+| Material currencies | 1–3 | 2–4 | 4–10 | 20–60+ |
+| Cash visibility | Log in to portals, weekly | Portals + spreadsheet, daily | Daily, via files / connectivity tool | Automated daily + intraday |
+| Forecast | Runway model | Weekly cash sheet, 8–13 weeks | 13-week + 12–18 months, from subsidiaries | Multi-horizon, many units, dedicated tool |
+| FX | Convert when needed | Ad hoc forwards | Policy-based hedging programme | Netting + systematic programmes, options, hedge accounting |
+| Funding | Equity, maybe venture debt | Bank credit line, mortgage, leasing | Syndicated RCF, maybe a bond or Schuldschein | Bonds, CP, RCF backstop, rating |
+| Cash between entities | Occasional transfers | Transfers, maybe a simple sweep | Intercompany loans, sometimes a cash pool | Pools, in-house bank, netting |
+| Payments | CFO approves each batch | Head of accounting releases, CFO co-signs large | Local teams pay; treasury sets rules | Payment factory / shared services, POBO |
+| Systems | Portals + accounting app + sheet | ERP + EBICS/portals + Excel | ERP(s) + connectivity tool or light TMS + Excel | ERP + full TMS + SWIFT + trading platform + tools |
+| Policy | A board minute, if anything | A few board rules | Written treasury policy | Board-approved policy suite, daily compliance checks |
+
+All ranges are indicative. The reference companies sit inside them: Helvetic's 12 accounts are at the low, rationalised end of mid-market; GlobalChem's ~40 operating entities are at the lower end of the multinational tier.
+
+## What the evidence says — and does not
+
+Surveys that break results down by size are few, and almost all of them sample companies that already **have** a treasury function. Small companies with no treasurer are nearly invisible in treasury research. Keep that bias in mind.
+
+<Callout type="survey" title="Team size">
+
+The AFP's 2025 benchmarking survey (US, 523 practitioners) found that companies with under USD 1bn revenue typically have 1–3 treasury staff, and the average department across respondents had nearly 12 full-time staff, split roughly between front and back office[](cite:afp-bench-2025-article,afp-bench-2025). Its 2026 edition found 46% of organisations have treasury teams of fewer than five people[](cite:afp-bench-2026).
+
+</Callout>
+
+<Callout type="survey" title="Centralised structures at the top end">
+
+PwC's 2025 survey reports that among organisations with more than USD 10bn revenue, 67% run an in-house bank, 60% a payment factory and 50% payments-on-behalf-of[](cite:pwc-gts-2025); the 2023 edition reported 73%, 55% and 42% for the same band[](cite:pwc-gts-2023). Deloitte's 2024 survey (213 respondents) is weighted to large companies and found that for many respondents cash forecasting was still primarily supported by spreadsheets[](cite:deloitte-gts-2024).
+
+</Callout>
+
+<Callout type="survey" title="Spreadsheets fall with size — slowly">
+
+An older (2013), vendor-sponsored survey of UK treasurers found 48% of small companies (revenue up to GBP 100m) relied on spreadsheet-type tools for daily cash management, against about a fifth of GBP 1–10bn companies and 11% of companies above GBP 10bn[](cite:kyriba-act-2013). The levels are dated; the direction of the gradient is what matters, and practitioners report it still holds.
+
+</Callout>
+
+<Callout type="survey" title="Swiss SMEs and bank financing">
+
+A SECO-commissioned survey of 2,712 Swiss SMEs in 2021 found that 32% had bank financing of any kind (loans, current-account limits, mortgages, export finance)[](cite:seco-kmu-finanzierung-2021). That population is dominated by micro-firms; industrial SMEs of Alpine's size are much more likely to use a credit line. The point for interviews: many small companies have no bank debt, and therefore no covenants and no "funding" work at all.
+
+</Callout>
+
+## Who owns which tasks, by tier
+
+<SizeTabs startup={`| Task | Owner | Performs |
+|---|---|---|
+| Cash position | CFO / founder | CFO, weekly |
+| Forecast | CFO | CFO (runway model) |
+| Payments | CFO approves | Accountant or fiduciary prepares |
+| FX | CFO | Bank, on request |
+| Bank accounts | CFO | CFO |
+| Investments | CFO, within a board rule | CFO |
+| Funding | CEO + CFO + board | Investors, venture lender |
+| Reconciliation | Accountant / fiduciary | Accounting software |`} sme={`| Task | Owner | Performs |
+|---|---|---|
+| Cash position | Head of accounting | Head of accounting, daily |
+| Forecast | CFO reviews | Head of accounting (weekly sheet) |
+| Payments | Head of accounting | AP clerk prepares; head of accounting releases; CFO co-signs large |
+| FX | CFO | CFO, ad hoc with the bank |
+| Bank accounts | CFO | Head of accounting (paperwork) |
+| Funding / credit line | CFO | CFO with the house bank |
+| Subsidiaries | CFO | Local MD + bookkeeper |
+| Reconciliation | Accounting | Accountants in the ERP |`} midmarket={`| Task | Owner | Performs |
+|---|---|---|
+| Cash position | Treasury manager | Treasury analyst, daily |
+| Forecast | Treasury manager | Analyst consolidates subsidiary templates |
+| Liquidity plan | Treasury manager + CFO | With FP&A |
+| Payments | Local finance (execution); treasury (rules) | Local teams; treasury co-signs parent |
+| FX hedging | Treasury manager, within policy | Treasury manager deals; accounting confirms |
+| Bank accounts | Treasury manager | Analyst keeps register |
+| Funding / covenants | CFO + treasury manager | Treasury manager |
+| Reconciliation | Group / local accounting | Accountants |`} multinational={`| Task | Owner | Performs |
+|---|---|---|
+| Cash position | Head of cash & liquidity | Cash analysts (exceptions); TMS (collection) |
+| Forecast | Head of cash & liquidity | Central team + 40–400 entity submitters |
+| Payments | Payments lead / SSC | Payment factory operators; treasury signatories |
+| FX / rates hedging | Head of financial risk | Front office dealers; back office confirms |
+| Bank accounts | Treasury operations | Back office + bank-account tool |
+| Funding / capital markets | Head of corporate finance | Corporate finance team, with banks and rating agencies |
+| Policy | Group Treasurer; board approves | Treasury middle office monitors |
+| Reconciliation | SSC / accounting | Automated matching + exceptions |`} />
+
+For the full picture with approval, review and information flows, see the [responsibility matrix](/org/responsibility-matrix) and [org structures](/org/structures).
+
+## What moves a company up a tier
+
+Treasury rarely changes gradually; it changes at triggers:
+
+- **The first foreign subsidiary or the first large foreign-currency contract** — FX becomes a real decision, and cash has to move between entities.
+- **The first committed bank facility with covenants** — someone has to calculate and certify ratios, and the banks expect a relationship.
+- **A refinancing or a bond** — the typical moment a mid-market company hires its first dedicated treasury manager or centralises treasury (Helvetic in 2021).
+- **An acquisition** — brings banks, accounts, ERPs and people; often the trigger for a bank-account rationalisation or a TMS project.
+- **A near miss** — a bank failure (SVB in 2023), a fraud attempt, a payroll almost missed, an auditor's finding.
+- **Key-person risk becoming visible** — the head of accounting announces she is leaving, and nobody else understands the cash sheet.
+
+## How to recognise the tier in an interview
+
+Ask four questions in the first five minutes: *How many legal entities? How many banks and accounts? Which currencies matter? Who is on the team, and who do they report to?* Then use the tier page to anticipate what their workflows probably look like — and listen for where they differ. Most interesting answers come from companies that sit *between* tiers.

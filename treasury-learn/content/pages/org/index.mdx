@@ -1,0 +1,143 @@
+---
+title: Treasury organization — the big picture
+nav: Big picture
+order: 1
+summary: Treasury is a small function in the middle of finance. It usually reports to the CFO, depends on data from almost every other finance team and the business, and turns that data into decisions that banks, accounting and subsidiaries act on. Who does the work changes completely with company size.
+related: [/org/structures, /org/responsibility-matrix, /org/handoffs, /org/neighbours, /org/roles, /start/neighbours, /size]
+---
+
+## The short version
+
+- **Where treasury sits:** almost always inside finance, under the CFO. In small companies there is no treasury unit at all — the CFO or the head of accounting does the work. In mid-sized groups a Treasury Manager with one or two people reports to the CFO. In large groups a Group Treasurer leads a department of 10–50+ with specialised desks.
+- **Who feeds treasury:** banks (balances, statements), accounts payable and receivable (what will be paid and collected), subsidiaries and business units (local forecasts, exposures, unusual flows), FP&A (the plan), tax (tax payments, structure constraints), procurement and HR/payroll (large commitments, payroll dates).
+- **Who treasury feeds:** the CFO and board (liquidity, debt, risk), accounting (deal data, intercompany positions, hedge documentation), FP&A (cash view, FX rates), subsidiaries (funding, instructions), and banks (instructions, compliance information).
+- **Who decides, executes, approves, reconciles:** decisions sit with treasury within a board-approved policy, above that with the CFO and board; execution of *commercial* payments is usually outside treasury (AP, local finance or a shared-service centre); approval follows a signing-authority matrix; reconciliation is usually an accounting job.
+
+<Callout type="actually" title="Okay, but who actually does treasury work?">
+
+| Company | Size | Who does the treasury work day to day | Who decides |
+|---|---|---|---|
+| [Kleio](co:kleio) | ~70 people | Sarah, the CFO (~10% of her time); Nina the accountant prepares payments | Sarah; the board for fundraising and investment rules |
+| [Alpine](co:alpine) | CHF 80m | Petra, Head of Accounting, alongside the close | Martin, the CFO |
+| [Helvetic](co:helvetic) | CHF 650m | Lea (Treasury Analyst) prepares; Daniel (Treasury Manager) decides within policy | Daniel; Thomas (CFO) above thresholds |
+| [GlobalChem](co:globalchem) | CHF 7bn | ~25 people in five teams under Anna (Group Treasurer); payments via a payment factory in Kraków | Desk heads within mandates; Anna; Markus (CFO) and the board for strategy and big transactions |
+
+</Callout>
+
+## Who treasury reports to
+
+| Situation | Typical reporting line | Notes |
+|---|---|---|
+| Startup / small company | No treasury unit; the CFO (or founder/CEO) does it | The board is effectively the treasury committee: it approves runway, fundraising and investment rules. |
+| SME without a treasurer | Tasks split between CFO and head of accounting, or a "treasury accountant" under the financial controller | See the [controller-led variant](/org/structures#org-controller-led). |
+| Mid-market with a treasurer | Treasury Manager or Head of Treasury → CFO | Sometimes → Head of Finance / Financial Controller → CFO in family-owned groups. |
+| Large group | Group Treasurer → CFO; Treasurer often peer of the Controller/CAO, Head of Tax, Head of FP&A | Board or audit/finance committee approves the treasury policy; a [treasury committee](term:treasury-committee) chaired by the CFO approves strategy and exceptions. |
+| US-style organisation | Treasurer and Controller as peers under the CFO | In US usage the "Controller" is the head of accounting — see [Treasury vs accounting](/start/neighbours). |
+
+<Callout type="survey" title="What surveys say about the reporting relationship">
+
+In Deloitte's 2024 global survey (213 respondents), being a value-adding partner to the CFO is part of the treasury mandate for more than 95% of respondents[](cite:deloitte-gts-2024-web) — the CFO is treasury's principal internal client as well as its boss. Team sizes are small outside large groups: AFP's 2026 benchmarking reports 46% of (mainly US) organisations with treasury teams of fewer than 5 people[](cite:afp-bench-2026), and AFP's 2025 summary put companies below USD 1bn revenue typically at 1–3 treasury FTE[](cite:afp-bench-2025). We did not find a current, openly published survey figure for "percentage of treasurers reporting directly to the CFO"; the pattern above is practitioner consensus, not a measured statistic.
+
+</Callout>
+
+A reporting line tells you less than you think. Two things matter more in an interview:
+
+1. **Delegated authority.** What can treasury decide alone — trade a EUR 20m forward? Move CHF 30m between entities? Open an account? The answer lives in the treasury policy and the [delegation of authority](term:delegation-of-authority), not in the org chart.
+2. **Functional lines.** Subsidiary finance managers and regional treasury centres often have a solid line to a local boss and a [dotted line](term:dotted-line-reporting) to the CFO or Group Treasurer. Treasury frequently depends on people who do not report to it.
+
+## Who supplies data to treasury
+
+This is the part beginners underestimate: treasury produces little raw data of its own. Its work quality depends on inputs it does not control.
+
+| Supplier | What they give treasury | How often | Typical form | Reliability issues |
+|---|---|---|---|---|
+| **Banks** | Prior-day statements, intraday balances, confirmations, fee statements | Daily / intraday | [camt.053](term:iso-20022) / [MT940](term:mt940) files, portals, email for confirmations | Missing files, late statements from some countries, inconsistent formats across banks |
+| **Accounts payable** | Payment runs scheduled, large upcoming invoices | Weekly / per run | ERP report, email | Payment timing is changed late; urgent manual payments bypass the run |
+| **Accounts receivable / credit control** | Open items, expected receipts, customers likely to pay late | Weekly / monthly | ERP aging, credit controller's judgment | ERP due dates ≠ actual payment behaviour |
+| **Subsidiaries / business units** | Local cash forecasts, FX exposures, unusual flows, local bank issues | Weekly to monthly; ad hoc | Excel template, forecasting tool, email | The biggest source of forecast error — see [Working with subsidiaries](/org/with-subsidiaries) |
+| **FP&A / controlling** | Plan and rolling forecast, capex plan, budget FX rates | Monthly / quarterly | Planning tool, Excel | Accrual basis; must be converted to cash timing |
+| **Tax** | Tax payment calendar, withholding-tax constraints, transfer-pricing rules for intercompany loans and pools | Monthly / per transaction | Email, calendar, memos | Often consulted too late for structural decisions |
+| **Procurement** | Large contracts, supplier terms, prepayments, commodity purchases | Ad hoc | Email, contract summaries | Treasury rarely hears about terms until the invoice arrives |
+| **HR / payroll** | Payroll and bonus dates and amounts | Monthly | Payroll provider report | Stable — except bonus and severance months |
+| **Group accounting** | Month-end balances, EBITDA for covenants, intercompany balances | Monthly / semi-annual | Consolidation system | Timing: close ends after treasury needs the numbers |
+
+## Who treasury supplies information to
+
+| Recipient | What treasury gives | Why they need it |
+|---|---|---|
+| **CFO** | Liquidity position and forecast, headroom, debt, hedge status, counterparty exposure, exceptions | Funding and risk decisions; board reporting |
+| **Board / audit committee** | Quarterly treasury report, policy for approval, financing proposals | Approves policy, financing, dividends |
+| **Group accounting** | Deal details (FX, loans, deposits), intercompany loan and pool balances, interest, hedge documentation | Correct booking, [hedge accounting](term:hedge-accounting), [intercompany reconciliation](term:intercompany-reconciliation) |
+| **FP&A** | Cash forecast, actual FX rates and hedge rates, interest cost | Aligning P&L forecast with cash; FX variance analysis |
+| **Subsidiaries** | Funding decisions, hedge confirmations, instructions (when to pay dividends, where to hold cash, which bank to use) | Local execution |
+| **Tax** | Intercompany loans and interest, pool structures, cash repatriation plans | Transfer pricing, WHT, documentation |
+| **Banks / investors / rating agencies** | Compliance certificates, KYC documents, financial information | Facility compliance, onboarding, ratings |
+
+## Who decides, who executes, who approves, who reconciles
+
+Treasury work runs through the loop *observe → forecast → decide → execute → monitor → reconcile* (see [What treasury is](/start)). Different people own each stage — and that split is what makes the organisation hard to see from outside.
+
+| Stage | Small (Kleio / Alpine) | Mid-market (Helvetic) | Large (GlobalChem) |
+|---|---|---|---|
+| **Gather data** | CFO or head of accounting from e-banking and ERP | Treasury Analyst from multibank tool + subsidiary templates | TMS feeds; cash desk analysts; 40 reporting units |
+| **Analyse / propose** | Same person | Treasury Analyst prepares, Treasury Manager adjusts | Desk analysts propose, desk heads decide |
+| **Decide** | CFO; board for big items | Treasury Manager within policy; CFO above thresholds | Desk heads within mandates; Group Treasurer; CFO/board |
+| **Approve (payments/deals)** | Two signatories (collective signature) | Local signatories; treasury or CFO co-signs large ones | Signing-authority matrix in ERP + payment factory controls |
+| **Execute** | Head of accounting uploads payments; CFO trades FX by phone | Local finance releases commercial payments; treasury does treasury payments and deals | Payment factory; dealers on FX platforms; back office settles |
+| **Confirm / settle** | Head of accounting checks confirmation | Treasury Analyst (the one who did not trade) | Back office (Treasury Operations) |
+| **Reconcile / book** | Accountant | Local accounting + group accounting | SSC record-to-report; treasury back office for treasury accounts |
+
+The full cell-by-cell answer for 19 workflows and four company sizes is in the [responsibility matrix](/org/responsibility-matrix); the sequence of who hands what to whom is in [Workflow hand-offs](/org/handoffs).
+
+## Where responsibilities overlap
+
+These are the grey zones where "who owns this?" has no universal answer. They are also where things break.
+
+| Overlap | Treasury's side | Other side | Typical resolution |
+|---|---|---|---|
+| **Payments** | Bank channels, funding, fraud controls, sometimes the release | AP decides which invoices to pay and prepares runs | Varies most by company — see [Treasury and AP](/org/with-ap) |
+| **Cash forecast vs FP&A forecast** | Cash by value date, 13 weeks | P&L on accrual basis, 12–18 months | Treasury derives the medium-term cash view from FP&A's plan — see [Treasury and FP&A](/org/with-fpa) |
+| **Bank reconciliation** | Needs balances right each morning | Owns the ledger | Accounting owns it; treasury reconciles treasury-only accounts in large groups |
+| **FX** | Exposure measurement and hedging | Accounting: revaluation and hedge accounting; FP&A: budget rates | Policy defines who sets budget rates and who documents hedges |
+| **Intercompany loans and pools** | Creates them | Accounting books them; tax prices them | Written loan agreements and a monthly IC balance confirmation |
+| **Bank accounts** | Should own the register and approve all accounts | Subsidiaries open local accounts | Group rule "no account without treasury approval", rarely perfectly enforced |
+| **Debt** | Facilities, drawings, covenants | CFO owns strategy; corporate finance/M&A may own acquisitions funding | Varies — see [Debt & capital markets roles](/org/roles-debt) |
+| **Working capital** | Measures the cash effect, may run supply-chain finance | AR, AP, procurement and sales own the levers | Treasury influences; rarely owns |
+
+<Callout type="confusion" title="'Finance' is not one team">
+
+When someone says "finance handles that", ask *which* finance team. In a 3,000-person company "finance" can mean group accounting, FP&A, controlling, tax, treasury, a shared-service centre and ten local finance teams — each with different systems, deadlines and bosses. See [Teams around treasury](/org/neighbours).
+
+</Callout>
+
+## The four reference companies
+
+The same organisational questions, answered for each reference company. Switch any chart to **Outline** on a small screen.
+
+<OrgChart id="kleio" />
+
+<OrgChart id="alpine" />
+
+<OrgChart id="helvetic" />
+
+<OrgChart id="globalchem" />
+
+For generic variants — decentralised groups, treasury under a controller, Treasurer/Controller split, regional treasury centres and shared-service centres — see [Treasury structures and variants](/org/structures).
+
+<Callout type="interview" title="Map the organisation in the first ten minutes">
+
+- "Who do you report to, and what can you decide without them?"
+- "Who sends you data every week — and whose data do you trust least?"
+- "When a payment goes out, who prepared it, who approved it, and who pressed send?"
+- "Who reconciles the bank accounts — you or accounting?"
+- "Which people outside treasury do you depend on but have no authority over?"
+
+The answers tell you where this company's treasury starts and ends, which matters more than titles. Then use [Who should I interview?](/org/interview-finder) to find the right next person.
+
+</Callout>
+
+<Callout type="synthesis" title="Evidence note">
+
+The reporting lines, data flows and stage table are synthesis of established practice described in professional-body material (e.g. the ACT's front/middle/back-office and segregation-of-duties guidance[](cite:act-wiki-office-structure)) and in practitioner literature on treasury structure[](cite:tt-centralised-treasury). Survey figures are cited where used. The four company charts are fictional but sized to match the reference companies.
+
+</Callout>

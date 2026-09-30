@@ -1,0 +1,158 @@
+---
+title: Helvetic Machines Group — treasury in a mid-market group
+nav: Helvetic (mid-market)
+order: 3
+summary: A CHF 650m machine-tool group with nine legal entities, five banks, six currencies, a syndicated credit facility with covenants and a listed bond — run by a two-person central treasury that decides centrally while eight local finance teams still execute.
+related: [/size/midmarket, /day/daniel, /day/lea, /org/roles-treasury-manager, /org/roles-analyst, /companies/same-problem]
+---
+
+## Profile
+
+Helvetic builds CNC machining centres in Switzerland, Germany and the Czech Republic and sells them worldwide through its own sales and service subsidiaries. A machine costs CHF 0.3–2m; customers pay a down payment, the balance on delivery, often on 60–90-day terms. About half of revenue is in euros, while the Swiss parent's costs are in francs.
+
+Treasury was **centralised in 2021**, when the group refinanced with a CHF 200m syndicated [RCF](term:rcf) and a CHF 100m bond. Before that, each subsidiary managed its own banks and the parent's head of accounting "did treasury". Now **Daniel (Treasury Manager)** and **Lea (Treasury Analyst)** report to **Thomas (CFO)**. They own group liquidity, bank relationships, FX hedging, funding of subsidiaries and covenant reporting. The eight subsidiaries still run their own payments and bookkeeping and feed treasury with data.
+
+Helvetic is the size where the job becomes a job — too big for one person's spreadsheet, too small for a department with specialists. That tension shows up in almost every workflow.
+
+<CompanyFacts id="helvetic" />
+
+## Entities, banks and accounts
+
+| Entity | Function | ERP | Bank | Accounts (12 in total) | Local finance lead |
+|---|---|---|---|---|---|
+| Helvetic Machines AG (CH, parent) | Holding, main plant, treasury, export sales | SAP S/4HANA | Swiss bank A | CHF, EUR, USD | Swiss accounting team (under Claudia) |
+| | | | Swiss bank B | CHF | |
+| HM Service AG (CH) | Swiss service company | SAP S/4HANA | Swiss bank B | CHF | Parent's accounting team |
+| HM Deutschland GmbH | Plant + German sales | SAP S/4HANA | German bank | EUR (with a EUR 2m overdraft) | **Jens** |
+| HM Czech s.r.o. | Plant (machining, assembly) | SAP S/4HANA | German bank (Czech branch) | CZK | Local controller |
+| HM Italia S.r.l. | Sales and service | Local ERP | Global bank | EUR | **Giulia** |
+| HM France SAS | Sales and service | Local ERP | Global bank | EUR | Local finance manager |
+| HM UK Ltd | Sales and service | Local ERP | Global bank | GBP | Local finance manager |
+| HM Inc. (US) | Sales and service | Local ERP | Global bank | USD | Local controller |
+| HM Suzhou Co. Ltd (CN) | Plant + Chinese sales | Local ERP | Chinese bank | CNY | **Wei** |
+
+A 2024 [rationalisation](term:bank-account-rationalisation) cut the accounts from 31 to 12: seven had fewer than ten transactions a year, and one CZK account at a local bank still listed a former controller as signatory. The four [RCF](term:rcf) lenders are the two Swiss banks, the German bank and the global bank; they expect FX, cash-management and bond business in return ([wallet share](term:wallet-share)). The Chinese bank is there because onshore CNY business needs an onshore bank.
+
+<Callout type="field" title="Why 12 accounts is low for this size">
+
+Twelve operating accounts for nine entities in six currencies is lean. Many groups of Helvetic's size have several dozen, because acquisitions bring their own banks and nobody closes the accounts. Helvetic reached 12 only through a deliberate clean-up tied to the 2021 refinancing — so it sits at the rationalised low end of the mid-market range in [Treasury by Size](/size/midmarket).
+
+</Callout>
+
+## Who does treasury
+
+<Flow steps={["Subsidiary finance|Jens, Giulia, Wei + 5 others: local payments, weekly forecast templates", "Lea, Treasury Analyst|position, 13-week consolidation, hedge and covenant workbooks", "Daniel, Treasury Manager|decides transfers, deposits, hedges; banks; policy", "Thomas, CFO|approves policy, large payments, funding; reports to board"]} direction="row" caption="The treasury chain at Helvetic. Claudia (Group Accounting), Marco (FP&A) and the group tax manager sit alongside it." />
+
+| Person | Role | What they actually do in treasury |
+|---|---|---|
+| **Thomas** | CFO ([role](/org/roles-cfo)) | Chairs the quarterly treasury committee; approves the treasury policy, hedge-ratio changes, non-routine payments of CHF 2–10m (with the CEO), RCF drawings; owns the bank and bondholder relationships at the top level. |
+| **Daniel** | Treasury Manager ([role](/org/roles-treasury-manager), [a day with Daniel](/day/daniel)) | Decides daily funding transfers and deposits; challenges and adjusts the 13-week forecast; trades FX forwards with the RCF banks; runs the RCF (drawings, renewal) with Thomas; negotiates with banks (pricing, ISDA, KYC escalations); owns the bank-account register and approves new accounts with Thomas; writes the monthly treasury report; approves as second signatory for the parent's payments. |
+| **Lea** | Treasury Analyst ([role](/org/roles-analyst), [a day with Lea](/day/lea)) | Builds the daily cash position by 09:00; consolidates subsidiary forecast templates and runs variance analysis; computes the hedge requirement against the policy band and matches FX confirmations; calculates net debt / EBITDA semi-annually from Claudia's figures; prepares treasury payments (intercompany loans, deal settlements) for Daniel's and Thomas's release; maintains bank master data and the connectivity tool. |
+| **Claudia** | Head of Group Accounting ([with accounting](/org/with-accounting)) | Member of the treasury committee; hedge accounting and intercompany reconciliation; month-end cash and debt postings; audit. |
+| **Marco** | Head of FP&A ([with FP&A](/org/with-fpa)) | Budget and rolling P&L forecast used for the 18-month liquidity plan and covenant projections. |
+| Group tax manager | Tax ([with tax](/org/with-tax)) | Intercompany loan terms and interest rates, withholding tax on dividends (notably China), tax payment calendar. |
+| **Jens, Giulia, Wei** and five other local finance leads | [Subsidiary finance](/org/with-subsidiaries) | Local payment runs with two local signatories; weekly forecast templates (Tuesday noon); explanations of variances; local bank contacts. |
+| Swiss accounting team | AP / AR ([with AP](/org/with-ap)) | Prepares the parent's supplier payment batches; vendor-master controls. |
+
+Treasury has **no back office**. Segregation of duties is stretched across people: Daniel trades, Lea matches the bank confirmations, and Claudia's group accounting settles and books. When either treasury person is absent, Claudia or Thomas steps in — a known key-person risk.
+
+### The rhythm
+
+| When | What |
+|---|---|
+| Daily, 08:00–09:30 | Lea: statements, cash position, known flows; Daniel: funding transfers, approvals ([daily cash positioning](wf:daily-cash-positioning)) |
+| Monday–Wednesday | Forecast roll-forward, subsidiary submissions due Tuesday noon, variance analysis, weekly CFO note ([cash forecasting](wf:cash-forecasting)) |
+| Thursday | Cash concentration: surplus EUR from Italy and France upstreamed or used to fund Germany, documented as [intercompany loans](term:intercompany-loan) |
+| Monthly | Hedge roll (new forwards for the quarter coming into the 60–90% band), intercompany interest, treasury report, month-end with accounting |
+| Quarterly | Treasury committee (Thomas, Daniel, Claudia); 18-month liquidity plan with FP&A |
+| Semi-annually | Covenant calculation (Lea), review (Daniel), certificate signed by Thomas and sent to the RCF agent |
+| Annually | Bond coupon; China dividend; policy review; bank fee review; KYC refreshes |
+
+## Systems
+
+- **SAP S/4HANA** in the parent, Service AG, Germany and Czechia; **four other ERPs** in Italy, France, UK/US and China (legacy of earlier acquisitions and local choices).
+- **A multibank connectivity tool** receiving prior-day statements from all five banks (camt.053 from the Swiss banks, [MT940](term:mt940) from the German bank) and sending the parent's payments over [EBICS](term:ebics) and [SWIFT](term:swift).
+- **Bank portals** for FX dealing and for the Chinese bank.
+- **Excel**: the positioning workbook, the 13-week forecast (8 subsidiary templates plus central flows), the hedge register and hedge-ratio report, the covenant model, the counterparty-limit sheet, the bank-account and signatory list.
+- **A TMS project in evaluation** — see below.
+
+## The cash-flow pattern
+
+- **Seasonality:** machine deliveries and final payments cluster in Q4 and late Q2; August is quiet in Italy and France; December receipts are high and so are outflows (13th salaries in Switzerland and Italy).
+- **Weekly:** German payroll (about EUR 4.2m) and German supplier runs mean HM Deutschland is regularly short and funded from the parent's EUR account.
+- **Annually:** the bond coupon, the shareholder dividend after the AGM, the Chinese subsidiary's dividend after its statutory audit, and quarterly VAT and tax prepayments in every country.
+- **Structural:** euros accumulate in Italy, France and the parent; francs are needed at the parent; CNY accumulates in Suzhou and is hard to move ([trapped cash](term:trapped-cash)).
+
+Illustrative group position on a normal Tuesday (CHF m equivalents; rates illustrative):
+
+| Bucket | CHF m | Comment |
+|---|---|---|
+| Parent and Service AG (CHF, EUR, USD) | 23 | Includes the CHF 10m minimum the CFO wants at the parent |
+| Euro-area subsidiaries (DE, IT, FR) | 7 | Germany often near zero before payroll |
+| UK, US, Czechia | 4 | |
+| China (CNY 60m) | 7 | Visible but treated as unavailable for group liquidity |
+| **Group cash** | **41** | |
+| Undrawn RCF | 140 | CHF 200m facility, ~CHF 60m drawn |
+
+With EBITDA of about CHF 85m and net debt of about CHF 119m (RCF 60 + bond 100 − cash 41), net debt / EBITDA is roughly 1.4x against the 3.25x [covenant](term:covenant) — comfortable, which is why the covenant is a semi-annual calculation rather than a weekly worry.
+
+## Typical problems
+
+- **Two people, no backup.** When Lea is ill, Daniel builds the position; when both are away, the CFO signs and the position is checked every few days.
+- **Five ERPs, eight templates.** Subsidiary forecasts arrive late, in modified templates or copied from last week. Italy has over-forecast receipts in 9 of the last 12 weeks.
+- **Manual concentration.** Every transfer between entities is an instruction plus an intercompany-loan record. A [cash pool](term:cash-pooling) has been discussed but not implemented (tax, the Czech and Chinese entities, and bank negotiations make it a project, not a switch).
+- **China.** CNY 60m sits in Suzhou; it comes out mainly as an annual dividend after the audit, with withholding tax, so it is excluded from group headroom.
+- **Hedging depends on the forecast.** The 60–90% hedge band applies to *forecast* EUR net inflows; if the subsidiaries' forecasts are optimistic, Helvetic over-hedges.
+- **Refinancing ahead.** The RCF matures in 2027 and the bond in 2028; in 2026 Daniel and Thomas are preparing both, which is extra work on top of daily operations.
+- **Spreadsheet fragility.** The positioning workbook has links into three other workbooks; one broken link once doubled the Czech balance in the CFO note.
+- **Payment control in subsidiaries.** Treasury sets the rules but does not see local payment runs until the next day's statements.
+
+## Why Helvetic is evaluating a TMS
+
+<Callout type="synthesis" title="An illustrative weekly time budget (Daniel + Lea, about 80 hours)">
+
+| Activity | Hours / week | Mostly |
+|---|---|---|
+| Daily cash position and funding | 10 | Collecting, reconciling to expected flows, deciding transfers |
+| 13-week forecast: collection, chasing, consolidation, variance | 14 | Chasing and reshaping templates |
+| FX: exposure update, hedge-ratio report, dealing, confirmations | 6 | Workbook maintenance |
+| Payments: approvals, bank-detail queries, urgent payments | 6 | Review and exceptions |
+| Reporting (CFO note, monthly report, covenant model) | 8 | Assembling numbers from other workbooks |
+| Banks: KYC, signatories, fee queries, relationship meetings | 6 | Documents and emails |
+| Refinancing preparation (2026–27) | 10 | Lender materials, model, legal documents |
+| Ad hoc (CFO questions, audit, tax, projects) | 20 | Everything else |
+
+These are this manual's estimates for a two-person mid-market treasury, not survey data. The point: most hours go into collecting and reshaping data, not deciding. A TMS would automate statement import, the position, the deal register and parts of the forecast; it would not make the forecast inputs from Italy any better. Surveys consistently find forecasting still spreadsheet-based for many companies[](cite:deloitte-gts-2024).
+
+</Callout>
+
+## The workflows, as run at Helvetic
+
+Helvetic is the reference company for most worked examples in the [workflows](/workflows) section.
+
+| Workflow | How it happens at Helvetic |
+|---|---|
+| [Daily cash positioning](wf:daily-cash-positioning) | Lea's workbook from 12 statements by 09:00; Daniel decides transfers (e.g. EUR 1.5m to Germany) and small EUR deposits. |
+| [Cash forecasting](wf:cash-forecasting) | Weekly 13-week forecast by entity and currency; variance analysis; monthly presentation to the CFO. |
+| [Liquidity planning](wf:liquidity-planning) | 18-month plan with FP&A, rebuilt quarterly; focused on the 2027 RCF and 2028 bond. |
+| [Surplus cash investment](wf:surplus-cash-investment) | Surplus CHF reduces RCF drawings; surplus EUR goes into short EUR deposits within counterparty limits. |
+| [Funding a subsidiary](wf:funding-subsidiary) | Intercompany loans under a framework agreement (e.g. EUR 3m to HM Deutschland, USD 5m to HM Inc.). |
+| [Payment processing](wf:payment-processing) | Decentralised: each subsidiary pays locally; the parent's runs are approved by treasury as second signatory. |
+| [Large payment approval](wf:large-payment-approval) | CHF 2–10m non-routine: CFO and CEO; above CHF 10m, the board. Lea checks and releases. |
+| [Bank reconciliation](wf:bank-reconciliation) | Done by local accounting teams; treasury reconciles its own accounts and deals. |
+| [Bank account management](wf:bank-account-management) | Daniel owns the account and signatory register and approves every opening with Thomas; local managers sign local bank documents. |
+| [Bank fee analysis](wf:bank-fee-analysis) | Annual review of fee statements from five banks — tedious, rarely complete. |
+| [FX exposure management](wf:fx-exposure-management) | Forecast net flows by currency from the 13-week forecast and subsidiary templates. |
+| [FX hedging](wf:fx-hedging) | Rolling EUR forwards in a 60–90% band; USD raised to 60% after a large US order; designated as cash-flow hedges. |
+| [Credit facility management](wf:credit-facility-management) | RCF drawings and rollovers with the agent bank; refinancing preparation. |
+| [Covenant monitoring](wf:covenant-monitoring) | Lea calculates semi-annually from Claudia's figures; Thomas signs the certificate; quarterly projection in the treasury committee. |
+| [Month-end reporting](wf:month-end-reporting) | Treasury report to the CFO; cash and debt postings with Claudia's team. |
+| [Policy compliance](wf:policy-compliance) | Quarterly check of hedge ratios, counterparty limits and minimum cash against the treasury policy. |
+| [Acquisition integration](wf:acquisition-integration) | The last acquisition's three accounts at a regional Chinese bank were not connected for months. |
+| [Currency shock](wf:currency-shock) | EUR/CHF down 8%: hedges cover next quarter; the committee decides whether to extend cover and how to re-price. |
+
+<Callout type="interview" title="If you interview a Helvetic-type treasury team">
+
+This is the richest interview for workflow detail: the people who decide are also the people who build the spreadsheets. Ask the analyst to share their screen and walk through this morning's position; ask the manager what they changed in last week's forecast and why. Expect strong opinions about subsidiaries' data quality and about TMS vendors. Expect them to be busy: a two-person team rarely has spare hours for long interviews.
+
+</Callout>

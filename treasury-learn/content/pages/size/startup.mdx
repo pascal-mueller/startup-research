@@ -1,0 +1,81 @@
+---
+title: Treasury in a very small company or start-up
+nav: Very small / start-up
+order: 1
+summary: Up to roughly 100 people, one or two legal entities, a few bank accounts. Nobody is called treasurer; the founder or CFO does the work part-time. Treasury means runway, making payroll, keeping cash safe and not being surprised by currency moves.
+related: [/companies/kleio, /day/sarah, /org/roles-cfo, /size, /size/sme]
+---
+
+## Profile of the tier
+
+| Dimension | Typical range (indicative) | Kleio |
+|---|---|---|
+| People | 5–100 | ~70 |
+| Legal entities | 1–2 (often a US subsidiary for US sales) | 2 |
+| Banks / accounts | 1–3 banks, 2–10 accounts | 3 banks, 7 accounts |
+| Currencies | 1–3 | CHF, USD, EUR |
+| Funding | Equity rounds; sometimes venture debt or a small overdraft | Series B; venture-debt offer |
+| Cash | From a few months' costs to tens of millions just after a round | CHF ~22m |
+| Treasury people | 0 dedicated; founder or CFO at 5–15% of their time | Sarah (CFO), ~10% |
+
+Two very different companies live in this tier: the **bootstrapped small business** (cash is tight, the bank overdraft matters, the owner watches every payment) and the **venture-funded start-up** (cash is plentiful after a round and declines steadily; the question is how long it lasts and whether it is safe). Kleio is the second kind. The workflows below apply to both, with different emphasis.
+
+## Team structure
+
+There is no team. The typical set-up:
+
+- **Founder / CEO** — does the banking in the earliest stage; later remains a signatory and the backup.
+- **CFO** (full-time from roughly Series A/B, or fractional/part-time earlier) — owns everything that touches cash: [role page](/org/roles-cfo), [a day with Sarah](/day/sarah).
+- **An accountant or office manager** — enters payments, matches receipts.
+- **External providers** — a [fiduciary / Treuhänder](term:fiduciary-treuhaender) or accounting firm for books, VAT and tax; a payroll provider; sometimes a US accounting firm for the US entity.
+- **The board / investors** — set a few rules (which banks, how much in one bank, what instruments) and look at runway quarterly.
+
+Nobody is responsible for "treasury" as such. The work is done by whoever has the bank login.
+
+## Systems
+
+E-banking portals (one per bank, each with its own login and token); cloud accounting software with bank feeds; the payment processor (Stripe or similar) and billing tool; a spreadsheet for balances and runway. Increasingly, start-ups also use spend-management cards and multi-currency fintech accounts, which add balances that are easy to forget. No TMS, and none needed.
+
+## Workflows at this size
+
+| Workflow | What it looks like here |
+|---|---|
+| [Daily cash positioning](wf:daily-cash-positioning) | Weekly, not daily: log into each portal, write balances into the sheet. 10–20 minutes. |
+| [Cash forecasting](wf:cash-forecasting) | A monthly runway model: opening cash, collections, payroll, rent, cloud, other; months of [runway](term:cash-runway). |
+| [Liquidity planning](wf:liquidity-planning) | "When must we raise the next round?" Commonly: start 12–18 months before cash runs out (practitioner rule of thumb, not a standard). |
+| [Surplus cash investment](wf:surplus-cash-investment) | Split across banks; term deposits; perhaps a money market fund or government bills. Safety first. |
+| [Payment processing](wf:payment-processing) / [Large payment approval](wf:large-payment-approval) | The accountant prepares, the CFO approves every batch in e-banking. |
+| [Bank account management](wf:bank-account-management) | The CFO personally, when a new entity or bank is added. |
+| [FX exposure management](wf:fx-exposure-management) | Usually none formally; foreign currency is held and converted when needed. |
+| [Credit facility management](wf:credit-facility-management) | Only if there is venture debt or an overdraft — then covenants appear for the first time. |
+
+Workflows that usually **do not exist** at this size: cash pooling, netting, formal hedging programmes, covenant compliance (unless venture debt), payment factories, treasury policy documents beyond a board resolution.
+
+## Biggest problems
+
+- **Runway misread.** Cash balances fluctuate with [annual upfront billing](term:annual-prepayment), grants, tax refunds or one-off receipts; a single "cash ÷ burn" number can be wildly wrong. See the [Kleio cash-flow pattern](/companies/kleio).
+- **Bank concentration.** After a round, tens of millions can sit at one bank; [deposit protection](term:deposit-protection) covers a trivial fraction. The March 2023 failure of Silicon Valley Bank made this concrete for many start-ups.
+- **Idle cash.** In CHF, deposits earn close to nothing at a 0% SNB policy rate (illustrative, autumn 2026); in USD and EUR there is real yield, but capturing it takes an extra account or product and a decision nobody has time for.
+- **FX by accident.** Conversions at the bank's rate when the home-currency account runs low; the spread is an invisible cost.
+- **Fraud.** Small teams are prime targets for CEO-impersonation and fake-invoice fraud; the two signatories often sit next to each other.
+- **Key-person risk.** One person knows the logins, the sheet and the bank contacts.
+
+## Centralisation
+
+Not a meaningful question yet: everything is central because there is only one person. The first decentralisation appears with a foreign subsidiary that pays its own local staff and vendors — often through a local bank the CFO rarely logs into.
+
+## Who owns which tasks
+
+| Task | Owns | Performs | Approves / informed |
+|---|---|---|---|
+| Know today's cash | CFO | CFO | CEO informed |
+| Runway / forecast | CFO | CFO | Board reviews quarterly |
+| Payments | CFO | Accountant prepares | CFO approves; CEO as backup signatory |
+| Where cash is held | CFO | CFO | Board sets the rule |
+| FX conversions | CFO | CFO with the bank | — |
+| Fundraising / venture debt | CEO + CFO | CEO + CFO | Board approves |
+| Bank reconciliation, VAT | Accountant / fiduciary | Accountant / fiduciary | CFO reviews |
+
+## Recognising this tier in an interview
+
+The CFO will know every number, but treasury is a small slice of a busy job — they will talk about fundraising, audit and hiring as much as cash. Ask "What did you change after SVB?", "How do you calculate runway and who checks it?", "When did you last convert currency, and how did you choose the rate?" Do not ask about TMS selection, hedge ratios or cash pooling — the answer will be a polite blank. Next tier up: [SME](/size/sme).

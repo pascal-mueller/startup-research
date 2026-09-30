@@ -1,0 +1,336 @@
+id: fx-hedging
+title: FX hedging
+question: Should we hedge? How much, for how long, with what instrument — and who actually does the deal?
+group: FX & risk
+order: 2
+summary: >-
+  Once exposures are known, treasury decides how much of them to lock in, with which instrument and with which bank,
+  inside a board-approved policy. In practice most corporate hedging is unglamorous: a monthly top-up of FX forwards
+  to keep each future quarter within its policy band, executed by requesting quotes from three or four banks on a
+  trading platform (or by phone at smaller companies), confirmed by someone other than the dealer, documented for
+  accounting, rolled with FX swaps when customer cash arrives late, and reported monthly with market values. The
+  hard judgment is not the trade itself but the policy, the forecast behind it, and what to do when reality diverges.
+objective: >-
+  Reduce the impact of exchange-rate moves on cash flow, margins and reported results to a level the board accepts —
+  typically by protecting budgeted rates for near-term flows and smoothing rates over time — at acceptable cost,
+  without speculating, and with clean execution, confirmation, accounting and controls.
+trigger: >-
+  Monthly after the [exposure report](term:exposure-report); when a large foreign-currency contract is signed; when a
+  hedge matures or its underlying payment moves; after a sharp market move; annually for the policy review and budget.
+frequency: >-
+  Monthly hedging round plus ad hoc deals at mid-market and large companies (large groups trade daily or weekly);
+  per contract or a few times a year at SMEs; rarely or never at startups.
+people:
+  - role: Board / audit committee
+    does: Approves the hedging (treasury) policy — objectives, allowed instruments, hedge-ratio bands, tenors, counterparties — usually annually.
+  - role: CFO (or treasury committee)
+    does: Proposes the policy, approves exceptions (options, longer tenors, deviations from bands, new banks), sees monthly reporting. Rarely approves individual policy-compliant trades.
+  - role: Treasury manager / FX risk manager
+    does: Turns the exposure report into a hedge plan, decides within the mandate, executes (or supervises execution), explains results.
+  - role: Treasury analyst
+    does: Calculates required hedge amounts, prepares the proposal, maintains the deal register and hedge documentation; at small teams also matches confirmations for deals they did not do.
+  - role: Treasury back office / accounting
+    does: Matches bank confirmations, checks settlement instructions, books and settles deals, obtains month-end valuations, applies hedge accounting.
+  - role: Banks' FX sales desks and platforms
+    does: Quote and execute; provide confirmations, valuations and regulatory reporting; require ISDA/framework agreements, credit lines and LEIs.
+  - role: Business (sales, subsidiaries)
+    does: Signal contract signings, delays and cancellations that change what should be hedged.
+systems:
+  - name: "[Multi-dealer FX platform](term:multi-dealer-platform) (e.g. 360T, FXall, Bloomberg FXGO)"
+    use: Request quotes from several banks at once, deal on the best price, keep an audit trail; feed deals to the TMS.
+  - name: Bank single-dealer portals and phone
+    use: The execution channel at many SMEs; also for options and larger or unusual trades.
+  - name: "[TMS](term:tms) or Excel deal register"
+    use: Records every hedge, links it to the exposure bucket, computes hedge ratios, valuations and settlement flows.
+  - name: Confirmation matching (SWIFT MT300 / platform matching / PDF and email)
+    use: Independent check of trade terms and settlement instructions by someone other than the dealer.
+  - name: ERP / accounting
+    use: Books settlements and valuations; hedge accounting entries (hedging reserve in equity, reclassification to P&L).
+  - name: Market data and bank valuation statements
+    use: Spot and forward rates for decisions; month-end market values of open hedges.
+data:
+  - name: Exposure report by currency and bucket
+    source: "[FX exposure management](wf:fx-exposure-management)"
+    notes: Booked, firm and forecast amounts, current hedges and hedge ratios versus policy bands.
+  - name: Hedging policy
+    source: Board-approved treasury policy; [dealing mandate](term:dealing-mandate)
+    notes: Bands by horizon, allowed instruments, maximum tenor, counterparties, approval levels, hedge-accounting approach.
+  - name: Budget rates
+    source: FP&A
+    notes: Hedging performance is usually explained against them.
+  - name: Spot, forward points, option volatility
+    source: Platform / market data / bank
+    notes: "[Forward points](term:forward-points) set the cost of carry; with CHF rates near 0%, selling EUR or USD forward is done at a discount to spot."
+  - name: Bank credit lines and counterparty limits
+    source: Banks (FX/derivative lines), treasury policy
+    notes: A bank can only quote if it has a line for the company; the company's own limits cap exposure per bank.
+  - name: Outstanding hedges and settlement schedule
+    source: Deal register / TMS
+    notes: Which forwards mature when, and which need currency delivered.
+steps:
+  - title: Set and refresh the hedging policy
+    who: Head of treasury / treasury manager drafts; CFO proposes; board approves
+    where: Policy document, board meeting
+    when: Annually, and after major changes
+    detail: >-
+      Write down the objective (e.g. protect budget rates for the next 12 months; reduce cash-flow volatility; no
+      speculation), which exposures are hedged (booked items fully, forecast flows in declining bands — e.g. 60–90% of the
+      next quarter, less further out), allowed instruments (forwards and FX swaps; bought options; collars only where
+      the sold option does not exceed the exposure), maximum tenor, approved banks with minimum ratings and limits, who may
+      deal and up to what size, how deals are confirmed, and whether [hedge accounting](term:hedge-accounting) is applied.
+    judgment: >-
+      The core strategic choice: how much certainty to buy and at what cost. Hedging 100% of a year's forecast locks one
+      rate but over-hedges if sales fall; hedging nothing leaves margins to the market. Layering is a compromise, not an
+      optimum.
+  - title: Put the plumbing in place with banks
+    who: Treasury manager with legal
+    where: Bank documentation, platform onboarding
+    detail: >-
+      Before the first trade: an [ISDA](term:isda) or the bank's own framework agreement for OTC derivatives, an FX credit
+      line at the bank, a valid [LEI](term:lei) for each dealing entity, the dealing mandate sent to the bank, standard
+      settlement instructions, and user set-up on the platform. Check the entity's regulatory classification for
+      [trade reporting](term:trade-reporting) and whether the bank reports on its behalf.
+    manual: Negotiating ISDA schedules and onboarding takes weeks to months per bank and is mostly email and redlined PDFs.
+  - title: Calculate the hedge requirement
+    who: Treasury analyst
+    where: Excel / TMS
+    when: After the monthly exposure report (e.g. WD7)
+    detail: >-
+      For each currency and bucket, compare the current hedge ratio with the policy band and the internal target; compute
+      top-ups for buckets below target, over-hedges where the exposure has shrunk, and the new bucket that has entered the
+      horizon. Propose dates (typically month-ends or mid-months of the expected flows) and amounts rounded to sensible
+      ticket sizes.
+  - title: Decide amount, timing and instrument
+    who: Treasury manager; CFO for anything outside the mandate
+    where: Hedge proposal (email / meeting), treasury committee for exceptions
+    detail: >-
+      Forwards are the default for flows that will happen. [Options](term:option) are used for exposures that may not
+      happen (tenders) or when management wants protection while keeping upside, at a premium.
+      [FX swaps](term:swap) move existing hedges in time. The manager also decides whether to hedge now or stagger, and
+      how to split among banks (price, counterparty limits and the [ancillary business](term:ancillary-business) each
+      lending bank expects).
+    judgment: >-
+      Whether to hedge an uncertain forecast at all; whether to stay at the bottom or top of the band given a view on the
+      forecast (not on the currency — most policies forbid market views); whether an option premium is worth paying;
+      how to allocate deals among banks.
+  - title: Execute — quotes from several banks
+    who: Treasury manager (dealer per mandate)
+    where: Multi-dealer platform; or bank portal / phone at SMEs
+    when: Liquid European hours, avoiding illiquid moments such as fixing times and holiday periods
+    detail: >-
+      Enter the request (currency pair, direction, amount, value date) and send it to the approved banks with open lines,
+      usually three to five. Quotes arrive within seconds and are live for a short time; deal on the best. At SMEs the CFO
+      calls the bank's corporate FX desk, asks for a forward price and says "done" — the price is not in competition
+      unless someone calls a second bank.
+    judgment: Whether to accept a price that looks off-market, or wait; how to split a large ticket so as not to move the price or exceed one bank's limit.
+  - title: Capture and confirm the deal independently
+    who: Back office / accounting (someone other than the dealer)
+    where: Deal register / TMS; confirmation matching; bank portal
+    when: Same day
+    detail: >-
+      The deal is captured (automatically from the platform, or manually from a phone deal) and the bank's
+      [confirmation](term:deal-confirmation) is matched against it — counterparty, amount, rate, value date, settlement
+      instructions. Discrepancies go to the dealer and the bank immediately. Swiss FinfraG requires timely confirmation of
+      OTC derivative terms.
+    manual: At mid-market companies without a platform link, deals are typed into Excel and matched against PDF confirmations by email.
+  - title: Document for accounting
+    who: Treasury analyst with group accounting
+    where: Hedge register / TMS hedge-accounting module
+    when: At inception
+    detail: >-
+      Link each hedge to the exposure it covers. Under IFRS 9, if hedge accounting is used, the relationship must be
+      formally designated and documented at inception ([hedge documentation](term:hedge-documentation)); retrospective
+      designation is not possible. Under Swiss GAAP FER 27 the requirements are much lighter. Without hedge accounting,
+      the market value change of the forwards goes through P&L each month while the hedged sales do not — the classic
+      source of "hedging volatility" questions from the CFO.
+  - title: Settle at maturity, or roll
+    who: Treasury analyst / back office
+    where: Deal register, bank accounts, platform
+    when: Value dates
+    detail: >-
+      On the value date the company delivers the currency it sold (e.g. EUR from customer receipts) and receives the other.
+      Treasury checks that the EUR account is funded before cut-off. If the customer pays later than planned, the hedge is
+      [rolled](term:hedge-roll) with an FX swap at market rates, and the original forward's gain or loss is realised in
+      cash; if earlier, it is taken up early.
+    judgment: Whether a delay is a timing shift (roll) or the flow is gone (close out, accept the gain or loss, reduce the bucket).
+  - title: Value, monitor and report monthly
+    who: Treasury analyst → treasury manager → CFO
+    where: Bank valuation statements / TMS, CFO pack
+    when: Month-end
+    detail: >-
+      Obtain [mark-to-market](term:mark-to-market) values, check hedge ratios against bands, counterparty exposure per
+      bank against limits, and average hedged rate against budget rate; explain results in the CFO report (see
+      [month-end reporting](wf:month-end-reporting)). Record breaches and whether they are passive (the forecast fell) or
+      active (a deal outside policy).
+  - title: Review the programme after shocks and annually
+    who: Treasury manager, CFO, treasury committee
+    where: Committee meeting
+    detail: >-
+      After a large currency move or a forecast collapse, decide whether to reduce over-hedges, extend layers, or change
+      bands; annually, review whether the policy achieved its objective (e.g. volatility of margin in CHF versus an
+      unhedged benchmark) and whether its cost (forward points, premiums, spreads) was worth it. See
+      [currency shock](wf:currency-shock).
+    judgment: Distinguishing "the policy worked as designed" from "the policy was wrong" after the fact — hindsight makes every hedge look either brilliant or foolish.
+example:
+  title: "Helvetic, Thursday 8 October: rolling an over-hedge and adding a layer for Q3 2027"
+  body: |
+    Inputs from the [exposure cycle](wf:fx-exposure-management): EUR 118m net inflows over 12 months, EUR 58.5m hedged. Policy (approved by the board in December 2025): Q+1 60–90%, Q+2 40–70%, Q+3 25–55%, Q+4 0–40%; Daniel's internal targets 75 / 55 / 40 / 25%. Dealing mandate: Daniel up to 12 months and CHF 20m per deal; options and anything longer need Thomas.
+
+    **09:00 — Lea's calculation.** Daniel has decided to treat the two slipping German acceptances (EUR 4m) as Q1 flows.
+
+    | Quarter | Exposure (EUR m) | Hedged | Ratio | Band | Target | Proposed action | After |
+    |---|---|---|---|---|---|---|---|
+    | Q4 2026 | 27.0 (was 31.0) | 24.8 | **92%** | 60–90% | 75% | Roll EUR 2.0m from 31 Dec to 31 Mar | 22.8 → 84% |
+    | Q1 2027 | 32.0 (was 28.0) | 17.0 | 53% | 40–70% | 55% | Receives the rolled 2.0m | 19.0 → 59% |
+    | Q2 2027 | 29.0 | 11.9 | 41% | 25–55% | 40% | none | 41% |
+    | Q3 2027 | 30.0 | 4.8 | 16% | 0–40% | 25% | New forward EUR 3.0m, value 31 Aug 2027 | 7.8 → 26% |
+
+    The Q4 over-hedge is *passive* (caused by the forecast, not a deal), but at 92% it is outside the band; the policy asks for it to be corrected within the month.
+
+    **10:05 — New layer.** Spot EUR/CHF 0.9352 (illustrative). Daniel sends "sell EUR 3.0m / buy CHF, value 31 Aug 2027" to the three hedging banks on the platform:
+
+    | Bank | Forward rate (CHF per EUR) |
+    |---|---|
+    | Swiss bank A | 0.91885 |
+    | Swiss bank B | 0.91862 |
+    | German bank | **0.91901** — dealt |
+
+    The rate is about 1.7% below spot: that is the [forward points](term:forward-points) (€STR ≈ 1.95% vs SARON ≈ 0%), not a bank fee. The best-to-worst difference is CHF ~1,200 on this ticket — small; the platform's real value is the audit trail and not being dependent on one bank's price. Before dealing, Daniel checked the German bank's counterparty limit: after last week's passive breach it is at ~82%, and a new at-market forward has near-zero market value, so it fits.
+
+    **10:20 — Roll.** With Swiss bank A (which holds the original EUR 2.0m Dec forward at 0.9420) Daniel deals an FX swap: buy EUR 2.0m value 31 Dec at 0.93117, sell EUR 2.0m value 31 Mar at 0.92667. On 31 Dec the EUR legs cancel and Helvetic receives CHF 21,660 (2.0m × (0.9420 − 0.93117)); the March hedge carries three more months of forward points (≈ CHF 9k). Swiss bank A offered a "historical rate rollover" at 0.9420 to avoid the cash settlement — the policy prohibits it.
+
+    **11:30 — Confirmations.** Both confirmations arrive; Lea matches rates, dates and Helvetic's CHF and EUR settlement accounts against the platform tickets and her register, and adds the new forward to the hedge register against the Q3 2027 bucket. Under Helvetic's Swiss GAAP FER policy the market value of forwards hedging future sales is recorded in equity until the sale is booked; no IFRS-style effectiveness testing is needed. The banks handle trade reporting.
+
+    **Afternoon — escalation.** Daniel emails Thomas a three-line summary and one open question for the treasury committee: the Czech subsidiary's EUR 45m/year EUR/CZK exposure is outside the policy. Options: hedge it at HM CZ with a local bank; hedge centrally via an internal forward; or accept it. Thomas puts it on the November agenda.
+judgment:
+  - decision: How much of a forecast to hedge, and how far out
+    why: The trade-off between certainty and the cost of being wrong about volumes. No formula settles it; boards set bands that reflect risk appetite, margin structure and how quickly prices can be adjusted.
+  - decision: Forward vs option vs doing nothing for uncertain exposures
+    why: A forward on a tender that is lost becomes a speculative position; an option costs premium whether or not it is used. Requires judging the probability of winning.
+  - decision: Where in the band to sit
+    why: Policies usually forbid market views, yet the manager still chooses 60% or 90%; the defensible basis is forecast confidence, not a currency prediction.
+  - decision: Roll, close out or reduce when the underlying moves
+    why: Rolling preserves the hedge but realises gains or losses and adds carry; closing out admits the forecast was wrong. Both need an explanation to the CFO.
+  - decision: How to allocate trades among banks
+    why: Best price competes with counterparty limits and the need to give lending banks enough FX business to stay in the credit facility.
+failure_modes:
+  - mode: Hedging a forecast that doesn't materialise (over-hedging)
+    consequence: Forwards must be closed out or rolled; if the currency moved against the hedge, a real cash loss with no underlying gain to offset it.
+    detection: Monthly hedge ratio versus revised exposure; back-testing of forecast accuracy by entity.
+  - mode: Deal outside policy or mandate (wrong instrument, tenor, bank, size)
+    consequence: Unauthorised risk; audit finding; in the worst historical cases, speculative losses.
+    detection: Independent confirmation matching; monthly policy-compliance report; platform permissions by user.
+  - mode: Confirmation not matched or settlement instructions wrong
+    consequence: Undetected wrong trade; payment to a wrong account; failed settlement and overdraft interest.
+    detection: Same-day matching by someone other than the dealer; standard settlement instructions agreed with each bank.
+  - mode: Currency not available on the value date (customer paid late, account not funded)
+    consequence: The bank debits the account anyway or the settlement fails; overdraft cost; last-minute swap at a poor price.
+    detection: Settlement calendar in the daily cash position; forward-looking matching of maturities with expected receipts.
+  - mode: Hedge accounting documentation missing or late (IFRS)
+    consequence: The forwards' market value swings hit P&L while the hedged sales don't; results look volatile and must be explained.
+    detection: Designation created at the same time as the deal; auditor review.
+  - mode: Carry cost ignored
+    consequence: Management expects hedges at spot and is surprised that a 12-month EUR or USD forward is 2–4% below spot when CHF rates are near zero.
+    detection: Always show forward rates and forward points against budget rate in proposals.
+  - mode: Expired LEI, missing ISDA or exhausted bank line
+    consequence: A bank refuses to quote exactly when a hedge is needed.
+    detection: Annual LEI renewal calendar; monitoring of line usage per bank.
+software: >-
+  Execution runs on **multi-dealer platforms** (360T, FXall, Bloomberg FXGO) at most mid-market and large companies;
+  vendors describe RFQs to several banks in competition with a full audit trail and straight-through capture into
+  TMS[](cite:lseg-fxall-corporate,t360-corporate). Smaller companies deal by phone or on a bank's own portal. Deal
+  registers and hedge accounting sit in the **TMS** (e.g. SAP treasury modules, Kyriba, FIS, ION products) or in Excel
+  at mid-market companies. A newer category of **hedging-automation** providers targets mid-sized companies with
+  rule-based programmes. See [Systems & Data](/systems) and [Competitors](/competitors); names are examples, not
+  endorsements.
+manual_work:
+  - Calculating top-ups per bucket in Excel from the exposure report.
+  - Typing phone deals into the register and matching PDF confirmations by email.
+  - Collecting month-end valuation statements from each bank and pasting them into the register.
+  - Maintaining the hedge register that links forwards to exposure buckets (the basis for accounting and reporting).
+  - Arranging rolls when customer payments move, often at short notice.
+  - Onboarding banks — ISDA/framework agreements, KYC, platform users, LEI renewals.
+by_size:
+  startup: >-
+    Usually no hedging. The CFO keeps enough USD or EUR to pay costs in those currencies and converts the surplus at spot
+    now and then, sometimes comparing two banks' rates. A forward is considered only for a single large known amount
+    (e.g. a USD fundraising round to be converted into CHF). The honest reason is often that the exposure is small
+    relative to runway and the carry cost of selling USD forward is visible.
+  sme: >-
+    Deal-by-deal hedging of signed contracts with the house bank or FX bank, by phone or portal, decided by the CFO,
+    often guided by a board minute rather than a written policy. Confirmations arrive by email and are filed; valuations
+    are taken from bank statements at year-end. Options are rare. Risks: no one owns rolls when projects slip, and
+    prices are not compared.
+  midmarket: >-
+    A written policy with layered bands, a monthly hedging round, execution on a multi-dealer platform with three to five
+    banks (often the lenders), confirmation matching by accounting or the analyst, an Excel or light-TMS deal register,
+    and monthly reporting to the CFO. Hedge accounting depends on the accounting framework; many Swiss mid-caps report
+    under Swiss GAAP FER with lighter requirements than IFRS.
+  multinational: >-
+    A financial-risk team hedging netted group exposures centrally (often through the in-house bank, which deals
+    internally with subsidiaries and externally with banks), daily or weekly execution on platforms with automated RFQs
+    for small tickets, full front/middle/back-office separation, IFRS 9 hedge documentation generated in the TMS, NDFs for
+    restricted currencies, and sometimes net-investment hedges with foreign-currency debt. The judgment moves to the
+    policy, forecast quality and exceptions.
+companies:
+  kleio: "No hedging. Sarah keeps about USD 1.5m at the US bank (roughly six months of USD costs) and converts surplus USD and EUR to CHF quarterly at spot, comparing her two Swiss banks' rates. She looked at selling USD forward: at SOFR ≈ 3.5–4% and SARON ≈ 0% (illustrative), a 12-month forward is about 3.5% below spot — a visible cost for a risk worth perhaps CHF 0.2–0.3m a year. The board agreed to revisit if net USD exceeds USD 5m a year."
+  alpine: "A 2023 board minute says: hedge at least 50% of signed EUR and USD contracts above CHF 1m with forwards at signing, only with the two house banks, no speculation. Martin phones the large Swiss bank's FX desk; Petra files the PDF confirmation and adds the deal to an Excel list next to the project milestones. When a US acceptance slipped two months, Martin rolled the USD 0.96m forward by phone with a swap. Options for tenders were discussed once and rejected because of the premium."
+  helvetic: "The worked example above. Three of the four RCF banks provide hedging; Daniel deals on a multi-dealer platform within his mandate, Lea matches confirmations and keeps the hedge register, Thomas sees a monthly summary and decides exceptions (e.g. the Czech exposure)."
+  globalchem: "Jonas's financial-risk team hedges net group exposures for about 30 currencies under a policy covering booked items (fully, via the in-house bank) and forecast flows 12–18 months out in layers. Small tickets are auto-RFQ'd on a platform to the seven core banks; confirmations are matched by Marta's back office in Kraków; SAP treasury generates IFRS 9 hedge designations; NDFs cover restricted-currency exposures. Anna reports hedge results and counterparty exposure to the audit committee quarterly."
+handoffs:
+  - from: FX exposure management
+    gives: exposure report with hedge ratios by bucket
+    to: Treasury analyst / manager
+  - from: Treasury analyst
+    gives: hedge requirement and proposed deals
+    to: Treasury manager
+  - from: Treasury manager
+    gives: exceptions (options, tenors, out-of-band decisions, new banks)
+    to: CFO / treasury committee
+    note: Policy-compliant deals are normally decided within treasury; the CFO sees them afterwards in the monthly report.
+  - from: Treasury manager
+    gives: RFQs and executed deals
+    to: Banks (via platform or phone)
+  - from: Banks
+    gives: confirmations, month-end valuations, regulatory trade reports
+    to: Back office / accounting
+  - from: Back office / accounting
+    gives: matched confirmations or discrepancies
+    to: Treasury manager
+  - from: Treasury analyst
+    gives: hedge register, designations, valuations
+    to: Group accounting
+    note: For hedge accounting (IFRS 9) or FER 27 treatment and note disclosures.
+  - from: Sales / subsidiaries
+    gives: contract signings, delays and cancellations
+    to: Treasury manager
+    note: Late information here is the main cause of over-hedges and rolls.
+interview: >-
+  Ask the person who deals (treasury manager, FX risk manager, or the CFO at an SME) to walk through **the last hedge
+  they executed**: what triggered it, how they calculated the amount, who they asked for prices and how, who approved,
+  who checked the confirmation, and what happened when the underlying payment moved. Then ask the CFO what the policy
+  is trying to achieve and how they would know if it failed. Ask accounting how hedges appear in the P&L. Avoid asking
+  "do you think EUR will fall?" — most corporate treasurers are forbidden from hedging on views and will (rightly)
+  say so.
+ai_note: >-
+  Mechanical parts — computing top-ups against bands, sending RFQs, matching confirmations, generating documentation —
+  are rule-based and increasingly automated by platforms and hedging-automation providers. Judgment about forecast
+  reliability, band positioning, bank allocation and what to do after a shock stays with people, and autonomous
+  execution of derivatives raises regulatory, mandate and trust issues that go well beyond software accuracy.
+terms: [forward, swap, option, collar, forward-points, hedge-ratio, layered-hedging, hedge-roll, multi-dealer-platform, deal-confirmation, dealing-mandate, isda, lei, trade-reporting, hedge-accounting, hedge-documentation, economic-hedge, mark-to-market, budget-rate, ndf]
+related: [fx-exposure-management, month-end-reporting, currency-shock, policy-compliance, daily-cash-positioning, credit-facility-management]
+sources: [lseg-fxall-corporate, t360-corporate, milltech-fx-2025, ifrscommunity-ifrs9-hedge, bdo-ifrs9-hedge-doc, pwc-ch-fer-fi-2025, fmia-art108, efd-finfrag-2022, isda-emir-refit-mdr, linklaters-emir3-2025, jonesday-emir-vm-2017, clariant-frm-2020]
+evidence_note: >-
+  Instruments, layering and the execution/confirmation sequence are established practice. Accounting: IFRS 9 requires
+  formal designation and documentation at inception, an economic relationship, credit risk not dominating and a
+  consistent hedge ratio[](cite:ifrscommunity-ifrs9-hedge,bdo-ifrs9-hedge-doc); Swiss GAAP FER 27 requires no IFRS-style
+  documentation or effectiveness tests, and hedges of highly probable future transactions can be recognised in equity
+  or disclosed in the notes[](cite:pwc-ch-fer-fi-2025). Regulation: FinfraG requires timely confirmation of OTC
+  derivatives[](cite:fmia-art108); the Swiss trade-reporting duty for small non-financial counterparties was postponed
+  to 1 January 2028[](cite:efd-finfrag-2022); in the EU, banks (financial counterparties) have reported on behalf of
+  NFC- clients since June 2020[](cite:isda-emir-refit-mdr), and EMIR 3 has applied since 24 December 2024 with new
+  clearing-threshold calculations phased in via technical standards[](cite:linklaters-emir3-2025). Physically settled
+  FX forwards are exempt from EU initial-margin rules[](cite:jonesday-emir-vm-2017). Average hedge ratios (~48%) and
+  tenors (~5 months) come from a vendor-sponsored survey[](cite:milltech-fx-2025) and are indicative only. Platform
+  capabilities are vendor-stated[](cite:lseg-fxall-corporate,t360-corporate). Forward rates, quotes, bands and the
+  worked example are illustrative synthesis; this is not advice on any company's regulatory classification.

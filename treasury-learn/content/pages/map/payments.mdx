@@ -1,0 +1,133 @@
+---
+title: Payments
+nav: Payments
+order: 8
+cluster: infra
+summary: How money actually leaves and arrives — who creates a payment, who approves it, which channel and rail carry it, when it is final, and how it is matched afterwards. Most payments are created by accounts payable, not treasury; treasury owns the channels, the controls and the unusual payments.
+subtopics: [payment initiation, payment approval, payment factories, fraud controls, payment rails, settlement, reconciliation]
+related: [/map/banking, /map/technology, /map/risk, /org/roles-payments, /org/with-ap, /org/roles-operations]
+---
+
+<TreasuryMap focus="payments" />
+
+Payments are where treasury decisions become **irreversible**. A Swiss company's supplier payment typically travels: invoice approved in the ERP → payment proposal → payment file (ISO 20022 [pain.001](term:pain-001)) → bank channel ([EBICS](term:ebics), [host-to-host](term:host-to-host), [SWIFT](term:swift), e-banking upload) → bank checks (signatures, sanctions, funds) → clearing system ([SIC](term:sic), [SEPA](term:sepa), correspondent banks) → beneficiary's bank → status report ([pain.002](term:pain-002)) and bank statement ([camt.053](term:camt-053)/[camt.054](term:camt-054)) → reconciliation. Every hop has an owner and a failure mode.
+
+<Callout type="confusion" title="Who 'does payments'?">
+
+Treasury rarely *creates* operational payments: [accounts payable](/org/with-ap) creates supplier payments, payroll creates salary payments. Treasury creates **financial** payments (intercompany funding, FX settlements, loan repayments, investments), designs the approval rules and bank channels, and approves or releases large and unusual payments. In a multinational, a [payment factory](term:payment-factory) may execute on behalf of everyone. In interviews, ask "who creates, who approves, who releases, who reconciles?" separately — see [payments roles](/org/roles-payments).
+
+</Callout>
+
+## Who does this work, by company size
+
+| Step | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Initiate supplier payments | Nina in e-banking | Petra's team in Business Central | AP in each subsidiary's ERP | AP in Kraków SSC (SAP) |
+| Initiate treasury payments | Sarah | Petra on Martin's instruction | Lea | Cash & liquidity team (Priya) |
+| Approve / release | Sarah (collective signature) | Petra + second signatory; Martin above CHF 250k | Local signatories; Daniel/Thomas for Swiss and large payments | Workflow approval in SAP; payment factory release; treasury for large/financial |
+| Channel | Bank portals | EBICS upload + portals | Multibank connectivity tool (EBICS/SWIFT) | SWIFT via service bureau, payment hub |
+| Reconcile | Nina / fiduciary | Petra's team | Local accounting; Lea for treasury accounts | SSC reconciliation team, largely automated |
+| Fraud controls owner | Sarah | Petra, Martin | Daniel + Claudia | Marta + group internal control |
+
+## Payment initiation
+
+**Plain:** creating the payment instruction — who gets paid, how much, from which account, when. **Professional:** payments are initiated from ERP payment runs (AP, payroll), from the TMS (treasury deals, intercompany, debt service) or manually in bank portals, and delivered to banks as files (pain.001, legacy MT101) or API calls. Quality depends on [vendor master data](term:vendor-master-data), [structured addresses](term:structured-address), [remittance information](term:remittance-information) and correct [value dates](term:value-date).
+
+Example: Petra runs Alpine's payment proposal in Business Central every Tuesday and Friday: 50–70 invoices due in the next four days, ~CHF 1.5–2.5m. She removes two disputed invoices, exports the pain.001 file and uploads it via EBICS to the cantonal bank. The file carries the value date; the bank executes on that date if signatures and funds are in place.
+
+- **Drives:** [payment processing](wf:payment-processing).
+- **Terms:** [payment run](term:payment-run), [pain.001](term:pain-001), [beneficiary](term:beneficiary), [originator](term:originator), [IBAN](term:iban), [QR-bill](term:qr-bill), [vendor master data](term:vendor-master-data).
+
+**Ask:** "Where do payments originate — ERP, TMS, portal? What share is typed manually?" · "Who can create or change a supplier's bank details?" · "How often do payment files get rejected, and why?"
+
+## Payment approval
+
+**Plain:** the checks and signatures required before a payment can leave. **Professional:** approval happens in two places — in the ERP/TMS workflow (invoice approval, payment proposal approval) and in the bank channel (electronic signatures by authorised signatories, often [collective signature](term:collective-signature) by two). Rules are tiered by amount, payment type and beneficiary (new vs known) in a [signing authority matrix](term:signing-authority-matrix) that must match both internal [delegation of authority](term:delegation-of-authority) and the bank mandates.
+
+<Example title="A CHF 4m payment request at Helvetic" company="helvetic" open>
+
+On Wednesday HM AG's accounting team submits a CHF 4.0m payment to a Swiss machine supplier for a new Czech production line. Policy: above CHF 1m, Daniel reviews and Thomas (CFO) co-signs. Daniel checks (1) the purchase order and board capex approval exist; (2) the payment matches contract milestone 2 of 3; (3) the supplier's IBAN is the one in the vendor master since 2022, not a recent change; (4) cash: the payment was in the 13-week forecast for this week; the Swiss CHF account has CHF 16.8m. He approves in the connectivity tool; Thomas adds the second signature on his phone. The payment goes via SIC the same day. What would have stopped it: a changed IBAN in the last 90 days, an email-only instruction, or a mismatch with the contract. See the [large payment approval workflow](wf:large-payment-approval).
+
+</Example>
+
+- **Drives:** [large payment approval](wf:large-payment-approval), [payment processing](wf:payment-processing), [policy compliance](wf:policy-compliance).
+- **Terms:** [four-eyes principle](term:four-eyes-principle), [signatory](term:signatory), [signing authority matrix](term:signing-authority-matrix), [payment mandate](term:payment-mandate), [collective signature](term:collective-signature), [EBICS signature](term:ebics-signature).
+
+<Callout type="confusion" title="Approving the invoice ≠ approving the payment">
+
+An AP clerk and a budget holder approve the *invoice* (we owe this). A signatory approves the *payment* (release this money now, to this account). Fraud often slips between the two: the invoice was genuine, but the bank details were changed.
+
+</Callout>
+
+**Ask:** "Walk me through your last large or unusual payment — who looked at what?" · "What do approvers actually check, and on which screen?" · "Do your internal approval limits match what the bank enforces?" · "What happens when a signatory is on holiday on payroll day?"
+
+## Payment factories
+
+**Plain:** one central team and system that makes payments for all the group companies. **Professional:** a [payment factory](term:payment-factory) centralises payment execution (formats, bank channels, screening, release) for many entities; in its advanced form, **payments on behalf of** ([POBO](term:pobo)) pays from in-house-bank accounts in the name of subsidiaries, and **collections on behalf of** ([COBO](term:cobo)) receives for them — reducing the number of bank accounts dramatically. Requires an in-house bank, intercompany accounting and legal/regulatory checks per country. PwC's 2025 survey reports payment factories at 60% and POBO at 50% of organisations with revenue above USD 10bn[](cite:pwc-gts-2025); below that size they are uncommon.
+
+Example: GlobalChem's payment factory in Kraków receives payment files from ~25 European subsidiaries' SAP instances, screens and formats them, and pays most European suppliers from the in-house bank's EUR accounts (POBO); Marta's team handles rejections, sanctions hits and urgent manual payments. Helvetic has nothing like it — each subsidiary pays locally — but the connectivity tool gives Daniel sight of all files.
+
+- **Terms:** [payment factory](term:payment-factory), [POBO](term:pobo), [COBO](term:cobo), [in-house bank](term:in-house-bank), [payment hub](term:payment-hub), [shared service centre](term:shared-service-centre).
+
+**Ask:** "Which entities and payment types go through the factory, and which don't — why?" · "Who owns a rejected or returned payment?" · "What did you have to solve legally and for tax before POBO?"
+
+## Fraud controls
+
+**Plain:** the checks that stop money going to criminals. **Professional:** layered controls on the payment chain: vendor master changes under dual control and call-back; [segregation of duties](term:segregation-of-duties) between master data, payment creation and release; bank-side dual signature and user limits; [verification of payee](term:verification-of-payee) (mandatory for euro-area PSPs to offer from 9 October 2025[](cite:ecb-ipr)); [sanctions screening](term:sanctions-screening); protection of payment files between ERP and bank; anomaly detection (new beneficiary, round amount, unusual country); [positive pay](term:positive-pay) for US cheques. The organisational dimension — see [Risk: fraud](/map/risk) — matters as much as the technical one.
+
+Example: Helvetic's rule: any bank-detail change needs a call-back to a number from the existing vendor record by someone other than the requester, and the first payment to a changed account above EUR 50k is flagged for Daniel. HM Deutschland's first SEPA payment after VoP went live returned a "no match" for a supplier whose trade name differed from its legal name — Jens had to learn which mismatches are harmless.
+
+- **Drives:** [fraud investigation](wf:fraud-investigation), [payment processing](wf:payment-processing).
+- **Terms:** [business email compromise](term:bec), [call-back verification](term:call-back-verification), [verification of payee](term:verification-of-payee), [sanctions screening](term:sanctions-screening), [positive pay](term:positive-pay).
+
+**Ask:** "What stops an attacker who controls a supplier's email?" · "Which controls sit in your systems and which in people's habits?" · "How do you handle VoP 'close match' results in bulk files?"
+
+## Payment rails
+
+**Plain:** the networks that move the money between banks. **Professional:** domestic clearing systems ([SIC](term:sic) for CHF, run by SIX for the SNB; [SEPA](term:sepa) schemes for EUR; [ACH](term:ach) and [Fedwire](term:fedwire) in the US), [RTGS](term:rtgs) systems for high-value payments, [instant payments](term:real-time-payments) (SEPA Instant; SIC Instant Payments, where the larger banks must receive since August 2024 and all remaining banks by end-2026[](cite:six-instant-payments)), and cross-border [correspondent banking](term:correspondent-banking) over SWIFT (with [Swift gpi](term:swift-gpi) tracking). The rail determines cost, speed, cut-off, finality and what data travels with the payment.
+
+| Payment | Typical rail | Arrives | Notes |
+|---|---|---|---|
+| Alpine pays a Swiss supplier CHF 40k | SIC | Same day | QR-bill reference carries through |
+| HM Italia pays an Italian supplier EUR 25k | SEPA SCT | Next business day at most | VoP check before sending |
+| Helvetic funds HM Deutschland EUR 3.8m urgently | SEPA or T2 (urgent) | Same day | Before the bank's EUR cut-off |
+| Alpine pays a Texan supplier USD 500k | SWIFT via correspondent → Fedwire | Same/next day | Intermediary fees may be deducted ([charge bearer](term:charge-bearer)) |
+| A German customer pays HM Deutschland at 21:00 Saturday | SEPA Instant | Seconds | Final before Monday's position |
+
+- **Terms:** [SIC](term:sic), [SEPA](term:sepa), [SCT Inst](term:sct-inst), [instant payments](term:real-time-payments), [correspondent banking](term:correspondent-banking), [Swift gpi](term:swift-gpi), [ACH](term:ach), [Fedwire](term:fedwire), [cut-off time](term:cut-off-time).
+
+**Ask:** "Which payments are urgent, and how do you make sure they meet cut-off?" · "Do you use instant payments yet, and for what?" · "How do you track a cross-border payment that 'hasn't arrived'?"
+
+## Settlement
+
+**Plain:** the moment the money has really moved and can't be taken back. **Professional:** [settlement](term:settlement) is the discharge of the obligation between banks (in central-bank money for RTGS, at batch settlement for ACH); finality rules determine when a payment is irrevocable. For treasury, settlement also means the exchange of the two legs of an FX deal (with [settlement risk](term:counterparty) if one leg is paid before the other is received) and the value date on which a deposit, loan or deal pays out. Misunderstood value dates and cut-offs cause overdrafts and failed trades.
+
+Example: Lea buys USD 2m against CHF for Wednesday value. On Wednesday Helvetic's CHF account at Swiss bank 1 is debited (via SIC) and the USD arrive at the US subsidiary's account via the bank's USD correspondent. If the CHF account were short at the bank's processing time, the bank could refuse or overdraw — so Lea checks the funding in the morning position. GlobalChem settles many FX trades through CLS-member banks, which removes the settlement-risk gap between the two legs for eligible currencies.
+
+- **Terms:** [settlement](term:settlement), [value date](term:value-date), [T+2](term:t-plus-2), [RTGS](term:rtgs), [nostro / vostro](term:nostro-vostro).
+
+**Ask:** "Have you had a failed or late settlement? What caused it?" · "Who checks that the account is funded before a deal settles?" · "How do you confirm a large payment actually arrived?"
+
+## Reconciliation
+
+**Plain:** checking that every movement on the bank statement matches something in the books, and vice versa. **Professional:** [bank reconciliation](term:reconciliation) matches bank statement lines (camt.053/054, [MT940](term:mt940), [BAI2](term:bai2)) to GL postings and open items, using [matching rules](term:matching-rules) and [bank transaction codes](term:bank-transaction-code); unmatched items ([reconciling items](term:reconciling-item)) are investigated and cleared, often via a [suspense account](term:suspense-account). Separate from but related to [cash application](term:cash-application) (matching receipts to customer invoices). Owned by accounting at most companies, with treasury reconciling its own accounts and deals.
+
+Example: Alpine's German subsidiary's bookkeeper reconciles monthly; a EUR 1,850 bank charge on a USD payment sits unmatched for three weeks because nobody knows which invoice it belongs to. At GlobalChem the SSC auto-matches most lines daily and the team works the exceptions; unexplained items older than 30 days are escalated to the entity controller.
+
+- **Drives:** [bank reconciliation](wf:bank-reconciliation), [month-end reporting](wf:month-end-reporting).
+- **Terms:** [reconciliation](term:reconciliation), [camt.053](term:camt-053), [camt.054](term:camt-054), [matching rules](term:matching-rules), [reconciling item](term:reconciling-item), [suspense account](term:suspense-account), [payment status report](term:payment-status).
+
+**Ask:** "Who reconciles which accounts, and how often?" · "What share matches automatically, and what are the typical exceptions?" · "How long do unexplained items stay open?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** Nina prepares payments in each bank's portal; Sarah signs. Payroll via a provider. Fraud risk is the main issue — two people, both busy, both targets. Reconciliation is done by the accountant and fiduciary."
+  sme="**Alpine.** ERP payment runs twice a week, EBICS file upload, bank-side collective signature. Petra is the payments department. Controls rely on signing rules and the auditor; key-person risk is high."
+  midmarket="**Helvetic.** Decentralised: each subsidiary pays from its ERP; treasury sees files through the connectivity tool and approves large Swiss payments. Harmonising approval rules across eight entities is an ongoing project."
+  multinational="**GlobalChem.** A payment factory with POBO in Europe, a payment hub, screening and anomaly detection, hundreds of users with managed rights. Treasury's focus is control design, bank channels and exceptions, not individual payments."
+/>
+
+<CompanyCompare topic="map-payments" />
+
+Related workflows: <Workflows ids={["payment-processing", "large-payment-approval", "bank-reconciliation", "fraud-investigation"]} />

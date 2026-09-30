@@ -1,0 +1,81 @@
+---
+title: Treasury and FP&A
+nav: With FP&A
+order: 32
+summary: FP&A forecasts profit on an accrual basis for the budget year; treasury forecasts cash by value date for the next weeks and months. The two forecasts share inputs, answer different questions, and must be reconciled — and FP&A sets the budget FX rates treasury's hedging is judged against.
+related: [/org/neighbours, /start/neighbours, /workflows/cash-forecasting, /workflows/liquidity-planning, /map/cash-forecasting]
+---
+
+## Who owns what
+
+| | [FP&A](term:fpa) (and DACH "Controlling") | Treasury |
+|---|---|---|
+| **Main forecast** | Revenue, margins, costs, EBITDA — monthly, budget year plus 1–3 year plan | Cash receipts and payments — daily/weekly for ~13 weeks, monthly further out |
+| **Basis** | Accruals (when revenue is earned, cost incurred) | Cash (when money moves, by [value date](term:value-date)) |
+| **Customers** | CEO, business units, board | CFO, banks (covenants, headroom), board (liquidity) |
+| **FX** | Sets [budget rates](term:budget-rate); explains FX variances in the P&L | Measures exposure against the forecast; hedges; reports hedge rates achieved |
+| **Capex** | Plans and approves projects | Times the cash out; funds it |
+| **Medium-term cash** | Provides the plan | Converts it to cash ([indirect method](term:indirect-method)); owns liquidity and funding conclusions |
+
+## What moves between them
+
+| From → to | What | When |
+|---|---|---|
+| FP&A → treasury | Budget and rolling forecast (revenue, EBITDA, capex, working-capital assumptions) | Monthly / quarterly |
+| FP&A → treasury | Budget FX rates and currency split of the plan | Annually, with updates |
+| Treasury → FP&A | Short-term cash forecast and actual cash vs forecast | Weekly / monthly |
+| Treasury → FP&A | Hedged rates for the coming year; interest cost forecast | When hedges are placed; at budget time |
+| Both → CFO | Two views of the future that must tell one story | Monthly |
+
+## Common confusions
+
+<Callout type="confusion" title="Two forecasts, both right">
+
+FP&A at [Helvetic](co:helvetic) shows Q3 EBITDA of CHF 22m. Treasury shows Q3 net cash flow of −CHF 4m. Both are right: customers pay on 60–90-day terms, the CHF 9m tax prepayment falls in Q3, and inventory is building for Q4 deliveries. The CFO needs both. A beginner's mistake is to ask a treasurer about "the forecast" without saying which one — see also [Treasury and its neighbours](/start/neighbours).
+
+</Callout>
+
+<Callout type="confusion" title="Who owns the 13-week forecast?">
+
+At most groups with a treasurer, treasury owns it. But in SMEs and in companies where controlling is strong (common in DACH), the controller may own a monthly cash forecast and treasury only the next few weeks — or the CFO asks FP&A because FP&A has the headcount. Ask who produces it, not who "should".
+
+</Callout>
+
+## Where it breaks
+
+- **Different assumptions.** FP&A assumes a big order in September; the subsidiary told treasury it slipped to November. Nobody reconciles until the CFO sees both.
+- **Budget rates vs hedging.** If FP&A set EUR/CHF at 0.94 and spot is 0.93, the business asks treasury why it "lost" money — even if the hedges did exactly what the policy required. Clear agreement on what hedging is supposed to protect (budget rate? margin? cash?) prevents this.
+- **Medium-term gaps.** Treasury's weeks 9–13 and months 4–12 depend on FP&A's plan being translated into cash; payment terms, tax timing and capex phasing are often missing from the plan.
+- **Timing.** FP&A's monthly forecast arrives after the close, treasury needs it earlier to plan funding.
+
+<Example title="Reconciling the two views at Helvetic" company="helvetic" open>
+
+Every month, Lea (Treasury Analyst) and a member of Marco's FP&A team compare the treasury forecast for months 2–4 with FP&A's rolling forecast converted to cash. In October the gap is CHF 11m:
+
+| Item | FP&A-based cash view | Treasury forecast | Explanation |
+|---|---|---|---|
+| Customer receipts | CHF 162m | CHF 155m | Treasury uses subsidiaries' view of actual payer behaviour; two Italian customers pay 30 days late |
+| Capex | CHF 12m | CHF 14m | New machining centre deposit falls earlier than FP&A phased it |
+| Tax | CHF 6m | CHF 8m | Tax's calendar has a German prepayment FP&A did not phase |
+| **Net difference** | | **−CHF 11m** | |
+
+Lea documents the gap; Daniel decides the treasury view is more reliable for months 2–3 but uses FP&A's growth assumptions for months 4+. Marco adjusts the working-capital assumption for Italy. Thomas sees one reconciled number and a note, not two competing forecasts.
+
+</Example>
+
+## How it varies
+
+<SizeTabs
+  startup="One person. Sarah (CFO at [Kleio](co:kleio)) builds both the P&L plan for the board and the runway model; runway is the only forecast that matters."
+  sme="Often the controller owns both. At [Alpine](co:alpine) the controller has the project milestone plan; Petra's 13-week cash sheet copies milestone dates from it. Budget FX rates are set by Martin."
+  midmarket="Separate teams under the CFO; a monthly reconciliation is good practice but not universal. At [Helvetic](co:helvetic) Marco sets budget rates with Daniel's input."
+  multinational="Formal: a group forecasting calendar, a forecasting tool that pulls FP&A data, and Group FP&A signing off the currency plan that Jonas's FX desk hedges. The debate is about definitions and accountability for forecast error by reporting unit."
+/>
+
+<Callout type="interview" title="Questions to ask">
+
+- "How does your cash forecast relate to FP&A's forecast — who reconciles them?"
+- "Who sets the budget rate, and how is hedging performance judged against it?"
+- "When the forecasts disagreed last, whose was right and why?"
+
+</Callout>

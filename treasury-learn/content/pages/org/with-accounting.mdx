@@ -1,0 +1,91 @@
+---
+title: Treasury and accounting
+nav: With accounting
+order: 31
+summary: Accounting records what happened; treasury manages the money itself. They exchange data every day — bank statements, deal details, intercompany positions — and most friction sits in three places: reconciliation ownership, month-end booking of treasury deals, and intercompany balances treasury created.
+related: [/org/neighbours, /start/neighbours, /org/responsibility-matrix, /workflows/bank-reconciliation, /workflows/month-end-reporting]
+---
+
+## Who owns what
+
+| Topic | Accounting owns | Treasury owns |
+|---|---|---|
+| **Cash** | The ledger (book) balance by posting date; the bank reconciliation | The bank (value-dated) balance each morning; where cash sits and what to do with it |
+| **Bank statements** | Booking statement lines to the GL | Using them for the [cash position](term:cash-position) before accounting has booked anything |
+| **Treasury deals** (FX forwards, deposits, loans) | Booking, month-end valuation, disclosure, [hedge accounting](term:hedge-accounting) entries | Deciding and executing the deal; providing complete deal data and hedge documentation |
+| **Intercompany loans, pools, netting** | Booking in both entities; [intercompany reconciliation](term:intercompany-reconciliation); consolidation eliminations | Creating the positions, loan agreements, interest calculations |
+| **Debt** | Accruals, classification (current vs non-current), covenant disclosure | Facility management, drawings, covenant calculations |
+| **FX revaluation** | Revaluing foreign-currency balances; translation in consolidation | Measuring and hedging the exposure behind those numbers |
+| **Bank accounts** | GL accounts mapped to bank accounts | The bank account register, mandates and signatories |
+
+At small companies both columns are the same person: at [Alpine](co:alpine) Petra is Head of Accounting *and* runs cash, payments and bank reconciliations; at [Kleio](co:kleio) Nina reconciles and Sarah (CFO) manages the money.
+
+## What moves between them
+
+| From → to | What | When | Typical form |
+|---|---|---|---|
+| Banks → both | Prior-day statements ([camt.053](term:iso-20022) / [MT940](term:mt940)) | Daily | Files into ERP (accounting) and TMS / multibank tool (treasury) |
+| Treasury → accounting | New deals: FX forwards, swaps, deposits, loans, with confirmations | Daily or weekly; complete list at month-end | TMS postings (large groups), Excel deal list (mid-market) |
+| Treasury → accounting | Intercompany loan drawdowns, repayments, interest, pool or netting settlements | Per transaction + month-end | Loan schedule, netting report |
+| Treasury → accounting | Hedge relationships and effectiveness documentation | At inception; each reporting date | Hedge documentation files |
+| Accounting → treasury | Month-end balances, IC balances, EBITDA and net debt per covenant definitions | Monthly / semi-annual | Consolidation reports |
+| Accounting → treasury | Unexplained bank items, reconciliation breaks on treasury accounts | During close | Email, reconciliation tool |
+
+## Common confusions
+
+<Callout type="confusion" title="Book balance vs bank balance">
+
+The ERP says the German account holds EUR 4.2m; the bank says EUR 3.1m. Both can be right: EUR 1.1m of payments were booked yesterday but leave the bank today (or a receipt has hit the bank but is not yet applied). Treasury manages to the bank balance by [value date](term:value-date); accounting reports the book balance. The [bank reconciliation](wf:bank-reconciliation) explains the difference.
+
+</Callout>
+
+<Callout type="confusion" title="Hedging is treasury; hedge accounting is accounting (with treasury's help)">
+
+Treasury decides whether to hedge and executes the forward. [Hedge accounting](term:hedge-accounting) (IFRS 9 in Europe) is an optional accounting treatment that lets gains and losses on the hedge match the hedged item in the P&L; it requires documentation at inception, which treasury usually prepares and accounting approves. A company can hedge economically without applying hedge accounting.
+
+</Callout>
+
+<Callout type="confusion" title="'Controller' again">
+
+In US usage the Controller is the head of accounting. In DACH companies "Controlling" means management accounting and FP&A. When a Swiss treasurer says "Controlling wants the hedge results", they usually mean the people explaining margin variances, not the people booking the hedge. See [Treasury and FP&A](/org/with-fpa).
+
+</Callout>
+
+## Where it breaks
+
+| Break | What happens | Who notices |
+|---|---|---|
+| Treasury deals booked late or incompletely at month-end | Missing forward valuations, wrong interest accruals, audit findings | Group accounting at close; the auditor |
+| Intercompany loan booked on one side only | IC mismatch blocks consolidation; interest wrong | Group accounting in IC reconciliation |
+| Nobody owns reconciliation of the treasury accounts (deposit, pool header, IHB accounts) | Unreconciled items age; fraud or errors hide | Auditor, usually months later |
+| Bank account opened locally, not in treasury's register or GL mapping | Cash outside the position; statements not imported | Year-end bank confirmation — sometimes |
+| EBITDA "per covenant definition" differs from reported EBITDA | Covenant headroom overstated or understated | Treasury, if it reads the loan agreement |
+
+<Example title="June close at Helvetic" company="helvetic" open>
+
+**30 June, 17:00.** Lea exports Helvetic's deal list: 14 open EUR/CHF forwards (EUR 42m notional), two USD/CHF forwards, a EUR 6m 1-month deposit placed with the German bank, and the intercompany loans (HM Deutschland, HM Italia, HM Suzhou). She sends it to Claudia's team with the bank confirmations attached.
+
+**2 July.** Claudia's team books the forwards at month-end fair value using rates Lea provides, and documents the hedge relationships already set up with Daniel. The Italian loan balance matches. HM Deutschland does not: the parent shows EUR 8.2m, Jens's team EUR 8.0m. Daniel's EUR 0.2m top-up on 29 June was booked by the parent but not yet by the German entity.
+
+**3 July.** Jens books it; the mismatch clears. Lea updates the semi-annual covenant calculation with Claudia's EBITDA, adjusted as the RCF agreement defines it (net debt / EBITDA must be ≤ 3.25x). Thomas signs the compliance certificate.
+
+**Who did what:** Lea (treasury) supplied deal and loan data; Claudia's team (accounting) booked, valued and reconciled; Jens (subsidiary finance) fixed the local booking; Daniel explained the top-up; Thomas approved. No one person owns the whole chain — which is why the June close depends on email.
+
+</Example>
+
+## How it varies
+
+<SizeTabs
+  startup="No interface: the accountant (Nina at [Kleio](co:kleio)) reconciles and books everything, including Sarah's occasional FX conversions and deposits. The fiduciary reviews at year-end."
+  sme="Treasury lives inside accounting. At [Alpine](co:alpine) Petra books the forwards Martin traded and reconciles the bank accounts she also pays from — auditors look for compensating controls such as Martin reviewing the reconciliation."
+  midmarket="Two teams under the CFO. Treasury sends deal lists and IC schedules, often in Excel; group accounting books. Month-end is the main friction point. A TMS project (Helvetic is evaluating one) typically starts because this hand-off does not scale."
+  multinational="Treasury deals post automatically from the TMS/SAP treasury module to the GL; the SSC reconciles operating accounts; treasury back office reconciles in-house bank and deal accounts. Friction moves to data mapping, hedge-accounting documentation and IC reconciliation across 40 entities."
+/>
+
+<Callout type="interview" title="Questions to ask">
+
+- To treasury: "What do you send accounting at month-end, and what do they send back?" "Who reconciles your deposit and loan accounts?"
+- To accounting: "Which treasury items cause you the most work at close?" "How do you learn about a new intercompany loan?"
+- To both: "When did the ERP and the bank last disagree by a lot, and who figured out why?"
+
+</Callout>

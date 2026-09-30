@@ -1,0 +1,41 @@
+---
+title: Bank connectivity and payment vendors
+nav: Connectivity & payments
+order: 6
+summary: The plumbing (statements in, payment files out) and the control layer on top (approvals, fraud checks, payment factories). Execution systems where errors move real money — high trust barrier, sticky once in.
+related: [/systems/bank-connectivity, /workflows/payment-processing, /competitors/landscape, /competitors/tms]
+---
+
+For how [EBICS](term:ebics), [host-to-host](term:host-to-host), [Swift](term:swift) and [API banking](term:api-banking) work, see [Systems → bank connectivity](/systems/bank-connectivity).
+
+## Two layers
+
+| Layer | What it does | Who sells it | Workflows |
+|---|---|---|---|
+| **Connectivity** | Collects statements ([camt.053](term:iso-20022)/[MT940](term:mt940)) from every bank; delivers [pain.001](term:pain-001) files; maintains bank formats and certificates | [Swift service bureaus](term:swift-service-bureau), TMS vendors (built in), connectivity specialists, API aggregators | [Daily cash positioning](wf:daily-cash-positioning), [bank reconciliation](wf:bank-reconciliation), [bank account management](wf:bank-account-management) |
+| **Payment hub / control** | Collects payment files from several ERPs, applies approval workflow, sanctions and fraud screening, routes to banks, tracks status | Payment-hub specialists (TIS, Serrala, Bottomline — not re-verified), TMS payment modules, SAP | [Payment processing](wf:payment-processing), [large payment approval](wf:large-payment-approval), [fraud investigation](wf:fraud-investigation) |
+
+<Callout type="field" title="Why connectivity is harder than it looks">
+
+Each bank implements ISO 20022 slightly differently, each country has its own channels, and each new bank account needs mandates, certificates and testing. Migration deadlines keep adding work: Swift ended MT/MX coexistence for cross-border payment instructions in November 2025, while statement messages such as MT940 remain in use for now[](cite:swift-iso-mt9xx); Swiss banks discontinue the 2009 ISO message versions on 21 November 2026[](cite:six-sps-cash-mgmt). Every such change is work for whoever maintains the formats — the vendor or the treasury team.
+
+</Callout>
+
+## Entries
+
+<CompetitorTable category="bank-connectivity,payments" />
+
+<Callout type="synthesis" title="What this means for a new entrant">
+
+Execution systems carry the highest trust burden in treasury: a wrong or fraudulent payment may be irrecoverable, and the approval chain is part of the company's control framework and bank mandates. Buyers ask about security, liability and audit before features. Entering here usually means either partnering with an existing connectivity provider or accepting a long sales cycle.
+
+</Callout>
+
+<Callout type="interview" title="Questions">
+
+- "How do payments get from your ERP to the bank today — file, portal upload, or re-keying?"
+- "Who can release a payment, and in which system? Does that match your bank mandates?"
+- "When a bank changes its format, who finds out, and who fixes it?"
+- "What happened the last time a payment file was rejected?"
+
+</Callout>

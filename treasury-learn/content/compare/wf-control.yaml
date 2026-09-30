@@ -1,0 +1,30 @@
+# "Same problem, four companies" topics for stream wf-control.
+- id: month-end-treasury-report
+  title: Month-end treasury reporting
+  question: What treasury information reaches management and the board after each month-end, and who prepares it?
+  cells:
+    kleio: "One slide in Sarah's monthly board/investor update: cash by bank (CHF ~22m, of which CHF 8m in deposits), net burn CHF ~0.9m, runway, USD balance. Nina books deposit interest. No separate treasury report."
+    alpine: "Petra's monthly management pack (ready around WD8) shows cash by bank and currency, credit-line usage (e.g. CHF 3m of 12m drawn) and open EUR forwards copied from the bank's confirmations. Martin comments on it at the quarterly board meeting."
+    helvetic: "Lea delivers the accounting pack by WD2 (balances, forwards with bank valuations, accruals, intercompany statements) and the report tables by WD4; Daniel writes the commentary; Thomas gets 4–8 pages by WD5: net debt, headroom, hedges, bank limits, forecast accuracy, covenant estimate. Quarterly extract to the audit committee."
+    globalchem: "TMS-generated postings and reconciliations by WD2–WD3 from Marta's back office; risk reports from Jonas's team; Anna's quarterly audit-committee report covers liquidity, rating metrics, refinancing, counterparty exposure and breaches; Olivier supplies rating-agency and lender metrics."
+  takeaway: "The data work gets automated as companies grow; the part that stays human is the commentary — what the CFO and board should worry about next quarter."
+
+- id: payment-fraud-response
+  title: When a fraudulent payment has gone out
+  question: Who picks up the phone, and what happens in the first 24 hours after a paid fraud is discovered?
+  cells:
+    kleio: "Sarah does everything: calls the Swiss bank's hotline, files an online police report, tells the board chair. No incident procedure, no insurer contact prepared; a CHF 50k loss is painful, a CHF 500k loss would shorten runway visibly."
+    alpine: "Petra discovers it, Martin calls the house bank's relationship manager (who redirects to the fraud desk), an external lawyer files the police report. The board then requires collective signature for bank-detail changes."
+    helvetic: "Daniel calls the paying bank's fraud desk within the hour and requests a recall and freeze; Lea scopes all entities; Giulia handles the local side; Thomas forms an incident team with IT security and counsel and notifies the crime insurer."
+    globalchem: "A documented procedure: the payment factory stops and recalls, a financial-crime function coordinates, corporate security and legal lead, internal audit reviews. Many near misses a month are logged and fed into training — including deepfake video-call attempts."
+  takeaway: "Recovery depends on hours, not days — and at smaller companies the first hour is often lost finding out whom to call."
+
+- id: treasury-policy-in-practice
+  title: Treasury policy and limits
+  question: Is there a treasury policy, who approved it, and who checks that it is followed?
+  cells:
+    kleio: "A one-page board resolution written after SVB: at least two Swiss banks, maximum CHF 15m per bank, deposits up to 6 months. Sarah reports compliance on one line of the board deck."
+    alpine: "A board minute allowing FX forwards up to 12 months with the two Swiss banks; joint signature for payments. The auditor has recommended a written hedging policy two years running."
+    helvetic: "A written policy approved by the board each December; Lea checks bank limits and hedge ratios in Excel monthly; breaches go into Thomas's report; the two-person team relies on group accounting for independent deal confirmation."
+    globalchem: "A policy framework with sub-policies, a middle office independent of the dealers running daily TMS limit checks, a monthly treasury committee, quarterly audit-committee reporting and regular internal audits of treasury."
+  takeaway: "Policies scale from a board minute to a framework; the constant weak spot is keeping bank mandates, system rights and people in line with what the paper says."

@@ -1,0 +1,54 @@
+---
+title: The full competitor landscape
+nav: Full landscape
+order: 3
+summary: Every entry on one page, as a category × customer-size map and a filterable list. Each entry states what the vendor sells, who it targets, its core workflow, positioning, strengths, evidence-bounded gaps or open questions, its system type, HQ, ownership with date, and sources — plus a verification badge.
+related: [/competitors, /competitors/method, /systems/vendors, /lens/candidates]
+---
+
+<Callout type="warning" title="Status as of 30 September 2026 — mostly unverified">
+
+Only entries marked **Key facts sourced** had their ownership/funding checked (against search-result snippets from the cited publisher). **Not re-verified** means background knowledge up to mid-2026; **Watchlist** means the name came from the research brief and nothing was verified. See [Method](/competitors/method) for why, and for how to check facts yourself.
+
+</Callout>
+
+## Map: category × customer size
+
+Where each vendor says it plays. Click a name to jump to its entry below. Rows link to the category pages.
+
+<CompetitorMap />
+
+<Callout type="synthesis" title="What the map shows at a glance">
+
+- The **multinational column is crowded with systems of record and execution venues** — established TMS suites, ERP treasury, payment hubs, multi-dealer platforms. A newcomer there usually sells *on top of* those, not instead of them.
+- The **mid-market column is where established SaaS TMS vendors and newer API-first platforms overlap**. It is also where the status quo (Excel plus bank portals) is most often still the real incumbent.
+- The **SME and startup columns are thin for treasury-specific software**. What exists is forecasting/cash visibility and FX payment providers; most companies here use their banks and a spreadsheet.
+- The **agents row is empty of verified entries**. That is a statement about this session's evidence, not proof that no product exists — see [AI features and agents](/competitors/ai-and-agents).
+
+</Callout>
+
+## All entries
+
+Filter by customer size or system type, or search any text (e.g. "hedge accounting", "SAP", "stablecoin"). Rows expand to the full entry. Each entry lists the canonical workflows it touches, so you can go straight to what the treasurer actually does.
+
+<CompetitorTable />
+
+## Reading across the entries
+
+<Callout type="synthesis" title="Patterns worth testing in interviews">
+
+1. **Scope creep is the norm.** Nearly every category is expanding into its neighbours: forecasting tools add payments, payment hubs add cash visibility, TMS suites add AI and supply-chain finance. When two vendors "compete", check whether the customer is actually buying the same workflow from both.
+2. **The human judgement steps are rarely what's sold.** Products automate data collection (statements, open items, exposures) and execution (trades, payments). The decision in between — how much to hedge, whether to fund a subsidiary today, why the forecast missed — is still the treasurer's in nearly all documented product scopes. That is where the [Agentic Treasury](/lens) section looks for opportunities, and where trust is hardest to earn.
+3. **Ownership changes create windows.** A change of owner (e.g. GTreasury to Ripple in 2025[](cite:comp-ripple-gtreasury-pymnts)) is a moment when customers re-evaluate. Whether they actually switch is an empirical question — ask them.
+4. **Swiss and European specifics matter.** In Switzerland, EBICS and bank-specific ISO 20022 implementations, QR-bill and the SIC system shape connectivity and payments; tools that started in the US may have been built first around US bank APIs and ACH. Ask European interviewees how well a US-built product handled their banks.
+
+</Callout>
+
+## Missing from this landscape (known omissions)
+
+- **Banks' own treasury tools** (multi-bank reporting, liquidity portals, FX e-platforms from UBS, J.P. Morgan, Citi, HSBC and others) are major de-facto competitors but are not profiled.
+- **Swiss-specific software** (e.g. treasury and payment modules used by Swiss mid-market companies alongside Abacus or SAP) is not covered.
+- **Consultancies and outsourced treasury** (treasury-as-a-service, advisory firms that run hedging programmes) appear only via Chatham Financial.
+- **US startup-banking yield products** that market themselves as "treasury" for startups are not profiled; they compete for the [Kleio](co:kleio)-sized company's idle cash, not for the treasurer's workflow.
+
+These are requests for the next research pass, listed in the stream notes.

@@ -1,0 +1,172 @@
+---
+title: Debt & financing
+nav: Debt & financing
+order: 6
+cluster: markets
+summary: Borrowing money and keeping access to it — bank loans and credit lines, bonds, commercial paper — and living with what comes attached - covenants, maturities, interest-rate risk and relationships with banks, investors and rating agencies.
+subtopics: [loans, revolving credit facilities, bonds, covenants, refinancing, commercial paper, interest-rate risk, capital markets]
+related: [/map/risk, /map/banking, /map/cash-management, /org/roles-debt, /org/roles-head-of-treasury]
+---
+
+<TreasuryMap focus="debt" />
+
+Debt management is the **slowest-moving** part of treasury: a bond is issued once every few years, an RCF is renegotiated every three to five. But it is where the largest single decisions sit, and it constrains everything else — the covenants limit leverage and dividends, the RCF is the liquidity backstop, and the maturity profile decides when the company must go to market whether conditions are good or not. It is typically owned by the CFO and head of treasury, with a dedicated [corporate finance](/org/roles-debt) team only at large companies.
+
+<Callout type="survey" title="What treasurers say is driving debt decisions">
+
+In the ACT / Herbert Smith Freehills Corporate Debt and Treasury Report 2025, 76% of respondents expected macroeconomic and geopolitical factors to have a considerable influence on their debt strategy, up from 41% the previous year[](cite:act-hsf-debt-2025). The sample is UK-weighted, larger corporates.
+
+</Callout>
+
+## The four companies' debt at a glance
+
+| | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Instruments | None (CHF 5m [venture debt](term:venture-debt) offer) | CHF 12m committed operating line (CHF 0–5m drawn); CHF 6m mortgage | CHF 200m syndicated RCF (4 banks, ~CHF 60m drawn); CHF 100m SIX-listed bond due 2028 | ~CHF 3bn CHF/EUR bonds; EUR 1.5bn RCF (undrawn backstop); EUR CP programme |
+| Counterparties | Venture lender | House bank | Four RCF banks, bond investors | 7 core banks, bond investors, CP investors, rating agencies |
+| Covenants | Minimum cash CHF 5m (proposed) | Equity ratio and reporting duties to the bank | Net debt/EBITDA ≤ 3.25x; interest cover ≥ 4x, semi-annual | Few or none in bonds; rating-driven discipline |
+| Who manages | Sarah + board | Martin; Petra sends figures | Daniel operates, Thomas decides, board approves | Olivier's corporate finance team; Anna; board |
+
+## Loans
+
+**Plain:** borrowing a fixed amount from a bank and paying it back over time or at the end. **Professional:** bilateral or [syndicated](term:syndicated-loan) [term loans](term:term-loan) (amortising or bullet) priced at [reference rate](term:reference-rate) + [credit margin](term:credit-spread), or fixed; secured (mortgage, pledge) or unsecured; documented in a facility agreement with representations, undertakings and events of default. Swiss SMEs typically borrow through a **current-account credit line** ([Kontokorrentkredit](term:current-account-credit)) and fixed advances or mortgages from their house bank; larger groups use syndicated facilities on [LMA](term:lma)-based documentation.
+
+Example: Alpine's CHF 6m mortgage on the Winterthur plant is a 10-year fixed-rate loan from the cantonal bank, amortising CHF 200k a year. Kleio's venture-debt offer is a CHF 5m term loan: 12 months interest-only, 30 months amortisation, warrants for the lender and a CHF 5m minimum-cash covenant — which, with ~CHF 0.9m monthly burn, could bite well before the loan is repaid unless Kleio raises equity.
+
+- **Drives:** [credit facility management](wf:credit-facility-management), [acquisition integration](wf:acquisition-integration).
+- **Terms:** [term loan](term:term-loan), [venture debt](term:venture-debt), [fixed vs floating](term:fixed-vs-floating), [negative pledge](term:negative-pledge), [event of default](term:event-of-default).
+
+**Ask:**
+- "Which lenders do you have, and why those?"
+- "Walk me through your last new loan — who negotiated, who approved, what took longest?"
+- "What security or guarantees did the bank ask for?"
+
+## Revolving credit facilities
+
+**Plain:** a credit line you can draw, repay and draw again for several years. **Professional:** an [RCF](term:rcf) is a [committed facility](term:committed-facility), usually 3–5 years plus [extension options](term:extension-option), from one bank or a syndicate. Drawings are requested from the [facility agent](term:facility-agent) with a few days' notice via a [utilisation request](term:utilisation-request) for an [interest period](term:interest-period); pricing = margin (often with a [leverage-based ratchet](term:margin-ratchet)) + [commitment fee](term:commitment-fee) on undrawn amounts + [utilisation fees](term:utilisation-fee). For investment-grade groups the RCF is mostly an undrawn **backstop** (for CP and rating agencies); for mid-market companies it is a working funding line.
+
+<Example title="Running Helvetic's RCF" company="helvetic" open>
+
+- **Every 1–3 months:** as each drawing's interest period ends, Daniel decides how much to roll over. The 13-week forecast shows CHF 6m of surplus at the parent, so he rolls CHF 54m instead of CHF 60m: a utilisation request to the agent by 11:00 three business days before, value date matching the maturing drawing.
+- **Cost (illustrative):** CHF 60m drawn at SARON ≈ 0% + 0.90% margin ≈ CHF 540k a year; commitment fee on the CHF 140m undrawn at 35% of margin ≈ 0.315% ≈ CHF 440k a year. The undrawn "insurance" costs almost as much as the borrowing — Thomas has to justify the facility size to the board.
+- **Twice a year:** covenant calculation and [compliance certificate](term:compliance-certificate) (see below).
+- **2026:** the RCF runs to 2027; with the CHF 100m bond due in 2028, Daniel wants an [amend-and-extend](term:amend-and-extend) this year so that committed bank money covers the bond maturity if the market is closed.
+
+</Example>
+
+- **Drives:** [credit facility management](wf:credit-facility-management), [liquidity planning](wf:liquidity-planning), [liquidity crisis](wf:liquidity-crisis).
+- **Terms:** [RCF](term:rcf), [committed vs uncommitted](term:committed-facility), [drawdown](term:drawdown), [commitment fee](term:commitment-fee), [syndicated loan](term:syndicated-loan), [facility agent](term:facility-agent), [ancillary facility](term:ancillary-facility).
+
+<Callout type="confusion" title="An overdraft is not an RCF">
+
+An [overdraft](term:overdraft) or uncommitted line can be cancelled by the bank at any time — usually when you need it most. Only committed facilities normally count towards liquidity headroom. Ask interviewees which of their lines are committed and until when.
+
+</Callout>
+
+**Ask:**
+- "How much of your credit line is drawn on a typical day, and what drives the decision to draw or repay?"
+- "How do you justify the size of the undrawn facility and its cost?"
+- "Who talks to the agent bank, and how is a drawdown actually requested?"
+
+## Bonds
+
+**Plain:** borrowing from many investors at once by selling tradeable IOUs. **Professional:** a [bond](term:bond) has a fixed principal, [maturity](term:maturity) and usually fixed [coupon](term:coupon); issued publicly (in Switzerland typically listed on SIX, with banks as lead managers and a prospectus) or privately. Bonds offer longer tenors and diversification from banks, but require disclosure, documentation, investor relations and are hard to amend. Swiss mid-caps without a rating do issue in the domestic CHF bond market; larger groups issue EUR and USD benchmark bonds with a [credit rating](term:credit-rating).
+
+Example: Helvetic's CHF 100m 7-year bond (issued 2021, 1.25% coupon, due 2028) costs CHF 1.25m a year in interest; the coupon payment in week 6 is one of the lumpy items in the 13-week forecast. GlobalChem's ~CHF 3bn of bonds are spread across CHF and EUR issues with maturities of about CHF 500m in each of 2027 and 2029.
+
+- **Terms:** [bond](term:bond), [coupon](term:coupon), [yield](term:yield), [maturity](term:maturity), [credit rating](term:credit-rating), [investment grade](term:investment-grade).
+
+**Ask:**
+- "How was the decision to issue a bond (rather than more bank debt) made, and who was involved?"
+- "Which banks led the deal, and why them?"
+- "What ongoing work does the bond create — reporting, investor calls, rating reviews?"
+
+## Covenants
+
+**Plain:** promises the borrower makes to lenders — such as keeping debt below a multiple of earnings — that let lenders act if broken. **Professional:** [covenants](term:covenant) include financial covenants (e.g. [net debt](term:net-debt)/[EBITDA](term:ebitda) maximum, [interest cover](term:interest-cover) minimum, [equity ratio](term:equity-ratio)), tested on defined dates using the agreement's own definitions ([EBITDA adjustments](term:ebitda-adjustments), [frozen GAAP](term:frozen-gaap)); information undertakings; and restrictions ([negative pledge](term:negative-pledge), disposals, dividends). A breach is an [event of default](term:event-of-default) that can trigger [cross-default](term:cross-default) in other debt unless a [waiver](term:covenant-waiver) is agreed.
+
+<Example title="Helvetic's covenant test, 30 June" company="helvetic">
+
+| | Covenant definition | Value |
+|---|---|---|
+| Net debt | RCF CHF 60m + bond CHF 100m + leases CHF 25m − cash CHF 41m | CHF 144m |
+| Covenant EBITDA (LTM) | Reported CHF 85m + CHF 3m restructuring add-back | CHF 88m |
+| Leverage | 144 ÷ 88 | **1.6x** (limit 3.25x) |
+| Interest cover | 88 ÷ 5 | **17.6x** (minimum 4x) |
+
+[Covenant headroom](term:covenant-headroom): EBITDA could fall by roughly half before leverage hits 3.25x (all else equal). Lea prepares the calculation from Claudia's consolidated figures; Daniel checks definitions; Thomas signs the compliance certificate; the agent distributes it to the four banks within the deadline after the half-year accounts.
+
+</Example>
+
+- **Drives:** [covenant monitoring](wf:covenant-monitoring), [month-end reporting](wf:month-end-reporting), [acquisition integration](wf:acquisition-integration).
+- **Terms:** [covenant](term:covenant), [leverage ratio](term:leverage-ratio), [interest cover](term:interest-cover), [covenant headroom](term:covenant-headroom), [compliance certificate](term:compliance-certificate), [equity cure](term:equity-cure).
+
+<Callout type="confusion" title="Covenant EBITDA ≠ reported EBITDA">
+
+The loan agreement defines its own EBITDA and net debt, with add-backs and exclusions negotiated at signing. Treasury and accounting sometimes argue about which items qualify. When an interviewee says "we're at 1.6x", ask "on the covenant definition?"
+
+</Callout>
+
+**Ask:**
+- "Which covenants do you have, and how much headroom? Who calculates it?"
+- "Have you ever been close to a covenant? What did you do?"
+- "Do you project covenants forward in the liquidity plan, or only test them after the fact?"
+
+## Refinancing
+
+**Plain:** replacing debt that is coming due with new debt, ideally well before it is due. **Professional:** managing [refinancing risk](term:refinancing-risk) via a smooth maturity profile, refinancing 12–24 months ahead, keeping committed backstop facilities, and diversifying sources (banks, bonds, [Schuldschein](term:schuldschein), [private placements](term:private-placement)). Refinancing is also when pricing, covenants and bank group composition are renegotiated, often via [amend-and-extend](term:amend-and-extend).
+
+Example: Olivier plans GlobalChem's 2027 CHF 500m maturity 18 months ahead: pre-fund with a new CHF or EUR bond when markets are open, use the undrawn EUR 1.5bn RCF as fallback, and model the effect on net debt/EBITDA against the rating agencies' thresholds. Helvetic's version of the same problem is smaller but more dangerous: one bond (CHF 100m, 2028) and one RCF (2027) — if both renegotiations go badly in the same year, the group depends on four banks' goodwill.
+
+- **Drives:** [credit facility management](wf:credit-facility-management), [liquidity planning](wf:liquidity-planning).
+- **Terms:** [refinancing risk](term:refinancing-risk), [maturity](term:maturity), [amend-and-extend](term:amend-and-extend), [extension option](term:extension-option).
+
+**Ask:**
+- "When is your next big maturity, and when did you start working on it?"
+- "What would you do if the bond market were shut when you need to refinance?"
+- "Who decides between bank debt, a bond or a Schuldschein?"
+
+## Commercial paper
+
+**Plain:** very short-term IOUs (days to months) that large, highly rated companies sell to money-market investors. **Professional:** [commercial paper](term:commercial-paper) is issued under a programme (e.g. Euro CP, French NEU CP, US CP) through dealer banks, typically 1 week–12 months, usually unsecured and backed by an undrawn RCF because investors need confidence the CP can be repaid if the market closes. Cheap and flexible for investment-grade issuers; effectively unavailable to unrated mid-caps.
+
+Example: GlobalChem issues EUR 200–500m of CP to fund seasonal working capital; each week Priya's team decides how much to roll based on the 10-day forecast (e.g. rolling EUR 50m of EUR 120m maturing and repaying the rest from netting inflows). Helvetic cannot issue CP — no rating and too small — so its RCF does the same job at higher cost.
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [daily cash positioning](wf:daily-cash-positioning).
+- **Terms:** [commercial paper](term:commercial-paper), [RCF](term:rcf), [credit rating](term:credit-rating).
+
+**Ask:** "How much CP do you issue and who decides each roll?" · "What is the RCF backstop sized to?" · "What happened to your CP market access in March 2020?"
+
+## Interest-rate risk
+
+**Plain:** the risk that rate changes raise what you pay on debt (or lower what you earn on cash). **Professional:** [interest-rate risk](term:interest-rate-risk) from floating-rate debt (cash-flow risk) and fixed-rate debt (opportunity/fair-value risk), managed by a policy target for the [fixed/floating](term:fixed-vs-floating) mix and duration of debt, using fixed-rate issuance, [interest-rate swaps](term:interest-rate-swap) and [caps](term:interest-rate-cap). Since the LIBOR transition, floating loans reference overnight [risk-free rates](term:reference-rate) (SARON, €STR, SOFR) compounded in arrears.
+
+Example: Helvetic's CHF 60m RCF drawing floats at SARON; a 1-percentage-point rise would add CHF 0.6m of interest a year — small against CHF 88m EBITDA, so Daniel does not hedge. GlobalChem targets 60–80% fixed across its debt; its rolling CP makes part of the portfolio floating, and Jonas's team reports the mix quarterly.
+
+- **Terms:** [interest-rate risk](term:interest-rate-risk), [interest-rate swap](term:interest-rate-swap), [interest-rate cap](term:interest-rate-cap), [reference rate](term:reference-rate), [basis point](term:basis-point).
+
+**Ask:** "What fixed/floating mix do you target, and why?" · "Do you use swaps, and who executes them?" · "How did the 2022–2023 rate rises change your debt decisions?"
+
+## Capital markets
+
+**Plain:** raising money from investors rather than banks — bonds, private placements, and (outside treasury's usual scope) shares. **Professional:** debt capital markets access depends on size, rating, disclosure and investor familiarity; alternatives range from the domestic CHF bond market (unrated issuers possible), [Schuldschein](term:schuldschein) (German-law loan sold to institutions, popular with DACH mid-caps), [US private placements](term:private-placement), to public EUR/USD benchmark bonds for rated groups. Treasury prepares the funding plan, selects banks, manages ratings and runs execution with legal counsel; equity raises are usually led by the CFO and corporate development.
+
+Example: Olivier meets S&P and Moody's annually and before any large acquisition, walking them through the funding plan and the leverage path back below the downgrade threshold. GlobalChem (BBB+/Baa1) aims to keep one notch of buffer above the [investment-grade](term:investment-grade) boundary. Helvetic, unrated, would consider a Schuldschein to replace or supplement its CHF bond in 2028.
+
+- **Drives:** [credit facility management](wf:credit-facility-management), [acquisition integration](wf:acquisition-integration).
+- **Terms:** [credit rating](term:credit-rating), [investment grade](term:investment-grade), [Schuldschein](term:schuldschein), [private placement](term:private-placement), [gearing](term:gearing).
+
+**Ask:** "How often do you speak with rating agencies, and who prepares those meetings?" · "Which markets could you access tomorrow if you needed to?" · "Who decides between debt and equity?"
+
+## Who does this work, by company size
+
+<SizeTabs
+  startup="**Kleio.** No debt; the question is whether venture debt extends runway or creates a covenant trap. Sarah models it; the board and lead investor decide. Banks are more interested in Kleio's deposits than in lending to it."
+  sme="**Alpine.** Martin owns the house-bank relationship and the credit line; Petra sends the bank quarterly figures and the annual accounts. There is no debt strategy beyond 'keep the line, keep the bank happy'."
+  midmarket="**Helvetic.** Daniel runs the RCF day to day and the covenant calculations; Thomas and the board decide refinancing and new instruments, supported by the banks' advisory teams and lawyers. No dedicated corporate finance team."
+  multinational="**GlobalChem.** Olivier's corporate finance team: funding plan, bond and CP issuance, RCF, rating agencies, maturity management; Jonas's team runs interest-rate hedging; Anna and Markus (CFO) take decisions to the board."
+/>
+
+<CompanyCompare topic="map-debt" />
+
+Related workflows: <Workflows ids={["credit-facility-management", "covenant-monitoring", "liquidity-planning", "acquisition-integration"]} />

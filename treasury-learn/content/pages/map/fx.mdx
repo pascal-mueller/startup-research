@@ -1,0 +1,186 @@
+---
+title: Foreign exchange (FX)
+nav: FX
+order: 5
+cluster: markets
+summary: Identifying where currency moves can hurt the company — invoices, forecast sales and costs, foreign subsidiaries — and deciding whether, how much and with which instrument to hedge. Mostly measurement and policy; the trade itself takes minutes.
+subtopics: [exposure, transaction exposure, translation exposure, spot, hedging, forwards, swaps, options, natural hedging, hedge ratios]
+related: [/map/risk, /map/cash-forecasting, /map/payments, /org/roles-fx-risk]
+---
+
+<TreasuryMap focus="fx" />
+
+A Swiss company that sells in euros and pays its staff in francs has an FX problem whether or not anyone manages it: if EUR/CHF falls from 0.94 to 0.87 (−7.5%), every euro of margin buys fewer francs. FX management is **finding those exposures, measuring them, and deciding which to reduce** — through business decisions (where to produce, which currency to invoice), [natural hedges](term:natural-hedge) and financial instruments. The dealing itself is a small part of the job; getting a reliable exposure number from the business is the large part.
+
+<Callout type="concept" title="Why Swiss companies care more than most">
+
+The franc is a safe-haven currency that tends to strengthen in crises; Swiss exporters with CHF costs and EUR/USD revenues are structurally "short" foreign currency. The 2015 removal of the EUR/CHF floor is still the reference event for Swiss treasurers — see [economic exposure](term:economic-exposure). For scale: global FX turnover was USD 9.6tn a day in April 2025, with the USD on one side of 89% of trades[](cite:bis-triennial-2025) — corporate hedges are a tiny share, priced off that market.
+
+</Callout>
+
+## Who does this work, by company size
+
+| Task | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
+|---|---|---|---|---|
+| Identify / measure exposure | Sarah, roughly, in the runway sheet | Petra lists signed EUR projects; Martin judges | Lea from the 13-week forecast + subsidiary templates | Jonas's [FX & risk team](/org/roles-fx-risk), from entity submissions and ERP |
+| Decide hedge | Sarah (rarely hedges) | Martin, under a board minute | Daniel within policy band; Thomas above | Jonas within policy; Anna / treasury committee for policy |
+| Execute | Sarah converts at spot in the bank portal | Martin phones the large Swiss bank | Daniel on a bank platform, two banks quoting | Dealers on a [multi-dealer platform](term:multi-dealer-platform) |
+| Confirm / settle | Nina checks the bank advice | Petra | Lea matches confirmations | [Treasury operations](/org/roles-operations) (back office) |
+| Hedge accounting | – | – (Swiss GAAP FER, simple) | Claudia (group accounting) + Daniel | Dedicated treasury accounting in Marta's team |
+
+## Exposure
+
+**Plain:** anything whose value in CHF changes when exchange rates move. **Professional:** [FX exposure](term:fx-exposure) splits into **transaction** exposure (contracted or forecast cash flows in a foreign currency), **translation** exposure (foreign subsidiaries' balance sheets and profits converted into the group's presentation currency) and **economic** exposure (long-term competitiveness). Exposure is measured *net* per currency pair and per entity's [functional currency](term:functional-currency): EUR revenue in a EUR-functional German subsidiary is not an exposure for that subsidiary.
+
+<Example title="Helvetic's EUR exposure, from the forecast" company="helvetic" open>
+
+Lea's quarterly exposure report (next 12 months, CHF-functional parent and group, EUR m):
+
+| | Q1 | Q2 | Q3 | Q4 |
+|---|---|---|---|---|
+| EUR sales invoiced from Switzerland | 48 | 45 | 42 | 50 |
+| EUR costs in Switzerland (German components) | −14 | −13 | −12 | −14 |
+| **Net EUR long** | **34** | **32** | **30** | **36** |
+| Hedged (forwards outstanding) | 25 | 16 | 10 | 5 |
+| **Hedge ratio** | **74%** | **50%** | **33%** | **14%** |
+| Policy band | 60–90% | 30–60% | 30–60% | 30–60% |
+
+Q4 is below the band: Daniel needs to sell about EUR 6m forward for Q4 this month. Where do the numbers come from? Q1 mostly from order backlog (reliable); Q3–Q4 from FP&A's sales forecast (less reliable, which is exactly why the policy hedges less of it).
+
+</Example>
+
+- **Drives:** [FX exposure management](wf:fx-exposure-management), [FX hedging](wf:fx-hedging), [currency shock](wf:currency-shock).
+- **Terms:** [FX exposure](term:fx-exposure), [functional currency](term:functional-currency), [economic exposure](term:economic-exposure), [booked exposure](term:booked-exposure), [exposure report](term:exposure-report).
+
+**Ask:**
+- "Where does your exposure number come from, and who at the subsidiaries provides it?"
+- "Do you hedge booked exposures only, or forecast ones too? How far out?"
+- "What share of your exposure do you think is wrong at the time you hedge it?"
+
+## Transaction exposure
+
+**Plain:** a specific future payment or receipt in a foreign currency whose CHF value is uncertain. **Professional:** [transaction exposure](term:transaction-exposure) arises from receivables, payables, firm commitments (signed orders) and highly probable forecast transactions in a currency other than the entity's functional currency. It hits P&L and cash when the transaction settles at a different rate from the one assumed (often the [budget rate](term:budget-rate)).
+
+<Example title="'USD revenues, CHF costs' at Kleio" company="kleio">
+
+Kleio invoices ~40% of revenue in USD (about USD 6m a year at USD/CHF 0.80) but pays its cloud provider and its 8 US employees in USD too (about USD 5m). Net USD surplus: about USD 1m a year. At USD/CHF 0.80, a 10% USD fall costs about CHF 80k a year — small against CHF 22m of cash. Sarah converts surplus USD to CHF at spot two or three times a year and does not hedge. This is the right answer for Kleio; the same exposure at 20× the size would not be.
+
+</Example>
+
+- **Terms:** [transaction exposure](term:transaction-exposure), [budget rate](term:budget-rate), [spot](term:spot-fx).
+
+**Ask:** "Which currencies do you invoice in, and who decided?" · "Is the budget rate used for pricing, and who sets it?" · "Has a currency move ever changed a pricing or sourcing decision?"
+
+## Translation exposure
+
+**Plain:** the change in the CHF value of a foreign subsidiary when its accounts are converted for the group report. **Professional:** [translation exposure](term:translation-exposure) arises when subsidiaries with other functional currencies are consolidated (IAS 21): net assets are translated at closing rates with differences in other comprehensive income (equity), profits at average rates. It is an accounting effect without an immediate cash flow — until a dividend, sale of the subsidiary or a covenant or rating ratio depends on it. Some groups hedge it with **net investment hedges** (debt or derivatives in the subsidiary's currency).
+
+Example: HM Deutschland's net assets are EUR 80m. If EUR/CHF falls 8% from 0.935 to 0.86, group equity falls by about CHF 6m through OCI. No cash moves. Helvetic does not hedge this; GlobalChem partially hedges its USD net investment because USD-denominated debt naturally offsets it.
+
+- **Terms:** [translation exposure](term:translation-exposure), [functional currency](term:functional-currency), [hedge accounting](term:hedge-accounting).
+
+<Callout type="confusion" title="Translation losses are not cash losses">
+
+A CFO may say "we lost CHF 20m on currency this year" — often mostly translation. Ask which part was cash (transaction) and which was translation, and whether they hedge translation at all (many don't, deliberately).
+
+</Callout>
+
+**Ask:** "Do you hedge net investments? Why or why not?" · "Which covenants or rating ratios move with translation?" · "How does the board react to translation losses?"
+
+## Spot
+
+**Plain:** exchanging one currency for another now (in practice, in two business days). **Professional:** a [spot](term:spot-fx) transaction settles [T+2](term:t-plus-2) for most pairs (T+1 for USD/CAD and some others); same-day or next-day value is possible at a small cost and subject to cut-offs. Corporates use spot for converting receipts, funding foreign-currency payments and settling maturing hedges. Price = market mid plus the bank's spread; competition between banks (or a [multi-dealer platform](term:multi-dealer-platform)) keeps spreads down, and [fixings](term:fx-fixing) are used for benchmarkable execution.
+
+Example: Lea needs USD 2m in the US subsidiary's account on Wednesday for a supplier payment; on Monday she buys USD against CHF at spot from two bank quotes, the better one at 0.8010 (illustrative), and instructs settlement: CHF 1.602m leaves Wednesday, USD 2m arrives Wednesday.
+
+- **Terms:** [spot](term:spot-fx), [T+2](term:t-plus-2), [settlement](term:settlement), [FX fixing](term:fx-fixing).
+
+**Ask:** "How do you get FX prices — phone, bank portal, multi-dealer platform?" · "Do you check what spread you pay?" · "Who confirms and settles the trade?"
+
+## Hedging
+
+**Plain:** taking a position that gains when your business exposure loses, so the two roughly cancel. **Professional:** FX hedging reduces the variability of cash flows or values from rate moves, by policy — not to profit from views. The core decisions: **whether** to hedge (materiality, margin sensitivity, ability to reprice), **how much** ([hedge ratio](term:hedge-ratio), often layered by horizon), **how far ahead**, **which instrument** (forward, option, swap), and **with whom** (bank limits, ISDA in place). A [treasury policy](term:treasury-policy) frames these, and speculative positions are normally forbidden. Hedge accounting (IFRS 9) is a separate decision about how the hedge shows up in P&L.
+
+<Example title="'Should we hedge, how much, which instrument?' at Alpine" company="alpine">
+
+Alpine has just signed a EUR 3.0m project (payments: 30% on order, 50% on delivery in month 5, 20% on acceptance in month 7). Its margin is ~15%, and CHF costs are ~85% of the price. A 7% EUR fall would erase about half the margin. Martin sells EUR 2.1m forward (the delivery and acceptance payments) with the large Swiss bank; the 30% deposit already arrived. He does **not** hedge a EUR 4m bid Alpine may lose — for that the right tool, if any, would be an option. The only "policy" is a board minute allowing hedges of signed contracts up to 12 months.
+
+</Example>
+
+- **Drives:** [FX hedging](wf:fx-hedging), [policy compliance](wf:policy-compliance), [currency shock](wf:currency-shock).
+- **Terms:** [hedge ratio](term:hedge-ratio), [layered hedging](term:layered-hedging), [hedge accounting](term:hedge-accounting), [economic hedge](term:economic-hedge), [hedge documentation](term:hedge-documentation), [ISDA](term:isda).
+
+<Callout type="confusion" title="A hedge that 'lost money' did its job">
+
+If EUR strengthens after Alpine sold EUR forward, the forward shows a loss — and the underlying EUR receipt is worth more. Judging hedges by their own P&L is the most common misunderstanding among non-specialist executives, and a real source of pressure on treasurers.
+
+</Callout>
+
+**Ask:**
+- "Walk me through the last hedge decision: who proposed, who approved, what did you look at?"
+- "What does your policy say, and when did you last deviate or ask for an exception?"
+- "How do you explain hedge results to management when the hedge shows a loss?"
+- "Do you apply hedge accounting? Who does the documentation?"
+
+## Forwards
+
+**Plain:** agreeing today on the exchange rate for a future date. **Professional:** an OTC [forward](term:forward) fixes the rate for delivery on a future value date; forward rate = spot ± [forward points](term:forward-points), reflecting the interest differential. With €STR ≈ 2% and SARON ≈ 0% (illustrative), EUR/CHF forwards are below spot: selling EUR 12 months forward at spot 0.935 gives about 0.917. Forwards are the workhorse of corporate hedging: no upfront premium, but a binding obligation — and a credit line at the bank. Maturing forwards whose underlying flow is late are extended by [hedge rolls](term:hedge-roll) (swaps).
+
+Example: Helvetic sells EUR 6m forward for Q4 dates at about 0.92 (illustrative: spot 0.935 less roughly nine months of a 2% interest differential), split between two banks for price competition and limit usage. Lea books the deals in the hedge spreadsheet and matches the bank confirmations the same day.
+
+- **Terms:** [forward](term:forward), [forward points](term:forward-points), [OTC](term:otc), [hedge roll](term:hedge-roll), [deal confirmation](term:deal-confirmation).
+
+**Ask:** "Why forwards rather than options?" · "What happens when the customer pays late and the forward matures?" · "Do you compare forward quotes between banks?"
+
+## Swaps
+
+**Plain:** exchanging currencies now and reversing the exchange at a fixed rate later — effectively borrowing one currency against another. **Professional:** an [FX swap](term:swap) combines a spot and an opposite forward; it has no net FX exposure and is used for **liquidity** (funding a EUR need from CHF surplus), **rolling** hedges and **balance-sheet hedging** of intercompany loans. Don't confuse with [cross-currency swaps](term:cross-currency-swap) (multi-year, with interest exchanges, used for debt) or [interest-rate swaps](term:interest-rate-swap).
+
+Example: GlobalChem's in-house bank lends USD 150m to its US subsidiary but is funded in EUR. Jonas's team hedges the USD loan receivable with a rolling 3-month EUR/USD swap; the loan revaluation and the swap MtM offset in P&L ([balance-sheet hedging](term:balance-sheet-hedging)), without hedge accounting.
+
+- **Terms:** [FX swap](term:swap), [cross-currency swap](term:cross-currency-swap), [balance-sheet hedging](term:balance-sheet-hedging), [economic hedge](term:economic-hedge).
+
+**Ask:** "Do you use swaps for funding, for rolling hedges, or for balance-sheet positions?" · "Who decides the roll tenor?" · "How much of your FX volume is swaps versus outright hedges?"
+
+## Options
+
+**Plain:** paying a premium for the right, but not the obligation, to exchange at a set rate — like insurance. **Professional:** an [FX option](term:option) (e.g. a EUR put/CHF call) protects against adverse moves while keeping the upside; the premium depends on volatility, tenor and strike. Useful for uncertain exposures (bids, forecast sales further out) where a forward could turn into an unwanted position. Zero-premium structures ([collars](term:collar)) reduce cost by giving up upside; more exotic structures are usually restricted by policy and complicate hedge accounting.
+
+Example: For Alpine's EUR 4m bid, a 6-month EUR put at 0.92 might cost in the order of 1–2% of notional (illustrative; depends on volatility) — EUR 40–80k that is lost if Alpine loses the bid or EUR rises. Martin decides the bid price will include a currency clause instead. GlobalChem uses options for about a fifth of its forecast hedges beyond six months.
+
+- **Terms:** [FX option](term:option), [collar](term:collar), [hedge accounting](term:hedge-accounting).
+
+**Ask:** "Does your policy allow options? Which ones?" · "How does management react to paying premium that 'expires worthless'?" · "What hedges bids or tenders?"
+
+## Natural hedging
+
+**Plain:** matching currencies of income and costs so they cancel out without derivatives. **Professional:** [natural hedges](term:natural-hedge) come from operational choices — producing or sourcing in the currency of sales, invoicing in the cost currency, borrowing in the currency of assets or cash flows (e.g. a EUR [Schuldschein](term:schuldschein) for EUR earnings) — and from [netting](term:netting) opposing exposures across entities before hedging. It reduces cost and hedge volume but is slow to change and imperfect in timing.
+
+Example: Helvetic's German and Czech plants give it EUR and CZK costs against EUR revenue; about a third of its EUR sales are naturally hedged. GlobalChem nets ~30 currencies through the in-house bank each month, cutting the gross amount to hedge by more than half before Jonas's team trades.
+
+- **Terms:** [natural hedge](term:natural-hedge), [netting](term:netting), [economic exposure](term:economic-exposure).
+
+**Ask:** "Which natural hedges do you have, and who knows about them outside treasury?" · "Do you net before hedging?" · "Has FX ever influenced where you produce or buy?"
+
+## Hedge ratios
+
+**Plain:** the percentage of an exposure that is hedged. **Professional:** [hedge ratio](term:hedge-ratio) = hedged amount ÷ exposure, typically set as bands per horizon in the policy ([layered hedging](term:layered-hedging)), declining with forecast uncertainty. In the vendor-sponsored MillTech 2025 survey of ~750 mid-sized corporates, the average reported hedge ratio was about 48% with an average tenor of about 5.3 months[](cite:milltech-fx-2025) — treat as indicative only.
+
+Example: Helvetic's policy — 60–90% of next-quarter net EUR inflows, 30–60% for quarters 2–4, nothing beyond 12 months. In the exposure table above, Q1 at 74% is fine and Q4 at 14% needs topping up.
+
+- **Terms:** [hedge ratio](term:hedge-ratio), [layered hedging](term:layered-hedging), [treasury policy](term:treasury-policy), [cash flow at risk](term:cash-flow-at-risk).
+
+**Ask:** "Why those percentages? Who chose them and when were they last reviewed?" · "What happens when the exposure forecast falls and you are over-hedged?" · "Do you report hedge ratios to the board?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** USD revenue largely offset by USD costs (natural hedge); surplus converted at spot a few times a year. No derivatives, no policy needed. The trap: holding extra USD for its higher interest rate."
+  sme="**Alpine.** Real EUR exposure (45% of revenue, CHF costs) and no written policy — only a board minute. Martin hedges signed projects with forwards by phone; bids and the pipeline are unhedged. The weakness is measurement: nobody maintains an exposure report."
+  midmarket="**Helvetic.** Written policy with bands, exposure from the forecast, layered EUR forwards with two banks, IFRS 9 hedge accounting with group accounting. Excel is the hedge book; a TMS is being evaluated partly for this."
+  multinational="**GlobalChem.** A risk team with front/middle/back office separation, netting before hedging, multi-dealer platform, NDFs for restricted currencies, CFaR reporting, hedge accounting at scale. The hard problem is exposure quality from ~40 entities."
+/>
+
+<CompanyCompare topic="map-fx" />
+
+Related workflows: <Workflows ids={["fx-exposure-management", "fx-hedging", "currency-shock", "policy-compliance"]} />

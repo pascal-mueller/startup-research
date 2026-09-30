@@ -1,0 +1,63 @@
+---
+title: FX / Financial Risk Manager
+nav: FX / Risk Manager
+order: 26
+summary: The FX or financial risk manager turns subsidiaries' currency forecasts into a measured exposure, hedges it within the policy, and gives accounting what it needs for hedge accounting. It is a dedicated role only in larger groups. Most of the difficulty is in the interfaces with subsidiaries, business units, accounting, the CFO, banks and operations, not in the trading.
+related: [/org/roles, /org/roles-treasury-manager, /org/roles-operations, /workflows/fx-exposure-management, /workflows/fx-hedging, /workflows/currency-shock, /map/fx]
+---
+
+## What the role owns
+
+- **Exposure identification:** collecting forecast foreign-currency receipts and payments ([transaction exposure](term:transaction-exposure)) and, where the group hedges it, the net investment in foreign subsidiaries ([translation exposure](term:translation-exposure)).
+- **Hedge requirement:** comparing exposure with existing hedges against the policy's [hedge-ratio](term:hedge-ratio) bands by month and currency.
+- **Execution:** dealing [forwards](term:forward), [swaps](term:swap) and occasionally [options](term:option) with banks, within the dealing mandate.
+- **Hedge effectiveness and documentation:** supplying designations, valuations and effectiveness data so accounting can apply [hedge accounting](term:hedge-accounting).
+- **Policy compliance and reporting:** cover ratios, mark-to-market, sensitivities, breaches.
+- In many groups, also **interest-rate risk** on debt (fixed/floating mix, [interest-rate swaps](term:interest-rate-swap)).
+
+Job adverts show the accounting interface is a core part of the job, not an afterthought. Disney's FX Risk Management manager advert covers transactional and balance-sheet exposures and partnering with Accounting on hedge designation, valuation reviews, journal entries and audit support[](cite:job-disney-fx-risk).
+
+<RoleExists id="fx-risk-manager" />
+
+## Interactions: who gives what, who gets what
+
+| Counterpart | Gives the FX manager | Gets from the FX manager | Where it breaks |
+|---|---|---|---|
+| **Subsidiaries / local finance** | Monthly forecast of currency receipts and payments by month | Internal hedge rates; sometimes internal forwards via the in-house bank | Forecasts copied from last month; orders in a currency nobody reported; local teams hedging locally against policy |
+| **Business units / sales** | Big contracts and tenders in foreign currency, pricing currency | Budget rates, quotes for tenders, advice on currency clauses | A USD 20m contract signed without telling treasury; tender risk (you may or may not win) |
+| **Accounting** | Hedge accounting requirements, IFRS 9 / local GAAP rules, audit questions | Deal data, designations, valuations, effectiveness | Documentation not in place at inception = no hedge accounting = P&L volatility |
+| **CFO / treasury committee** | Risk appetite, approval of strategy changes | Exposure and cover reports, proposals (e.g. raise months 7–12 cover) | Pressure to "take a view" on the market, which is against most policies |
+| **Banks** | Prices, credit lines for derivatives, ISDA/master agreements | Deal flow (part of the [wallet](term:wallet-share)) | Credit-line limits per bank; wallet politics override best price |
+| **Treasury operations** | Confirmations, settlement, static data | Deal tickets | Unmatched confirmations; wrong settlement instructions |
+| **Cash / liquidity desk** | Currency needs from funding (FX swaps) | Swaps for liquidity management | Double hedging when two desks trade the same exposure |
+
+## By size
+
+<SizeTabs startup="No FX role. At [Kleio](co:kleio), Sarah converts surplus USD into CHF at spot when the USD balance grows. There is no hedging programme. Natural hedging covers part of it: US cloud and payroll costs are paid in USD." sme="At [Alpine](co:alpine), Martin decides whether to buy a forward when a big EUR or USD project is signed, and phones the Swiss bank's FX desk. Petra books the deal. The 'policy' is a board minute. The exposure calculation is a spreadsheet of open project milestones by currency." midmarket="At [Helvetic](co:helvetic), Daniel is the FX manager: subsidiaries report EUR/USD/CNY exposure, Lea computes cover against the 60–90% band, Daniel deals forwards with the RCF banks, Lea matches confirmations, and Claudia's team does the hedge accounting. Thomas approves the policy and anything outside Daniel's mandate." multinational="At [GlobalChem](co:globalchem), Jonas's Financial Risk desk (about 4 people) collects exposures from about 40 entities through the forecasting tool and ERP, nets them centrally, hedges on a multi-bank trading platform, and manages interest-rate swaps on the bond portfolio. Marta's back office confirms and settles. Group Accounting applies hedge accounting from Jonas's data. Hedge ratio changes go to the quarterly treasury committee." />
+
+## Where judgment sits
+
+- **Believing the exposure.** Whether a subsidiary's USD forecast is real, and how far out to trust it. Most groups hedge less the further out the month.
+- **Timing within the band.** Mechanical layering or discretionary timing. Many policies prescribe layering precisely to remove market-timing judgment.
+- **Instrument choice.** Forwards are the default. Options cost a premium and need approval and understanding at CFO level.
+- **Bank allocation.** Best price, or the bank that needs wallet share because it lends in the RCF.
+- **What to tell the CFO after a big move.** See the [currency shock](wf:currency-shock) workflow.
+
+## What an FX / risk manager knows, and doesn't
+
+<RoleKnows id="fx-risk-manager" />
+
+## Interview implications
+
+<Callout type="interview">
+
+Best for: exposure data quality, hedge programme mechanics, dealing, bank pricing, the accounting interface. In smaller companies, ask the same questions to the treasury manager or CFO.
+
+- "Where does your exposure number come from, and how wrong was it last year?"
+- "What happens when a subsidiary signs a big foreign-currency contract without telling you?"
+- "Which part of hedge accounting creates the most work?"
+- "How do you choose which bank gets a trade?"
+
+Not for: daily cash, payments, bank connectivity.
+
+</Callout>

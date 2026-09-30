@@ -134,7 +134,7 @@ workflows:
       value: 30–90 minutes of analyst time a day at mid-market; money impact is idle balances and avoided overdrafts, rarely large.
       judgment: Routine judgment — buffer size, whether an odd balance is a data error, timing vs cut-off.
       data_availability: Statements arrive as MT940/camt.053; known flows partly in ERP, partly in emails.
-      data_quality: Missing statements, late Asian/US files, unmapped accounts, flows announced by chat.
+      data_quality: Missing statements (connectivity failures), US files arriving last, unmapped accounts, flows announced by chat.
       verifiability: Tomorrow's statements show whether the projected closing balance was right.
       consequence: A wrong proposal is usually caught at approval; if not, an overdraft or an unnecessary transfer.
       regulatory: Internal controls on transfers (four-eyes), not external regulation, for the preparation step.
@@ -236,9 +236,9 @@ workflows:
     headline: >-
       An agent can assemble scenarios and do the arithmetic, but the assignment is a judgment about funding strategy with
       few, slow outcomes. Good analyst support; not an agent job.
-    scores: { frequency: 2, value: 4, judgment: 5, data_availability: 3, data_quality: 3, verifiability: 2, consequence: 4, regulatory: 2, trust: 4, automation: 2, human_involvement: 4, suitability: 2, narrow: 3, expand: 3, feedback: 2, defensibility: 3 }
+    scores: { frequency: 3, value: 4, judgment: 5, data_availability: 3, data_quality: 3, verifiability: 2, consequence: 4, regulatory: 2, trust: 4, automation: 2, human_involvement: 4, suitability: 2, narrow: 3, expand: 3, feedback: 2, defensibility: 3 }
     notes:
-      frequency: Monthly or quarterly update; ad hoc before refinancing or large capex.
+      frequency: Monthly update at mid-market and large companies, quarterly at SMEs; ad hoc before refinancing.
       value: Drives refinancing timing, facility size and dividend capacity — high stakes, low volume.
       judgment: Which scenarios matter, how conservative to be, bank-market timing.
       data_availability: FP&A plan, debt schedule, forecast — mostly structured.
@@ -276,7 +276,7 @@ workflows:
     scores: { frequency: 3, value: 3, judgment: 3, data_availability: 4, data_quality: 4, verifiability: 4, consequence: 3, regulatory: 3, trust: 3, automation: 3, human_involvement: 2, suitability: 3, narrow: 4, expand: 3, feedback: 3, defensibility: 2 }
     notes:
       frequency: Weekly or on surplus events; daily overnight placements at large groups.
-      value: Rate-dependent — CHF surplus earns ~0% (SNB 0%); EUR and USD surpluses earn materially more.
+      value: Rate-dependent — CHF deposits earn ~0% (SNB 0%), so a borrower with a drawn RCF repays drawings instead; EUR/USD surplus earns €STR/SOFR-level rates.
       judgment: Tenor choice depends on forecast confidence; counterparty choice on limits and relationships.
       data_availability: Balances, forecast, limits and bank quotes are structured.
       data_quality: Good once the position is right.
@@ -292,7 +292,7 @@ workflows:
       feedback: Accept/reject of proposals; realised yield.
       defensibility: MMF portals and bank platforms already offer this.
     already_automated: Overnight sweeps to MMFs/deposits and portal-based MMF trading exist at larger companies.
-    agent_does: Computes investable surplus from forecast, proposes tenor ladder within limits, compares quotes, drafts the deal ticket.
+    agent_does: Computes investable surplus from the forecast; for CHF proposes reducing RCF drawings at the next rollover, for EUR/USD a tenor ladder within limits; compares quotes; drafts the ticket.
     human_keeps: Approval, dealing with the bank, relationship-bank allocation choices.
     narrow_start: Weekly "investable surplus + policy-compliant options" note.
     expansion: Counterparty limit monitoring; policy compliance reporting.
@@ -300,6 +300,7 @@ workflows:
       - Forecast confidence is good enough to justify tenor beyond overnight.
       - Rates make the optimisation worth anyone's attention.
     startup_view: Thin — the value is in the forecast that sizes the surplus, not in the placement.
+    ai_note_view: Agrees, including that at 0% CHF rates the value of yield optimisation is small.
     evidence: >-
       Illustrative autumn-2026 levels in this manual: SNB policy rate 0%, €STR ≈ 1.9–2.0%, SOFR ≈ 3.5–4% (see the
       authoring conventions) — the economic value of optimisation is currency-dependent.
@@ -310,9 +311,9 @@ workflows:
     headline: >-
       Mechanically simple (a transfer or an intercompany loan), but wrapped in tax, transfer pricing, thin-cap, local FX
       rules and legal documentation. An agent can prepare the pack; the decision is cross-functional.
-    scores: { frequency: 3, value: 3, judgment: 4, data_availability: 3, data_quality: 3, verifiability: 3, consequence: 3, regulatory: 4, trust: 4, automation: 2, human_involvement: 3, suitability: 3, narrow: 3, expand: 3, feedback: 2, defensibility: 3 }
+    scores: { frequency: 4, value: 3, judgment: 4, data_availability: 3, data_quality: 3, verifiability: 3, consequence: 3, regulatory: 4, trust: 4, automation: 2, human_involvement: 3, suitability: 3, narrow: 3, expand: 3, feedback: 2, defensibility: 3 }
     notes:
-      frequency: Monthly to quarterly per entity; weekly across a large group.
+      frequency: Short-term funding under existing agreements daily to weekly at groups without pools (overlaps with positioning); new structures a few times a year.
       value: Wrong structure costs tax or trapped cash; the transfer itself is cheap.
       judgment: Loan vs equity vs pool, tenor, currency, rate, repatriation later.
       data_availability: Forecasts and balances structured; tax constraints in memos and heads.
@@ -375,7 +376,7 @@ workflows:
     startup_view: >-
       Bad target for "agent does the job". Payment infrastructure businesses exist, but they are infrastructure, not
       digital workers.
-    ai_note_view: Check against the payment-processing ai_note when written; this lens rates execution as hard.
+    ai_note_view: Agrees — the workflow note calls release "a legal act by bank-registered signatories" and sees anomaly detection as the plausible assistive use. The lens is blunter about the startup case.
     evidence: >-
       PwC notes RPA is already used for repetitive work such as reconciliation, payment processing and exposure data
       gathering[](cite:pwc-gts-2025). 74% of US firms were affected by BEC in 2025[](cite:afp-pfc-2026) — the reason
@@ -413,7 +414,7 @@ workflows:
     must_be_true:
       - The dossier does not create false comfort ("the AI checked it") — a real risk of automation bias.
     startup_view: Fraud prevention is a real market, but it is a detection/control product, not a digital treasurer.
-    ai_note_view: Check against the large-payment-approval ai_note when written.
+    ai_note_view: Agrees — the workflow note puts it as "a checker, not an approver".
     evidence: >-
       Only 17% of organisations use AI against payments fraud, while 76% experienced attempted or actual payments fraud
       in 2025[](cite:afp-pfc-2026). The EU AI Act exempts fraud-detection systems from the credit-scoring high-risk
@@ -454,7 +455,7 @@ workflows:
     must_be_true:
       - The customer has not already reached high auto-match (many SMEs have not).
     startup_view: Bad standalone business; fine as a feature of a broader cash-operations agent.
-    ai_note_view: Check against the bank-reconciliation ai_note when written.
+    ai_note_view: Agrees (matching is mature; the residue needs context; sign-off stays a human control). The lens adds that this makes it a poor standalone business.
     evidence: PwC lists reconciliation among the repetitive tasks already streamlined by RPA[](cite:pwc-gts-2025).
 
   - id: bank-account-management
@@ -523,7 +524,7 @@ workflows:
     must_be_true:
       - The negotiated price schedule actually exists in writing somewhere.
     startup_view: Good wedge into bank-relationship work; not enough on its own.
-    ai_note_view: Check against the bank-fee-analysis ai_note.
+    ai_note_view: Agrees — suits automation, modest economic value, relationship decisions stay human.
     evidence: >-
       AFP recommends treating banks as vendors and verifying negotiated pricing is applied[](cite:afp-bank-fee-analysis);
       ISO 20022 camt.086 is designed to standardise billing data[](cite:hsbc-camt086) — adoption outside the US is still limited.
@@ -563,7 +564,7 @@ workflows:
       - Subsidiary ERP data is reachable (the multi-ERP mid-market problem).
       - The risk manager records why she overrides an exposure number.
     startup_view: Promising wedge at mid-market groups that hedge but lack a TMS exposure module. Check interest in interviews.
-    ai_note_view: Check against the fx-exposure-management ai_note when written.
+    ai_note_view: Broadly agrees. The workflow note stresses that TMS tools already do part of the rule-based extraction and that judging forecast reality needs conversations; the lens is slightly more optimistic because it targets mid-market groups without a TMS exposure module.
     evidence: >-
       PwC names exposure visibility among the main AI focus areas and exposure data gathering as an RPA use
       case[](cite:pwc-gts-2025).
@@ -590,7 +591,7 @@ workflows:
       automation: Multi-bank dealing platforms and auto-hedging tools execute policy-driven trades.
       human_involvement: Decision meetings; execution is minutes.
       suitability: Proposal drafting and compliance checking, yes; discretionary trades, no.
-      narrow: "Policy says hedge X — here are the trades" draft for approval.
+      narrow: A "policy says hedge X — here are the trades" draft for approval.
       expand: Into hedge documentation and reporting.
       feedback: Weak — no ground truth for a hedge decision.
       defensibility: Platforms and banks own execution.
@@ -602,7 +603,7 @@ workflows:
     must_be_true:
       - The company has a written policy with ratios; many SMEs have only a board minute.
     startup_view: Auto-hedging fintechs and bank platforms already exist; the agent angle adds little beyond exposure quality.
-    ai_note_view: Check against the fx-hedging ai_note when written.
+    ai_note_view: Agrees — mechanical parts increasingly automated by platforms; autonomous derivative execution raises mandate and trust issues.
 
   # ------------------------------------------------------------------ Debt & funding
   - id: credit-facility-management
@@ -670,7 +671,7 @@ workflows:
     must_be_true:
       - Every adjustment is traceable to a clause — no black box in front of lenders.
     startup_view: Low frequency; part of a broader finance tool.
-    ai_note_view: Check against the covenant-monitoring ai_note when written.
+    ai_note_view: Workflow not yet written at the time of rating; re-check.
 
   # ------------------------------------------------------------------ Controls & reporting
   - id: month-end-reporting
@@ -706,6 +707,7 @@ workflows:
     must_be_true:
       - Underlying positions are already reliable; the agent should not paper over bad data with fluent text.
     startup_view: A feature of whichever system holds the data.
+    ai_note_view: Agrees; the workflow note adds that board materials carry a high accuracy bar — the reason tie-out checks come first.
 
   - id: fraud-investigation
     class: hard
@@ -761,18 +763,21 @@ workflows:
       automation: Limit checks in TMS at larger groups; manual review elsewhere.
       human_involvement: Quarterly reviews.
       suitability: Policy-to-rule translation, breach explanation drafts.
-      narrow: Counterparty-limit and hedge-ratio checks for a mid-market company without TMS.
+      narrow: Signatory / mandate / user reconciliation across banks, entities and HR leavers — document-heavy and checkable.
       expand: Into reporting and audit prep.
       feedback: Breach confirmations.
       defensibility: Low.
     already_automated: Pre-deal limit checks and exposure monitoring in TMSs.
     agent_does: Converts policy clauses to explicit tests (reviewed by a human), runs them, drafts breach reports.
     human_keeps: Materiality, remediation, policy changes.
-    narrow_start: Quarterly compliance checklist generation.
+    narrow_start: >-
+      Quarterly reconciliation of bank signatories, mandates and system users against HR data, plus audit-evidence
+      collection. The limit checks themselves stay in deterministic TMS/spreadsheet rules.
     expansion: Audit prep packs.
     must_be_true:
       - The tests are reproducible code, not model judgments re-run each quarter.
-    startup_view: Feature of treasury reporting.
+    startup_view: Feature of treasury reporting; the signatory-reconciliation slice overlaps with bank account management.
+    ai_note_view: Agrees — the workflow note identifies the same messy, checkable part (signatories, mandates, users, audit evidence) and keeps limits, waivers and breach reporting with named people.
 
   # ------------------------------------------------------------------ Events & crises
   - id: acquisition-integration
@@ -814,7 +819,7 @@ workflows:
       is a board-level judgment in a rare event with no feedback loop.
     scores: { frequency: 1, value: 4, judgment: 5, data_availability: 3, data_quality: 3, verifiability: 2, consequence: 5, regulatory: 3, trust: 5, automation: 1, human_involvement: 4, suitability: 2, narrow: 4, expand: 2, feedback: 1, defensibility: 2 }
     notes:
-      frequency: Rare (2015 SNB floor removal is the Swiss reference case).
+      frequency: Rare as a full event (the January 2015 end of the SNB minimum rate is the Swiss reference case); 3–5% weekly moves are more common.
       value: Material.
       judgment: Whether to hedge now, revise pricing, communicate.
       data_availability: If the exposure process works, yes.
@@ -836,6 +841,7 @@ workflows:
     narrow_start: One-click shock scenario on existing exposure data.
     expansion: None on its own.
     startup_view: Value only as a by-product of good exposure data.
+    ai_note_view: Agrees — fast, complete exposure picture plausible; autonomous trading in a disorderly market is not.
 
   - id: liquidity-crisis
     class: hard
@@ -881,7 +887,7 @@ digital_workers:
     performed_today_by: Lea (Treasury Analyst), ~60–90 minutes every morning
     cadence: Every business day; deadline set by the earliest currency cut-off
     inputs:
-      - { name: Prior-day statements (camt.053 / MT940) for 12 accounts, source: Multibank connectivity tool, arrives: "06:00–08:30; China later", quality: "Usually complete; 1–2 missing a week" }
+      - { name: Prior-day statements (camt.053 / MT940) for 12 accounts, source: Multibank connectivity tool, arrives: "Asian banks early, European 06:00–08:00, US last", quality: "Usually complete; the Chinese bank file fails 1–2 times a week (connectivity)" }
       - { name: Intraday reports (camt.052 / MT942), source: Banks that provide them, arrives: Intraday, quality: Partial coverage }
       - { name: Released AP runs and payroll, source: SAP (CH/DE/CZ), emails from IT/FR/UK/US, arrives: Day before / same morning, quality: "Structured in SAP; email elsewhere" }
       - { name: Known flows not in any system, source: "Emails and Teams messages from Giulia, Jens, Wei", arrives: Any time, quality: Unstructured; the weakest input }
@@ -892,7 +898,7 @@ digital_workers:
       - "Does each opening balance equal yesterday's closing balance? If not, which bank back-valued something?"
       - "Which movements were unexpected — and is each one a timing difference, a data problem, or something that could be fraud?"
       - "After today's known outflows, which account drops below its minimum (e.g. EUR 250k in Germany)?"
-      - "Is the surplus in the parent temporary (bond coupon in week 6) or investable?"
+      - "Is the CHF surplus at the parent temporary (bond coupon in week 6) — or can it reduce the RCF drawing at the next rollover, since CHF deposits earn ~0%?"
       - "Fund Italy by moving EUR from Germany (intercompany loan) or by converting CHF? Which is cheaper and which is cleaner for accounting?"
       - "What must go first because of cut-off times, and what can wait for more information?"
       - "Is anything still unexplained at cut-off — move cash anyway for safety, or wait?"
@@ -923,7 +929,7 @@ digital_workers:
       - { signal: Projected vs actual closing balances, becomes: Objective daily accuracy metric per account }
       - { signal: Missed items that surfaced later, becomes: "Regression tests — 'the German trade-tax prepayment must never be missed again'" }
     failure_modes:
-      - { mode: Stale balance treated as current (late Chinese statement), guardrail: "Every balance carries its as-of timestamp; stale balances are visibly excluded" }
+      - { mode: Stale balance treated as current (failed Chinese statement file), guardrail: "Every balance carries its as-of timestamp; stale balances are visibly excluded" }
       - { mode: Plausible but invented explanation for a debit, guardrail: "No explanation without cited evidence; otherwise 'unexplained' — unexplained large debits escalate as possible fraud" }
       - { mode: Arithmetic or FX conversion error, guardrail: "All numbers computed by deterministic code; the language model only selects and explains" }
       - { mode: Automation bias — manager approves without reading, guardrail: "Approval rate and edit rate monitored; deliberate test items seeded occasionally" }

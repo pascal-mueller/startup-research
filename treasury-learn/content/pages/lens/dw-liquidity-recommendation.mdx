@@ -1,0 +1,88 @@
+---
+title: "Digital worker: prepare today's liquidity recommendation"
+nav: "DW · Liquidity recommendation"
+order: 6
+summary: The daily cash-positioning assignment modelled as work an AI system could prepare — what Lea does at Helvetic every morning, what Daniel weighs, what the system may touch, how its output is checked the next day, and how Daniel's edits become data.
+related: [/workflows/daily-cash-positioning, /lens/matrix, /lens/dw-forecast-variance, /day/lea]
+---
+
+<Callout type="synthesis">
+
+Illustrative model, not a product description. Based on the [daily cash positioning](wf:daily-cash-positioning) workflow
+and the [Helvetic](co:helvetic) scenario: 12 operating accounts at 5 banks, six currencies, no cash pool — Daniel
+concentrates cash manually by intercompany loan. Lens rating: [good agent candidate](/lens/matrix#daily-cash-positioning).
+
+</Callout>
+
+## The assignment today
+
+At about 08:00 Lea opens the multibank connectivity tool, checks that all twelve statements arrived, copies balances
+into the positioning workbook, compares yesterday's movements with what was expected, reads the overnight emails from
+Giulia (Italy), Jens (Germany) and Wei (China), adds today's known flows, and proposes transfers. Daniel reviews at about
+09:30 and approves before the EUR cut-off. It takes her 60–90 minutes on a normal day and most of the morning when a
+statement is missing or something odd shows up. Leading vendors now market agents for exactly this step[](cite:sap-cash-agent,kyriba-tai-2025)
+— claims, but a sign of where the incumbents are going.
+
+<DigitalWorker id="dw-liquidity-recommendation" />
+
+## A worked morning
+
+<Example title="Tuesday: what the system hands Daniel at 09:10" company="helvetic" open>
+
+**Position (extract, CHF equivalent at EUR/CHF 0.935, illustrative):**
+
+| Account | Opening | Known flows today | Projected close | Minimum | Status |
+|---|---|---|---|---|---|
+| HM AG, CHF (Swiss bank A) | CHF 14.2m | −0.6m (Swiss supplier run) | CHF 13.6m | CHF 3.0m | Surplus |
+| HM AG, EUR (Swiss bank A) | EUR 3.1m | — | EUR 3.1m | EUR 0.5m | Surplus |
+| HM Deutschland, EUR | EUR 1.9m | −2.3m (AP run released in SAP) | EUR −0.4m | EUR 0.25m | **Short EUR 0.65m** |
+| HM Italia, EUR | EUR 0.4m | −1.2m (supplier, from Giulia's email) | EUR −0.8m | EUR 0.2m | **Short EUR 1.0m** |
+| HM Suzhou, CNY | *stale — yesterday's file failed* | — | — | — | Excluded; not concentrated anyway |
+
+**Exceptions (with evidence):**
+
+1. HM Deutschland: unexpected debit EUR 186k, SEPA direct debit. *Likely explanation:* annual machinery-insurance
+   premium — same creditor ID and similar amount debited in the same week last year (statement line linked). Not in the forecast.
+2. HM Italia: expected customer receipt EUR 1.5m did not arrive. *Unexplained* — no remittance, no email. Italy has
+   over-forecast receipts in 9 of the last 12 weeks (see [variance model](/lens/dw-forecast-variance)).
+3. China: Chinese bank file failed — the bank delivers early (Asia is ahead of CET), so this is a connectivity problem, not timing.
+   Ticket drafted to the connectivity provider; Wei asked for the portal balance.
+
+**Proposals (policy-checked):**
+
+| # | Action | Amount | Value date | Why | Checks |
+|---|---|---|---|---|---|
+| 1 | Intercompany loan HM AG → HM Deutschland | EUR 0.70m | Today | Cover AP run + buffer | Min balances ✓, existing IC loan agreement ✓ |
+| 2 | Intercompany loan HM AG → HM Italia | EUR 1.00m | Today | Cover supplier payment up to the minimum balance | Min balances ✓ |
+| 3 | No CHF action today; flag reducing the RCF drawing at Friday's rollover | CHF 5m | Friday | CHF deposits earn ~0%; drawn RCF costs interest | For Daniel's decision |
+
+**Not sure about:** whether the EUR 1.5m Italian receipt arrives today; whether the insurance premium recurs quarterly.
+
+**Daniel's response (09:25):** approves #1; changes #2 to **EUR 1.2m** ("Italy's receipts are unreliable — keep a bigger
+buffer this week"); asks for #3 in Thursday's liquidity note. Lea enters both transfers; a second signatory releases
+them in the bank's signature app.
+
+**What the system records:** one accept, one edit with reason, one deferral; the insurance explanation marked correct;
+Wednesday morning, projected vs actual closing balances are scored automatically (the Italian customer paid EUR 1.5m late in the
+afternoon, so Italy closed at EUR 1.9m instead of EUR 0.4m — Daniel's extra buffer was prudent, not needed this time).
+
+</Example>
+
+## What this model deliberately leaves out
+
+- **Releasing transfers.** Under the bank mandate and the [four-eyes principle](term:four-eyes-principle), two
+  authorised people sign. The system never holds signing rights — this also makes it a poor target for
+  [prompt injection](term:prompt-injection) via a fake supplier email.
+- **Deciding the buffer.** The system proposes, Daniel's edit ("keep a bigger buffer for Italy") is the judgment. Over months
+  those edits become a learned preference — still proposed, still approved.
+- **Structural questions.** Whether Helvetic should set up a cash pool, which accounts to close, which bank gets the
+  deposits — Daniel and the CFO's decisions, informed by months of these notes.
+
+<Callout type="interview" title="Questions this model suggests">
+
+To Lea: "What did you have to ask someone this morning — and how did the answer reach you?" To Daniel: "What did you
+change in Lea's proposal last week, and why?" and "What would have to be true for you to approve a proposal you hadn't
+seen Lea check?" If Daniel never changes anything, the value is in Lea's time; if he changes a lot, the value is in
+learning his reasons.
+
+</Callout>

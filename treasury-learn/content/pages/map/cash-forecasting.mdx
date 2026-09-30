@@ -1,0 +1,191 @@
+---
+title: Cash forecasting
+nav: Cash forecasting
+order: 2
+cluster: liquidity
+summary: Estimating how much cash each entity and currency will have over the next days, weeks and months — collecting inputs from people who don't think about cash, measuring how wrong the last forecast was, and turning the result into funding, investment and hedging decisions.
+subtopics: [short-term forecast, 13-week forecast, medium-term forecast, actual vs forecast, inputs, uncertainty, error analysis]
+related: [/map/cash-management, /map/working-capital, /map/fx, /org/with-fpa, /org/roles-analyst]
+---
+
+<TreasuryMap focus="cash-forecasting" />
+
+If [cash management](/map/cash-management) is about today, cash forecasting is about **every day after today**. It is the input to nearly every treasury decision: whether to draw or repay a credit line, how much to invest and for how long, how much FX to hedge, whether covenants will hold, when to refinance. It is also consistently named the hardest treasury activity.
+
+<Callout type="survey" title="The most-cited pain point in treasury surveys">
+
+In the AFP's 2025 benchmarking survey (523 US practitioners), 62% named cash and liquidity forecasting their most challenging activity[](cite:afp-bench-2025-article); the 2026 edition puts it at 49%, still the top answer[](cite:afp-bench-2026). The European EACT survey ranked cash-flow forecasting as priority number one[](cite:eact-2025). In the Strategic Treasurer / TIS 2025 survey (vendor-sponsored), the share calling forecasting "difficult" rose from 39% in 2018 to 53%[](cite:st-tis-cfv-2025). These samples lean to larger companies.
+
+</Callout>
+
+## The forecasts, side by side
+
+Companies usually run several forecasts that answer different questions. Beginners assume "the forecast" is one thing.
+
+| Forecast | Horizon / granularity | Method | Main question | Typical owner |
+|---|---|---|---|---|
+| Daily / short-term | 1–10 business days, daily | [Direct](term:direct-method): known payments and receipts | Which account needs funding, what can be invested this week? | Cash analyst / cash manager |
+| 13-week | 13 weeks, weekly | Direct, bottom-up from entities, AR/AP | Where is the low point? Draw the RCF? How much FX to hedge? | Treasury analyst prepares, treasury manager owns |
+| Medium-term | 6–18 months, monthly | Often [indirect](term:indirect-method), from the FP&A forecast | Enough liquidity for the year? Covenants? Dividend affordable? | Treasury manager / head of treasury with FP&A |
+| Long-term / funding plan | 3–5 years, annual | From the strategic plan | How much to borrow, when to refinance, rating impact | Head of treasury / corporate finance with CFO |
+
+## Short-term forecast
+
+**Plain:** the next few days, in detail — which payments leave and which receipts land. **Professional:** a daily, account-level [short-term forecast](term:short-term-forecast) built by the direct method from near-certain flows (payment runs already approved, payroll, tax, loan interest, maturing deposits and FX deals) plus a conservative view of customer receipts. It extends the [cash position](term:cash-position) forward and drives funding and investment decisions before [cut-off](term:cut-off-time).
+
+Example: GlobalChem's cash team projects each in-house-bank currency 10 business days ahead; on Monday the EUR view shows EUR 120m of CP maturing on Thursday against EUR 75m of netting inflows — Priya decides to roll EUR 50m of CP on Wednesday rather than draw on cash.
+
+Who: Kleio and Alpine don't formalise it (they look at the e-banking portal and the next payment run); Helvetic's Lea keeps a 5-day view in the positioning workbook; GlobalChem's cash & liquidity team runs it daily in the TMS.
+
+- **Drives:** [daily cash positioning](wf:daily-cash-positioning), [surplus cash investment](wf:surplus-cash-investment).
+- **Terms:** [short-term forecast](term:short-term-forecast), [direct method](term:direct-method), [value date](term:value-date).
+
+**Ask:**
+- "How far ahead do you look when you decide whether to move money today?"
+- "Which flows do you treat as certain, and which do you ignore until they arrive?"
+- "What did your short-term view miss this month?"
+
+## 13-week forecast
+
+**Plain:** a week-by-week cash plan for the next quarter, updated every week. **Professional:** a [rolling](term:rolling-forecast) weekly direct-method forecast by entity and currency, typically consolidated from subsidiary submissions, ERP data (open AR by expected payment date, open AP by due date), payroll, tax calendars and central treasury flows (debt service, intercompany, hedges, dividends). Its purpose is to find the low point, check it against the minimum cash and facilities, and plan actions. Thirteen weeks is a convention (one quarter), popularised in restructuring where lenders require it; many companies use 8–26 weeks.
+
+<Example title="Helvetic's weekly 13-week cycle" company="helvetic" open>
+
+| When | Who | What they do |
+|---|---|---|
+| Monday | Lea | Rolls the model: last week becomes "actual", week 13 added; imports bank actuals by category |
+| Monday–Tuesday noon | Subsidiary finance managers (Giulia, Jens, Wei and five others) | Fill the weekly Excel template: receipts, supplier payments, payroll, tax, capex, intercompany by week |
+| Tuesday | Lea | Consolidates, adds central flows (RCF interest, bond coupon, hedge settlements, dividends), converts at current rates, runs variance vs last week |
+| Wednesday | Daniel | Challenges outliers, overrides inputs he doesn't believe, decides actions (RCF rollover amounts, hedge top-ups) |
+| Monthly | Daniel → Thomas (CFO) | 13-week view plus the 18-month liquidity plan in the treasury report |
+
+In the week documented in the [cash forecasting workflow](wf:cash-forecasting), the group low point is CHF 18m in week 6 (bond coupon and quarterly VAT in the same week) against a CHF 10m minimum and CHF 140m of undrawn RCF — no funding action needed.
+
+</Example>
+
+Who, by size: Kleio doesn't run one (monthly runway model); Alpine's Petra runs an 8–13-week sheet dominated by project milestones; Helvetic as above; GlobalChem collects ~40 entity submissions through a forecasting tool with many lines fed automatically.
+
+- **Drives:** [cash forecasting](wf:cash-forecasting), [liquidity planning](wf:liquidity-planning), [FX exposure management](wf:fx-exposure-management), [credit facility management](wf:credit-facility-management).
+- **Terms:** [short-term forecast](term:short-term-forecast), [rolling forecast](term:rolling-forecast), [liquidity headroom](term:liquidity-headroom), [cash buffer](term:cash-buffer).
+
+<Callout type="confusion" title="'We do a 13-week forecast' can mean very different things">
+
+At one company it is a weekly, entity-level, variance-tracked process with decisions attached; at another it is a spreadsheet updated once a month that nobody acts on. Ask what decision the last update changed.
+
+</Callout>
+
+**Ask:**
+- "Walk me through the last 13-week forecast you produced. Where did each line come from?"
+- "Which subsidiaries submit late or badly, and what do you do about it?"
+- "What did you do differently because of last week's forecast?"
+- "How long does one weekly cycle take you, in hours?"
+
+## Medium-term forecast
+
+**Plain:** a month-by-month view of cash for the next year or so. **Professional:** a [medium-term forecast](term:medium-term-forecast) (liquidity plan), usually built by the **indirect method** from FP&A's P&L forecast — EBITDA, adjusted for working-capital changes, capex, tax, interest, dividends and debt maturities — reconciled to the 13-week forecast where they overlap. Used for facility sizing, covenant projections, dividend and M&A capacity, and board reporting.
+
+<Example title="From FP&A's profit forecast to treasury's liquidity plan" company="helvetic">
+
+Marco (FP&A) forecasts EBITDA of CHF 88m for the next 12 months. Daniel's liquidity plan: + CHF 88m EBITDA − CHF 10m working-capital build (new Czech line ramping up) − CHF 28m capex − CHF 11m tax − CHF 5m interest − CHF 15m dividend = **+ CHF 19m** free cash before financing. Month by month, cash dips in May (dividend + tax) and recovers by September. He also projects net debt/EBITDA at the June and December test dates against the 3.25x [covenant](term:covenant): about 1.5x, so plenty of room.
+
+</Example>
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [covenant monitoring](wf:covenant-monitoring), [credit facility management](wf:credit-facility-management).
+- **Terms:** [medium-term forecast](term:medium-term-forecast), [indirect method](term:indirect-method), [FP&A](term:fpa), [free cash flow](term:free-cash-flow), [EBITDA](term:ebitda).
+
+<Callout type="confusion" title="FP&A forecast vs treasury cash forecast">
+
+FP&A forecasts **revenue, cost and profit** by month, usually by business line; treasury forecasts **cash timing** by week, entity and currency. A sale booked in March may be cash in June. Treasury's medium-term plan often starts from FP&A's numbers; its short-term forecast should not. See [Treasury and FP&A](/org/with-fpa).
+
+</Callout>
+
+**Ask:**
+- "Is your 12-month cash plan built from FP&A's forecast or bottom-up? Who reconciles the two?"
+- "When FP&A and treasury disagree about cash, whose number goes to the CFO?"
+- "Which decisions does the 12-month view drive — facility size, dividend, refinancing timing?"
+
+## Inputs
+
+**Plain:** where the numbers in the forecast come from. **Professional:** a mix of system data and human estimates, each with its own owner, timing and reliability:
+
+| Input | Source (system / person) | Reliability | Typical problem |
+|---|---|---|---|
+| Opening balances | Bank statements | High | Missing statements |
+| Customer receipts | Open AR in ERP + [AR / credit control](/org/with-ar) knowledge; sales pipeline for later weeks | Low–medium | Customers pay late; AR data by *due* date, not expected date |
+| Supplier payments | Open AP in ERP, payment-run calendar ([AP](/org/with-ap)) | Medium–high | Unbooked invoices, early releases |
+| Payroll | Payroll provider / HR | High | Bonuses, one-offs |
+| Tax | [Tax](/org/with-tax) calendar | High if someone remembers | Forgotten prepayments |
+| Capex, projects | Project managers, [procurement](/org/with-procurement) | Low–medium | Milestones slip |
+| Intercompany | Treasury, netting, subsidiaries | Medium | Mismatched two sides |
+| Debt, deals, hedges | Treasury's own records / TMS | High | — |
+| FX rates | Market data | High (for conversion) | Re-translation noise in variances |
+
+Example: at Alpine the single largest line is **project milestones**: Petra lists each open milestone (e.g. CHF 1.4m acceptance payment from a German logistics customer) with her estimate of when the acceptance certificate will be signed; the project managers' dates are systematically optimistic, so she adds two weeks.
+
+- **Drives:** [cash forecasting](wf:cash-forecasting), [month-end reporting](wf:month-end-reporting).
+- **Terms:** [forecast submission](term:forecast-submission), [cash application](term:cash-application), [DSO](term:dso), [payment terms](term:payment-terms).
+
+**Ask:**
+- "Which inputs come from systems automatically, and which from people by email or template?"
+- "Who knows best when a customer will actually pay — and do they tell you?"
+- "What lumpy item did someone forget to tell you about last time?"
+
+## Uncertainty
+
+**Plain:** accepting that the forecast will be wrong, and planning for how wrong. **Professional:** uncertainty is handled with buffers (minimum cash, committed facilities), conservative treatment of uncertain receipts, ranges or [scenarios](term:scenario-analysis) (downside cases such as "largest customer pays 60 days late", "EUR/CHF −8%"), and at sophisticated groups statistical measures such as [cash flow at risk](term:cash-flow-at-risk). The right prudence depends on headroom: Kleio with 24 months of runway can be relaxed about a week's timing; Alpine with a few million of headroom cannot.
+
+Example: Alpine's downside scenario moves two robot acceptances (CHF 3.4m) out by one quarter; cash would fall to CHF 1.8m in week 9. Martin's response is not to change the forecast but to confirm that at least CHF 7m of the CHF 12m credit line stays undrawn.
+
+- **Drives:** [liquidity planning](wf:liquidity-planning), [liquidity crisis](wf:liquidity-crisis), [currency shock](wf:currency-shock).
+- **Terms:** [scenario analysis](term:scenario-analysis), [cash flow at risk](term:cash-flow-at-risk), [liquidity risk](term:liquidity-risk), [cash buffer](term:cash-buffer).
+
+**Ask:**
+- "Do you forecast one number or a range? Which scenarios do you actually run?"
+- "How do you decide how much buffer to hold against forecast error?"
+- "What happened the last time the forecast was badly wrong?"
+
+## Actual vs forecast and error analysis
+
+**Plain:** comparing what happened with what was forecast, and figuring out why. **Professional:** **actual-vs-forecast** reconciliation per line, entity and horizon ([variance analysis](term:variance-analysis)), classified as timing (the cash came later), permanent (it never came or was a different amount), missing input (nobody reported it) or FX translation. **Error analysis** tracks [forecast accuracy](term:forecast-accuracy) over time to find *bias* — a subsidiary that is always optimistic — and feeds corrections back into the model (haircuts, earlier inclusion of known items, better templates).
+
+<Example title="One week's variance at Helvetic" company="helvetic">
+
+Receipts were forecast at CHF 14.0m and came in at CHF 11.2m: CHF 2.1m was an Italian customer paying 10 days late (timing), CHF 0.7m a disputed UK invoice short-paid (permanent). A German trade-tax prepayment of CHF 0.3m had not been submitted (missing input). Because Italy has over-forecast receipts in 9 of the last 12 weeks, Daniel haircuts Italy's receipts by 15% in weeks 5–13 — a judgment call that Giulia (HM Italia) will not like. Full detail in the [cash forecasting workflow](wf:cash-forecasting).
+
+</Example>
+
+Who: the analyst computes variances; the treasury manager interprets and decides corrections; subsidiary finance explains. At startups and SMEs variance analysis is usually informal ("why is the balance lower than I thought?"). At multinationals accuracy is measured per entity with targets, and the results are discussed with local CFOs.
+
+- **Drives:** [cash forecasting](wf:cash-forecasting), [month-end reporting](wf:month-end-reporting).
+- **Terms:** [variance analysis](term:variance-analysis), [forecast accuracy](term:forecast-accuracy), [rolling forecast](term:rolling-forecast).
+
+<Callout type="confusion" title="Accuracy of the total hides errors in the lines">
+
+A forecast can hit the group total while being badly wrong in two entities that offset each other — and the wrong entity runs short. Ask whether accuracy is measured per entity and per horizon (week 1 vs week 8), not just for the group total.
+
+</Callout>
+
+**Ask:**
+- "How do you measure forecast accuracy — per entity, per week, per line?"
+- "Which entity or line is consistently biased, and what have you done about it?"
+- "How much time a week goes into explaining variances, and who do you have to ask?"
+- "Has variance analysis ever changed how a subsidiary forecasts?"
+
+## By company size
+
+<SizeTabs
+  startup="**Kleio.** A monthly runway model in a Google Sheet: opening cash, collections from the billing system, payroll, rent, cloud, a burn line. The board looks at runway. Annual prepayments in January and July make half-year snapshots misleading. No weekly forecast needed unless cash gets tight."
+  sme="**Alpine.** Petra's weekly Excel sheet for 8–13 weeks; the hard part is project milestones and German/US subsidiaries' inputs by email. Martin reads it Monday. The annual budget is FP&A-style and not reconciled to it."
+  midmarket="**Helvetic.** Weekly 13-week forecast from eight subsidiaries' Excel templates, variance analysis, monthly 18-month liquidity plan with FP&A. Roughly a day a week of Lea's time. A TMS or forecasting tool is being evaluated mainly to stop the template chasing."
+  multinational="**GlobalChem.** A forecasting tool collects ~40 submissions; some lines are fed automatically from ERPs; accuracy is tracked with targets per entity; the forecast drives hedging, CP issuance and investments. The remaining pain is input quality and business units' incentives, not arithmetic."
+/>
+
+<CompanyCompare topic="map-forecast-horizon" />
+
+<Callout type="synthesis" title="Why forecasting stays hard even with software">
+
+The arithmetic is simple. What is hard is that the people who know when cash will move (sales, project managers, local finance) are not measured on telling treasury, and that customer behaviour changes. Software can automate data collection and flag bias; deciding which customer will really pay, and whether to override a subsidiary, stays a judgment made by someone who knows the business. This is this manual's synthesis, consistent with the survey findings above and with the [workflow](wf:cash-forecasting).
+
+</Callout>
+
+Related workflows: <Workflows ids={["cash-forecasting", "liquidity-planning", "daily-cash-positioning"]} />

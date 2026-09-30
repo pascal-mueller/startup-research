@@ -1,0 +1,69 @@
+---
+title: "Digital worker: collect and reconcile this month's FX exposures"
+nav: "DW · FX exposure collection"
+order: 8
+summary: The monthly grind before any hedging decision — collecting, reconciling and cleaning subsidiary exposure data — modelled as an AI-prepared assignment. The hedge decision stays with the treasury manager and CFO.
+related: [/workflows/fx-exposure-management, /workflows/fx-hedging, /lens/matrix, /map/fx]
+---
+
+<Callout type="synthesis">
+
+Illustrative model based on the [FX exposure management](wf:fx-exposure-management) workflow and the
+[Helvetic](co:helvetic) scenario: revenue roughly half EUR, a fifth USD, 12% CNY; EUR revenues hedged with rolling
+[forwards](term:forward); several ERPs across eight subsidiaries. Lens rating:
+[good agent candidate](/lens/matrix#fx-exposure-management) for collection and reconciliation;
+[FX hedging](/lens/matrix#fx-hedging) itself is only "possible". PwC lists exposure visibility among the main AI focus
+areas and exposure data gathering among existing RPA uses[](cite:pwc-gts-2025).
+
+</Callout>
+
+## Why this slice
+
+Hedging decisions are only as good as the [exposure](term:fx-exposure) numbers behind them, and the numbers are the
+weak part: forecast exposures come from subsidiary templates, balance-sheet exposures from several ERPs with different
+mappings, and intercompany balances often disagree between the two sides. Collecting and cleaning this is days of
+analyst work a month, it is checkable against ledgers, and a wrong number is caught before it becomes a trade — as long
+as a human still decides the hedge.
+
+<DigitalWorker id="dw-exposure-collection" />
+
+## A worked month-end
+
+<Example title="October close: three anomalies before Daniel's hedge meeting" company="helvetic" open>
+
+By working day 4 the system has reconciled balance-sheet exposures for seven of eight subsidiaries to their ledgers
+(the Chinese entity's ERP export is late) and flags:
+
+| # | Anomaly | Evidence | Resolution |
+|---|---|---|---|
+| 1 | HM Czech: EUR 2.4m receivables tagged CZK in the exposure template | ERP open items are EUR-denominated invoices | Local finance confirm template error; corrected |
+| 2 | HM Italia: 6-month EUR sales forecast down 30% vs last month | No lost order in the CRM note or Giulia's comments | Giulia: one large order moved to next year — real, not an error |
+| 3 | Intercompany: HM Deutschland shows EUR 1.1m payable to HM AG; HM AG shows EUR 0.8m receivable | IC ledgers | Unresolved; excluded from netting until accounting confirms |
+
+**Draft hedge-gap view (for Daniel, not for execution):** after the corrections, 3–6-month EUR net exposure is hedged at
+a ratio below the policy corridor; the system lists the forward trades that would bring it back inside, with tenor and
+amount, and marks the Italian order change as the reason the gap moved. Daniel reduces the proposed amount because he
+doubts the order will return at all, and schedules the trade. Authorised dealers execute on the bank platform; back
+office matches the confirmation.
+
+**Recorded:** anomaly #1 true positive; #2 a true change (useful flag, not an error); #3 open; Daniel's reduction and
+reason stored against the Italian entity.
+
+</Example>
+
+## Limits
+
+- **Forecast exposures are opinions.** The system can compare them with later invoicing and estimate each entity's
+  bias; it cannot make the forecast true.
+- **Hedge accounting.** Where hedge accounting is applied, exposure records are part of the documentation auditors test.
+  Anything the system changes must be logged and approved.
+- **Multi-ERP access** is the practical blocker at mid-market groups; without read access to local ledgers, the system is
+  back to reading templates.
+
+<Callout type="interview" title="Questions this model suggests">
+
+To the FX or treasury manager: "Where do your exposure numbers come from, and when did one last turn out wrong?" To a
+subsidiary controller: "How long does the exposure template take, and what do you guess?" To the auditor-facing person:
+"What documentation do you keep for hedge designations?"
+
+</Callout>

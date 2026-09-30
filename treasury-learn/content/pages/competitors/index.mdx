@@ -1,0 +1,98 @@
+---
+title: Competitor landscape — how to read it
+nav: How to read this section
+order: 1
+summary: A startup-lens map of who sells treasury software and services, what kind of system each one is, which workflows it touches, and what is still an open question. It is secondary to the workflow material and deliberately sceptical of vendor claims.
+related: [/competitors/method, /competitors/landscape, /systems/vendors, /systems/tms, /lens]
+---
+
+<Callout type="warning" title="Verification status of this section (read first)">
+
+This section was compiled on 2026-09-30 under a hard constraint: the research tools could not open vendor or news pages, and the web-search budget ran out after a few queries. **Only a handful of facts were checked against search-result snippets from the original publishers** — chiefly the GTreasury sale to Ripple (announced 16 Oct 2025) and the "Ripple Treasury" launch (27 Jan 2026), Bridgepoint's 2019 majority stake in Kyriba, Coupa's 2020 acquisition of BELLIN, and Atlar's 2022 seed round and 2025 TreasurySpring partnership. Everything else is the author's background knowledge and is marked **Not re-verified** or **Watchlist — unverified** on every entry. Before you repeat a funding figure or ownership fact in a pitch or an interview, check it. The full list is in `docs/notes/competitors.md` under "Facts to re-verify".
+
+</Callout>
+
+## What this section is for — and what it is not
+
+The rest of the manual explains treasury neutrally. This section takes the **startup lens**: if you built a product for treasurers, who would you be competing with, for which task, and at which customer size?
+
+- **Neutral product explanations** (what a TMS does, how SAP treasury differs from Kyriba, what connectivity is) are in [Systems & Data → vendors](/systems/vendors) and [TMS](/systems/tms). This section links there rather than repeating it.
+- **Where AI could plausibly do the work** is judged workflow by workflow in [Agentic Treasury](/lens). This section only tells you who is already there.
+- **The evidence rules** — what counts as a vendor claim, how an "apparent gap" is allowed to be stated, how to test claims in interviews — are on [Method](/competitors/method).
+
+The entries themselves are on [the full landscape](/competitors/landscape), with filters by category, customer size and system type, and on the category pages: [TMS (established and modern)](/competitors/tms), [cash forecasting](/competitors/cash-forecasting), [connectivity & payments](/competitors/connectivity-payments), [FX, hedging & investments](/competitors/fx-hedging), [working capital](/competitors/working-capital), and [AI features and "treasury agents"](/competitors/ai-and-agents).
+
+## The four kinds of system
+
+The single most useful question to ask about any treasury product is not "what features does it have?" but **"what kind of system is it in the customer's stack?"** That decides how hard it is to sell, how hard it is to rip out, and what happens when it is wrong.
+
+<CompetitorTypes />
+
+| Type | Treasury example | Switching cost | Consequence of an error | What a buyer asks first |
+|---|---|---|---|---|
+| **System of record** | TMS holding all FX forwards and loans; SAP general ledger | Very high: migration, audit, retraining | Wrong valuations, wrong postings, audit findings | "Will our auditors accept it? How do we migrate history?" |
+| **Workflow tool** | Payment approval hub; forecast collection from subsidiaries | Medium: processes and controls re-designed around it | Delayed or unapproved payments; broken [segregation of duties](term:segregation-of-duties) | "Does it fit our approval matrix and bank mandates?" |
+| **Analytics** | Cash-visibility dashboard; ML forecast | Low: reads other systems' data | A wrong number a human may or may not catch | "Where does it get the data, and how do I know it's right?" |
+| **Execution** | Multi-dealer FX platform; payment channel to the bank; investment portal | High for banks' channels; medium for venues | Money moves wrongly and may be irrecoverable | "Who is liable? How is it secured? Which banks are connected?" |
+
+<Callout type="synthesis" title="Why the type matters for a startup">
+
+Analytics products are the easiest to get into a company (read-only bank and ERP data, no audit sign-off) and the easiest to churn out of. Systems of record are the hardest to displace and the most defensible once in. Execution systems carry the highest trust and regulatory burden. Most new entrants since about 2015 entered as analytics (cash visibility, forecasting) and then tried to add workflow (payments, approvals) to become harder to replace. When a treasurer says "we already have X", ask which of the four roles X plays for them — they often use a system of record only as an analytics tool, or vice versa.
+
+</Callout>
+
+## The categories and the workflows they touch
+
+Categories follow the spec (traditional TMS, modern TMS, cash forecasting, bank connectivity, payments, FX/hedging, working capital, treasury intelligence/AI, treasury agents), plus two the market forces on you: **the status quo** (Excel, bank portals, ERP) and **cash investment portals**. Each links to the canonical workflows, so you can jump from a vendor to what the treasurer actually does.
+
+<CompetitorCategories />
+
+## How the market is structured, by customer size
+
+The structure below is the author's synthesis of how products are positioned, set against survey data where available. It is a lens, not a census.
+
+<SizeTabs
+  startup="**Very small / startup (e.g. [Kleio](co:kleio), 70 people).** The CFO does treasury herself in the bank portals and a spreadsheet; payments come from the accounting system. The 'competitor' is the bank's e-banking plus Excel — and, for US startups, banking products that bundle yield on idle cash. Specialist treasury software is rarely bought at this size; if anything, a cash-forecasting tool."
+  sme="**SME (e.g. [Alpine](co:alpine), CHF 80m).** Treasury is part of the Head of Accounting's job. Bank portals, ERP payment run, Excel forecast. The first software purchase, if any, is usually cash visibility/forecasting (SME-focused tools such as Agicap or Embat — positioning not re-verified) or an FX provider for supplier payments. Full TMS projects are uncommon at this size."
+  midmarket="**International mid-market (e.g. [Helvetic](co:helvetic), CHF 650m).** The most contested segment. One to three treasury people, several banks and currencies (Helvetic: five banks, 12 accounts, six currencies). Options range from staying on Excel with better connectivity, to an API-first platform (Atlar, Trovata, Embat — not re-verified), to a SaaS TMS (Kyriba, GTreasury, Coupa Treasury, Nomentia, FIS's mid-market product). Surveys consistently show small teams: in AFP's 2026 benchmarking, 46% of organisations had treasury teams of fewer than five people[](cite:afp-bench-2026)."
+  multinational="**Large multinational (e.g. [GlobalChem](co:globalchem), CHF 7bn).** An established TMS or SAP treasury as system of record, a payment hub or payment factory, Swift/EBICS connectivity, multi-dealer FX platforms, investment portals. PwC reports that among organisations above USD 10bn revenue, 67% run in-house banks and 60% payment factories[](cite:pwc-gts-2025). New entrants here sell point solutions on top (forecasting, analytics, fraud) rather than replacing the core — the replacement cycle is a multi-year RFP."
+/>
+
+<Callout type="survey" title="What treasurers say they struggle with — the demand side">
+
+Cash and liquidity forecasting is repeatedly named the hardest treasury activity: 49% in AFP's 2026 benchmarking[](cite:afp-bench-2026); in the vendor-sponsored Strategic Treasurer/TIS survey the share calling forecasting "difficult" rose from 39% (2018) to 53% (2025)[](cite:st-tis-cfv-2025). Deloitte found forecasting still primarily spreadsheet-based for many respondents[](cite:deloitte-gts-2024). EACT's 2025 survey of European multinationals lists technology review / TMS replacement among priorities, but ranks AI low because data is fragmented and non-standardised[](cite:eact-2025). That combination — a widely felt forecasting pain, many tools already claiming to solve it, and poor data underneath — is the most important fact about this market.
+
+</Callout>
+
+## Forces that shape the market
+
+<Callout type="synthesis" title="Structural patterns (synthesis — verify with interviews)">
+
+1. **Consolidation and financial-sponsor ownership.** Several large TMS vendors are owned by private equity or have been assembled by acquisition: Kyriba (Bridgepoint majority since 2019[](cite:comp-bridgepoint-kyriba-2019)), GTreasury (Hg from 2023, sold to Ripple in 2025[](cite:comp-hg-gtreasury-exit,comp-ripple-gtreasury-pymnts)), ION's portfolio of formerly independent TMS products (background knowledge). Expect ownership to keep changing; this is why every entry carries a date.
+2. **The ERP pulls from below and above.** SAP and Oracle offer treasury inside the ERP. For groups standardised on one ERP, "no interface" is a strong argument; for groups with many ERPs, a separate hub wins.
+3. **Banks give away the entry-level product.** E-banking portals, bank-provided multi-bank reporting and free FX tools are the default for smaller companies. A startup is competing with "free and trusted".
+4. **Connectivity is both moat and commodity.** Getting statements in and payments out of 20 banks in 10 countries is tedious, expensive work that incumbents have done once. API banking lowers the cost for new entrants in some markets, but file-based channels ([EBICS](term:ebics), [host-to-host](term:host-to-host), [Swift](term:swift)) remain the backbone for most corporate banks.
+5. **Payments and digital assets are converging with TMS.** The Ripple–GTreasury deal and "Ripple Treasury" launch put stablecoin settlement inside a mainstream TMS[](cite:comp-ripple-treasury-launch). Whether corporate treasury policies allow it is an interview question, not a given.
+6. **"AI" is mostly a feature, not a category.** Most AI in treasury products (as of the author's knowledge) ships as forecasting models or assistants inside existing vendors. See [AI features and agents](/competitors/ai-and-agents).
+
+</Callout>
+
+<Callout type="confusion" title="'We have a TMS' does not mean the work is automated">
+
+A company can own a full TMS and still build the 13-week forecast in Excel, still download two banks' statements by hand because they were never connected, and still approve payments in a bank portal. In interviews, ask what they *do* in the system each day, not what they *own*.
+
+</Callout>
+
+## How to use this in interviews
+
+<Callout type="interview" title="Questions that reveal the real competitive situation">
+
+- "Which system do you open first in the morning, and what do you do in it?" (Reveals the operational system, not the purchased one.)
+- "What do you still export to Excel from your TMS or bank portal, and why?"
+- "When did you last change treasury software? Who ran the selection, how long did it take, and what nearly killed it?"
+- "Which banks are *not* connected to your system, and what do you do for those?"
+- "What would you never let a system do without your approval?"
+
+Avoid "Would you switch from Kyriba to something better?" — see [bad questions](/interview/bad-questions).
+
+</Callout>

@@ -1,0 +1,128 @@
+# Glossary terms for stream wf-control (month-end reporting, fraud investigation, policy compliance).
+
+- id: month-end-close
+  term: Month-end close
+  aka: [close, closing, financial close, WD1–WD5, working-day calendar]
+  category: Accounting & tax
+  plain: The few working days after each month-end in which accounting books everything for the month and produces the monthly accounts.
+  professional: "The period (typically working day 1 to working day 5–10) in which the general ledger is completed, reconciled and consolidated according to a close calendar that sets deadlines for each contributor. Treasury's contributions are bank balances, deal lists with valuations, interest accruals and intercompany loan statements; accounting books them. Quarter- and year-end closes add audit and disclosure work."
+  example: "Helvetic's close calendar requires treasury data by WD2 12:00; Lea sends the pack at 11:40 on 2 October, Claudia's team consolidates on WD3–WD4, and Thomas receives the treasury report on WD5."
+  related: [interest-accrual, closing-rate, treasury-report, reconciliation, intercompany-loan]
+  confusedWith: "**Treasury's month-end report** — the close produces the accounts; the treasury report is treasury's own management report built on (and reconciled to) the same numbers."
+
+- id: treasury-report
+  term: Treasury report (CFO / board)
+  aka: [treasury dashboard, monthly treasury report, treasury KPI pack]
+  category: Organisation
+  plain: A short regular report in which treasury tells the CFO and board about cash, debt, liquidity, financial risks and anything that went wrong.
+  professional: "Management report, typically monthly to the CFO and quarterly (condensed) to the board or audit committee, covering cash and debt by entity/currency, net debt, liquidity headroom, debt maturity profile, hedge positions and market values, counterparty exposure versus limits, forecast accuracy, covenant headroom, policy breaches and requested decisions. No standard format; its usefulness depends on the commentary and exceptions."
+  example: "Daniel's September report shows net debt CHF 106m, headroom CHF 176m, leverage 1.36x against a 3.25x covenant, one passive limit breach at the German bank, and asks for a bond-refinancing timetable."
+  related: [liquidity-headroom, net-debt, covenant-headroom, counterparty-exposure, forecast-accuracy, month-end-close]
+
+- id: debt-maturity-profile
+  term: Debt maturity profile
+  aka: [maturity ladder, maturity wall, debt maturity schedule]
+  category: Debt & funding
+  plain: A chart of how much debt falls due in each future year.
+  professional: "Schedule of outstanding debt and committed facilities by maturity year (bonds, term loans, RCF expiry, CP backed by facilities). Used to judge refinancing risk; rating agencies and lenders look for maturities spread out and refinanced well ahead — typically 12–24 months before the due date."
+  example: "Helvetic's profile has one large bar: the CHF 100m bond in 2028. Together with the RCF expiry date, that bar drives the refinancing timetable Thomas asks Daniel for."
+  related: [maturity, refinancing-risk, bond, rcf, treasury-report]
+
+- id: interest-accrual
+  term: Interest accrual
+  aka: [accrued interest, accruals]
+  category: Accounting & tax
+  plain: Interest that has been earned or owed for the month but not yet paid, which accounting still has to record.
+  professional: "Pro-rata interest on loans, bonds, deposits, facilities (including commitment fees) and intercompany balances from the last payment date to the reporting date, calculated with the instrument's day-count convention. Treasury calculates (TMS or spreadsheet); accounting books."
+  example: "Helvetic's CHF 100m bond pays an annual coupon; five months after the last coupon date, Lea's pack shows CHF 0.73m accrued (illustrative)."
+  related: [coupon, month-end-close, intercompany-loan, commitment-fee]
+
+- id: closing-rate
+  term: Closing rate (month-end FX rate)
+  aka: [month-end rate, fixing rate, WM/Reuters fix, closing FX rate]
+  category: FX
+  plain: The exchange rate a company officially uses to translate foreign-currency balances at the end of the month.
+  professional: "The spot rate at the reporting date used to translate monetary items and foreign subsidiaries' balance sheets. Groups set one rate table per month-end, often based on a published market fixing (e.g. the WM/Reuters 4 pm London rates, now published by LSEG) or a central-bank rate. Treasury must use the same table as accounting, or its figures will not reconcile."
+  example: "Claudia's September table sets EUR/CHF 0.9350 and USD/CHF 0.8000 (illustrative); Lea uses exactly these for the treasury report."
+  related: [translation-exposure, spot-fx, month-end-close, mark-to-market]
+
+- id: counterparty-exposure
+  term: Counterparty exposure (bank exposure)
+  aka: [bank exposure, credit exposure to banks]
+  category: Risk & control
+  plain: How much a company would lose if a particular bank failed.
+  professional: "The amount at risk with a financial counterparty: account balances, deposits and money-market investments, plus the positive market value of derivatives (sometimes with an add-on for potential future exposure), less any netting under ISDA agreements. Compared with counterparty limits set by the treasury policy, usually tied to credit ratings."
+  example: "Helvetic at the German bank: EUR balances worth CHF 9.8m plus forwards worth CHF 0.3m in its favour = CHF 10.1m against a CHF 10m limit."
+  related: [counterparty-limit, counterparty, mark-to-market, credit-rating, isda, limit-breach]
+
+- id: limit-breach
+  term: Limit breach (active / passive)
+  aka: [policy breach, limit excess, passive breach, active breach, waiver]
+  category: Risk & control
+  plain: When a treasury position goes outside a limit set in the policy.
+  professional: "A position exceeding a policy limit (counterparty, hedge ratio, liquidity, tenor, instrument). **Passive** breaches arise from events (a bank downgrade, a large receipt, a forecast change); **active** breaches from decisions (a deal above limit, an unapproved instrument). Policies require logging, escalation (often within one business day), remediation or a documented waiver by a defined authority, and reporting to the CFO and audit committee."
+  example: "A EUR 3.1m receipt pushes Helvetic's exposure to the German bank to 101% of its limit on 30 September — a passive breach, cured by moving EUR 2m the next day and reported in the monthly report."
+  related: [treasury-policy, counterparty-limit, hedge-ratio, counterparty-exposure, delegation-of-authority]
+
+- id: internal-control-system
+  term: Internal control system (ICS / IKS)
+  aka: [ICS, IKS, internal controls, ICFR, SOX controls]
+  category: Risk & control
+  plain: The set of checks a company builds into its processes so that errors and fraud are prevented or caught.
+  professional: "Documented controls over financial reporting and operations (approvals, reconciliations, segregation of duties, access rights, confirmations), with owners and evidence. In a Swiss ordinary audit the statutory auditor must confirm that an ICS exists (Art. 728a CO); US-listed companies test controls under SOX 404. Key treasury controls: independent deal confirmation, bank reconciliation, payment dual approval, mandate reviews, limit monitoring."
+  example: "Helvetic's ICS lists 'deals confirmed by someone other than the dealer' as a key control; the auditor samples confirmations and finds two confirmed by Daniel himself."
+  related: [segregation-of-duties, four-eyes-principle, three-lines-model, treasury-policy]
+
+- id: three-lines-model
+  term: Three lines model
+  aka: [three lines of defence, 3LoD]
+  category: Organisation
+  plain: "A way of dividing control work: the people doing the job, the people checking it, and independent auditors."
+  professional: "Governance model (Institute of Internal Auditors) separating first-line management of risk by operations (e.g. treasury front and back office), second-line oversight and monitoring (risk control, middle office, compliance), and third-line independent assurance (internal audit), all reporting to the board / audit committee. Small companies collapse the first two lines into one team."
+  example: "At GlobalChem, dealers in Jonas's team are the first line, the middle office's daily limit report the second, and internal audit's treasury review the third. At Helvetic, Lea and Daniel are the first and (mostly) second line."
+  related: [internal-control-system, front-middle-back-office, segregation-of-duties]
+
+- id: vendor-bank-detail-fraud
+  term: Vendor bank-detail change fraud
+  aka: [payment diversion fraud, mandate fraud, vendor imposter fraud, invoice redirection fraud]
+  category: Risk & control
+  plain: Criminals pretend to be a supplier and get the company to pay a real invoice into the criminals' account.
+  professional: "A form of business email compromise in which a request to change supplier bank details — often sent from the supplier's genuinely compromised mailbox with correct invoices and letterheads — leads to a vendor-master change and diversion of the next payments. Controls: call-back to an independently sourced number, dual approval of master-data changes, payee verification, hold periods and alerts for first payments to changed accounts."
+  example: "HM Italia pays EUR 486,300 to a 'new' IBAN after the call-back went to the number in the fraudulent email; the fraud is discovered 11 days later when the real supplier chases the invoice."
+  related: [business-email-compromise, vendor-master-data, call-back-verification, verification-of-payee, payment-recall]
+
+- id: deepfake-fraud
+  term: Deepfake fraud (executive impersonation)
+  aka: [deepfake CEO fraud, voice cloning fraud, synthetic media fraud]
+  category: Risk & control
+  plain: Fraud using AI-generated voices or video to impersonate a boss or colleague and get staff to pay.
+  professional: "Social engineering in which cloned voices or real-time video avatars of executives are used — usually after an email — to overcome an employee's doubts about an urgent, confidential payment. Best-known case: Arup, whose Hong Kong employee paid HK$200m (about US$25m) after a video call with deepfaked colleagues in 2024. Defence is procedural: no payment outside the system, call-back via known numbers, no exceptions for 'confidential' deals."
+  example: "A GlobalChem payment-factory operator is asked on a video call by a 'regional CFO' to release a EUR 3.2m deposit outside the run; the call-back to the number on file exposes it."
+  related: [business-email-compromise, call-back-verification, four-eyes-principle]
+
+- id: payment-recall
+  term: Payment recall
+  aka: [recall request, camt.056, Stop and Recall, gSRP, SEPA recall]
+  category: Payments
+  plain: Asking the banks to send back a payment that has already been made.
+  professional: "A request from the payer's bank to the beneficiary's bank to return funds, e.g. a SEPA recall (ISO 20022 camt.056 with a fraud reason) or a Swift gpi Stop and Recall request, which the gpi Tracker routes to the bank currently holding a cross-border payment. It is a request, not a reversal: once credited, payments in SEPA, SIC and Swift are final, and the receiving bank can return only what remains — often only with the account holder's consent or a prosecutor's freeze order."
+  example: "Daniel asks HM Italia's bank to recall EUR 486,300 eleven days after payment; EUR 61,200 is still in the account and frozen, the rest has moved on."
+  related: [swift-gpi, sct-inst, vendor-bank-detail-fraud, money-mule, iso-20022]
+
+- id: money-mule
+  term: Money mule account
+  aka: [mule account, drop account]
+  category: Risk & control
+  plain: A bank account, often in someone else's name, that fraudsters use to receive and quickly move stolen money.
+  professional: "Account opened with stolen or bought identities, or lent by a recruited person, used as the first receiving account in a fraud and emptied within hours or days through further transfers, cash withdrawals or crypto purchases. The reason speed of recall matters."
+  example: "The IBAN in HM Italia's fraud belongs to a newly opened account; within four days most of the EUR 486,300 has been moved to accounts in two other countries."
+  related: [payment-recall, business-email-compromise, kyc]
+
+- id: crime-insurance
+  term: Crime insurance (fidelity / social-engineering cover)
+  aka: [fidelity insurance, commercial crime policy, Vertrauensschadenversicherung, social engineering cover]
+  category: Risk & control
+  plain: Insurance that pays for losses from fraud and theft, including some payment scams.
+  professional: "Policy covering losses from employee dishonesty and third-party crime (computer and funds-transfer fraud); social-engineering fraud (the employee authorises the payment) is often covered only under a sublimit and with conditions such as a documented call-back. Cyber policies may cover incident costs but frequently exclude or limit the lost funds. Notice deadlines and evidence requirements apply."
+  example: "Helvetic's crime policy has a social-engineering sublimit of CHF 250k (illustrative); the insurer asks for the call-back evidence before paying."
+  related: [business-email-compromise, vendor-bank-detail-fraud, operational-risk]

@@ -1,0 +1,68 @@
+---
+title: Treasury and accounts receivable / credit control
+nav: With AR & credit control
+order: 34
+summary: AR and credit control own invoicing, collections and cash application; treasury depends on them for the biggest and least certain line in every cash forecast — customer receipts. The useful information is not the due date in the ERP but the credit controller's judgment about who will actually pay, and when.
+related: [/org/neighbours, /workflows/cash-forecasting, /workflows/liquidity-crisis, /map/working-capital]
+---
+
+## Who owns what
+
+| | AR / credit control | Treasury |
+|---|---|---|
+| **Invoicing** | Issues invoices (with sales operations) | — |
+| **Credit limits** | Sets and monitors customer limits; often with credit insurance | Sometimes consulted on large exposures or credit insurance |
+| **Collections** | Dunning, calls, disputes, escalation to sales | Wants the outcome for the forecast |
+| **[Cash application](term:cash-application)** | Matches incoming payments to open invoices | Needs unmatched receipts identified for the position |
+| **Receipt channels** | — | Bank accounts, [lockbox](term:lockbox) / [virtual accounts](term:virtual-accounts), [QR-bill](term:qr-bill) references, card acquirers |
+| **Forecast of receipts** | Knows payer behaviour | Owns the forecast and the liquidity consequences |
+| **[DSO](term:dso)** | Measured on it | Uses it; may run receivables finance ([factoring](term:factoring)) |
+
+## What moves between them
+
+| From → to | What | When |
+|---|---|---|
+| AR → treasury | Open-items aging by customer and currency; expected receipts; known disputes and late payers | Weekly for the forecast |
+| AR → treasury | Large expected receipts with dates ("customer X promised Friday") | Ad hoc |
+| Treasury → AR | Unidentified receipts in the bank | Daily |
+| Treasury → AR | Bank details, virtual account structures, currency of invoicing | When set up or changed |
+| Treasury → AR | Actual vs forecast receipts — which customers were wrong | Weekly / monthly |
+
+<Callout type="confusion" title="Due date is not expected date">
+
+The ERP says an invoice is due on 30 September. The credit controller knows this customer always pays 20 days late, pays only after a reminder, and closes its own books at quarter-end — so the money arrives around 25 October. A forecast built from ERP due dates is systematically too optimistic. Good treasury forecasts use payer-behaviour adjustments, and the best source of them is the credit controller.
+
+</Callout>
+
+## Where it breaks
+
+- **Forecast optimism.** Sales and AR assume large receipts will arrive on time; treasury forecasts on that basis; the receipt slips and the low point is deeper than expected — the scenario in [Liquidity crisis](wf:liquidity-crisis).
+- **Unidentified cash.** A customer pays three invoices in one transfer with no reference. Until AR matches it, treasury knows the cash is there but not whose it is; the subsidiary still chases the customer.
+- **Disputes invisible to treasury.** A CHF 1.5m invoice is disputed; AR knows, treasury's forecast does not.
+- **Wrong account.** Customers pay to an old bank account that treasury closed or wanted to close.
+
+<Example title="The acceptance certificate that moved the month" company="alpine" open>
+
+[Alpine](co:alpine)'s 13-week sheet shows CHF 2.1m from a German logistics customer in week 38 — the 50% delivery milestone of a robot project. Petra (Head of Accounting) has the invoice in Business Central due in week 38.
+
+On Monday of week 37, Alpine's credit controller (1 FTE in Petra's team) tells her the customer's project manager has not signed the delivery protocol because two robots failed a throughput test. No signed protocol, no payment. The project manager says two to four weeks.
+
+Petra moves the receipt to week 41 in the sheet. The week-39 low point drops from CHF 3.4m to CHF 1.3m. She shows Martin (CFO), who decides to draw CHF 2m on the credit line for three weeks rather than delay supplier payments. The information came from credit control and project management — not from any system.
+
+</Example>
+
+## How it varies
+
+<SizeTabs
+  startup="At [Kleio](co:kleio) annual subscription invoices are due in January and July; Nina chases large customers; Stripe card payments are predictable. Sarah's runway model uses Nina's list of who has not yet paid."
+  sme="The credit controller sits in the same finance team as the person doing treasury work; the information flows by conversation. Milestone-based businesses like [Alpine](co:alpine) depend on project managers as much as on AR."
+  midmarket="Each subsidiary has its own AR and credit control; treasury receives their view only through the forecast template. At [Helvetic](co:helvetic) Lea compares each subsidiary's expected receipts with actuals to see whose forecasts are systematically late."
+  multinational="Order-to-cash sits in the SSC with collections teams by region; credit insurance and receivables finance may be run by treasury. Treasury uses aging data from the ERP and statistical payer-behaviour models; the judgment calls are escalations from regional credit managers."
+/>
+
+<Callout type="interview" title="Questions to ask">
+
+- To AR: "How do you decide when a customer will actually pay?" "Who asks you for that information, and how often?"
+- To treasury: "Which customer receipts do you not trust in the forecast?" "How do you learn about disputes?"
+
+</Callout>

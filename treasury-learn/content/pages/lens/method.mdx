@@ -1,0 +1,84 @@
+---
+title: Method — how the workflows were rated
+nav: Method
+order: 2
+summary: Sixteen criteria from the spec, each scored 1–5 per workflow with a one-line reason, plus a three-way classification that is a judgment, not a sum. What the scores mean, how they were produced, and why you should distrust them in specific ways.
+related: [/lens, /lens/matrix, /lens/candidates, /workflows]
+---
+
+## Unit of analysis: the assignment
+
+Each of the 20 [canonical workflows](/workflows) is restated as the **assignment** a manager actually gives — e.g.
+[covenant monitoring](wf:covenant-monitoring) becomes *"Calculate this quarter's covenants and tell me our headroom for
+the next four quarters."* The question for every criterion is then: *could an AI system perform this assignment, or a
+meaningful part of it, with the accountable human reviewing?* — not "could AI features help this workflow?"
+
+## The sixteen criteria
+
+<LensCriteria />
+
+Three criteria are **context only** and are coloured grey in the matrix:
+
+- **Current automation level** cuts both ways. High automation means inputs are structured (good) but also that there
+  is little left to take over and an incumbent already owns the process (bad). Bank reconciliation is the example.
+- **Current human involvement** measures residual human time. High involvement is an opportunity only if that time is
+  spent on preparation rather than on accountable decisions.
+- Everything else has a direction: for *judgment*, *consequences*, *regulatory* and *trust* a high score is an obstacle
+  (marked red in the matrix); for the rest a high score favours an agent.
+
+## How the classification was made
+
+The class is **not a weighted sum**. A workflow can score well on most criteria and still be *hard / dangerous*
+because one criterion is decisive — large payment approval is the act the controls exist to reserve for a named human, so
+nothing else matters. The rules of thumb applied:
+
+| Class | Typical profile |
+|---|---|
+| **Good agent candidate** | Frequent (weekly or more) *or* tedious-but-checkable; output verifiable before money moves; a read-only first slice exists; human approval fits existing controls; feedback arrives often. |
+| **Possible** | Agent-shaped parts exist, but at least one of: low frequency, weak feedback, heavy judgment, incumbents already automating it, or a small prize. |
+| **Hard / dangerous** | The core is an accountable decision or legally reserved act, *or* a rare high-stakes event with no feedback loop. Assistance is fine; "the AI does the job" is not. |
+
+The *good* label says nothing about whether the workflow is a good **business**. Each entry therefore carries a separate
+"as a startup opportunity" note, which is often more negative than the agent rating.
+
+## How the scores were produced
+
+1. **Workflow pages first.** Scores draw on the workflow content (frequency, systems, data, judgment points, manual work,
+   failure modes) written by the workflow authors, and on the company scenarios in [Company Scenarios](/companies). The
+   two gold-standard workflows ([daily cash positioning](wf:daily-cash-positioning), [cash forecasting](wf:cash-forecasting))
+   were read in full; the rest were cross-checked when their files existed at the time of writing.
+2. **Evidence where it exists.** Surveys (PwC, EACT, AFP, Deloitte) for adoption and priorities; regulatory texts for
+   what is legally constrained; vendor announcements for what incumbents claim to be building; academic benchmarks for
+   known LLM/agent failure modes. See [the overview](/lens) for the numbers.
+3. **Synthesis for the rest.** Most individual scores are the author's judgment. Each has a one-line reason visible in the
+   matrix, so a reader can disagree with the reason rather than with a number.
+
+## Limitations — read before quoting a score
+
+<Callout type="warning" title="Known weaknesses">
+
+- **No interviews yet.** None of these ratings has been tested against practitioners. They are the starting hypotheses
+  the [interview guide](/interview) is meant to challenge.
+- **Size dependence.** A single score hides large differences between [Kleio, Alpine, Helvetic and GlobalChem](/companies).
+  Where it matters, notes assume an **international mid-market group** (Helvetic) — the segment the lens thinks is most
+  interesting. At a multinational, "current automation" is higher for most cash workflows; at an SME, "frequency" is lower.
+- **Ordinal, not interval.** A 4 is more than a 3, not "33% more". Averages across criteria are deliberately not shown.
+- **Vendor claims are inputs, not evidence.** Where incumbents announce agents, this lowers *defensibility*; it does not
+  raise *suitability*, because the claims are not independently verified.
+- **Research on LLM reliability ages quickly.** The benchmarks cited on the overview page used 2023–2024 models. The
+  design conclusions (deterministic arithmetic, evidence-linked explanations, repeatability metrics) are more durable than
+  the specific error rates.
+- **Evidence gaps.** No independent, current study was found that measures accuracy gains from AI cash forecasting or
+  agentic positioning in corporate treasury. Absence of evidence is recorded as such, not filled in.
+
+</Callout>
+
+<Callout type="confusion" title="'Automated' vs 'agentic'">
+
+A zero-balancing sweep, a TMS limit check or an auto-match rule in reconciliation is **deterministic automation**: it
+does the same thing every time, and nobody calls it AI. An **agent** decides which steps to take, reads unstructured
+inputs and produces judgment-like output. Many workflows that look like "AI opportunities" are already solved by the
+former — and the latter adds risk without adding value there. See [straight-through processing](term:stp),
+[RPA](term:rpa) and [treasury agent](term:treasury-agent).
+
+</Callout>
