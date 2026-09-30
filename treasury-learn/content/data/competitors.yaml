@@ -113,6 +113,7 @@ vendors:
   # ---------------- Status quo ----------------
   - id: status-quo
     name: Excel + bank portals + ERP payment run
+    short: Excel + portals
     category: status-quo
     types: [workflow, execution]
     verify: background

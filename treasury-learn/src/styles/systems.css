@@ -19,7 +19,7 @@
 .sys-layer-label { display: flex; flex-direction: column; justify-content: center; padding: 6px 8px; border-left: 3px solid var(--lc, var(--accent)); }
 .sys-layer-name { font-weight: 600; font-size: 13.5px; color: var(--ink); }
 .sys-layer-note { font-size: 12px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
-.sys-layer-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.sys-layer-boxes { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 8px; }
 .sys-box {
   border: 1px solid var(--line); border-top: 3px solid var(--lc, var(--accent)); border-radius: 7px;
   padding: 7px 9px; background: var(--bg); min-width: 0;
@@ -133,3 +133,8 @@
   .sys-profile-dl { grid-template-columns: 1fr; gap: 1px; }
   .sys-profile-dl dd { margin-bottom: 6px; }
 }
+
+/* prose list overrides inside diagrams */
+.prose .sys-df-card ul, .prose .sys-df-hub ol { margin-top: 4px; margin-bottom: 0; }
+.prose .sys-df-card li, .prose .sys-df-hub li { font-family: var(--sans); font-size: 12.5px; line-height: 1.4; margin: 2px 0; }
+.prose .sys-df-hub li { font-size: 13px; }

@@ -57,3 +57,12 @@
   .raci-task { min-width: 132px !important; font-size: 12px; }
   .org-node { min-width: 84px; max-width: 140px; }
 }
+
+/* wide trees: centre when they fit, otherwise start at the left edge and scroll (avoids clipped left side) */
+.org-scroll > .org-tree { width: max-content; min-width: 100%; }
+.org-tree ul.org-stack { flex-direction: column; align-items: center; padding-top: 12px; }
+.org-tree ul.org-stack > li { padding: 8px 0 0; }
+.org-tree ul.org-stack > li::after { display: none; }
+.org-tree ul.org-stack > li::before { display: block; border: 0; border-left: 1px solid var(--line-2); border-radius: 0; left: 50%; right: auto; width: 0; height: 8px; }
+.org-tree ul.org-stack > li:first-child::before { height: 8px; }
+.org-tree ul.org-stack .org-node { min-width: 150px; }

@@ -24,7 +24,7 @@
 .lens-td-wf { font-weight: 500; }
 .lens-wf-title { display: block; color: var(--ink); line-height: 1.25; }
 .lens-wf-group { display: block; font: 400 11px var(--sans); color: var(--muted); }
-.lens-row { cursor: pointer; }
+.lens-row { cursor: pointer; scroll-margin-top: 70px; }
 .lens-row:hover td, .lens-row:hover th { background: var(--accent-soft); }
 .lens-row.sel td, .lens-row.sel th { background: var(--accent-soft); }
 .lens-row.sel .lens-td-wf { box-shadow: inset 3px 0 0 var(--accent); }
@@ -43,7 +43,8 @@
 .lens-f0 { background: var(--surface-2); color: var(--muted); font-weight: 400; }
 
 .lens-detail-row > td { padding: 0 !important; text-align: left !important; background: var(--bg); }
-.lens-detail { padding: 12px; position: sticky; left: 0; max-width: min(860px, calc(100vw - 48px)); }
+.lens-detail { padding: 10px 12px; position: sticky; left: 0; box-sizing: border-box; }
+.lens-detail .lens-card { margin: 0; }
 
 /* card */
 .lens-card { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 14px 16px; margin: 14px 0; }
@@ -139,5 +140,5 @@
   .lens-card-head { flex-direction: column; }
   .dw-fb { grid-template-columns: 1fr; }
   .dw-fb-arrow { transform: rotate(90deg); height: 14px; }
-  .lens-detail { max-width: calc(100vw - 40px); padding: 8px; }
+  .lens-detail { padding: 6px; }
 }

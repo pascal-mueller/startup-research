@@ -195,7 +195,7 @@ example:
     | 12 (21 Dec, payroll + 13th salary) | 3.9 | 2.1 | **–3.4** | 4.2 |
     | 13 (28 Dec) | 5.3 | 3.5 | –2.3 | 5.3 |
 
-    *Closing cash, CHF m. Stress low point –3.4 in week 12; undrawn line CHF 9m, so headroom after minimum cash is only CHF 4.1m.*
+    *Closing cash, CHF m. Stress low point –3.4 in week 12; undrawn line CHF 9m, so headroom after minimum cash is only CHF 4.1m. The last column adds the levers decided below: CHF 5m drawing (+5.0), factoring (+1.6 from week 4), capex freeze (+0.8), supplier extensions (+1.2 in weeks 5–9, repaid weeks 9–11), hiring freeze (+0.1 per month).*
 
     **Wednesday** — Martin informs the CEO and the board chair, starts a daily 08:30 cash call (Martin, Petra, head of sales, head of operations/procurement) and requires his approval for every payment above CHF 25k. He sends a utilisation request for CHF 5m under the committed line (two business days' notice) — the conditions are clearly met today; he does not want to find out in December whether they still are.
 
@@ -203,7 +203,7 @@ example:
 
     **Week 2** — Board call: capex freeze on a new CHF 0.8m test cell (to Q2 2027), hiring freeze on six open roles (≈ CHF 0.1m per month), factoring approved. Procurement agrees 30-day extensions on CHF 1.2m of component invoices with two long-standing suppliers — who are told why. Payroll, AHV social charges, VAT and the mortgage payment stay untouched. US counsel files the claim and checks whether recently delivered robots give Alpine any priority.
 
-    **Weeks 3–13** — Daily updates; Petra's lever tracker shows factoring received in week 4 and the extensions repaid in weeks 9–11. The German CEO, called by Alpine's CEO, agrees to accept and pay the first site (EUR 1.6m) in week 10. With the stress-case low point now above CHF 4m, Martin ends the daily call in week 9 and returns to the Monday cash sheet — but keeps the CHF 5m drawn until the German money is in.
+    **Weeks 3–13** — Daily updates; Petra's lever tracker shows factoring received in week 4 and the extensions repaid in weeks 9–11. The German CEO, called by Alpine's CEO, agrees to accept and pay the first site (EUR 1.6m) in week 10. With the stress-case low point (after levers) above CHF 4m and the German acceptance agreed, Martin ends the daily call in week 10 and returns to the Monday cash sheet — but keeps the CHF 5m drawn until the German money is in.
 judgment:
   - decision: Timing problem or credit problem
     why: A late payer and an insolvent customer look identical on the bank statement for the first days; the response differs completely.

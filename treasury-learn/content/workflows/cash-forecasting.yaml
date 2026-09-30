@@ -6,19 +6,21 @@ order: 2
 summary: >-
   Treasury builds a week-by-week prediction of cash receipts and payments for roughly the next quarter, by entity and
   currency, from ledgers, schedules and people's knowledge; compares last week's forecast with what actually happened;
-  and uses the result to decide funding, investments, hedges and warnings to management. It is the workflow treasurers
-  most consistently name as both their top priority and their hardest problem.
+  and uses the result to decide funding, the use of surplus, hedges and warnings to management. It is the workflow
+  treasurers most consistently name as both their top priority and their hardest problem.
 objective: >-
-  Anticipate cash shortfalls and surpluses early enough to act cheaply — arrange funding, place investments,
-  concentrate cash, hedge currency flows, or warn management — and give the CFO a credible view of liquidity.
+  Anticipate cash shortfalls and surpluses early enough to act cheaply — arrange or reduce borrowing, concentrate
+  cash, size FX hedges, or warn management — and give the CFO a credible view of liquidity.
 trigger: Weekly cycle (typically Monday–Wednesday); also rebuilt on demand after a shock (a lost customer, a crisis, a lender request).
 frequency: >-
-  Weekly update of a rolling 13-week forecast is the common pattern at mid-market and large companies; SMEs often
-  update weekly or monthly; startups maintain a monthly runway model instead. Distressed or lender-monitored companies
-  may be required to deliver a 13-week cash flow to lenders weekly.
+  Practice varies. Many mid-market groups update a rolling 13-week forecast weekly. Many large multinationals instead
+  collect monthly entity submissions (often for a rolling 12 months) and build a daily or weekly short-horizon view
+  centrally from bank and ERP data, rather than asking 40 entities for weekly numbers. SMEs update a cash sheet weekly
+  or monthly; startups keep a monthly runway model. Distressed or lender-monitored companies are often required by their
+  lenders to deliver a 13-week cash flow weekly (a contractual practice, not a general rule).
 people:
   - role: Treasury analyst / cash manager
-    does: Collects inputs, runs the consolidation, performs variance analysis, drafts commentary.
+    does: Collects inputs, runs the consolidation, performs variance and accuracy analysis, drafts commentary.
   - role: Treasury manager
     does: Owns the forecast and its assumptions; challenges inputs; decides adjustments; turns it into actions.
   - role: Subsidiary / business-unit finance
@@ -27,12 +29,12 @@ people:
     does: Know which customers will really pay when; flag disputes and overdue accounts.
   - role: Accounts payable / procurement
     does: Provide scheduled supplier payments and upcoming large purchases.
-  - role: FP&A
-    does: Provides the budget / rolling P&L outlook used beyond the first weeks and for sanity checks.
+  - role: FP&A / controlling
+    does: Provide the budget and rolling P&L outlook used for the later weeks and for the medium-term plan; in DACH companies controlling often owns this planning process.
   - role: Tax, HR/payroll, legal
-    does: Tax payment dates and amounts; payroll and bonus timing; litigation or settlement payments.
+    does: Tax payment dates and amounts; payroll, 13th-salary and bonus timing; litigation or settlement payments.
   - role: Head of treasury / CFO
-    does: Review the liquidity outlook; decide on material funding or investment actions.
+    does: Review the liquidity outlook; decide on material funding or business actions.
 systems:
   - name: "[ERP](term:erp) (AR and AP ledgers)"
     use: Open receivables by due date, open payables and scheduled payment runs, purchase orders.
@@ -51,35 +53,50 @@ data:
     source: Latest [cash position](term:cash-position)
   - name: Customer receipts
     source: AR open items by due date, adjusted by payment behaviour; sales forecast for invoices not yet issued
-    notes: The biggest and most uncertain line for most companies.
+    notes: >-
+      The biggest and most uncertain line. Forecast **gross**, including VAT, because customers pay the invoice total;
+      FP&A's revenue figures are net of VAT (see [VAT in the cash forecast](term:vat-cash)).
   - name: Supplier payments
     source: AP open items, payment-run calendar, purchase orders and procurement plans
-    notes: Fairly reliable for 2–4 weeks; beyond that, based on run-rates.
+    notes: Fairly reliable for 2–4 weeks; beyond that, based on run-rates. Also gross of VAT.
   - name: Payroll and social charges
     source: HR / payroll provider calendar
-    notes: Highly predictable in timing; bonuses and 13th-month salaries (common in Switzerland) create spikes.
-  - name: Taxes (VAT, corporate income tax prepayments, withholding)
+    notes: Highly predictable in timing; 13th-month salaries (common in Switzerland, Italy, and paid in November/December) and bonuses create spikes.
+  - name: Taxes (VAT settlements, corporate income tax prepayments, withholding)
     source: Tax team / tax calendar
-    notes: Large, lumpy, frequently forgotten in local submissions.
+    notes: Large, lumpy, frequently forgotten in local submissions. Swiss VAT is usually settled quarterly within 60 days of the quarter end.
   - name: Capex and one-offs
     source: Business units, project managers, M&A team
   - name: Financing flows
-    source: Treasury's own records — loan interest and repayments, deal maturities, dividend payments, hedge settlements
+    source: Treasury's own records — loan interest and repayments, interest-period rollovers, bond coupons, dividends, hedge settlements
     notes: Known precisely by treasury.
   - name: Intercompany flows
-    source: Intercompany agreements, netting calendar, planned dividends and loans
-    notes: Should net to zero at group level; mismatches are a classic error.
-  - name: Last period's forecast and actuals
-    source: Stored forecast versions; bank statements
-    notes: Needed for [variance analysis](term:variance-analysis).
+    source: Intercompany agreements, planned dividends, service fees and loans
+    notes: Net to zero at group level but matter per entity; mismatches between the two sides are a classic error.
+  - name: Forecasts by currency
+    source: The same submissions, kept in transaction currency
+    notes: The net EUR, USD and CNY flows per week and quarter are the input to FX exposure reporting and the hedge-ratio calculation.
+  - name: Stored forecast versions and actuals
+    source: Forecast archive; bank statements categorised by flow type
+    notes: Needed for [variance analysis](term:variance-analysis) and [forecast accuracy](term:forecast-accuracy) measured at fixed lags.
 steps:
   - title: Roll the forecast forward one week
     who: Treasury analyst
     where: Excel / forecasting tool
     when: Monday
     detail: >-
-      Close out last week (it is now actuals), add a new week 13 at the end, and set the new opening balance from
-      the latest cash position.
+      Save last week's version (it is needed for accuracy tracking), close out last week as actuals, add a new week 13,
+      and set the new opening balance from the latest cash position.
+  - title: Variance analysis — last week's forecast vs actual
+    who: Treasury analyst
+    where: Excel / tool
+    when: Monday
+    detail: >-
+      For each entity and category, compare what was forecast for last week with what the bank shows, and classify
+      differences as **timing** (will still come) or **permanent** (won't), with the reason. Many teams do this first,
+      on Monday, because it tells them whom to chase and which assumptions to change; others do it after consolidation.
+      Either way it feeds the rest of the week's work.
+    judgment: Distinguishing timing from permanent differences, and deciding which explanations are credible.
   - title: Pull system data
     who: Treasury analyst
     where: ERP reports, TMS
@@ -92,8 +109,8 @@ steps:
     where: Excel template via email, or forecasting tool
     when: Deadline e.g. Tuesday noon
     detail: >-
-      Each entity submits expected receipts and payments by week and category: customer receipts, suppliers, payroll,
-      tax, capex, intercompany. The analyst chases late submissions.
+      Each entity submits expected receipts and payments by week, category and currency: customer receipts, suppliers,
+      payroll, tax, capex, intercompany. The analyst chases late submissions.
     manual: >-
       Chasing is a large share of the effort. Submissions arrive late, in modified templates, or as copies of last
       week's with the dates shifted.
@@ -102,25 +119,19 @@ steps:
     where: Excel
     detail: >-
       Invoices are not paid on their due date. Adjust by customer or segment: known late payers, disputed invoices,
-      customers who pay at month-end regardless of terms, seasonal patterns, public-sector customers. Add expected
-      new invoicing from the sales forecast for the later weeks.
+      customers who pay at month-end regardless of terms, seasonal patterns, public-sector customers. An entity whose
+      effective [DSO](term:dso) has drifted (say from 75 to 90 days) needs its receipts shifted. Add expected new
+      invoicing from the sales forecast for the later weeks.
     judgment: >-
-      How much to trust due dates vs. history vs. what credit control says. A single large customer's timing can
+      How much to trust due dates vs history vs what credit control says. A single large customer's timing can
       dominate the forecast.
   - title: Consolidate and check consistency
     who: Treasury analyst
     where: Excel / tool
     detail: >-
       Aggregate by entity and currency; convert to reporting currency; check intercompany flows match on both sides;
-      check that the implied closing balances are plausible; add central flows (debt service, dividends, hedge settlements).
-  - title: Variance analysis — last week's forecast vs actual
-    who: Treasury analyst
-    where: Excel / tool
-    detail: >-
-      For each entity and category, compare what was forecast for last week (and for 4 weeks ago, for the same week)
-      with what the bank shows. Classify differences as **timing** (will still come) or **permanent** (won't), and
-      record the reason.
-    judgment: Distinguishing timing from permanent differences, and deciding which explanations are credible.
+      check that the implied closing balances are plausible; add central flows (debt service, rollovers, coupons,
+      dividends, hedge settlements) and the central calendar of statutory tax dates.
   - title: Challenge and adjust
     who: Treasury manager
     where: Excel / calls
@@ -131,61 +142,79 @@ steps:
     judgment: >-
       Whether to override local inputs — a political as well as analytical decision — and how much prudence to build in.
       Many treasurers deliberately forecast receipts conservatively; too much prudence makes the forecast useless for
-      investment decisions.
+      decisions about surplus.
   - title: Determine the low point and liquidity headroom
     who: Treasury manager
     where: Excel / tool
     detail: >-
-      Identify the lowest projected balance (by entity and group), when it occurs, and the [headroom](term:liquidity-headroom)
-      versus minimum cash and undrawn facilities. Run simple scenarios: largest customers pay 2–4 weeks late; sales
-      down 20%; a big capex item brought forward.
+      Identify the lowest projected balance (by entity and group), when it occurs, and the
+      [headroom](term:liquidity-headroom) versus the group minimum and undrawn committed facilities, excluding
+      [trapped cash](term:trapped-cash). Run a few scenarios, knowing how a 13-week direct forecast behaves: receipts in
+      weeks 1–8 come mostly from invoices already issued, so "largest customers pay 2–4 weeks late" bites early, while
+      "sales down 20%" mainly hits weeks 9–13 and the medium-term plan.
     judgment: Which scenarios are plausible enough to act on.
   - title: Decide actions
     who: Treasury manager, with head of treasury / CFO for material items
     where: Meeting / email
     detail: >-
-      Turn the forecast into decisions: how much and how long to invest surplus; whether to prepare a facility drawing;
-      which subsidiaries to fund or upstream; FX flows to hedge; whether to ask the business to delay capex or push
-      collections. See [liquidity planning](wf:liquidity-planning) and [surplus cash investment](wf:surplus-cash-investment).
+      Turn the forecast into decisions: whether to prepare a facility drawing or reduce one at the next rollover; which
+      subsidiaries to fund or upstream; what to do with surplus by currency (in CHF at a 0% policy rate, reducing
+      drawn debt usually beats a deposit; EUR or USD surplus can earn money-market rates); how much to hedge, using the
+      forecast's currency view; whether to ask the business to delay capex or push collections. See
+      [liquidity planning](wf:liquidity-planning) and [surplus cash investment](wf:surplus-cash-investment).
     judgment: The core judgment — balancing safety against the cost of idle cash or unnecessary borrowing.
-  - title: Report
-    who: Treasury manager
+  - title: Measure accuracy and report
+    who: Treasury analyst drafts; treasury manager sends
     where: PowerPoint / email / dashboard
     detail: >-
-      A short weekly note or dashboard to the head of treasury/CFO: closing cash by week, low point, headroom, key
-      changes vs last week and why, forecast accuracy trend, actions. Monthly, a fuller version goes into the CFO or
-      board treasury report.
+      Track accuracy at fixed lags, not just last week: for each entity and category, compare the forecast made 1 week
+      and 4 weeks ahead with the actual (absolute error as a percentage of actual, and the sign of the error to reveal
+      bias). "±10%" means nothing without the category, the lag and the entity. The weekly note or dashboard to the
+      head of treasury/CFO shows closing cash by week, low point, headroom, key changes vs last week and why, the
+      accuracy trend, and actions. Monthly, a fuller version goes into the CFO or board treasury report.
 example:
-  title: "Helvetic's week 23 forecast: a customer delay and a forgotten tax payment"
+  title: "Helvetic, Monday 23 November: last week's surprises and a December low point"
   body: |
-    Lea rolls the forecast forward on Monday. Tuesday noon, 7 of 8 subsidiaries have submitted; France submits
-    Wednesday morning after two reminders.
+    This is the week after the [daily positioning example](wf:daily-cash-positioning). Lea rolls the forecast forward on Monday and starts with last week's variances. Tuesday noon, 7 of 8 subsidiaries have submitted; France submits Wednesday morning after two reminders.
 
-    **Last week's variance (group, CHF m):**
+    **Last week's variance (group, CHF m, w/c 16 November):**
 
     | Category | Forecast | Actual | Variance | Type | Reason |
     |---|---|---|---|---|---|
-    | Customer receipts | 14.0 | 11.2 | −2.8 | Timing (2.1) / permanent (0.7) | Italian customer paid 10 days late; a UK customer short-paid a disputed invoice |
-    | Supplier payments | −9.5 | −9.8 | −0.3 | Timing | German run released a day early |
-    | Payroll | −6.1 | −6.1 | 0.0 | — | — |
-    | Tax | 0.0 | −0.3 | −0.3 | Missing input | German trade-tax prepayment not submitted |
-    | **Net** | **−1.6** | **−5.0** | **−3.4** | | |
+    | Customer receipts | 13.5 | 10.7 | −2.8 | Timing 2.1 / permanent 0.7 | Italian customer paid 10 days late; a UK customer short-paid a disputed invoice |
+    | Supplier payments | −6.8 | −7.3 | −0.5 | Timing 0.2 / permanent 0.3 | Two German invoices approved late and added to the run (0.3); a CHF 180k Swiss payment made twice (refund requested) |
+    | Payroll | −2.8 | −2.8 | 0.0 | — | CZ, CN and US payrolls as planned |
+    | Tax | 0.0 | −0.3 | −0.3 | Missing input | German trade-tax prepayment collected by direct debit, not in HM Deutschland's submission |
+    | **Net** | **+3.9** | **+0.3** | **−3.6** | | |
 
-    **Daniel's adjustments:** he moves the Italian CHF 2.1m into week 1; adds all four German quarterly tax dates
-    to the central calendar so they can't be forgotten again; and haircuts Italy's receipts by 15% in weeks 5–13, because
-    Italy has over-forecast receipts in 9 of the last 12 weeks.
+    **One line of the subsidiary template (HM Italia, week 3, EUR m):** customer receipts +2.4 · suppliers −1.6 · payroll 0 · VAT (IVA) 0 · intercompany service fee to HM AG −0.3 · capex 0 · **net +0.5**. Giulia fills in 13 weeks of this, in EUR, every Tuesday.
 
-    **Result:** group low point CHF 18m in week 6, driven by the annual bond coupon and the quarterly VAT payment
-    falling in the same week. Minimum cash CHF 10m; CHF 140m undrawn RCF. No action needed on funding.
-    Weeks 2–4 show a CHF 6m surplus at the parent, so Daniel approves a CHF 5m 3-week deposit. He flags the Italian
-    customer's payment pattern to the CFO for the next credit-control review.
+    **Daniel's adjustments:** he moves the Italian CHF 2.1m into week 1 (Giulia confirms the customer's payment run); adds all four German trade-tax dates (15 Feb, 15 May, 15 Aug, 15 Nov) to the central calendar so they no longer depend on a local submission; and haircuts Italy's customer receipts by 15% in weeks 5–13, because Italy has over-forecast receipts in 8 of the last 10 weeks at the 4-week lag.
+
+    **The 13-week view (group cash, CHF m, closing balance, opening CHF 39m):**
+
+    | Wk | w/c | Close | What drives it |
+    |---|---|---|---|
+    | 1 | 23 Nov | 33.5 | Swiss payroll (25th, ≈7.0), German payroll (27th, EUR 4.2m ≈ 3.9), IT/FR/UK payrolls; late Italian receipt arrives |
+    | 2 | 30 Nov | 33.9 | Swiss Q3 VAT settlement ≈ 4.8 due 30 Nov |
+    | 3 | 7 Dec | 36.6 | CZ, CN, US payrolls |
+    | **4** | **14 Dec** | **18.0** | **Low point:** December payrolls paid before Christmas, including the Swiss 13th salary (≈5.5) and the Italian *tredicesima*; year-end supplier runs; a CHF 1.8m capex milestone |
+    | 5–6 | 21 Dec – 1 Jan | 23.0 → 25.6 | Quiet weeks, low receipts |
+    | 7–8 | 4 – 15 Jan | 28.8 → 36.6 | Receipts from October–November deliveries; RCF interest on 15 Jan |
+    | 9–13 | 18 Jan – 19 Feb | 43.2 → 52.6 | January payrolls (wk 10), German trade tax 15 Feb (wk 13); receipts from strong Q4 shipments |
+
+    Group minimum liquidity (the CFO's CHF 10m, held at the parent); CHF 140m undrawn on the RCF. The low point of CHF 18m includes about CHF 6m in China that cannot be moved, so the usable figure is about CHF 12m: above the minimum, but closer than the headline suggests. No drawing is needed; Lea will watch week 4 daily.
+
+    **What the forecast drives.** (1) *No deposit:* CHF on current account earns about 0% and is needed in week 4. (2) *Debt:* the CHF 35m RCF loan's interest period runs to 15 January. With the forecast rising to about CHF 50m by February, Daniel pencils in a reduction of that loan by CHF 10–15m at the 15 January rollover, to be confirmed with the first January forecast; it can be redrawn at a few days' notice if the forecast turns. (3) *FX:* the currency view shows net EUR inflows of about EUR 30m over the 13 weeks. For the hedge-ratio report Lea combines weeks 6–13 with FP&A's March figures: Q1 2027 net EUR inflows EUR 40m against EUR 30m of forwards, 75%, inside the 60–90% policy band, so no new hedges this week. (4) *Credit control:* he flags the Italian customer's payment pattern to Thomas for the next credit-control review.
+
+    **Where the 13 weeks meet the 18-month plan:** week 13 ends in February; month 3 of the medium-term plan (built by the [indirect method](term:indirect-method) from FP&A's and controlling's P&L plan) covers the same period. When the two disagree by more than a few million, Lea and Marco's FP&A team reconcile them line by line: usually working-capital timing and VAT, which the P&L plan does not model.
 judgment:
   - decision: Which customers will really pay when
     why: Payment behaviour differs from terms and changes with the customer's own situation; credit control's soft knowledge matters.
   - decision: Whether to override a subsidiary's submission
     why: The central team lacks local detail; the local team may be optimistic or careless. Overrides have organisational cost.
   - decision: How much prudence to build in
-    why: An over-conservative forecast keeps too much idle cash; an optimistic one causes surprises. The right bias depends on headroom and risk appetite.
+    why: An over-conservative forecast keeps too much idle cash (or too much debt drawn); an optimistic one causes surprises. The right bias depends on headroom and risk appetite.
   - decision: Which variances are timing vs permanent
     why: Requires understanding why something happened, not just that it did.
   - decision: Which scenarios to present and act upon
@@ -193,13 +222,16 @@ judgment:
 failure_modes:
   - mode: Garbage in — late, copied or optimistic subsidiary inputs
     consequence: Forecast looks precise but is wrong; surprises at the low point.
-    detection: Variance analysis over several weeks by entity; forecast accuracy tracking.
-  - mode: Forgotten lumpy items (tax, bonuses, dividends, insurance premiums, capex milestones)
+    detection: Accuracy and bias tracking by entity at fixed lags.
+  - mode: Forgotten lumpy items (tax, direct debits, 13th salaries, bonuses, dividends, insurance premiums, capex milestones)
     consequence: Sudden shortfall in a specific entity or week.
-    detection: Central calendar of known lumpy items; year-on-year comparison.
+    detection: Central calendar of known lumpy and statutory items; year-on-year comparison.
   - mode: Intercompany flows that don't match on both sides
     consequence: Group forecast double-counts or misses cash.
     detection: Intercompany matching check in consolidation.
+  - mode: Receipts forecast net of VAT (copied from FP&A figures) while payments are gross
+    consequence: Receipts understated during the quarter and the VAT settlement double-counted or missed.
+    detection: Reconciling forecast receipts to AR open items (which are gross).
   - mode: Spreadsheet errors (broken links, wrong FX rate, a row not in the sum)
     consequence: Wrong totals presented to the CFO.
     detection: Reconciliation of opening balance to cash position; reasonableness checks; peer review.
@@ -210,23 +242,24 @@ failure_modes:
     consequence: Effort wasted; it becomes a compliance exercise nobody trusts.
     detection: Ask whether any decision in the last month was based on it.
 software: >-
-  Most companies below the large-multinational tier forecast primarily in **Excel**; Deloitte's 2024 survey found
-  that for many respondents, forecasting "continued to primarily be supported by spreadsheets"[](cite:deloitte-gts-2024).
-  Larger companies use **TMS forecasting modules** or **dedicated forecasting tools**; a newer category of
-  cloud tools (and TMS vendors) offers ERP/bank integration and machine-learning-based predictions of receipts.
-  Planning systems (FP&A) supply the longer horizon. See [Systems & Data](/systems).
+  Most companies below the large-multinational tier forecast primarily in **Excel** (field observation, consistent
+  with the surveys' picture of forecasting as a hard, still largely manual task). Larger companies use **TMS forecasting
+  modules** or **dedicated forecasting tools**; a newer category of cloud tools (and TMS vendors) offers ERP/bank
+  integration and machine-learning-based predictions of receipts. Planning systems (FP&A) supply the longer horizon.
+  See [Systems & Data](/systems).
 manual_work:
   - Chasing subsidiaries for submissions and explanations.
   - Exporting ERP reports and pasting them into templates.
   - Adjusting due dates for customer payment behaviour by hand.
   - Matching intercompany flows across submissions.
-  - Variance analysis — collecting actuals by category from bank statements that aren't categorised.
+  - Variance and accuracy analysis — categorising actuals from bank statements that aren't categorised.
+  - Reconciling the 13-week view with FP&A's medium-term plan.
   - Writing commentary and building the CFO slide.
 by_size:
   startup: >-
-    A monthly runway model, not a 13-week forecast: opening cash, expected collections, payroll, rent, cloud, other costs,
-    and the resulting months of runway. Maintained by the founder/CFO in a spreadsheet, checked against the board model.
-    The key judgment is when to start fundraising or cut burn.
+    A monthly [runway](term:cash-runway) model, not a 13-week forecast: opening cash, expected collections, payroll, rent,
+    cloud, other costs, and the resulting months of runway. Maintained by the founder/CFO in a spreadsheet, checked
+    against the board model. The key judgment is when to start fundraising or cut [burn](term:burn-rate).
   sme: >-
     A weekly or monthly Excel cash sheet for the next 2–3 months, built by the head of accounting from ERP AR/AP plus
     what the CFO and sales/project managers know about big receipts. No formal variance analysis; the CFO checks it
@@ -236,18 +269,22 @@ by_size:
     templates plus central data, with weekly variance analysis. The main effort is data collection and chasing; the main
     risk is key-person dependency and spreadsheet complexity.
   multinational: >-
-    Multi-horizon forecasting (daily for 1–2 weeks, weekly for 13 weeks, monthly for 12–18 months) with a dedicated
-    tool or TMS module, some categories fed automatically from ERP/payroll systems, and a central team focused on
-    variance analysis, accuracy KPIs by entity and scenario analysis. Reconciled with FP&A's forecast. Still depends on
-    dozens of local finance teams submitting honest numbers.
+    Multi-horizon forecasting (daily for 1–2 weeks, weekly or monthly for the quarter, monthly for 12–18 months) with a
+    dedicated tool or TMS module. Entity submissions are often monthly; short horizons are built centrally from bank
+    data and ERP feeds. A central team focuses on variance analysis, accuracy KPIs by entity and scenario analysis,
+    reconciled with FP&A. Still depends on dozens of local finance teams submitting honest numbers.
 companies:
-  kleio: "Monthly runway model; the only 'forecast' is next month's payroll and the January/July annual prepayments from enterprise customers, which make the runway look better than it is for half the year."
+  kleio: >-
+    Monthly runway model; no 13-week forecast. The trap is the January and July annual prepayments from enterprise
+    customers: right after they arrive, cash is high, but Kleio still owes a year of service (deferred revenue) and
+    burns cash every month until the next renewal. Sarah therefore judges runway on average burn across the whole
+    annual cycle, not on the balance the week after January's receipts.
   alpine: "Petra's weekly sheet lists each open project milestone by customer with her estimate of when the acceptance certificate will be signed. Martin's main question every Monday: 'Which milestones slipped?'"
-  helvetic: "The worked example above. Daniel presents the 13-week view and an 18-month liquidity plan (derived with FP&A) to the CFO monthly; the 18-month plan matters for the 2028 bond refinancing."
-  globalchem: "Forty entities submit through a forecasting tool; payroll and AP flows for European entities are fed automatically. The central team tracks accuracy by entity (target: ±10% on 4-week receipts), and the forecast feeds FX hedging and CP issuance decisions."
+  helvetic: "The worked example above. Daniel presents the 13-week view and an 18-month liquidity plan (derived with FP&A and controlling) to the CFO monthly; the 18-month plan matters for the 2028 bond refinancing."
+  globalchem: "Forty entities submit monthly through a forecasting tool; payroll and AP flows for European entities are fed automatically, and the central cash team builds the daily and weekly short-horizon view from bank data. The team tracks accuracy by entity (target: ±10% on receipts at the 4-week lag), and the forecast feeds FX hedging and CP issuance decisions."
 handoffs:
   - from: Subsidiary / business-unit finance
-    gives: expected receipts, payments, capex and tax by week (template)
+    gives: expected receipts, payments, capex and tax by week and currency (template)
     to: Treasury analyst
     note: Often late and of varying quality; the single largest source of forecast error at decentralised groups.
   - from: Accounts receivable / credit control
@@ -256,15 +293,19 @@ handoffs:
   - from: Accounts payable
     gives: scheduled payment runs and large upcoming payables
     to: Treasury analyst
-  - from: FP&A
+  - from: FP&A / controlling
     gives: revenue/cost outlook for later weeks and the medium-term plan
     to: Treasury analyst / manager
   - from: Tax / HR
-    gives: tax payment calendar; payroll and bonus dates
+    gives: tax payment calendar; payroll, 13th-salary and bonus dates
     to: Treasury analyst
   - from: Treasury analyst
-    gives: consolidated forecast, variances, draft commentary
+    gives: consolidated forecast, variances, accuracy, draft commentary
     to: Treasury manager
+  - from: Treasury analyst
+    gives: net flows by currency
+    to: FX / hedge-ratio report
+    note: At Helvetic, the same person (Lea) prepares both.
   - from: Treasury manager
     gives: adjusted forecast, low point, headroom, proposed actions
     to: Head of treasury / CFO
@@ -274,20 +315,25 @@ handoffs:
     to: Subsidiary finance
 interview: >-
   Ask for **the last forecast they actually produced**: where each line came from, who they had to chase, which
-  numbers they changed and why, and when it was last badly wrong. Ask the subsidiary finance manager the same from the
-  other side — how long the template takes and how much they trust their own numbers.
+  numbers they changed and why, how they measure accuracy, and when it was last badly wrong. Ask what decision the
+  forecast drove last month. Ask the subsidiary finance manager the same from the other side — how long the template
+  takes and how much they trust their own numbers.
 ai_note: >-
   Forecasting is where most vendors are pointing AI (predicting customer payment timing, categorising actuals,
   explaining variances). Evidence of accuracy gains is mostly vendor-reported. The harder parts are organisational:
   getting honest inputs and knowing things that aren't in any system. Automating data collection, variance explanation
   and drafting commentary looks more tractable than replacing the manager's judgment.
-terms: [short-term-forecast, medium-term-forecast, direct-method, indirect-method, variance-analysis, liquidity-headroom, fpa, dso, cash-position]
-related: [daily-cash-positioning, liquidity-planning, surplus-cash-investment, liquidity-crisis, fx-exposure-management]
-sources: [afp-bench-2025-article, afp-bench-2026, st-tis-cfv-2025, eact-2025, deloitte-gts-2024]
+terms: [short-term-forecast, thirteen-week-cash-flow, medium-term-forecast, direct-method, indirect-method, variance-analysis, forecast-accuracy, liquidity-headroom, cash-buffer, trapped-cash, vat-cash, direct-debit, hedge-ratio, interest-period, fpa, dso, cash-position]
+related: [daily-cash-positioning, liquidity-planning, surplus-cash-investment, fx-exposure-management, fx-hedging, liquidity-crisis]
+sources: [afp-bench-2025, afp-bench-2026, st-tis-cfv-2025, eact-2025, ch-mwstg-86, gewstg-19, snb-mpa-2026-09-primary]
 evidence_note: >-
-  Priority and difficulty are well documented: 62% of AFP 2025 respondents named cash and liquidity forecasting their
-  most challenging activity[](cite:afp-bench-2025-article) (49% in the 2026 edition[](cite:afp-bench-2026)); in the
-  Strategic Treasurer/TIS 2025 survey, 68% reported rising management expectations and 53% called forecasting difficult[](cite:st-tis-cfv-2025);
-  European multinationals ranked it priority one in 2025[](cite:eact-2025). The step sequence
-  is established practice; the example and company variants are illustrative synthesis. Accuracy targets vary widely and
-  no universal benchmark exists.
+  Priority and difficulty are well documented, mostly in samples of larger, often US companies: 62% of AFP 2025
+  respondents (523 US practitioners) named cash and liquidity forecasting their most challenging task[](cite:afp-bench-2025),
+  and 49% did in the 2026 edition (425 responses)[](cite:afp-bench-2026); in the vendor-sponsored Strategic Treasurer/TIS
+  2025 survey, 68% reported rising management expectations and 53% called forecasting difficult[](cite:st-tis-cfv-2025);
+  European group treasurers ranked it priority one in 2025[](cite:eact-2025). Why 13 weeks: one quarter, long enough to
+  cover a quarterly VAT and tax cycle and short enough to build from known invoices and payroll; the format is
+  associated with lender monitoring and restructuring practice (established practice, not a survey finding). Swiss VAT
+  and German trade-tax dates are statutory[](cite:ch-mwstg-86,gewstg-19); the 0% CHF rate is the SNB's September 2026
+  decision[](cite:snb-mpa-2026-09-primary). The step sequence is established practice; the example and company
+  variants are illustrative synthesis. Accuracy targets vary widely and no universal benchmark exists.
