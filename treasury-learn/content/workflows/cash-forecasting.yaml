@@ -61,7 +61,7 @@ data:
     notes: Fairly reliable for 2–4 weeks; beyond that, based on run-rates. Also gross of VAT.
   - name: Payroll and social charges
     source: HR / payroll provider calendar
-    notes: Highly predictable in timing; 13th-month salaries (common in Switzerland, Italy, and paid in November/December) and bonuses create spikes.
+    notes: Highly predictable in timing; 13th-month salaries (common in Switzerland and Italy, usually paid in November or December) and bonuses create spikes.
   - name: Taxes (VAT settlements, corporate income tax prepayments, withholding)
     source: Tax team / tax calendar
     notes: Large, lumpy, frequently forgotten in local submissions. Swiss VAT is usually settled quarterly within 60 days of the quarter end.
@@ -182,7 +182,7 @@ example:
     | Category | Forecast | Actual | Variance | Type | Reason |
     |---|---|---|---|---|---|
     | Customer receipts | 13.5 | 10.7 | −2.8 | Timing 2.1 / permanent 0.7 | Italian customer paid 10 days late; a UK customer short-paid a disputed invoice |
-    | Supplier payments | −6.8 | −7.3 | −0.5 | Timing 0.2 / permanent 0.3 | Two German invoices approved late and added to the run (0.3); a CHF 180k Swiss payment made twice (refund requested) |
+    | Supplier payments | −6.8 | −7.3 | −0.5 | Missing input 0.3 / timing 0.2 | Two German invoices approved late and added to the run (0.3); a CHF 180k Swiss payment made twice (refund requested) |
     | Payroll | −2.8 | −2.8 | 0.0 | — | CZ, CN and US payrolls as planned |
     | Tax | 0.0 | −0.3 | −0.3 | Missing input | German trade-tax prepayment collected by direct debit, not in HM Deutschland's submission |
     | **Net** | **+3.9** | **+0.3** | **−3.6** | | |
@@ -191,12 +191,12 @@ example:
 
     **Daniel's adjustments:** he moves the Italian CHF 2.1m into week 1 (Giulia confirms the customer's payment run); adds all four German trade-tax dates (15 Feb, 15 May, 15 Aug, 15 Nov) to the central calendar so they no longer depend on a local submission; and haircuts Italy's customer receipts by 15% in weeks 5–13, because Italy has over-forecast receipts in 8 of the last 10 weeks at the 4-week lag.
 
-    **The 13-week view (group cash, CHF m, closing balance, opening CHF 39m):**
+    **The 13-week view (group cash, CHF m, closing balance, opening CHF 35m):**
 
     | Wk | w/c | Close | What drives it |
     |---|---|---|---|
-    | 1 | 23 Nov | 33.5 | Swiss payroll (25th, ≈7.0), German payroll (27th, EUR 4.2m ≈ 3.9), IT/FR/UK payrolls; late Italian receipt arrives |
-    | 2 | 30 Nov | 33.9 | Swiss Q3 VAT settlement ≈ 4.8 due 30 Nov |
+    | 1 | 23 Nov | 29.5 | Swiss payroll (25th, ≈7.0), German payroll (27th, EUR 4.2m ≈ 3.9), IT/FR/UK payrolls; late Italian receipt arrives |
+    | 2 | 30 Nov | 33.9 | Swiss Q3 VAT settlement due 30 Nov, only ≈ 0.8: most of HM AG's sales are zero-rated exports, so input VAT offsets most output VAT |
     | 3 | 7 Dec | 36.6 | CZ, CN, US payrolls |
     | **4** | **14 Dec** | **18.0** | **Low point:** December payrolls paid before Christmas, including the Swiss 13th salary (≈5.5) and the Italian *tredicesima*; year-end supplier runs; a CHF 1.8m capex milestone |
     | 5–6 | 21 Dec – 1 Jan | 23.0 → 25.6 | Quiet weeks, low receipts |

@@ -212,7 +212,9 @@ export function VendorProfiles({ category, ids }: { category?: string; ids?: str
 export function CompanyStacks() {
   const { layers, stacks } = sys()
   const cos = ['kleio', 'alpine', 'helvetic', 'globalchem'].map((id) => companies.find((c) => c.id === id)).filter(Boolean)
-  const [mode, setMode] = useState<'table' | 'list'>('table')
+  const [mode, setMode] = useState<'table' | 'list'>(() =>
+    typeof window !== 'undefined' && window.innerWidth < 700 ? 'list' : 'table',
+  )
   const rows = layers.flatMap((l) => l.boxes.map((b) => ({ layer: l.name, id: b.id, name: b.name })))
   return (
     <div className="sys-costacks">

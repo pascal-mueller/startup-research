@@ -8,7 +8,7 @@ related: [/workflows/cash-forecasting, /lens/matrix, /lens/dw-liquidity-recommen
 
 <Callout type="synthesis">
 
-Illustrative model based on the [cash forecasting](wf:cash-forecasting) workflow and its Helvetic week-23 example.
+Illustrative model based on the [cash forecasting](wf:cash-forecasting) workflow and its Helvetic worked example (week of 16 November).
 Lens rating: [good agent candidate](/lens/matrix#cash-forecasting). Forecasting is the most-cited treasury priority and
 challenge[](cite:afp-bench-2025-article,eact-2025) and the most crowded AI category — vendors already market ML
 forecasts, and one calls its forecasting "fully autonomous"[](cite:highradius-autonomous-2027) (a claim). This model
@@ -28,27 +28,33 @@ missed.
 
 ## A worked week
 
-<Example title="Week 23: the system's variance table and Daniel's verdicts" company="helvetic" open>
+<Example title="Week of 16 November: the system's variance table and Daniel's verdicts" company="helvetic" open>
 
-The system reconciles last week's actuals to the bank statements (group net −5.0m vs forecast −1.6m, CHF m) and proposes:
+Same week as the [cash forecasting](wf:cash-forecasting) worked example. The system reconciles last week's actuals to the
+bank statements (group net +0.3 vs forecast +3.9, CHF m) and proposes:
 
 | Line | Variance | Proposed type | Proposed reason and evidence | Daniel's verdict |
 |---|---|---|---|---|
-| Customer receipts, Italy | −2.1 | Timing | Largest customer's invoice open in the Italian ERP, not disputed; paid 10 days late in 7 of last 10 invoices | **Right** |
+| Customer receipts, Italy | −2.1 | Timing | Largest customer's invoice open in the Italian ERP, not disputed; paid 10 days late in 7 of its last 10 invoices | **Right** |
 | Customer receipts, UK | −0.7 | Permanent | Short payment against invoice; credit-control email mentions a disputed delivery | **Right** — "and flag it to the CFO" |
-| Supplier payments, Germany | −0.3 | Timing | AP run released Thursday instead of Friday (SAP run log) | **Right** |
-| Tax, Germany | −0.3 | Missing input | Trade-tax prepayment debit; not in Jens's submission; same debit last quarter | **Right** — and adds all four quarterly dates to the central calendar |
-| Total | **−3.4** | | Ties to statements ✓ | |
+| Supplier payments, Germany | −0.3 | Timing | Two invoices added to the run after late approval (SAP run log) | **Partly** — "timing for us, but the approval delay is a process issue" |
+| Supplier payments, Switzerland | −0.18 | *Unexplained* | Two identical CHF 180k debits to the same supplier, same reference | **Right to flag** — duplicate payment; refund requested |
+| Supplier payments, other | −0.02 | — | Below threshold | — |
+| Tax, Germany | −0.3 | Missing input | Trade-tax prepayment collected by direct debit; not in HM Deutschland's submission; same debit last quarter | **Right** — adds all four quarterly dates to the central calendar |
+| Total | **−3.6** | | Ties to statements ✓ | |
+
+The duplicate is the interesting line: the system did not guess a reason, it said "unexplained" and showed the two
+identical debits — which is how a control problem surfaces in a variance analysis.
 
 **Proposed forward adjustments:** move Italy's CHF 2.1m into week 1 (accepted); haircut Italy's receipts by 15% in
-weeks 5–13 because of a 9-of-12-week over-forecast pattern (accepted, with Daniel's note "review in a quarter"); add the
-German tax calendar (accepted).
+weeks 5–13 because Italy over-forecast receipts in 8 of the last 10 weeks at the 4-week lag (accepted, with Daniel's note
+"review in a quarter"); add the German tax calendar (accepted).
 
-**Draft questions to subsidiaries:** one to Giulia ("Customer X's invoice was paid 10 days late again — should we
+**Draft questions to subsidiaries:** one to Giulia ("The customer's invoice was paid 10 days late again — should we
 assume that in the template?"), one to Jens (tax dates). Lea edits the tone and sends them under her name.
 
-**Four weeks later**, the system scores its own "timing" call: the Italian CHF 2.1m arrived in week 24 → correct. The UK
-CHF 0.7m never arrived → the "permanent" call was also correct. Both enter the evaluation set.
+**Four weeks later**, the system scores its own calls: the Italian CHF 2.1m arrived in week 1 → "timing" correct. The UK
+CHF 0.7m never arrived → "permanent" correct. Both enter the [evaluation set](term:evaluation-set).
 
 </Example>
 

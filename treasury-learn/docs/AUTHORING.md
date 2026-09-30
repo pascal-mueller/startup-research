@@ -203,4 +203,4 @@ Business / external: `subsidiary-finance` (local finance manager / subsidiary CF
 - **Helvetic financials (canonical, 30 Sep 2026 LTM):** EBITDA ≈ CHF 78m; net debt ≈ CHF 106m; net debt/EBITDA ≈ 1.36x;
   RCF drawn CHF 35m + EUR 27m, interest periods roll on the 15th, RCF matures Oct 2028 (4 banks, 60/50/50/40); CHF 100m bond 2028.
   Reports under **Swiss GAAP FER** (GlobalChem under IFRS). EUR hedge bands graded by quarter: Q+1 60–90%, Q+2 40–70%,
-  Q+3 25–55%, Q+4 0–40%. Thomas (CFO) co-signs payments above CHF 2m. The 13-week forecast is updated **weekly** (Thursday).
+  Q+3 25–55%, Q+4 0–40%. Thomas (CFO) co-signs payments above CHF 2m. The 13-week forecast is updated **weekly**: subsidiaries submit by Tuesday noon, Lea consolidates Tue–Wed, Daniel reviews Wednesday.

@@ -504,7 +504,7 @@ export function LensGroup({ cls, detail = false }: { cls: LensClass; detail?: bo
   return (
     <div className="lens-group">
       <p className="lens-group-meaning">
-        <LensBadge cls={cls} /> {L.classes[cls].meaning}
+        <LensBadge cls={cls} /> <Md text={L.classes[cls].meaning} inline />
       </p>
       {list.map((w) => (
         <div key={w.id} className="lens-group-item" id={`c-${w.id}`}>

@@ -614,7 +614,7 @@ workflows:
       negotiating, refinancing and bank relationships — are human and infrequent.
     scores: { frequency: 2, value: 3, judgment: 4, data_availability: 3, data_quality: 3, verifiability: 3, consequence: 4, regulatory: 3, trust: 4, automation: 2, human_involvement: 3, suitability: 3, narrow: 4, expand: 3, feedback: 2, defensibility: 2 }
     notes:
-      frequency: Interest-period rollovers monthly/quarterly; negotiations every few years.
+      frequency: Weekly to monthly administration for a drawn facility (Helvetic ~CHF 60m drawn); refinancing every 3–5 years.
       value: Missed notice deadlines or wrong fee calculations are costly but rare.
       judgment: Which facility to draw, when to extend, how to treat the banks.
       data_availability: Agreements (PDF), agent-bank notices, TMS deal records.
@@ -638,6 +638,7 @@ workflows:
     must_be_true:
       - Legal accepts that an extracted abstract is a convenience, not an interpretation.
     startup_view: Feature, not a company, for most corporates.
+    ai_note_view: Agrees — abstraction, calendars, notices and fee recalculation plausible with a human verifying clause interpretation; signing and bank-group management stay human.
 
   - id: covenant-monitoring
     class: possible
@@ -671,7 +672,7 @@ workflows:
     must_be_true:
       - Every adjustment is traceable to a clause — no black box in front of lenders.
     startup_view: Low frequency; part of a broader finance tool.
-    ai_note_view: Workflow not yet written at the time of rating; re-check.
+    ai_note_view: Agrees — extraction, mapping and recalculation checkable; interpretation, scenario choice and the officer-signed certificate stay human.
 
   # ------------------------------------------------------------------ Controls & reporting
   - id: month-end-reporting
@@ -950,7 +951,7 @@ digital_workers:
     title: Explain last week's forecast variances
     workflow: cash-forecasting
     company: helvetic
-    assignment: "Lea, before Wednesday's call: why was last week CHF 3.4m worse than forecast, and what does it change in the next 12 weeks?"
+    assignment: "Lea, before Wednesday's call: why was last week CHF 3.6m worse than forecast, and what does it change in the next 12 weeks?"
     assigned_by: Daniel (Treasury Manager)
     performed_today_by: Lea (Treasury Analyst), half a day to a day per week
     cadence: Weekly (Monday–Wednesday)
@@ -964,7 +965,7 @@ digital_workers:
       - "Which variances are big enough to matter — relative to the entity and to headroom?"
       - "Timing (the money still comes) or permanent (it won't)? What is the evidence?"
       - "Was the input wrong (subsidiary forecast), or did the world change (customer paid late)?"
-      - "Is this a pattern — Italy over-forecasts receipts 9 weeks out of 12 — that justifies a haircut?"
+      - "Is this a pattern — Italy over-forecast receipts in 8 of the last 10 weeks — that justifies a haircut?"
       - "Which lumpy items were missing (tax prepayments, bonuses) and how do I stop that recurring?"
       - "Does anything change the low point, the headroom, or an action already planned?"
     tools:
