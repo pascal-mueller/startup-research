@@ -20,22 +20,22 @@ Three families exist in the market (details on [Vendors](/systems/vendors)):
 
 | Module | What it does | Who uses it | What still needs a human |
 |---|---|---|---|
-| Bank connectivity & statement import | Collects statements and intraday reports from all banks; checks completeness; stores transactions | Treasury ops, analyst | Chasing missing statements; bank onboarding |
-| Cash positioning | Balances by entity/bank/currency, plus today's expected flows; target balances and sweeps | [Analyst](/org/roles-analyst), [cash manager](/org/roles-cash-manager) | Deciding what to move, fund, invest ([daily positioning](wf:daily-cash-positioning)) |
-| Cash-flow classification | Assigns [cash-flow categories](term:cash-flow-category) to bank lines by rules | Analyst, ops | Maintaining rules; classifying the unmatched residue |
-| Forecasting | Collects submissions, pulls ERP open items, stores versions, measures accuracy | Analyst, subsidiaries, FP&A | Judgment overlays; challenging submissions ([forecasting](wf:cash-forecasting)) |
-| Payments | Treasury payments, payment hub for ERP files, approval workflow, format generation, sometimes sanctions screening | Treasury, payment factory | Approving; investigating rejects and unusual payments |
-| Bank account management ([eBAM](term:ebam)) | Account register, signatories, users, documents, approval workflow for opening/closing | Treasury operations | KYC paperwork with each bank; periodic mandate reviews |
-| In-house bank & intercompany | Internal accounts per subsidiary, interest calculation, intercompany loans, [netting](term:netting), POBO/COBO | Cash & liquidity team | Setting internal rates and limits; tax and legal constraints |
-| Deal management (front office) | Deal capture for FX, deposits, loans, bonds, derivatives; limits check | Dealers, [FX/risk manager](/org/roles-fx-risk) | Deciding what to trade and when |
-| Confirmation & settlement (back office) | Matching counterparty confirmations, generating settlement payments | [Treasury operations](/org/roles-operations) | Resolving mismatches with banks |
-| Market data & valuation | Rate feeds, [mark-to-market](term:mark-to-market), exposure reports | Middle office, risk | Choosing curves and methods; explaining results |
-| Risk & hedge accounting | Exposure aggregation, hedge relationships, effectiveness documentation | Risk manager, accounting | Policy and designation decisions; auditor discussions |
-| Debt & facilities | Facility register, drawings, interest schedules, covenant calculations | [Corporate finance](/org/roles-debt) | Negotiating; covenant judgment ([covenant monitoring](wf:covenant-monitoring)) |
-| Accounting interface | Generates journal entries for deals, interest, revaluation, in-house bank | Back office, accounting | Mapping to the chart of accounts; month-end reconciliation |
-| Reporting | Standard and ad hoc reports, dashboards | Everyone | Deciding what the numbers mean |
+| Bank connectivity & statement import | Collects statements and intraday reports from all banks; checks completeness; stores transactions | Lea checks arrivals and re-requests; Daniel with the vendor on bank onboarding | Chasing missing statements; bank onboarding |
+| Cash positioning | Balances by entity/bank/currency, plus today's expected flows; target balances and sweeps | Lea builds it; Daniel decides what to move ([daily positioning](wf:daily-cash-positioning)) | Deciding what to move, fund, invest |
+| Cash-flow classification | Assigns [cash-flow categories](term:cash-flow-category) to bank lines by rules | Lea rebuilds the rules each time a bank changes its fee text; ops clears the residue | Maintaining rules; classifying the unmatched residue |
+| Forecasting | Collects submissions, pulls ERP open items, stores versions, measures accuracy | Lea consolidates the eight subsidiary tabs; Marco overlays the FP&A view ([forecasting](wf:cash-forecasting)) | Judgment overlays; challenging submissions |
+| Payments | Treasury payments, payment hub for ERP files, approval workflow, format generation, sometimes sanctions screening | Marta's payment-factory team runs the files; Daniel releases group transfers | Approving; investigating rejects and unusual payments |
+| Bank account management ([eBAM](term:ebam)) | Account register, signatories, users, documents, approval workflow for opening/closing | Treasury ops (Petra does her own at Alpine) | KYC paperwork with each bank; periodic mandate reviews |
+| In-house bank & intercompany | Internal accounts per subsidiary, interest calculation, intercompany loans, [netting](term:netting), POBO/COBO | Priya's cash & liquidity team at GlobalChem | Setting internal rates and limits; tax and legal constraints |
+| Deal management (front office) | Deal capture for FX, deposits, loans, bonds, derivatives; limits check | Jonas's desk (GlobalChem); Daniel (Helvetic) | Deciding what to trade and when |
+| Confirmation & settlement (back office) | Matching counterparty confirmations, generating settlement payments | Marta's back office | Resolving mismatches with banks |
+| Market data & valuation | Rate feeds, [mark-to-market](term:mark-to-market), exposure reports | Jonas chooses curves; Ben keeps the feed running | Choosing curves and methods; explaining results |
+| Risk & hedge accounting | Exposure aggregation, hedge relationships, effectiveness documentation | Jonas with Claudia's accountants | Policy and designation decisions; auditor discussions |
+| Debt & facilities | Facility register, drawings, interest schedules, covenant calculations | Olivier (corporate finance); Daniel runs the covenant model ([covenant monitoring](wf:covenant-monitoring)) | Negotiating; covenant judgment |
+| Accounting interface | Generates journal entries for deals, interest, revaluation, in-house bank | Ben maps to the chart of accounts; Claudia's team reconciles at month-end | Mapping to the chart of accounts; month-end reconciliation |
+| Reporting | Standard and ad hoc reports, dashboards | Everyone — Lea builds the packs, Daniel reviews, Thomas reads | Deciding what the numbers mean |
 
-No company uses all modules. A mid-market buyer typically starts with connectivity, positioning, forecasting and payments; deal management and hedge accounting come when the hedging programme and auditors require it. GlobalChem uses almost all of them, in SAP.
+No company uses all modules. A mid-market buyer typically [starts with connectivity, positioning, forecasting and payments](why:systems-module-sequencing); deal management and hedge accounting come when the hedging programme and auditors require it. GlobalChem uses almost all of them, in SAP.
 
 ## Implementation reality
 
@@ -64,7 +64,7 @@ Administration includes the unglamorous controls auditors test: who can enter de
 - **ERP data problems.** Wrong due dates, missing vendor data, unposted intercompany — all flow straight into the TMS.
 - **Judgment.** Whether to hedge, how much buffer to hold, whether to fund a subsidiary by loan or equity, whether a payment looks wrong — the TMS provides information and control steps, people decide.
 - **Organisational design.** Who approves what, which entity pays on behalf of whom, what the policy says — must be decided before configuration.
-- **Spreadsheets.** Surveys consistently find spreadsheets remain in use alongside treasury systems, especially for forecasting[](cite:deloitte-gts-2024).
+- **Spreadsheets.** What practitioners describe at every size: spreadsheets remain in use alongside the treasury system, especially for forecasting and scenarios (field pattern, not a survey finding — see [Spreadsheets](/systems/spreadsheets) and [why they survive](why:systems-spreadsheets-survive)).
 
 <Callout type="survey">
 

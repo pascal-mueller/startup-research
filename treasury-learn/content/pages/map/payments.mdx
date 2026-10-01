@@ -10,7 +10,7 @@ related: [/map/banking, /map/technology, /map/risk, /org/roles-payments, /org/wi
 
 <TreasuryMap focus="payments" />
 
-Payments are where treasury decisions become **irreversible**. A Swiss company's supplier payment typically travels: invoice approved in the ERP → payment proposal → payment file (ISO 20022 [pain.001](term:pain-001)) → bank channel ([EBICS](term:ebics), [host-to-host](term:host-to-host), [SWIFT](term:swift), e-banking upload) → bank checks (signatures, sanctions, funds) → clearing system ([SIC](term:sic), [SEPA](term:sepa), correspondent banks) → beneficiary's bank → status report ([pain.002](term:pain-002)) and bank statement ([camt.053](term:camt-053)/[camt.054](term:camt-054)) → reconciliation. Every hop has an owner and a failure mode.
+Payments are where treasury decisions become **irreversible**. A Swiss company's supplier payment typically travels: invoice approved in the ERP → payment proposal → payment file (ISO 20022 [pain.001](term:pain-001)) → bank channel ([EBICS](term:ebics), [host-to-host](term:host-to-host), [Swift](term:swift), e-banking upload) → bank checks (signatures, sanctions, funds) → clearing system ([SIC](term:sic), [SEPA](term:sepa), correspondent banks) → beneficiary's bank → status report ([pain.002](term:pain-002)) and bank statement ([camt.053](term:camt-053)/[camt.054](term:camt-054)) → reconciliation. Every hop has an owner and a failure mode.
 
 <Callout type="confusion" title="Who 'does payments'?">
 
@@ -24,7 +24,7 @@ Treasury rarely *creates* operational payments: [accounts payable](/org/with-ap)
 |---|---|---|---|---|
 | Initiate supplier payments | Nina in e-banking | Petra's team in Business Central | AP in each subsidiary's ERP | AP in Kraków SSC (SAP) |
 | Initiate treasury payments | Sarah | Petra on Martin's instruction | Lea | Cash & liquidity team (Priya) |
-| Approve / release | Sarah (collective signature) | Petra + second signatory; Martin above CHF 250k | Local signatories; Daniel/Thomas for Swiss and large payments | Workflow approval in SAP; payment factory release; treasury for large/financial |
+| Approve / release | Sarah (collective signature) | Petra + second signatory; Martin above CHF 250k | Local signatories; ≤ CHF 2m four eyes in treasury (Lea prepares, Daniel releases); > CHF 2m Thomas (CFO) and the CEO co-sign as well | Workflow approval in SAP; payment factory release; treasury for large/financial |
 | Channel | Bank portals | EBICS upload + portals | Multibank connectivity tool (EBICS/SWIFT) | SWIFT via service bureau, payment hub |
 | Reconcile | Nina / fiduciary | Petra's team | Local accounting; Lea for treasury accounts | SSC reconciliation team, largely automated |
 | Fraud controls owner | Sarah | Petra, Martin | Daniel + Claudia | Marta + group internal control |
@@ -46,7 +46,7 @@ Example: Petra runs Alpine's payment proposal in Business Central every Tuesday 
 
 <Example title="A CHF 4m payment request at Helvetic" company="helvetic" open>
 
-On Wednesday HM AG's accounting team submits a CHF 4.0m payment to a Swiss machine supplier for a new Czech production line. Policy: above CHF 1m, Daniel reviews and Thomas (CFO) co-signs. Daniel checks (1) the purchase order and board capex approval exist; (2) the payment matches contract milestone 2 of 3; (3) the supplier's IBAN is the one in the vendor master since 2022, not a recent change; (4) cash: the payment was in the 13-week forecast for this week; the Swiss CHF account has CHF 16.8m. He approves in the connectivity tool; Thomas adds the second signature on his phone. The payment goes via SIC the same day. What would have stopped it: a changed IBAN in the last 90 days, an email-only instruction, or a mismatch with the contract. See the [large payment approval workflow](wf:large-payment-approval).
+On Wednesday HM AG's accounting team submits a CHF 4.0m payment to a Swiss machine supplier for a new Czech production line. Policy: payments up to CHF 2m are prepared and released under four eyes in treasury — Lea prepares, Daniel releases; above CHF 2m Thomas (CFO) and the CEO co-sign as well. Daniel checks (1) the purchase order and board capex approval exist; (2) the payment matches contract milestone 2 of 3; (3) the supplier's IBAN is the one in the vendor master since 2022, not a recent change; (4) cash: the payment was in the 13-week forecast for this week; the Swiss CHF account has CHF 16.8m. Lea prepared the file and Daniel released it in the connectivity tool; Thomas signed on his phone and the CEO's signature was the last one in — the payment waited for it and went via SIC the same afternoon. What would have stopped it: a changed IBAN in the last 90 days, an email-only instruction, or a mismatch with the contract. See the [large payment approval workflow](wf:large-payment-approval).
 
 </Example>
 
@@ -84,7 +84,7 @@ Example: Helvetic's rule: any bank-detail change needs a call-back to a number f
 
 ## Payment rails
 
-**Plain:** the networks that move the money between banks. **Professional:** domestic clearing systems ([SIC](term:sic) for CHF, run by SIX for the SNB; [SEPA](term:sepa) schemes for EUR; [ACH](term:ach) and [Fedwire](term:fedwire) in the US), [RTGS](term:rtgs) systems for high-value payments, [instant payments](term:real-time-payments) (SEPA Instant; SIC Instant Payments, where the larger banks must receive since August 2024 and all remaining banks by end-2026[](cite:six-instant-payments)), and cross-border [correspondent banking](term:correspondent-banking) over SWIFT (with [Swift gpi](term:swift-gpi) tracking). The rail determines cost, speed, cut-off, finality and what data travels with the payment.
+**Plain:** the networks that move the money between banks. **Professional:** domestic clearing systems ([SIC](term:sic) for CHF, run by SIX for the SNB; [SEPA](term:sepa) schemes for EUR; [ACH](term:ach) and [Fedwire](term:fedwire) in the US), [RTGS](term:rtgs) systems for high-value payments, [instant payments](term:real-time-payments) (SEPA Instant; SIC Instant Payments, where the larger banks must receive since August 2024 and all remaining banks by end-2026[](cite:six-instant-payments)), and cross-border [correspondent banking](term:correspondent-banking) over Swift (with [Swift gpi](term:swift-gpi) tracking). The rail determines cost, speed, cut-off, finality and what data travels with the payment.
 
 | Payment | Typical rail | Arrives | Notes |
 |---|---|---|---|

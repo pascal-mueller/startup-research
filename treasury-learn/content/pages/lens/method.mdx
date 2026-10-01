@@ -17,7 +17,7 @@ meaningful part of it, with the accountable human reviewing?* — not "could AI 
 
 <LensCriteria />
 
-Three criteria are **context only** and are coloured grey in the matrix:
+Two criteria are **context only** and are coloured grey in the matrix:
 
 - **Current automation level** cuts both ways. High automation means inputs are structured (good) but also that there
   is little left to take over and an incumbent already owns the process (bad). Bank reconciliation is the example.
@@ -28,7 +28,8 @@ Three criteria are **context only** and are coloured grey in the matrix:
 
 ## How the classification was made
 
-The class is **not a weighted sum**. A workflow can score well on most criteria and still be *hard / dangerous*
+The class is **not a weighted sum** ([why the criteria are delegation constraints, not a quality score](why:lens-matrix-scoring)).
+A workflow can score well on most criteria and still be *hard / dangerous*
 because one criterion is decisive — large payment approval is the act the controls exist to reserve for a named human, so
 nothing else matters. The rules of thumb applied:
 
@@ -41,6 +42,15 @@ nothing else matters. The rules of thumb applied:
 The *good* label says nothing about whether the workflow is a good **business**. Each entry therefore carries a separate
 "as a startup opportunity" note, which is often more negative than the agent rating.
 
+**Pre-committed falsifiers.** The interviews this manual prepares for are meant to move these ratings; to keep that
+honest, the following observations are declared in advance as rating-lowering, per class:
+
+| Class | The rating is dropped or lowered if interviews show |
+|---|---|
+| **Good agent candidate** | less than ~30 minutes a week spent on the assignment, no expert corrections in a quarter, or output that cannot be checked before money moves |
+| **Possible** | the named obstacle is actually gone (e.g. structured fee data arrives monthly; the "rare event" recurs) — which promotes it to good, rather than leaving it as a stale "possible" |
+| **Hard / dangerous** | the reserved act is convention rather than mandate, law or audit requirement — the boundary was modelled too strongly and the assistance slice can be larger |
+
 ## How the scores were produced
 
 1. **Workflow pages first.** Scores draw on the workflow content (frequency, systems, data, judgment points, manual work,
@@ -51,7 +61,10 @@ The *good* label says nothing about whether the workflow is a good **business**.
    what is legally constrained; vendor announcements for what incumbents claim to be building; academic benchmarks for
    known LLM/agent failure modes. See [the overview](/lens) for the numbers.
 3. **Synthesis for the rest.** Most individual scores are the author's judgment. Each has a one-line reason visible in the
-   matrix, so a reader can disagree with the reason rather than with a number.
+   matrix, so a reader can disagree with the reason rather than with a number. Where the workflow file offers no
+   correction signal — the low-frequency, event-driven workflows (refinancing, crises, approvals) — the *judgment*,
+   *trust* and *feedback* scores are inference from the workflow's people and judgment sections, not observed evidence;
+   those notes say so rather than pretending to data.
 
 ## Limitations — read before quoting a score
 

@@ -20,7 +20,7 @@ Click a reference company to see what it actually runs in each layer. The same f
 
 Reading it bottom-up:
 
-- **Data sources.** The [ERP](term:erp) holds open payables and receivables, payment runs, the general ledger and — crucially — [vendor master data](term:vendor-master-data) including suppliers' bank details. Banks hold the only authoritative record of balances. Market-data providers and central banks publish rates. Business units and FP&A hold plans and the qualitative knowledge ("the customer in Milan will pay late again").
+- **Data sources.** The [ERP](term:erp) holds open payables and receivables, payment runs, the general ledger and — crucially — [vendor master data](term:vendor-master-data) including suppliers' bank details. Banks hold the only authoritative record of balances. Market-data providers and central banks publish rates — [a separate feed with its own owner and clock](why:systems-market-data-feed). Business units and FP&A hold plans and the qualitative knowledge ("the customer in Milan will pay late again").
 - **Bank connectivity.** The channels that carry payment files out and [bank statements](term:bank-statement) in: e-banking portals, [EBICS](term:ebics), [Swift](term:swift), [host-to-host](term:host-to-host), [bank APIs](term:api-banking). See [Bank connectivity](/systems/bank-connectivity).
 - **Execution.** Where money actually gets committed: the payment run and its approvals, and FX/money-market dealing (phone, bank portal or a [multi-dealer platform](term:trading-platform)).
 - **Treasury workflow.** A [TMS](term:tms), a lighter cloud cash tool, or a spreadsheet builds the [cash position](term:cash-position), the forecast, the register of deals and exposures, and generates accounting entries. See [TMS](/systems/tms) and [Spreadsheets](/systems/spreadsheets).
@@ -67,8 +67,8 @@ What "treasury combines" means in practice at [Helvetic Machines](co:helvetic), 
 | Time (CET) | What happens | System | Who |
 |---|---|---|---|
 | overnight | Prior-day [camt.053](term:camt-053) statements from the two Swiss and the German bank are fetched by scheduled [EBICS](term:ebics) jobs; the global bank's statements for the US and UK accounts arrive over [Swift](term:swift) as MT940 | Multibank tool | Automated |
-| ~04:30 | Wei, finance manager of HM Suzhou, emails a PDF balance confirmation and an Excel list of yesterday's movements for the account at the Chinese bank — China is six to seven hours ahead, so his day is half over. The account is not connected to the multibank tool: a connectivity gap, not a time-zone problem | Email | Wei |
-| 07:45 | Lea checks that 11 of 11 electronic statements have arrived; the US account's prior-day report is usually the last one | Multibank tool | [Lea](/org/roles-analyst) |
+| ~04:30 | Wei, finance manager of HM Suzhou, emails the Chinese bank portal's export — a PDF balance confirmation and an Excel list of yesterday's movements — for the account at the Chinese bank. China is six to seven hours ahead, so his day is half over. The account has no EBICS/SWIFT corporate reporting and is not in the multibank tool: a connectivity gap, not a time-zone problem | Email | Wei |
+| 07:45 | Lea checks that [11 of 12 statements](why:systems-11-of-12-statements) are in — 11 through the tool from four banks, with Wei's emailed figures as the twelfth; the US account's prior-day report [is usually the last one](why:systems-statement-arrival-order) | Multibank tool | [Lea](/org/roles-analyst) |
 | 08:00 | Lea exports balances into the cash-position workbook, adds the Suzhou figures by hand, converts to CHF at the morning rates from the bank's FX portal | Excel | Lea |
 | 08:15 | Lea pulls today's scheduled payments: SAP payment proposals for CH/DE/CZ; emailed payment lists from IT, FR, UK, US | SAP, email | Lea |
 | 08:40 | Lea flags that HM Italia will be EUR 0.7m short after Friday's supplier run; she checks the 13-week forecast and finds Giulia's submission assumed a customer receipt that has not arrived | Excel, email | Lea, [Giulia](/org/with-subsidiaries) |
@@ -81,7 +81,7 @@ Nothing in this sequence is exotic. It shows the three recurring seams: **(1)** 
 
 | Pattern | Example | Strength | Weakness |
 |---|---|---|---|
-| Scheduled files | EBICS or SFTP job fetches camt.053 at 06:00; ERP writes pain.001 to a folder the connectivity tool picks up | Robust, bank-supported everywhere, audit trail | Batch timing; format variants per bank; silent failures if nobody checks the job ran |
+| Scheduled files | EBICS or SFTP job fetches camt.053 at 06:00; ERP writes pain.001 to a folder the connectivity tool picks up | Robust, bank-supported everywhere, audit trail | Batch timing; format variants per bank; [silent failures if nobody checks the job ran](why:systems-tool-reconciliation) |
 | Messaging network | Swift FIN/[FileAct](term:fileact) via a [service bureau](term:service-bureau) | One channel to many banks | Cost and onboarding per bank (relationship keys); legacy MT still common for statements |
 | API calls | Cash tool queries a bank's balance endpoint every hour | Near real-time, no files | Each bank's API differs; coverage patchy outside large banks; rarely covers everything the file did |
 | ERP–TMS interface | Nightly export of AP/AR open items to the TMS; TMS posts journal entries back | Removes re-keying | Mapping of company codes, GL accounts, cash-flow categories must be maintained |
@@ -90,7 +90,7 @@ Nothing in this sequence is exotic. It shows the three recurring seams: **(1)** 
 
 <Callout type="field" title="The integration is the project">
 
-Practitioners describing a TMS or connectivity project mostly talk about the interfaces, not the software: getting every bank to deliver statements in a usable format, mapping each ERP's company codes and accounts, and deciding which system owns which data. The software licence is rarely the hardest part. Treat this as a practitioner pattern, not a survey finding.
+Practitioners describing a TMS or connectivity project mostly talk about the interfaces, not the software: getting every bank to deliver statements in a usable format, mapping each ERP's company codes and accounts, and deciding which system owns which data. The software licence is rarely the hardest part. Treat this as a practitioner pattern, not a survey finding — it is the same reasoning behind [implementations failing on data first](why:systems-tms-data-first).
 
 </Callout>
 
@@ -107,7 +107,7 @@ Practitioners describing a TMS or connectivity project mostly talk about the int
 
 <Callout type="survey">
 
-European treasurers put treasury technology review or TMS replacement among their top priorities, while ranking AI low because data is not centralised or standardised[](cite:eact-2025). In Deloitte's 2024 survey, cash forecasting at many companies was still primarily spreadsheet-based[](cite:deloitte-gts-2024). Both findings point at the same place: the integration and data layers of this stack, not the decision layer.
+European treasurers put treasury technology review or TMS replacement among their top priorities, while ranking AI low because data is not centralised or standardised[](cite:eact-2025). In Deloitte's 2024 global treasury survey, about a fifth of respondents — 22%, as reported by Deloitte (figure not confirmed against the primary text) — said their cash-positioning capability still requires development[](cite:deloitte-gts-2024). Both findings point at the same place: the integration and data layers of this stack, not the decision layer.
 
 </Callout>
 

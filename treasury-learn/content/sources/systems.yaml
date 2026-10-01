@@ -93,6 +93,27 @@
   url: https://www.swift.com/our-solutions/interfaces-and-integration/alliance-lite2-for-business-applications/features
   type: standard
   note: "(search snippet) Corporate connectivity options: direct (Alliance Connect with own infrastructure), cloud (Alliance Lite2, Alliance Cloud), indirect via Swift-certified service bureaus; Alliance Lite2 users can access SCORE or member-administered closed user groups; Lite2 for Business Applications embeds Swift connectivity in partner software so the customer runs no Swift infrastructure in-house."
+- id: swift-csp-corporates
+  title: "Swift Customer Security Programme for corporates"
+  publisher: Swift
+  year: 2025
+  url: https://www.swift.com/sites/default/files/documents/swift-customer-security-programme-for-corporates.pdf
+  type: standard
+  note: "(search snippet, original publisher) Swift's corporate CSP guidance: 'In the case of corporates using a service bureau, each corporate will still have direct responsibility for its own self-attestation, so the requirements on Alliance Lite2 customers and those using a service bureau are alike.' Supports the module's correction that indirect access removes Swift-infrastructure operation, not the annual CSP self-attestation."
+- id: jpm-iso-faq-2026
+  title: "ISO 20022 Frequently Asked Questions"
+  publisher: J.P. Morgan
+  year: 2026
+  url: https://www.jpmorgan.com/insights/payments/fx-cross-border/iso-20022-faqs
+  type: vendor
+  note: "(search snippet, original publisher) Bank client guidance quoting Swift: 'As per current Swift communication the end-of-coexistence period for statements and reporting message is November 2028.' Basis for the 'MT940/942 deprecated, not withdrawn; interbank reporting coexistence end communicated as Nov 2028 (per bank communications)' wording."
+- id: swift-iso-call-2026
+  title: "ISO 20022 in bytes for payments: Call-to-action for November 2026"
+  publisher: Swift
+  year: 2026
+  url: https://www.swift.com/standards/iso-20022/iso-20022-bytes/call-action-november-2026
+  type: standard
+  note: "(search snippet, original publisher) 'From November 2026, corporates can continue sending MT101 initiation messages to financial institutions' (migration to pain.001 recommended); for the interbank leg, 'November 2026 marks the end of coexistence for MT 101' and 'MT 101 (multiple) is end of life and will be NAKed' — the payment-initiation relay migrates to pain.001. J.P. Morgan's migration page reports this deadline has been extended with revised dates and scope to be confirmed by December 2026."
 - id: zkb-ebics3
   title: "Factsheet: EBICS 3.0"
   publisher: Zürcher Kantonalbank

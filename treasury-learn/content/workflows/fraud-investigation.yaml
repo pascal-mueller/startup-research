@@ -7,9 +7,10 @@ summary: >-
   When a suspicious payment request is caught, or a payment has already left for an account controlled by criminals
   (typically after business email compromise, a fake change of supplier bank details, or a "CEO" call), treasury is
   usually the function that phones the banks, because it owns the bank relationships and knows the payment channels.
-  The first hours decide how much money comes back: stop what is still in flight, get the paying bank to send a
-  recall and ask the receiving bank to freeze funds, file a police report, preserve evidence, find out whether other
-  payments were affected. The following weeks are about the insurer, the auditors, the root cause and fixing the
+  On standard and batch rails the first hours decide how much money comes back — stop what is still in flight, get
+  the paying bank to send a recall and ask the receiving bank to freeze funds, file a police report, preserve
+  evidence, find out whether other payments were affected; on instant rails the funds land in seconds and only
+  prevention works. The following weeks are about the insurer, the auditors, the root cause and fixing the
   control that failed. Most companies run this workflow rarely, which is part of the problem.
 objective: >-
   Recover as much money as possible, stop further losses, preserve evidence for police, insurer and auditors, and
@@ -20,8 +21,9 @@ trigger: >-
   refuses a payment during a call-back; a vendor-master change looks odd.
 frequency: >-
   Attempts are frequent — surveys of mainly US companies report that about three quarters experience attempted or
-  actual payments fraud each year — but a paid fraud that triggers the full investigation is rare for any one company
-  (every few years at a mid-market group). Near misses happen monthly at larger companies and should be logged.
+  actual payments fraud each year — but a paid fraud that triggers the full investigation is rare for any one
+  company: as a field observation (not a survey figure) the range runs from one case in a decade to about one a
+  year at a mid-market group. Near misses happen monthly at larger companies and should be logged.
 people:
   - role: Whoever notices (AP clerk, subsidiary finance, treasury analyst, approver, the bank)
     does: Raises the alarm immediately — without contacting the fraudster, deleting emails or "fixing" the vendor record.
@@ -34,7 +36,9 @@ people:
   - role: IT security
     does: Checks whether company mailboxes or systems were compromised; preserves email headers and logs; resets credentials.
   - role: Legal (in-house or external counsel)
-    does: Files or supports the criminal complaint; advises on freezing orders, civil claims, data-protection and disclosure obligations; manages the dispute with the supplier.
+    does: Files or supports the criminal complaint; advises on freezing orders, civil claims, whether the paying bank
+      may be liable (failed name-check or fraud screening) and who ultimately bears the loss, data-protection and
+      disclosure obligations; manages the dispute with the supplier.
   - role: CFO
     does: Decides escalation, communication and whether to pay the genuine supplier; informs the executive board and audit committee.
   - role: Insurance / risk manager (often the CFO or legal at smaller companies)
@@ -80,7 +84,9 @@ steps:
     detail: >-
       Establish the status: **attempt stopped** (nothing paid), **payment pending or in flight** (not yet credited),
       or **paid and credited**. Note the amount, value date, beneficiary, channel and references. Do not reply to the
-      fraudster, do not delete messages, do not quietly correct the vendor record.
+      fraudster, do not delete messages, do not quietly correct the vendor record. The branches diverge immediately:
+      **still in flight** — cancel before execution while the portal still allows it (minutes); **already credited** —
+      recall plus freeze request, where [the clock is now against you](why:recall-window).
     judgment: Whether this is really fraud or an ordinary error (a supplier genuinely changed banks, a misposted payment). Treat it as fraud until proven otherwise; the cost of a false alarm is a few phone calls.
   - title: Stop everything that can still be stopped
     who: Treasury manager / payments lead
@@ -96,10 +102,13 @@ steps:
     when: Within the first hour — hours matter
     detail: >-
       Report the fraud, give the payment references and ask the bank to (1) send a [recall](term:payment-recall) to the
-      receiving bank — for SEPA a recall message, for cross-border payments a Swift gpi Stop and Recall request — and
+      receiving bank — for SEPA a recall message, for cross-border payments a Swift gpi Stop and Recall request, and
+      the Swiss schemes' own recall procedures (SIC / euroSIC) — and
       (2) ask the receiving bank to freeze whatever is still in the account. Get a case reference and the name of the
       person handling it. A recall is a request, not a reversal: the receiving bank returns only what is still there and,
-      depending on the jurisdiction, may need the account holder's consent or a prosecutor's order.
+      depending on the jurisdiction, may need the account holder's consent or a prosecutor's order. Speed note: "hours
+      matter" assumes batch rails — for an instant payment (SCT Inst) the money lands in seconds and the practical
+      window is minutes.
     judgment: Whether to call every bank the group uses (fraudsters often try several entities or channels at once).
     manual: Phone calls, emailed forms and signed recall letters; bank procedures differ and relationship managers are often not the right contact.
   - title: Escalate and assemble the incident team
@@ -126,6 +135,10 @@ steps:
       Search for all payments to the same beneficiary or IBAN, all bank-detail changes in the last 90 days, other
       entities using the same supplier, and other requests from the same sender. Check the daily cash position for
       unexplained debits. Many cases turn out to involve more than one payment or one attempt at another entity.
+      Include the two mirror variants: **payroll diversion** (an employee's salary bank details changed after a
+      mailbox compromise — check HR master-data changes with the payroll provider) and **receivables diversion** (the
+      attacker changed bank details in the company's own outbound invoices or emails to customers — then treasury and
+      AP are the reporters warning customers, not the victim).
     judgment: How far back and how wide to search, and whether to hold all payments to recently changed accounts.
   - title: File a police report and inform authorities
     who: Legal / CFO / subsidiary managing director
@@ -142,8 +155,9 @@ steps:
     when: Within the policy notice period (often days)
     detail: >-
       Notify under the crime (fidelity) policy and check the cyber policy: many crime policies cover
-      "social-engineering" losses only under a sublimit and with conditions (e.g. that a call-back was performed). Keep
-      a loss file: amount, recoveries, costs, evidence.
+      "social-engineering" losses only under a sublimit and with conditions (e.g. that a call-back was performed).
+      Keep a loss file: amount, recoveries, costs, evidence. For corporates the insurance is effectively the
+      reimbursement regime — [statutory fraud-reimbursement rules cover consumers, not companies](why:corporate-fraud-loss-allocation).
     manual: Assembling the claim — timeline, evidence, control descriptions — is largely manual and can take weeks.
   - title: Deal with the genuine supplier and the accounting
     who: Subsidiary finance / CFO / legal; accounting
@@ -185,17 +199,17 @@ example:
     | Time | Who | What |
     |---|---|---|
     | Tue 13 Oct 10:05 | Giulia (HM Italia) | The supplier's credit controller calls about the overdue invoice. The ledger shows it paid — to an IBAN at a bank in another EU country. Giulia calls Daniel, not by email. |
-    | 10:25 | Daniel | Calls the Italian bank's fraud desk with amount, value date, IBAN, end-to-end reference. The bank sends a fraud recall to the receiving bank and asks it to freeze the funds. Case reference received. |
+    | 10:25 | Daniel | Calls the German bank's fraud desk (HM Italia's accounts sit with the group's German bank, which covers the continental European entities) with amount, value date, IBAN, end-to-end reference. The bank sends a fraud recall to the receiving bank and asks it to freeze the funds — a formality 11 days after credit: the operative routes now are the prosecutor's freeze order, the civil track and the insurance file. Case reference received. |
     | 10:40 | Lea / Giulia | Vendor record blocked; Thursday's HM Italia run held for review. Lea searches all group vendor masters and payment files for the same IBAN — no other hit. |
     | 11:00 | Daniel → Thomas | Thomas (CFO) sets up the incident team: Daniel, Giulia, IT security, external counsel in Milan, Claudia. |
     | 13:30 | IT security | No Helvetic mailbox compromised; the email came from the supplier's real, hacked mailbox. Emails exported with headers. |
     | 16:00 | Giulia + counsel | Criminal complaint filed with Italian police; the reference sent to the bank. |
     | Wed 14 Oct | Thomas | Crime insurer notified via the broker (policy notice deadline: 30 days; social-engineering sublimit CHF 250k, deductible CHF 25k — illustrative). |
-    | Fri 16 Oct | Receiving bank | Via the Italian bank: EUR 61,200 remains and is frozen; the rest was moved out between 3 and 6 October. |
+    | Fri 16 Oct | Receiving bank | Via the German bank: EUR 61,200 remains and is frozen; the rest was moved out between 3 and 6 October. |
 
-    **Outcome (illustrative).** Loss about EUR 425k before insurance. The genuine supplier is paid after legal advice; Thomas negotiates a cost share because the supplier's mailbox was the entry point. The EUR 61,200 is returned four months later after a prosecutor's order. Insurance pays up to the sublimit minus deductible, after questions about whether the call-back met the policy's condition.
+    **Outcome (illustrative).** Loss about EUR 425k before insurance. The genuine supplier is paid after legal advice; Thomas negotiates a cost share because the supplier's mailbox was the entry point. [The EUR 61,200 is returned four months later after a prosecutor's order](why:recall-window) — the freeze route working on the funds that had not moved. Insurance pays up to the sublimit minus deductible, after questions about whether the call-back met the policy's condition.
 
-    **Root cause.** The call-back used a number from the fraudulent email, not the one in the vendor master; the change approver saw only "bank details updated"; payee verification was switched off for bulk files; no alert for a new IBAN in a different country from the supplier. **Remediation** (all 8 subsidiaries, not only Italy): call-backs only to numbers already on file; a 5-business-day hold and a treasury check on the first payment to any changed account; payee verification on all euro files; monthly vendor-change report to Daniel; training. Reported to the audit committee in November.
+    **Root cause.** [The call-back used a number from the fraudulent email, not the one in the vendor master](why:callback-independent-number); the change approver saw only "bank details updated"; payee verification was switched off for bulk files; no alert for a new IBAN in a different country from the supplier. **Remediation** (all 8 subsidiaries, not only Italy): call-backs only to numbers already on file; a 5-business-day hold and a treasury check on the first payment to any changed account; payee verification on all euro files; monthly vendor-change report to Daniel; training. Reported to the audit committee in November.
 judgment:
   - decision: Is this fraud, an error, or a genuine change?
     why: Suppliers do change banks; payments do get misposted. The first minutes require judgment under uncertainty — but the asymmetry favours treating it as fraud.
@@ -247,7 +261,8 @@ by_size:
   sme: >-
     The head of accounting discovers it, the CFO calls the house bank and decides; an external lawyer and the
     broker help. No incident procedure; the first question is often "who at the bank do we call?". Controls improve
-    after the first case — typically a call-back rule and collective signature for bank-detail changes.
+    after the first case — typically a call-back rule, dual approval for bank-detail changes and collective
+    signature for payments.
   midmarket: >-
     The treasury manager leads the bank side, subsidiary finance the local side, the CFO decides; IT security and
     external counsel are pulled in. Incidents often originate in subsidiaries with local ERPs and local payment
@@ -258,8 +273,8 @@ by_size:
     many near misses per month, logged and analysed; the payment factory centralises controls that used to sit in
     40 subsidiaries. Deepfake and executive-impersonation attempts are a recognised scenario in procedures and training.
 companies:
-  kleio: "Nina receives an email 'from Sarah' asking for an urgent CHF 48k payment; the call-back rule stops it. If it had been paid, Sarah would call the Swiss bank's hotline, file an online police report and inform the board chair — there is no one else."
-  alpine: "A 'German customer' asks Petra's team to refund an overpayment to a new account. Petra checks the ledger — there was no overpayment — and Martin reports the attempt to the house bank and the police. After an earlier near miss the board required collective signature for bank-detail changes."
+  kleio: "Nina receives an email 'from Sarah' asking for an urgent CHF 48k payment; the call-back rule stops it. If it had been paid, CHF 48k is about 5% of Kleio's monthly burn (CHF 0.9m) and roughly a day and a half of cash outflow — survivable at this size, which is exactly why the rule must not be waived for 'urgent' CEO requests; the same trick nets six figures at a Helvetic-sized group. Sarah would call the Swiss bank's hotline, file an online police report and inform the board chair — there is no one else."
+  alpine: "A 'German customer' asks Petra's team to refund an overpayment to a new account. Petra checks the ledger — there was no overpayment — and Martin reports the attempt to the house bank and the police. After an earlier near miss the board required dual approval for bank-detail changes (and collective signature for payments)."
   helvetic: "The worked example above: Daniel leads the bank side, Giulia the local side, Thomas decides; the lessons are applied to all eight subsidiaries."
   globalchem: "A payment-factory operator in Kraków is asked by a 'regional CFO' in a video call to release an urgent EUR 3.2m acquisition deposit outside the normal run. The procedure forbids releases outside the payment system; the call-back to the regional CFO's number on file shows the call was fake. Marta logs it, corporate security reports it, and the case is used in the next training round."
 handoffs:
@@ -301,11 +316,13 @@ ai_note: >-
   learn from.
 terms: [business-email-compromise, vendor-bank-detail-fraud, deepfake-fraud, payment-recall, money-mule, crime-insurance, call-back-verification, vendor-master-data, verification-of-payee, four-eyes-principle, segregation-of-duties, swift-gpi, sct-inst, positive-pay, internal-control-system]
 related: [payment-processing, large-payment-approval, daily-cash-positioning, policy-compliance, bank-reconciliation]
-sources: [afp-pfc-2026, afp-pfc-2025, nacha-ic3-2024, ic3-2023-rat, bacs-ceo-fraud-2026, cnn-arup-deepfake-2024, swift-stop-recall, ecb-ipr, kpmg-vop-2025]
+sources: [afp-pfc-2026, afp-pfc-2025, afp-pfc-2026-highlights, nacha-ic3-2024, ic3-2023-rat, bacs-ceo-fraud-2026, cnn-arup-deepfake-2024, swift-stop-recall, ecb-ipr, kpmg-vop-2025]
 evidence_note: >-
   Prevalence: 76% of AFP's mainly US respondents experienced attempted or actual payments fraud in 2025 and 74% were
   affected by BEC[](cite:afp-pfc-2026); in the 2025 edition vendor-imposter fraud rose to 45%[](cite:afp-pfc-2025). Recovery is
-  poor: AFP's 2026 release reports that only 30% of organisations recovered 75% or more of lost funds[](cite:afp-pfc-2026).
+  poor: 30% of organisations recovered more than 75% of lost funds[](cite:afp-pfc-2026-highlights) (the recovery figures are in
+  the survey report, not the press release). BEC stayed the second-costliest complaint in the FBI's IC3 2024 report,
+  with losses close to USD 2.8bn[](cite:nacha-ic3-2024).
   Speed matters: the FBI's IC3 Recovery Asset Team placed holds on 71% of potential losses in the 2023 incidents it acted
   on — mostly quickly reported US BEC wires, not a general recovery rate[](cite:ic3-2023-rat). Swiss reports of CEO fraud
   to the federal cyber office rose from 719 (2024) to 971 (2025), with AI-generated voices mentioned[](cite:bacs-ceo-fraud-2026).

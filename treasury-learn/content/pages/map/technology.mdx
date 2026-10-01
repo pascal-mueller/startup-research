@@ -20,13 +20,13 @@ Treasury technology is mostly about **moving data between banks, the ERP and the
 |---|---|---|---|---|
 | ERP | Cloud accounting (Bexio-class) | Dynamics 365 Business Central | SAP S/4HANA (CH, DE, CZ) + smaller ERPs | SAP S/4HANA group-wide |
 | Treasury system | Google Sheet | Excel cash sheet | Excel + multibank connectivity tool; TMS in evaluation | SAP treasury modules + forecasting tool |
-| Bank channel | Portals, bank APIs into accounting | EBICS file upload + portals | Connectivity tool over EBICS / SWIFT | SWIFT via service bureau, some H2H |
+| Bank channel | Portals; bank feeds (API where offered) | EBICS file upload + portals | Connectivity tool over EBICS / SWIFT | SWIFT via service bureau, some H2H |
 | Market data | Bank portal rates | Bank portal, phone | Bank platforms, central-bank rates | Bloomberg, FX trading platform |
 | Who administers | Sarah | Petra + external IT partner | Lea (key user) + group IT | Ben (treasury systems lead) + team, SAP competence centre |
 
 <Callout type="survey" title="How common is a TMS?">
 
-In KPMG's 2025 Global Treasury Survey (340 treasury experts, mostly larger companies), 76% of participants used a treasury management system and about 10% used AI, mainly for liquidity forecasting, reporting and fraud prevention[](cite:kpmg-gts-2025-summary). Deloitte's 2024 survey found the TMS market concentrated on a few global vendors (SAP, Kyriba, FIS, ION) and forecasting still primarily spreadsheet-based for many[](cite:deloitte-gts-2024). Neither sample represents SMEs, most of which have no TMS at all.
+In KPMG's 2025 Global Treasury Survey (340 treasury experts, mostly larger companies), 76% of participants used a treasury management system and about 10% used AI, mainly for liquidity forecasting, reporting and fraud prevention[](cite:kpmg-gts-2025-summary). Deloitte's 2024 survey found the TMS market concentrated on a few global vendors (SAP, Kyriba, FIS, ION)[](cite:deloitte-gts-2024). Neither sample represents SMEs, most of which have no TMS at all.
 
 </Callout>
 
@@ -122,7 +122,7 @@ Example: Lea's positioning workbook imports bank balances from the connectivity 
 
 ## Payment systems
 
-**Plain:** the software that creates, checks, approves and sends payment files. **Professional:** payment functionality spread across ERP payment programs, TMS payment modules, [payment hubs](term:payment-hub) (central format conversion, screening, routing and approval for many ERPs and banks) and bank channels; plus [sanctions screening](term:sanctions-screening) and fraud-detection tools. The design goal is one controlled route from approved invoice to bank, without files that can be edited in between.
+**Plain:** the software that creates, checks, approves and sends payment files. **Professional:** payment functionality spread across ERP payment programs, TMS payment modules, [payment hubs](term:payment-hub) (central format conversion, screening, routing and approval for many ERPs and banks) and bank channels; plus [sanctions screening](term:sanctions-screening) and fraud-detection tools. The design goal is one controlled route from approved invoice to bank, without files that can be edited in between — and someone who works the rejection queue: at GlobalChem, Marta's treasury operations team checks payment acknowledgements and rejections every morning and re-sends or escalates before the bank cut-off.
 
 Example: GlobalChem's payment hub takes files from 25 SAP company codes, converts them to each bank's pain.001 variant, screens them, applies release rules and sends them via SWIFT or H2H. Alpine's "payment system" is the Business Central payment journal plus EBICS.
 

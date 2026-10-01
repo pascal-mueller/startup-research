@@ -1,0 +1,193 @@
+# Why notes — Treasury Map stream
+- id: hedge-topup-judgment
+  claim: Why Daniel adds ~EUR 6m of forwards instead of the minimum
+  short: |
+    The policy band's lower edge is a floor, not a target. EUR 0.8m would merely scrape Q1 2027 back over 40%; Daniel
+    aims at the internal 55% target so the quarter still has room for forecast error.
+  detail: |
+    Q1 2027 exposure is EUR 32m with EUR 12m hedged (38%) — 2 percentage points under the 40% floor of its 40–70%
+    band. The mechanical fix is EUR ~0.8m of forwards (12 + 0.8 = 12.8 = 40% of 32 — exactly on the floor). But the
+    band exists to absorb forecast error: quarterly exposures move as FP&A revises the sales forecast and as receipt
+    dates slip, and a hedge ratio that sits *on* the floor goes out of band on the next small revision — which means
+    another hedge round, more dealing, more operational noise. Selling EUR 6m forward lifts the ratio to ≈56% (18 /
+    32), just past Daniel's 55% internal target for the quarter — targets are graded like the bands (75 / 55 / 40 /
+    25%), so this is not the current quarter's 75% — leaving headroom in both directions. The judgment is exactly this
+    gap between floor and target: the number the policy fixes and the number the treasurer chooses.
+  check: |
+    If the Q1 exposure were firm (order backlog rather than FP&A forecast) or already near target, the minimum
+    top-up would be the right call — the target gap exists because later quarters are forecast-driven and move.
+  terms: [hedge-ratio, forward]
+
+- id: forward-points-below-spot
+  claim: Why EUR/CHF forwards trade below spot
+  short: |
+    The forward rate is spot adjusted for the interest differential between the two currencies: euro money-market
+    rates ≈ 2.2–2.4% against Swiss ≈ 0%, so EUR delivered later buys fewer francs today — about 0.913–0.915 at 12
+    months from spot 0.935.
+  detail: |
+    Covered interest parity: F = S × (1 + r_CHF × t) / (1 + r_EUR × t). At spot 0.935 with r_EUR ≈ 2.3% and
+    r_CHF ≈ 0% for one year: 0.935 × 1.000 / 1.023 ≈ 0.914. The forward points are that differential made visible on
+    the rate — neither a bank fee nor a forecast of where spot is going. The same arithmetic prices a 4-month forward
+    at roughly 0.928 (0.935 less about three months of the differential). What a corporate gives up by hedging is not
+    a fee but the chance of a better future spot rate; what it buys is certainty.
+  check: |
+    If euro and Swiss rates converged — as in the 2015–2022 zero-rate years — the points would collapse toward zero
+    and the forward would trade near spot. If Swiss rates rose above euro rates the sign would flip: the forward would
+    trade *above* spot and euro sellers would lock in a premium instead of a discount. The differential is the whole
+    effect; the direction of the points is simply which currency has the higher interest rate.
+  terms: [forward-points, forward]
+
+- id: leverage-bridge-136
+  claim: "Net debt CHF 106m ÷ EBITDA CHF 78m = 1.36x (30 Sep 2026)"
+  short: |
+    Gross debt is the CHF 100m bond plus the RCF drawings (CHF 35m + EUR 27m ≈ CHF 60m) less CHF 54m of group cash =
+    CHF 106m. Over LTM EBITDA of CHF 78m that is 1.36x — and there are no leases in the bridge, because Helvetic
+    reports under Swiss GAAP FER.
+  detail: |
+    The bridge, in full (CHF m): bond 100 + drawings 35 + 27 × 0.935 ≈ 100 + 60.2 = 160.2 of gross financial debt;
+    less group cash 54 → 106 net debt (the canonical ≈ CHF 106m). Divided by LTM EBITDA 78 (group accounting's FER
+    figure, to 30 September 2026): 106 / 78 = 1.359 ≈ **1.36x**, against the 3.25x covenant. Three things a beginner
+    would put in this bridge that do not belong: **leases** (operating leases are off balance sheet under Swiss GAAP
+    FER, and the agreement excludes IFRS 16 lease liabilities even if the group ever switches), **trapped cash**
+    (the ≈ CHF 6m in HM Suzhou *is* in the cash deduction today — whether the lenders count it as "freely available"
+    is an open interpretation worth about 0.1x), and **other people's conventions** (the same company reads 1.80x at
+    the December test, because net debt tracks the seasonal cash low of the Q4 close — [why the test date changes the
+    number](why:covenant-test-dates)).
+  check: |
+    Re-derive it: 100 + 35 + 25.2 − 54 = 106.2, and 106.2 / 78 = 1.36. If any figure on the certificate moves — a
+    different FX rate for the EUR tranche, a different cash figure at the close, an add-back in the EBITDA definition —
+    the ratio moves with it, which is why treasurers say "1.36x *on the covenant definition*, at 30 September".
+  terms: [net-debt, ebitda, leverage-ratio, covenant]
+
+- id: covenant-test-dates
+  claim: Why covenants are tested on defined dates (30 June and 31 December)
+  short: |
+    The test date is a negotiated part of the control: it fixes which twelve months of earnings and which day's cash
+    balance are used, when the numbers must be right, and how much warning lenders get. Test continuously and every
+    working-capital swing is a potential breach; test only at year-end and half a year of deterioration stays invisible.
+  detail: |
+    Helvetic's leverage is seasonal because net debt tracks cash: ≈ 1.36x at the 30 September estimate, ≈ 1.80x at the
+    31 December test (Q4 cash falls to the seasonal low of ≈ CHF 25m as December payrolls and the 13th salary land),
+    back below 1.50x by mid-2027 as the Q4 collections arrive. The calendar dates tell everyone which snapshot counts:
+    Claudia's group accounting computes the LTM ratios after the half-year accounts close, Lea's net-debt schedule uses
+    the closing cash, Daniel reviews before it goes to the agent, Thomas signs the compliance certificate — and the
+    pricing grid resets on that certificate (1.80x steps the margin from 0.85% to 1.05%). The dates also set the
+    forecast discipline: with only two tests a year, Daniel's real work is the *forward* columns — projecting the ratio
+    at the next test date long before the certificate is due.
+  check: |
+    If tests ran monthly, Helvetic's December peak would still pass (3.25x limit), but a company near its limit would
+    breach on a timing swing it could not control. Test dates, cure rights and which ratios reset pricing are negotiated
+    almost as hard as the ratios themselves — ask an interviewee "what exactly gets tested, on which date, using whose
+    numbers?"
+  terms: [covenant, leverage-ratio, compliance-certificate]
+
+- id: commitment-fee-cost
+  claim: "The undrawn RCF costs ≈ CHF 410k a year"
+  short: |
+    0.2975% (35% of the 0.85% margin) on ≈ CHF 137m of undrawn commitment ≈ CHF 410k a year — the price of keeping
+    CHF 137m of committed liquidity that may never be drawn.
+  detail: |
+    The fee accrues on the average undrawn balance for each interest period. Lea's own arithmetic on the agent's Q3
+    invoice: 0.2975% × CHF 139.8m average undrawn × 92/360 = **CHF 106,287** — the invoice's exact figure; four such
+    quarters are ≈ CHF 420k a year on today's balances. That is nearly as much as the 0.85% margin earns the banks on
+    the ≈ CHF 63m that *is* drawn (0.85% × 63m ≈ CHF 535k), which is why the board asks every year whether the facility
+    is too big. The fee is not a penalty: it is the price of a binding commitment — the only kind of line that still
+    funds you in the scenario you need it for.
+  check: |
+    The economics flip if drawings rise: with half the facility drawn the fee halves while margin income doubles. If
+    the fee were pure waste, the facility would be smaller — or uncommitted, which is exactly the "insurance" that
+    pays out only when nobody needs it.
+  terms: [commitment-fee, committed-facility, rcf]
+
+- id: cp-needs-rcf-backstop
+  claim: Why a commercial-paper programme needs an undrawn committed RCF behind it
+  short: |
+    CP is unsecured paper rolled every few weeks. When the market closes, the only thing that repays maturing CP is a
+    committed bank line — so investors and rating agencies look at the backstop's size, commitment and drawstop
+    conditions before they look at the coupon.
+  detail: |
+    GlobalChem issues EUR 200–500m of CP with 1-week to 12-month maturities and rolls it weekly; a EUR 1.5bn undrawn
+    RCF stands behind the programme. The mismatch is the point: CP funds working capital cheaply *because* it can be
+    repaid on demand from the RCF if new paper cannot be sold. The backstop must be **committed** (an uncommitted line
+    disappears exactly when the market shuts), large enough for maximum CP outstanding plus margin, and typically
+    subject to drawstop conditions (no default, representations true). That is also why a rating agency's liquidity
+    analysis counts committed facilities but not goodwill — and why unrated mid-caps like Helvetic cannot issue CP at
+    all and run their RCF as the funding tool instead.
+  check: |
+    The standard interview references are the March 2020 and 2023 episodes: issuers whose backstops were uncommitted
+    or too small could not roll and had to scramble. If an interviewee's CP programme has no committed backstop, ask
+    what repays the paper when the market closes.
+  terms: [commercial-paper, rcf, committed-facility]
+
+- id: deposit-protection-negligible
+  claim: Deposit protection is irrelevant at corporate size (CHF 100k per bank)
+  short: |
+    The Swiss scheme covers CHF 100,000 per depositor per bank. Kleio's CHF 22m is 220× that, Helvetic's CHF 54m is
+    540× — so corporate cash is managed as bank credit exposure (limits, diversification), not as insured money.
+  detail: |
+    For a corporate treasurer every deposit is an unsecured loan to the bank, and the protection scheme is a retail
+    artefact: it would cover a rounding error of the balance. That is why the controls are different ones — Kleio's
+    board (post-SVB) caps 40% of cash at any one bank; Helvetic sets counterparty limits of CHF 30m per A-rated bank
+    and CHF 15m per BBB-rated bank, including operating balances and positive hedge MtM; GlobalChem aggregates exposure
+    across ~20 banks daily. Deposit protection matters to individuals and very small companies, and it matters for
+    bank-failure mechanics generally — but when a bank pitch says "your deposits are protected", it is aimed at the
+    retail part of the relationship, not at the CHF 40m sitting in the corporate account.
+  check: |
+    If balances were below CHF 100k per bank — very small companies spreading cash across banks — the scheme would be
+    the relevant protection and counterparty limits would be overkill. Size is what changes the question.
+  terms: [deposit, term-deposit, counterparty-limit, deposit-protection]
+
+- id: dso-per-day
+  claim: "One day of DSO ≈ CHF 19m at GlobalChem — why treasurers quote DSO per day"
+  short: |
+    Revenue per day (CHF 7bn ÷ 365 ≈ CHF 19m) converts the DSO ratio into cash: every extra day customers take to pay
+    ties up one more day of revenue. Days-of-revenue is the view that makes the lever comparable and actionable.
+  detail: |
+    The ratio alone ("DSO 58 days") hides scale and change. Per day: GlobalChem CHF 7bn ÷ 365 ≈ CHF 19.2m — so the
+    three-day reduction 58 → 55 releases 3 × 19.2 ≈ **CHF 57m** once, roughly a year of bond interest at a ~2% coupon
+    on CHF 3bn. Helvetic: CHF 650m ÷ 365 ≈ CHF 1.8m per day, and its ~70-day DSO ties up 650 × 70/365 ≈ CHF 125m in
+    receivables. The per-day view is also what makes working capital debates concrete in the monthly finance meeting:
+    "two days of DSO" is a number everyone can compare with a capex line or a dividend.
+  check: |
+    Per-day arithmetic flatters lumpy businesses: Alpine's DSO moves with two milestone invoices, so for Alpine the
+    day-of-revenue view is for scale only — the diagnosis has to come from the milestone calendar, not the average.
+  terms: [dso, working-capital, cash-conversion-cycle]
+
+- id: guarantee-line-reduces-headroom
+  claim: A bank guarantee eats facility headroom without moving cash
+  short: |
+    A guarantee is a bank commitment against the same credit appetite as a loan: it is issued under a guarantee
+    sub-limit of the committed facility and counts against the total, so every guarantee issued reduces the cash the
+    company can borrow — even though no cash moves on day one.
+  detail: |
+    Alpine's EUR 900k advance-payment guarantee — the 30% deposit its German customer pays on a EUR 3.0m project — is
+    issued under the guarantee line that sits within the CHF 12m committed facility. It uses capacity from the moment
+    it is issued until it expires or is released (guarantees reduce as deliveries are made), so the liquidity
+    calculation (usable cash + undrawn committed facilities − policy minimum) must count guarantees as usage. This is
+    why guarantee capacity shows up in facility negotiations, and why Martin's question to the cantonal bank is not
+    "what does the guarantee cost?" but "how much line is left afterwards?".
+  check: |
+    If another bank issued the guarantee against cash collateral instead (as Helvetic considers when Swiss bank A's
+    guarantee line is full), facility headroom would be untouched but CHF 4m of cash would be tied up instead — same
+    economic cost, different place in the liquidity table.
+  terms: [credit-facility-letter, committed-facility, liquidity-headroom]
+
+- id: alpine-line-sizing
+  claim: "Alpine's CHF 12m committed operating line — why that size"
+  short: |
+    Sized bottom-up from four stacks: project milestone gaps (payments landing before the matching acceptances), the
+    cash floor (payroll and a supplier run in the same week), guarantee headroom (advance-payment guarantees issued
+    under the line) and a slippage buffer — not from a multiple of revenue.
+  detail: |
+    The stack, roughly: two projects whose milestone receipts slip together ≈ CHF 2–3m (projects run CHF 0.5–4m each,
+    with 30/50/20 payment stages); payroll plus a weekly supplier run falling in the same week ≈ CHF 2m; guarantees
+    outstanding under the same facility ≈ CHF 2m (one EUR 900k advance-payment guarantee alone ≈ CHF 0.85m); and a
+    slip buffer for "the acceptance certificate is two weeks late again" ≈ CHF 3–5m. Sum ≈ CHF 10–12m → a CHF 12m
+    committed facility, usually CHF 0–5m drawn. The board's rule then governs daily use: headroom (undrawn line plus
+    cash above the operating minimum) never below CHF 5m — which is what Martin is checking when he keeps CHF 7m
+    undrawn in a downside week.
+  check: |
+    If Alpine's projects were small and evenly spread the line could be half this; if three large projects stacked at
+    once, CHF 12m would be tight. The line is a bet on the project calendar — ask an SME interviewee "what is the line
+    sized against?" and the answer reveals how they think about their order book.
+  terms: [committed-facility, rcf, liquidity-headroom, cash-buffer]

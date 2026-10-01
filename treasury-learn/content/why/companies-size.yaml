@@ -1,0 +1,243 @@
+# Why notes — companies-size stream (/companies, /size).
+# Every derivation re-derives from content/companies.yaml and AUTHORING.md canonical facts v2/v2.1.
+# Cross-stream derivations already written elsewhere are LINKED from the pages, not duplicated here
+# (alpine-credit-line, hedge-bands-graded, fifteenth-rollover-repayment, net-debt-lender-view,
+# covenant-excludes-leases, lea-never-releases, four-eyes-threshold, china-cash-excluded,
+# systems-11-of-12-statements, fer-vs-ifrs-pack, utilisation-fee-threshold).
+
+- id: kleio-treasury-two-hours
+  claim: "Kleio's treasury is the CFO's ~2 hours a week (about half a day including the monthly items, ~10%)"
+  short: |
+    The weekly base is one portal round and one sheet (≈35 minutes) plus a payment batch or two. The heavy items —
+    the runway model, the board update, deposit rollovers, payroll funding — are monthly or quarterly, so the weekly
+    average lands at half a working day. There are no structures to operate: no debt, no hedges, 2 entities, 7 accounts.
+  detail: |
+    Weekly recurring: three e-banking logins (~15 min), typing balances and checking the sheet (~20 min), a payment
+    batch twice a month (~30 min each). Monthly surge: runway model refresh (~2h), funding two payroll runs (~1h each),
+    the investor update (~2h); quarterly: deposit rollover and board meeting. Steady-state weekly base ≈ 2h; the
+    monthly items add ≈ 10h a month, so the average is ≈ 12–14h a month — about half a working day, ~10% of Sarah's
+    time. The number roughly triples around fundraising. Kleio has no covenants to compute, no hedges to roll, one
+    reporting currency for costs and one person who holds it all — the workload is bounded by the number of
+    *structures*, not by the CHF 22m on the balance sheet.
+  check: |
+    Add one committed facility with covenants, weekly hedging, or a second subsidiary running its own payroll and the
+    weekly base triples — which is exactly the step from Kleio to Alpine (and from Alpine to Helvetic).
+  terms: [cash-runway, burn-rate, fiduciary-treuhaender]
+
+- id: kleio-bank-split-cap
+  claim: "The 60% single-bank cap and the two-bank split (Bank A / Bank B)"
+  short: |
+    Deposit protection covers CHF 100k per bank, so CHF 22m at one bank is an unsecured position in that bank. The
+    board caps any single bank at 60% of cash (≈ CHF 13m) and after SVB added a second Swiss bank, splitting the
+    CHF 8m of term deposits across both.
+  detail: |
+    The cap is a counterparty-risk limit crudely drawn: 60% of CHF 22m ≈ CHF 13.2m is the most Kleio will lose if one
+    bank fails, versus 22m at a single bank. Why 60% and not 50%: the main operating account (payroll, suppliers) needs
+    to hold a working balance, and the second bank is a cantonal bank whose guarantee makes it a safe half. The split
+    is applied where the money actually sits: roughly half the cash on Bank B's current account, and the CHF 8m of
+    3-month deposits divided between a Bank B deposit account and a deposit product under Bank A's CHF account — seven
+    accounts, three banks. Kleio does not analyse bank creditworthiness ("big" and "cantonal"); the cap substitutes for
+    that analysis.
+  check: |
+    If esisuisse protected corporate balances meaningfully, or if Kleio could cheaply hold government paper as a third
+    leg, the single-bank cap could rise; a company with payroll-deduction privilege or bank guarantees owed *to* it
+    would set the cap differently.
+  terms: [deposit-protection, counterparty-limit, money-market-fund]
+
+- id: fundraise-12-15-months
+  claim: "Start fundraising with 12–15 months of runway left"
+  short: |
+    A priced round takes 6–9 months end to end and burn continues throughout; one failed attempt costs another 3–6.
+    Twelve to fifteen months is the shortest window that survives one "no" — below ~9 months the company negotiates
+    from weakness and the round becomes a distress sale of equity.
+  detail: |
+    The clock: deck and data room (4–8 weeks), investor meetings and term sheet (8–14 weeks), due diligence and legal
+    (4–8 weeks), close and funding (2–4 weeks) ≈ 6–9 months. If the round fails or terms are unacceptable, re-running
+    it takes another quarter or two. At Kleio's CHF 0.9m average monthly net burn, 12–15 months consumes CHF 11–14m —
+    the seasonality makes the raw ratio lie (cash ÷ that month's net burn is "infinite" in January after the renewals
+    land), so the rule is applied to a rolling average burn. Practitioner rule of thumb, not a standard; boards of
+    slower-raising sectors use up to 18 months.
+  check: |
+    A profitable company needs no such rule; a company with a committed debt line or a bridge in place can run the
+    window shorter; in a frozen funding market 12 months is not enough and 18 is prudent.
+  terms: [cash-runway, burn-rate]
+
+- id: alpine-headroom-floor
+  claim: "Week-9 headroom CHF 5.5m = CHF 5.5m undrawn line + CHF 0m cash above the minimum"
+  short: |
+    Headroom is the undrawn committed line plus cash above the CHF 5.5m operating minimum, floored at CHF 5m by the
+    board. In week 9 the line is drawn CHF 6.5m of 12 (5.5 undrawn) and cash CHF 5.0m sits *below* the minimum, so
+    headroom is 5.5m — just above the floor, which is why Martin holds a CHF 0.6m order.
+  detail: |
+    Why the operating minimum is CHF 5.5m: a payroll (≈ CHF 3.1m around the 25th) and a supplier run (CHF 2–3m on a
+    Tuesday or Friday) can fall in the same week — the observed peak week costs ≈ CHF 6m, so Petra keeps ≈ CHF 6m on
+    hand and the policy floor sits just under it at 5.5m. Why the undrawn line counts: it is *committed* — the bank
+    cannot withdraw it while the agreement runs — so it is spendable cash in a stress, unlike an uncommitted overdraft.
+    The board floor of CHF 5m is a second cushion so that headroom itself never approaches zero. In week 9 the Lübeck
+    acceptance slip removes CHF 2m of receipt; because cash dips below the operating minimum, every further franc of
+    outflow must be caught by the line, and the arithmetic (12 − 6.5 = 5.5) is done in Petra's sheet, not in a
+    treasury system.
+  check: |
+    If the line were uncommitted the bank could cut it exactly when milestones slip — then headroom would be a fiction
+    and the board rule would read "cash above minimum" only. If Alpine's payroll and supplier runs were staggered, the
+    minimum could fall toward CHF 4m and the line could shrink toward [the project-gap sizing](why:alpine-credit-line).
+  terms: [current-account-credit, committed-facility, milestone-payments]
+
+- id: helvetic-first-analyst
+  claim: "Why the first dedicated analyst appears at roughly CHF 250–650m revenue"
+  short: |
+    At Helvetic's size the recurring work — 12 statements daily, 8 forecast templates weekly, monthly hedge rolls,
+    semi-annual covenants, five banks — fills more than one person's week, but is too narrow to staff a department.
+    The analyst is hired when the manager's week fills with *collecting* data instead of deciding.
+  detail: |
+    The manual's illustrative Helvetic time budget: ~80 hours a week across Daniel and Lea, of which positioning (10h)
+    and forecast collection/chasing/reshaping (14h) are pure data work — 24h a week before any decision is made. One
+    person cannot both run that collection *and* deal with banks, decide funding and hedges, and prepare refinancing
+    for 9 entities in 6 currencies. At Alpine (3 entities, 2 currencies, 9 accounts, a weekly sheet) the same tasks fit
+    in 20–30% of one person; at Kleio (2 entities, no debt) in two hours. The historical trigger is usually a
+    refinancing or bond: Helvetic centralised treasury in 2021 when it signed the CHF 200m RCF and the bond — covenant
+    certificates, a lender relationship and a hedging policy arrived at once, and a manager alone could not carry them.
+  check: |
+    Revenue is a proxy: a CHF 300m single-country, single-currency company may never need an analyst, while a CHF 100m
+    group in 8 currencies may need one — the drivers are entities, currencies, lenders and data volume.
+  terms: [variance-analysis, treasury-centralisation]
+
+- id: helvetic-twelve-accounts
+  claim: "12 operating accounts (down from 31 in the 2024 clean-up)"
+  short: |
+    Each account costs a daily statement to reconcile, a signatory list, a KYC file and fees — so the count is pushed
+    down to the functional minimum. The 2024 clean-up closed 7 dormant accounts (under ten transactions a year) and
+    one CZK account still carrying a former controller as signatory.
+  detail: |
+    The functional floor for Helvetic's shape: parent CHF/EUR/USD (3), Service AG CHF (1), Germany EUR (1), Czechia
+    CZK (1), Italy/France/UK/US each a local-currency operating account (4), Suzhou CNY (1) — 11–12 accounts, because
+    local payroll and local suppliers need local accounts and CNY needs an onshore bank. 12 is therefore near the
+    floor, well inside the mid-market range of 10–100, and every account above the floor is a candidate for closure in
+    the next review. The 31-account estate came from acquisitions whose banks were never closed and from cash
+    management before centralisation.
+  check: |
+    Acquisitions, local legal requirements (guarantee accounts, payroll accounts) and lending banks' ancillary-business
+    expectations push counts up; POBO at GlobalChem's scale is the main force that pushes them *below* the
+    entity-times-currency floor.
+  terms: [bank-account-rationalisation, dormant-account, signatory, wallet-share]
+
+- id: helvetic-no-cash-pool
+  claim: "Why Helvetic concentrates cash manually (intercompany loans), not with a cash pool"
+  short: |
+    A cash pool is per bank, needs tax sign-off on imputed interest, and needs every entity — including Czechia and
+    China — to join. Helvetic banks with five institutions and CNY cannot leave China freely, so Daniel concentrates
+    manually with intercompany loans under a framework agreement; the pool stays "under evaluation".
+  detail: |
+    Thursday concentration: surplus EUR from Italy and France is upstreamed (or routed to Germany) as documented
+    [intercompany loans](term:intercompany-loan) at arm's-length rates agreed with the tax manager. What blocks the
+    pool: (1) pools are offered per bank, and Helvetic's balances sit at five — joining one bank's pool moves
+    relationship business and requires the others to be closed or cut; (2) tax — pooled balances attract imputed
+    interest and transfer-pricing documentation, and the Czech entity has thin capitalisation limits; (3) China's
+    capital controls make onshore CNY undrainable (only an annual dividend); (4) the pool is negotiating currency —
+    Daniel would rather trade it in the 2028 refinancing than implement it before. Manual loans achieve the same
+    concentration economics with none of the structural commitment; they cost weekly work instead.
+  check: |
+    If Helvetic single-banked, or the RCF banks agreed a multi-currency pool with one of them as part of the
+    refinancing, the pool flips from "project" to "switch"; if tax confirmed an interest-free pooling structure for
+    CZ, one blocker disappears.
+  terms: [cash-pooling, intercompany-loan, trapped-cash]
+
+- id: helvetic-short-eur
+  claim: "Why the RCF carries a EUR drawing (EUR 27m → 35m) and Germany is funded from the parent"
+  short: |
+    German payroll alone is EUR 4.2m a month (~EUR 50m a year), and EUR receipts arrive in Italy, France and the
+    parent at other times — the group is structurally short EUR where it spends it. Borrowing EUR directly beats
+    swapping a CHF drawing, and the tranche can resize at the 15th rollover.
+  detail: |
+    EUR is ~50% of CHF 650m revenue but the big cost base is Swiss (CHF); the German plant's payroll (EUR 4.2m monthly
+    at month-end) and supplier runs make HM Deutschland the chronic EUR demander, funded from the parent's EUR account
+    and documented as intercompany loans. The facility's EUR tranche (CHF 35m + EUR 27m at the 30 Sep close →
+    CHF 30m + EUR 35m after the 15 Oct rollover) is sized to that structural need rather than swapped from CHF
+    ([why not swap](why:revolver-swap-awkward)); drawings change only at [the 15th rollover](why:fifteenth-rollover-repayment),
+    which is why the EUR tranche is resized quarterly, not weekly.
+  check: |
+    If the German subsidiary collected its own EUR from German customers (it partly does), or the parent invoiced the
+    plants in CHF instead of EUR/USD, the short would sit in the subsidiaries and the parent's drawing could be
+    all-CHF.
+  terms: [rcf, interest-period, forward]
+
+- id: globalchem-in-house-bank
+  claim: "Why GlobalChem needs an in-house bank"
+  short: |
+    ~40 entities, ~280 accounts and 30 currencies create hundreds of internal funding relationships and gross
+    intercompany flows. The in-house bank replaces them with one set of internal accounts: subsidiaries borrow from and
+    lend to the group, sweeps run daily, and external accounts shrink to IHB master accounts plus local necessities.
+  detail: |
+    Without the IHB, each shortfall is a separate bank overdraft at local rates, each surplus a separate deposit, and
+    each transfer an arm's-length loan with documentation — the CHF 80m-scale mess Alpine manages by hand, multiplied
+    by forty. With it: European entities are swept to zero daily into EUR/USD [physical pools](term:physical-pooling);
+    a shortfall becomes an internal overdraft at the in-house bank's rate; monthly [netting](term:netting) settles
+    intercompany flows ([gross to net](why:netting-before-hedging)); POBO lets the IHB pay local suppliers from central
+    accounts, cutting account count and bank relationships. The threshold is economic: PwC finds 67% in-house-bank
+    adoption only above USD 10bn revenue. Below roughly CHF 2–3bn, manual intercompany loans and one pool normally
+    win — Helvetic's model is the step below.
+  check: |
+    If all entities sat in one country with one bank and no withholding tax, a simple pool would do the job; where
+    capital controls block sweeps (China, India), the IHB funds by documented intercompany loan instead — the structure
+    degrades gracefully, which is why it survives at scale.
+  terms: [in-house-bank, physical-pooling, pobo, netting]
+
+- id: netting-before-hedging
+  claim: "≈4,000 intercompany invoices net to ~600 settlements — before anything is hedged"
+  short: |
+    Intercompany receivables and payables in the same currency pair offset, so monthly netting collapses gross flows
+    into one net settlement per entity pair. Only the post-netting exposure is external — hedging the gross intercompany
+    flows would pay spreads on positions that cancel inside the group.
+  detail: |
+    Illustrative arithmetic: ~40 entities billing each other at ~100 invoices a month ≈ 4,000 intercompany invoices;
+    opposing flows within each currency pair net down to roughly 600 cross-border settlements a month. Three effects:
+    (1) fewer cross-border payments, conversions and fees; (2) intercompany reconciliation breaks surface monthly
+    instead of at year-end; (3) the FX desk sees the *net* external exposure per currency — if the German company buys
+    from the Swiss parent in EUR and sells to the French company in EUR, those legs are not hedgeable exposure at all
+    (they are eliminated on consolidation). GlobalChem's subsidiaries report forecast exposures monthly into the TMS;
+    Jonas nets before deciding the hedge.
+  check: |
+    If netting ran quarterly instead of monthly, exposure between runs would rest on accruals and the hedge would be
+    sized on stale data; in restricted currencies where only offshore NDFs exist, even the net must be documented to
+    hedge at all.
+  terms: [netting, hedge-ratio, transaction-exposure]
+
+- id: account-counts-scale
+  claim: "Why the account counts run 7, 9, 12 and ~280"
+  short: |
+    Accounts ≈ entities × currencies they must pay in, plus accounts lenders or regulators require, minus what
+    pooling/POBO removes — then bent by whether anyone owns the count. Kleio 7, Alpine 9, Helvetic 12 (rationalised),
+    GlobalChem ~280 with ~40 entities and local legal needs.
+  detail: |
+    Kleio: 2 entities; the parent needs CHF/EUR/USD current accounts plus a deposit leg, Kleio Inc. needs operating +
+    payroll accounts = 7. Alpine: 3 entities, 9 accounts — the German subsidiary has a local account (and a sweep), the
+    US subsidiary a local US bank with lockbox collection, plus a savings/deposit legacy. Helvetic: 9 entities × ~1–2
+    accounts each ≈ 12 only after a [deliberate clean-up](why:helvetic-twelve-accounts). GlobalChem: ~280 — local
+    payroll accounts, guarantee and restricted-market accounts, legacy banks from acquisitions, before POBO cuts
+    Europe's count. The cost per account (statement, reconciliation, signatory list, KYC file, fees) is roughly
+    constant, so rationalisation pays at every size; the reason counts grow anyway is acquisitions and local law, not
+    preference.
+  check: |
+    A single-country group can run on 2–3 accounts whatever its revenue; a completed POBO/COBO programme is the main
+    force that drives counts below the entity-times-currency floor at the top end.
+  terms: [bank-account-rationalisation, pobo, cobo]
+
+- id: same-problem-four-answers
+  claim: "Why the same workflow produces four different answers"
+  short: |
+    Four drivers — entities/countries, currencies, payment volume and value, and financing structure — change who does
+    the work, with what tools, and what the backstop is. The question itself ("enough cash, in the right place, at the
+    right time?") is identical at all four companies.
+  detail: |
+    Map the drivers onto the six sections of [Same problem, four scales](/companies/same-problem): *forecasting*
+    differs because one model beats forty submissions and because milestones are lumpy at Alpine; *FX* differs because
+    exposure scales with currencies and whether it is measured at all; *payment approval* splits the approval of the
+    spending from the release of the payment once volume grows; *liquidity planning*'s backstop moves from equity to a
+    committed line to a syndicated RCF to capital markets; *account management* turns into a register and KYC
+    workload; *surplus cash* moves from bank safety to a policy-bound portfolio. The payoff for an interviewer: place
+    the company on the four drivers first, and the same question yields comparable answers across interviews — size
+    itself is only a proxy for the drivers.
+  check: |
+    Two companies with the same four drivers but very different revenue (e.g. a 300-person and a 3,000-person domestic
+    retailer) give near-identical answers — evidence that the drivers, not headcount, do the explaining.
+  terms: [treasury-centralisation]

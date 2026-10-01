@@ -22,6 +22,8 @@
   note: >-
     Example of how a listed Swiss group disclosed the floor removal: amounts in the 2014 accounts do not reflect
     exchange-rate changes after 31 December 2014; the impact on 2015 "depends on the future development of the euro".
+    UNVERIFIED (review round 1): the note could not be reopened against the primary text this session; the wording is
+    used as an example of disclosure practice, not as evidence of any figure.
 - id: clariant-ar-2015-bonus
   title: "Annual Report 2015 — Compensation report: bonus plans"
   publisher: Clariant AG
@@ -29,8 +31,10 @@
   url: https://reports.clariant.com/2015/annual-report/compensation-report/bonus-plans.html
   type: filing
   note: >-
-    Targets set in Q4 2014 were reviewed in February 2015 because of the special impact of the Swiss franc situation
-    after the SNB abandoned the EUR/CHF floor — an example of budget/target rates being reset after a shock.
+    As reported: targets set in Q4 2014 were reviewed early in 2015 because of the special impact of the Swiss franc
+    situation after the SNB abandoned the EUR/CHF floor — an example of budget/target rates being reset after a shock.
+    UNVERIFIED (review round 1): the claim could not be reproduced from publisher search results this session; it is
+    plausible and low-stakes and is carried as an unverified example.
 - id: burckhardt-ar-2014
   title: Annual Report 2014 (fiscal year April 2014 – March 2015)
   publisher: Burckhardt Compression Holding AG
@@ -38,19 +42,26 @@
   url: https://www.burckhardtcompression.com/fileadmin/uploads/burckhardt/documents/reports/archive/annual-report-2014-burckhardt-compression-en.pdf
   type: filing
   note: >-
-    Swiss industrial exporter. Attributes an order-intake decline of 7.9% mainly to customers postponing orders as a
-    direct consequence of the SNB's decision to abandon the EUR/CHF floor (verified from search snippet only).
+    Swiss industrial exporter whose fiscal year contained the floor removal. The **Compressor Systems segment's**
+    order intake fell 7.9% (CHF 355.6m vs 386.3m); **group** order intake fell only 0.6% (514.1 vs 517.1). The stated
+    reason is customers postponing several large projects ("Der Hauptgrund liegt in der kundenseitigen Verschiebung
+    einiger grosser Projekte") — the report does **not** attribute the decline to the SNB decision (the franc's impact
+    is discussed separately, on guidance/translation). Corrected in review round 1; the earlier "7.9% as a direct
+    consequence of the SNB decision" framing was wrong twice over.
 - id: swissmem-2015-franc
-  title: "MEM industries: seriously affected by strong franc"
+  title: "MEM industry surveys after the franc shock (releases of 26 March and 19 August 2015)"
   publisher: Swissmem
   year: 2015
   url: https://swissmem.ch/en/mem-industries-seriously-affected-by-strong-franc-1.html
   type: practitioner
   note: >-
-    Industry-association survey of Swiss machine, electrical and metal (MEM) companies after the floor removal:
-    more than three-quarters of members surveyed in July 2015 had reduced prices; over half reported sharp margin
-    declines; 18% planned to relocate some production if EUR/CHF stayed around 1.05. Verified from search snippet
-    only — a follow-up search on the same page did not reproduce the wording, so treat the numbers as indicative.
+    Industry-association surveys of Swiss machine, electrical and metal (MEM) companies after the floor removal. The
+    February/March 2015 survey (with BAK Basel): 51% of members had been forced to cut prices, 63% expected margin
+    declines of ≥ 4 percentage points, 31% expected an operating loss, and 16% planned to relocate part of the value
+    chain if EUR/CHF stayed around 1.05. The June 2015 survey (>400 participants, released 19 August 2015): 69% had cut
+    prices in H1 2015, 18% considered relocating part of production at 1.05, and 77% had shifted cost blocks into EUR
+    (natural hedging). Corrected in review round 1 — the earlier note's "more than three-quarters … July 2015" did not
+    match the surveys. Figures verified from search-result snippets of Swissmem's own releases.
 - id: tornos-2015-franc-measures
   title: Tornos announces measures to contain the impact of the appreciation of the Swiss franc
   publisher: Tornos Holding Ltd
@@ -114,10 +125,24 @@
   title: "SVB Shockwaves: Updating Bank Counterparty Credit Risk Strategy"
   publisher: NeuGroup
   year: 2023
-  url: https://www.neugroup.com/svb-shockwaves-updating-bank-counterparty-credit-risk-strategy/
+  url: https://connect.neugroup.com/public/blogs/svb-shockwaves-updating-bank-counterparty-credit-risk-strategy
   type: survey
   note: >-
     NeuGroup "Best Practices in Assessing Bank Counterparty Risk" survey of member treasuries (mostly large US
     corporates; sample size not stated in the snippet): the crisis triggered a reassessment of bank counterparty
     credit management at 81% of treasuries; 69% planned fundamental changes; the most common strategy was greater
-    deposit diversification, alongside more cash in government money market funds.
+    deposit diversification, alongside more cash in government money market funds. (The earlier neugroup.com URL has
+    moved to connect.neugroup.com; the recorded URL is the location found in review round 1.)
+- id: co-art-725
+  title: "Code of Obligations (SR 220), Art. 725 — Notification of the court in the event of capital loss, over-indebtedness or threatened illiquidity"
+  publisher: Swiss Confederation (Fedlex)
+  year: 2023
+  url: https://www.fedlex.admin.ch/eli/cc/27/317_321_377/en
+  type: official
+  note: >-
+    Statutory basis for the board's liquidity duties in Switzerland. Under the revised company law in force since
+    1 January 2023, Art. 725(1) CO obliges the board to monitor solvency (Zahlungsfähigkeit) and take remedial action,
+    and Art. 725(2) requires it to notify the court if insolvency is threatened and no postponement can be obtained
+    (Art. 725a governs capital loss, Art. 725b over-indebtedness). Confirmed against the statutory text and law-firm
+    commentary (Walder Wyss, "Pflichten des Verwaltungsrats in finanziellen Krisenlagen nach neuem Aktienrecht", 2023)
+    in review round 1.

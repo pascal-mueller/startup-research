@@ -1,7 +1,9 @@
 # Competitor-landscape sources (stream: competitors).
-# IMPORTANT: in the authoring session (2026-09-30) WebFetch was blocked by the network proxy for every domain tried, and the
-# session-wide WebSearch budget ran out after a handful of queries. Everything below was checked against search-result
+# Authoring session (2026-09-30): WebFetch was blocked by the network proxy for every domain tried, and the session-wide
+# WebSearch budget ran out after a handful of queries. The ORIGINAL entries below were checked against search-result
 # snippets from the listed publisher only, not by opening the page. The note field says exactly what the snippet supported.
+# Revision pass r1→r2 (same day, fresh search access): entries marked "review round 1" or "revision pass" were confirmed
+# against search-result snippets from the original publisher (see docs/reviews/competitors-r1.md verification appendix).
 - id: comp-ripple-gtreasury-pymnts
   title: Ripple Acquires Treasury Management Systems Supplier GTreasury for $1 Billion
   publisher: PYMNTS
@@ -32,15 +34,183 @@
   year: 2026
   url: https://www.crowdfundinsider.com/2026/01/258716-cash-and-risk-management-solution-provider-gtreasury-introduces-ripple-treasury/
   type: news
+  accessed: 2026-09-30 (search snippet only); AI-feature snippet registered in the revision pass
+  note: "Search snippets (Crowdfund Insider, The Block): GTreasury launched 'Ripple Treasury' on 27 January 2026, combining GTreasury's TMS with Ripple's digital-asset infrastructure (RLUSD stablecoin settlement, custody). Coverage snippets also listed 'AI-driven cash forecasting' among the launch features (registered here in the revision pass so the claim has a source trail; feature claims are vendor claims as reported)."
+- id: comp-gtreasury-close-2025
+  title: Ripple Finalizes GTreasury Acquisition
+  publisher: u.today (via TradingView News); quotes GTreasury's own announcement
+  year: 2025
+  url: https://www.tradingview.com/news/u_today:fc51ed411094b:0-ripple-finalizes-gtreasury-acquisition
+  type: news
   accessed: 2026-09-30 (search snippet only)
-  note: "Search snippets (Crowdfund Insider, The Block): GTreasury launched 'Ripple Treasury' on 27 January 2026, combining GTreasury's TMS with Ripple's digital-asset infrastructure (RLUSD stablecoin settlement, custody). Feature claims are vendor claims as reported."
+  note: "4 Dec 2025: Ripple closed its USD 1bn GTreasury acquisition; GTreasury announced 'We're officially part of Ripple!' on X on 4 Dec 2025. Trade-press report quoting the company's own post — the closing date is therefore datable (early December 2025), not 'unverified'."
+- id: comp-atlar-company
+  title: Atlar — company page
+  publisher: Atlar
+  year: 2026
+  url: https://www.atlar.com/company
+  type: vendor
+  accessed: 2026-09-30 (search snippet only)
+  note: "Vendor self-description: 'AI-native treasury platform' unifying payments, cash management, forecasting and investments; 'preferred partner of Oracle NetSuite, Citi, and J.P. Morgan'; 'Backed by Index Ventures and General Catalyst' — i.e. a later round after the 2022 Index seed exists (aggregator 'no later round' data is stale). All product and customer claims are vendor claims."
+- id: comp-tis-cashforce-2022
+  title: Enterprise Payment Leader TIS Acquires Forecasting Innovator Cashforce
+  publisher: TIS (Treasury Intelligence Solutions) newsroom
+  year: 2022
+  url: https://tispayments.com/newsroom/enterprise-payment-leader-tis-acquires-forecasting-innovator-cashforce/
+  type: vendor
+  accessed: 2026-09-30 (search snippet from the publisher; confirmed in review round 1 with ctmfile and PitchBook corroboration)
+  note: "Announced 15/16 June 2022: TIS (Walldorf) acquired Cashforce, the Belgian cash-forecasting specialist. Cashforce has NOT been part of Nomentia — that attribution in an earlier draft was wrong and is corrected in this pass."
+- id: comp-nomentia-tipco-2021
+  title: Nomentia acquires TIPCO Treasury & Technology GmbH to become a market leading force in cash and treasury management internationally
+  publisher: Nomentia
+  year: 2021
+  url: https://www.nomentia.com/news/nomentia-acquires-tipco-treasury-technology-gmbh-to-become-a-market-leading-force-in-cash-and-treasury-management-internationally
+  type: vendor
+  accessed: 2026-09-30 (search snippet; confirmed in review round 1)
+  note: "Fall 2021: Nomentia combined with TIPCO Treasury & Technology (Vienna). This — not Cashforce — is Nomentia's forecasting/analytics combination."
+- id: comp-nomentia-inflexion-2023
+  title: Inflexion announces acquisition of Nomentia
+  publisher: Inflexion
+  year: 2023
+  url: https://www.inflexion.com/news-and-insights/news/2023/inflexion-announces-acquisition-of-nomentia/
+  type: news
+  accessed: 2026-09-30 (search snippet; confirmed in review round 1)
+  note: "1 March 2023: Inflexion acquired a majority stake in Nomentia from PSG Equity and Verdane. Nomentia is PE-backed (Inflexion majority) as of this date."
+- id: comp-kantox-bnp-2023
+  title: BNP Paribas receives approvals and completes the acquisition of Kantox
+  publisher: BNP Paribas (Group press release; mirrored by Kantox)
+  year: 2023
+  url: https://group.bnpparibas/en/press-release/bnp-paribas-receives-approvals-and-completes-the-acquisition-of-kantox
+  type: official
+  accessed: 2026-09-30 (search snippet)
+  note: "13 July 2023: BNP Paribas completed the acquisition of Kantox after regulatory approvals (agreement announced 11 Oct 2022). Kantox is a wholly owned BNP Paribas company; kantox.com 'About Kantox' states 'As of July 2023, Kantox is a BNP Paribas company'. Purchase price ~EUR 120m (press estimates)."
+- id: comp-ebury-santander-2026
+  title: Ebury, Santander's international payments fintech, secures c.£550 million to accelerate growth and global expansion
+  publisher: Banco Santander (press release; Reuters same day)
+  year: 2026
+  url: https://www.santander.com/en/press-room/press-releases/2026/04/ebury-santanders-international-payments-fintech-secures-550-million-to-accelerate-growth-and-global-expansion
+  type: official
+  accessed: 2026-09-30 (search snippet)
+  note: "30 April 2026: Centerbridge-led funding rounds of c.£550m; Santander invested £50m and remains majority shareholder with 55%. Santander first took 50.1% for £350m (agreement announced Nov 2019; completed 2020). Ebury is Santander's SME cross-border payments platform. Reuters (30 Apr 2026) corroborates."
+- id: comp-agicap-series-c-2024
+  title: Agicap, the all-in-one treasury management platform, announces €45m Series C funding round led by AVP
+  publisher: Agicap (press release; AVP and fintech trade press same week)
+  year: 2024
+  url: https://agicap.com/en/article/agicap-raises-euros-forty-five-million-series-c/
+  type: vendor
+  accessed: 2026-09-30 (search snippet)
+  note: "12 Nov 2024: EUR 45m Series C led by AVP (first European investment from AVP's EUR 1.5bn late-stage fund). Builds on a USD 100m Series B led by Greenoaks (2021). Agicap self-describes as 'the all-in-one treasury management platform' for SMB and midmarket. No 2022 growth round exists; the earlier '2022' in this stream's draft was wrong."
+- id: comp-highradius-series-c-2021
+  title: HighRadius Raises $300M Series C at $3.1 Billion Valuation to Accelerate Growth in Order-to-Cash and Treasury Markets
+  publisher: HighRadius (press release; Business Wire and TechCrunch same day)
+  year: 2021
+  url: https://www.highradius.com/en-gb/about/news/highradius-raises-300m-series-c-at-over-3-billion-valuation
+  type: vendor
+  accessed: 2026-09-30 (search snippet)
+  note: "30 March 2021: USD 300m Series C at a USD 3.1bn valuation, led by D1 Capital Partners and Tiger Global with ICONIQ Growth and Susquehanna Growth Equity. The company describes itself as Order-to-Cash and Treasury Management software; '600+ clients' is a company figure."
+- id: comp-serrala-hg-2021
+  title: Serrala secures strategic investment from Hg
+  publisher: Hg (also Latham & Watkins deal page, Hg Capital Trust)
+  year: 2021
+  url: https://hgcapital.com/insights/serrala-secures-strategic-investment-from-hg
+  type: news
+  accessed: 2026-09-30 (search snippet)
+  note: "26 August 2021: Hg acquired a majority stake in Serrala; CEO Sven Lindemann and Waterland remained significant minority shareholders. Hg also held GTreasury 2023–2025 — the same sponsor pattern as named on the competitor landscape page."
+- id: comp-taulia-sap-2022
+  title: SAP Completes Acquisition of Taulia
+  publisher: SAP News Center (Taulia press release mirrors)
+  year: 2022
+  url: https://news.sap.com/2022/03/sap-completes-acquisition-of-taulia
+  type: official
+  accessed: 2026-09-30 (search snippet)
+  note: "Announced 27 Jan 2022, completed 10 Mar 2022: SAP acquired a majority stake in Taulia; J.P. Morgan kept its equity stake; Taulia operates as an independent company with its own brand inside SAP. (SAP's 2022 20-F records consideration of EUR 705m.)"
+- id: comp-kyriba-ga-2024-pr
+  title: Bridgepoint to Reinvest in Kyriba, Alongside New Minority Investor, General Atlantic
+  publisher: Kyriba / Bridgepoint / General Atlantic (joint press release)
+  year: 2024
+  url: https://www.kyriba.com/news/bridgepoint-to-reinvest-in-kyriba-alongside-new-minority-investor-general-atlantic
+  type: official
+  accessed: 2026-09-30 (search snippet)
+  note: "16 Oct 2024 (primary press release): Bridgepoint reinvests and remains majority shareholder; General Atlantic takes a minority stake; the transaction values Kyriba at over USD 3bn (vs ~USD 1.2bn in 2019), expected close Q4 2024. Melissa Di Donato is quoted as 'Kyriba Chair and CEO'. Dateline 'San Diego' confirms Kyriba's HQ. 'Liquidity performance' and 'close to 3,000 customers' are Kyriba's own wording."
+- id: comp-fis-issuer-2026
+  title: FIS Completes Strategic Acquisition of Global Payments' Issuer Solutions Business and Sale of Worldpay Stake
+  publisher: FIS (press release; SEC filing EX-99.1)
+  year: 2026
+  url: https://www.fisglobal.com/about-us/media-room/press-release/2026/fis-completes-strategic-acquisition-of-global-payments-issuer-solutions-business
+  type: official
+  accessed: 2026-09-30 (search snippet)
+  note: "12 Jan 2026: FIS completed the acquisition of Global Payments' Issuer Solutions (formerly TSYS) for an enterprise value of USD 13.5bn and simultaneously sold its remaining Worldpay minority stake to Global Payments. The restructuring concerns issuing/merchant businesses; FIS's treasury line stays in FIS (see fis-quantum-cloud-2025 for the current suite names)."
+- id: comp-fides-ubs-2024
+  title: Fides Completes Transition to UBS Switzerland AG, Names François Schnyder as Chief Executive Officer
+  publisher: Fides Treasury Services AG
+  year: 2024
+  url: https://fides.ch/en/news/fides-completes-transition-to-ubs-switzerland-ag-names-francois-schnyder-as-chief-executive-officer
+  type: vendor
+  accessed: 2026-09-30 (search snippet; fides.ch site checked in this pass)
+  note: "26 Sep 2024: Fides Treasury Services AG is an independent subsidiary wholly owned by UBS Switzerland AG following the UBS/Credit Suisse (Switzerland) legal merger; François Schnyder became CEO on 1 Oct 2024 (fides.ch names Amélie Laing as CEO in 2026). Founded 1910, HQ Zurich. Vendor self-description: multibank connectivity, payments and transaction communications; Swift service bureau; access to 13,000+ counterparty banks via a dual-BIC setup (vendor claim)."
+- id: comp-trovata-series-a-2021
+  title: Trovata.io Secures $20 Million in Series A Funding from Syndicate of Financial Institutions Led by Wells Fargo Strategic Capital
+  publisher: Trovata (via AccessNewswire; trade press corroborates)
+  year: 2021
+  url: https://www.accessnewswire.com/newsroom/en/business-and-professional-services/trovata.io-secures-20-million-in-series-a-funding-from-syndicate-624772
+  type: vendor
+  accessed: 2026-09-30 (search snippet)
+  note: "19 Jan 2021: USD 20m Series A led by Wells Fargo Strategic Capital with Capital One Ventures and Pivot Investment Partners (existing: J.P. Morgan, FINTOP). Wells Fargo's Basil Darwish joined the board — bank-strategic money in a 'modern treasury' vendor."
+- id: comp-trovata-series-b-2022
+  title: Trovata Expands to UK/EU with $27M Series B Funding
+  publisher: Trovata
+  year: 2022
+  url: https://trovata.io/press/series-b-funding-uk-eu
+  type: vendor
+  accessed: 2026-09-30 (search snippet)
+  note: "6 June 2022: USD 27m Series B led by Fin Capital with JPMorgan Chase Strategic Investments, Wells Fargo Strategic Capital, Capital One Ventures, Pivot (new: NAB Ventures); London and Amsterdam offices opened for UK/EU expansion. Company figures ('fastest growing treasury platform in the U.S.') are vendor claims."
+- id: comp-trovata-atom-press
+  title: Trovata Acquires ATOM, Unlocking Full Treasury Management Capabilities to Redefine Corporate Treasury
+  publisher: Trovata
+  year: 2025
+  url: https://trovata.io/press/trovata-acquires-atom
+  type: vendor
+  accessed: 2026-09-30 (cross-checked with the systems stream's trovata-atom-2025 registration)
+  note: "July 2025: Trovata acquired ATOM (the enterprise TMS of Financial Sciences) — in-house banking, intercompany netting, FX hedging, bank fee analysis — plus a USD 9m Series B extension from PNC and State Street, and markets itself as 'a full TMS'. Scope claims are vendor claims; ask customers what is in production."
+- id: comp-nilus-funding-2025
+  title: Nilus Raises $10M, Reaching $18M in Funding to Lead the Future of AI-Powered Treasury Management
+  publisher: Nilus (corroborated by CTech/Calcalist 16 Jan 2025, Axios Pro, fintech.global 17 Jan 2025)
+  year: 2025
+  url: https://www.nilus.com/blog/nilus-raises-10m-reaching-18m-in-funding-to-lead-the-future-of-ai-powered-treasury-management
+  type: vendor
+  accessed: 2026-09-30 (search snippet)
+  note: "16 Jan 2025: USD 10m round led by Felicis and Vesey Ventures with Cerca Partners and existing investors (Bessemer Venture Partners, Better Tomorrow Ventures, BTV); total funding USD 18.6m. Co-founded by Daniel Kalish (ex-PayPal) and Danielle Shaul (ex-Fundbox). Truist Ventures also lists Nilus as a portfolio company."
+- id: comp-nilus-agents
+  title: Nilus — product site ("Your Agentic Workforce for Treasury")
+  publisher: Nilus
+  year: 2026
+  url: https://www.nilus.com/
+  type: vendor
+  accessed: 2026-09-30 (search snippet)
+  note: "Vendor self-description: 'Nilus is your agentic workforce for treasury. AI agents reconcile cash, forecast liquidity, and automate finance ops across every bank and ERP', 'From System of Record to System of Action'; a June 2026 post announces an 'agent fabric'. Shipped-vs-announced is NOT established by this source — everything in it is a vendor claim."
+- id: comp-palm-seed-2024
+  title: Palm Raises $6.1million to Transform Enterprise Treasury Management
+  publisher: Treasury Management International (tech.eu and EU-Startups same week)
+  year: 2024
+  url: https://treasury-management.com/news/palm-raises-6-1million-to-transform-enterprise-treasury-management
+  type: news
+  accessed: 2026-09-30 (search snippet)
+  note: "5 Sept 2024: Palm (founded 2023 by Gurjit Pannu and Christian Sobkowski) raised a USD 6.1m seed round led by Speedinvest and Target Global with Upfin, Liquid2 and Greens. Product claims in the coverage ('reduces operating cash balances by over 30%') are company claims."
+- id: comp-palm-product
+  title: Palm — AI cash flow forecasting for treasury teams
+  publisher: Palm
+  year: 2026
+  url: https://www.usepalm.com/
+  type: vendor
+  accessed: 2026-09-30 (search snippet)
+  note: "Vendor self-description: 'AI cash flow forecasting for treasury teams'; 'Palm sits on top of your TMS/ERP, unifying visibility, strengthening forecasts, and identifying idle cash'; 'The treasury platform that starts where your TMS stops'. Its own positioning is a forecasting/analysis layer over an existing TMS — evidence for the features-vs-agents distinction, not for end-to-end agents."
 - id: comp-gtreasury-solvexia
   title: GTreasury Acquires Solvexia (deal record)
   publisher: PrivSource
   url: https://www.privsource.com/acquisitions/deal/vXSOxe
   type: news
   accessed: 2026-09-30 (search result title only)
-  note: Only the deal-record title was seen ("GTreasury Acquires Solvexia"). Date and terms NOT verified. Solvexia is a reconciliation/finance-automation software vendor (background knowledge — verify).
+  note: Only the deal-record title was seen ("GTreasury Acquires Solvexia"). Date and terms NOT verified here — but dated by comp-solvexia-ripple-2026 (announced 6 Jan 2026). Solvexia is a reconciliation/regulatory-reporting software vendor.
 - id: comp-treasury4-treasurygo
   title: Treasury4 Acquires TreasuryGo to Expand Enterprise Treasury Management Capabilities (deal record)
   publisher: PrivSource
@@ -70,7 +240,7 @@
   url: https://pitchbook.com/profiles/company/51081-58
   type: news
   accessed: 2026-09-30 (search snippet only)
-  note: "Aggregator snippets state General Atlantic became a minority shareholder in Kyriba in a round dated October 2024. Secondary source — confirm against a Kyriba or General Atlantic press release before relying on it."
+  note: "Aggregator snippets state General Atlantic became a minority shareholder in Kyriba in a round dated October 2024. Secondary source — now SUPERSEDED by the primary press release comp-kyriba-ga-2024-pr (16 Oct 2024); kept registered because it was cited in an earlier draft."
 - id: comp-coupa-bellin-2020
   title: Coupa Acquires BELLIN Group To Boost Treasury Services
   publisher: PYMNTS
@@ -94,3 +264,51 @@
   type: news
   accessed: 2026-09-30 (search snippet only)
   note: "Snippet: in May 2025 Atlar partnered with TreasurySpring, a cash-investment platform, to add cash-investing capability. Partnership, not a funding round."
+- id: comp-embat-series-a-2024
+  title: Treasury management fintech Embat raises €14.7 million
+  publisher: Finextra (company news; EU-Startups and Business Insider same week)
+  year: 2024
+  url: https://www.finextra.com/newsarticle/43764/treasury-management-fintech-embat-raises-147-million
+  type: news
+  accessed: 2026-09-30 (search snippet; revision pass)
+  note: "Feb 2024: Series A of EUR 14.7m led by Creandum with existing investors Samaipata, 4Founders and Venture Friends (also angel Martin Blessing). Confirms 'rounds not verified' was stale."
+- id: comp-embat-series-b-2026
+  title: Embat accelerates international expansion with EUR30 million Series B to expand its AI-powered treasury management system
+  publisher: Cathay Innovation (investor press release; Embat blog and Finextra same day)
+  year: 2026
+  url: https://www.cathaycapital.com/embat-accelerates-international-expansion-with-eur30-million-series-b-to-expand-its-ai-powered-treasury-management-system
+  type: news
+  accessed: 2026-09-30 (search snippet; revision pass)
+  note: "Announced 12 May 2026 (Madrid dateline): EUR 30m Series B led by Cathay Innovation; Creandum, Samaipata, 4Founders, Venture Friends participating; total funding >EUR 50m. Company figures in the release ('150 people', '400 corporate clients', 'automate up to 80% of manual treasury tasks', offices Madrid/London/Munich/Berlin) are vendor claims."
+- id: comp-solvexia-ripple-2026
+  title: Ripple Treasury Acquires Solvexia to Revolutionize Reconciliation and Regulatory Reporting
+  publisher: Ripple Treasury, powered by GTreasury (newsroom; FinTech Futures 7 Jan 2026)
+  year: 2026
+  url: https://treasury.ripple.com/news/gtreasury-acquires-solvexia-reconciliation-and-regulatory-reporting
+  type: vendor
+  accessed: 2026-09-30 (search snippet; revision pass)
+  note: "Announced 6 Jan 2026 (Chicago / San Francisco / Sydney datelines): 'Ripple Treasury, powered by GTreasury' acquired Solvexia (no-code financial automation, data management, analytics) to automate reconciliation and regulatory reporting. This dates the previously undated deal record comp-gtreasury-solvexia. Quoted claims (e.g. accuracy) are vendor claims."
+- id: comp-fides-gtreasury-2019
+  title: Fides and GTreasury Announce Global Bank Connectivity Partnership
+  publisher: GTreasury newsroom (site now branded treasury.ripple.com after the 2025 acquisition)
+  year: 2019
+  url: https://treasury.ripple.com/news/fides-and-gtreasury-announce-global-bank-connectivity-partnership
+  type: vendor
+  accessed: 2026-09-30 (search snippet; revision pass)
+  note: "Copenhagen, 16 Oct 2019 (EuroFinance): Fides Treasury Services Ltd. and GTreasury announced a strategic partnership for multi-bank connectivity. Illustrates 'connectivity is both moat and commodity' — a connectivity specialist and a TMS partner rather than compete. Note the publisher's site is now rebranded 'Ripple Treasury' (the press release predates the 2025 acquisition)."
+- id: comp-ion-portfolio
+  title: ION Treasury — portfolio page
+  publisher: ION Group
+  year: 2026
+  url: https://www.iongroup.com/treasury/
+  type: vendor
+  accessed: 2026-09-30 (search snippet; review round 1)
+  note: "ION's own portfolio page lists 'Treasura, City Financials, ITS, Reval, IT2, Openlink, and Wallstreet Suite' — confirms the portfolio breadth and that Reval (acquired 2020) is part of it, so 'assembled in the 2010s' was too narrow. Product names on the page are the vendor's own."
+- id: comp-afp-2026-team-size
+  title: 2026 AFP Treasury Benchmarking Survey Report — People and Policies (team-size figure)
+  publisher: AFP, sponsored by PNC
+  year: 2026
+  url: https://www.financialprofessionals.org/interactive/research/2026-treasury-benchmarking-survey-report-people-and-policies/
+  type: survey
+  accessed: 2026-09-30 (verified in the org review round 1 against the AFP publisher; see canonical facts v2)
+  note: "CORRECTION NOTE (revision pass): '46% of organisations had treasury teams of fewer than five people' is VERIFIED (canonical facts v2: 'AFP 2026 \"46% of teams <5 FTE\" is VERIFIED — org review r1, AFP publisher'). The afp-bench-2026 entry in content/sources/core.yaml still says this figure 'could not be verified and has been removed' — that note is STALE; a change request is filed in docs/notes/competitors-requests.md. Pages may cite afp-bench-2026 for this figure per canonical facts v2; this entry documents the verification trail."

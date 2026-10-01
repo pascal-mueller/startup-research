@@ -175,7 +175,7 @@ steps:
 example:
   title: "Helvetic, Monday 23 November: last week's surprises and a December low point"
   body: |
-    This is the week after the [daily positioning example](wf:daily-cash-positioning). Lea rolls the forecast forward on Monday and starts with last week's variances. Tuesday noon, 7 of 8 subsidiaries have submitted; France submits Wednesday morning after two reminders.
+    This is the week after the [daily positioning example](wf:daily-cash-positioning). Lea rolls the forecast forward on Monday and starts with last week's variances ([why this Monday-to-Wednesday rhythm](why:weekly-cadence)). Tuesday noon, 7 of 8 subsidiaries have submitted; France submits Wednesday morning after two reminders.
 
     **Last week's variance (group, CHF m, w/c 16 November):**
 
@@ -187,25 +187,35 @@ example:
     | Tax | 0.0 | −0.3 | −0.3 | Missing input | German trade-tax prepayment collected by direct debit, not in HM Deutschland's submission |
     | **Net** | **+3.9** | **+0.3** | **−3.6** | | |
 
+    The actual column *is* the week's cash movement: 10.7 − 7.3 − 2.8 − 0.3 = **+0.3**. So the group closed the week at [CHF 41.3m](why:strip-opens-41) — the CHF 41m group total from the [daily positioning example](wf:daily-cash-positioning) (Monday's close; Monday's own receipts and the two surprise debits netted to about zero) plus the week's net +0.3m. That closing balance is the opening below.
+
     **One line of the subsidiary template (HM Italia, week 3, EUR m):** customer receipts +2.4 · suppliers −1.6 · payroll 0 · VAT (IVA) 0 · intercompany service fee to HM AG −0.3 · capex 0 · **net +0.5**. Giulia fills in 13 weeks of this, in EUR, every Tuesday.
 
-    **Daniel's adjustments:** he moves the Italian CHF 2.1m into week 1 (Giulia confirms the customer's payment run); adds all four German trade-tax dates (15 Feb, 15 May, 15 Aug, 15 Nov) to the central calendar so they no longer depend on a local submission; and haircuts Italy's customer receipts by 15% in weeks 5–13, because Italy has over-forecast receipts in 8 of the last 10 weeks at the 4-week lag.
+    **Daniel's adjustments:** he moves the Italian CHF 2.1m into week 1 (Giulia confirms the customer's payment run); adds all four German trade-tax dates (15 Feb, 15 May, 15 Aug, 15 Nov) to the central calendar so they no longer depend on a local submission; and [haircuts Italy's customer receipts by 15% in weeks 5–13](why:italy-haircut), because Italy has over-forecast receipts in 8 of the last 10 weeks at the 4-week lag (9 of the last 12 weeks counting every week).
 
-    **The 13-week view (group cash, CHF m, closing balance, opening CHF 35m):**
+    **[The 13-week view](why:thirteen-weeks) (group cash, CHF m, closing balance, opening CHF 41.3m):** receipts and payments are the week's own flows, so every closing balance re-derives. Suppliers run at about CHF 7m a week ([why that scale](why:supplier-run-rate)); payroll falls in different entity-weeks each month ([why](why:payroll-by-country)).
 
-    | Wk | w/c | Close | What drives it |
+    | Wk | w/c | Close | What flows in and out (CHF m) |
     |---|---|---|---|
-    | 1 | 23 Nov | 29.5 | Swiss payroll (25th, ≈7.0), German payroll (27th, EUR 4.2m ≈ 3.9), IT/FR/UK payrolls; late Italian receipt arrives |
-    | 2 | 30 Nov | 33.9 | Swiss Q3 VAT settlement due 30 Nov, only ≈ 0.8: most of HM AG's sales are zero-rated exports, so input VAT offsets most output VAT |
-    | 3 | 7 Dec | 36.6 | CZ, CN, US payrolls |
-    | **4** | **14 Dec** | **18.0** | **Low point:** December payrolls paid before Christmas, including the Swiss 13th salary (≈5.5) and the Italian *tredicesima*; year-end supplier runs; a CHF 1.8m capex milestone |
-    | 5–6 | 21 Dec – 1 Jan | 23.0 → 25.6 | Quiet weeks, low receipts |
-    | 7–8 | 4 – 15 Jan | 28.8 → 36.6 | Receipts from October–November deliveries; RCF interest on 15 Jan |
-    | 9–13 | 18 Jan – 19 Feb | 43.2 → 52.6 | January payrolls (wk 10), German trade tax 15 Feb (wk 13); receipts from strong Q4 shipments |
+    | 1 | 23 Nov | 35.0 | in 13.0 (incl. the late Italian receipt 2.1) · out 19.3 — Swiss payroll 7.0 (25th), German payroll 3.9 (27th, EUR 4.2m), IT/FR/UK payrolls 1.4, suppliers 7.0 |
+    | 2 | 30 Nov | 37.4 | in 10.0 · out 7.6 — Swiss Q3 VAT 0.8 (30 Nov; small because most of HM AG's sales are zero-rated exports and input VAT offsets the rest), suppliers 6.8 |
+    | 3 | 7 Dec | 40.3 | in 9.7 · out 6.8 — suppliers. No payroll falls between 30 Nov and 13 Dec, which is why the balance is briefly at its highest just before the trough |
+    | **4** | **14 Dec** | **18.0** | **[Low point](why:week-four-trough)** — in 8.5 · out 30.8: December payrolls before Christmas 21.0 (Swiss 7.0 + 13th salary 5.5, German 3.9, IT/FR/UK 1.4 + *tredicesima* 0.4, CZ/CN/US 2.8 on the 15th), year-end supplier runs 8.0, capex milestone 1.8 |
+    | 5 | 21 Dec | 21.5 | in 9.0 · out 5.5 — suppliers; quiet receipts |
+    | 6 | 28 Dec | 25.0 | in 9.0 · out 5.5 — suppliers. The quarter closes (31 December) at about CHF 25m |
+    | 7 | 4 Jan | 30.5 | in 12.5 · out 7.0 — [receipts from October–November deliveries start landing](why:q4-collections) |
+    | 8 | 11 Jan | 33.9 | in 13.5 · out 10.1 — CZ/CN/US payroll 2.8 (15 Jan), suppliers 7.0, RCF interest and fees 0.3 (15 Jan rollover) |
+    | 9 | 18 Jan | 40.9 | in 14.5 · out 7.5 — suppliers; strong Q4 collections |
+    | 10 | 25 Jan | 35.6 | in 14.5 · out 19.8 — month-end payrolls 12.3 (CH/DE/IT/FR/UK), suppliers 7.5 |
+    | 11 | 1 Feb | 42.1 | in 14.5 · out 8.0 — suppliers |
+    | 12 | 8 Feb | 48.6 | in 15.0 · out 8.5 — suppliers |
+    | 13 | 15 Feb | 50.0 | in 13.0 · out 11.6 — CZ/CN/US payroll 2.8 (15 Feb), German trade-tax prepayment 0.3 (15 Feb), suppliers 8.5 |
 
-    Group minimum liquidity (the CFO's CHF 10m, held at the parent); CHF 140m undrawn on the RCF. The low point of CHF 18m includes about CHF 6m in China that cannot be moved, so the usable figure is about CHF 12m: above the minimum, but closer than the headline suggests. No drawing is needed; Lea will watch week 4 daily.
+    **Versus last week's version** — which is what the weekly CFO note actually communicates: the week-4 low point has fallen from CHF 21m to CHF 18m, because year-end supplier runs grew by about CHF 2m and a CHF 1m customer receipt that sat in week 4 moved into January.
 
-    **What the forecast drives.** (1) *No deposit:* CHF on current account earns about 0% and is needed in week 4. (2) *Debt:* the CHF 35m RCF loan's interest period runs to 15 January. With the forecast rising to about CHF 50m by February, Daniel pencils in a reduction of that loan by CHF 10–15m at the 15 January rollover, to be confirmed with the first January forecast; it can be redrawn at a few days' notice if the forecast turns. (3) *FX:* the currency view shows net EUR inflows of about EUR 30m over the 13 weeks. For the hedge-ratio report Lea combines weeks 6–13 with FP&A's March figures: Q1 2027 net EUR inflows EUR 40m against EUR 30m of forwards, 75%, inside the 60–90% policy band, so no new hedges this week. (4) *Credit control:* he flags the Italian customer's payment pattern to Thomas for the next credit-control review.
+    Group minimum liquidity: the CFO's [CHF 10m, held at the parent](why:buffer-layers); about CHF 137m undrawn on the RCF (the November state is CHF 30m + EUR 35m drawn, ≈ CHF 63m). The low point of CHF 18m includes about CHF 6m in China that cannot be moved, so the usable figure is about CHF 12m: above the minimum, but closer than the headline suggests. No drawing is needed; Lea will watch week 4 daily.
+
+    **What the forecast drives.** (1) *No deposit:* CHF on current account earns about 0% and is needed in week 4. (2) *Debt:* the CHF 30m drawing under the RCF is in an interest period to 15 January. With the forecast rising to about CHF 50m by February, Daniel pencils in a reduction of that drawing by CHF 10–15m at the [15 January rollover](why:fifteenth-rollover-repayment), to be confirmed with the first January forecast; it can be redrawn at a few days' notice if the forecast turns. (3) *FX:* the currency view shows net EUR inflows through the 13 weeks — the tail of Q4 and January–February. For the hedge-ratio report Lea combines the January–February weeks with FP&A's figures for the rest of Q1: Q1 2027 net EUR inflows of EUR 40m against EUR 30m of forwards, 75%. That is *above* the 40–70% band that applies to Q1 2027 (the 60–90% band is for the nearest quarter only — Q4 2026 sits at 25/34 = 74%, in band and on its target): [a passive over-hedge](why:passive-over-hedge), because the exposure was revised up after the forwards were placed. Policy says correct it within the month: Daniel rolls about EUR 3m of the Q1 forwards out to Q2 — Q1 to 27/40 = 68%, Q2 to 15/29 ≈ 51%, both in band — and reports it to the CFO as a passive correction. No new hedges this week: no new *buying*; the rebalance is a roll. (4) *Credit control:* he flags the Italian customer's payment pattern to Thomas for the next credit-control review.
 
     **Where the 13 weeks meet the 18-month plan:** week 13 ends in February; month 3 of the medium-term plan (built by the [indirect method](term:indirect-method) from FP&A's and controlling's P&L plan) covers the same period. When the two disagree by more than a few million, Lea and Marco's FP&A team reconcile them line by line: usually working-capital timing and VAT, which the P&L plan does not model.
 judgment:
@@ -329,8 +339,10 @@ sources: [afp-bench-2025, afp-bench-2026, st-tis-cfv-2025, eact-2025, ch-mwstg-8
 evidence_note: >-
   Priority and difficulty are well documented, mostly in samples of larger, often US companies: 62% of AFP 2025
   respondents (523 US practitioners) named cash and liquidity forecasting their most challenging task[](cite:afp-bench-2025),
-  and 49% did in the 2026 edition (425 responses)[](cite:afp-bench-2026); in the vendor-sponsored Strategic Treasurer/TIS
-  2025 survey, 68% reported rising management expectations and 53% called forecasting difficult[](cite:st-tis-cfv-2025);
+  and about half did in the 2026 edition (425 responses; 49%, as reported by AFP — figure not confirmed against the
+  primary text)[](cite:afp-bench-2026); in the vendor-sponsored Strategic Treasurer/TIS 2025 survey, roughly
+  two-thirds reported rising management expectations (68%, as reported — figure not confirmed against the primary
+  text) and 53% called forecasting difficult[](cite:st-tis-cfv-2025);
   European group treasurers ranked it priority one in 2025[](cite:eact-2025). Why 13 weeks: one quarter, long enough to
   cover a quarterly VAT and tax cycle and short enough to build from known invoices and payroll; the format is
   associated with lender monitoring and restructuring practice (established practice, not a survey finding). Swiss VAT

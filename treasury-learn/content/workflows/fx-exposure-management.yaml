@@ -16,8 +16,9 @@ objective: >-
   [translation](term:translation-exposure) and [economic exposure](term:economic-exposure), so that hedging decisions,
   budget rates and management reporting rest on numbers people trust.
 trigger: >-
-  Monthly exposure cycle after month-end close (typically working days 3–7); ad hoc when a large foreign-currency
-  contract is signed or tendered, when a subsidiary is acquired, or after a sharp currency move.
+  Monthly exposure cycle after month-end close (working days 2–7: the collection window runs WD2–WD6, subsidiaries
+  submit by WD5, Lea consolidates and Daniel reviews on WD7, and hedge adjustments run after the review); ad hoc when
+  a large foreign-currency contract is signed or tendered, when a subsidiary is acquired, or after a sharp currency move.
 frequency: >-
   Monthly at mid-market and large companies (weekly or daily for booked balance-sheet items at the largest);
   quarterly, per contract or not at all at small companies.
@@ -90,7 +91,7 @@ steps:
   - title: Send the monthly exposure call with closing rates
     who: Treasury analyst
     where: Email with Excel template, or TMS submission task
-    when: Working day 2–3 after month-end
+    when: WD2 after month-end (the collection window runs WD2–WD6)
     detail: >-
       Send each subsidiary the template pre-filled with last month's submission and the month-end closing rates,
       with a deadline (e.g. WD5 noon). Ask for booked non-functional-currency items, signed orders not yet invoiced, and a
@@ -154,7 +155,9 @@ steps:
     detail: >-
       Allocate outstanding forwards and options to buckets, compute the [hedge ratio](term:hedge-ratio) per bucket versus
       the policy band, the open (unhedged) position, the average hedged rate versus the [budget rate](term:budget-rate), and
-      a sensitivity (CHF impact of a 5% or 10% move on the open position).
+      a sensitivity (CHF impact of a 5% or 10% move on the open position). Bands are assigned by rolling calendar
+      quarters: the front quarter carries the Q+1 band and each further quarter steps down one
+      [graded band](why:hedge-bands-graded); when a quarter closes, the remaining quarters roll up one band.
   - title: Review the translation and economic view
     who: Treasury manager with group accounting and FP&A
     where: Excel, consolidation data
@@ -168,14 +171,14 @@ steps:
   - title: Report and feed the hedging decision
     who: Treasury analyst → treasury manager → CFO
     where: Exposure report (Excel / TMS / slide)
-    when: WD6–8
+    when: WD7 (the manager's review); hedge adjustments run after it
     detail: >-
       The [exposure report](term:exposure-report) goes to the treasury manager with commentary on changes and data
       issues; the manager adds a hedging proposal (see [FX hedging](wf:fx-hedging)) and a summary for the CFO's monthly
       pack or the treasury committee. Data-quality problems go back to the subsidiaries by name, and forecast-versus-actual
       accuracy by entity is tracked so weak submitters are visible.
 example:
-  title: "Helvetic's September exposure cycle: an Italian mistake, a missing UK payable, EUR 59.5m open"
+  title: "Helvetic's September exposure cycle: an Italian mistake, a missing UK payable, a Czech exposure no policy covers"
   body: |
     **WD2 (Fri 2 Oct)** — Lea sends the exposure template to the eight subsidiaries with the 30 September closing rates (EUR/CHF 0.9350, USD/CHF 0.8000 — illustrative), deadline WD5 noon. From SAP she extracts HM AG's open items by document currency: EUR receivables 29.0m and EUR payables 8.0m (booked +21.0m), USD receivables 11.0m, and the USD 5.0m intercompany loan to HM Inc.
 
@@ -200,9 +203,13 @@ example:
     | Q3 2027 | — | 4.0 | 30.0 | 4.8 | 16% | 0–40% |
     | **12 months** | **21.0** | **34.0** | **118.0** | **58.5** | **50%** | |
 
-    Open EUR position: 59.5m. A 5% fall in EUR/CHF would reduce its CHF value by about CHF 2.8m (59.5m × 0.935 × 5%). USD: 54m net inflow, 29m hedged (54%); a 5% USD move on the open 25m is about CHF 1.0m.
+    Bands are assigned by [rolling calendar quarters](why:hedge-bands-graded): the front quarter (Q4 2026 here) carries
+    the Q+1 band 60–90% and each further quarter steps down one band; when Q4 closes, the remaining quarters roll up one
+    band (Q1 2027 is the Q+2 bucket — 40–70% — until then). Open EUR position: 59.5m. A 5% fall in EUR/CHF would reduce its CHF value by about CHF 2.8m (59.5m × 0.935 × 5%). USD: 54m net inflow, 29m hedged (54%); a 5% USD move on the open 25m is about CHF 1.0m.
 
-    **WD7** — Daniel reviews. Two things bother him: Q4 relies on two German machine acceptances that Jens says "should" happen in December, and the Q3 2027 forecast is pure budget with no orders behind it yet. He asks Lea to show Q4 with and without the two acceptances (EUR 27m vs 31m) and takes that into the [hedging](wf:fx-hedging) decision. He also notes the Czech EUR/CZK exposure (EUR 45m a year against CZK costs) is not covered by any policy — an item for Thomas and the next treasury committee.
+    **WD7** — Daniel reviews. Two things bother him: Q4 relies on two German machine acceptances that Jens says "should" happen in December, and the Q3 2027 forecast is pure budget with no orders behind it yet. He asks Lea to show Q4 with and without the two acceptances (EUR 27m vs 31m) and takes that into the [hedging](wf:fx-hedging) decision — the hedge round runs after the review. He also notes the Czech EUR/CZK exposure (EUR 45m a year against CZK costs) is not covered by any policy — an item for Thomas and the next treasury committee.
+
+    **Bridge to the November rounds.** Exposure figures are living numbers: by the 23 November forecasting week the Q1 2027 EUR exposure has grown from 28.0m to about EUR 40m (the two acceptances landed in Q1 and order intake strengthened) and Daniel's hedges with it, from 17.0m to about EUR 30m — the same quarter simply shows a different state one monthly cycle later.
 
     **Translation (quarterly note)** — Net investment in HM Deutschland ≈ EUR 85m, HM Inc. ≈ USD 40m, HM Suzhou ≈ CNY 300m. Not hedged; Claudia reports the translation effect in equity.
 judgment:
@@ -223,6 +230,9 @@ failure_modes:
   - mode: Intercompany exposure double-counted or reported on the wrong side
     consequence: Group exposure overstated; over-hedging.
     detection: Intercompany matrix check; clear rule on which side carries the exposure.
+  - mode: The same flow counted twice as it migrates from forecast to firm to booked
+    consequence: The same EUR receipt appears in the forecast column one month and the booked column the next without leaving the forecast — overstated exposure, over-hedging, or one hedge allocated to two buckets.
+    detection: Certainty changes move the amount between columns, never add it; each month's booked opening items are reconciled to last month's firm orders; change analysis looks for offsetting moves across the three columns.
   - mode: Budget treated as a firm exposure and hedged heavily
     consequence: Over-hedged when sales fall short; forwards must be rolled or closed out at a loss — worst when the currency has moved against the hedge.
     detection: Back-testing forecast vs actual foreign-currency flows by entity; declining hedge ratios for later buckets.
@@ -309,13 +319,16 @@ ai_note: >-
   validation and commentary is plausible; the exposure definitions and overrides remain management choices.
 terms: [fx-exposure, transaction-exposure, translation-exposure, economic-exposure, booked-exposure, exposure-report, functional-currency, natural-hedge, netting, balance-sheet-hedging, hedge-ratio, layered-hedging, budget-rate, intercompany-loan, restricted-currency]
 related: [fx-hedging, cash-forecasting, month-end-reporting, currency-shock, policy-compliance, acquisition-integration]
-sources: [clariant-frm-2020, schindler-holding-2021, milltech-fx-2025, eact-guiding-principles]
+sources: [clariant-frm-2020, schindler-holding-2021, milltech-fx-2025, milltech-hedge-monitor-2026, eact-guiding-principles]
 evidence_note: >-
   The distinction between transaction, translation and economic exposure and the booked / firm / forecast split are
   established concepts found throughout treasury training material. Large Swiss groups describe centralised hedging of
   net transaction exposures in their reports — e.g. Clariant hedges net transaction exposures in major currencies
   selectively under board-approved policies[](cite:clariant-frm-2020), and Schindler's holding company is responsible
-  for hedging the foreign-currency risks of group companies[](cite:schindler-holding-2021). A vendor-sponsored 2025
-  survey of mid-sized corporates reported an average hedge ratio of about 48% and average hedge tenor of about 5
-  months[](cite:milltech-fx-2025) — indicative only. The step sequence, timings, error types and the worked example are
-  practitioner-pattern synthesis, not survey findings; no published benchmark for exposure-data quality was found.
+  for hedging the foreign-currency risks of group companies[](cite:schindler-holding-2021). Hedge-ratio benchmarks are
+  vendor-sponsored survey data: MillTech's Corporate Hedging Monitor Q1 2026 (250 senior finance decision-makers at UK
+  and US corporates, corporate sample) reports an average hedge ratio of about 57% and an average hedge tenor of about
+  6.6 months[](cite:milltech-hedge-monitor-2026), up from ≈ 48–49% and ≈ 5.3 months in the vendor's 2025 Global FX
+  Report (750 corporates plus 750 fund managers)[](cite:milltech-fx-2025) — indicative only. The step sequence,
+  timings, error types and the worked example are practitioner-pattern synthesis, not survey findings; no published
+  benchmark for exposure-data quality was found.

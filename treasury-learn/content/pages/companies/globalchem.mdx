@@ -8,7 +8,7 @@ related: [/size/multinational, /day/anna, /day/priya, /org/roles-head-of-treasur
 
 ## Profile
 
-GlobalChem makes additives and coatings in about 30 plants on four continents and sells in more than 90 countries. It is investment-grade rated (BBB+ / Baa1), funds itself in the CHF and EUR bond markets and through euro commercial paper, and keeps an undrawn EUR 1.5bn syndicated RCF as a backstop.
+GlobalChem makes additives and coatings in about 30 plants on four continents and sells in more than 90 countries. It is investment-grade rated (BBB+ / Baa1), reports under **IFRS** (9/16, unlike [Helvetic's Swiss GAAP FER](why:fer-vs-ifrs-pack)), funds itself in the CHF and EUR bond markets and through euro commercial paper, and keeps an undrawn EUR 1.5bn syndicated RCF as a backstop.
 
 Treasury is a mature, centralised function under **Anna (Group Treasurer)**, reporting to **Markus (CFO)**. Most of the *mechanics* — statement collection, pooling, netting, payment execution, deal confirmation — are automated or industrialised. The people spend their time on exceptions, decisions, controls, projects and the parts of the world where the machinery does not reach.
 
@@ -37,13 +37,13 @@ Seven "core" banks provide the RCF and receive most of the ancillary business; t
 |---|---|---|---|
 | Group Treasurer (1) | **Anna** ([role](/org/roles-head-of-treasury), [a day with Anna](/day/anna)) | Basel | Owns policy, strategy and the team; CFO and audit-committee reporting; rating-agency and core-bank relationships; approves exceptions and large transactions. |
 | Corporate finance (3) | **Olivier** ([debt & capital markets](/org/roles-debt)) | Basel | Bonds, CP programme, RCF, maturity profile, rating metrics, M&A financing; bank relationship management and wallet tracking ([role](/org/roles-bank-relationship)). |
-| Cash & liquidity / in-house bank (6) | **Priya** ([cash manager](/org/roles-cash-manager), [a day with Priya](/day/priya)) | Basel | Daily group position, pools, IHB accounts and interest, subsidiary funding, investments, group cash forecasting and accuracy KPIs. |
-| Singapore regional treasury centre (3, part of Priya's team) | Regional cash manager | Singapore | Asian funding, FX in Asian hours, documentation for restricted markets; dotted line to the APAC regional CFO. |
+| Cash & liquidity / in-house bank (6, including the three in Singapore) | **Priya** ([cash manager](/org/roles-cash-manager), [a day with Priya](/day/priya)) | Basel | Daily group position, pools, IHB accounts and interest, subsidiary funding, investments, group cash forecasting and accuracy KPIs. |
+| Singapore regional treasury centre (3, within Priya's six) | Regional cash manager | Singapore | Asian funding, FX in Asian hours, documentation for restricted markets; dotted line to the APAC regional CFO. |
 | Financial risk (4) | **Jonas** ([FX / risk](/org/roles-fx-risk)) | Basel | FX and interest-rate exposure, hedging programmes (about 1,500 live forwards), hedge accounting with Group Accounting, counterparty-exposure reporting. |
 | Treasury operations & payment factory (7) | **Marta** ([operations](/org/roles-operations)) | Kraków SSC location, reporting to Anna | Deal confirmation and settlement, treasury control (daily limit and mandate checks), bank-account administration and KYC, static data, and the payment factory ([payments](/org/roles-payments)). |
 | Treasury systems (2) | **Ben** | Basel | SAP treasury modules, the Swift service bureau, forecasting and bank-account-management tools, user rights, ISO 20022 format changes. |
 
-That is roughly 25 people in treasury proper. Marta's team sits physically in the Kraków [shared-service centre](term:shared-service-centre) but reports to Anna, not to the SSC head — a common way to keep treasury controls under treasury while using SSC infrastructure (other groups put the payment factory under the SSC instead). Around treasury: AP and AR clerks in the SSC who create payment proposals, 40 local finance teams who submit forecasts and exposures, Group Accounting (hedge accounting, intercompany reconciliation), Group FP&A, Group Tax, General Counsel and Internal Audit. The CFO chairs a quarterly treasury committee.
+That is 23 people in treasury proper (1 + 3 + 6 + 4 + 7 + 2, Singapore included in Priya's six) — the "about 25" of the company facts. Marta's team sits physically in the Kraków [shared-service centre](term:shared-service-centre) but reports to Anna, not to the SSC head — a common way to keep treasury controls under treasury while using SSC infrastructure (other groups put the payment factory under the SSC instead). Around treasury: AP and AR clerks in the SSC who create payment proposals, 40 local finance teams who submit forecasts and exposures, Group Accounting (hedge accounting, intercompany reconciliation), Group FP&A, Group Tax, General Counsel and Internal Audit. The CFO chairs a quarterly treasury committee.
 
 ### Segregation of duties is built into the org chart
 
@@ -56,12 +56,12 @@ Jonas's desk can trade but cannot confirm or settle; Marta's back office confirm
 - **A multi-bank FX trading platform** and **Bloomberg** for market data.
 - **A separate cash-forecasting tool** collecting submissions from ~40 entities, partly fed automatically from ERP payables, receivables and payroll.
 - **A bank-account-management tool** for accounts, mandates and signatories.
-- **About 28 ERPs** across the group feed the payment factory — the legacy of decades of acquisitions.
+- **Local ERPs inherited from acquisitions** — about 28 systems across the group still feed the payment factory alongside SAP S/4HANA, the legacy of decades of acquisitions.
 
 ## The cash-flow pattern
 
 - **Continuous and diversified:** thousands of customers, no single receipt dominates. Coatings demand peaks in spring and summer, so working capital builds in Q1–Q2 and releases in Q3–Q4.
-- **Structured internal flows:** daily sweeps into the IHB; monthly [netting](term:netting) of intercompany invoices; quarterly IHB interest; annual dividends from subsidiaries (with withholding-tax planning).
+- **Structured internal flows:** daily sweeps into the [in-house bank](why:globalchem-in-house-bank); monthly [netting](term:netting) — an illustrative ~4,000 intercompany invoices net down to roughly 600 cross-border settlements, [before anything is hedged](why:netting-before-hedging); quarterly IHB interest; annual dividends from subsidiaries (with withholding-tax planning).
 - **Capital-markets calendar:** CP rollovers weekly; bond coupons; CHF 500m bond maturities in 2027 and 2029, refinanced 12–18 months ahead; the shareholder dividend in spring.
 - **Illustrative liquidity:** CHF ~900m of cash (a large part in the IHB and the pools, a part trapped in restricted markets) plus the undrawn EUR 1.5bn RCF.
 

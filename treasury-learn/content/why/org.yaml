@@ -1,0 +1,250 @@
+# Why notes — stream org (organisation, roles, ownership, reporting lines).
+# Numbers in derivations re-derive from content/companies.yaml and the canonical facts (AUTHORING.md v2/v2.1).
+
+- id: prepare-decide-split
+  claim: "Lea prepares everything; Daniel decides"
+  short: |
+    Two people cover eight subsidiaries, so the work splits by power, not by task: the analyst owns the data and the
+    preparation, the manager owns the decisions and the counterparties — which also buys the review control for free.
+  detail: |
+    Helvetic's treasury is 2 FTE covering 8 subsidiaries, 12 accounts, 5 banks and 6 currencies, with hard bank
+    cut-offs (EUR ~11:00, CHF ~14:00). If Daniel rebuilt every number before deciding, the day would run out before
+    the cut-offs and there would be no independent reviewer of anything (preparer = decider). If Lea decided, the
+    [dealing mandate](term:dealing-mandate) and bank mandates — registered names, not job descriptions — would have
+    to list her, and nobody would review the decisions. So the recurring ~10 daily/weekly artefacts (position,
+    variance table, forecast consolidation, hedge workbook, loan register, deal lists) are Lea's, and the ~5 recurring
+    decisions (transfers, overrides, hedges, funding, escalations) are Daniel's. The same prepare/review split
+    recurs on data ("Lea consolidates, Daniel reviews") and on payments ([Lea never releases](why:lea-never-releases)).
+    It also fits career reality: the analyst learns the mechanics, the manager carries the judgment and the
+    accountability.
+  check: |
+    In teams of 3–5 the split blurs — a senior analyst may decide routine transfers within limits. If Helvetic's
+    forecast were poor because Daniel overrides too much without looking at the data, the split would have gone too
+    far the other way.
+  terms: [segregation-of-duties, dealing-mandate, key-person-risk]
+
+- id: ceo-cosign-threshold
+  claim: "Above CHF 2m a single payment needs the CFO and the CEO together; above CHF 10m the board"
+  short: |
+    The thresholds are fractions of Helvetic's CHF 10m group minimum liquidity: CHF 2m is 20% of the floor and CHF 10m
+    is all of it. The CEO co-signs because above that size the payment is an executive-board event, not a treasury one.
+  detail: |
+    Helvetic's group minimum liquidity is CHF 10m (the CFO's rule). A wrong or fraudulent single payment up to
+    CHF 2m is absorbable inside a normal week (20% of the floor, ~2.6% of LTM EBITDA of CHF 78m); above CHF 2m it
+    starts eating the floor; above CHF 10m one payment could exhaust it — hence the board. The *signer* escalates in
+    parallel: up to CHF 2m the operational four-eyes pair ([Lea prepares, Daniel releases](why:four-eyes-threshold));
+    above it, Thomas (CFO) **and** the CEO — two members of the executive board (Geschäftsleitung) checking each
+    other, deliberately stricter than the bank mandate (any two of five collective signatories, enforced internally by
+    the connectivity tool). At CHF 650m revenue the CEO still knows the customers and suppliers and can question a
+    beneficiary; at GlobalChem the CEO sits nowhere in the payment chain — thresholds and delegated authority scale
+    with size, treasury maturity and how close the executive is to operations.
+  check: |
+    If Helvetic's minimum liquidity were much larger relative to typical payments, the co-signature threshold would
+    sit higher; if the CEO were remote from operations, the second signatory above CHF 2m would be a second executive
+    or a system-enforced matrix rule instead.
+  terms: [delegation-of-authority, signing-authority-matrix, collective-signature, minimum-operating-balance]
+
+- id: covenant-ebitda-source
+  claim: "Group Accounting computes the LTM covenant ratios; FP&A supplies forecast EBITDA only"
+  short: |
+    The compliance certificate is a contractual statement about the closed accounts, and the facility's definitions key
+    off those accounts — so the owner of the close (Claudia) computes, while FP&A's un-audited forecast is used only
+    for the forward headroom view.
+  detail: |
+    The RCF defines EBITDA, net debt and adjustments by reference to the last completed (and audited) consolidated
+    accounts — a "frozen GAAP" style definition ([what the lender counts](why:net-debt-lender-view)). Closed books are
+    Group Accounting's product; Marco's FP&A numbers are a rolling management view, re-phased monthly, never audited,
+    and computed on management definitions. Putting forecast EBITDA into a signed certificate would misstate a
+    contractual representation. So the chain is: Lea supplies the net-debt schedule (debt and cash are treasury data),
+    Claudia computes the LTM ratios per the agreement's definitions, Daniel reviews and presents to the banks (they
+    are his counterparties), Thomas signs, and Marco's forecast EBITDA feeds exactly one thing — the forward headroom
+    ("if EBITDA lands at plan, the ratio at the next test is …"), which lets the group act before a breach.
+  check: |
+    Facilities with forward-looking or projected tests do use budget EBITDA — for those tests FP&A is the source and
+    the split still holds. If the certificate were prepared from the management accounts, the auditor and agent bank
+    would challenge it.
+  terms: [covenant, compliance-certificate, ebitda, frozen-gaap, net-debt]
+
+- id: front-middle-back-scale
+  claim: "Front/middle/back office at GlobalChem; the same split by task at Helvetic"
+  short: |
+    Independence between dealing, confirming and booking is the goal; dedicated teams are only one way to buy it, and
+    they pay off only when deal volume, user count and audit scrutiny are large.
+  detail: |
+    GlobalChem: ~25 treasury staff, ~280 accounts, hundreds of payment users, a payment factory releasing for 22
+    European entities, IFRS 9 documentation and internal + external audit testing segregation of duties. Dedicating
+    confirmations, settlement and limit monitoring to people who never deal (Marta's Kraków team, the treasury-control
+    sub-team) is both affordable and what auditors expect ([the ACT model](term:front-middle-back-office)). Helvetic:
+    2 FTE and a few deals a week — a middle office would consume half the function. The same independence is bought
+    across functions instead: Daniel deals and releases, Lea confirms (she does not trade), Claudia's accounting team
+    settles and books; when Lea is away, confirmations move to accounting rather than to Daniel. The economics flip
+    with volume: at hundreds of payments and dozens of deals a day, a dedicated control team costs less than the
+    fraud and error exposure it removes; at two people, the opposite.
+  check: |
+    If Helvetic began trading options or swaps at volume, or the payment-user count grew into the hundreds, the
+    task-split would stop being enough and a real back/middle office (or tool-enforced workflows) would appear.
+  terms: [front-middle-back-office, segregation-of-duties, front-office, middle-office, back-office]
+
+- id: subsidiary-dotted-line
+  claim: "Subsidiary finance is dotted-line to the group CFO — never to treasury"
+  short: |
+    The local finance manager works for a legal entity whose directors are accountable locally; treasury needs their
+    data, not their reporting line, and gets it through CFO-signed policy, group deadlines and relationships.
+  detail: |
+    Giulia's pay, appraisal and statutory duties (local close, local payments, local filings) attach to HM Italia and
+    its managing director. Making treasury her solid-line boss would put a service function in charge of work it does
+    not control — and would make treasury answerable for a local close it cannot run. The dotted line carries exactly
+    what treasury needs: templates, deadlines, forecast-submission rules, treasury policy and signing rules, delivered
+    as instructions from Daniel but backed by Thomas's authority. Proof it is deliberately dotted: Daniel gets the
+    Tuesday-noon submissions with no hierarchical power at all — a group deadline, the CFO's name and personal
+    relationships do the work ([how the week runs](why:weekly-vs-monthly-forecast)). Where central finance is strong
+    (GlobalChem) the dotted line runs to the Group CFO and treasury policy flows from Anna.
+  check: |
+    In groups where regional or local finance leads report solid-line to group finance, the priorities flip — the
+    revealing interview question is not "who do you report to?" but "who sets your priorities on the 5th working day?"
+  terms: [dotted-line-reporting, forecast-submission, treasury-policy]
+
+- id: pool-tax-review-first
+  claim: "A cash pool needs tax review before it exists"
+  short: |
+    A cross-border pool is a bundle of intercompany loans repriced daily, so every design choice is a tax question
+    (transfer pricing, interest withholding tax, thin caps, substance) that is cheap to build in and costly to unwind.
+  detail: |
+    Each sweep is legally an intercompany loan whose rate must be arm's length; OECD guidance expects pool benefits to
+    be shared among members and the pool leader to be remunerated for the functions and risks it actually runs.
+    Interest crossing borders can suffer withholding tax (relieved by treaty or the EU–Swiss interest/royalty
+    agreement, but only if claimed and documented); member deductibility is capped by [thin-capitalisation](term:thin-capitalisation)
+    and interest-limitation rules (the same limit that split Helvetic's EUR 5m Italian funding into a loan and a
+    capital contribution); a pool leader entity raises substance and permanent-establishment questions; guarantees
+    and cross-border netting need legal review per country. Retrofitting any of this after the pool runs is a
+    renegotiation with tax authorities — so Helvetic concentrates cash manually by intercompany loan while the EUR
+    pool sits "under evaluation", waiting on exactly this review.
+  check: |
+    A single-country, single-currency pool needs much less of this. If a group runs a cross-border pool without tax
+    review, the note is not overkill — it is the audit finding of next year's tax review.
+  terms: [cash-pooling, intercompany-loan, transfer-pricing, thin-capitalisation, withholding-tax, safe-harbour-rates]
+
+- id: weekly-vs-monthly-forecast
+  claim: "The 13-week forecast runs weekly; the medium-term (18-month) plan is reviewed monthly"
+  short: |
+    Cadence follows the decision the output drives: dated weekly funding and payment actions need a fresh 13-week view,
+    while financing and covenant decisions happen at a monthly rhythm that a weekly 18-month plan would not improve.
+  detail: |
+    The 13-week forecast triggers specific dated actions — fund this account before Thursday's run, decide a drawing
+    for the 15th rollover, size this month's hedge layer. Its inputs (AP runs, subsidiary receipts, tax dates) change
+    every week and a stale cycle misses exactly the events it exists to catch, so Helvetic runs it weekly: Lea sends
+    the template Monday, subsidiaries submit Tuesday noon, Lea consolidates Tue–Wed, Daniel reviews Wednesday, the
+    one-pager reaches Thomas on Thursday. Weeks 9–13 borrow from FP&A's plan, which refreshes monthly anyway. The
+    18-month plan tracks the 2028 bond refinancing, capex and covenant headroom — decisions taken at the monthly
+    executive-board rhythm (Thomas reviews it with the monthly treasury report), and weekly re-runs would mostly
+    re-plot noise. In a liquidity crisis both cadences tighten; and any group running the 13-week fortnightly soon
+    has two questions to answer: which week's numbers are these, and who noticed the gap?
+  check: |
+    A company with stable, payroll-dominated flows could run the 13-week fortnightly without damage; a company in a
+    refinancing or crisis runs the medium-term weekly too. The rule is decision cadence, not habit.
+  terms: [thirteen-week-cash-flow, medium-term-forecast, forecast-accuracy]
+
+- id: wd5-wd7-hedge-cycle
+  claim: "Exposures in by WD5, the exposure report reviewed WD7, hedges after the review"
+  short: |
+    The hedge layer must be computed on the complete consolidated picture, so the decision sits after the submission
+    deadline plus a consolidation window — and never before the manager has seen the report.
+  detail: |
+    Subsidiary exposures blend open items from the closing books with forecast flows, so they can only be collected in
+    the first days of the month (collection window WD2–WD6, submissions due WD5). Lea then needs a day or two to
+    chase stragglers, consolidate ~8 submissions and compute net exposure per currency and month against the graded
+    bands (Q+1 60–90% … Q+4 0–40% — [why the bands shrink](why:hedge-bands-graded)). Daniel reviews the report on
+    WD7 and hedge adjustments run after that review. A layer placed earlier, on partial data, would hedge the
+    stragglers' flows blind — over-hedging if they are lower than expected, under-hedging if higher — the exact error
+    the graded bands try to avoid. The same order shows up in the workflows: consolidation before decision, decision
+    before trade, trade before the independent confirmation match.
+  check: |
+    Groups that pull exposures automatically from the ERP can compress the cycle to days; if all exposures were
+    booked orders rather than forecasts, timing would matter much less.
+  terms: [exposure-report, transaction-exposure, layered-hedging, cut-off-time]
+
+- id: alpine-local-us-account
+  claim: "Alpine: 2 Swiss bank relationships plus the US subsidiary's local US operating account"
+  short: |
+    The Swiss banks hold the group's core business; the US operating account stays local because US customers, payroll
+    and suppliers move on US rails — a Swiss USD account gives you a balance, not ACH.
+  detail: |
+    Alpine Robotics Inc. sells and services locally: customer receipts arrive by ACH and domestic wire to a US
+    account, the US payroll provider and US suppliers debit US accounts, and the outsourced US bookkeeper needs portal
+    access. Routing each of those through a USD account at a Swiss bank means international wires per payment, higher
+    fees and later value dates. So the US account is a minor third relationship, serviced by the local bookkeeper —
+    while the two Swiss relationships carry what needs a Swiss balance sheet: the cantonal house bank ([line, mortgage,
+    guarantees](why:alpine-credit-line)) and the large Swiss bank (FX, EUR/USD, the German account). Nine accounts in
+    total across three entities, and Petra therefore opens three e-banking portals each morning — which matters in
+    interviews whenever someone says "we have two banks".
+  check: |
+    A US entity with only occasional flows would not need a local account — some groups run US payroll from a USD
+    account at a global bank instead. If the US account were held at the large Swiss bank's US booking centre, the
+    relationship count would be two, not three.
+  terms: [house-bank, bank-account-management-term, ach]
+
+- id: matrix-stricter-than-mandate
+  claim: "The internal signing matrix is stricter than the bank mandate — and that gap is deliberate"
+  short: |
+    The bank mandate is a blunt legal instrument (any two of five collective signatories may bind the company); the
+    internal matrix encodes who *must* sign for each type and size of payment, and the connectivity tool enforces it
+    because the bank cannot.
+  detail: |
+    A Swiss collective-signature mandate ([Kollektivunterschrift](term:collective-signature)) is registered in the
+    commercial register so payments do not stop when two people are away: any two of Helvetic's five registered
+    signatories (Thomas, Daniel, the CEO and two others — Daniel and Claudia included) legally bind the company. It
+    knows nothing about amounts, purposes or evidence — exactly what fraud control needs. So the signing-authority
+    matrix Thomas owns is deliberately stricter: a single payment above CHF 2m requires the CFO and the CEO
+    ([co-signature](why:ceo-cosign-threshold)) even though Daniel plus Claudia would legally suffice, and the
+    connectivity tool enforces the matrix at file level. The gap is the design: the mandate answers "who legally may
+    sign", the matrix answers "who must sign". A fraudster holding two valid credentials still fails the tool's
+    workflow. The revealing interview question is "when did the internal rule and the bank mandate disagree, and
+    which one won?"
+  check: |
+    Where the bank itself offers tiered, amount-banded signing lists the two layers converge; and where no tool
+    enforces the matrix (standalone e-banking at small banks), the matrix is only as good as the humans applying it.
+  terms: [signing-authority-matrix, payment-mandate, collective-signature, delegation-of-authority]
+
+- id: first-treasury-hire
+  claim: "Why Helvetic runs a two-person treasury and Alpine none"
+  short: |
+    The trigger is not revenue but recurring task volume times the four-eyes rule: once preparation alone fills more
+    than one full-time job and nothing can be self-reviewed, a company needs two people; below that the work hides
+    inside accounting.
+  detail: |
+    Helvetic: 8 subsidiaries, 12 accounts, 5 banks, 6 currencies. Recurring load — a weekly 13-week cycle (chase 8
+    submissions, consolidate, variance table), a daily position over 12 accounts against hard bank cut-offs, a
+    monthly exposure and hedge cycle, monthly reporting, semi-annual covenants, an intercompany loan register. That
+    is more than one FTE of preparation before any judgment, and every release and every trade needs someone other
+    than the preparer ([the prepare/decide split](why:prepare-decide-split)), so a one-person treasury cannot
+    self-review: the minimum viable treasury with [four-eyes control](term:four-eyes-principle) is 2 FTE — Daniel
+    and Lea. Alpine: 3 entities, 9 accounts, 2 main Swiss relationships plus [one local US account](why:alpine-local-us-account),
+    mostly CHF costs, and "hedging" means one forward per big project — the treasury tasks fit in a few hours a week
+    inside Petra's accounting job (08:30 cash sheet, payment runs, bank reconciliations), and Martin decides. The
+    arithmetic flips when the CHF 12m line is drawn regularly, a TMS project starts or the entity count doubles:
+    that is when Alpine would make the first, and only, treasury hire (pattern D) reporting to Martin.
+  check: |
+    A company can buy the control instead of the headcount (tool-enforced workflows, a managed service), and heavy
+    FX or debt exposure can force the hire earlier than task count suggests. If Helvetic's subsidiaries were all
+    CHF/EUR with one bank, two FTE would be hard to justify.
+  terms: [four-eyes-principle, segregation-of-duties, key-person-risk]
+
+- id: board-approves-new-banks
+  claim: "The board approves a new banking relationship; an extra account at an existing bank is operational"
+  short: |
+    Which banks hold the money is a shareholder-level risk-appetite question (bank failure risk went abstract→concrete
+    with SVB); which account sits at an approved bank is a KYC-and-signatures act the CFO can approve.
+  detail: |
+    A new relationship adds counterparty exposure — in a bank failure this money is at risk up to deposit-protection
+    limits — plus diligence, documentation and a claim on management attention. That is risk appetite, which the board
+    owns (after SVB in 2023, Kleio's board asked for a second bank and Alpine's two-bank structure follows the same
+    logic). A further account at an existing bank adds no new counterparty risk: it needs KYC documents, signatories
+    and a register entry — Daniel proposes, Thomas approves at Helvetic; at Kleio, Sarah and the CEO sign and the
+    board is informed. The board still *sees* every account through the register and audit confirmations, but seeing
+    is not approving — a distinction worth testing in interviews ("who approved your last account, and your last
+    bank?").
+  check: |
+    In highly centralised or regulated groups, group treasury or the board may approve every account; at owner-managed
+    SMEs the board may rubber-stamp everything. If bank failures were insured in full without limits, the board's
+    appetite role would shrink to service and pricing.
+  terms: [delegation-of-authority, board-resolution, counterparty-exposure, deposit-protection]

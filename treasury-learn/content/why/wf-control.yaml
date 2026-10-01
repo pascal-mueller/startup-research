@@ -1,0 +1,241 @@
+# Why notes — stream wf-control (month-end reporting, fraud investigation, policy compliance).
+# Numbers in derivations re-derive from content/companies.yaml and the canonical facts (AUTHORING.md v2/v2.1).
+
+- id: four-eyes-threshold
+  claim: "Payments ≤ CHF 2m: Lea prepares, Daniel releases; above CHF 2m: the CFO and the CEO co-sign"
+  short: |
+    Two pairs of eyes on every payment because one person can both create and conceal a fraud; the second
+    signature escalates to the CFO and CEO where a single payment's loss starts to matter to the group's cash floor.
+  detail: |
+    The cost of a second approval is a few minutes and constant; the expected loss of a payment is
+    amount × probability it is fraudulent and rises with amount. So four-eyes (prepare ≠ release) pays at every
+    size, and the *escalation point* is where one payment's loss turns material: CHF 2m is 20% of Helvetic's
+    group minimum liquidity of CHF 10m and about 2.6% of LTM EBITDA (CHF 78m). The role split is deliberate:
+    [Lea prepares and analyses but is not a payment signatory](why:lea-never-releases) — if the preparer could
+    release, one person could pay a fraudster and hide it behind a clean audit trail. The bank mandates are
+    broader (any two of five collective signatories), so the e-banking/connectivity workflow enforces the tighter
+    internal matrix. Above CHF 2m the CFO (Thomas) and the CEO co-sign; non-routine payments above CHF 10m go
+    to the board.
+  check: |
+    If routine supplier runs regularly exceeded CHF 2m, the control would move from human co-signature into a
+    system-enforced workflow with board-set limits; if fraud attempts stopped, the second pair of eyes would be
+    pure cost — which is why the rule survives on expected loss, not on fear.
+  terms: [four-eyes-principle, segregation-of-duties, signing-authority-matrix]
+
+- id: lea-never-releases
+  claim: "Lea prepares; she never approves or releases"
+  short: |
+    Segregation of duties in a two-person treasury: the preparer must never be the releaser, or one person can
+    execute and conceal an unauthorised payment alone.
+  detail: |
+    Helvetic's central treasury is Daniel (manager) and Lea (analyst). The audit-relevant split is not by task
+    volume but by power: Lea may build the payment, the evidence pack and the net-debt schedule, but release
+    authority sits with Daniel (up to CHF 2m) and with the CFO and CEO above it. When Lea is absent, deal
+    confirmations move to Claudia's deputy in group accounting — borrowing independence from another function
+    rather than collapsing the control. This is also why "Lea consolidates the forecast, Daniel reviews it"
+    recurs across the manual: the same prepare/review split on data.
+  check: |
+    If a tool could cryptographically prove who released what (four-eyes at the bank mandate level), analyst
+    release rights could be reconsidered; the 2-of-41-forwards deviation shows what happens when the split slips.
+  terms: [segregation-of-duties, four-eyes-principle]
+
+- id: callback-independent-number
+  claim: "Call-back verification for bank-detail changes — to an independently sourced number"
+  short: |
+    The change request travels over a channel the attacker controls; only a call to a number that did not travel
+    through that channel proves anything. Email verification verifies nothing, because the attacker writes the answers.
+  detail: |
+    In the HM Italia case the supplier's genuine mailbox was hacked, so the email, letterhead and invoice numbers
+    all checked out — and the clerk's verification call went to the number inside the fraudulent email, which rang
+    the fraudsters. A call-back to the number already on file (vendor master, signed contract) removes the
+    attacker's control of the channel; dual approval of the master-data change adds [four-eyes](why:four-eyes-threshold).
+    Reply-to-confirm emails, read receipts and "confirm your new IBAN" threads all fail for the same structural
+    reason: they stay inside the compromised thread. This is why Swiss authorities recommend a second channel via
+    an already-known phone number, and why insurers treat the call-back as a policy condition.
+  check: |
+    If email were an authenticated channel bound to the sender's identity (it is not), reply-based verification
+    would work. If the on-file number is stale, the call-back fails operationally — the fix is number hygiene at
+    onboarding, not dropping the call-back.
+  terms: [call-back-verification, vendor-bank-detail-fraud, four-eyes-principle]
+  sources: [bacs-ceo-fraud-2026]
+
+- id: pack-wd2-report-wd5
+  claim: "Accounting pack due WD2 12:00; treasury report on WD5"
+  short: |
+    The pack is a close input: accounting must book treasury's deals, accruals and intercompany balances before
+    consolidation starts on WD3, so the deadline is set backwards from the consolidation. The report comes only
+    after the numbers reconcile to the ledger.
+  detail: |
+    The group close calendar is the constraint, not treasury's convenience: WD1 capture and reconcile, WD2 12:00
+    the pack to group accounting (month-end valuations, accruals, intercompany statements), WD3–WD4 accounting
+    consolidates while treasury explains differences to the GL, WD5 the CFO reads the report. Two things force
+    WD2: the closing FX rates come from accounting's single rate table (use your own and nothing reconciles), and
+    the consolidation slot cannot wait for a late derivative valuation. The report is WD5 rather than WD2 because
+    its claims must survive the tie-out — "net debt CHF 106m" is only defensible after reconciliation. In close
+    week the deadline collides with the weekly forecast cycle (subsidiary submissions Tuesday noon), so the
+    consolidation slips a day — practitioners describe month-end week as "close plus forecast plus everything else".
+  check: |
+    Alpine closes by WD8 and its pack is later; a group with TMS-to-ERP postings has no manual "pack" at all. The
+    WD2/WD5 pair is an artefact of a manual hand-off plus a consolidation slot — move either and the dates move.
+  terms: [month-end-close, closing-rate, treasury-report]
+
+- id: corporate-fraud-loss-allocation
+  claim: "Why fraud reimbursement rules differ for corporates and consumers"
+  short: |
+    Mandatory reimbursement regimes were written for consumers; a corporate that authorises a fraudulent payment
+    has no unauthorised-transaction claim at all. That gap is exactly why companies buy crime insurance.
+  detail: |
+    Three layers fix the loss. (1) The UK's mandatory APP-fraud reimbursement (Faster Payments, live 7 Oct 2024)
+    covers "consumers" = individuals, microenterprises (fewer than 10 staff, ≤ EUR 2m) and small charities —
+    a Helvetic or GlobalChem is outside it. (2) In the US, Regulation E's error resolution and liability caps
+    protect consumer accounts only: wires are excluded from the EFT definition and business accounts get no
+    protection. (3) In vendor bank-detail fraud the company *authorised* the payment, so even consumer-style
+    unauthorised-transaction refund rules would not apply — the loss sits with the company unless a bank duty
+    (failed name check, broken security procedure) or a contract claim succeeds. The corporate "reimbursement
+    regime" is therefore a crime policy with a social-engineering sublimit and conditions — which is why the
+    insurer asks whether the call-back was performed, and why [the sublimit, not the law, sets expectations](why:recall-window).
+  check: |
+    If a jurisdiction extended mandatory APP reimbursement to corporates, insurance pricing would move; and if
+    the fraud is a genuinely unauthorised transaction (hacked e-banking credentials), the legal analysis changes
+    completely — know which case you are in before assuming the loss is yours.
+  terms: [crime-insurance, vendor-bank-detail-fraud]
+  sources: [psr-app-scam-reimbursement, us-reg-e-consumer-eft]
+
+- id: compliance-sample-testing
+  claim: "Policy compliance is tested on samples, not exhaustively"
+  short: |
+    The populations are too large and failures too rare to check everything; sampling is only defensible because
+    preventive controls sit upstream, and sampling is where weak prevention surfaces.
+  detail: |
+    Helvetic's quarterly check spans 41 forwards, hundreds of payments, 5 bank mandates and 12 accounts;
+    GlobalChem's spans ~280 mandates and thousands of users. Testing 100% of payments would cost more than the
+    fraud it prevents, so auditors sample items and dates and internal audit is risk-based — and the model only
+    holds because prevention (approval workflows, pre-deal limit checks, four-eyes) does not rely on being
+    watched. Sampling is diagnostic: the confirmation sample that found "2 of 41 forwards confirmed by Daniel
+    himself" exposed a real segregation-of-duties shortcut that a 100% test would have found at 100% of the cost.
+    Where populations are small and failure expensive — signatory lists, 5 banks × mandates — reviews do go
+    exhaustive. The rule is cost-per-item versus failure cost, not taste.
+  check: |
+    If sampling kept missing things that materialised later, the sample sizes or the preventive controls are
+    wrong; audit findings that recur after "testing" are evidence the control, not the test, is the problem.
+  terms: [internal-control-system, three-lines-model, segregation-of-duties]
+
+- id: hedge-mtm-forward-curve
+  claim: "Hedge market value +CHF 0.9m (EUR +0.6m) at 30 September"
+  short: |
+    Forwards are valued off the forward curve, not off spot. With €STR ≈ 2.2–2.4% against SARON ≈ 0%, the EUR/CHF
+    forward curve sits well below spot, so a sold-forward book shows more value than a spot-only check suggests.
+  detail: |
+    The naive check fails: EUR 58m hedged at an average 0.9390 against a 0.9350 close is (0.9390 − 0.9350) × 58
+    ≈ CHF +0.23m — not +0.6m. But a forward is valued against the forward rate of its remaining tenor: with a
+    rate gap near 2.2% a year, the four-month EUR/CHF forward is ≈ 0.9350 × (1 − 0.022 × 4/12) ≈ 0.928, and
+    (0.9390 − 0.928) × 58 ≈ CHF +0.63m ≈ +0.6m. USD hedges add about +0.3m on the same logic (USD rates above
+    CHF, forward below spot). Banks value off their own curves, so the register quotes "per bank valuations"; a
+    few basis points vs the TMS is normal, large gaps are not.
+  check: |
+    If EUR and CHF rates were equal the curve would equal spot and +CHF 0.23m would be right; if the book had
+    been hedged at today's forward (≈ 0.928), its market value would be ≈ 0. Value that comes entirely from
+    forward points disappears as the hedges roll, so it never counts as "profit" in the commentary.
+  terms: [mark-to-market, hedge-ratio]
+
+- id: september-vat-driver
+  claim: "The September cash drop is the German August VAT prepayment, not 'Q3 VAT'"
+  short: |
+    No Q3 VAT payment exists in September: Swiss Q3 VAT (≈ CHF 0.8m) is due 30 Nov, the German Q3 prepayment
+    10 Oct. September's statutory item is the German *August* prepayment, due 10 Sep like every monthly German filing.
+  detail: |
+    The manual's VAT calendar: Swiss VAT is settled quarterly within 60 days of quarter end (end of Feb/May/Aug/Nov)
+    — HM AG's Q2 settlement (≈ CHF 0.8m) left at the end of August, before the table starts, and the Q3
+    settlement lands 30 Nov (week 2 of the [13-week forecast](wf:cash-forecasting)). Germany requires monthly
+    prepayments by the 10th of the following month, so HM Deutschland's August VAT is paid on 10 Sep — a
+    low-single-digit-million item, larger than the Swiss one because German domestic sales are standard-rated
+    while HM AG's exports are mostly zero-rated. The rest of the CHF 7.2m drop (61.2 → 54.0) is seasonal working
+    capital: quarter-end supplier runs and Italian receipts arriving late (September receipts came in CHF 5.7m
+    below the four-week forecast). The drop is therefore seasonal and was in the forecast — which is the honest
+    answer to the CFO's question.
+  check: |
+    If HM Deutschland filed quarterly instead of monthly, September would carry no VAT outflow and the drop would
+    be purely working capital; any claimed "Q3 VAT payment" in September contradicts the forecast calendar in
+    the same manual.
+  terms: [vat-cash]
+
+- id: china-cash-excluded
+  claim: "China cash (CNY ≈ 55m, ≈ CHF 6.1m) is excluded from free cash in headroom"
+  short: |
+    CNY cannot be moved quickly — dividend approvals, statutory audit, 5% withholding tax, capital controls — so
+    headroom, which counts what can service debt, must not include it.
+  detail: |
+    Liquidity headroom = freely available cash + undrawn committed facilities − minimum cash. Helvetic 30 Sep:
+    54.0 − 6.1 (the CNY ≈ 55m at the Chinese bank) = 47.9 free, plus CHF 140.0m undrawn RCF, minus the CHF 10m
+    group minimum = CHF 177.9m. Repatriating the CNY needs the subsidiary's statutory audit, board and dividend
+    resolutions, and the 5% Swiss dividend WHT under the China–Switzerland DTA for the directly-held ≥25% stake —
+    months, not days. Counting it would overstate headroom by CHF 6.1m precisely when it matters, because a
+    stress scenario is when repatriation is slowest. The policy treats the Chinese bank the same way: exposure
+    excluded under a standing board waiver.
+  check: |
+    If China cash could be swept overnight (some groups get this via onshore pooling), it would count as free
+    cash and the waiver would fall away; if the dividend route were blocked entirely, the balance would also be
+    excluded from valuation and bonus metrics, not just headroom.
+  terms: [liquidity-headroom]
+
+- id: recall-window
+  claim: "A recall 11 days after credit is a formality"
+  short: |
+    Once a payment is credited, SEPA/SIC/Swift payments are final and mule accounts empty within days; at day 11
+    the realistic routes are a prosecutor's freeze order, the civil/insurance track and the loss file — not the recall.
+  detail: |
+    Recovery odds follow a timeline: minutes for a payment still in flight (cancel before execution), hours for
+    funds credited but not yet moved, and days before mule accounts are emptied — in the HM Italia case most of
+    the EUR 486,300 moved between 3 and 6 October, within one to four days of the 2 October payment. A
+    [recall](term:payment-recall) is a request: the receiving bank returns only what remains, often needing the
+    account holder's consent or a prosecutor's order. On instant rails (euro SCT Inst send capability mandatory
+    since Oct 2025) the money lands in seconds and the practical window is minutes — there prevention is the only
+    control (payee verification, call-backs, first-payment holds). The EUR 61,200 that was frozen and returned
+    four months later is the freeze route working on funds that had not moved.
+  check: |
+    A receiving bank that freezes on the request without a court order (some do, briefly) makes late recovery
+    possible; and a mule that fails to empty the account reverses the timeline. Neither is controllable by the
+    victim — which is why the workflows push every hour in the first day.
+  terms: [payment-recall, money-mule, sct-inst]
+
+- id: passive-vs-active-breach
+  claim: "Passive breach: cure and report; active breach: escalate to the audit committee"
+  short: |
+    The taxonomy separates market events from control failures. A receipt pushing exposure over a limit is not
+    misconduct; trading over a limit is — and the reporting ladder must be able to tell them apart.
+  detail: |
+    Passive breaches (a bank downgrade, a EUR 3.1m receipt landing on the 30th, a forecast change moving a hedge
+    ratio) arise from events; remediation is arithmetic — move EUR 2m and exposure falls from 101% to ~82% — plus
+    one line in the monthly report. Active breaches (a deal above limit, an unapproved instrument, a dealer
+    confirming his own trade) are decisions that broke the rules; they go to the audit committee because the
+    board's duty is the control system itself (Art. 716a CO makes organisation of financial control a
+    non-transferable board duty). The distinction is load-bearing for behaviour: if curable passive breaches were
+    punished like control failures, people would stop reporting them until they compounded. At Helvetic the
+    30 Sep German-bank excess is the passive archetype; the 2-of-41 self-confirmations are the active one.
+  check: |
+    A "passive" breach recurring at the same bank is evidence the limit is set wrong, not that events are
+    unlucky — repeated passives must be escalated to a policy change, or the taxonomy becomes an excuse.
+  terms: [limit-breach, counterparty-limit, treasury-policy]
+  sources: [ch-co-board-duties]
+
+- id: fer-vs-ifrs-pack
+  claim: "Why the accounting pack differs: Swiss GAAP FER vs IFRS 9"
+  short: |
+    Helvetic reports under Swiss GAAP FER (FER 27: no effectiveness testing, no formal hedge-documentation
+    requirement); GlobalChem under IFRS 9/16 (designation documentation, effectiveness assessment, IFRS 7).
+    "Effectiveness data" is IFRS vocabulary and must not be read across.
+  detail: |
+    FER 27 recognises derivatives on the balance sheet and lets derivatives hedging balance-sheet items be
+    measured at fair value **or** on the same basis as the hedged position, with value changes in the period
+    result; the notes disclose open derivatives by underlying and by purpose. But Swiss GAAP FER has "no formal
+    documentation requirement of the hedge relationship and ... no requirement for testing effectiveness" (PwC's
+    FER guide) — unlike IFRS 9, which requires designation documentation and ongoing effectiveness assessment
+    (no IAS 39-style 80–125% bright line) plus IFRS 7 risk disclosures. So Helvetic's WD2 pack carries fair
+    values, accruals and the hedge book, and the 60–90% hedge bands are **management policy**, not accounting
+    designation; GlobalChem's pack carries designation files and effectiveness assessments. A founder
+    interviewing a Helvetic CFO and a GlobalChem treasurer must not translate one vocabulary into the other.
+  check: |
+    If Swiss GAAP FER moved toward IFRS (the FER commission deliberately did not copy IAS 39), the packs would
+    converge; conversely, a Swiss group voluntarily applying IFRS would need the IFRS side of this note.
+  terms: [hedge-accounting, mark-to-market]
+  sources: [fer-27-derivatives, pwc-fer-financial-instruments-2025]

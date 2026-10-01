@@ -74,10 +74,14 @@ steps:
     when: Annually, and after major changes
     detail: >-
       Write down the objective (e.g. protect budget rates for the next 12 months; reduce cash-flow volatility; no
-      speculation), which exposures are hedged (booked items fully, forecast flows in declining bands — e.g. 60–90% of the
-      next quarter, less further out), allowed instruments (forwards and FX swaps; bought options; collars only where
-      the sold option does not exceed the exposure), maximum tenor, approved banks with minimum ratings and limits, who may
-      deal and up to what size, how deals are confirmed, and whether [hedge accounting](term:hedge-accounting) is applied.
+      speculation), which exposures are hedged (booked items fully, forecast flows in declining [graded bands](why:hedge-bands-graded) —
+      e.g. 60–90% of the front quarter, less further out), allowed instruments (forwards and FX swaps; bought options;
+      collars only where the sold option does not exceed the exposure), maximum tenor, approved banks with minimum
+      ratings and limits, who may deal and up to what size, how deals are confirmed, and whether [hedge accounting](term:hedge-accounting)
+      is applied. Write the band convention down too: bands are assigned by rolling calendar quarters — the front
+      quarter carries the Q+1 band and each further quarter steps down one band (Q+1 60–90%, Q+2 40–70%, Q+3 25–55%,
+      Q+4 0–40%); as a quarter closes the remaining quarters roll up one band, so Q1 2027 is the 40–70% bucket until
+      Q4 2026 closes and becomes the 60–90% bucket after that.
     judgment: >-
       The core strategic choice: how much certainty to buy and at what cost. Hedging 100% of a year's forecast locks one
       rate but over-hedges if sales fall; hedging nothing leaves margins to the market. Layering is a compromise, not an
@@ -105,7 +109,10 @@ steps:
     where: Hedge proposal (email / meeting), treasury committee for exceptions
     detail: >-
       Forwards are the default for flows that will happen. [Options](term:option) are used for exposures that may not
-      happen (tenders) or when management wants protection while keeping upside, at a premium.
+      happen (tenders) or when management wants protection while keeping upside, at a premium — the
+      [option-versus-forward call](why:bid-contingent-hedge) on a bid is arithmetic, not taste. For scale: a six-month
+      EUR put on EUR 5m with a 0.94 strike (the right to sell EUR 5m at 0.94, spot ≈ 0.935) costs a premium of roughly
+      1.5–2% of notional — about EUR 75–100k (≈ CHF 70–95k) — paid whether or not the tender is won (illustrative).
       [FX swaps](term:swap) move existing hedges in time. The manager also decides whether to hedge now or stagger, and
       how to split among banks (price, counterparty limits and the [ancillary business](term:ancillary-business) each
       lending bank expects).
@@ -137,12 +144,21 @@ steps:
     who: Treasury analyst with group accounting
     where: Hedge register / TMS hedge-accounting module
     when: At inception
-    detail: >-
+    detail: |
       Link each hedge to the exposure it covers. Under IFRS 9, if hedge accounting is used, the relationship must be
       formally designated and documented at inception ([hedge documentation](term:hedge-documentation)); retrospective
-      designation is not possible. Under Swiss GAAP FER 27 the requirements are much lighter. Without hedge accounting,
-      the market value change of the forwards goes through P&L each month while the hedged sales do not — the classic
-      source of "hedging volatility" questions from the CFO.
+      designation is not possible. Under Swiss GAAP FER 27 the requirements are much lighter — no effectiveness tests —
+      but the hedged future cash flows must be highly probable. Without hedge accounting, the market value change of the
+      forwards goes through P&L each month while the hedged sales do not — the classic source of "hedging volatility"
+      questions from the CFO. One month of EUR 10m hedged forecast sales, hedged at 0.930; EUR/CHF falls to 0.910, so
+      the forward's market value is +CHF 0.2m (0.020 × 10m):
+
+      | | Month 1 (forward revalued) | Month 2 (EUR 10m sale booked at 0.910) | Two-month total |
+      |---|---|---|---|
+      | Without hedge accounting (P&L) | +CHF 0.2m unrealised gain | CHF 9.10m revenue; the forward settles, no further gain | CHF 9.30m split across two periods |
+      | With hedge accounting | CHF 0 in P&L; +CHF 0.2m deferred in equity (FER 27) or OCI (IFRS 9) | CHF 9.10m revenue + CHF 0.2m reclassified when the sale is recognised | CHF 9.30m in month 2 |
+
+      The hedge does the same economic work either way; the accounting only decides *when* the two halves hit the P&L.
   - title: Settle at maturity, or roll
     who: Treasury analyst / back office
     where: Deal register, bank accounts, platform
@@ -172,11 +188,11 @@ steps:
       [currency shock](wf:currency-shock).
     judgment: Distinguishing "the policy worked as designed" from "the policy was wrong" after the fact — hindsight makes every hedge look either brilliant or foolish.
 example:
-  title: "Helvetic, Thursday 8 October: rolling an over-hedge and adding a layer for Q3 2027"
+  title: "Helvetic, Friday 9 October (WD7): rolling an over-hedge and adding a layer for Q3 2027"
   body: |
-    Inputs from the [exposure cycle](wf:fx-exposure-management): EUR 118m net inflows over 12 months, EUR 58.5m hedged. Policy (approved by the board in December 2025): Q+1 60–90%, Q+2 40–70%, Q+3 25–55%, Q+4 0–40%; Daniel's internal targets 75 / 55 / 40 / 25%. Dealing mandate: Daniel up to 12 months and CHF 20m per deal; options and anything longer need Thomas.
+    Inputs from the [exposure cycle](wf:fx-exposure-management) — Daniel's WD7 review that morning settled the two German acceptances as Q1 flows: EUR 118m net inflows over 12 months, EUR 58.5m hedged. Policy (approved by the board in December 2025): Q+1 60–90%, Q+2 40–70%, Q+3 25–55%, Q+4 0–40%; Daniel's internal targets 75 / 55 / 40 / 25%. Bands are assigned by rolling calendar quarters — the front quarter carries the Q+1 band, each further quarter steps down one [graded band](why:hedge-bands-graded), and when a quarter closes the rest roll up one band. Dealing mandate: Daniel up to 12 months and CHF 20m per deal; options and anything longer need Thomas.
 
-    **09:00 — Lea's calculation.** Daniel has decided to treat the two slipping German acceptances (EUR 4m) as Q1 flows.
+    **13:00 — Lea's calculation.** Daniel has decided to treat the two slipping German acceptances (EUR 4m) as Q1 flows.
 
     | Quarter | Exposure (EUR m) | Hedged | Ratio | Band | Target | Proposed action | After |
     |---|---|---|---|---|---|---|---|
@@ -185,28 +201,33 @@ example:
     | Q2 2027 | 29.0 | 11.9 | 41% | 25–55% | 40% | none | 41% |
     | Q3 2027 | 30.0 | 4.8 | 16% | 0–40% | 25% | New forward EUR 3.0m, value 31 Aug 2027 | 7.8 → 26% |
 
-    The Q4 over-hedge is *passive* (caused by the forecast, not a deal), but at 92% it is outside the band; the policy asks for it to be corrected within the month.
+    The Q4 over-hedge is [*passive*](why:passive-vs-active-breach) (caused by the forecast falling, not by a deal), but at 92% it is outside the band; the policy asks for it to be corrected within the month. Had Daniel instead bought EUR 2m *more* of Q4 "while the rate looked good", that would be an *active* breach — a decision outside the band, and the kind of thing the mandate exists to stop.
 
-    **10:05 — New layer.** Spot EUR/CHF 0.9352 (illustrative). Daniel sends "sell EUR 3.0m / buy CHF, value 31 Aug 2027" to the three hedging banks on the platform:
+    **14:05 — New layer.** Spot EUR/CHF 0.9352 (illustrative). Daniel sends "sell EUR 3.0m / buy CHF, value 31 Aug 2027" to the three hedging banks on the platform:
 
     | Bank | Forward rate (CHF per EUR) |
     |---|---|
-    | Swiss bank A | 0.91885 |
-    | Swiss bank B | 0.91862 |
-    | German bank | **0.91901** — dealt |
+    | Swiss bank A | 0.91565 |
+    | Swiss bank B | 0.91548 |
+    | German bank | **0.91588** — dealt |
 
-    The rate is about 1.7% below spot: that is the [forward points](term:forward-points) (€STR ≈ 1.95% vs SARON ≈ 0%), not a bank fee. The best-to-worst difference is CHF ~1,200 on this ticket — small; the platform's real value is the audit trail and not being dependent on one bank's price. Before dealing, Daniel checked the German bank's counterparty limit: after last week's passive breach it is at ~82%, and a new at-market forward has near-zero market value, so it fits.
+    The rate is about 2.1% below spot: that is the [forward points](term:forward-points) — the [interest-rate differential](why:forward-points-below-spot) (€STR ≈ 2.2–2.4% vs SARON ≈ 0%, illustrative; ≈ 2.3% used for the arithmetic: 0.9352 × (1 − 2.3% × 326/360) ≈ 0.9157) — not a bank fee. The best-to-worst difference is CHF ~1,200 on this ticket — small; the platform's real value is the audit trail and not being dependent on one bank's price. Before dealing, Daniel checked the German bank's counterparty limit: after last week's passive breach it is at ~82%, and a new at-market forward has near-zero market value, so it fits.
 
-    **10:20 — Roll.** With Swiss bank A (which holds the original EUR 2.0m Dec forward at 0.9420) Daniel deals an FX swap: buy EUR 2.0m value 31 Dec at 0.93117, sell EUR 2.0m value 31 Mar at 0.92667. On 31 Dec the EUR legs cancel and Helvetic receives CHF 21,660 (2.0m × (0.9420 − 0.93117)); the March hedge carries three more months of forward points (≈ CHF 9k). Swiss bank A offered a "historical rate rollover" at 0.9420 to avoid the cash settlement — the policy prohibits it.
+    **14:20 — Roll.** With Swiss bank A (which holds the original EUR 2.0m Dec forward at 0.9420) Daniel deals an FX swap: buy EUR 2.0m value 31 Dec at 0.93025, sell EUR 2.0m value 31 Mar at 0.92485. On 31 Dec the EUR legs cancel and Helvetic receives CHF 23,500 (2.0m × (0.9420 − 0.93025)); the March hedge carries three more months of forward points (0.93025 − 0.92485 = 0.0054 ≈ CHF 11k on EUR 2m). Swiss bank A offered a "historical rate rollover" at 0.9420 to avoid the cash settlement — the policy prohibits it. (Rolling the *drawing* that funds an exposure is a different matter: a revolving loan is [awkward to swap](why:revolver-swap-awkward).)
 
-    **11:30 — Confirmations.** Both confirmations arrive; Lea matches rates, dates and Helvetic's CHF and EUR settlement accounts against the platform tickets and her register, and adds the new forward to the hedge register against the Q3 2027 bucket. Under Helvetic's Swiss GAAP FER policy the market value of forwards hedging future sales is recorded in equity until the sale is booked; no IFRS-style effectiveness testing is needed. The banks handle trade reporting.
+    **15:30 — Confirmations.** Both confirmations arrive; Lea matches rates, dates and Helvetic's CHF and EUR settlement accounts against the platform tickets and her register, and adds the new forward to the hedge register against the Q3 2027 bucket. Under Helvetic's Swiss GAAP FER policy the change in fair value attributable to hedging *highly probable* future sales is deferred in equity until the sale is booked (or disclosed in the notes); no IFRS-style effectiveness testing is needed. The banks handle trade reporting.
 
-    **Afternoon — escalation.** Daniel emails Thomas a three-line summary and one open question for the treasury committee: the Czech subsidiary's EUR 45m/year EUR/CZK exposure is outside the policy. Options: hedge it at HM CZ with a local bank; hedge centrally via an internal forward; or accept it. Thomas puts it on the November agenda.
+    **Late afternoon — escalation.** Daniel emails Thomas a three-line summary and one open question for the treasury committee: the Czech subsidiary's EUR 45m/year EUR/CZK exposure is outside the policy. Options: hedge it at HM CZ with a local bank; hedge centrally via an internal forward; or accept it. Thomas puts it on the November agenda.
+
+    **Bridge to the November rounds.** Both numbers move between monthly cycles: by 23 November the Q1 2027 exposure has grown to about EUR 40m (the acceptances plus stronger order intake) and Daniel has added hedges to about EUR 30m — 32.0/19.0 here in October and 40/30 in late November are the same quarter at two different times, not a contradiction.
 judgment:
   - decision: How much of a forecast to hedge, and how far out
     why: The trade-off between certainty and the cost of being wrong about volumes. No formula settles it; boards set bands that reflect risk appetite, margin structure and how quickly prices can be adjusted.
   - decision: Forward vs option vs doing nothing for uncertain exposures
-    why: A forward on a tender that is lost becomes a speculative position; an option costs premium whether or not it is used. Requires judging the probability of winning.
+    why: >-
+      A forward on a tender that is lost becomes a speculative position; an option costs premium whether or not it is
+      used. The [option-versus-forward arithmetic](why:bid-contingent-hedge) requires judging the probability of winning
+      and the size of the premium relative to the exposure.
   - decision: Where in the band to sit
     why: Policies usually forbid market views, yet the manager still chooses 60% or 90%; the defensible basis is forecast confidence, not a currency prediction.
   - decision: Roll, close out or reduce when the underlying moves
@@ -240,8 +261,9 @@ software: >-
   vendors describe RFQs to several banks in competition with a full audit trail and straight-through capture into
   TMS[](cite:lseg-fxall-corporate,t360-corporate). Smaller companies deal by phone or on a bank's own portal. Deal
   registers and hedge accounting sit in the **TMS** (e.g. SAP treasury modules, Kyriba, FIS, ION products) or in Excel
-  at mid-market companies. A newer category of **hedging-automation** providers targets mid-sized companies with
-  rule-based programmes. See [Systems & Data](/systems) and [Competitors](/competitors); names are examples, not
+  at mid-market companies. A newer category of **hedging-automation** providers (e.g. Kantox-style dynamic-hedging
+  programmes, or outsourced-execution services such as MillTech) targets mid-sized companies with rule-based
+  programmes. See [Systems & Data](/systems) and [Competitors](/competitors); names are examples, not
   endorsements.
 manual_work:
   - Calculating top-ups per bucket in Excel from the exposure report.
@@ -276,7 +298,7 @@ companies:
   kleio: "No hedging. Sarah keeps about USD 1.5m at the US bank (roughly six months of USD costs) and converts surplus USD and EUR to CHF quarterly at spot, comparing her two Swiss banks' rates. She looked at selling USD forward: at SOFR ≈ 3.5–4% and SARON ≈ 0% (illustrative), a 12-month forward is about 3.5% below spot — a visible cost for a risk worth perhaps CHF 0.2–0.3m a year. The board agreed to revisit if net USD exceeds USD 5m a year."
   alpine: "A 2023 board minute says: hedge at least 50% of signed EUR and USD contracts above CHF 1m with forwards at signing, only with the two house banks, no speculation. Martin phones the large Swiss bank's FX desk; Petra files the PDF confirmation and adds the deal to an Excel list next to the project milestones. When a US acceptance slipped two months, Martin rolled the USD 0.96m forward by phone with a swap. Options for tenders were discussed once and rejected because of the premium."
   helvetic: "The worked example above. Three of the four RCF banks provide hedging; Daniel deals on a multi-dealer platform within his mandate, Lea matches confirmations and keeps the hedge register, Thomas sees a monthly summary and decides exceptions (e.g. the Czech exposure)."
-  globalchem: "Jonas's financial-risk team hedges net group exposures for about 30 currencies under a policy covering booked items (fully, via the in-house bank) and forecast flows 12–18 months out in layers. Small tickets are auto-RFQ'd on a platform to the seven core banks; confirmations are matched by Marta's back office in Kraków; SAP treasury generates IFRS 9 hedge designations; NDFs cover restricted-currency exposures. Anna reports hedge results and counterparty exposure to the audit committee quarterly."
+  globalchem: "Jonas's financial-risk team hedges net group exposures for about 30 currencies under a policy covering booked items (fully, via the in-house bank) and forecast flows 12–18 months out in layers. Small tickets are auto-RFQ'd on a platform to the seven core banks; confirmations are matched by Marta's back office in Kraków; SAP treasury generates IFRS 9 hedge designations; NDFs cover restricted-currency exposures — e.g. Jonas sells INR 400m forward at 62.50 for the June fixing; at the fixing USD/INR is 63.50, so the bank pays GlobalChem the USD difference (400m × (1/62.50 − 1/63.50) ≈ USD 0.1m) and no rupees ever move. Anna reports hedge results and counterparty exposure to the audit committee quarterly."
 handoffs:
   - from: FX exposure management
     gives: exposure report with hedge ratios by bucket
@@ -319,7 +341,7 @@ ai_note: >-
   execution of derivatives raises regulatory, mandate and trust issues that go well beyond software accuracy.
 terms: [forward, swap, option, collar, forward-points, hedge-ratio, layered-hedging, hedge-roll, multi-dealer-platform, deal-confirmation, dealing-mandate, isda, lei, trade-reporting, hedge-accounting, hedge-documentation, economic-hedge, mark-to-market, budget-rate, ndf]
 related: [fx-exposure-management, month-end-reporting, currency-shock, policy-compliance, daily-cash-positioning, credit-facility-management]
-sources: [lseg-fxall-corporate, t360-corporate, milltech-fx-2025, ifrscommunity-ifrs9-hedge, bdo-ifrs9-hedge-doc, pwc-ch-fer-fi-2025, fmia-art108, efd-finfrag-2022, isda-emir-refit-mdr, linklaters-emir3-2025, jonesday-emir-vm-2017, clariant-frm-2020]
+sources: [lseg-fxall-corporate, t360-corporate, milltech-fx-2025, milltech-hedge-monitor-2026, ifrscommunity-ifrs9-hedge, bdo-ifrs9-hedge-doc, pwc-ch-fer-fi-2025, fmia-art108, efd-finfrag-2022, cms-fmia-revision-2025, isda-emir-refit-mdr, linklaters-emir3-2025, jonesday-emir-vm-2017, clariant-frm-2020]
 evidence_note: >-
   Instruments, layering and the execution/confirmation sequence are established practice. Accounting: IFRS 9 requires
   formal designation and documentation at inception, an economic relationship, credit risk not dominating and a
@@ -327,10 +349,15 @@ evidence_note: >-
   documentation or effectiveness tests, and hedges of highly probable future transactions can be recognised in equity
   or disclosed in the notes[](cite:pwc-ch-fer-fi-2025). Regulation: FinfraG requires timely confirmation of OTC
   derivatives[](cite:fmia-art108); the Swiss trade-reporting duty for small non-financial counterparties was postponed
-  to 1 January 2028[](cite:efd-finfrag-2022); in the EU, banks (financial counterparties) have reported on behalf of
-  NFC- clients since June 2020[](cite:isda-emir-refit-mdr), and EMIR 3 has applied since 24 December 2024 with new
-  clearing-threshold calculations phased in via technical standards[](cite:linklaters-emir3-2025). Physically settled
-  FX forwards are exempt from EU initial-margin rules[](cite:jonesday-emir-vm-2017). Average hedge ratios (~48%) and
-  tenors (~5 months) come from a vendor-sponsored survey[](cite:milltech-fx-2025) and are indicative only. Platform
-  capabilities are vendor-stated[](cite:lseg-fxall-corporate,t360-corporate). Forward rates, quotes, bands and the
-  worked example are illustrative synthesis; this is not advice on any company's regulatory classification.
+  to 1 January 2028[](cite:efd-finfrag-2022) (the same FMIA revision package proposes abolishing it before it starts,
+  Parliament deciding in 2025–2026[](cite:cms-fmia-revision-2025)); in the EU, banks (financial counterparties) have
+  reported on behalf of NFC- clients since June 2020[](cite:isda-emir-refit-mdr), and EMIR 3 has applied since
+  24 December 2024 with new clearing-threshold calculations phased in via technical
+  standards[](cite:linklaters-emir3-2025). Physically settled FX forwards are exempt from EU initial-margin
+  rules[](cite:jonesday-emir-vm-2017). Hedge-ratio and tenor benchmarks are vendor-sponsored survey data: MillTech's
+  Corporate Hedging Monitor Q1 2026 (250 senior finance decision-makers at UK and US corporates, corporate sample)
+  reports ≈ 57% and ≈ 6.6 months[](cite:milltech-hedge-monitor-2026), versus ≈ 48–49% and ≈ 5.3 months in the vendor's
+  2025 Global FX Report (750 corporates plus 750 fund managers)[](cite:milltech-fx-2025) — indicative only. Platform
+  capabilities are vendor-stated[](cite:lseg-fxall-corporate,t360-corporate). Forward rates, quotes, bands, the option
+  premium and the worked example are illustrative synthesis; this is not advice on any company's regulatory
+  classification.

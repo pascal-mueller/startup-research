@@ -28,7 +28,7 @@ A company can be profitable on paper and still fail because it runs out of cash 
 
 [Alpine Robotics](co:alpine) wins three large robot projects in the same quarter. The P&L looks excellent. But Alpine has to buy CHF 4m of components and pay its engineers now, while the customers pay 30% on order, 50% on delivery (four months later) and 20% after acceptance. For about five months, Alpine is funding CHF 3m+ of work out of its own pocket. On top of that, 45% of its revenue is in euros while most of its costs are in Swiss francs (only some components are bought in EUR), so a 5% fall in EUR/CHF would wipe out a meaningful part of the margin.
 
-Nobody at Alpine is called "treasurer". But someone has to see this coming, make sure the CHF 12m credit line is available, decide whether to lock in the euro rate with a [forward](term:forward), and tell the CEO whether the company can afford a fourth project. At Alpine that is Petra (Head of Accounting), who keeps the cash sheet, and Martin (CFO), who decides. That is treasury work.
+Nobody at Alpine is called "treasurer". But someone has to see this coming, make sure the [CHF 12m credit line](why:alpine-credit-line) is available, decide whether to lock in the euro rate with a [forward](term:forward), and tell the CEO whether the company can afford a fourth project. At Alpine that is Petra (Head of Accounting), who keeps the cash sheet, and Martin (CFO), who decides. That is treasury work. (Why CHF 12m when the gap above is CHF 3–4m? Hover the line.)
 
 </Example>
 
@@ -65,9 +65,9 @@ Abstract descriptions like "treasury optimises liquidity" are unhelpful. Here is
 2. **07:45, Lea.** Refreshes the positioning workbook. Group cash is about CHF 41m, CHF 2.6m below yesterday's forecast.
 3. **08:10, Lea.** Traces the gap: HM Italia's largest customer did not pay EUR 2.25m due yesterday (she emails Giulia, the Italian finance manager); the German municipality collected a EUR 0.3m trade-tax prepayment by [direct debit](term:direct-debit) that nobody had forecast; and a CHF 180k supplier payment went out twice. She checks the duplicate against the supplier's bank details before calling it an error rather than fraud.
 4. **08:40, Lea.** HM Deutschland will be EUR 1.35m below its account minimum after today's supplier run. She proposes a same-day EUR 1.5m transfer from the parent's EUR account, as a drawing under the existing intercompany framework agreement (priced at arm's length, so no new contract is needed).
-5. **09:10, Daniel.** Reads Lea's one-page position email and approves the transfer as second signatory before the bank's early-afternoon EUR cut-off. He decides *not* to do anything with the CHF 13m on the parent's main account: it is needed for the 25 November Swiss payroll and the December payrolls, a CHF deposit would earn about 0%, and the drawn credit facility can only be reduced at its next rollover date.
-6. **09:30, Daniel.** Checks the [13-week forecast](term:short-term-forecast): the low point, in mid-December, stays above the CHF 10m minimum liquidity the CFO wants. He checks the EUR [hedge ratio](term:hedge-ratio) report Lea prepared yesterday: next quarter is 75% hedged, inside the 60–90% policy band. No trade today.
-7. **10:00, Daniel.** Approves (as second signatory) a batch of 64 supplier payments prepared by the Swiss accounting team, after asking AP to call back one supplier whose bank details changed last week.
+5. **09:10, Daniel.** Reads Lea's one-page position email and approves the transfer as second signatory before the bank's early-afternoon EUR cut-off. He decides *not* to do anything with the CHF 13m on the parent's main account: it is needed for the 25 November Swiss payroll and the December payrolls with 13th salaries — the 13-week forecast's [low point](why:week-four-trough) falls in the week of 14 December — and the CFO's CHF 10m minimum liquidity is held at the parent. A CHF deposit would earn about 0% anyway, and the drawn credit facility cannot be prepaid mid-period without break costs, so a reduction waits for the next [interest-period](term:interest-period) rollover.
+6. **09:30, Daniel.** Checks the [13-week forecast](term:short-term-forecast): the low point — about CHF 18m in mid-December, about CHF 12m of it usable once the trapped Chinese cash is excluded — stays above the CHF 10m minimum liquidity the CFO wants. He checks the EUR [hedge ratio](term:hedge-ratio) report Lea prepared yesterday. Q4 2026, the nearest quarter, is 25 of EUR 34m hedged — 74%, inside its 60–90% band and on the 75% target. Q1 2027 is 30 of EUR 40m hedged — 75%, which is *above* the 40–70% band that applies to that quarter ([a passive over-hedge](why:passive-over-hedge), since Q1 orders landed after the forwards did; the bands are graded by quarter — 60–90 / 40–70 / 25–55 / 0–40 — and only the nearest quarter gets 60–90%). No new hedges today: per policy the fix is a rebalance within the month — roll about EUR 3m of the Q1 forwards to Q2 at the next hedge run, taking Q1 to about 68% and Q2 to about 51%.
+7. **10:00, Daniel.** [Approves (as second signatory)](why:prepares-never-releases) a batch of 64 supplier payments prepared by the Swiss accounting team, after asking AP to call back one supplier whose bank details changed last week.
 
 </Callout>
 
@@ -75,15 +75,15 @@ Every item in that list is a workflow in this manual. Notice who does what: the 
 
 ## Why hold cash while borrowing?
 
-A beginner looking at Helvetic's balance sheet asks: the group has about CHF 41m of cash, about CHF 60m drawn on its credit facility and a CHF 100m bond. Why not use the cash to repay debt? Treasurers do net the two where they can, but gross cash never falls to zero, for concrete reasons:
+A beginner looking at Helvetic's balance sheet asks: the group has about CHF 41m of cash, about CHF 63m drawn on its credit facility (CHF 30m and EUR 35m) and a CHF 100m bond. Why not use the cash to repay debt? Treasurers do net the two where they can, but gross cash never falls to zero, for concrete reasons:
 
 - **Cash sits where it can't be used.** About CHF 6m is in China, where dividends can be paid only once a year and capital controls apply ([trapped cash](term:trapped-cash)).
 - **Every account needs an operating float.** Twelve accounts in six currencies each need a [minimum operating balance](term:minimum-operating-balance) for local payments and direct debits, and the CFO wants CHF 10m at the parent at all times.
 - **Cash swings inside the month.** Payroll weeks, VAT dates and supplier runs move group cash by CHF 15–20m within days; the monthly average hides the troughs.
-- **Debt can't be repaid at any moment.** The bond is fixed until 2028. Credit-facility drawings run for [interest periods](term:interest-period) of one to three months and are normally reduced at rollover dates, not mid-period.
+- **Debt can't be repaid at any moment.** The bond is fixed until 2028. Credit-facility drawings run for [interest periods](term:interest-period) of one to three months (rolling on the 15th) and are normally reduced at the rollover dates: mid-period prepayment is possible, but it breaks the bank's funding for the period and carries break costs.
 - **Currencies don't match.** EUR cash at the parent is not CHF; converting it to repay a CHF drawing creates FX trades and may leave the EUR side short next week.
 
-What treasurers *do* is keep gross cash as low as safety allows and treat the **undrawn** part of the committed facility (CHF 140m at Helvetic) as the real liquidity reserve. Surplus CHF goes to reducing drawings at the next rollover, not into deposits.
+What treasurers *do* is keep gross cash as low as safety allows and treat the **undrawn** part of the committed facility (about CHF 137m at Helvetic) as the real liquidity reserve. Surplus CHF goes to reducing drawings at the next rollover, not into deposits.
 
 <Callout type="synthesis" title="What a 0% Swiss franc does to treasury decisions (autumn 2026)">
 
@@ -91,7 +91,7 @@ The SNB left its policy rate at 0% on 24 September 2026[](cite:snb-mpa-2026-09-p
 
 - **CHF surplus earns about nothing.** A CHF term deposit or CHF money-market fund yields roughly zero, so the motive for placing CHF is safety (spreading cash across banks after the 2023 SVB and Credit Suisse episodes), not income.
 - **Repaying debt beats depositing.** A company with drawn floating-rate CHF debt saves the loan margin by reducing the drawing; a deposit earns nothing.
-- **Other currencies still pay.** EUR balances earn around €STR (about 1.9–2.0%) and USD balances around SOFR (about 3.5–4%), illustrative. That tempts companies to hold more foreign currency than they need, which is an FX risk, not a free yield.
+- **Other currencies still pay.** EUR balances earn around €STR (about 2.2–2.4%) and USD balances around SOFR (about 3.5–4%), illustrative. That tempts companies to hold more foreign currency than they need, which is an FX risk, not a free yield.
 
 Treasurers still follow the SLY order for any placement: **safety, liquidity, then yield** (see [investment policy](term:investment-policy)).
 
@@ -108,7 +108,7 @@ Beginners tend to lump treasury together with everything else in finance. The bo
 
 <Callout type="survey" title="What treasurers say they prioritise">
 
-In the AFP's 2025 Treasury Benchmarking Survey (523 US practitioners, autumn 2024), cash management and forecasting were the top departmental priority for 73%[](cite:afp-top-tasks-2025), and 62% named cash or liquidity forecasting their most challenging task[](cite:afp-bench-2025). In the 2026 edition (425 responses, May 2026) forecasting was still the most-named challenge, at 49%[](cite:afp-bench-2026). The EACT's 2025 survey of European group treasurers ranked cash-flow forecasting as priority number one, ahead of long-term funding and treasury technology[](cite:eact-2025). PwC's 2025 survey of 350 treasurers found CFOs and treasurers ranking cash and liquidity management as a top priority[](cite:pwc-gts-2025).
+In the AFP's 2025 Treasury Benchmarking Survey (523 US practitioners, autumn 2024), cash management and forecasting were the top departmental priority for 73%[](cite:afp-top-tasks-2025), and 62% named cash or liquidity forecasting their most challenging task[](cite:afp-bench-2025). In the 2026 edition (425 responses, May 2026) forecasting was still the most-named challenge — named by about half of respondents (49%, as reported by AFP — figure not confirmed against the primary text)[](cite:afp-bench-2026). The EACT's 2025 survey of European group treasurers ranked cash-flow forecasting as priority number one, ahead of long-term funding and treasury technology[](cite:eact-2025). PwC's 2025 survey of 350 treasurers found CFOs and treasurers ranking cash and liquidity management as a top priority[](cite:pwc-gts-2025).
 
 These are surveys of treasury professionals, mostly at mid-sized and large companies, and the AFP samples are US-based. They tell you what practitioners worry about, not what small companies without a treasurer experience.
 

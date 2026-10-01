@@ -56,7 +56,7 @@
     midmarket: >-
       Yes. Treasury manager or head of treasury reports to the CFO. The CFO sets limits, approves hedging and funding
       beyond the treasury's mandate, signs covenant certificates and runs the top bank relationships — at Helvetic,
-      Thomas meets Daniel weekly and co-signs payments above CHF 2m.
+      Thomas meets Daniel weekly and co-signs payments above CHF 2m together with the CEO.
     multinational: >-
       Yes. The Group Treasurer reports to the CFO. The CFO chairs the treasury committee, approves policy and major
       transactions (bond issues, RCF, M&A financing), deals with rating agencies and investors — at GlobalChem, Markus
@@ -98,17 +98,21 @@
           decision: Usually none. Occasionally agrees to a hedge outside Daniel's mandate or a change of minimum cash.
           with: "[Daniel](/org/roles-treasury-manager)"
         - time: Ad hoc, a few times a month
-          activity: Second signature on payments above CHF 2m
-          why: Helvetic's signing matrix requires two signatures above CHF 2m, one of them CFO or CEO.
+          activity: Co-sign single payments above CHF 2m (with the CEO)
+          why: >-
+            Helvetic's signing matrix: payments up to CHF 2m follow four-eyes at the parent (Swiss AP or Lea prepares,
+            Daniel releases — the preparer varies by work type, the release never does); a single payment above CHF 2m
+            needs Thomas and the CEO as co-signers in addition to the four-eyes release, and above
+            CHF 10m the board. Lea prepares and analyses but is never a signatory.
           system: Bank connectivity tool / EBICS signature app on his phone
           info: Payment batch with supporting invoice or contract; Daniel's note if unusual
           decision: Release or query. He relies on the fact that AP and Daniel checked the beneficiary.
-          with: Daniel, Head of Group Accounting (Claudia)
+          with: Daniel, the CEO; Head of Group Accounting (Claudia)
         - time: WD+8 monthly
           activity: Review the monthly treasury report before the executive board meeting
           why: The executive board and later the board of directors get a liquidity and FX section he must be able to defend.
           system: Report pack (PowerPoint/Excel)
-          info: Cash and net debt by entity, 18-month liquidity plan, hedge ratios and mark-to-market, counterparty exposure, forecast accuracy
+          info: Cash and net debt by entity, 18-month liquidity plan, hedge ratios and mark-to-market, counterparty exposure and limit usage, forecast accuracy
           decision: What to say to the executive board; whether any item needs a board-level decision.
           with: Daniel; Marco (FP&A) for the link to the business forecast
         - time: Quarterly
@@ -120,7 +124,10 @@
         - time: Semi-annual (after June and December close)
           activity: Sign the covenant compliance certificate
           why: The RCF requires a signed certificate confirming net debt / EBITDA ≤ 3.25x and interest cover ≥ 4x.
-          info: Calculation by Claudia (accounting figures) checked by Daniel (debt, cash definitions)
+          info: >-
+            Claudia (Group Accounting) computes the LTM ratios from the closed accounts using the facility's
+            definitions; Lea supplies the net-debt schedule; Daniel reviews and presents to the banks; Marco (FP&A)
+            supplies forecast EBITDA for the forward headroom only.
           decision: Sign; or, if headroom is thin, start a conversation with the agent bank early.
           with: Claudia, Daniel, agent bank
         - time: Annually
@@ -311,9 +318,9 @@
           activity: Release transfers and approve payment batches as second signatory
           why: Collective signature — Lea or accounting enters, Daniel releases; nothing leaves on one signature.
           system: Connectivity tool / EBICS signature
-          info: Transfer details; HM AG supplier batches (Tue and Thu) with the list of new or changed beneficiaries
+          info: Transfer details; HM AG supplier batches (prepared by Swiss accounting Tuesday and Thursday, released the next morning) with the list of new or changed beneficiaries
           decision: Release; hold a payment with changed bank details until call-back verification is done.
-          with: Lea, Swiss accounting (AP), Thomas for payments above CHF 2m
+          with: Lea, Swiss accounting (AP); Thomas and the CEO for a single payment above CHF 2m
         - time: Tue–Wed, weekly
           activity: 13-week forecast review and overrides
           why: Subsidiary forecasts are uneven in quality; the forecast drives investment, RCF and hedging decisions.
@@ -330,7 +337,10 @@
           with: Thomas (CFO)
         - time: Weekly, usually Fri
           activity: FX exposure check and hedge execution
-          why: EUR revenue is hedged with rolling forwards inside a 60–90% band for the next quarter; new orders shift exposure.
+          why: >-
+            EUR revenue is hedged with rolling forwards inside the graded policy bands (Q+1 60–90%, Q+2 40–70%,
+            Q+3 25–55%, Q+4 0–40%); new orders shift exposure, so he checks the cover picture weekly and tops up
+            opportunistically. The formal monthly layer is decided after the WD7 exposure review.
           system: Lea's hedge-ratio workbook; bank FX portals or a multi-bank trading platform; phone
           info: Exposure per currency from subsidiary forecasts and order book, existing forwards, current rates from two or three banks
           decision: Whether to add a layer now, how much, with which bank (price and wallet share), within his dealing mandate.
@@ -367,9 +377,12 @@
           info: Open forwards with bank valuations, deposits, RCF drawings and interest, intercompany loan balances and interest
           decision: None usually; resolves differences with Claudia's team.
           with: Claudia (Head of Group Accounting)
-        - time: WD5 monthly
+        - time: WD7–WD8 monthly
           activity: Monthly hedge layer
-          why: The policy layers hedges month by month so the hedge rate averages over time.
+          why: >-
+            The policy layers hedges month by month so the hedge rate averages over time. The layer runs after the
+            monthly exposure cycle: subsidiaries submit exposures by WD5, Lea consolidates and computes the hedge
+            requirement against the graded bands, Daniel reviews the exposure report on WD7 — then deals.
           system: Hedge workbook, bank dealing
           info: Exposure forecast months 1–12, current cover per month, policy bands
           decision: Size of the new layer; any exceptions to propose to Thomas
@@ -391,8 +404,10 @@
           activity: Covenant calculation support and compliance certificate
           why: RCF covenants are tested semi-annually; a breach is a default event.
           system: Accounting close figures + treasury debt data in Excel
-          info: EBITDA from Claudia, net debt definition per facility agreement
-          decision: Whether headroom is thin enough to warn the banks early
+          info: >-
+            Claudia (Group Accounting) computes the LTM ratios from the closed accounts per the facility's
+            definitions; Lea supplies the net-debt schedule; Marco's forecast EBITDA feeds the forward headroom only
+          decision: Whether headroom is thin enough to warn the banks early (he reviews the result and presents to the banks)
           with: Claudia, Thomas, agent bank
         - time: Annually
           activity: Audit, policy review, KYC wave, RCF bank meeting
@@ -826,7 +841,7 @@
       alongside the close, VAT and AP oversight.
     midmarket: >-
       Yes — Claudia at Helvetic owns group close and consolidation, books treasury deals and intercompany loans from Lea's
-      data and computes EBITDA for covenants.
+      data and computes the LTM covenant ratios per the facility's definitions.
     multinational: >-
       Yes (Chief Accounting Officer / Group Reporting). Hedge accounting, IFRS 9 documentation, treasury postings are joint
       topics with treasury; bank reconciliation often in the SSC.

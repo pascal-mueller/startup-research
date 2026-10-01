@@ -64,7 +64,7 @@
   company: alpine
   size: sme
   summary: >-
-    CHF 80m revenue, three entities, 9 accounts at two banks, a CHF 12m credit line. Treasury is a set of tasks shared
+    CHF 80m revenue, three entities, 9 accounts in total — most at two Swiss banks, plus [the US subsidiary's local US operating account](why:alpine-local-us-account) — and a [CHF 12m credit line](why:alpine-credit-line). Treasury is a set of tasks shared
     between Martin (CFO), who decides, and Petra (Head of Accounting), who runs cash, payments and bank reconciliations
     alongside the close. Subsidiaries have a managing director and a part-time local bookkeeper each.
   typical: "SMEs with roughly CHF 30–300m revenue and a handful of entities; finance team of 5–15 people with no dedicated treasurer."
@@ -119,7 +119,7 @@
         dotted: true
         note: Transfer pricing, intercompany loan rates, annual audit
   whoDoesWhat:
-    - { task: Daily cash check, who: "Petra, around 08:30, e-banking of both banks (DE and US balances viewed with read access); updates the Excel cash sheet. Martin looks only when she flags something." }
+    - { task: Daily cash check, who: "Petra, around 08:30, in three e-banking portals — the two Swiss banks, where she views the German and US accounts with read access, and the US subsidiary's local US bank; updates the Excel cash sheet. Martin looks only when she flags something." }
     - { task: Cash forecast, who: "Petra maintains a 13-week sheet; the key inputs are milestone dates from project managers and the controller. Martin reviews weekly in their Monday meeting." }
     - { task: Payments, who: "AP prepares the payment proposal in Business Central; Petra checks and uploads the file via EBICS; Martin gives the second approval (collective signature). Local bookkeepers pay local suppliers in DE/US; the managing director co-signs." }
     - { task: FX, who: "Martin decides conversions and forwards; he calls the large Swiss bank's FX desk or uses its platform. Petra checks the confirmation and books it." }
@@ -203,14 +203,14 @@
                 note: Local finance manager or controller each; local AP/AR
   whoDoesWhat:
     - { task: Daily cash position, who: "Lea at ~08:00 from the multibank tool (balances of all 12 accounts), plus emails from subsidiaries on large items; Daniel reviews by 09:30." }
-    - { task: 13-week forecast, who: "Subsidiary finance managers submit an Excel template every second Thursday; Lea consolidates; Daniel adjusts and presents to Thomas monthly." }
-    - { task: FX hedging, who: "Subsidiaries report EUR/USD/CNY exposures monthly; Lea computes the hedge requirement against the policy corridor; Daniel trades forwards with the RCF banks; Lea matches confirmations; Claudia's team books and documents hedge accounting." }
-    - { task: Payments, who: "Commercial payments: local finance teams prepare and release them locally (two local signatures). Treasury payments (IC loans, deal settlements): Lea prepares, Daniel and Thomas release." }
-    - { task: Funding and covenants, who: "Daniel runs the RCF (drawings, renewals) with Thomas; Lea calculates net debt/EBITDA semi-annually from Claudia's figures; Thomas signs the compliance certificate." }
+    - { task: 13-week forecast, who: "Weekly: Lea sends the template Monday, subsidiary finance managers submit by Tuesday noon, Lea consolidates Tue–Wed, Daniel reviews Wednesday and sends the one-page view to Thomas on Thursday; Thomas reviews the medium-term (18-month) plan monthly." }
+    - { task: FX hedging, who: "Subsidiaries report EUR/USD/CNY exposures by WD5; Lea computes the hedge requirement against the graded policy bands (Q+1 60–90%, Q+2 40–70%, Q+3 25–55%, Q+4 0–40%); Daniel reviews the exposure report on WD7 and then trades forwards with the RCF banks ([the cycle's order](why:wd5-wd7-hedge-cycle)); Lea matches confirmations; Claudia's team books and documents hedge accounting." }
+    - { task: Payments, who: "Commercial payments: local finance teams prepare and release them locally (two local signatures). Treasury payments (IC loans, deal settlements): Lea prepares, Daniel releases (four-eyes — he also releases what Swiss AP prepares for supplier runs); a single payment above CHF 2m needs Thomas and the CEO as co-signers in addition." }
+    - { task: Funding and covenants, who: "Daniel runs the RCF (drawings, renewals) with Thomas; Claudia (Group Accounting) computes the LTM covenant ratios from the closed accounts using the facility's definitions, Lea supplies the net-debt schedule, Daniel reviews and presents to the banks, and Marco supplies forecast EBITDA for the forward view; Thomas signs the compliance certificate." }
     - { task: Bank accounts, who: "Daniel owns the bank account register and approves every new account with Thomas; local managers sign local bank documents." }
   notes:
     - "Segregation of duties with two people is tight: Daniel trades, Lea confirms, group accounting settles and books. When either is absent, Claudia or Thomas steps in — a known key-person risk."
-    - "Subsidiary finance managers report solid-line to their local managing director and dotted-line to the CFO. They are **not** part of treasury, but most treasury input comes from them — see [Working with subsidiaries](/org/with-subsidiaries)."
+    - "Subsidiary finance managers report solid-line to their local managing director and dotted-line to the CFO. They are **not** part of treasury, but most treasury input comes from them — see [Working with subsidiaries](/org/with-subsidiaries) and [why the line is deliberately dotted](why:subsidiary-dotted-line)."
 
 - id: globalchem
   title: Group Treasury with specialised desks, in-house bank and payment factory

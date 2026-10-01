@@ -36,6 +36,16 @@ for (const f of walk('content/sources', '.yaml'))
     sources.set(s.id, f)
     if (!s.url) warn.push(`Source ${s.id} has no url`)
   }
+const whyNotes = new Map()
+for (const f of walk('content/why', '.yaml'))
+  for (const w of y(f) ?? []) {
+    if (whyNotes.has(w.id)) errors.push(`Duplicate why id "${w.id}" in ${f} (also ${whyNotes.get(w.id)})`)
+    whyNotes.set(w.id, f)
+    for (const k of ['claim', 'short', 'detail']) if (!w[k]) errors.push(`Why note ${w.id} missing ${k}`)
+    if (w.short && w.short.length > 400) warn.push(`Why note ${w.id}: short is long for a tooltip (${w.short.length} chars)`)
+    for (const t of w.terms ?? []) if (!terms.has(t)) errors.push(`Why note ${w.id}: unknown term "${t}"`)
+    for (const c of w.sources ?? []) if (!sources.has(c)) errors.push(`Why note ${w.id}: unknown source "${c}"`)
+  }
 const workflows = new Map()
 const WF_REQ = ['id', 'title', 'question', 'group', 'summary', 'objective', 'trigger', 'frequency', 'people', 'systems', 'data', 'steps', 'judgment', 'failure_modes', 'software', 'manual_work', 'by_size']
 const GROUPS = ['Cash & liquidity', 'Payments & banking', 'FX & risk', 'Debt & funding', 'Controls & reporting', 'Events & crises']
@@ -61,12 +71,13 @@ const pages = new Set(
 const files = [...walk('content', '.yaml'), ...walk('content', '.mdx')]
 for (const f of files) {
   const s = readFileSync(f, 'utf8')
-  for (const m of s.matchAll(/\]\((term|cite|wf|co):([^)]*)\)/g)) {
+  for (const m of s.matchAll(/\]\((term|cite|wf|co|why):([^)]*)\)/g)) {
     const [, kind, id] = m
     if (kind === 'term' && !terms.has(id)) errors.push(`${f}: unknown term "${id}"`)
     if (kind === 'cite') for (const c of id.split(',')) if (!sources.has(c.trim())) errors.push(`${f}: unknown source "${c}"`)
     if (kind === 'wf' && !workflows.has(id)) warn.push(`${f}: workflow not (yet) written "${id}"`)
     if (kind === 'co' && !companies.has(id)) errors.push(`${f}: unknown company "${id}"`)
+    if (kind === 'why' && !whyNotes.has(id)) errors.push(`${f}: unknown why note "${id}"`)
   }
   for (const m of s.matchAll(/\]\((\/[a-z0-9\-/]+)(#[^)]*)?\)/g)) {
     const p = m[1].replace(/\/$/, '')
@@ -107,5 +118,5 @@ const only = process.argv[2]
 const filt = (l) => (only ? l.filter((x) => x.includes(only)) : l)
 for (const w of filt(warn)) console.log('warn ', w)
 for (const e of filt(errors)) console.log('ERROR', e)
-console.log(`\n${terms.size} terms, ${sources.size} sources, ${workflows.size} workflows, ${pages.size} pages, ${roles.size} roles. ${errors.length} errors, ${warn.length} warnings.`)
+console.log(`\n${terms.size} terms, ${sources.size} sources, ${workflows.size} workflows, ${pages.size} pages, ${roles.size} roles, ${whyNotes.size} why notes. ${errors.length} errors, ${warn.length} warnings.`)
 process.exit(errors.length ? 1 : 0)

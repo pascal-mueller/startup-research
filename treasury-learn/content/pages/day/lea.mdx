@@ -12,7 +12,7 @@ related: [/day, /day/daniel, /org/roles-analyst, /companies/helvetic]
 
 Lea is the person who turns 12 bank statements, 8 subsidiary templates, SAP exports and a stream of emails into a few numbers Daniel can decide on. Her work is the **preparation half** of almost every workflow in the [Cash & liquidity](/workflows) group:
 
-- **Daily:** statements in, balances checked, known flows added, gaps explained, proposal sent — the [daily cash positioning](wf:daily-cash-positioning) workflow. She is also the second treasury signatory on transfers Daniel instructs.
+- **[Daily, before the cut-offs](why:day-morning-window):** statements in, balances checked, known flows added, gaps explained, proposal sent — the [daily cash positioning](wf:daily-cash-positioning) workflow. She is also the second treasury signatory on transfers Daniel instructs.
 - **Weekly:** roll the [13-week forecast](wf:cash-forecasting), collect and chase submissions, consolidate, compute variances; produce the EUR [hedge-ratio](term:hedge-ratio) report.
 - **Monthly:** intercompany interest, bank balance confirmations for accounting, counterparty exposure, data for Daniel's report.
 - **Constantly:** fixing data problems. A duplicated statement, a missing file, a subsidiary's copied template.
@@ -21,7 +21,7 @@ Her Monday and Tuesday are the upstream half of [Daniel's](/day/daniel). The tim
 
 <Callout type="field" title="Missing statements are rarely time zones">
 
-For a Swiss company, Asian banks' prior-day statements should be the *first* to arrive — their day ended hours before Europe's. When the Chinese statement is missing at 07:30, it is a connectivity or bank problem (a failed relay, a format change, an expired key), and it should be chased, not waited for. US statements are the ones that legitimately arrive last.
+For a Swiss company, Asian banks' prior-day statements should be the *first* to arrive — their day ended hours before Europe's. At Helvetic the Chinese account is the one that cannot arrive automatically at all: HM Suzhou's bank has no EBICS/SWIFT corporate reporting, so Wei emails a portal export and Lea keys it in. When that export is missing at 07:30, it is a handover or bank problem — [chased, not waited for](why:day-china-manual-balance). US statements are the ones that legitimately arrive last, mid-morning Basel time.
 
 </Callout>
 

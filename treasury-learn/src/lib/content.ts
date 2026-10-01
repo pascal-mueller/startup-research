@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react'
-import type { Page, PageMeta, Workflow, Term, Source, Company, CompareTopic } from './types'
+import type { Page, PageMeta, Workflow, Term, Source, Company, CompareTopic, WhyNote } from './types'
 
 // ---------- Narrative pages (MDX) ----------
 const mdxModules = import.meta.glob('/content/pages/**/*.mdx', { eager: true }) as Record<
@@ -52,6 +52,13 @@ export const terms: Term[] = Object.values(glossaryFiles)
   .flat()
   .sort((a, b) => a.term.localeCompare(b.term))
 export const termById = new Map(terms.map((t) => [t.id, t]))
+
+// ---------- Why notes ----------
+const whyFiles = import.meta.glob('/content/why/*.yaml', { eager: true, import: 'default' }) as Record<string, WhyNote[]>
+export const whyNotes: WhyNote[] = Object.values(whyFiles)
+  .flat()
+  .sort((a, b) => a.id.localeCompare(b.id))
+export const whyById = new Map(whyNotes.map((w) => [w.id, w]))
 
 // ---------- Sources ----------
 const sourceFiles = import.meta.glob('/content/sources/*.yaml', { eager: true, import: 'default' }) as Record<string, Source[]>

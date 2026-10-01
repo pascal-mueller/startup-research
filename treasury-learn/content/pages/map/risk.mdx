@@ -23,6 +23,8 @@ related: [/map/fx, /map/debt, /map/investments, /map/payments, /org/roles-fx-ris
 | Fraud | Could someone trick us into paying them, or steal from inside? | Segregation of duties, call-backs, payee checks, bank controls | [Payments](/map/payments) |
 | Operational | Could a process, system or key person fail? | Procedures, controls, backups, reconciliation, BCP | [Technology](/map/technology) |
 
+One risk sits outside this map's six but belongs in any interview with a chemicals or commodity company: **commodity price risk**. [GlobalChem](co:globalchem) buys feedstock (oil derivatives, metals) and sells additives and coatings; when input costs jump, the squeeze between feedstock prices and its own prices lands in margin long before any currency moves, and Jonas's team may hedge raw-material exposure alongside FX. Ask a chemicals treasurer "what is hedged first — feedstock or FX?" and the answer will tell you where their real risk sits.
+
 ## Who does this work, by company size
 
 | Task | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
@@ -42,7 +44,7 @@ In larger treasuries risk control is built into the organisation: the **front of
 
 **Plain:** the risk of not having enough cash, in the right place, when a payment is due. **Professional:** [liquidity risk](term:liquidity-risk) from forecast error, loss of funding (facility cancelled, covenant breach, market closed), [trapped cash](term:trapped-cash), bank failure, or a sudden call on cash (collateral, guarantees, acquisition). Measured by [headroom](term:liquidity-headroom) against forecast low points and stress [scenarios](term:scenario-analysis); controlled by minimum cash, committed facilities, maturity spreading and early refinancing. Rating agencies assess it too — S&P's "adequate" liquidity descriptor, for instance, requires sources of at least 1.2x uses over twelve months[](cite:sp-liquidity-descriptors).
 
-Example: Alpine is profitable, but a delayed CHF 2m acceptance and a slow German distributor could take cash from CHF 6m to CHF 1m within six weeks. Its liquidity risk tool is the CHF 12m committed line — and keeping the house bank informed early, so the line is still there when needed.
+Example: Alpine is profitable, but two acceptance certificates slipping in the same month (about CHF 1.5m) and a German distributor paying two months late could take cash from CHF 6m towards CHF 1m within six weeks. Its liquidity risk tool is the CHF 12m committed line — and keeping the house bank informed early, so the line is still there when needed.
 
 - **Drives:** [liquidity planning](wf:liquidity-planning), [liquidity crisis](wf:liquidity-crisis), [covenant monitoring](wf:covenant-monitoring).
 - **Terms:** [liquidity risk](term:liquidity-risk), [liquidity headroom](term:liquidity-headroom), [cash buffer](term:cash-buffer), [refinancing risk](term:refinancing-risk), [committed vs uncommitted](term:committed-facility).
@@ -64,7 +66,7 @@ Example: GlobalChem's monthly risk report shows 12-month FX CFaR at 95% of CHF 7
 
 **Plain:** the risk that rate changes increase interest cost or reduce interest income. **Professional:** [interest-rate risk](term:interest-rate-risk) on floating debt (cash-flow risk), on fixed debt (you lock in if rates fall), on investments (reinvestment and market-value risk) and on pension or lease liabilities; managed through the fixed/floating mix, [interest-rate swaps](term:interest-rate-swap), [caps](term:interest-rate-cap) and matching of debt and investment tenors. For Swiss companies with CHF debt, the zero-rate environment makes this a smaller issue than for EUR or USD borrowers.
 
-Example: A 1-point SARON rise costs Helvetic ~CHF 0.6m a year on its CHF 60m floating RCF drawing — below materiality, so unhedged. For Kleio, falling USD rates reduce MMF income on USD 4m by about USD 40k per point — irrelevant to runway.
+Example: A 1-point rise in SARON and EURIBOR costs Helvetic ~CHF 0.6m a year on its ≈ CHF 63m of floating RCF drawings (CHF 30m + EUR 35m) — below materiality, so unhedged. For Kleio, falling USD rates reduce MMF income on USD 4m by about USD 40k per point — irrelevant to runway.
 
 - **Drives:** [credit facility management](wf:credit-facility-management), [policy compliance](wf:policy-compliance).
 - **Terms:** [interest-rate risk](term:interest-rate-risk), [fixed vs floating](term:fixed-vs-floating), [interest-rate swap](term:interest-rate-swap), [duration](term:duration).

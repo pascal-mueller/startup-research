@@ -1,0 +1,159 @@
+# Why notes for stream wf-cash (liquidity planning, surplus cash investment, funding a subsidiary).
+# Every derivation below is re-derivable from content/companies.yaml and the canonical facts in docs/AUTHORING.md.
+
+- id: repay-rcf-not-chf-deposit
+  claim: "Surplus CHF repays the RCF at the 15th instead of sitting in a deposit"
+  short: "A CHF deposit earns ≈ 0% while the drawing costs SARON + 0.85% ≈ 1.1% — the only thing that makes the cash wait is the interest-period date (prepaying mid-period costs break fees)."
+  detail: |
+    Helvetic draws CHF 30m on the RCF at ≈ 1.1% (compounded SARON ≈ 0% plus the 0.85% margin). A CHF term deposit
+    earns ≈ 0.0–0.1%. Holding CHF 15m in a deposit while the loan is drawn therefore costs ≈ CHF 165k a year in gross
+    negative carry — and even netting the ≈ 0.4% commitment fee that resumes on the amount once it is undrawn, repaying
+    still saves ≈ 0.7% a year (≈ CHF 35k on CHF 15m for the four months to the May re-draw). The cash waits on the
+    current account until the 15 January rollover because prepaying mid-period breaks the bank's funding for the period
+    and costs break fees — [the 15th is the repayment moment](why:fifteenth-rollover-repayment). Deliberate exceptions:
+    cash held for safety, cash in entities that cannot repay parent debt, or where re-drawing is uncertain.
+  check: "If CHF rates rose toward the RCF's all-in cost, or the facility were uncommitted, holding cash could become the right answer."
+  terms: [negative-carry, interest-period, rcf]
+  sources: [snb-mpa-2026-09]
+
+- id: repayment-split-jan-feb
+  claim: "CHF 15m on 15 January, EUR 10m on 15 February — not both on one day"
+  short: "Both on 15 January would take usable cash to ≈ CHF 6m, below the CFO's CHF 10m floor; the EUR tranche's next interest-period end is 15 February."
+  detail: |
+    The 13-week forecast shows CHF 36.6m of group cash on 15 January 2027, of which ≈ CHF 6m is trapped at HM Suzhou.
+    Paying CHF 15m *and* EUR 10m (≈ CHF 9.4m) — CHF 24.4m — leaves CHF 12.2m gross, ≈ CHF 6.2m usable, under the
+    CFO's CHF 10m group minimum. CHF 15m alone leaves CHF 21.6m gross / ≈ CHF 15.6m usable. The EUR prepayment then
+    waits for the 15 February period end: at the 15 January rollover Daniel elects a one-month interest period on the
+    EUR tranche so that prepaying on 15 February is possible without break costs; by then the Q4 collections have landed
+    (≈ CHF 35m before the prepayment, ≈ CHF 19.6m usable after). The totals are unchanged — CHF 15m + EUR 10m repaid by
+    mid-February — and undrawn RCF moves 137 → 152 → 162.
+  check: "If the January collections slip past 15 January, even the CHF 15m must shrink — the forecast, not the calendar, sizes the repayment."
+  terms: [liquidity-headroom, trapped-cash, interest-period]
+
+- id: peak-need-not-average
+  claim: "USD 6m for HM Inc. — the Q1 2027 peak need, not the average draw"
+  short: "A request sized to the average draw leaves the peak uncovered; the troughs in the drawdown schedule are what can be placed."
+  detail: |
+    HM Inc. runs the balance up and down through the demo-centre and inventory spend: a ≈ USD 2m operating floor,
+    USD 3m committed to the January–February payments, USD 3m spare until the March build — cumulative need peaking at
+    USD 6m in Q1 2027, repaid from operating cash over 2028. The average balance across the spend is ≈ USD 3m; funding
+    that would leave the subsidiary short exactly when orders demand stock. Lea validates the *peak* and its duration,
+    and the troughs in the spending schedule set what can be placed (USD 3m into a government MMF for 4–8 weeks,
+    laddered before the payment dates).
+  check: "If the spend were spread evenly with no peak, the request would be over-sized and the validation step should cut it."
+  terms: [intercompany-loan, laddering]
+
+- id: loan-vs-capital-contribution
+  claim: "Loan rather than capital injection for HM Inc.'s two-year need"
+  short: "A temporary need the borrower can service favours a documented loan (interest deductible, repayable at period ends); permanent need, thin equity or no repayment prospect favour equity."
+  detail: |
+    The decision tree in one pass: (1) *Duration* — the demo-centre and inventory need is temporary (repaid from
+    operating cash over 2028), so a 2-year loan fits; equity is permanent. (2) *Borrower strength* — HM Inc.'s equity is
+    positive and interest is small against its earnings, so thin-capitalisation and interest-limitation rules do not
+    bite; near negative equity the same facts would point to a capital injection (and Swiss Art. 725(2)-style
+    over-indebtedness rules can force one). (3) *Tax* — HM Inc. deducts USD 240k of interest a year (4% × 6m, the
+    safe-harbour minimum); equity gives no deduction, and the loan rate must be arm's length in both directions.
+    (4) *Reversibility* — a loan repays at interest-period ends; getting equity back needs dividends or a capital
+    reduction. (5) *Alternatives* — a local bank loan pays an external margin on money the group already has.
+  check: "If the need were permanent, or HM Inc.'s equity too thin for debt, the same facts would point to a capital injection."
+  terms: [capital-injection, intercompany-loan, thin-capitalisation, transfer-pricing]
+
+- id: dividend-vs-intercompany-loan
+  claim: "Upstreaming permanent surplus by dividend, not by intercompany loan"
+  short: "For cash the parent will never send back, a dividend is final and taxed once; a loan stays exposed and prices like debt. When it doesn't work: no treaty WHT relief, thin capitalisation, or planned local reinvestment."
+  detail: |
+    HM Suzhou's ≈ CNY 55m is surplus to local needs and permanently idle. Three routes: (a) **dividend** — one tax:
+    Chinese dividend WHT (5% under the China–Switzerland treaty), then the cash is the parent's for good; (b) **upstream
+    loan to HM AG** — no dividend WHT, but Chinese exchange-control registration, transfer-pricing documentation, a
+    Swiss interest-WHT question on the interest under the 10/20 non-bank rules, and the balance must eventually be
+    repaid; (c) **service fees or royalties** — only where they are real and documented. For a permanent surplus (a) is
+    cleanest, which is why Daniel plans the 2027 dividend cycle instead of a loan. It stops working where the dividend
+    rate has no treaty relief, where the subsidiary's equity is thin (a loan would be re-characterised), where the cash
+    is earmarked for local investment, or where reversibility matters — then an intercompany loan is the right, and
+    more expensive, instrument.
+  check: "If the cash were temporary or might be needed locally, the loan route would win despite its documentation burden."
+  terms: [repatriation, withholding-tax, trapped-cash, intercompany-loan]
+  sources: [ch-cn-dta-2013, china-briefing-dividends]
+
+- id: deposit-ladder-to-outflows
+  claim: "The USD 3m fund ladder is set to the February–March payment dates"
+  short: "A placement must mature when the money is needed: breaking a deposit costs money, and an unplanned facility draw costs more than any deposit earns."
+  detail: |
+    HM Inc.'s USD 3m is spare only until the Q1 demo-centre and inventory payments, so the government MMF is bought in
+    tranches maturing just before those dates (4–8 weeks) rather than for the policy's six-month maximum. The rule
+    generalises: maturities are laddered against known outflows — payroll, dividends, tax dates, debt service — with a
+    same-day-liquid portion kept for what might slip. In CHF at 0% the ladder earns nothing but prevents break costs;
+    in USD at ≈ 3.5–4% it earns while it waits. The same logic runs in reverse on the borrowing side: the May dividend
+    is a known outflow, so the re-draw is planned around it.
+  check: "If the payment dates were uncertain, the placement would shorten — or stay in same-day liquidity regardless of yield."
+  terms: [laddering, term-deposit, money-market-fund]
+
+- id: china-wht-5-percent
+  claim: "China dividend WHT at 5%, not 10%"
+  short: "The China–Switzerland DTA (2013) Art. 10(2) caps dividend WHT at 5% where the beneficial owner is a company holding directly at least 25% of the payer; HM Suzhou is wholly owned."
+  detail: |
+    Chinese domestic law taxes dividends to a foreign parent at 10%. The 2013 China–Switzerland agreement caps the rate
+    at 5% of the gross amount where the beneficial owner is a company (other than a partnership) holding directly at
+    least 25% of the capital of the payer, 10% in all other cases — subject to beneficial ownership and the treaty's
+    limitation-of-benefits clause. HM Suzhou is wholly owned by Helvetic Machines AG, so 5% applies. On the CNY 22.5m
+    distributable (CNY 25m profit less the CNY 2.5m statutory reserve): 5% leaves **CNY 21.4m ≈ CHF 2.4m**, while the
+    domestic 10% would leave CNY 20.3m. The lesson is to derive the rate from the country pair's treaty, never from the
+    domestic headline rate.
+  check: "If HM Suzhou were held through a non-qualifying structure or the LOB clause were not met, the 10% rate would apply."
+  terms: [withholding-tax, statutory-reserve, repatriation]
+  sources: [ch-cn-dta-2013, china-briefing-dividends]
+
+- id: net-debt-bridge-nov
+  claim: "Net debt ≈ CHF 128m at the November review — bridged from the canonical CHF 106m"
+  short: "CHF 106m at 30 September (1.36x on EBITDA ≈ CHF 78m) rises through Q4's working-capital build and the October rollover's re-pricing — not new borrowing."
+  detail: |
+    30 September 2026 (canonical LTM): CHF 100m bond + CHF 60.2m of drawings (CHF 35m + EUR 27m at 0.935) − ≈ CHF 54m
+    of group cash = CHF 106.2m ≈ **CHF 106m**; 106/78 = **1.36x**. By the review two things moved: the 15 October
+    rollover re-drew the loans as CHF 30m + EUR 35m ≈ CHF 62.7m (gross debt + ≈ CHF 2.5m from re-pricing), and group
+    cash drifted to CHF 35m as Q4 working capital built — the group ships in Q4 and collects in January–February, the
+    same effect the 13-week forecast shows as quiet December weeks and a January–February receipts climb. Net debt =
+    162.7 − 35 ≈ **CHF 128m**. The plan then moves 137 (Dec 2026) → 117 (Mar 2027, after the repayments) → 133 (June
+    2027 test) → 132 (Dec 2027 test): leverage tracks the group's own transactions — LTM EBITDA ≈ 78m at 30 September,
+    Marco's 2027 budget ≈ CHF 70m for the 2027 tests.
+  check: "If the canonical 30 September pair (EBITDA 78m / net debt 106m) changes, every derived figure moves with it."
+  terms: [net-debt, ebitda]
+
+- id: headroom-twelve-month-rule
+  claim: "Only committed facilities with ≥12 months of remaining life count as headroom"
+  short: "A facility inside its final year cannot be relied on past expiry — counting it would show headroom the company may not have."
+  detail: |
+    Helvetic's policy counts committed facilities that have at least twelve months to run (and covenant room) as
+    headroom. The CHF 200m RCF matures in October 2028 with both one-year extension options used, so during Q4 2027 it
+    enters its final year and drops out of the count: headroom falls from ≈ CHF 153m at 30 September 2027 to ≈ CHF 5m at
+    31 December 2027 (cash-based only) against the CHF 50m policy minimum — which is precisely what forces the
+    amend-and-extend by mid-2027 and the 2028 refinancing plan. Rolling the CHF 100m bond into the RCF would not fix it:
+    net debt is unchanged and the enlarged facility would itself be in its final year, counted as zero by the same rule.
+  check: "A policy that discounts rather than excludes final-year facilities would keep some headroom in the number — the refinancing timeline would not change."
+  terms: [liquidity-headroom, committed-facility, refinancing-risk]
+
+- id: reverse-stress-53m
+  claim: "EBITDA below ≈ CHF 53m breaks the December 2027 covenant test"
+  short: "Under the downturn's own working-capital effects net debt reaches ≈ CHF 172m; 172.4/3.25 = 53 — a 25% fall from the budget. With the dividend cancelled the break point is ≈ CHF 47m."
+  detail: |
+    The stress: EBITDA 70 → 50 from Q1 2027, the 20 largest customers pay 30 days later (−CHF 15m of cash), inventory
+    for cancelled orders (−CHF 8m), lower tax (+CHF 3m) → cumulative cash impact ≈ −CHF 40m by the December 2027 test.
+    Whatever the group draws on the RCF to hold the cash floor is cash-neutral for net debt, so net debt = 132.4 + 40 =
+    **172.4**. Breakeven: 172.4/3.25 = **53.0** — EBITDA below ≈ CHF 53m breaks, i.e. a 25% fall from the CHF 70m budget;
+    the stress's own CHF 50m is below it, hence 3.45x and a breach. With the dividend cancelled (net debt 152.4) the
+    break point is 152.4/3.25 = **46.9** — a 33% fall. So the board question is not "are we safe?" but "how far can
+    EBITDA fall before the covenant bites?".
+  check: "Excluding the downturn's working-capital effects from net debt would give a base-case breakeven of ≈ CHF 41m (132.4/3.25) — always state which convention is used."
+  terms: [covenant, covenant-headroom, liquidity-stress-test]
+
+- id: may-redraw
+  claim: "CHF 15m re-drawn before the May dividend"
+  short: "The May dividend is the known outflow the January repayment was spare until; a new drawing needs three business days' notice (only repayment waits for a period end) — and in the stress case the dividend is cut and the draw never happens."
+  detail: |
+    The base case pays a CHF 20m dividend in May against Q2 operating cash flow of ≈ CHF 12m and opening cash of
+    ≈ CHF 21m — without a draw the group would fall below its cash floor. New RCF drawings are made at a few days'
+    notice (prepayment, not drawing, waits for the 15th), so CHF 15m is drawn days before the payment and undrawn RCF
+    falls 162 → 147. The January round trip is deliberate: repaying CHF 15m saves (≈1.1% loan cost − 0.4% commitment
+    fee) × 15m × 4/12 ≈ **CHF 35k**, while the alternative — a CHF deposit — earns ≈ 0%. If the stress case triggers
+    and the dividend is cancelled, the draw is never made and the saving stands.
+  check: "If the dividend is cancelled or the Q1–Q2 collections beat forecast, the draw is unnecessary — the plan says so."
+  terms: [rcf, interest-period]

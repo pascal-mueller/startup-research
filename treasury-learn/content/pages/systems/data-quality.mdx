@@ -21,11 +21,11 @@ Most of the time analysts and operations staff spend on "systems" is spent on ex
 | Intraday vs final | Provisional [camt.052](term:camt-052) entries counted again when the [camt.053](term:camt-053) arrives | Position too high by the amount of intraday credits | System rules; analyst awareness |
 | Value date vs booking date | Balance "available" differs from "booked"; interest calculated on the wrong one | Cash seems to be there but a payment bounces / overdraft interest | Analyst uses the right balance type; ops checks [value dating](term:value-date) against bank terms |
 | Format change | After a bank release, a field moves or a code changes; import rejects the file or mis-maps it | Import error, or silently wrong categories | Treasury systems / connectivity vendor adjusts mapping |
-| Account not connected | Chinese, African or newly acquired accounts never come electronically | They are always the manual lines in the workbook | A connectivity project, or accepted as manual |
+| Account not connected | Accounts at banks that offer no corporate channel at acceptable cost — Helvetic's Chinese bank account is the standing example — or newly acquired subsidiaries not yet onboarded never come electronically | They are always the manual lines in the workbook | A connectivity project, or accepted as manual |
 
 <Example title="The missing statement" company="helvetic">
 
-On a Tuesday, the multibank tool shows 10 of 11 electronic statements at 07:45 — the German bank's EUR account is missing. Lea checks the EBICS job log: the download ran, but the bank returned "no data available". She calls the bank's electronic-banking helpdesk, which confirms a processing delay on their side, and she uses the bank portal's intraday view to get a provisional balance (EUR 3.1m). She marks the line "portal, provisional" in the position and tells Daniel, who postpones a EUR 2m transfer out of that account until the statement arrives at 10:20. The fix was a phone call; the cost was two hours of uncertainty on the day's biggest EUR balance.
+On a Tuesday, the multibank tool shows 10 of 11 electronic statements at 07:45 — the German bank's EUR account is missing. Lea checks the EBICS job log: the download ran, but the bank returned "no data available". She calls the bank's electronic-banking helpdesk, which confirms a processing delay on their side, and she uses the bank portal's intraday view to get a provisional balance (EUR 3.1m). She marks the line "portal, provisional" in the position and tells Daniel, who [postpones a EUR 2m transfer out of that account](why:systems-postpone-on-missing-statement) until the statement arrives at 10:20. The fix was a phone call; the cost was two hours of uncertainty on the day's biggest EUR balance.
 
 </Example>
 
@@ -40,12 +40,18 @@ Statement lines have to be classified — into [cash-flow categories](term:cash-
 
 Who fixes it: accounting maintains [posting rules](term:posting-rules) in the ERP; treasury (or its systems team) maintains classification rules in the TMS. When they are maintained separately, treasury's and accounting's views of the same bank line can disagree.
 
+<Example title="Rule decay at scale" company="globalchem">
+
+One of GlobalChem's banks changes the code family it uses for card-acquirer settlements. About 600 statement lines a month — one subsidiary's card takings — stop firing their classification rule and fall into "unclassified" instead of "customer receipts". Nothing breaks loudly: the cash position is still right, but the receipts-vs-forecast variance for that entity looks like a mysterious shortfall until a back-office analyst traces it to the code change. Ben's treasury-systems team patches the mapping rule in the TMS and reclassifies the backlog. The patch is an hour; noticing it took the variance review.
+
+</Example>
+
 ## Remittance information
 
 Receipts are only useful for reconciliation if they say what they pay. [Remittance information](term:remittance-information) breaks in predictable ways:
 
 - **Missing or generic** — "payment June" instead of invoice numbers. AR matches by hand.
-- **Truncated** — MT940's free-text field is limited (six lines of 65 characters); unstructured ISO 20022 remittance is limited to 140 characters per occurrence. Long invoice lists get cut.
+- **Truncated** — MT940's free-text field is limited (six lines of 65 characters); unstructured ISO 20022 remittance is limited to 140 characters per occurrence, but the field repeats (up to ten occurrences in cross-border usage), which is why the "get cut" story is milder there. Long invoice lists still get cut in MT940.
 - **Lost in the chain** — intermediary banks or conversion between formats drop data (the ISO 20022 migration is intended to reduce this for cross-border payments[](cite:swift-iso-mt9xx)).
 - **Structured references ignored** — in Switzerland the QR-bill reference makes matching near-automatic ([QR-bill](term:qr-bill)), but only for customers who use it.
 

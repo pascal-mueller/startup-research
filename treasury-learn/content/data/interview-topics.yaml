@@ -1,4 +1,4 @@
-# "Who should I interview?" topics (spec §14). Schema: InterviewTopic in src/lib/types.ts.
+# "Who should I interview?" topics. Schema: InterviewTopic in src/lib/types.ts.
 # role = canonical role id from docs/AUTHORING.md (content/data/roles.yaml). "why" is markdown.
 # Rule of thumb behind every entry: interview the person who DID the work most recently, then the person who REVIEWS it,
 # then the person who DECIDES on it. Titles vary by company size — see sizeNote.
@@ -77,7 +77,9 @@
     - role: treasury-manager
       why: >-
         Typically a **signatory/approver** for large or treasury payments and owner of bank connectivity in mid-market
-        firms. Good on approval limits, what gets escalated, and fraud near-misses.
+        firms. Good on approval **authority** — roughly who has to approve what, and what gets escalated — and on fraud
+        near-misses. The limit amounts and signatory names themselves stay out of the conversation
+        ([why the line sits where it does](why:discovery-vs-reconnaissance)).
     - role: head-of-accounting
       why: >-
         In SMEs the head of accounting often runs the whole chain (AP, releases, reconciliation) — at [Alpine](co:alpine), Petra.
@@ -326,10 +328,10 @@
   sizeNote: >-
     **Startup/SME:** ERP (or accounting software) + e-banking + Excel; no TMS. **Mid-market:** the classic zone of
     "Excel plus one tool", often with a TMS selection underway (as at Helvetic). **Multinational:** full TMS or SAP
-    treasury modules, a systems team, and still Excel around the edges. Ask "what did you export into Excel this week?"
+    treasury modules, a systems team, and still Excel around the edges. Ask "did anything end up in Excel this week?"
   openers:
     - "Which systems did you open this week to do your job, and in what order?"
-    - "What did you export into Excel, and what did you do to it there?"
+    - "Did anything end up in Excel this week — and what did you do to it there?"
     - "What have you built yourself — macros, templates, scripts — and who maintains it when you are away?"
 
 - id: debt
@@ -415,14 +417,17 @@
       why: >-
         Will describe the bank's fraud tools; may not know the client's internal process.
   sizeNote: >-
-    Fraud is a **sensitive** topic everywhere. People describe near-misses and controls more readily than actual
-    losses; do not ask for amounts or names of victims, and never ask for the details of a current control (thresholds,
-    call-back numbers, signatory limits) — that is exactly the information fraudsters gather. **Startup/SME:** controls
+    Fraud is a **sensitive** topic everywhere — but the boundary is narrow. How a bank-detail change gets verified,
+    who has to approve what, what gets escalated and how the thresholds are written down: these are **core discovery
+    topics** — ask about them as open questions about the last instance. What stays out of the conversation are the
+    **specific values** behind a live control (limit amounts, signatory names, call-back numbers) and loss details
+    (amounts, names of victims) — exactly what fraudsters gather. People describe near-misses and controls more
+    readily than actual losses. **Startup/SME:** controls
     are informal (the CFO knows the suppliers). **Mid-market:** collective signature and call-back rules.
     **Multinational:** payment factory controls, sanctions screening, dedicated fraud monitoring.
   openers:
     - "Tell me about the last suspicious payment request someone caught — how was it spotted?"
-    - "What happens, step by step, when a supplier emails new bank details?"
+    - "Without the specifics — the last time a supplier's bank details changed, what happened from the email onwards?"
     - "What would you never let a system release automatically, and why?"
 
 - id: cash-pooling

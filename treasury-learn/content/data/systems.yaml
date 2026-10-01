@@ -148,7 +148,7 @@ products:
     segment: Mid-market to largest multinationals already on SAP
     current: "SAP ERP 6.0 (ECC) mainstream maintenance ends 31 Dec 2027 (optional extended maintenance to 2030), so many groups are in S/4HANA migrations that also reopen the treasury-system question[](cite:sap-ecc-maintenance). SAP Multi-Bank Connectivity (MBC) is SAP's managed cloud gateway to banks with embedded EBICS and Swift and support for SFTP/host-to-host and APIs[](cite:sap-mbc)."
     why: The treasury tools live in the same system as AP, AR and the GL, so bank statements post and payment runs originate without an interface. Large SAP shops (like GlobalChem) often use SAP itself as the TMS.
-    flows: "In: bank statements (camt.053/MT940) into electronic bank-statement processing with posting rules; market data feed; deals entered by treasury. Out: pain.001 from payment runs (F110) and treasury payments; GL postings for deals, hedge accounting, in-house-bank positions."
+    flows: "In: bank statements (camt.053/MT940) into electronic bank-statement processing with posting rules; market data feed; deals entered by treasury. Out: pain.001 from payment runs (F110) and treasury payments — approved and released inside SAP through Bank Communication Management / FSCM payment approval before reaching MBC or the bank; GL postings for deals, hedge accounting, in-house-bank positions."
     users: Treasury front/back office, accounting (statement posting, reconciliation), AP (payment runs), a treasury-systems team or SAP consultants for configuration.
     not: "Does not make SAP easier to change: configuration (posting rules, liquidity items, bank formats) usually needs SAP specialists. Subsidiaries on non-SAP ERPs still have to be connected. Forecasting from business units remains a data-collection problem."
     sizes: [midmarket, multinational]
@@ -272,7 +272,7 @@ products:
     vendor: Agicap (France)
     category: cash-platform
     segment: SMEs and mid-sized companies, mainly in Europe
-    current: Not re-verified in this session. Cash-flow tracking and forecasting from bank feeds and accounting data, with categorisation rules and scenarios; has broadened towards payables/receivables workflows.
+    current: Not re-verified in this session. Cash-flow tracking and forecasting from bank feeds and accounting data, with categorisation rules and scenarios; vendor pages describe a broadening into payables/receivables workflows (product-scope claim, unverified — ask the vendor or a customer).
     why: Replaces the SME's cash spreadsheet with automatically categorised bank transactions and a rolling forecast, usable by a CFO without a treasury team.
     flows: "In: bank transactions via aggregator/API connections and file imports; accounting/ERP open items. Out: cash reports and forecast scenarios."
     users: CFO, finance manager, accountant (Sarah or Petra-type users).

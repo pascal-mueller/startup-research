@@ -68,7 +68,9 @@ steps:
     where: ERP electronic bank statement / reconciliation tool
     when: "06:00–08:00"
     detail: >-
-      Statements arrive overnight and are imported automatically. The accountant checks that every account delivered a
+      Statements arrive overnight and are imported automatically — the queue worked each morning is the previous
+      [value date](term:value-date)'s traffic, which is why [reconciliation work clusters around value dates and
+      month-end](why:recon-value-date-clusters). The accountant checks that every account delivered a
       statement, that statement numbers are consecutive and that each opening balance equals the previous closing
       balance. A missing statement is chased the same day — treasury needs the same file for its
       [cash position](wf:daily-cash-positioning).
@@ -170,7 +172,7 @@ example:
 
     **Unapplied-receipts (suspense) account, group-wide:** CHF 312k at month-end, 41 customer payments without usable references. Claudia's team clears all but CHF 18k within five working days, mostly by asking customers for remittance advices. The remaining CHF 18k (six items, some older than 90 days) goes on the reviewer's list with named owners.
 
-    **The one that mattered.** On 28 May the queue also contained a CHF 7,900 debit on HM AG's CHF account with no ERP match. It was a direct debit by a software vendor whose contract had been terminated — legitimate authorisation, wrong continuation. Lea asked the bank to block further direct debits from that creditor and the amount was refunded. Not fraud, but found only because someone looked at the queue daily.
+    **The one that mattered.** On 28 May the queue also contained a CHF 7,900 debit on HM AG's CHF account with no ERP match. It was a direct debit by a software vendor whose contract had been terminated — a legitimate [LSV+](term:lsv-bdd) authorisation, wrongly continued. Lea objected at the bank within the payer's 30-day objection window, asked the bank to block further direct debits from that creditor, and the amount was refunded. Not fraud, but found only because someone looked at the queue daily.
 judgment:
   - decision: What an unmatched item is
     why: Remittance text is ambiguous; knowing that "payment May" from this Italian customer usually means the oldest three invoices is local knowledge.
@@ -216,7 +218,9 @@ by_size:
   startup: >-
     The accountant or external fiduciary reconciles monthly in a cloud accounting tool with a bank feed. The recurring
     headache is payment-service-provider payouts (e.g. Stripe): one net payout covers many customer charges, fees and
-    refunds and must be broken down using the provider's report. Nobody in the company sees the queue daily.
+    refunds and must be broken down using the provider's report — a recent Kleio payout of CHF 18,400 was 62 card
+    charges totalling CHF 19,900, less CHF 540 of Stripe fees and two refunds of CHF 960. Nobody in the company sees
+    the queue daily.
   sme: >-
     The head of accounting or an accountant matches daily or on payment days in the ERP; there is no separation between
     treasury and accounting because the same person does both. A monthly reconciliation per account is reviewed by the
@@ -265,7 +269,7 @@ ai_note: >-
   customer behaviour and treasury activity. Suggesting matches and drafting queries to customers is plausible
   assistance; vendors already market ML-based matching. The sign-off remains an accountable human control, and match
   rates are limited by data the software does not receive.
-terms: [reconciliation, cash-application, matching-rules, reconciling-item, suspense-account, camt-054, bank-statement, mt940, remittance-information, charge-bearer, qr-bill, intercompany-loan]
+terms: [reconciliation, cash-application, matching-rules, reconciling-item, suspense-account, camt-054, bank-statement, mt940, remittance-information, charge-bearer, qr-bill, intercompany-loan, lsv-bdd, value-date]
 related: [payment-processing, daily-cash-positioning, month-end-reporting, fraud-investigation, bank-fee-analysis]
 sources: [gtreasury-automatch, six-sps-cash-mgmt, six-address-factsheet]
 evidence_note: >-

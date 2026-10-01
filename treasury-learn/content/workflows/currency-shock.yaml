@@ -31,7 +31,10 @@ people:
   - role: FP&A / controlling
     does: Re-runs the full-year outlook and margin by product/market at the new rate; owns the budget-rate question.
   - role: Head of accounting
-    does: Revaluation of FX balances, hedge-accounting documentation and effectiveness, subsequent-events disclosure if near a reporting date.
+    does: >-
+      Revaluation of FX balances; hedge-accounting documentation and effectiveness testing only where the group
+      reports under IFRS (an IFRS 9 concern — Swiss GAAP FER groups like Helvetic do little formal hedge accounting);
+      subsequent-events disclosure if near a reporting date.
   - role: Sales / pricing / business units
     does: Decide price-list changes, surcharges, quote validity; report customer reactions (postponed orders).
   - role: Banks' FX sales desks
@@ -63,7 +66,7 @@ data:
     notes: Revalued through P&L at month-end; intercompany loans are often the largest and least remembered item.
   - name: Net assets of foreign subsidiaries
     source: Consolidation system
-    notes: "[Translation exposure](term:translation-exposure) — hits equity (OCI), not cash."
+    notes: "[Translation exposure](term:translation-exposure) — hits equity (a translation reserve under Swiss GAAP FER, OCI under IFRS), not cash."
   - name: Collateral agreements and credit lines for derivatives
     source: ISDA / CSA documents, bank credit approvals
     notes: Determines whether a move creates a cash call; most mid-market corporates have no CSA.
@@ -115,7 +118,8 @@ steps:
     where: Exposure workbook, ERP reports, consolidation data
     when: "Day 0, hours 2–4"
     detail: >-
-      Three separate numbers, never mixed: (1) **cash-flow exposure** — forecast foreign-currency inflows minus
+      [Three separate numbers, never mixed](why:transaction-vs-translation): (1) **cash-flow exposure** — forecast
+      foreign-currency inflows minus
       outflows for the next 12 months, minus hedges, times the rate change: the unhedged hit to CHF cash and margin;
       (2) **balance-sheet revaluation** — FX receivables, payables, cash and intercompany loans not in the entity's
       [functional currency](term:functional-currency): a P&L effect at month-end, partly non-cash; (3) **translation**
@@ -153,8 +157,9 @@ steps:
     detail: >-
       The chair is informed the same day; a board note follows. If the company is listed (equity or listed bonds), the
       CFO and legal decide whether the impact is price-sensitive and needs disclosure. Near a reporting date the event
-      becomes a subsequent-events note — Tecan's 2014 report, for example, stated that its accounts did not reflect
-      rate changes after 31 December and that the 2015 impact depended on the euro's further development[](cite:tecan-ar-2014-subsequent).
+      becomes a subsequent-events note — Tecan's 2014 report is the classic Swiss example: its accounts did not reflect
+      rate changes after 31 December and the 2015 impact "depends on the future development of the euro" (as reported;
+      not re-verified against the primary text in review round 1)[](cite:tecan-ar-2014-subsequent).
   - title: Decide the hedging response
     who: Hedging committee (CFO, treasury manager, FP&A); treasury executes
     where: Committee meeting, then FX platform or bank calls
@@ -172,11 +177,16 @@ steps:
     where: Management meetings, pricing models
     when: "Days 3–30"
     detail: >-
-      Management decides on price increases or surcharges in CHF terms, shortening quote validity, invoicing currency
-      for new contracts, and whether to re-base the [budget rate](term:budget-rate) and targets — Clariant, for example,
-      reviewed its 2015 bonus targets in February 2015 because of the franc situation[](cite:clariant-ar-2015-bonus).
-      Second-order effects appear: Burckhardt Compression attributed a 7.9% fall in order intake mainly to customers
-      postponing orders after the floor removal[](cite:burckhardt-ar-2014).
+      The levers must point at the exposed flow — for a EUR/CHF shock at a Swiss exporter that is **EUR revenue from EU
+      customers**. The direction is a commercial judgment, the currency is not: EUR list-price increases or a EUR
+      surcharge on new EUR quotes, reduced discounts, shorter EUR quote validity, or invoicing EU customers in CHF where
+      they accept it (a CHF surcharge on non-EU customers does nothing to EUR/CHF — those flows never moved). Cost-side
+      actions follow: purchasing into EUR as a [natural hedge](term:natural-hedge), moving cost blocks. Management also
+      decides whether to re-base the [budget rate](term:budget-rate) and targets — Clariant, for example, reviewed its
+      2015 bonus targets early in 2015 because of the franc situation (as reported; not re-verified against the primary
+      text)[](cite:clariant-ar-2015-bonus). Second-order effects appear: Burckhardt Compression's compressor-systems
+      order intake fell 7.9% in the fiscal year that contained the floor removal — a decline the company attributed
+      mainly to customers postponing large projects[](cite:burckhardt-ar-2014) — demand effects, not just price.
   - title: Structural measures and policy review
     who: Management and board; treasury proposes the financial part
     where: Strategy meetings, board
@@ -184,14 +194,16 @@ steps:
     detail: >-
       Operational measures (cost cuts, longer working hours, [short-time work](term:short-time-work), moving
       purchasing into the foreign currency as a [natural hedge](term:natural-hedge), relocation) are decided by
-      management; after 2015 Swiss MEM companies widely cut prices and some planned partial relocation[](cite:swissmem-2015-franc),
-      and machine-tool maker Tornos lengthened working hours at Swiss sites[](cite:tornos-2015-franc-measures). Treasury's
+      management; after 2015 Swiss MEM companies widely cut prices — 51% of members surveyed in March 2015 and 69% by
+      June 2015 — and 18% were considering relocating part of production at EUR/CHF 1.05, while 77% had shifted cost
+      blocks into EUR[](cite:swissmem-2015-franc), and machine-tool maker Tornos lengthened working hours at Swiss
+      sites[](cite:tornos-2015-franc-measures). Treasury's
       part: revisit hedge horizon and ratios, instrument set (options?), whether to borrow in the foreign currency,
       counterparty limits, and a post-mortem of what the team did not know on day 0.
 example:
-  title: "Helvetic, Thursday 10:30: EUR/CHF drops from 0.935 to 0.860 (–8%)"
+  title: "Helvetic, Thursday 8 October 2026, 10:30: EUR/CHF drops from 0.935 to 0.860 (–8%)"
   body: |
-    *Illustrative scenario; figures consistent with Helvetic's facts (EUR ~50% of CHF 650m revenue, rolling EUR forwards, CHF 200m RCF with ~CHF 60m drawn, net debt/EBITDA covenant ≤ 3.25x).*
+    *Illustrative scenario; figures consistent with Helvetic's facts (EUR ~50% of CHF 650m revenue, rolling EUR forwards, CHF 200m RCF drawn CHF 35m + EUR 27m, CHF 100m bond due 2028, net debt/EBITDA covenant ≤ 3.25x, Swiss GAAP FER).*
 
     **10:36** — Daniel's screen shows EUR/CHF at 0.86, trading between 0.83 and 0.88 with spreads ten times normal. He messages Lea and the eight subsidiary finance managers: *no FX trades today without my approval.*
 
@@ -201,19 +213,37 @@ example:
 
     | Item | Basis | Effect at 0.860 | Cash? |
     |---|---|---|---|
-    | Forward book (sell EUR 81m, avg rate 0.928, avg ~5 months) | vs new forwards ≈ 0.853 | **+6.1** MTM gain | Only as the forwards settle |
+    | Forward book (sell EUR 81m, avg rate 0.928, avg ~5 months) | 81 × (0.928 – 0.852) | **+6.2** MTM gain (vs new forwards ≈ 0.852) | Only as the forwards settle |
     | Unhedged EUR flows next 12 months (net EUR inflow 150m – 81m hedged = EUR 69m) | 69 × (0.935 – 0.860) | **–5.2** | Yes, over 12 months |
     | Months 13–24 (net EUR 150m, unhedged) if prices/costs don't adapt | 150 × 0.075 | **–11.3** per year | Yes, from next year |
-    | Balance sheet: EUR receivables, EUR cash, EUR 40m loan to HM Deutschland (EUR 25m swapped) — net EUR 22m | 22 × 0.075 | **–1.7** at month-end | Mostly no |
-    | Translation of EUR subsidiaries' net assets (EUR 190m) | 190 × 0.075 | **–14.3** in equity (OCI) | No |
+    | Balance sheet: EUR receivables, EUR cash, EUR 40m loan to HM Deutschland (EUR 25m swapped) = EUR 22m of net EUR assets, less the EUR 27m RCF drawing = net EUR –5m | 5 × 0.075 | **+0.4** at month-end | Mostly no |
+    | Translation of EUR subsidiaries' net assets (EUR 190m) | 190 × 0.075 | **–14.3** in equity (translation reserve under FER) | No |
 
-    No CSA with any bank, so no margin call. The forwards moving in Helvetic's favour mean its three hedge banks now owe it CHF 6.1m in MTM — within counterparty limits.
+    No CSA with any bank, so no margin call. The forwards moving in Helvetic's favour mean its three hedge banks now owe
+    it CHF 6.2m in MTM — within counterparty limits. The balance-sheet line nets the EUR 27m drawing for a reason:
+    [EUR debt is a natural hedge for EUR earnings](why:eur-debt-natural-hedge) — the drawing nearly cancels the net EUR
+    asset position, and its CHF value falls by ≈ CHF 2m (27 × 0.075), so the shock *reduces* net debt slightly.
 
-    **13:45** — Covenant check: LTM EBITDA CHF 78m, net debt ~CHF 115m → 1.5x. Even with a full-year EBITDA hit of CHF 11m, leverage ≈ 1.7x against 3.25x. RCF and bond are in CHF, so net debt hardly moves. 13-week liquidity: unchanged in the short run.
+    **13:45** — Covenant check, built on the definitions rather than on a feeling: [the ratio is net debt / LTM EBITDA,
+    both measured in CHF](why:covenant-shock-pro-forma) — FX debt translated at closing rates, EBITDA at average rates
+    (read your own definitions; illustrative here) — and Group Accounting computes it from the closed accounts. At 30
+    September: CHF 106m / CHF 78m = 1.36x against ≤ 3.25x. The move barely touches net debt: the CHF 100m bond is in CHF
+    and only EUR 27m of the RCF is drawn in EUR, so net debt falls by ≈ CHF 2m. The hit is on the denominator: if prices
+    and costs do not adapt, the full-year EBITDA effect is ≈ CHF 11m and the same ratio becomes ≈ 104/67 ≈ 1.6x.
+    Comfortable against 3.25x — but a quarter-turn of leverage from one currency move is the number the board remembers.
+    13-week liquidity: unchanged in the short run.
 
-    **14:10** — Daniel's one-page note to Thomas (CFO): "No liquidity or covenant issue. Hedged 54% of next 12 months at 0.928; unhedged 12-month hit ≈ CHF 5m; structural hit ≈ CHF 11m per year from 2027 unless prices move. Recommend no trades today; hedging committee Tuesday." Thomas forwards a shortened version to the chair at 15:00.
+    **14:10** — Daniel's one-page note to Thomas (CFO): "No liquidity or covenant issue — leverage 1.36x, ≈ 1.6x even on
+    an annualised EBITDA hit, against 3.25x. Hedged 54% of next 12 months at 0.928; unhedged 12-month hit ≈ CHF 5m;
+    structural hit ≈ CHF 11m per year from 2027 unless prices move. Recommend no trades today; hedging committee
+    Tuesday." Thomas forwards a shortened version to the chair at 15:00.
 
-    **Tuesday (Day 5)** — Committee (Thomas, Daniel, Marco from FP&A). EUR/CHF has settled at 0.87. Decision: keep policy ratios; add EUR 20m of forwards for months 7–12 in four weekly tranches instead of one trade; no options (implied volatility has doubled). Marco re-runs the outlook; sales introduces a CHF-denominated surcharge on new quotes for non-EU customers and shortens EUR quote validity to 30 days.
+    **Tuesday (Day 5)** — Committee (Thomas, Daniel, Marco from FP&A). EUR/CHF has settled at 0.87. Decision: keep policy
+    ratios; add EUR 20m of forwards for months 7–12 in four weekly tranches instead of one trade; no options (implied
+    volatility has doubled). Marco re-runs the outlook; sales' pricing response points at [the exposed
+    flow](why:price-the-exposed-currency): EUR list-price increases and a EUR surcharge on new quotes for EU customers,
+    EUR quote validity cut to 30 days, CHF invoicing offered where EU customers accept it — non-EU (USD, GBP, CNY)
+    quotes unchanged by this move.
 
     **Weeks 2–8** — Operations shift CHF 15m per year of casting and electronics purchasing to Czech and German suppliers invoiced in EUR (a natural hedge). Daniel proposes to the board extending the hedge horizon from 12 to 18 months and writes a post-mortem: the stop order nobody remembered, and three subsidiaries that did not know their own EUR intercompany balances.
 judgment:
@@ -318,10 +348,15 @@ terms: [fx-exposure, transaction-exposure, translation-exposure, economic-exposu
 related: [fx-exposure-management, fx-hedging, covenant-monitoring, cash-forecasting, liquidity-crisis, policy-compliance, month-end-reporting]
 sources: [snb-2015-floor, tecan-ar-2014-subsequent, clariant-ar-2015-bonus, burckhardt-ar-2014, swissmem-2015-franc, tornos-2015-franc-measures, jonesday-emir-vm-2017]
 evidence_note: >-
-  The 15 January 2015 event and SNB measures are from the SNB's press release[](cite:snb-2015-floor). Examples of
-  corporate responses come from company reports and releases (Tecan, Clariant, Burckhardt Compression, Tornos) and a
-  Swissmem member survey[](cite:tecan-ar-2014-subsequent,clariant-ar-2015-bonus,burckhardt-ar-2014,tornos-2015-franc-measures,swissmem-2015-franc);
-  these were verified from publisher search snippets because direct page access was unavailable, and the Swissmem
-  percentages should be treated as indicative. The margining point is regulatory background summarised by a law firm[](cite:jonesday-emir-vm-2017);
-  Swiss FinfraG rules follow a similar logic. The hour-by-hour sequence, the Helvetic example and company variants are
-  illustrative synthesis of established practice, not survey findings.
+  The 15 January 2015 event and SNB measures are from the SNB's press release[](cite:snb-2015-floor). The corporate
+  examples come from company reports and releases (Tecan, Clariant, Burckhardt Compression, Tornos) and two Swissmem
+  member surveys[](cite:tecan-ar-2014-subsequent,clariant-ar-2015-bonus,burckhardt-ar-2014,tornos-2015-franc-measures,swissmem-2015-franc).
+  The Tecan subsequent-events and Clariant bonus-target claims could not be re-verified against the primary texts in
+  review round 1 and are marked as reported in both the prose and the source notes. The Burckhardt figure is the
+  Compressor Systems **segment's** order intake (group order intake fell 0.6%), and the company attributed it mainly to
+  customers postponing large projects — not to the SNB decision. The Swissmem figures (51% price cuts in the March 2015
+  survey, 69% by June 2015, 18% considering partial relocation at 1.05, 77% having shifted cost blocks into EUR) are
+  from the association's own survey releases of March and August 2015. The margining point is regulatory background
+  summarised by a law firm[](cite:jonesday-emir-vm-2017); Swiss FinfraG rules follow a similar logic. The hour-by-hour
+  sequence, the Helvetic example and company variants are illustrative synthesis of established practice, not survey
+  findings.

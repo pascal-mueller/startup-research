@@ -53,7 +53,7 @@ The balance-sheet cash figure is an accounting number at month-end, after reconc
 
 **Ask in an interview:**
 - "How many accounts do you have, and for how many do you get balances automatically before 09:00?"
-- "Which account is always the problem — late statement, missing data, a bank in another time zone?"
+- "Which statement never arrives automatically, and what is the real reason? (At Helvetic it is the Chinese account — no corporate reporting channel, so Wei emails a portal export daily; Asian statements otherwise arrive early and US statements last.)"
 - "Do you work from booked or value-dated balances? Does the difference ever matter to you?"
 - "When the bank and the ERP disagree, who sorts it out, and when?"
 
@@ -61,14 +61,14 @@ The balance-sheet cash figure is an accounting number at month-end, after reconc
 
 **Plain:** working out, each morning, what cash each account will have by the end of today and whether anything needs to be moved. **Professional:** the [cash position](term:cash-position) = opening available balance + today's certain inflows − today's scheduled outflows (payment runs, payroll, tax, loan and deal settlements), by account, entity and currency, produced before bank [cut-off times](term:cut-off-time) so funding, sweeping and investment decisions can still be executed with same-day value.
 
-<Example title="Helvetic, Tuesday 08:40" company="helvetic" open>
+<Example title="Helvetic, a Tuesday in August, 08:40" company="helvetic" open>
 
 | Account | Opening (bank) | Known today | Projected close | Minimum | Action |
 |---|---|---|---|---|---|
-| HM AG, CHF (Swiss bank 1) | CHF 18.2m | −1.4m supplier run | 16.8m | 0.5m | Surplus: repay part of the RCF drawing at next rollover |
+| HM AG, CHF (Swiss bank 1) | CHF 18.2m | −1.4m supplier run | 16.8m | 2.0m | Surplus: repay part of the RCF drawing at next rollover |
 | HM AG, EUR (Swiss bank 1) | EUR 9.6m | +0.8m customer | 10.4m | 0.5m | Source for German funding |
-| HM Deutschland, EUR (German bank) | EUR 1.3m | −0.6m suppliers; Thursday payroll −4.2m | 0.7m today, −3.5m Thursday | 0.25m | Fund EUR 3.8m by Wednesday |
-| HM Suzhou, CNY (Chinese bank) | CNY 44m | – | 44m | – | Trapped; ignore for group liquidity |
+| HM Deutschland, EUR (German bank) | EUR 1.3m | −0.6m suppliers; Thursday's payroll (the 27th) −4.2m | 0.7m today, −3.5m Thursday | 0.25m | Fund EUR 3.8m by Wednesday |
+| HM Suzhou, CNY (Chinese bank) | CNY 55m | – | 55m | – | Trapped; exclude from available liquidity |
 
 Lea proposes a EUR 3.8m transfer from HM AG's EUR account to HM Deutschland, documented as an addition to the existing [intercompany loan](term:intercompany-loan). Daniel approves in the connectivity tool before the 14:00 EUR cut-off.
 
@@ -93,22 +93,20 @@ Positioning is **today** (and maybe tomorrow): certain, actual numbers, operatio
 
 ## Liquidity
 
-**Plain:** having enough cash — or guaranteed access to cash — to pay everything when it is due. **Professional:** available [liquidity](term:liquidity) = cash that is usable (excluding [trapped](term:trapped-cash) or restricted cash) + undrawn **committed** facilities; [liquidity headroom](term:liquidity-headroom) = available liquidity minus the forecast low point and the policy [cash buffer](term:cash-buffer). Uncommitted lines and overdrafts are usually excluded because the bank can withdraw them in exactly the scenario that matters.
+**Plain:** having enough cash — or guaranteed access to cash — to pay everything when it is due. **Professional:** available [liquidity](term:liquidity) = cash that is usable (excluding [trapped](term:trapped-cash) or restricted cash) + undrawn **committed** facilities; [liquidity headroom](term:liquidity-headroom) = available liquidity minus the policy [cash buffer](term:cash-buffer) — and tested against the forecast low point, which shows whether the buffer survives the season. Uncommitted lines and overdrafts are usually excluded because the bank can withdraw them in exactly the scenario that matters.
 
-<Example title="Helvetic's liquidity headroom" company="helvetic">
+<Example title="Helvetic's liquidity headroom, 30 September 2026" company="helvetic">
 
 | Item | CHF m |
 |---|---|
-| Group cash | 41 |
-| less: cash in China (not quickly usable) | −5 |
-| Usable cash | 36 |
-| RCF undrawn (CHF 200m − 60m drawn) | 140 |
-| **Available liquidity** | **176** |
-| 13-week forecast low point (week 6), cash reduction | −18 |
-| Policy minimum cash | −10 |
-| **Headroom** | **148** |
+| Group cash | 54 |
+| less: cash in China (CNY ≈ 55m at HM Suzhou, not quickly usable) | −6.1 |
+| Usable cash | 47.9 |
+| RCF undrawn (CHF 200m − ≈ CHF 60m drawn: CHF 35m + EUR 27m) | ≈ 140 |
+| less: policy minimum cash (the CFO's CHF 10m) | −10 |
+| **Headroom** | **≈ 177.9** |
 
-Headroom is ample; Helvetic's liquidity question is not "will we run out" but "is CHF 140m of undrawn RCF worth its commitment fee?" and "will covenants keep the RCF available?". At Alpine, the same table with CHF 6–12m of cash and a CHF 12m line can show headroom of a few million francs — one delayed robot acceptance matters.
+The construction is always the same: usable cash + undrawn **committed** facilities − the policy minimum. The forward-looking check runs it on the forecast low point instead of today's cash: at the 13-week low (week 4, ≈ CHF 18m in December, of which ≈ CHF 6m sits in China — usable ≈ CHF 12m against the CHF 10m minimum) and ≈ CHF 137m undrawn after the October rollover, headroom is about CHF 139m — ample. Helvetic's liquidity question is not "will we run out" but "is the undrawn RCF worth its commitment fee?" and "will covenants keep the RCF available?". At Alpine, the same table with CHF 6–12m of cash and a [CHF 12m line](why:alpine-line-sizing) can show headroom of a few million francs against the board's CHF 5m floor — one delayed robot acceptance matters.
 
 </Example>
 
@@ -208,6 +206,8 @@ Adoption rises with size: PwC's 2025 survey reports in-house banks at 67% and pa
 
 **Plain:** group companies lending to each other — usually the centre lending to subsidiaries that need cash, and borrowing from those with surplus. **Professional:** [intercompany loans](term:intercompany-loan), deposits and pool balances documented in agreements, priced at arm's length ([transfer pricing](term:transfer-pricing)), with FX, thin-capitalisation, withholding-tax and local legal constraints (capital maintenance, corporate-benefit rules). Alternatives: equity injections, dividends, payment of intercompany invoices, [netting](term:netting).
 
+Two structures grow out of this. An [in-house bank](term:in-house-bank) is the mature form: the group's treasury entity holds the external bank accounts, lends to and borrows from subsidiaries at an agreed rate, and provides payment, deposit and FX services — at GlobalChem it effectively *is* the subsidiaries' bank. And where many group companies owe each other in many currencies, monthly multilateral [netting](term:netting) replaces dozens of cross-payments with one settlement: each month the netting cycle collects GlobalChem's intercompany invoices in ~30 currencies, nets every position within the group and settles the few remaining net amounts through the in-house bank — which cuts payment volume and, because opposite currency flows cancel, the FX volume Jonas's team has to hedge.
+
 <Example title="Funding Alpine's US subsidiary" company="alpine">
 
 Alpine Robotics Inc. needs USD 1.2m for a customer installation before the customer pays. Martin decides to lend rather than inject equity. Petra transfers USD 1.2m from the parent's USD account at the large Swiss bank, the accountant books an intercompany receivable, and the fiduciary drafts a one-page loan agreement at an interest rate that the tax adviser confirms is defensible. Nobody tracks the loan's FX revaluation until the auditors ask at year-end.
@@ -228,7 +228,7 @@ Who: Kleio — Sarah, no documentation beyond a transfer; Alpine — Petra execu
 
 **Plain:** cash the group owns but cannot quickly move to where it is needed. **Professional:** [trapped cash](term:trapped-cash) arises from currency controls (e.g. CNY, INR, ARS, EGP at times), dividend restrictions (distributable reserves, audited accounts, statutory reserves), withholding tax cost, thin local markets, or minimum-capital rules. Managed through dividend planning, royalties/service fees, intercompany loans where allowed, local investment and, when unavoidable, by excluding it from available liquidity.
 
-Example: HM Suzhou holds CNY 44m (about CHF 5m at an illustrative rate). A dividend requires audited statutory accounts, and a foreign-invested company must first allocate at least 10% of after-tax profit to a non-distributable statutory reserve until it reaches 50% of registered capital; dividends to a foreign parent then bear 10% Chinese withholding tax unless a treaty reduces it[](cite:china-briefing-dividends); Daniel plans one dividend a year in Q2 and treats the rest as unavailable in the liquidity headroom table above. GlobalChem's Singapore regional treasury centre manages several such countries with local banks and tax advisers.
+Example: HM Suzhou holds CNY 55m (about CHF 6m at an illustrative rate). A dividend requires audited statutory accounts, and a foreign-invested company must first allocate at least 10% of after-tax profit to a non-distributable statutory reserve until it reaches 50% of registered capital; dividends to a foreign parent then bear 10% Chinese withholding tax unless a treaty reduces it[](cite:china-briefing-dividends); Daniel plans one dividend a year in Q2 and treats the rest as unavailable in the liquidity headroom table above. GlobalChem's Singapore regional treasury centre manages several such countries with local banks and tax advisers.
 
 - **Drives:** [liquidity planning](wf:liquidity-planning), [funding a subsidiary](wf:funding-subsidiary).
 - **Terms:** [trapped cash](term:trapped-cash), [repatriation](term:repatriation), [withholding tax](term:withholding-tax), [regional treasury centre](term:regional-treasury-centre), [NDF](term:ndf).
@@ -253,7 +253,7 @@ Example: HM Suzhou holds CNY 44m (about CHF 5m at an illustrative rate). A divid
 
 <Callout type="field" title="Field note: what practitioners complain about">
 
-Recurring themes in treasury conversations and trade press: missing or late statements from a few banks; subsidiaries making large payments without telling treasury; intercompany positions from sweeps that accounting books late or wrongly; pools that nobody dares change because the original tax analysis is lost; and cash in countries where the process to move it is known only to one local person. None of these is solved by a better dashboard alone.
+Recurring themes in treasury conversations and trade press: missing or late statements from a few banks; subsidiaries making large payments without telling treasury; intercompany positions that local accountants book late or wrongly — at GlobalChem they surface every month in the netting reconciliation and land on Priya's team as exceptions; pools that nobody dares change because the original tax analysis is lost; and cash in countries where the process to move it is known only to one local person. None of these is solved by a better dashboard alone.
 
 </Callout>
 

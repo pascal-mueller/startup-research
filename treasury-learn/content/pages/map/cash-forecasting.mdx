@@ -14,7 +14,7 @@ If [cash management](/map/cash-management) is about today, cash forecasting is a
 
 <Callout type="survey" title="The most-cited pain point in treasury surveys">
 
-In the AFP's 2025 benchmarking survey (523 US practitioners), 62% named cash and liquidity forecasting their most challenging activity[](cite:afp-bench-2025-article); the 2026 edition puts it at 49%, still the top answer[](cite:afp-bench-2026). The European EACT survey ranked cash-flow forecasting as priority number one[](cite:eact-2025). In the Strategic Treasurer / TIS 2025 survey (vendor-sponsored), the share calling forecasting "difficult" rose from 39% in 2018 to 53%[](cite:st-tis-cfv-2025). These samples lean to larger companies.
+In the AFP's 2025 benchmarking survey (523 US practitioners), 62% named cash and liquidity forecasting their most challenging activity[](cite:afp-bench-2025-article); the 2026 edition puts it at about half (49% as reported; figure not confirmed against the primary text), still the top answer[](cite:afp-bench-2026). The European EACT survey ranked cash-flow forecasting as priority number one[](cite:eact-2025). In the Strategic Treasurer / TIS 2025 survey (vendor-sponsored), the share calling forecasting "difficult" rose from 39% in 2018 to 53% (as reported by the sponsors)[](cite:st-tis-cfv-2025). These samples lean to larger companies.
 
 </Callout>
 
@@ -53,13 +53,13 @@ Who: Kleio and Alpine don't formalise it (they look at the e-banking portal and 
 
 | When | Who | What they do |
 |---|---|---|
-| Monday | Lea | Rolls the model: last week becomes "actual", week 13 added; imports bank actuals by category |
+| Monday | Lea | Rolls the model: last week becomes "actual", a new week 13 is added; imports bank actuals by category |
 | Monday–Tuesday noon | Subsidiary finance managers (Giulia, Jens, Wei and five others) | Fill the weekly Excel template: receipts, supplier payments, payroll, tax, capex, intercompany by week |
-| Tuesday | Lea | Consolidates, adds central flows (RCF interest, bond coupon, hedge settlements, dividends), converts at current rates, runs variance vs last week |
+| Tuesday–Wednesday | Lea | Consolidates, adds central flows (RCF interest, bond coupon, hedge settlements, dividends), converts at current rates, runs variance vs last week |
 | Wednesday | Daniel | Challenges outliers, overrides inputs he doesn't believe, decides actions (RCF rollover amounts, hedge top-ups) |
 | Monthly | Daniel → Thomas (CFO) | 13-week view plus the 18-month liquidity plan in the treasury report |
 
-In the week documented in the [cash forecasting workflow](wf:cash-forecasting), the group low point is CHF 18m in week 6 (bond coupon and quarterly VAT in the same week) against a CHF 10m minimum and CHF 140m of undrawn RCF — no funding action needed.
+In the week documented in the [cash forecasting workflow](wf:cash-forecasting) — the week starting Monday 23 November 2026 — the group low point is CHF 18m in **week 4** (w/c 14 December): December payrolls paid before Christmas, including the Swiss 13th salary and the Italian *tredicesima*, year-end supplier runs and a CHF 1.8m capex milestone. The annual bond coupon is a separate, later event, not a driver of this low point. Against the CHF 10m group minimum and ≈ CHF 137m of undrawn RCF (CHF 30m + EUR 35m drawn after the October rollover) no funding action is needed — though the CHF 18m includes about CHF 6m in China that cannot move, so the usable low is about CHF 12m.
 
 </Example>
 
@@ -86,7 +86,7 @@ At one company it is a weekly, entity-level, variance-tracked process with decis
 
 <Example title="From FP&A's profit forecast to treasury's liquidity plan" company="helvetic">
 
-Marco (FP&A) forecasts EBITDA of CHF 88m for the next 12 months. Daniel's liquidity plan: + CHF 88m EBITDA − CHF 10m working-capital build (new Czech line ramping up) − CHF 28m capex − CHF 11m tax − CHF 5m interest − CHF 15m dividend = **+ CHF 19m** free cash before financing. Month by month, cash dips in May (dividend + tax) and recovers by September. He also projects net debt/EBITDA at the June and December test dates against the 3.25x [covenant](term:covenant): about 1.5x, so plenty of room.
+Marco (FP&A) forecasts EBITDA of about CHF 80m for the next 12 months (LTM actuals to 30 September are CHF 78m). Daniel's liquidity plan: + CHF 80m EBITDA − CHF 10m working-capital build (new Czech line ramping up) − CHF 28m capex − CHF 11m tax − CHF 3.2m interest and fees (bond coupon CHF 1.25m, RCF interest and commitment fee ≈ CHF 1.6m, other bank fees) − CHF 15m dividend = **+ CHF 13m** free cash before financing. Month by month, cash dips in May (dividend + tax) and recovers by September. He also projects net debt/EBITDA at the June and December test dates against the 3.25x [covenant](term:covenant): [1.36x on the September LTM figures](why:leverage-bridge-136) (CHF 106m ÷ CHF 78m), about 1.8x at the December test as net debt tracks the Q4 cash low, back below 1.5x by mid-2027 — plenty of room either way.
 
 </Example>
 
@@ -120,7 +120,7 @@ FP&A forecasts **revenue, cost and profit** by month, usually by business line; 
 | Debt, deals, hedges | Treasury's own records / TMS | High | — |
 | FX rates | Market data | High (for conversion) | Re-translation noise in variances |
 
-Example: at Alpine the single largest line is **project milestones**: Petra lists each open milestone (e.g. CHF 1.4m acceptance payment from a German logistics customer) with her estimate of when the acceptance certificate will be signed; the project managers' dates are systematically optimistic, so she adds two weeks.
+Example: at Alpine the single largest line is **project milestones**: Petra lists each open milestone (e.g. a CHF 0.7m acceptance payment — the 20% acceptance of a CHF 3.5m robot project, see [working capital](/map/working-capital)) with her estimate of when the acceptance certificate will be signed; the project managers' dates are systematically optimistic, so she adds two weeks.
 
 - **Drives:** [cash forecasting](wf:cash-forecasting), [month-end reporting](wf:month-end-reporting).
 - **Terms:** [forecast submission](term:forecast-submission), [cash application](term:cash-application), [DSO](term:dso), [payment terms](term:payment-terms).
@@ -134,7 +134,7 @@ Example: at Alpine the single largest line is **project milestones**: Petra list
 
 **Plain:** accepting that the forecast will be wrong, and planning for how wrong. **Professional:** uncertainty is handled with buffers (minimum cash, committed facilities), conservative treatment of uncertain receipts, ranges or [scenarios](term:scenario-analysis) (downside cases such as "largest customer pays 60 days late", "EUR/CHF −8%"), and at sophisticated groups statistical measures such as [cash flow at risk](term:cash-flow-at-risk). The right prudence depends on headroom: Kleio with 24 months of runway can be relaxed about a week's timing; Alpine with a few million of headroom cannot.
 
-Example: Alpine's downside scenario moves two robot acceptances (CHF 3.4m) out by one quarter; cash would fall to CHF 1.8m in week 9. Martin's response is not to change the forecast but to confirm that at least CHF 7m of the CHF 12m credit line stays undrawn.
+Example: Alpine's downside scenario moves two robot acceptances (about CHF 1.5m together — the 20% milestones of a CHF 3.5m and a CHF 4m project) out by one quarter; with a supplier run on top, cash would fall to about CHF 1.8m in week 9. Martin's response is not to change the forecast but to confirm that at least CHF 7m of the [CHF 12m credit line](why:alpine-line-sizing) stays undrawn.
 
 - **Drives:** [liquidity planning](wf:liquidity-planning), [liquidity crisis](wf:liquidity-crisis), [currency shock](wf:currency-shock).
 - **Terms:** [scenario analysis](term:scenario-analysis), [cash flow at risk](term:cash-flow-at-risk), [liquidity risk](term:liquidity-risk), [cash buffer](term:cash-buffer).
@@ -150,7 +150,7 @@ Example: Alpine's downside scenario moves two robot acceptances (CHF 3.4m) out b
 
 <Example title="One week's variance at Helvetic" company="helvetic">
 
-Receipts were forecast at CHF 14.0m and came in at CHF 11.2m: CHF 2.1m was an Italian customer paying 10 days late (timing), CHF 0.7m a disputed UK invoice short-paid (permanent). A German trade-tax prepayment of CHF 0.3m had not been submitted (missing input). Because Italy has over-forecast receipts in 9 of the last 12 weeks, Daniel haircuts Italy's receipts by 15% in weeks 5–13 — a judgment call that Giulia (HM Italia) will not like. Full detail in the [cash forecasting workflow](wf:cash-forecasting).
+Receipts were forecast at CHF 14.0m and came in at CHF 11.2m: CHF 2.1m was an Italian customer paying 10 days late (timing), CHF 0.7m a disputed UK invoice short-paid (permanent). A German trade-tax prepayment of CHF 0.3m had not been submitted (missing input). Because Italy has over-forecast receipts in 8 of the last 10 weeks at the 4-week lag, Daniel haircuts Italy's receipts by 15% in weeks 5–13 — a judgment call that Giulia (HM Italia) will not like. Full detail in the [cash forecasting workflow](wf:cash-forecasting).
 
 </Example>
 

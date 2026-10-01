@@ -118,8 +118,8 @@ steps:
       letters, fees. Confirm receipt with each beneficiary and obtain release of security (share pledges, land charges)
       and confirmations that target loans are cancelled.
     judgment: >-
-      What to do if a condition or payment is late on the day — closing is usually sequenced so that no money moves until
-      every document is confirmed.
+      What to do if a condition or payment is late on the day — [closing is usually sequenced so that no money moves
+      until every document is confirmed](why:funds-flow-sequencing).
   - title: Take control of accounts and payments on Day 1
     who: Treasury manager with target CFO
     where: Target's bank portals / EBICS clients, bank mandate submissions
@@ -127,7 +127,11 @@ steps:
     detail: >-
       Submit new mandates; revoke the seller's and departing managers' [signatory](term:signatory) rights and
       e-banking/EBICS access (banks may need days to process — send written revocations immediately); apply the interim
-      payment rule; freeze opening of new accounts, new borrowing and new FX trades without group approval.
+      payment rule; freeze opening of new accounts, new borrowing and new FX trades without group approval. Then close
+      [the signatory gap](why:signatory-gap): revocation is quick to request, but new mandates and commercial-register
+      filings take days to weeks to activate — so Day 1 runs on a local power of attorney, an interim authorised
+      signatory kept in place, or advance-dated mandate changes. Someone must be able to sign while the paperwork is in
+      flight; the gap is closed deliberately, never discovered at the first payroll.
     manual: >-
       Removing a departed owner from EBICS signature classes and portal users is a separate, bank-specific process from
       changing the account mandate; both must be checked account by account.
@@ -171,10 +175,13 @@ steps:
     where: Treasury policy, signing authority matrix, counterparty limits, FX exposure process
     when: "Weeks 4–12"
     detail: >-
-      Apply the group [treasury policy](term:treasury-policy): who may sign and approve what
-      ([signing authority matrix](term:signing-authority-matrix)), [counterparty limits](term:counterparty-limit) for the
-      target's banks, FX exposure reporting and hedging, investment rules for surplus cash, and whether the target joins
-      group cash concentration (pool or manual intercompany transfers).
+      The treasury manager presents the group [treasury policy](term:treasury-policy) to the target's finance team and
+      leaves evidence, not a topic list: the [signing authority matrix](term:signing-authority-matrix) signed by the
+      target's managing director and lodged with its banks; [counterparty limits](term:counterparty-limit) issued in
+      writing for each target bank; the target enrolled in the FX exposure cycle (exposures by WD5, hedge decisions at
+      the weekly review); one-page investment rules for surplus cash; and a decision on cash concentration (at Helvetic:
+      manual intercompany transfers, no pool). The day-100 test is documentary — each item has a document and a date;
+      anything without evidence is still open.
   - title: Rationalise banks and report the 100-day status
     who: Treasury manager → CFO / integration office
     where: Bank meetings, account-closure forms, integration tracker
@@ -182,17 +189,18 @@ steps:
     detail: >-
       Decide which target banks and accounts to keep (local operating needs, customer payment habits, guarantees) and
       which to close; move balances and direct debits before closing accounts. Report status to the CFO and integration
-      office at day 100: control (all mandates changed?), visibility (all statements automated?), financing (all CoC
+      office at day 100 along [the checklist's own order](why:day1-checklist-order): control (all mandates changed?),
+      visibility (all statements automated?), financing (all CoC
       items resolved?), policy (applied?), and the longer roadmap — ERP migration, payment-process harmonisation, TMS or
       pooling decisions — which typically takes 1–3 years.
 example:
   title: "Helvetic buys Norvia Spindle Systems GmbH (fictional): the first 100 days"
   body: |
-    *Illustrative scenario consistent with Helvetic's facts (CHF 200m RCF with ~CHF 60m drawn, covenant ≤ 3.25x, no cash pool, Lea prepares / Daniel decides).*
+    *Illustrative scenario consistent with Helvetic's facts (CHF 200m RCF drawn CHF 30m + EUR 35m after the 15 October rollover, CHF 100m bond due 2028, covenant ≤ 3.25x, no cash pool, Lea prepares / Daniel decides).*
 
     **The target:** Norvia, a founder-owned spindle maker near Stuttgart — EUR 85m revenue, 420 employees, a plant in Poland (PLN) and a US service company (USD). 5 banks, 14 accounts, EUR 22m of bilateral loans at two German banks (both with change-of-control prepayment clauses), EUR 3.5m of customer advance-payment guarantees issued by its savings bank, USD 6m of forwards under a German-law framework agreement. Payments are released in a desktop EBICS client; the founder has sole signature on every German account.
 
-    **Deal:** enterprise value EUR 120m, locked box at 30 June, closing Friday 30 October 2026.
+    **Deal:** enterprise value EUR 117.7m (equity price EUR 95.7m, of which EUR 5m goes into escrow, plus EUR 22m of target debt repaid at closing); total funding requirement EUR 120m including advisers' fees. Locked box at 30 June, closing Friday 30 October 2026.
 
     **Funds flow (closing day, value 30 Oct):**
 
@@ -204,15 +212,16 @@ example:
     | Uses: escrow agent | 5.0 | |
     | Uses: repay two bank loans (payoff letters) | 22.0 | |
     | Uses: advisers' fees | 2.3 | |
-    | **Total** | **120.0** | **112.2** |
+    | *of which enterprise value (price + escrow + debt repaid)* | *117.7* | |
+    | **Total funding requirement (incl. fees)** | **120.0** | **112.2** |
 
-    Pro forma: RCF drawn CHF 155m of 200m (undrawn falls from 140m to 45m); net debt ≈ CHF 221m against EBITDA ≈ CHF 88m (78m + Norvia ≈ 10m) → 2.5x vs covenant 3.25x. Daniel tells Thomas that 45m of undrawn headroom is thin for a CHF 650m group and proposes terming out CHF 75m (e.g. a Schuldschein) within 12 months.
+    Pro forma: the RCF is drawn CHF 125m + EUR 35m (CHF 30m + EUR 35m before the deal, plus the CHF 95m new drawing ≈ CHF 158m of the CHF 200m line) — undrawn headroom falls from ≈ CHF 137m to ≈ CHF 42m. Net debt bridges: CHF 106m at 30 September + CHF 95m of new debt + CHF 17.2m of cash spent − ≈ CHF 5m of cash acquired with Norvia ≈ CHF 213m, against EBITDA ≈ CHF 88m (CHF 78m + Norvia ≈ CHF 10m) → ≈ 2.4x vs covenant 3.25x. Daniel tells Thomas that CHF 42m of undrawn headroom is thin for a CHF 650m group and proposes terming out CHF 75m (e.g. a Schuldschein) within 12 months. The EUR 5m escrow is a restricted asset until it is released: it secures the seller's locked-box leakage warranty and the warranty claims, comes back to the seller (or is applied to claims) after the post-closing leakage review and the first annual accounts — typically within 3–6 months — and until then the EUR 5m sits in the net-debt bridge as spent.
 
     **Before closing** — Lea builds the account inventory: the data room listed 12 accounts; the banks' confirmations show 14 (a dormant USD account and a rental-deposit account). She prepares mandate forms and KYC packs for all five banks: new signatories Daniel (group) and Norvia's CFO (local), joint signature only.
 
     **Day 0, 09:00–13:15** — The RCF drawing Daniel requested three business days earlier arrives value today. At 09:00 legal confirms all conditions precedent; Daniel and Thomas release the four payments from HM AG's accounts; the seller's bank, the escrow agent and both lending banks confirm receipt by 12:30; the lenders confirm the loans are cancelled and the share pledge released, and the closing memorandum is signed at 13:15.
 
-    **Day 1 (Monday 2 Nov)** — New mandates go to all banks; written revocation of the founder's signature and EBICS access sent to each bank by 10:00. Interim rule: every Norvia payment above EUR 50k needs Daniel's second signature. Lea gets read access to three portals the same day; the other two banks need the completed KYC first, so Norvia's CFO emails a balance screenshot each morning.
+    **Day 1 (Monday 2 Nov)** — New mandates go to all banks; written revocation of the founder's signature and EBICS access sent to each bank by 10:00 — paired with a request to keep Norvia's CFO as interim signatory under the old mandate until the new joint-signature mandates are live (the banks need two to three weeks and a commercial-register extract: someone has to be able to sign on Monday). Interim rule: every Norvia payment above EUR 50k needs Daniel's second signature. Lea gets read access to three portals the same day; the other two banks need the completed KYC first, so Norvia's CFO emails a balance screenshot each morning.
 
     **Week 2** — The savings bank says the EUR 3.5m advance-payment guarantees were issued under the repaid loan facility; it will keep them only against a group counter-guarantee. HM AG issues one within the week — a customer's contract would otherwise have allowed it to demand a replacement or withhold payment.
 
@@ -220,7 +229,7 @@ example:
 
     **Week 4** — First payroll under Helvetic (EUR 2.4m on 26 Nov): Norvia's EUR accounts hold EUR 4.1m, but its overdraft line ended with the loans. Daniel formalises a EUR 22m intercompany loan from HM AG (terms agreed with tax) and transfers EUR 3m as working-capital headroom.
 
-    **Day 100 (early February)** — Status to Thomas: mandates changed at 5 of 5 banks; statements from 4 banks automated via EBICS into Helvetic's connectivity tool (the Polish bank still manual); accounts reduced from 14 to 8; USD forwards kept to maturity and new hedges placed under Helvetic's policy; Norvia added to weekly forecasting and to Daniel's manual concentration by intercompany transfer. Open: SAP migration planned for 2028, and the acquisition has strengthened the case in the TMS evaluation.
+    **Day 100 (early February)** — Status to Thomas: mandates changed at 5 of 5 banks; statements from 4 banks automated via EBICS into Helvetic's connectivity tool (the Polish bank still manual); accounts reduced from 14 to 8; USD forwards kept to maturity and new hedges placed under Helvetic's policy; Norvia added to weekly forecasting and to Daniel's manual concentration by intercompany transfer; policy evidence complete — the signing-authority matrix signed by Norvia's managing director and lodged with the banks, counterparty limits issued in writing, Norvia's first exposure report received in the November cycle. Open: SAP migration planned for 2028, and the acquisition has strengthened the case in the TMS evaluation.
 judgment:
   - decision: Which target findings matter for price and terms versus integration only
     why: Requires reading documents in context — a prepayment clause may be cheap or expensive depending on rates and fees; trapped cash may or may not matter.

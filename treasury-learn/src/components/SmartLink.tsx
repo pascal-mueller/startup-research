@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import type { ReactNode } from 'react'
 import { Term } from './Term'
 import { Cite } from './Cite'
+import { Why } from './Why'
 import { workflowById, companyById } from '../lib/content'
 
 /**
@@ -10,6 +11,7 @@ import { workflowById, companyById } from '../lib/content'
  *   [](cite:pwc-gts-2025)             citation (comma-separate for several)
  *   [forecasting](wf:cash-forecasting) workflow
  *   [Alpine](co:alpine)                company scenario
+ *   [CHF 12m](why:alpine-credit-line)  "why" note with reasoning popover
  *   [text](/map/fx)                    internal page
  */
 function hasText(c: ReactNode) {
@@ -21,6 +23,7 @@ export function SmartLink({ href = '', children }: { href?: string; children?: R
   const target = rest.join(':')
   if (scheme === 'term') return <Term id={target}>{children}</Term>
   if (scheme === 'cite') return <Cite id={target} />
+  if (scheme === 'why') return <Why id={target}>{children}</Why>
   if (scheme === 'wf') {
     const w = workflowById.get(target)
     return (

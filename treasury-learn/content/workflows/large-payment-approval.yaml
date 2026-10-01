@@ -142,9 +142,11 @@ steps:
     where: Connectivity tool signing workflow / bank app
     detail: >-
       The treasury manager reviews the evidence pack and the entered payment against it (amount, beneficiary, date),
-      then routes it to the approvers the matrix requires. The approvers sign in the tool or bank app. Where the bank
-      mandate is looser than the internal matrix (e.g. any two of five signatories), the tool's workflow — or discipline —
-      must enforce the internal rule.
+      then routes it to the approvers the matrix requires: at Helvetic any single payment above CHF 2m needs Thomas
+      (CFO) and the CEO to co-sign in addition to the four-eyes release
+      ([why the tier sits at CHF 2m](why:ceo-cosign-threshold)). The approvers sign in the tool or bank app. Where the
+      bank mandate is looser than the internal matrix (e.g. any two of five signatories), the tool's workflow — or
+      discipline — must enforce the internal rule.
     judgment: >-
       Approvers decide whether they are satisfied with the evidence; a good approver asks one question the pack does
       not answer.
@@ -181,13 +183,15 @@ example:
 
     **Tuesday 11:00** — HM AG's bank receives an authenticated CHF 4.0m guarantee from the supplier's bank via Swift, valid until three months after scheduled delivery. Daniel reads the wording (reduces with delivery; payable on first demand).
 
-    **Liquidity:** HM AG's CHF account is projected at CHF 13.6m for Thursday, with CHF 0.8m of other outflows; the policy buffer at the parent is CHF 10m. Paying CHF 4m on Wednesday would take the account to CHF 8.8m. A CHF 2m one-week deposit matures on Thursday. Daniel chooses **Thursday value** (contractually fine: day 2 of 10), leaving CHF 10.8m after the deposit returns.
+    **Liquidity:** HM AG's CHF account is projected at CHF 13.6m for Wednesday and CHF 15.8m for Thursday — a CHF 2.2m customer receipt for a completed retrofit lands Thursday morning — with CHF 0.8m of other outflows on each day; the [policy buffer at the parent](why:buffer-layers) is CHF 10m. Paying CHF 4m on Wednesday would take the account to CHF 8.8m, under the buffer; paying on Thursday leaves CHF 11.0m. Daniel chooses **Thursday value** (contractually fine: day 2 of 10) — [the buffer picks the value date](why:buffer-chooses-value-date), not any deposit: the surplus is not placed ([CHF deposits earn nothing while the RCF is drawn](why:repay-rcf-not-chf-deposit)), it stays on the account towards the 15th rollover.
 
     **Wednesday 16:30** — Lea enters the payment in the connectivity tool with the reference from the invoice and attaches the evidence pack. HM AG's bank mandate would accept any two of five collective signatories — including Daniel and Claudia — so the tool's workflow is configured to require Thomas and the CEO for single payments above CHF 2m. Daniel checks the entered IBAN against the confirmation letter; Thomas signs from Zurich airport after asking one question ("Has the guarantee's issuing bank been checked?" — yes, a large Swiss bank); the CEO signs at 08:20 on Thursday.
 
     **Thursday 09:05** — Transmitted well before the CHF cut-off; the debit appears in the 10:00 intraday report. Lea confirms to the plant and the supplier, updates the 13-week forecast, and diarises the guarantee expiry.
 
     **The fraud variant.** Had the same request arrived as an email "from Thomas" on Friday at 16:45 — new Hong Kong IBAN, "confidential, the CEO knows, I'm boarding" — every row above would fail: no capex order, no contract, no known contact, a change of country, secrecy and deadline pressure. The call-back to Thomas's mobile from the internal directory ends it.
+
+    **If it does happen anyway**, the first hours decide recovery: a recall/return request to the bank immediately (a Swift gpi recall for cross-border items), a police report, and the sober reality that [the workable window is hours, not days](why:recall-window) — recall procedures between banks run 24–48h while mule accounts empty in days. The evidence pack is what the bank, the insurer and the police ask for first.
 judgment:
   - decision: Whether the evidence supports paying this amount now
     why: Contracts are conditional; a down payment without its guarantee, or an acquisition payment before closing conditions, can be unrecoverable. Reading the contract is judgment, not a lookup.
@@ -249,10 +253,11 @@ by_size:
     CHF 4m is routine for treasury's own flows, which run through standard deal-settlement processes. The unusual-payment
     route is for non-standard items (acquisitions, litigation settlements, first payments to new beneficiaries), with
     formal evidence requirements, beneficiary whitelists in the TMS, independent verification by treasury operations,
-    and board approval above set limits. Many payment-factory rules flag outliers automatically (new beneficiary,
-    amount outside the supplier's history, change of country).
+    and board approval above set limits. Payment-factory and TMS vendors sell outlier flagging as a product capability
+    (new beneficiary, amount outside the supplier's history, change of country) — it catches the obvious cases, not the
+    well-prepared one.
 companies:
-  kleio: "The largest payments Sarah makes are her own: moving CHF 4–8m between Swiss banks for deposits after the SVB-driven diversification. She enters them in e-banking; the board chair signs as second signatory. A spoofed 'Sarah' email to Nina asking for an urgent CHF 48k payment was stopped by the call-back rule."
+  kleio: "The largest payments Sarah makes are her own: moving CHF 4–8m between her two Swiss banks into short-term deposits after the SVB-driven diversification (held for safety at ≈0% yield, not for return), and putting USD surpluses into a USD government money-market fund. She enters them in e-banking; the board chair signs as second signatory. A spoofed 'Sarah' email to Nina asking for an urgent CHF 48k payment was stopped by the call-back rule."
   alpine: "Martin must co-sign anything above CHF 250k. A CHF 4m payment would be half of Alpine's cash on a normal day — in practice only a plant-related payment or a loan repayment. Petra would check the credit line headroom first, and the house bank's relationship manager would likely call Martin to confirm."
   helvetic: "The worked example above. The matrix requires CFO and CEO for non-routine payments of CHF 2–10m and the board above CHF 10m; Lea assembles evidence; the connectivity tool enforces the matrix because the bank mandates are broader."
   globalchem: "Treasury operations (Marta's team) verifies any first payment to a new beneficiary independently of the requester; the TMS whitelists beneficiaries for treasury payments; non-standard payments above EUR 5m require Anna and the CFO (Markus), and acquisition payments are released only against a closing checklist signed by legal."
@@ -291,11 +296,11 @@ ai_note: >-
   voice and email impersonation are part of the threat — so an assistant here is a checker, not an approver.
 terms: [signing-authority-matrix, call-back-verification, business-email-compromise, vendor-master-data, four-eyes-principle, segregation-of-duties, signatory, payment-mandate, verification-of-payee, advance-payment-guarantee, assignment-of-receivables, manual-payment, sic, cut-off-time, value-date]
 related: [payment-processing, fraud-investigation, daily-cash-positioning, policy-compliance, bank-account-management]
-sources: [bacs-ceo-fraud-2026, afp-pfc-2026-highlights, nacha-ic3-2024, ecb-ipr, epc-vop-bulk-faq]
+sources: [bacs-ceo-fraud-2026, afp-pfc-2026, nacha-ic3-2024, ecb-ipr, epc-vop-bulk-faq]
 evidence_note: >-
   The control sequence (independent verification, call-back, dual approval, tool-enforced limits) is established practice
   and matches the recommendations of Switzerland's Federal Office for Cyber Security, which also reported the rise in
   CEO-fraud reports from 719 (2024) to 971 (2025)[](cite:bacs-ceo-fraud-2026). US survey data: 74% of organisations
-  were affected by BEC in 2025[](cite:afp-pfc-2026-highlights); the FBI's IC3 recorded close to USD 2.8bn of BEC losses
+  were affected by BEC in 2025[](cite:afp-pfc-2026); the FBI's IC3 recorded close to USD 2.8bn of BEC losses
   in 2024[](cite:nacha-ic3-2024). Verification of Payee for euro credit transfers has applied since 9 October 2025[](cite:ecb-ipr).
   Thresholds, the signing matrix and the worked example are illustrative synthesis; real matrices vary widely.

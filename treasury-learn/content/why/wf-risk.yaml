@@ -1,0 +1,209 @@
+# Why notes for stream wf-risk (FX exposure, FX hedging, credit facilities, covenants).
+# Every derivation below is re-derivable from content/companies.yaml and AUTHORING.md canonical facts v2/v2.1.
+
+- id: hedge-bands-graded
+  claim: "Hedge bands that shrink with the horizon (Q+1 60–90%, Q+2 40–70%, Q+3 25–55%, Q+4 0–40%)"
+  short: |
+    Forecast error grows with distance, so the policy buys less certainty further out. Helvetic's Q4 2026 exposure is
+    100% booked or signed (31.0 of 31.0), Q3 2027 only 13% (4.0 of 30.0); the band midpoints fall 75/55/40/25% roughly
+    with that firmness.
+  detail: |
+    From the October exposure table: firmness by quarter = booked + signed orders ÷ exposure — Q4 2026 (21.0 + 10.0) / 31.0
+    = 100%, Q1 2027 12.0 / 28.0 = 43%, Q2 2027 8.0 / 29.0 = 28%, Q3 2027 4.0 / 30.0 = 13%. Hedging a wrong forecast is
+    not free: an over-hedge must be closed out or rolled (a realised cash loss if the currency moved the other way),
+    while an under-hedge only leaves margin to the market. The bands therefore follow forecast quality, not appetite —
+    band midpoints 75 / 55 / 40 / 25% sit near the firmness profile. A policy demanding 90% four quarters out would,
+    after a 30% forecast cut, leave the group over-hedged — a net short EUR position most policies classify as a
+    speculative trade needing board approval. Buckets are rolling calendar quarters: the front
+    quarter carries the Q+1 band and each further quarter steps down one band; when a quarter closes the rest roll up
+    (Q1 2027 is the 40–70% bucket until Q4 2026 closes). Note what drives the bands at Helvetic: they are **management
+    practice** — the group reports under Swiss GAAP FER, so no IFRS 9 designation creates them; at GlobalChem the same
+    hedge book would carry IFRS 9 designation documentation ([why the accounting pack differs](why:fer-vs-ifrs-pack)).
+    Same logic as declining hedge ratios in every layered programme.
+  check: |
+    If later quarters were as firm as the front one (e.g. a full-year order book already signed), the bands should be
+    flat and hedging 80–90% throughout would be right; conversely a company with pure-budget forecasts beyond Q+1 would
+    set the far bands even lower than 0–40%.
+  terms: [hedge-ratio, booked-exposure, layered-hedging, hedge-accounting]
+
+- id: bid-contingent-hedge
+  claim: "Options, not forwards, for tenders and bids"
+  short: |
+    A forward on a bid that is lost becomes a naked speculative position: sell EUR 5m forward for a tender, lose the
+    tender, and Helvetic is simply short EUR 5m. A EUR put on the same EUR 5m costs 1.5–2% of notional (≈ CHF 70–95k)
+    whether or not the bid is won — that premium is the price of not being obliged.
+  detail: |
+    Forward route: a 6-month forward at spot 0.9352 prices at 0.9352 × (1 − 2.3% × 0.5) ≈ 0.9245. If the tender is lost
+    and EUR/CHF falls to 0.90, closing the forward costs (0.9245 − 0.90) × 5m ≈ CHF 122k of realised loss with no
+    customer receipt to offset it — a speculative loss created purely by hedging a bet. Option route: a 6-month EUR put
+    (the right to sell EUR 5m at 0.94, spot ≈ 0.935) costs a premium of roughly 1.5–2% of notional ≈ EUR 75–100k
+    (≈ CHF 70–95k), paid up front; if the bid is lost the option is closed or lapses and nothing else happens, and if
+    EUR rises the upside is kept. The premium is therefore not "cost" in the forward sense but the price of the option
+    to walk away — the correct instrument whenever the exposure itself is contingent. Note the direction: a company that
+    will *receive* EUR buys a EUR put (or CHF call), not a EUR call.
+  check: |
+    If the bid were effectively certain (a signed contract, not a tender), the forward is cheaper and right; if 6-month
+    premiums ran above ~3–4% of notional, the expected cost of always buying options could exceed the expected loss of
+    occasionally losing a bid with a forward on.
+  terms: [option, collar, forward, budget-rate]
+
+- id: revolver-swap-awkward
+  claim: "Why Helvetic borrows in EUR instead of swapping a CHF drawing"
+  short: |
+    A revolving drawing floats with SARON and can be repaid at any 15th rollover; an FX swap fixes two amounts on two
+    dates and uses credit line at both legs. Swapping a drawing whose cash need is uncertain turns one flexible cash
+    flow into a certain obligation — the same cost as a direct EUR loan, with more moving parts.
+  detail: |
+    Economics first: a CHF drawing at SARON + 0.85% (≈ 0.85%) swapped into EUR costs ≈ €STR + swap spread + margin
+    ≈ 3.1–3.2% p.a., essentially the same as the direct EUR loan at EURIBOR 2.05% + 0.85% = 2.9%. So the swap route is
+    not cheaper — it just looks cleverer. What it costs instead: (1) the swap is a fixed exchange on two value dates,
+    while the drawing can be reduced at the next rollover if the EUR need disappears — leaving the swap's far leg
+    unmatched; (2) both the drawing and the swap consume bank credit lines/CSA capacity; (3) every extension means
+    another swap, another confirmation, another settlement risk. Borrowing the currency you actually need (EUR 35m for
+    HM Deutschland's material) keeps one instrument, one exposure and one decision. Swaps remain the right tool for
+    moving *existing hedges* in time, or funding a currency the facility cannot lend.
+  check: |
+    If the facility had no EUR option, or EUR borrowing were priced far above swapped CHF, the swap route would win —
+    large groups do fund currencies via swapped borrowing; the awkwardness is specific to revolving, repayable drawings
+    matched to uncertain needs.
+  terms: [swap, rcf, interest-period]
+
+- id: fifteenth-rollover-repayment
+  claim: "The 15th-of-the-month rollover is when drawings can be repaid"
+  short: |
+    Each loan runs to the end of its interest period (rolling on the 15th) and cannot be prepaid mid-period without
+    compensating the bank for breaking its funding; with deposits at ≈ 0% waiting costs nothing. The rollover is
+    therefore the only cheap moment to change the drawn amount.
+  detail: |
+    The interest period is the bank's funding term for that tranche: the rate is committed for the period (EURIBOR fixed
+    in advance; compounded SARON known only near the end), so early repayment means break costs on the bank's funding
+    and is contractually awkward — Helvetic's policy treats mid-period prepayment as unavailable. Hence the 0%-CHF rule
+    ("surplus CHF reduces drawings at the next 15th rollover"): the CHF 5m of idle parent cash in the October example
+    sits on the current account earning ≈ 0% until Thu 15 Oct, then repays CHF 5m of the loan — saving 0.85% × 5m ≈
+    CHF 42.5k a year of margin with nothing lost while waiting. The 15th is not magic: it is the agreed common rollover
+    date that lets the agent compute one interest run and net all rollovers cashlessly — which is also why Lea's
+    facility calendar is built around the 15th.
+  check: |
+    For an on-demand overdraft (Alpine's line works this way) surplus cash repays immediately and no waiting rule
+    exists; if break costs were zero, prepaying mid-period would dominate waiting.
+  terms: [interest-period, utilisation-request, rcf]
+
+- id: covenant-excludes-leases
+  claim: "Leases are excluded from Helvetic's covenant net debt"
+  short: |
+    Helvetic reports under Swiss GAAP FER, where operating leases stay off balance sheet; the covenant definition
+    follows those accounts and expressly excludes IFRS 16 lease liabilities if the group ever switches — so a change of
+    accounting rules cannot move leverage by itself.
+  detail: |
+    The CHF 106m net debt is built only from financial debt (bond CHF 100m + RCF CHF 60.2m) minus freely available cash
+    ≈ CHF 54m — a FER balance sheet contains no lease liabilities to add. Two reasons to write the exclusion into the
+    definition: (1) the covenant number must be re-derivable from the accounts the lenders actually receive (FER
+    statutory consolidated accounts); (2) IFRS 16 (2019) capitalised operating leases, mechanically raising both net
+    debt and EBITDA — agreements handled it with frozen-GAAP clauses, explicit lease exclusions or level resets. This
+    is why leverage is 1.36x and not higher, and why the definition — not the accounting framework — is the object
+    being negotiated. Note the asymmetry: rating agencies *do* adjust for leases, which is why GlobalChem's agency
+    metrics look worse than its covenant ratios.
+  check: |
+    If Helvetic adopted IFRS and the agreement counted IFRS 16 liabilities (or if the group had large finance leases
+    already recognised under FER), leverage would jump and the levels would need renegotiating.
+  terms: [frozen-gaap, net-debt, leverage-ratio]
+
+- id: net-debt-lender-view
+  claim: "Net debt is what the lender counts"
+  short: |
+    The covenant measures the debt the business must repay, net of cash that could actually repay it. Helvetic: gross
+    debt CHF 160.2m (bond 100 + RCF 60.2) would be 2.05x; net of ≈ CHF 54m freely available cash it is 106/78 = 1.36x —
+    and the CHF 7.9m in China that can only leave as a dividend is not "freely available".
+  detail: |
+    Three numbers, one definition: gross leverage 160.2/78 = 2.05x; net leverage (160.2 − 54.2)/78 = 106/78 = 1.36x;
+    net leverage excluding trapped cash (106 + 7.9)/78 = 113.9/78 = 1.46x. Lenders accept netting because cash retires
+    debt in substance — a company sitting on CHF 54m is not the same credit as one with none. The fights are always in
+    the qualifiers: "freely available to the group" excludes restricted, trapped and earmarked cash (HM Suzhou's CNY
+    can only leave China as an annual dividend, hence the 0.1x swing), and at test dates the definition also decides
+    whether derivative receivables and ISDA close-out netting count. Net debt — not gross — is what treasury forecasts
+    at each test date, because cash swings hard seasonally (≈ CHF 54m at the September close, ≈ CHF 25m at the December
+    low — CHF 100m + 62.7m − 25m ≈ CHF 137m net debt at year-end) while debt moves only at the 15th rollovers.
+  check: |
+    If the definition counted gross debt, Helvetic would sit at 2.05x — one grid step from the 2.25x margin threshold
+    instead of comfortably at 1.36x; if cash counted without the "freely available" test, trapped China cash would make
+    the ratio look better than the repayment reality.
+  terms: [net-debt, leverage-ratio, ebitda]
+
+- id: utilisation-fee-threshold
+  claim: "Why Daniel repays CHF 5m at the October rollover"
+  short: |
+    Drawings above one-third of the facility (CHF 66.7m) trigger 0.10% on *all* loans. Lea's draft — CHF 35m + EUR 35m
+    = CHF 67.7m — would cost ≈ CHF 68k a year in fees alone; repaying CHF 5m of idle cash keeps drawings at CHF 62.7m
+    and also saves 0.85% margin on the 5m.
+  detail: |
+    The arithmetic of the cliff: 0.10% × CHF 67.7m ≈ CHF 68k a year, charged on the whole book once the one-third
+    threshold (CHF 200m / 3 = CHF 66.7m) is crossed — so the marginal cost of the last CHF 1m of drawing is not 0.85%
+    but 0.95% plus the cliff on everything. Against that, the CHF 5m of surplus parent cash earns ≈ 0% on deposit
+    (SARON ≈ 0%), so repaying costs no income and saves 0.85% × 5m ≈ CHF 42.5k a year of margin. Total swing ≈ CHF 110k
+    a year from a decision that moves no cash out of the group (the rollovers net cashlessly). That is why the
+    utilisation-fee tier, not the interest rate, drives the sizing of the October rollover — and why Daniel watches the
+    two-thirds tier (CHF 133m) the same way.
+  check: |
+    If the fee applied only to drawings above the threshold rather than to all loans, the cliff would be CHF ~700 and
+    would not change any decision; if CHF deposits yielded 2%+, repaying would cost real income and the calculation
+    would be closer.
+  terms: [utilisation-fee, commitment-fee, rcf]
+
+- id: acquisition-consent-test
+  claim: "The 2.75x pro forma test before an acquisition"
+  short: |
+    Acquisitions need no lender consent only if pro forma leverage stays below 2.75x — deliberately below the 3.25x
+    maintenance limit — so a deal cannot walk the company straight into a covenant problem. Project Lario passes at
+    2.39x base case but would need consent in a downturn (3.20x).
+  detail: |
+    The base case: net debt ≈ 198 / covenant EBITDA 83 = 2.39x < 2.75x ✓. The downturn: 208/65 = 3.20x — above the
+    2.75x consent test even though the 3.25x maintenance covenant still holds; severe: 213/55 = 3.87x, a breach. The
+    consent threshold is set below the maintenance level precisely because debt-funded acquisitions are the classic way
+    leverage jumps: it forces a lender conversation *before* signing, while the company can still resize or reprice the
+    deal (deferred consideration, equity funding, a smaller target). That is why Daniel tests pro forma leverage before
+    Thomas signs rather than computing the ratio at the next test date — the covenant catches a breach after the fact;
+    the basket prevents one.
+  check: |
+    If the deal were funded with equity or vendor paper, pro forma leverage would stay lower and larger deals would fit
+    inside the basket; if the consent test were set at the maintenance 3.25x, it would rarely bite and lenders would
+    lose their pre-signing control.
+  terms: [covenant, covenant-headroom, leverage-ratio]
+
+- id: pro-forma-ebitda-effect
+  claim: "Why the pro forma clause moves leverage from 2.68x to 2.39x"
+  short: |
+    Covenant EBITDA may count the target's full-year earnings from day one. Base case 74 + 9 = 83 → 198/83 = 2.39x.
+    Counting only post-closing months (Apr–Jun 2027 ≈ CHF 2.3m) gives 198/76.3 ≈ 2.6x; ignoring the target until a full
+    LTM passes gives 198/74 = 2.68x. Same deal, three conventions, 0.3x of leverage.
+  detail: |
+    The three readings of the same closing on 30 Jun 2027 (target LTM EBITDA CHF 9m, closing March 2027): (1) full pro
+    forma — the definition allows the target's EBITDA for the whole relevant period: denominator 74 + 9 = 83 → 2.39x;
+    (2) post-closing only — Apr–Jun 2027, ≈ a quarter of CHF 9m ≈ CHF 2.3m: 74 + 2.3 = 76.3 → 2.60x; (3) none until a
+    full LTM has elapsed under new ownership: 74 → 2.68x. The clause exists because lenders price the *combined* cash
+    flow from day one, while the reported accounts will not show twelve months of the target until March 2028 —
+    without it, every acquisition would look like a leverage spike. The reading must be agreed with the agent and
+    documented; this is exactly the definitional territory where 0.2–0.5x of leverage lives (see the covenant
+    definition diff in the worked example).
+  check: |
+    Without the clause the base case sits at 2.68x — barely inside the 2.75x test — so the deal might need consent or
+    shrink; if the target's earnings were seasonal, the Apr–Jun slice would not be a clean quarter of CHF 9m and
+    convention (2) would move.
+  terms: [ebitda-adjustments, ebitda, covenant]
+
+- id: cover-not-binding
+  claim: "Why interest cover (23x) never binds at Helvetic"
+  short: |
+    With SARON ≈ 0%, finance charges are ≈ CHF 3.4m — mostly the bond coupon and the commitment fee — against EBITDA
+    ≈ CHF 78m. Cover falls below 4x only after an 83% EBITDA drop; leverage breaches 3.25x after a 58% drop. Leverage is
+    the covenant to watch.
+  detail: |
+    Charges ≈ CHF 2.0m bond coupon (CHF 100m at ~2%) + ≈ CHF 0.5m drawn margin (CHF 63m × 0.85% at SARON ≈ 0%) +
+    ≈ CHF 0.4m commitment fee (CHF 137m × 0.2975%) + ≈ CHF 0.5m agency and bank fees ≈ CHF 3.4m. Cover = 78/3.4 = 23x
+    against the 4x minimum: EBITDA would have to fall to 4 × 3.4 = CHF 13.6m, i.e. −83%. Leverage breaches at
+    EBITDA = net debt / 3.25 = 106/3.25 = CHF 32.6m, i.e. −58%. So at every plausible EBITDA level the leverage
+    covenant binds first — which is where the headroom reporting and the downside scenarios focus. The two covenants
+    are not redundant: cover becomes the binding test when rates rise (charges scale with rates, EBITDA does not).
+  check: |
+    If the bond refinanced at 4–5%, or the RCF stayed heavily drawn at SOFR-like rates, finance charges would roughly
+    double and cover would fall toward single digits — at CHF 7m of charges cover is 11x and the gap to 4x narrows fast.
+  terms: [interest-cover, leverage-ratio, covenant-headroom]

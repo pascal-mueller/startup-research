@@ -2,18 +2,20 @@
 title: AI features and "treasury agents"
 nav: AI features & agents
 order: 9
-summary: What can and cannot be said about AI in treasury products as of September 2026. Short version — AI is mostly marketed as features inside existing vendors; no AI-native "treasury agent" product could be verified in this session, which is a statement about evidence, not about the market.
+summary: What can and cannot be said about AI in treasury products as of September 2026. Short version — AI is mostly marketed as features inside existing vendors; two AI-native startups (Nilus, Palm) are now sourced as vendor self-descriptions with funding, but whether any "agent" performs treasury tasks in production is still unproven.
 related: [/lens, /lens/candidates, /competitors/method, /competitors/landscape]
 ---
 
 ## Say it plainly
 
-<Callout type="warning" title="What was and was not verified">
+<Callout type="warning" title="What is claimed, what is sourced, what is not known">
 
-- **Verified (from search snippets):** GTreasury's January 2026 "Ripple Treasury" launch was reported as including "AI-driven cash forecasting" alongside stablecoin settlement — a vendor claim as reported[](cite:comp-ripple-treasury-launch).
-- **Not verified:** the scope of any other vendor's AI features (Kyriba, HighRadius, Trovata and others market AI capabilities — background knowledge), and **whether any AI-native startup ships a product that performs treasury tasks end-to-end**. Palm, Nilus, Statement and Millimetric were named in the research brief; nothing about them could be confirmed and they appear only as watchlist entries.
+- **Sourced — vendor claims as reported:** GTreasury's January 2026 "Ripple Treasury" launch was reported as including "AI-driven cash forecasting" alongside stablecoin settlement[](cite:comp-ripple-treasury-launch).
+- **Sourced — the claims themselves:** **Nilus** self-describes as "your agentic workforce for treasury. AI agents reconcile cash, forecast liquidity, and automate finance ops across every bank and ERP"[](cite:comp-nilus-agents), and raised USD 10m led by Felicis in January 2025 (total ~USD 18.6m)[](cite:comp-nilus-funding-2025). **Palm** self-describes as "AI cash flow forecasting for treasury teams" that "sits on top of your TMS/ERP"[](cite:comp-palm-product) and raised a USD 6.1m seed in September 2024[](cite:comp-palm-seed-2024). These are live vendor self-descriptions — [the right evidence for what is claimed, not for what works](why:comp-self-description-bar).
+- **Classified from those claims:** Palm's own words make it a forecasting layer over an existing system — an **AI feature**, not an agent ([why](why:comp-palm-feature-not-agent)). Nilus claims task performance and is the one entry in the agent column.
+- **Not established:** whether any of this runs in production without a human re-doing the work. **Statement, Millimetric, Bound and Treasury4/TreasuryGo** remain watchlist names — nothing about them could be confirmed.
 
-So this page does not tell you that treasury agents exist, and it does not tell you that they don't. It tells you how to find out.
+So this page does not tell you that treasury agents work, and it does not tell you that they can't. It tells you exactly who claims what, at what evidence level, and how to find out the rest.
 
 </Callout>
 
@@ -29,7 +31,7 @@ So this page does not tell you that treasury agents exist, and it does not tell 
 
 <Callout type="synthesis" title="Why claims in this area need extra scrutiny">
 
-Treasury has two properties that make AI claims hard to judge from the outside. First, correctness is often only visible later (a forecast is judged weeks afterwards; a hedge decision months afterwards). Second, the consequential actions — releasing payments, dealing FX, moving cash between entities — sit behind approval chains and bank mandates that a vendor cannot remove. A product can therefore be "agentic" in the demo and a copilot in production. EACT's 2025 survey of European treasurers ranked AI low as a priority, citing missing data foundations and non-standardised data[](cite:eact-2025) — a reminder that the data problem precedes the model problem.
+Treasury has two properties that make AI claims hard to judge from the outside. First, correctness is often only visible later (a forecast is judged weeks afterwards; a hedge decision months afterwards). Second, the consequential actions — releasing payments, dealing FX, moving cash between entities — sit behind approval chains and bank mandates that a vendor cannot remove. A product can therefore be "agentic" in the demo and a copilot in production. EACT's 2025 survey ranks cash-flow forecasting first and treasury technology review/replacement third among European treasurers' priorities[](cite:eact-2025); whether AI ranks low *because* data is fragmented was not confirmed against the primary text — but the data-first sequencing is the right question to put to interviewees.
 
 </Callout>
 
@@ -37,11 +39,13 @@ Treasury has two properties that make AI claims hard to judge from the outside. 
 
 ### Treasury intelligence / AI features (inside existing vendors)
 
-These vendors' entries mention AI; open each for details and verification status.
+These vendors' entries mention AI — Kyriba, HighRadius, Trovata and others market AI capabilities (background knowledge for their scope; Trovata's 2025 ATOM acquisition and its AI assistant layer are sourced[](cite:comp-trovata-atom-press)). Open each for details and verification status.
 
 <CompetitorTable category="treasury-ai" filters={false} />
 
-### Treasury agents (watchlist)
+### Treasury agents (claims — not verified deployments)
+
+One entry self-describes as an agentic workforce (Nilus); Palm sits under features because its own positioning says so ([why](why:comp-palm-feature-not-agent)); the rest are watchlist names.
 
 <CompetitorTable category="treasury-agents" filters={false} />
 

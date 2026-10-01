@@ -1,0 +1,152 @@
+# Why notes — Interview Prep stream
+- id: open-vs-leading
+  claim: Why the open past-instance question beats a leading one
+  short: |
+    A courteous treasurer confirms your premise whether or not it is true — and you cannot tell the two outcomes apart
+    afterwards. "What did you do last Monday?" can only be answered with facts.
+  detail: |
+    Leading questions ("forecasting in Excel is really painful, isn't it?") invite acquiescence bias: agreeing is
+    socially cheap, contradicting you is effort. Whatever comes back is a blend of truth and politeness with no way to
+    separate the two. The open past-instance form — "walk me through the last time you did X" — demands a story with
+    checkable details: systems, times, counterparties, what broke. If your premise is wrong, the story contradicts it
+    without anyone having to say so. That is why the question bank is built as walk-throughs of the last instance.
+  check: |
+    If people routinely contradicted flattering or leading premises, leading questions would be efficient openers —
+    the bias would carry no information cost.
+  sources: [mom-test]
+
+- id: discovery-vs-reconnaissance
+  claim: Why fraud controls are fair discovery — and where the line falls
+  short: |
+    The shape of a control is legitimate discovery; the specific values that make an attack work — limit amounts,
+    signatory names, call-back numbers — are reconnaissance material and stay off the table.
+  detail: |
+    Business email compromise and CEO fraud succeed on exactly this combination: knowing how a supplier bank-detail
+    change gets verified *plus* knowing who approves what above which threshold. "How does verification work when a
+    supplier changes bank details?" teaches you how the control is designed — the proper subject of discovery. "What is
+    your payment approval limit and who signs above it?" hands an attacker the exploit parameters. Same topic, two
+    questions: one about the control's design, one about its secrets. Asking about the process as a past instance —
+    "what happened the last time a supplier changed bank details?" — stays on the right side of the line and gets
+    better data anyway.
+  check: |
+    If fraudsters never profiled controls before attacking, the specific values would be harmless conversation
+    material.
+
+- id: debrief-maps-to-manual
+  claim: Why interview notes use the workflow page structure
+  short: |
+    Notes taken in workflow shape — trigger, steps, judgment, handoffs, what breaks — make the debrief a mapping
+    exercise onto the manual's pages instead of an interpretation exercise.
+  detail: |
+    Free-prose notes have to be interpreted before they can be compared: what did this person actually own, where did
+    judgment live, what was the exception? With one skeleton across interviews, comparing two treasurers is diffing
+    two columns, and every gap against the manual becomes a concrete edit request ("the workflow page says X, this
+    person does Y"). It also keeps the interviewer honest during the hour: an empty section shows exactly where the
+    guide failed to get concrete.
+  check: |
+    If interviews were short one-off fact checks, the structure would be overhead — the payoff comes from comparing
+    several interviews and feeding the manual.
+
+- id: doer-reviewer-decider
+  claim: Why role blocks map by proximity to the last instance, not by title
+  short: |
+    Titles are unreliable across sizes and countries; the person who last did the work holds the steps and the
+    exceptions, the reviewer holds what they check for, the decider holds the thresholds and why they were set.
+  detail: |
+    "Treasury Manager" can be a hands-on operator at a CHF 650m group or a pure signing officer at a larger one; at a
+    70-person startup nobody holds any of those titles. Mapping questions to people by who touched the last instance
+    survives all of that. The doer can walk you through steps, systems and last week's exceptions; the reviewer
+    through what they look for and what they send back; the decider through thresholds and the history behind them.
+    Confirm which one you are talking to in the first five minutes — "what were the last three things you worked
+    on?" — and spend the hour on what they actually hold.
+  check: |
+    At small companies the doer is often the decider (the CFO does treasury); one block then covers all three, which
+    is why the blocks say "probably".
+
+- id: forecast-week-cycle
+  claim: Why the forecast week runs Tue submissions → Tue–Wed consolidation → Wednesday review
+  short: |
+    Subsidiaries need Monday to close their own week; the parent needs the forecast settled by Wednesday so the
+    decisions it drives — funding, hedges, payment timing — still have days left in the week to be executed.
+  detail: |
+    Helvetic's cycle: Lea rolls the forecast forward and analyses last week's variances Monday; subsidiaries submit by
+    Tuesday noon (France is chased into Wednesday); Lea consolidates Tuesday–Wednesday; Daniel reviews Wednesday
+    afternoon. The dependencies are hard — entity numbers must exist before consolidation, consolidation before
+    review — so one day per handoff is the minimum. Thursday and Friday then absorb the actions the review triggers
+    (intercompany funding, hedge decisions, payment runs) before the next cycle starts. Cut-offs exist because the
+    downstream work has cut-offs too.
+  check: |
+    A smaller group with few entities compresses the cycle (Monday submissions, Tuesday review) — the shape survives,
+    the days move. At multinationals the cadence may be monthly for the long view plus a centrally-built daily
+    short-horizon position.
+  terms: [cut-off-time]
+
+- id: questions-by-size
+  claim: Why some questions only work at some company sizes and levels
+  short: |
+    Organisation size determines who knows the answer and how much of it they hold — a startup CFO *is* the treasury
+    function, a multinational operations lead holds one slice and can only refer you onward.
+  detail: |
+    Ask a 70-person company's CFO who does the cash position and the answer is "me, Monday mornings" — depth over
+    breadth. Ask a CHF 7bn group's cash manager about capital structure and you will get a polite referral to
+    corporate finance. The failure mode wastes the scarcest resource in discovery: the interviewee's hour. Matching
+    question depth to the interviewee's world — size first, then role, then proximity to the last instance — is why
+    the by-role blocks list "questions they can answer well" *and* "what they probably can't answer".
+  check: |
+    Exception: a long-tenured person often knows far more than their role suggests. The role blocks are priors to
+    update in the first five minutes, not verdicts.
+
+- id: midmarket-size-label
+  claim: Why "a multinational like you" mis-sizes a CHF 650m group
+  short: |
+    In-house banks, payment factories and dedicated FX desks are features of scale — typically absent at the smaller
+    end of mid-market, where treasury is two or three people, though larger mid-market groups may run a simple
+    payment factory or POBO-lite.
+  detail: |
+    Helvetic at CHF 650m: a treasury manager and an analyst, manual cash concentration, five banking relationships,
+    no in-house bank. GlobalChem at CHF 7bn: in-house bank, payment factory, regional treasury centres, specialised
+    front/middle/back roles. Treating the first like the second means asking about systems and roles that do not
+    exist — and marks you as someone who has not done the homework. Ask what exists instead: "how is treasury set up
+    here?" and let them describe their world before you load it with terms.
+  check: |
+    The label is a tendency, not a rule — some CHF 650m groups run surprisingly sophisticated operations after
+    acquisitions, and some CHF 7bn groups still run on spreadsheets. Size sets the prior; the interview updates it.
+
+- id: yesterday-beats-typical-day
+  claim: Why "what did you do yesterday?" beats "what does a typical day look like?"
+  short: |
+    "Typical" invites the rehearsed process description and averages away the exceptions — which are the work.
+    "Yesterday" has a fixed referent: a specific day with specific screens, times and people, which cannot be
+    answered with the policy version and cannot avoid what went wrong.
+  detail: |
+    A "typical day" question lets the interviewee compress their job into the story they would tell at a
+    conference: the documented process, minus every interruption. Nothing in the answer is checkable, so it
+    reads as evidence when it is really a self-portrait. "Walk me through yesterday, from when you logged in"
+    forces sequence and artefacts — which login first, which file, who was chased, what was late — and the
+    exceptions surface without being asked for ("the Chinese statement hadn't arrived, so I…"), because they are
+    part of the day being narrated. If yesterday was uneventful, follow with "what broke the last normal
+    Monday?" to reach the exceptions that any average erases.
+  check: |
+    If workdays were interchangeable and interruptions rare, the typical-day answer would be accurate and much
+    cheaper to obtain — the question would lose nothing.
+  sources: [mom-test]
+
+- id: last-instance-walk-through
+  claim: Why the last-instance walk-through is the core question of the interview
+  short: |
+    One recent instance carries steps, systems, timing, judgment and failure inside a single story that can be
+    excavated and checked; a description of "the process" carries none of it and can only be believed.
+  detail: |
+    "Walk me through the last forecast you produced" forces every abstraction to resolve to something concrete:
+    each input has a source and a lateness, each system a login, each hand-off a person, each override a reason.
+    Every answer has a next question ("then what happened?"), so the story can be excavated until the judgment
+    points — where rules stop and experience starts — surface on their own. It also levels roles: the doer, the
+    reviewer and the decider can each narrate their part of the same instance, which makes the accounts
+    comparable. That is why the 45-minute budget gives it 20 minutes, and why one walk-through done properly
+    beats five done superficially: depth in one workflow is the only thing a founder can later map onto the
+    manual's step structure and compare across interviews.
+  check: |
+    If people described their own process accurately in the abstract, the walk-through would be a slower route
+    to the same facts — and the "evasive answer" patterns ("the system does it") would not correlate with
+    distance from the work.
+  sources: [torres-story-based, torres-wrong-questions]

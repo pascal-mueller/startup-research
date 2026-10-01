@@ -12,12 +12,14 @@ For what a [TMS](term:tms) does, see [Systems → TMS](/systems/tms). This page 
 
 | | Established TMS suites | Modern / API-first platforms |
 |---|---|---|
-| Examples (see entries) | SAP, Oracle, FIS, ION Treasury, Kyriba, GTreasury, Coupa Treasury, Nomentia | Trovata, Atlar, Embat, Treasury4 (unverified) |
+| Examples (see entries) | SAP, Oracle, FIS, ION Treasury, Kyriba, GTreasury, Coupa Treasury | Agicap, Trovata, Atlar, Embat, Treasury4 (unverified) |
 | Starting point | [Deal capture](term:deal-capture), valuation, accounting, in-house bank | Bank connectivity, cash visibility, payments |
 | Typical role in the stack | [System of record](term:system-of-record) + workflow | Analytics + workflow, sometimes payments execution |
 | Buyer | Treasurer with a team, through a [TMS selection](term:tms-selection), often with consultants | CFO / finance lead at a scale-up or mid-market firm, faster decision |
-| Implementation | Months; ERP interfaces, bank connectivity, static data, testing | Usually shorter (vendor claim); scope narrower |
+| Implementation | Months — mostly bank mandates and testing, static data, ERP interfaces | Usually shorter (vendor claim); scope narrower |
 | Workflows touched | [Daily cash positioning](wf:daily-cash-positioning), [payments](wf:payment-processing), [FX hedging](wf:fx-hedging), [credit facilities](wf:credit-facility-management), [month-end reporting](wf:month-end-reporting), [subsidiary funding](wf:funding-subsidiary) | [Daily cash positioning](wf:daily-cash-positioning), [cash forecasting](wf:cash-forecasting), [payments](wf:payment-processing), [bank reconciliation](wf:bank-reconciliation) |
+
+Rows in the tables below are labelled by each vendor's **primary** category (a vendor appearing in both camps shows its primary label) — a reminder that [placement is a judgment](why:comp-category-placement), not a fact. Nomentia, for example, is filed under payments & connectivity here rather than as an established suite: its own positioning is "cash management platform rather than a full deal-capture TMS", and [/systems/tms](/systems/tms) agrees.
 
 <Callout type="confusion" title="'Modern' is a positioning word, not a technical category">
 
@@ -31,9 +33,10 @@ Kyriba has been SaaS since long before the API-first entrants existed, and sever
 
 ### What changed in 2025–2026 (sourced)
 
-- **GTreasury → Ripple.** Hg, which invested in 2023, agreed to sell GTreasury to Ripple for about USD 1bn; announced 16 October 2025, with GTreasury to operate as a subsidiary[](cite:comp-hg-gtreasury-exit,comp-ripple-gtreasury-pymnts). On 27 January 2026 GTreasury launched "Ripple Treasury", adding stablecoin settlement and digital-asset custody to the TMS (as reported)[](cite:comp-ripple-treasury-launch). The formal closing date was not verified.
-- **Kyriba ownership.** Bridgepoint has held a majority since 2019[](cite:comp-bridgepoint-kyriba-2019); aggregator data reports General Atlantic as a minority investor from October 2024 (to confirm against a primary source)[](cite:comp-kyriba-ga-aggregators).
-- Other 2025–2026 changes to FIS, ION, SAP, Oracle, Coupa and Nomentia treasury products **could not be checked** in this session — see the facts-to-re-verify list.
+- **GTreasury → Ripple.** Hg, which invested in 2023, agreed to sell GTreasury to Ripple for about USD 1bn; announced 16 October 2025, with GTreasury to operate as a subsidiary[](cite:comp-hg-gtreasury-exit,comp-ripple-gtreasury-pymnts). The deal **closed on 4 December 2025** (GTreasury: "We're officially part of Ripple!")[](cite:comp-gtreasury-close-2025). On 27 January 2026 GTreasury launched "Ripple Treasury", adding stablecoin settlement and digital-asset custody to the TMS (as reported)[](cite:comp-ripple-treasury-launch); on 6 January 2026 it acquired Solvexia for reconciliation and regulatory reporting[](cite:comp-solvexia-ripple-2026).
+- **Kyriba ownership.** Bridgepoint has held a majority since 2019 (~USD 1.2bn valuation)[](cite:comp-bridgepoint-kyriba-2019); a joint press release of 16 October 2024 has Bridgepoint reinvesting alongside new minority investor General Atlantic, valuing Kyriba at **over USD 3bn**[](cite:comp-kyriba-ga-2024-pr).
+- **FIS restructuring was not about treasury.** FIS completed its USD 13.5bn acquisition of Global Payments' Issuer Solutions and sold its remaining Worldpay stake on 12 January 2026; the treasury line stays inside FIS[](cite:comp-fis-issuer-2026).
+- Other 2025–2026 changes to ION, SAP, Oracle and Coupa treasury products **could not be checked** in this session — see the facts-to-re-verify list. (For the record, since 2021: Nomentia took in TIPCO and is Inflexion-majority owned; Serrala is Hg-majority; TIS bought Cashforce — all dated in the entries.)
 
 ## API-first platforms
 
@@ -48,6 +51,12 @@ Kyriba has been SaaS since long before the API-first entrants existed, and sever
 | [Helvetic](co:helvetic) | SAP S/4HANA (three entities) plus smaller ERPs, a multibank connectivity tool over EBICS/SWIFT, Excel; **TMS project in evaluation** | Five banks, 12 accounts, six currencies, a two-person treasury, EUR hedged with rolling forwards — the classic contested mid-market case: stay on Excel plus connectivity, an API-first platform, or a SaaS TMS |
 | [GlobalChem](co:globalchem) | SAP S/4HANA with SAP treasury modules as system of record, Swift via a service bureau, an FX trading platform, Bloomberg, a separate forecasting tool | Replacing the core would be a multi-year programme; newcomers sell point solutions on top (the forecasting tool is one) |
 
+<Example title="What a TMS selection actually looks like (Helvetic, illustrative)" company="helvetic" open>
+
+Thomas (CFO) has asked Daniel to replace the spreadsheet-based cash position. Daniel writes ~120 requirements (cash visibility, payments, FX, reporting), a consultant helps build the long list, and four vendors are invited to scripted demos. Lea and the subsidiary finance managers score the workflows they actually run; the consultant scores functional fit; Thomas decides. The decision takes about five months and implementation about six more (illustrative ranges — [the glossary entry](/glossary/tms-selection) uses the same numbers). What takes the months is not the software: it is bank mandates and connectivity testing per bank, static data (12 accounts after the 2024 rationalisation, 5 banks), and ERP interfaces (SAP in CH/DE/CZ, smaller ERPs elsewhere). **Nobody publishes what this costs, and this section will not invent a number** — the interview question is: "What did the project cost in licence, consultant fees and internal time — and what did the vendor quote versus what you paid?"
+
+</Example>
+
 <Callout type="interview" title="Questions for TMS users">
 
 - "Which of the TMS's modules do you use every day, which monthly, and which did you buy but never switch on?"
@@ -55,5 +64,6 @@ Kyriba has been SaaS since long before the API-first entrants existed, and sever
 - "How many of your bank accounts come in automatically every morning? What happens with the rest?"
 - "When did your vendor last change owner, and did you notice?"
 - For mid-market: "Did you consider staying on Excel? What finally made you buy?"
+- "What did the project cost — licence, consultant, internal time? What was quoted versus what you paid?"
 
 </Callout>

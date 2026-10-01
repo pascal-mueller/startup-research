@@ -11,69 +11,111 @@ related: [/workflows/daily-cash-positioning, /lens/matrix, /lens/dw-forecast-var
 Illustrative model, not a product description. Based on the [daily cash positioning](wf:daily-cash-positioning) workflow
 and the [Helvetic](co:helvetic) scenario: 12 operating accounts at 5 banks, six currencies, no cash pool — Daniel
 concentrates cash manually by intercompany loan. Lens rating: [good agent candidate](/lens/matrix#daily-cash-positioning).
+The worked morning below is the manual's shared [Tuesday 17 November 2026](/start) — the same numbers as the workflow
+example, seen as the system's output.
 
 </Callout>
 
 ## The assignment today
 
-At about 08:00 Lea opens the multibank connectivity tool, checks that all twelve statements arrived, copies balances
-into the positioning workbook, compares yesterday's movements with what was expected, reads the overnight emails from
-Giulia (Italy), Jens (Germany) and Wei (China), adds today's known flows, and proposes transfers. Daniel reviews at about
-09:30 and approves before the EUR cut-off. It takes her 60–90 minutes on a normal day and most of the morning when a
-statement is missing or something odd shows up. Leading vendors now market agents for exactly this step[](cite:sap-cash-agent,kyriba-tai-2025)
-— claims, but a sign of where the incumbents are going.
+At about 07:30 Lea opens the multibank connectivity tool: [11 of the 12 statements are in](why:systems-11-of-12-statements).
+The twelfth balance — HM Suzhou's account at a Chinese domestic bank — is not a file at all: that bank has no EBICS or
+Swift reporting to the group, and Wei emails a portal export every morning which Lea types into the workbook
+([why the fallback rule is what it is](why:day-china-manual-balance)). She compares yesterday's movements with what was
+expected, reads the overnight emails from Giulia (Italy), Jens (Germany) and Wei (China), adds today's known flows, and
+proposes transfers. Daniel reviews at about 09:10 and approves before the Swiss bank's early-afternoon cut-off
+([the day runs backwards from the cut-offs](why:cut-offs-order-the-day)). It takes her 60–90 minutes on a normal day and
+most of the morning when an input is missing or something odd shows up. Leading vendors now market agents for exactly
+this step[](cite:sap-cash-agent,kyriba-tai-2025) — claims, but a sign of where the incumbents are going.
 
 <DigitalWorker id="dw-liquidity-recommendation" />
 
 ## A worked morning
 
-<Example title="Tuesday: what the system hands Daniel at 09:10" company="helvetic" open>
+<Example title="Tuesday 17 November 2026: what the system hands Daniel at 09:10" company="helvetic" open>
 
-**Position (extract, CHF equivalent at EUR/CHF 0.935, illustrative):**
+**Position (extract from the 12-account position, CHF equivalent at EUR/CHF 0.935, USD/CHF 0.80, illustrative):**
 
-| Account | Opening | Known flows today | Projected close | Minimum | Status |
+| Account | Opening, value-dated | Known flows today | Projected close | Minimum | Status |
 |---|---|---|---|---|---|
-| HM AG, CHF (Swiss bank A) | CHF 14.2m | −0.6m (Swiss supplier run) | CHF 13.6m | CHF 3.0m | Surplus |
-| HM AG, EUR (Swiss bank A) | EUR 3.1m | — | EUR 3.1m | EUR 0.5m | Surplus |
-| HM Deutschland, EUR | EUR 1.9m | −2.3m (AP run released in SAP) | EUR −0.4m | EUR 0.25m | **Short EUR 0.65m** |
-| HM Italia, EUR | EUR 0.4m | −1.2m (supplier, from Giulia's email) | EUR −0.8m | EUR 0.2m | **Short EUR 1.0m** |
-| HM Suzhou, CNY | *stale — yesterday's file failed* | — | — | — | Excluded; not concentrated anyway |
+| HM AG, CHF (Swiss bank A) | CHF 14.2m | −1.1m (Swiss supplier run) | CHF 13.1m | CHF [2.0m](why:buffer-layers) | Above minimum — but not surplus (see #3) |
+| HM AG, EUR (Swiss bank A) | EUR 6.8m | +0.9m receipt (07:45 camt.052); −1.5m to Germany | EUR 6.2m | EUR 0.5m | OK |
+| HM Deutschland, EUR | EUR 1.5m (expected 1.8m) | −2.6m (AP run released in SAP) | EUR −1.1m | EUR 0.25m | **Short EUR 1.35m** |
+| HM Italia, EUR | EUR 2.9m (expected 5.15m) | — | EUR 2.9m | EUR 0.3m | Customer receipt missing |
+| HM Suzhou, CNY | CNY 55m (*Wei's emailed export, typed in 07:35*) | — | CNY 55m | CNY 5m | Not concentrated ([trapped](term:trapped-cash)); [excluded from usable cash](why:china-cash-excluded) |
 
-**Exceptions (with evidence):**
+Group total about **CHF 41m** — about CHF 2.6m below yesterday's forecast. Tie-out line on the note: 12/12 balances
+carried an as-of time and a source tag (11 tool statements + one email), and every opening balance equalled Monday's
+value-dated close — the opening-equals-prior-close check ran clean today; a gap would have named the bank that
+back-valued something and blocked the note until it was explained.
 
-1. HM Deutschland: unexpected debit EUR 186k, SEPA direct debit. *Likely explanation:* annual machinery-insurance
-   premium — same creditor ID and similar amount debited in the same week last year (statement line linked). Not in the forecast.
-2. HM Italia: expected customer receipt EUR 1.5m did not arrive. *Unexplained* — no remittance, no email. Italy has
-   over-forecast receipts in 8 of the last 10 weeks (see [variance model](/lens/dw-forecast-variance)).
-3. China: Chinese bank file failed — the bank delivers early (Asia is ahead of CET), so this is a connectivity problem, not timing.
-   Ticket drafted to the connectivity provider; Wei asked for the portal balance.
+**Exceptions (each explanation links its evidence; no evidence, no explanation):**
+
+1. **HM Italia:** expected customer receipt EUR 2.25m (≈ CHF 2.1m) did not arrive. *Unexplained* — no remittance, no
+   email; Giulia emailed after the note went out. Italy has over-forecast receipts in 8 of the last 10 weeks (see the
+   [variance model](/lens/dw-forecast-variance)).
+2. **HM Deutschland:** unexpected debit EUR 0.3m by the municipality — the Gewerbesteuer (trade-tax) prepayment due
+   15 November, collected by [direct debit](term:direct-debit); same creditor and amount last November (statement line
+   linked), Jens confirms by email. *Missing input, not error* — the system proposes adding all four German trade-tax
+   dates to the central calendar.
+3. **HM AG, CHF:** CHF 180k debit to a known Swiss supplier — the fraud-shaped exception, so nothing is assumed: same
+   beneficiary and IBAN as the supplier master record, same invoice reference as last Thursday's payment, and the
+   payment tool shows one file uploaded twice. *Likely duplicate* — verified by Lea before the word is used; refund
+   requested; booked as a timing difference.
+
+**The weakest input is not a feed:** the HM Suzhou balance arrived in Wei's email, and that is normal. The guardrails
+for it are different from the other eleven: the balance carries "source: email, as-of: Suzhou close"; if the export is
+not in the mailbox by 08:30 the action is to **chase Wei** — never the connectivity provider — and the workbook carries
+yesterday's balance flagged *unconfirmed*, excluded from concentration decisions. For the eleven connected accounts
+the timing intuition is inverted: Asian statements arrive early and US statements last, so a missing statement there is
+a connectivity problem, never a time-zone one.
 
 **Proposals (policy-checked):**
 
 | # | Action | Amount | Value date | Why | Checks |
 |---|---|---|---|---|---|
-| 1 | Intercompany loan HM AG → HM Deutschland | EUR 0.70m | Today | Cover AP run + buffer | Min balances ✓, existing IC loan agreement ✓ |
-| 2 | Intercompany loan HM AG → HM Italia | EUR 1.00m | Today | Cover supplier payment up to the minimum balance | Min balances ✓ |
-| 3 | No CHF action today; flag reducing the RCF drawing at Friday's rollover | CHF 5m | Friday | CHF deposits earn ~0%; drawn RCF costs interest | For Daniel's decision |
+| 1 | Intercompany loan HM AG → HM Deutschland, under the standing IC framework agreement | EUR 1.5m | Today | Covers the AP run and the EUR 0.25m minimum with a buffer | Min balances ✓, existing IC agreement ✓, within four-eyes ✓ |
+| 2 | Alternative: pull EUR 1.5m from HM Italia | EUR 1.5m | Today | — | Not recommended: Italy's receipt is missing and a EUR 1.8m supplier run lands Thursday |
+| 3 | No CHF action today; flag reducing the CHF 30m RCF drawing at the 15 January rollover | CHF 10–15m | 15 Jan | CHF earns ~0% on deposit but is needed for week 4; the drawing cannot be prepaid mid-period without break costs | For Daniel's decision |
 
-**Not sure about:** whether the EUR 1.5m Italian receipt arrives today; whether the insurance premium recurs quarterly.
+**Not sure about:** whether the Italian receipt arrives this week; whether the CHF 180k refund lands before month-end.
 
-**Daniel's response (09:25):** approves #1; changes #2 to **EUR 1.2m** ("Italy's receipts are unreliable — keep a bigger
-buffer this week"); asks for #3 in Thursday's liquidity note. Lea enters both transfers; a second signatory releases
-them in the bank's signature app.
+**Daniel's response (09:10):** releases #1 — Lea prepared it and he releases it under
+[four-eyes](why:lea-never-releases) before the Swiss bank's early-afternoon EUR cut-off — with one edit to the proposal:
+**pay as an urgent EUR payment via T2, not a SEPA credit transfer** ("SEPA is not same-day guaranteed, and Germany must
+cover today's run"). Leaves #2 standing ("if Italy's receipt lands by Thursday, we fund the Italian run from Italy").
+Defers #3 to Thursday's liquidity note — the CHF 13.1m looks like surplus and is not: the Swiss payroll on
+25 November and the December payrolls with 13th salaries
+([the week-4 low point](why:week-four-trough)) are still ahead, and the CFO's CHF 10m
+[group minimum](why:buffer-layers) is held at the parent, so [the RCF reduction waits for the rollover](why:fifteenth-rollover-repayment).
 
-**What the system records:** one accept, one edit with reason, one deferral; the insurance explanation marked correct;
-Wednesday morning, projected vs actual closing balances are scored automatically (the Italian customer paid EUR 1.5m late in the
-afternoon, so Italy closed at EUR 1.9m instead of EUR 0.4m — Daniel's extra buffer was prudent, not needed this time).
+**What the system records:** one release with one edit and its reason ("same-day value needs T2"), one deferral with
+its reason; the trade-tax explanation marked correct; the duplicate flag marked "right to flag — but verify before
+naming a cause"; and next morning, projected vs actual closing balances per account are scored automatically (Italy
+closed at its projected EUR 2.9m — the receipt stayed out all day). The reviewer is watched too: the note carries the
+30-day accept-without-edit rate (78%) and this month's seeded test item — a plausible-looking duplicate debit that was
+correctly flagged — because [automation bias](term:automation-bias) is the failure that arrives with success.
 
 </Example>
 
+<Callout type="confusion" title="The trap this page is built to avoid">
+
+The digital-worker template warns: "assuming the ERP holds what actually arrives by email". Helvetic's positioning
+model is where that trap lives — the twelfth balance has no file, no format and no provider to ticket. A system that
+models it as "the Chinese bank file failed, ticket raised" is not a small error: it teaches a founder to ask mid-market
+treasurers about failed statement files, when the real workflow is a person in Suzhou emailing a portal export and a
+treasurer deciding what to do when it is late.
+
+</Callout>
+
 ## What this model deliberately leaves out
 
-- **Releasing transfers.** Under the bank mandate and the [four-eyes principle](term:four-eyes-principle), two
-  authorised people sign. The system never holds signing rights — this also makes it a poor target for
-  [prompt injection](term:prompt-injection) via a fake supplier email.
-- **Deciding the buffer.** The system proposes, Daniel's edit ("keep a bigger buffer for Italy") is the judgment. Over months
+- **Releasing transfers.** Under the bank mandate and the [four-eyes principle](term:four-eyes-principle),
+  [Lea prepares and Daniel releases](why:lea-never-releases) (above CHF 2m the CFO and the CEO co-sign in addition). The
+  system never holds signing rights — this also makes it a poor target for
+  [prompt injection](term:prompt-injection) via a fake supplier email, and it is
+  [why its output is a recommendation, not an instruction](why:lens-recommendation-not-instruction).
+- **Deciding the buffer.** The system proposes, Daniel's edit ("pay via T2, not SEPA") is the judgment. Over months
   those edits become a learned preference — still proposed, still approved.
 - **Structural questions.** Whether Helvetic should set up a cash pool, which accounts to close, which bank gets the
   deposits — Daniel and the CFO's decisions, informed by months of these notes.

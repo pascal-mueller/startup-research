@@ -27,7 +27,7 @@
   category: Banking & connectivity
   plain: The bank a company does most of its everyday business with.
   professional: "The bank that holds the main operating accounts, provides the bulk of payment and cash-management services and typically a large share of credit. In Switzerland, SMEs' house bank is frequently a cantonal bank or one of the large banks; larger groups replace the single house bank with a panel of relationship banks."
-  example: "Alpine's house bank is a cantonal bank: it runs the CHF payroll and supplier payments, the EBICS channel and the CHF 12m operating credit line. A large Swiss bank is used for FX and USD."
+  example: "Alpine's house bank is a cantonal bank: it runs the CHF payroll and supplier payments, the EBICS channel, the CHF 12m operating credit line, the plant mortgage and the guarantee line. A large Swiss bank is used for FX and USD."
   related: [relationship-bank, wallet-share, rcf]
 
 - id: relationship-bank
@@ -45,7 +45,7 @@
   category: Banking & connectivity
   plain: The share of all the fees a company pays to banks that goes to one particular bank.
   professional: "A bank's portion of the company's total annual bank revenue pool ('wallet') — interest margins, commitment fees, cash-management fees, FX spreads, capital-markets and advisory fees. Treasurers track wallet share per bank against each bank's credit commitment to show that lending is being rewarded fairly."
-  example: "Helvetic estimates its total wallet at about CHF 2.4m a year. Each of the four RCF banks commits 25% of the facility, but Bank A earns 45% of the wallet (it runs the payments and most FX) while Bank D earns 6% — Daniel directs the next FX hedging tranche to Bank D."
+  example: "Helvetic estimates its total wallet at about CHF 2.4m a year. The four RCF banks commit CHF 60m, CHF 50m, CHF 50m and CHF 40m (30/25/25/20% of the facility), but the first Swiss bank earns 45% of the wallet (it runs the payments and most FX) while the global bank, which committed CHF 40m (20%), earns 6% — Daniel directs the next FX hedging tranche to it."
   related: [relationship-bank, ancillary-business, account-analysis]
 
 - id: ancillary-business
@@ -73,7 +73,7 @@
   category: Debt & funding
   plain: Permission from the bank to go below zero on a current account, up to a limit.
   professional: "A short-term, usually uncommitted and on-demand facility attached to an operating account, charged at a relatively high rate on the used amount. Useful for intraday and short timing gaps; dangerous as permanent funding because the bank can cancel it. In Switzerland, a 'Kontokorrentkredit' (current-account credit line) is the standard SME working-capital facility."
-  example: "Kleio has no overdraft. Alpine's German subsidiary has a EUR 0.5m overdraft at the house bank's German branch, used for a day or two when a customer pays late before a payment run."
+  example: "Kleio has no overdraft. Alpine's German subsidiary has a EUR 0.5m overdraft at the bank that holds its German account, used for a day or two when a customer pays late before a payment run."
   related: [committed-facility, rcf, cash-buffer]
 
 - id: cash-buffer
@@ -82,7 +82,7 @@
   category: Cash & liquidity
   plain: The amount of cash the company always wants to keep, no matter what.
   professional: "A policy minimum of cash (and sometimes of cash plus committed facilities) held to absorb forecast error, seasonal troughs and shocks. Set by the CFO/board in the treasury policy, often expressed in weeks of outflows or as an absolute amount per entity and at group level."
-  example: "Helvetic's CFO requires at least CHF 10m of group cash at all times, plus CHF 0.25–0.5m per operating account to cover local payments. The 13-week forecast is read against that line."
+  example: "Helvetic's CFO requires at least CHF 10m of group liquidity at all times, and each operating account keeps a local minimum (CHF 2.0m on HM AG's CHF account). The 13-week forecast is read against that line."
   related: [liquidity-headroom, liquidity-risk, short-term-forecast]
 
 - id: liquidity-ratio
@@ -101,7 +101,7 @@
   category: Accounting & tax
   plain: The cash the business generates from its day-to-day operations in a period.
   professional: "Net cash from operating activities in the cash-flow statement: profit adjusted for non-cash items (depreciation, provisions) and changes in working capital, and usually after tax paid. The bridge between EBITDA and cash."
-  example: "Helvetic reports EBITDA of CHF 85m, but receivables grew by CHF 12m and taxes of CHF 11m were paid, so operating cash flow was about CHF 60m."
+  example: "Helvetic reports EBITDA of about CHF 78m (LTM to 30 September 2026), but receivables grew by CHF 12m and taxes of CHF 11m were paid, so operating cash flow was about CHF 55m."
   related: [free-cash-flow, ebitda, working-capital]
 
 - id: free-cash-flow
@@ -110,7 +110,7 @@
   category: Accounting & tax
   plain: The cash left over after running the business and making the investments it needs — what is available to repay debt, pay dividends or buy companies.
   professional: "Commonly operating cash flow minus capital expenditure (and sometimes minus interest and lease payments). Not defined under IFRS, so each company defines it in its own reporting — always check the definition."
-  example: "Helvetic: operating cash flow CHF 60m − capex CHF 28m = free cash flow CHF 32m, which funds a CHF 15m dividend and CHF 17m of net debt reduction."
+  example: "Helvetic: operating cash flow CHF 55m − capex CHF 28m = free cash flow CHF 27m, which funds a CHF 15m dividend and CHF 12m of net debt reduction."
   related: [operating-cash-flow, net-debt, ebitda]
 
 - id: cash-runway
@@ -137,7 +137,7 @@
   category: Cash & liquidity
   plain: How much of the company's cash treasury can actually see, and how quickly.
   professional: "The share of group bank balances (and their movements) available to central treasury on a timely basis — typically measured as the percentage of accounts or balances reported daily. Low visibility is common after acquisitions and in countries with poor bank reporting."
-  example: "After an acquisition, Helvetic could see 9 of its 12 core accounts automatically by 08:00 but had to ask local staff by email for three accounts at a regional Chinese bank."
+  example: "Helvetic sees 11 of its 12 accounts automatically through the connectivity tool by 08:00; the Chinese bank's account has no corporate reporting channel, so Wei emails a portal export daily and Lea chases it if it does not arrive."
   related: [cash-position, bank-statement, trapped-cash]
 
 - id: repatriation
@@ -146,7 +146,7 @@
   category: Cash & liquidity
   plain: Bringing cash from a foreign subsidiary back to the parent company or group treasury.
   professional: "Moving surplus cash from subsidiaries to the parent through dividends, intercompany loan repayments, cash pooling, royalties or service fees. Each route has tax (withholding tax, transfer pricing), legal (distributable reserves, capital maintenance) and FX-control consequences."
-  example: "Wei at HM Suzhou holds CNY 45m. Paying a dividend requires audited accounts and profits after statutory reserves; Daniel therefore plans an annual dividend in the second quarter rather than a monthly sweep."
+  example: "Wei at HM Suzhou holds CNY 55m (about CHF 6m). Paying a dividend requires audited accounts and profits after statutory reserves; Daniel therefore plans an annual dividend in the second quarter rather than a monthly sweep."
   related: [trapped-cash, withholding-tax, transfer-pricing, intercompany-loan]
 
 - id: withholding-tax
@@ -174,7 +174,7 @@
   category: Accounting & tax
   plain: A rough measure of how much the business earns from operations before financing costs, taxes and accounting write-downs.
   professional: "Operating profit before depreciation and amortisation. Widely used as a proxy for cash-generating capacity and as the denominator in leverage covenants. Loan agreements define their own 'covenant EBITDA', often with adjustments (one-offs, pro-forma acquisitions, leases) that differ from reported EBITDA."
-  example: "Helvetic reports EBITDA of CHF 85m on CHF 650m revenue (13% margin). The RCF's covenant definition allows adding back CHF 3m of restructuring costs: covenant EBITDA CHF 88m."
+  example: "Helvetic reports LTM EBITDA of about CHF 78m on CHF 650m of revenue (12% margin, to 30 September 2026). The RCF's covenant definition allows add-backs for exceptional items (restructuring, pro forma acquired earnings); at Helvetic these are immaterial, so covenant EBITDA lands on the same ≈ CHF 78m — but always ask which definition a leverage number is on."
   related: [net-debt, leverage-ratio, covenant, operating-cash-flow]
   confusedWith: "**Operating cash flow.** EBITDA ignores working-capital swings, tax and capex; a company can have strong EBITDA and weak cash flow."
 
@@ -182,8 +182,8 @@
   term: Net debt
   category: Debt & funding
   plain: What the company owes to lenders minus the cash it holds.
-  professional: "Gross financial debt (loans, bonds, commercial paper, usually leases under IFRS 16) less cash and cash equivalents (sometimes excluding trapped or restricted cash). The exact definition in a loan agreement governs covenant tests."
-  example: "Helvetic: RCF drawn CHF 60m + bond CHF 100m + leases CHF 25m = CHF 185m gross debt, less CHF 41m cash = CHF 144m net debt."
+  professional: "Gross financial debt (loans, bonds, commercial paper; under IFRS 16 also lease liabilities — Helvetic reports under Swiss GAAP FER, where operating leases stay off balance sheet) less cash and cash equivalents (sometimes excluding trapped or restricted cash). The exact definition in a loan agreement governs covenant tests."
+  example: "Helvetic (30 September 2026): bond CHF 100m + RCF drawings CHF 60m (CHF 35m + EUR 27m) = CHF 160m gross debt, less CHF 54m of group cash = CHF 106m net debt. Leases are not in the bridge: they are off balance sheet under Swiss GAAP FER."
   related: [leverage-ratio, gearing, covenant, ebitda]
 
 - id: leverage-ratio
@@ -192,7 +192,7 @@
   category: Debt & funding
   plain: How many years of operating earnings it would take to pay back the company's net debt.
   professional: "Net debt ÷ EBITDA (last twelve months), the most common financial covenant in bank loans and a key metric for rating agencies. Investment-grade industrial companies typically run well under 3x; leveraged buyouts run 5x or more."
-  example: "Helvetic: CHF 144m net debt ÷ CHF 88m covenant EBITDA = 1.6x, comfortably below its 3.25x covenant."
+  example: "Helvetic: CHF 106m net debt ÷ CHF 78m LTM EBITDA = 1.36x, comfortably below its 3.25x covenant (September 2026)."
   related: [net-debt, ebitda, covenant, gearing, interest-cover]
 
 - id: interest-cover
@@ -201,7 +201,7 @@
   category: Debt & funding
   plain: How many times the company's operating earnings cover the interest it pays.
   professional: "EBITDA (or EBIT) ÷ net interest expense over the last twelve months; a standard covenant alongside leverage. Falls quickly when rates rise on floating-rate debt or when earnings drop."
-  example: "Helvetic: covenant EBITDA CHF 88m ÷ net interest CHF 5m ≈ 17.6x, far above the 4x minimum."
+  example: "Helvetic: LTM EBITDA ≈ CHF 78m ÷ net finance charges ≈ CHF 3.4m (bond coupon CHF 1.25m, RCF interest, commitment fee) ≈ 23x — far above the 4x minimum; leverage is the binding covenant, not cover."
   related: [covenant, leverage-ratio, interest-rate-risk]
 
 - id: gearing
@@ -224,12 +224,13 @@
 
 - id: investment-grade
   term: Investment grade
-  aka: [IG, high yield, sub-investment grade, junk]
+  aka: [IG]
   category: Debt & funding
   plain: A credit rating good enough that conservative investors are allowed to buy the company's bonds.
   professional: "Ratings of BBB− (S&P/Fitch) or Baa3 (Moody's) and above. Below that is 'high yield' (sub-investment grade). The boundary matters because many institutional investors' mandates only allow investment-grade holdings, so a downgrade below it ('fallen angel') raises funding costs sharply."
   example: "GlobalChem at BBB+ is two notches above the boundary; its policy is to keep at least one notch of buffer even after an acquisition."
   related: [credit-rating, bond]
+  confusedWith: "**High yield / sub-investment grade / junk.** These name the *opposite* side of the boundary — ratings below BBB−/Baa3, whose issuers pay materially higher spreads."
 
 - id: bond
   term: Bond
@@ -264,7 +265,7 @@
   category: Risk & control
   plain: The risk that when debt comes due you can't replace it, or only at a much higher cost.
   professional: "The risk that maturing debt cannot be refinanced on acceptable terms because of market conditions, company performance or rating changes. Managed by spreading maturities, refinancing early, maintaining committed facilities as backstop and diversifying funding sources."
-  example: "Helvetic's CHF 100m bond is due in 2028 and the RCF runs to 2027. Daniel wants to extend the RCF during 2026 so that the bond maturity is covered by committed bank money if the bond market is shut."
+  example: "Helvetic's CHF 100m bond is due in 2028 and the CHF 200m RCF now matures in October 2028 too (signed 2021 with two one-year extension options, both exercised). With both maturities in the same year — and both debts current in the 2027 accounts — Daniel wants an amend-and-extend to 2031 signed in 2027, well before the bond refinancing window."
   related: [maturity, committed-facility, liquidity-risk]
 
 - id: syndicated-loan
@@ -273,7 +274,7 @@
   category: Debt & funding
   plain: A single loan agreement in which several banks lend together on the same terms.
   professional: "A facility (term loan and/or RCF) provided by a group of lenders under one agreement, arranged by mandated lead arrangers and administered by an agent bank. A small group of relationship banks is a 'club deal'. Commonly based on LMA documentation in Europe."
-  example: "Helvetic's CHF 200m RCF is shared by four banks at CHF 50m each; one bank acts as agent, receiving drawdown requests and covenant certificates."
+  example: "Helvetic's CHF 200m RCF is shared by four banks committing CHF 60m, CHF 50m, CHF 50m and CHF 40m; one bank acts as agent, receiving drawdown requests and covenant certificates."
   related: [rcf, covenant, relationship-bank, term-loan]
 
 - id: term-loan
@@ -300,7 +301,7 @@
   category: Debt & funding
   plain: What you pay a bank for keeping money available for you, even when you don't borrow it.
   professional: "A fee on the undrawn portion of a committed facility, typically a fixed percentage of the applicable margin (e.g. 35% of margin in European syndicated loans). Together with upfront/arrangement fees and utilisation fees it makes up the cost of standby liquidity."
-  example: "Helvetic pays a commitment fee on the CHF 140m undrawn part of its RCF — a cost of 'insurance' Thomas has to justify to the board every year."
+  example: "Helvetic pays a commitment fee of 0.2975% a year (35% of its 0.85% margin) on the ≈ CHF 137m undrawn part of its RCF — about CHF 410k a year of 'insurance' Thomas has to justify to the board every year."
   related: [committed-facility, rcf, credit-spread]
 
 - id: drawdown
@@ -353,7 +354,7 @@
   category: Debt & funding
   plain: The published market interest rate that floating-rate loans and derivatives are priced from.
   professional: "Benchmark rates that replaced LIBOR: SARON (CHF, administered by SIX), €STR (EUR, ECB) and SOFR (USD) are overnight risk-free rates compounded over the interest period; EURIBOR survives as a term rate for EUR. Loan interest = reference rate + credit margin."
-  example: "Illustrative autumn 2026 levels: SARON ≈ 0%, €STR ≈ 1.9–2.0%, SOFR ≈ 3.5–4%. A EUR drawing at €STR + 0.9% therefore costs about 2.8–2.9%."
+  example: "Illustrative autumn 2026 levels: SARON ≈ 0%, €STR ≈ 2.2–2.4%, SOFR ≈ 3.5–4%. A EUR drawing at €STR + 0.85% therefore costs about 3.1–3.2%."
   related: [fixed-vs-floating, credit-spread, basis-point]
 
 - id: credit-spread
@@ -362,7 +363,7 @@
   category: Debt & funding
   plain: The extra interest a borrower pays above the market base rate because of its credit risk.
   professional: "The margin over a reference rate (loans) or over a government/swap curve (bonds) compensating the lender for credit risk and other costs. Set by rating, leverage, tenor and market conditions; loan margins often step up or down with a leverage-based pricing grid."
-  example: "Helvetic's RCF margin is 0.90% p.a. at leverage below 2.0x, stepping up to 1.30% above 2.5x."
+  example: "Helvetic's RCF margin is 0.85% p.a. at leverage up to 1.50x (its current band, at about 1.4x), stepping up to 1.05% / 1.30% / 1.55% as leverage rises; the grid is reset on each semi-annual compliance certificate."
   related: [reference-rate, basis-point, credit-rating]
 
 - id: basis-point
@@ -424,12 +425,13 @@
 
 - id: term-deposit
   term: Term deposit
-  aka: [time deposit, fixed-term deposit, Festgeld, call money]
+  aka: [time deposit, fixed-term deposit, Festgeld]
   category: Investments
   plain: Money placed with a bank for a fixed period at a fixed interest rate.
   professional: "A deposit for a fixed tenor (overnight to 12 months) at a fixed rate, usually not breakable before maturity (or only at a cost). Simple and widely used for surplus cash; yields depend on the currency's policy rate and bank appetite for deposits."
-  example: "Helvetic holds EUR 8m it will need in three months for a German tax payment and places it as a 3-month term deposit at about €STR level (≈1.9–2.0%, illustrative). Surplus CHF is not deposited: at a 0% SNB rate it earns ~nothing, so it reduces the SARON-based RCF drawing at the next rollover instead."
+  example: "Helvetic holds EUR 8m it will need in three months for a German tax payment and places it as a 3-month term deposit at about €STR level (≈2.2–2.4%, illustrative). Surplus CHF is not deposited: at a 0% SNB rate it earns ~nothing, so it reduces the SARON-based RCF drawing at the next rollover instead."
   related: [deposit, overnight, money-market-fund, investment-policy]
+  confusedWith: "**Call money.** Call money is overnight/callable — the opposite of a fixed-term deposit; it earns less in exchange for access."
 
 - id: overnight
   term: Overnight
@@ -483,7 +485,7 @@
   category: FX
   plain: The adjustment added to or subtracted from today's exchange rate to get the forward rate, reflecting the interest-rate difference between the two currencies.
   professional: "Forward rate = spot + forward points; the points reflect the interest differential between the currencies over the period (covered interest parity), not a forecast. When the foreign currency's interest rate is higher than CHF (as for EUR and USD with SARON near 0%), forward rates are below spot, so selling EUR or USD forward costs 'carry'."
-  example: "Illustratively, EUR/CHF spot 0.935 with €STR ≈ 2% and SARON ≈ 0%: the 12-month forward is about 0.917. Alpine, which sells EUR forward, locks in roughly 2% less than spot."
+  example: "Illustratively, EUR/CHF spot 0.935 with €STR ≈ 2.2–2.4% and SARON ≈ 0%: the 12-month forward is about 0.913–0.915 — the euro's higher rates made visible on the rate. Alpine, which sells EUR forward, locks in roughly 2% less than spot."
   related: [forward, swap, spot-fx]
   confusedWith: "**A market forecast.** Forward points are arithmetic from interest rates; they say nothing about where the bank thinks the rate is going."
 
@@ -510,8 +512,8 @@
   aka: [IFRS 9 hedge accounting, cash flow hedge, fair value hedge, net investment hedge]
   category: Accounting & tax
   plain: Special accounting rules that let a company show a hedge and the thing it hedges together, so the P&L isn't distorted by the hedge's value swings.
-  professional: "An optional regime (IFRS 9; US GAAP ASC 815; Swiss GAAP FER has its own simpler rules) under which gains/losses on qualifying hedging instruments are matched with the hedged item — e.g. deferred in equity for cash-flow hedges. Requires formal designation and documentation at inception and effectiveness assessment; without it, derivative MtM goes through P&L."
-  example: "Helvetic designates its EUR forwards as cash-flow hedges of forecast EUR sales. The CHF 1.2m positive MtM sits in equity until the sales are recognised, instead of making Q2 profit look better than it is."
+  professional: "An optional regime for matching gains/losses on qualifying hedging instruments with the hedged item — e.g. deferred in equity for cash-flow hedges. The burden differs by framework: IFRS 9 (and US GAAP ASC 815) require formal designation and documentation at inception plus effectiveness assessment; Swiss GAAP FER 27 simply defers the hedge's value changes in equity for highly probable future sales. Without any regime, derivative MtM goes through P&L."
+  example: "Helvetic (Swiss GAAP FER): the market value of its EUR forwards hedging highly probable future sales sits in equity until the sales are recognised — no effectiveness testing. GlobalChem (IFRS 9) designates the same kind of hedge formally, with documentation and effectiveness assessment run by treasury accounting."
   related: [economic-hedge, mark-to-market, forward]
 
 - id: economic-hedge
@@ -593,7 +595,7 @@
   category: Risk & control
   plain: Every payment or bank instruction needs two different people to approve it.
   professional: "A control requiring two authorised individuals to approve a transaction, typically enforced in the bank channel (dual signature in e-banking/EBICS, joint signing rights in the commercial register in Switzerland) and in the TMS/ERP workflow. Often tiered by amount."
-  example: "Alpine's signing rules: Petra and one other signatory for payments up to CHF 250k; above that, Martin must be one of the two."
+  example: "Alpine's signing rules: Petra and one other signatory for payments up to CHF 250k; above that, Martin must be one of the two. At Helvetic the treasury four-eyes covers payments up to CHF 2m (Lea prepares, Daniel releases); above CHF 2m the CFO and the CEO co-sign as well."
   related: [segregation-of-duties, signatory, payment-mandate]
 
 - id: bec
@@ -675,7 +677,7 @@
   category: Payments
   plain: The central-bank payment system where large payments between banks settle one by one, immediately and irrevocably.
   professional: "Central-bank-operated systems settling interbank payments individually in central-bank money: SIC in Switzerland (operated by SIX for the SNB, also settling retail CHF payments), T2 for EUR, Fedwire for USD, CHAPS for GBP. Their operating hours drive bank cut-off times."
-  example: "Helvetic's CHF 20m bond coupon and principal payments travel through SIC and are final once settled."
+  example: "Helvetic's CHF 1.25m annual bond coupon and, at maturity in 2028, the CHF 100m principal travel through SIC and are final once settled."
   related: [cut-off-time, settlement, real-time-payments]
 
 - id: sepa
@@ -858,7 +860,7 @@
   category: Forecasting
   plain: A forecast that always looks the same distance ahead — each week the oldest week drops off and a new one is added at the end.
   professional: "A forecast with a constant horizon (e.g. 13 weeks, 12 months) re-issued at a fixed cadence, as opposed to a static forecast that runs to a fixed date such as year-end. Rolling cash forecasts are the norm in treasury; FP&A budgets are usually static annual plans with periodic re-forecasts."
-  example: "Every Tuesday Lea rolls Helvetic's 13-week forecast: last week's column becomes an 'actual', week 14 is added, and she records how far last week's forecast was off."
+  example: "Every Monday Lea rolls Helvetic's 13-week forecast: the past week becomes an 'actual', a new week 13 is added at the far end, and she records how far last week's forecast was off. Subsidiary submissions arrive by Tuesday noon; Daniel reviews the consolidated model on Wednesday."
   related: [short-term-forecast, medium-term-forecast, forecast-accuracy, variance-analysis]
 
 - id: forecast-accuracy
@@ -867,7 +869,7 @@
   category: Forecasting
   plain: How close the cash forecast turned out to be to what actually happened.
   professional: "Measured per line, entity and horizon as the difference between forecast and actual cash flows (absolute error, percentage error or bias). Useful metrics separate timing errors (the cash came a week later) from permanent errors (the cash never came) and look at bias (systematically optimistic receipts) rather than only the total."
-  example: "Helvetic's week-1 forecast for HM Italia receipts was EUR 3.0m; EUR 1.9m arrived. The EUR 1.1m gap is a timing error (one customer paid 9 days late), but Italy has over-forecast receipts in 9 of the last 12 weeks — a bias Daniel now corrects by haircutting Italy's receipts by 15% in weeks 5–13."
+  example: "Helvetic's week-1 forecast for HM Italia receipts was EUR 3.0m; EUR 1.9m arrived. The EUR 1.1m gap is a timing error (one customer paid 9 days late), but Italy has over-forecast receipts in 8 of the last 10 weeks at the 4-week lag — a bias Daniel now corrects by haircutting Italy's receipts by 15% in weeks 5–13."
   related: [variance-analysis, rolling-forecast, short-term-forecast]
   confusedWith: "**Budget variance.** FP&A's variance compares actual profit to budget; treasury's forecast accuracy compares actual cash timing to the last cash forecast."
 
@@ -877,7 +879,7 @@
   category: Forecasting
   plain: Re-running the cash forecast under "what if" assumptions to see whether the company still has enough cash.
   professional: "Deterministic variations of the base forecast (e.g. largest customer pays 60 days late, EUR/CHF −8%, RCF unavailable) used to size buffers and facilities and to prepare responses. Distinct from statistical measures such as cash flow at risk; most mid-sized companies use a handful of named scenarios rather than simulations."
-  example: "Alpine's downside case moves two robot acceptances (CHF 3.4m) by one quarter: cash would fall to CHF 1.8m in week 9, so Martin checks that the CHF 12m credit line is undrawn enough to cover it."
+  example: "Alpine's downside case moves two robot acceptances (about CHF 1.5m together) by one quarter: cash would fall to about CHF 1.8m in week 9, so Martin checks that at least CHF 7m of the CHF 12m credit line stays undrawn to cover it."
   related: [liquidity-headroom, cash-flow-at-risk, liquidity-risk]
 
 - id: ndf
@@ -894,8 +896,8 @@
   aka: [rolling hedge programme, hedge layering, stacked hedges]
   category: FX
   plain: Hedging future currency flows bit by bit over time, so near months are hedged a lot and far months a little.
-  professional: "A policy-driven programme in which forecast exposures are hedged in tranches as they approach (e.g. 75% of months 1–3, 50% of months 4–6, 25% of months 7–12), averaging the achieved rate over time and limiting the damage from forecast error. The alternative — hedging the whole year at once — locks one rate but over-hedges if volumes fall."
-  example: "Helvetic's policy band is 60–90% of the next quarter's net EUR inflows and 30–60% of quarters 2–4. Each month Lea tops up the layers; Daniel executes EUR/CHF forwards with two banks."
+  professional: "A policy-driven programme in which forecast exposures are hedged in tranches as they approach, with the required ratio graded by horizon (e.g. 60–90% of the next rolling quarter, stepping down one band each quarter out to 0–40% four quarters ahead), averaging the achieved rate over time and limiting the damage from forecast error. The alternative — hedging the whole year at once — locks one rate but over-hedges if volumes fall."
+  example: "Helvetic's policy bands (rolling calendar quarters): 60–90% for Q+1, 40–70% for Q+2, 25–55% for Q+3, 0–40% for Q+4. In the November 2026 report Q1 2027 is the Q+2 bucket at 40–70% — below its band at 38%, which is why Daniel adds about EUR 6m of forwards this month ([the top-up judgment](why:hedge-topup-judgment)). Each month Lea tops up the layers; Daniel executes EUR/CHF forwards with two banks."
   related: [hedge-ratio, forward, fx-exposure, treasury-policy]
 
 - id: payment-terms
@@ -904,7 +906,7 @@
   category: Working capital
   plain: The agreed number of days a customer has to pay an invoice — and any discount for paying early.
   professional: "Contractual conditions for settling an invoice (e.g. 'net 30', '2/10 net 30' = 2% discount if paid within 10 days, otherwise due in 30). Set by sales (customer terms) and procurement (supplier terms), not treasury, but they drive DSO, DPO and therefore the cash forecast. Late-payment rules (EU Late Payment Directive) cap B2B terms in some countries."
-  example: "Alpine's German distributor customers are on 60-day terms, Swiss customers on 30. Moving the German terms to 45 days would release about EUR 1.8m of cash (EUR 36m revenue ÷ 360 × 15 days)."
+  example: "Alpine's German distributor customers are on 60-day terms, Swiss customers on 30. Moving the German terms to 45 days would release about EUR 1.5m of cash (EUR 36m of German revenue ÷ 360 × 15 days)."
   related: [dso, dpo, working-capital, dynamic-discounting]
 
 - id: dunning

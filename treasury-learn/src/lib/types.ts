@@ -74,6 +74,17 @@ export interface Term {
   confusedWith?: string
 }
 
+/** "Why" note: explains the reasoning behind a number or decision inline, via hover popover. */
+export interface WhyNote {
+  id: string
+  claim: string
+  short: string
+  detail: string
+  check?: string
+  terms?: string[]
+  sources?: string[]
+}
+
 export interface Source {
   id: string
   title: string

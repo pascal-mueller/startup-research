@@ -53,14 +53,14 @@ systems:
     use: Lists of invoices to hold or prioritise, approval emails for non-PO invoices, the run total sent to whoever manages cash.
 data:
   - name: Supplier invoice
-    source: Supplier (PDF by email, e-invoice, paper; in Switzerland increasingly QR-bill or eBill)
+    source: Supplier (PDF by email, e-invoice, paper; in Switzerland increasingly QR-bill or [eBill](term:ebill))
     notes: Invoice number, amount, currency, due date, payment terms, bank details — the bank details on the invoice are NOT used for payment; the vendor master is.
   - name: Purchase order and goods receipt / service confirmation
     source: Procurement and warehouse in the ERP
     notes: Basis of the [3-way match](term:three-way-match). Non-PO invoices (services, utilities, fees) need a separate approval.
   - name: Vendor master data (name, address, IBAN/account, BIC, payment terms, payment method)
     source: ERP vendor master
-    notes: Every payment goes where this record says. [Structured addresses](term:structured-address) become mandatory in Swiss payment files from November 2026.
+    notes: Every payment goes where this record says. [Structured addresses](term:structured-address) become mandatory in Swiss payment files from 14 Nov 2026 (the cross-border CBPR+ equivalent is deferred — see the currentness note in the evidence).
   - name: Approval matrix / delegation of authority
     source: Organisational regulations, [signing authority matrix](term:signing-authority-matrix)
     notes: Who may approve an invoice (spend authority) is a different list from who may sign at the bank (bank mandate) — both must fit.
@@ -134,8 +134,9 @@ steps:
     who: AP clerk (system step)
     where: ERP / payment tool
     detail: >-
-      The ERP writes one [pain.001](term:pain-001) file per bank (or per debtor account), in the version and
-      country variant the bank accepts — in Switzerland pain.001.001.09 under the Swiss Payment Standards[](cite:six-sps-ig-ct-2026).
+      The ERP writes [one pain.001 file per paying account](why:pain-file-per-account) — a file carries exactly one
+      debtor account and is addressed to one bank — in the version and country variant the bank accepts: in
+      Switzerland pain.001.001.09 under the Swiss Payment Standards[](cite:six-sps-ig-ct-2026).
       The file contains a control sum and transaction count. The ERP marks the invoices as paid-in-transit.
     manual: >-
       When a bank changes its format rules (e.g. mandatory [structured addresses](term:structured-address) in
@@ -147,9 +148,14 @@ steps:
     when: Before the bank's cut-off (for many Swiss banks, late morning to early afternoon for same-day CHF and EUR)
     detail: >-
       The file is uploaded and then released by the signatories required by the bank mandate — typically "collective
-      signature by two". With [EBICS](term:ebics) each signatory signs the file electronically, possibly hours apart
+      signature by two". The preparer is never one of the releasers: for supplier runs the preparer may be AP (the
+      F110 run), but the release is always a treasury-side signature — Daniel at Helvetic, the CFO or head of
+      accounting at an SME ([four-eyes](why:four-eyes-threshold)). With [EBICS](term:ebics) each signatory signs the
+      file electronically, possibly hours apart
       ([distributed signature](term:ebics-signature)); in a multibank tool the signing workflow runs centrally and the tool
-      signs towards the bank. Signatories see the total and count, and can drill into individual payments.
+      signs towards the bank. Signatories see the total and count, and can drill into individual payments. Everything
+      in the day is built backwards from the bank's cut-off — [the cut-off, not the ERP, decides whether the money
+      moves today](why:cut-offs-order-the-day).
     judgment: >-
       What the signatory actually checks. In practice many release a CHF 2m file after looking at the total, the
       number of payments and the few largest items; the control only works if someone looked at the items before.
@@ -163,14 +169,19 @@ steps:
       executes each payment on the requested date through the relevant rail: [SIC](term:sic) for CHF, SEPA for EUR,
       [correspondent banking](term:correspondent-banking) over Swift for other currencies (in ISO 20022 format between
       banks since the November 2025 end of coexistence[](cite:swift-eoc-2025)), or instant rails where requested.
-      A [pain.002](term:pain-002) status report returns accepted and rejected items.
+      A [pain.002](term:pain-002) status report returns accepted and rejected items. Each payment executes on the
+      requested date but its [value date](term:value-date) is what the rail and the cut-off make it: before the
+      cut-off a SIC payment carries same-day value, after it the whole file waits for the next business day — and a
+      payment's value date, not its booking date, is what the cash position counts
+      ([requested execution date is not the value date](why:execution-date-vs-value-date)).
   - title: Work rejects and returns
     who: AP clerk; treasury for bank-level problems
     where: Connectivity tool / ERP / phone and email with supplier and bank
-    when: Same day for rejects; days later for returns
+    when: Same day for rejects; returns same or next day for SEPA, days later through correspondent chains
     detail: >-
       Rejects (pain.002 RJCT, e.g. invalid IBAN, closed account, insufficient funds) are corrected and re-sent;
-      returns arrive days later as credits with a return reason when the beneficiary bank cannot apply the money.
+      returns arrive as credits with a return reason when the beneficiary bank cannot apply the money — often same or
+      next day on SEPA rails, days later through correspondent chains.
       Each needs a fix in master data and a new payment — after checking that the original really did not go.
     manual: >-
       Chasing the correct bank details, re-approving the corrected payment, and explaining the delay to the supplier.
@@ -182,7 +193,8 @@ steps:
     where: ERP electronic bank statement
     when: Next morning
     detail: >-
-      The bank's [camt.054](term:camt-054) (detail per payment) or camt.053 statement is imported; payments are matched
+      The bank's [camt.054](term:camt-054) (detail per payment) or camt.053 statement is imported — one statement
+      per account, [because statements are per account and currency](why:camt-per-account) — and payments are matched
       to the paid-in-transit items and cleared, fees and FX differences posted. The run then disappears into the daily
       [bank reconciliation](wf:bank-reconciliation).
   - title: Answer supplier queries
@@ -204,11 +216,11 @@ example:
     | USD, large Swiss bank — cross-border | 5 | USD 236,500 | ~189,200 (at 0.80) |
     | **Total** | **84** | | **~CHF 1.90m** |
 
-    **Tuesday 08:05** — Petra checks balances: the CHF account holds CHF 2.3m, the EUR account EUR 0.6m. EUR is EUR 0.14m short. She converts CHF 150k to EUR in the large bank's portal and transfers it to the cantonal bank EUR account (a same-day EUR transfer between two Swiss banks).
+    **Tuesday 08:05** — Petra checks balances: the CHF account holds CHF 2.3m, the EUR account EUR 0.6m. EUR is EUR 0.14m short. She converts CHF 150k to EUR in the large bank's portal (the large bank does the FX; the EUR account itself sits at the cantonal bank) and transfers it to the cantonal bank EUR account (a same-day EUR transfer between two Swiss banks).
 
-    **08:40** — Business Central generates three pain.001.001.09 files. The USD file is rejected by the bank's pre-validation: one US supplier has no town name in the vendor record. Petra's colleague fixes the address (a job she knows is coming for ~200 more vendors before November 2026) and regenerates the file.
+    **08:40** — Business Central generates three pain.001.001.09 files, one per paying account. The USD file is rejected by the bank's pre-validation: one US supplier has no town name in the vendor record. Petra's colleague fixes the address (a job she knows is coming for ~200 more vendors before November 2026) and regenerates the file.
 
-    **09:15** — Petra uploads the files via EBICS. The EUR file contains two payments above CHF 250k equivalent, so Alpine's rules require Martin as one of the two signatories on that file: Petra signs first, Martin signs in the bank's app from a customer meeting at 10:20, after opening the two large items.
+    **09:15** — Petra uploads the files via EBICS. Every file needs two signatures under Alpine's "collective signature by two" mandate; the CHF and USD files contain no single payment above CHF 250k equivalent, so any two of Alpine's registered signatories may release them — Petra signs with her accounting colleague. The EUR file contains two payments above CHF 250k equivalent, so Alpine's rules require Martin as one of the two signatories on that file: Petra signs first, Martin signs in the bank's app from a customer meeting at 10:20, after opening the two large items.
 
     **11:30** — The pain.002 shows 83 accepted, 1 rejected: AC04 (account closed) for a German cable supplier. Petra's colleague calls the supplier's accounting on the number in the vendor record, receives the new IBAN by letter the same afternoon, and Petra approves the master-data change as second person. The payment goes out Wednesday — one day late, no penalty.
 
@@ -229,7 +241,7 @@ failure_modes:
     consequence: Cash lost until the supplier refunds; some never do.
     detection: ERP duplicate checks; supplier statement reconciliation; recovery audits.
   - mode: Payment to a fraudulent account after a fake bank-detail change
-    consequence: Loss, often unrecoverable once the money has been moved on; the real supplier is still owed. Business email compromise affected 74% of US organisations in AFP's 2026 survey[](cite:afp-pfc-2026-highlights).
+    consequence: Loss, often unrecoverable once the money has been moved on; the real supplier is still owed. Business email compromise affected 74% of US organisations in AFP's 2026 survey[](cite:afp-pfc-2026).
     detection: Call-back verification, dual control of master data, first-payment holds, Verification of Payee "no match" results.
   - mode: Rejected payment not noticed (pain.002 not monitored)
     consequence: Supplier not paid, late fees, supply stop; noticed only when the supplier calls.
@@ -289,7 +301,7 @@ by_size:
     not the invoices.
 companies:
   kleio: "Nina enters invoices in the accounting tool, scans QR-bills and prepares a batch in each bank's e-banking twice a month; Sarah approves in the bank's app (collective signature by two). US bills of Kleio Inc. are paid by ACH or card from the US bank. Payroll is run by the payroll provider; Sarah only checks that the salary account is funded before the 25th."
-  alpine: "The worked example above. Payment runs on Tuesdays and Fridays in Business Central, uploaded via EBICS. The German and US subsidiaries' bookkeepers pay local bills from their own bank portals; Petra is the second signatory on the German accounts, and the US managing director signs US payments with Martin."
+  alpine: "The worked example above. Payment runs on Tuesdays and Fridays in Business Central, uploaded via EBICS. On the collection side, Swiss service contracts are collected by [LSV+/BDD](term:lsv-bdd) and [eBill](term:ebill), the German subsidiary collects its monthly maintenance fees by SEPA Direct Debit — Petra is now piloting eBill Direct Debit because LSV+ sunsets in 2028. The German and US subsidiaries' bookkeepers pay local bills from their own bank portals; Petra is the second signatory on the German accounts, and the US managing director signs US payments with Martin."
   helvetic: "Each subsidiary runs its own AP and payment run (SAP F110 in CH, DE, CZ; local ERPs elsewhere). SAP entities send files through the multibank connectivity tool, where local finance managers sign; Italy, France, UK and the US still upload to bank portals. Lea monitors pain.002 rejects centrally for the tool-connected entities and makes treasury payments (intercompany loans, FX settlements, debt service). Helvetic has not introduced POBO."
   globalchem: "About 60,000 payments a month from 28 ERPs flow into the payment factory run by Marta's team in the Kraków shared-service centre; most European subsidiaries' suppliers are paid on behalf of the subsidiaries from GlobalChem's in-house bank accounts. The factory applies duplicate and sanctions checks and anomaly rules centrally and sends files via SWIFT. Local signatories no longer release routine AP payments; controls sit in the ERP approvals and the factory's release workflow."
 handoffs:
@@ -328,15 +340,20 @@ ai_note: >-
   Invoice capture, matching and payment-file generation are already heavily automated; the remaining human work is
   exceptions (blocks, disputes, rejects), master-data verification and release decisions. Anomaly detection on payment
   files and bank-detail changes is a plausible assistive use, and vendors are adding it; AFP's 2026 survey found only
-  17% of organisations using AI against payments fraud[](cite:afp-pfc-2026-highlights). Releasing payments is a legal
+  17% of organisations using AI against payments fraud[](cite:afp-pfc-2026). Releasing payments is a legal
   act by bank-registered signatories, so autonomy there faces a hard trust, liability and mandate barrier.
-terms: [payment-run, pain-001, pain-002, camt-054, three-way-match, vendor-master-data, call-back-verification, ebics-signature, four-eyes-principle, signatory, payment-mandate, verification-of-payee, sic, sct-inst, charge-bearer, swift-gpi, structured-address, manual-payment, payment-factory, pobo, cut-off-time]
+terms: [payment-run, pain-001, pain-002, camt-054, three-way-match, vendor-master-data, call-back-verification, ebics-signature, four-eyes-principle, signatory, payment-mandate, verification-of-payee, sic, sct-inst, charge-bearer, swift-gpi, structured-address, manual-payment, payment-factory, pobo, cut-off-time, value-date, lsv-bdd, ebill]
 related: [large-payment-approval, bank-reconciliation, daily-cash-positioning, fraud-investigation, bank-account-management]
-sources: [six-sps-ig-ct-2026, six-address-factsheet, epc-vop-bulk-faq, swift-eoc-2025, afp-pfc-2026-highlights, pwc-gts-2025, six-ebics]
+sources: [six-sps-ig-ct-2026, six-address-factsheet, epc-vop-bulk-faq, swift-eoc-2025, afp-pfc-2026, pwc-gts-2025, six-ebics, swift-sr2026-deferral, epc-address-delay-2026, six-lsv-decommissioning]
 evidence_note: >-
   The invoice-to-payment sequence and its controls are established practice described in ERP documentation and AP
   training material; the timings, volumes and example are illustrative synthesis consistent with the reference
   companies. Format facts are from SIX (Swiss Payment Standards, November 2026 address and message-version change[](cite:six-address-factsheet)),
   the EPC (VoP bulk opt-out[](cite:epc-vop-bulk-faq)) and Swift (end of MT/MX coexistence for interbank payment
   instructions on 22 November 2025[](cite:swift-eoc-2025)); Swiss banks set the migration to EBICS 3.0 for November 2026[](cite:six-ebics).
-  Fraud prevalence figures are from AFP's US-centric survey and should not be read as Swiss rates.
+  Currentness as of 30 Sep 2026: the Swiss structured-address and message-version switch of 14 Nov 2026 stands; the
+  cross-border CBPR+ structured-address requirement was deferred by Swift on 27 Aug 2026, with a new date due by
+  December 2026 at the latest[](cite:swift-sr2026-deferral); the EPC likewise delayed the SEPA schemes' 15 Nov 2026
+  unstructured-address end date on 9 Sep 2026, new date pending[](cite:epc-address-delay-2026). Swiss direct debits
+  (LSV+/BDD) sunset in 2028[](cite:six-lsv-decommissioning). Fraud prevalence figures are from AFP's US-centric survey
+  and should not be read as Swiss rates.

@@ -60,5 +60,5 @@
   category: Systems
   plain: The formal process a company runs to choose treasury software — usually with a long questionnaire sent to several vendors and demos.
   professional: "Structured procurement: requirements catalogue, long list, request for proposal/information (RFP/RFI), scripted demos, reference calls, commercial negotiation. Larger groups often use treasury consultants to run it; implementation follows and commonly takes months. The process shapes the market: vendors compete on RFP checklist breadth, which favours suites."
-  example: "Helvetic's CFO asks Daniel to replace the spreadsheet position. Daniel writes 120 requirements, invites four vendors, and a consultant scores the demos; the decision takes five months and implementation six more (illustrative)."
+  example: "Helvetic's CFO asks Daniel to replace the spreadsheet-based cash position with a TMS. Daniel writes 120 requirements, invites four vendors, and a consultant scores the demos; the decision takes five months and implementation six more (illustrative)."
   related: [tms, system-of-record]

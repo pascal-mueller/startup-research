@@ -52,8 +52,8 @@
       note: "Execution is the bank's job once released. Nina checks the status next day; rejected payments come back to her."
     - task: Bank account opening
       workflow: bank-account-management
-      cells: { board: A, ceo: P, cfo: "O,P", bank: P }
-      note: "Account opening requires KYC documents, commercial-register extract and signatures of registered signatories — often Sarah and the CEO together. The board resolution matters when a new banking relationship is started (after SVB, Kleio's board asked for a second bank)."
+      cells: { board: I, ceo: P, cfo: "O,P", bank: P }
+      note: "Account opening requires KYC documents, commercial-register extract and signatures of registered signatories — often Sarah and the CEO together. The board is informed of every account and [approves a new banking relationship](why:board-approves-new-banks) (after SVB, Kleio's board asked for a second bank); a routine extra account at an existing bank does not go to the board."
     - task: Short-term investing
       workflow: surplus-cash-investment
       cells: { board: A, ceo: I, cfo: "O,P", bank: D }
@@ -113,7 +113,7 @@
     - task: Daily cash positioning
       workflow: daily-cash-positioning
       cells: { cfo: I, hoa: "O,P", ap: D, subs: D }
-      note: "Petra checks both banks' e-banking around 08:30 and updates the Excel cash sheet; she has read access to DE and US accounts. Martin sees it only when she flags something."
+      note: "Petra checks the two Swiss banks' e-banking around 08:30 and updates the Excel cash sheet (read access to the German and US accounts held there), plus the US subsidiary's local US bank portal — three portals in total; Martin sees it only when she flags something."
     - task: Cash forecasting
       workflow: cash-forecasting
       cells: { cfo: "O,R", hoa: P, ap: D, ar: D, controller: D, sales: D, purchasing: D, subs: D }
@@ -121,7 +121,7 @@
     - task: Liquidity planning
       workflow: liquidity-planning
       cells: { board: A, ceo: R, cfo: "O,P", hoa: D, controller: D, bank: D }
-      note: "Martin decides when to draw the CHF 12m credit line and whether the company can take on another big project; the board approves the line and large capex."
+      note: "Martin decides when to draw the [CHF 12m credit line](why:alpine-credit-line) and whether the company can take on another big project; the board approves the line and large capex."
     - task: FX exposure calculation
       workflow: fx-exposure-management
       cells: { cfo: O, hoa: P, controller: D, sales: D }
@@ -182,7 +182,7 @@
       note: "No TMS. Petra administers e-banking/EBICS users and signing rights; Martin countersigns changes. Nobody reviews these rights regularly — a common audit finding."
     - task: Bank relationship management
       cells: { ceo: P, cfo: "O,P", hoa: P, bank: P }
-      note: "Martin owns the two relationships; Petra handles day-to-day service issues and fee questions."
+      note: "Martin owns the two main relationships (cantonal house bank; large Swiss bank); the US subsidiary's [local US operating account](why:alpine-local-us-account) is a minor third relationship the local bookkeeper services. Petra handles day-to-day service issues and fee questions."
 
 - size: midmarket
   label: Mid-market (Helvetic)
@@ -210,7 +210,7 @@
     - task: Cash forecasting
       workflow: cash-forecasting
       cells: { cfo: R, tm: O, ta: P, acc: D, fpa: D, tax: D, ap: D, ar: D, subs: D }
-      note: "Subsidiaries submit a template every second Thursday; Lea consolidates and flags variances; Daniel adjusts and presents the 13-week view to Thomas monthly. FP&A's plan drives weeks 9–13 and the medium-term view."
+      note: "Weekly cycle: Lea sends the template Monday, subsidiaries submit by Tuesday noon, Lea consolidates Tue–Wed and flags variances, Daniel reviews Wednesday and sends the one-page 13-week view to Thomas on Thursday. Thomas reviews the medium-term (18-month) plan monthly ([why the two cadences](why:weekly-vs-monthly-forecast)). FP&A's plan drives weeks 9–13 and the medium-term view."
     - task: Liquidity planning
       workflow: liquidity-planning
       cells: { board: A, cfo: A, tm: "O,P", ta: P, fpa: D, tax: D }
@@ -218,7 +218,7 @@
     - task: FX exposure calculation
       workflow: fx-exposure-management
       cells: { cfo: I, tm: "O,R", ta: P, acc: D, fpa: D, subs: D }
-      note: "Monthly: subsidiaries report forecast EUR/USD/CNY flows; Lea calculates net exposure and the hedge requirement against the policy corridor; Daniel reviews. FP&A supplies budget rates and the plan."
+      note: "Monthly: subsidiaries report forecast EUR/USD/CNY flows by WD5; Lea calculates net exposure and the hedge requirement against the graded policy bands (Q+1 60–90%, Q+2 40–70%, Q+3 25–55%, Q+4 0–40%); Daniel reviews the exposure report on WD7 and hedges run after the review ([the cycle's order](why:wd5-wd7-hedge-cycle)). FP&A supplies budget rates and the plan."
     - task: FX hedge execution
       workflow: fx-hedging
       cells: { board: A, cfo: A, tm: "O,P", ta: P, acc: R, bank: P }
@@ -226,11 +226,11 @@
     - task: Payment preparation
       workflow: payment-processing
       cells: { ta: P, acc: P, ap: P, subs: O }
-      note: "Commercial payments are prepared locally by each entity's AP; the parent's AP sits in Claudia's team. Treasury prepares only treasury payments (IC loans, deal settlements) — Lea does those."
+      note: "Commercial payments are prepared locally by each entity's AP — `subs: O` means each subsidiary's AP lead owns preparation, with the parent's AP (in Claudia's team) a preparer like the others. Treasury prepares only treasury payments (IC loans, deal settlements) — Lea does those."
     - task: Payment approval
       workflow: large-payment-approval
       cells: { cfo: "O,A", tm: A, acc: A, subs: A }
-      note: "Local payments: two local signatures (finance manager + managing director). Group rule: any payment above CHF 2m needs one signature from treasury or the CFO. Thomas owns the signing-authority matrix; Daniel maintains the bank mandates."
+      note: "Local payments: two local signatures (finance manager + managing director). Group rule: payments up to CHF 2m follow four-eyes at the parent (Swiss AP or Lea prepares, Daniel releases — the preparer varies by work type, the release never does; Lea never signs); a single payment above CHF 2m needs Thomas (CFO) **and** the CEO as co-signers in addition to the four-eyes release ([why the CEO](why:ceo-cosign-threshold)), and above CHF 10m the board — the connectivity tool enforces this [although the bank mandate would accept any two of five collective signatories](why:matrix-stricter-than-mandate). Thomas owns the signing-authority matrix; Daniel maintains the bank mandates."
     - task: Payment execution
       workflow: payment-processing
       cells: { tm: O, ta: P, subs: P, it: D, bank: P }
@@ -242,7 +242,7 @@
     - task: Short-term investing
       workflow: surplus-cash-investment
       cells: { cfo: A, tm: "O,P", ta: P, bank: D }
-      note: "Limited: with ~CHF 60m drawn on the RCF, surplus CHF repays drawings at the next rollover. Only temporary EUR/USD surplus goes into short deposits within bank limits Thomas approved."
+      note: "Limited: with about CHF 63m drawn on the RCF (CHF 30m + EUR 35m), surplus CHF repays drawings at the next 15th rollover. Only temporary EUR/USD surplus goes into short deposits within bank limits Thomas approved."
     - task: Subsidiary funding
       workflow: funding-subsidiary
       cells: { cfo: A, tm: "O,P", ta: P, acc: I, tax: R, subs: D, legal: P }
@@ -257,7 +257,7 @@
     - task: Covenant monitoring
       workflow: covenant-monitoring
       cells: { board: I, cfo: A, tm: O, ta: P, acc: D, fpa: D, bank: I }
-      note: "Semi-annual test (net debt/EBITDA ≤ 3.25x, interest cover ≥ 4x). Lea calculates from Claudia's figures using the loan agreement's definitions; Marco's forecast shows forward headroom; Thomas signs the compliance certificate."
+      note: "Semi-annual test (net debt/EBITDA ≤ 3.25x, interest cover ≥ 4x). Claudia (Group Accounting) computes the LTM ratios from the closed accounts using the loan agreement's definitions ([why Accounting, not FP&A](why:covenant-ebitda-source)); Lea supplies the net-debt schedule; Daniel reviews the result and presents it to the banks; Marco (FP&A) supplies **forecast** EBITDA for the forward headroom only. Thomas signs the compliance certificate."
     - task: Fraud response
       workflow: fraud-investigation
       cells: { cfo: A, tm: O, ta: P, acc: P, subs: P, legal: P, it: P, bank: P }

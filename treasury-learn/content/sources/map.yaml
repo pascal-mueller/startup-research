@@ -3,12 +3,12 @@
 # Each entry below was verified against the publisher's own page as returned by web search (title, URL and
 # summary text from that page). Figures are quoted only where the search result attributed them to the publisher.
 - id: bis-triennial-2025
-  title: "Global FX trading hits $9.6 trillion a day in April 2025 and OTC interest rate derivatives surge 79%"
+  title: "Global FX trading hits $9.6 trillion a day in April 2025 and OTC interest rate derivatives surge to $7.9 trillion"
   publisher: Bank for International Settlements (BIS)
   year: 2025
   url: https://www.bis.org/media-releases/20250930-global-fx-trading-hits-96-trillion-day-april-2025-and-otc-interest-rate-derivatives-surge-79
   type: official
-  note: "Triennial Central Bank Survey, April 2025 (published 30 Sep 2025; 52 jurisdictions, 1,100+ dealers). FX turnover USD 9.6tn/day, +28% vs 2022; USD on one side of 89% of trades, EUR 28.9%, JPY 16.8%; UK, US, Singapore and Hong Kong desks 75% of trading."
+  note: "Triennial Central Bank Survey, April 2025 (published 30 Sep 2025; 52 jurisdictions, 1,100+ dealers). FX turnover USD 9.6tn/day, +28% vs 2022; USD on one side of 89% of trades, EUR 28.9%, JPY 16.8%; OTC interest rate derivatives turnover rose 59% to USD 7.9tn/day; UK, US, Singapore and Hong Kong desks 75% of FX trading. (Title corrected in map-r1: the release says 'surge to $7.9 trillion'; the IRD turnover rise is 59%, not 79%.)"
 - id: afp-liquidity-2025
   title: "Survey: 61 Percent of Organizations Choose Safety as Their Top Short-Term Investment Objective (2025 AFP Liquidity Survey)"
   publisher: Association for Financial Professionals (AFP)
@@ -46,11 +46,11 @@
   note: "Listed companies globally. EUR ~1.56tn of 'excess' working capital; DSO up ~6.6% over five years; DPO flat overall with a widening gap between large companies (higher DPO) and smaller ones (declining DPO); inventory improvement stalling."
 - id: snb-mpa-2026-09
   title: SNB monetary policy assessment of 24 September 2026 (policy rate unchanged at 0%)
-  publisher: Swiss National Bank, as reported by PostFinance market view
+  publisher: Swiss National Bank (SNB)
   year: 2026
-  url: https://www.postfinance.ch/en/private/investing/knowledge/market-view/snb-keeps-policy-rate.html
+  url: https://www.snb.ch/en/the-snb/mandates-goals/monetary-policy/monetary-policy-assessments
   type: official
-  note: "SNB left its policy rate at 0% on 24 Sep 2026 (also unchanged in March and June 2026); inflation ~0.8%, within target. Used for the 'CHF deposits earn roughly nothing' framing."
+  note: "SNB left its policy rate at 0% on 24 Sep 2026 (also unchanged in March and June 2026); inflation ~0.8%, within target. Confirmed against the SNB's own press release in map-r1; the URL points at the SNB's monetary policy assessments page. Used for the 'CHF deposits earn roughly nothing' framing."
 - id: estv-safe-harbour-2026
   title: Swiss safe harbour intercompany interest rates for 2026 announced
   publisher: Deloitte Switzerland (summarising the Swiss Federal Tax Administration circular)
@@ -62,7 +62,7 @@
   title: SEC Adopts Significant Money Market Fund Reforms
   publisher: Dechert LLP
   year: 2023
-  url: "https://www.dechert.com/content/dam/dechert files/knowledge/onpoint/2023/7/2023-08-SEC-Adopts-Significant-Money-Market-Fund Reforms.pdf"
+  url: "https://www.dechert.com/content/dam/dechert%20files/knowledge/onpoint/2023/7/2023-08-SEC-Adopts-Significant-Money-Market-Fund%20Reforms.pdf"
   type: practitioner
   note: "Law-firm summary of the SEC's July 2023 Rule 2a-7 amendments: redemption gates removed; mandatory liquidity fee for institutional prime and institutional tax-exempt funds when net redemptions exceed 5% of net assets (compliance 2 Oct 2024); higher minimum liquidity requirements from 2 April 2024. By Oct 2024 the institutional prime/tax-exempt sector had shrunk from 52 funds (USD 666.5bn) to 20 (USD 349.1bn) as reported by ICI/Crane data in search results — cited only as direction of travel."
 - id: bk-non-bank-rules

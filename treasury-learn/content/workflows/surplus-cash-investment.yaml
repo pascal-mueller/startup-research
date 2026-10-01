@@ -70,8 +70,10 @@ steps:
     where: Positioning sheet, 13-week forecast, liquidity plan
     when: Daily/weekly after positioning; monthly for longer placements
     detail: >-
-      Take the projected balance per currency, subtract the operating buffer and known outflows, and read off how long
-      the surplus lasts: CHF 12m spare for 2 weeks, then CHF 5m spare for 3 months because of the dividend, etc. Each
+      Take the projected balance per currency, subtract the [operating buffer](term:cash-buffer) — the per-account
+      [minimum operating balances](term:minimum-operating-balance) and the CFO's group minimum liquidity (CHF 10m at
+      Helvetic, held at the parent) — and known outflows, and read off how long the surplus lasts: CHF 12m spare for 2
+      weeks, then CHF 5m spare for 3 months because of the dividend, etc. Each
       currency is handled separately; converting CHF into USD to earn USD rates creates FX risk and is normally prohibited
       unless hedged — and once hedged, the rate advantage largely disappears in the [forward points](term:forward-points).
     judgment: How much of the forecast surplus to trust. Placing too long means breaking a deposit or drawing the RCF later; too short leaves money idle.
@@ -80,7 +82,8 @@ steps:
     where: Debt register / RCF schedule
     detail: >-
       If the RCF is drawn, repaying a drawing at its next [interest period](term:interest-period) end usually beats a deposit:
-      the company saves the loan margin (partly offset by the commitment fee that applies again on the undrawn amount).
+      the company saves the loan margin (partly offset by the commitment fee that applies again on the undrawn amount)
+      [why](why:repay-rcf-not-chf-deposit).
       Keeping cash *and* debt can still be deliberate — for liquidity safety, for cash in entities that can't repay parent
       debt, or where re-drawing is uncertain — but it should be a decision, not an accident.
     judgment: Whether the flexibility of holding cash is worth the negative carry.
@@ -89,7 +92,9 @@ steps:
     where: Limit report (TMS or Excel), rating sources
     detail: >-
       For each candidate counterparty: is it on the approved list, does it meet the minimum rating, how much of its limit
-      is already used (including current-account balances)? For funds: type ([LVNAV/CNAV/VNAV](term:mmf-types) or US
+      is already used (including current-account balances)? Lea pulls the approved-counterparty list from the policy
+      annex — a bank not on it needs Thomas's (CFO) exception approval before it can even quote. For funds: type
+      ([LVNAV/CNAV/VNAV](term:mmf-types) or US
       government fund), fund size, rating, and the maximum share of the fund the company may hold. Check maximum tenor.
     manual: Ratings and limit utilisation kept in an Excel sheet, updated by hand when an agency action is noticed.
   - title: Collect quotes
@@ -150,33 +155,60 @@ steps:
       a benchmark (e.g. SARON, €STR, SOFR); any exceptions. Annually, review the policy — approved counterparties, limits,
       whether new instruments are needed.
 example:
-  title: "Helvetic in December 2026: surplus after year-end collections"
+  title: "Helvetic in December 2026: no December surplus — deciding what to do with the January collections"
   body: |
-    Year-end collections have lifted Helvetic's group cash to about CHF 59.5m (see [liquidity planning](wf:liquidity-planning)).
-    Lea's forecast shows the surplus lasts until the Q1 bonus and tax payments and, for part of it, until the May dividend.
-    Helvetic's investment policy (illustrative): banks rated A-/A3 or better, maximum CHF 20m total exposure per bank;
-    AAA-rated LVNAV or public-debt CNAV funds in EUR, US government MMFs in USD, maximum CHF 10m per fund; maximum tenor
-    6 months; CHF, EUR and USD invested in their own currency only.
+    The premise is the [13-week forecast](wf:cash-forecasting), and it says there is nothing to place in December: group
+    cash is ≈ CHF 36.6m on Friday 11 December, dips to its CHF 18m low point on 18 December (the December payrolls
+    including the Swiss 13th salary, and the year-end supplier runs), and only then climbs to ≈ CHF 52.6m by 19 February
+    as the Q4 collections land. The December placement round is therefore about the surplus that is *arriving* — and
+    about its first use: the RCF is drawn (CHF 30m + EUR 35m ≈ CHF 63m after the 15 October rollover; CHF 137m
+    undrawn). Helvetic's investment policy (illustrative): banks rated BBB/Baa2 or better — CHF 30m total exposure per
+    A-rated bank, CHF 15m per BBB-rated bank (current-account balances and positive forward values count); AAA-rated
+    LVNAV or public-debt CNAV funds in EUR, US government MMFs in USD, maximum CHF 10m per fund; maximum tenor 6 months;
+    CHF, EUR and USD invested in their own currency only.
 
-    | Currency pot | Surplus beyond buffer | How long | Options considered | Decision |
+    | Currency pot | Forecast surplus beyond buffers | From → needed again | Options considered | Decision |
     |---|---|---|---|---|
-    | CHF at HM AG (CHF 26m; CHF 10m kept as parent buffer) | CHF 16m | ~5 months (until the dividend) | CHF 3-month deposit ≈ 0.0–0.1%; repay part of the CHF 35m RCF loan (compounded SARON ≈ 0% plus margin, illustratively ~1.1%) | **Repay CHF 15m** at the 15 January rollover; until then it stays on current account (a 4-week CHF deposit would earn nothing); re-draw in May if needed |
-    | EUR at HM AG (EUR 9m) + EUR 6m moved from DE/IT/FR by intercompany loan (no cash pool) | EUR 10m (EUR 5m kept for January supplier runs and funding HM Deutschland) | ~2 months | Repay part of the EUR 27m RCF loan — but it is in a 3-month EURIBOR interest period to 15 January and cannot be prepaid mid-period without break costs; 1-month deposit ≈ 1.9%; EUR LVNAV MMF ≈ 1.8–1.9% net, same-day liquidity | **EUR 10m into a EUR LVNAV MMF** for ~4 weeks, redeemed on 15 January to repay EUR 10m of the RCF loan at its period end |
-    | USD at HM Inc. (USD 5m; USD 2m operating) | USD 3m | 3+ months | US bank's sweep ≈ below market; US government MMF ≈ 3.5–3.8% net | **USD 3m into a US government MMF** |
-    | CNY at HM Suzhou (~CNY 60m) | not available to the group | — | Local time deposit at the Chinese bank | Wei keeps it locally under a policy exception; see [funding a subsidiary](wf:funding-subsidiary) |
+    | CHF at HM AG and HM Service | ≈ CHF 15m — forecast usable cash above buffers at the rollover (CHF 36.6m on 15 Jan less CHF 6m trapped less the CHF 10m floor ≈ CHF 20.6m, of which CHF 15m is spare) | 15 Jan → the May dividend | CHF 3-month deposit ≈ 0.0–0.1%; repay part of the CHF 30m RCF loan (SARON + 0.85% margin ≈ 1.1% all-in, illustratively) | **Repay CHF 15m at the 15 January rollover** — [repaid, not deposited](why:repay-rcf-not-chf-deposit); until then it stays on current account (a 4-week CHF deposit would earn nothing). CHF 15m is [re-drawn in May](why:may-redraw) if the dividend is paid |
+    | EUR at HM AG + HM Deutschland/Italia/France/CZ (≈ EUR 15m by mid-January, moved by intercompany loan — Helvetic has no cash pool) | EUR 10m (EUR 5m kept for January supplier runs and funding HM Deutschland) | late Jan → 15 Feb | Prepay part of the EUR 35m RCF loan — but prepaying before a period end breaks the bank's funding for the period and costs break fees; 1-month deposit ≈ 2.1%; EUR LVNAV MMF ≈ 2.2% net, same-day liquidity | **EUR 10m into a EUR LVNAV MMF** for ~4 weeks, redeemed on 15 February to repay EUR 10m of the RCF loan at its period end |
+    | USD at HM Inc. (USD 3.1m operating + USD 6m of loan proceeds drawing on 15 December — see [funding a subsidiary](wf:funding-subsidiary)) | USD 3m | 15 Dec → the Q1 payment dates | US bank's sweep ≈ below market; US government MMF ≈ 3.5–3.8% net | **USD 3m into a US government MMF**, [laddered to the February–March payments](why:deposit-ladder-to-outflows); the other USD 3m is committed to the January–February demo-centre payments and stays in the operating account |
+    | CNY at HM Suzhou (≈ CNY 55m ≈ CHF 6m) | not available to the group | — | Local time deposit at the Chinese bank | Wei keeps it locally under a policy exception; the way out is the 2027 dividend cycle — see [funding a subsidiary](wf:funding-subsidiary) |
+    | GBP (HM UK) and CZK (HM CZ) | ≈ CHF 2m combined | — | — | Stay on current account — too small to place |
 
-    *Rates are illustrative for autumn 2026 (SARON ≈ 0%, €STR ≈ 1.9–2.0%, SOFR ≈ 3.5–4%).*
+    *Rates are illustrative for autumn 2026 (SARON ≈ 0%, €STR ≈ 2.2–2.4%, SOFR ≈ 3.5–4%).*
 
-    **What it's worth, roughly:** repaying CHF 15m from mid-January to May saves ~1.1% margin minus a commitment fee of
-    ~0.4% on the now-undrawn amount ≈ 0.7% × 15m × 4/12 ≈ **CHF 35k**. The EUR MMF earns ~1.85% × 10m × 4/52 ≈
-    **EUR 14k** before the EUR repayment takes over (saving EURIBOR plus margin on EUR 10m). The USD fund earns
-    ~3.6% × 3m × 3/12 ≈ **USD 27k** per quarter. A CHF deposit instead of the repayment would have earned close to nothing.
+    **Why the repayments are split.** The 15 January rollover is the natural date for both prepayments — the CHF loan's
+    interest period ends then, and the EUR loan's 3-month EURIBOR period cannot be prepaid before then without break
+    costs. But paying CHF 15m *and* EUR 10m (≈ CHF 24m) on 15 January would take the group from CHF 36.6m to ≈ CHF 12m
+    gross — ≈ CHF 6m usable against the CFO's CHF 10m floor. So the CHF 15m goes at the 15 January rollover (the CHF
+    surplus from the January collections), the EUR tranche rolls into a one-month interest period at the rollover, and
+    EUR 10m is prepaid at the 15 February period end, when the EUR collections have landed: [the split](why:repayment-split-jan-feb).
 
-    **The judgment calls:** Daniel checks that repaying CHF 15m and EUR 10m still leaves roughly CHF 165m undrawn and that a re-draw needs
-    only three business days' notice — acceptable given the headroom. The EUR fund is chosen over a deposit at Swiss
-    bank A because bank A already holds CHF 14m of Helvetic's current-account balances and would exceed its CHF 20m
-    limit. He also notes the German RCF bank has asked twice about ancillary business; next quarter's EUR placements go
-    there if its rating stays above policy minimum.
+    **What it's worth, roughly:** repaying CHF 15m from mid-January to the May re-draw saves ≈ 1.1% loan cost less the
+    ~0.4% commitment fee that resumes on the now-undrawn amount ≈ 0.7% × 15m × 4/12 ≈ **CHF 35k**. The EUR fund earns
+    ~2.2% × 10m × 4/52 ≈ **EUR 17k** while it waits; from 15 February the prepayment beats parking the money again — the
+    loan costs €STR + 0.85% ≈ 3.1%, the 0.4% fee resumes on the undrawn part, and a deposit would earn ≈ 2.2%, so the
+    prepayment is worth ≈ 0.55% × 10m × 3/12 ≈ **EUR 14k** more than another placement. The USD fund earns
+    ~3.6% × 3m × 8/52 ≈ **USD 17k**. A CHF deposit instead of the repayment would have earned close to nothing.
+
+    **The judgment calls:** Daniel checks that the repayments leave ≈ CHF 152m undrawn after 15 January and ≈ CHF 162m
+    after 15 February (against CHF 137m before), and that a re-draw needs only three business days' notice — acceptable
+    given the headroom. The EUR fund is chosen over a deposit at Swiss bank A because bank A already holds ≈ CHF 20.6m
+    of Helvetic's current-account balances and its A-rated limit is CHF 30m:
+
+    | Bank | Current accounts (latest position) | Proposed placement | After |
+    |---|---|---|---|
+    | Swiss bank A (A-rated, CHF 30m limit) | ≈ CHF 20.6m (HM AG CHF 14.2m + EUR 6.8m) | EUR 10m deposit | CHF 30.6m — **over the limit** |
+    | Swiss bank B (A-rated, RCF agent) | ≈ CHF 1.5m | — | CHF 1.5m |
+    | German bank (BBB, CHF 15m limit) | ≈ CHF 4.8m (HM Deutschland, HM Italia, HM France, HM CZ) | — | CHF 4.8m — next quarter's EUR placements go here if the rating holds |
+    | Global bank (A-rated) | ≈ CHF 3.6m (HM Inc. USD, HM UK GBP) | USD 3m government fund | CHF 3.6m (fund exposure counts against the CHF 10m per-fund limit) |
+    | Chinese bank (local policy exception) | ≈ CHF 6.1m (HM Suzhou, CNY 55m) | local time deposit | outside the group limit table |
+
+    The rows tie to the 11 December group cash of ≈ CHF 36.6m. He also notes the German RCF bank has asked twice about
+    ancillary business; next quarter's EUR placements go there if its rating stays at or above policy minimum.
+
+    **Approvals.** Both repayments exceed CHF 2m: Lea prepares them in the connectivity tool, Daniel releases, and
+    Thomas (CFO) and the CEO add their signatures under Helvetic's signing matrix.
 judgment:
   - decision: How much of the surplus is really investable, and for how long
     why: Depends on forecast reliability. A placement that has to be broken, or a facility drawn to cover it, costs more than it earned.
@@ -247,8 +279,9 @@ by_size:
 companies:
   kleio: >-
     Sarah's CHF 22m is the company's runway. Post-SVB she split it across two Swiss banks and a US bank: ~CHF 4m
-    operating cash at sight, ~CHF 8m in 3–6-month CHF deposits laddered to payroll and the burn, the remainder in
-    6–12-month deposits and Swiss Confederation money-market claims — all yielding close to zero in CHF. The USD
+    operating cash at sight, ~CHF 8m as a ladder of eight CHF 1m deposits maturing monthly just before payroll and the
+    burn, the remaining ~CHF 10m in 3–6-month CHF deposits and Swiss Confederation money-market claims — all yielding
+    close to zero in CHF. The USD
     balance at Kleio Inc. sits in a US government MMF because that is the one pot that earns something. The one-page
     policy (A- or better, max 12 months, max 40% at one bank) is what the board actually reads.
   alpine: >-
@@ -300,8 +333,8 @@ sources: [afp-liquidity-2025, snb-mpa-2026-09, mmfr-ms-im, sec-mmf-2023, neugrou
 evidence_note: >-
   The safety–liquidity–yield ordering, segmentation of cash and the step sequence are established practice. Survey
   evidence (mainly US): 61% of AFP 2025 Liquidity Survey respondents named safety the top short-term investment
-  objective, and on average about 80% of short-term balances sat in bank deposits, MMFs and Treasury securities, with
-  bank deposits the largest single share (~46%)[](cite:afp-liquidity-2025). After SVB, NeuGroup members reported
+  objective; bank products were the most-cited primary home for short-term balances (named by 46% of respondents) and
+  government/Treasury money market funds by 20%[](cite:afp-liquidity-2025). After SVB, NeuGroup members reported
   reassessing bank counterparty risk and diversifying deposits[](cite:neugroup-svb-2023). EU MMF rules (LVNAV/CNAV at
   least 10% daily and 30% weekly maturing assets, WAM ≤ 60 days, WAL ≤ 120 days) are from Regulation (EU) 2017/1131 as
   summarised by Morgan Stanley IM[](cite:mmfr-ms-im); US MMF rules changed in 2023[](cite:sec-mmf-2023). The SNB kept

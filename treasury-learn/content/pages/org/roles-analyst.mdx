@@ -8,7 +8,7 @@ related: [/org/roles-treasury-manager, /org/roles-cash-manager, /org/roles-opera
 
 ## What the role is
 
-An analyst turns scattered information (bank statements, subsidiary emails, ERP payment lists, bank confirmations) into something a manager can decide on: a position with proposed transfers, a forecast with a variance table, a hedge-cover report against the policy band. In small teams the analyst also **enters** transactions, and someone senior releases them. That split is how a two-person treasury achieves [four-eyes control](term:four-eyes-principle).
+An analyst turns scattered information (bank statements, subsidiary emails, ERP payment lists, bank confirmations) into something a manager can decide on: a position with proposed transfers, a forecast with a variance table, a hedge-cover report against the policy band. In small teams the analyst also **enters** transactions, and someone senior releases them. That split is how a two-person treasury achieves [four-eyes control](term:four-eyes-principle) — and [why Lea prepares while Daniel decides](why:prepare-decide-split).
 
 Career guides describe the same entry point. Analyst-level roles centre on short-term cash forecasting, bank reconciliations, payment processing and data analysis. After a few years people move up to Senior Analyst or Treasury Manager[](cite:learnsignal-career-2026). In the ACT's competency framework, analysts sit mainly at the *tactical* and *operational* levels[](cite:act-competency-framework).
 
@@ -29,8 +29,8 @@ These are drawn from Lea's work at [Helvetic](co:helvetic) (one analyst, reporti
 | **Statement check** | 07:45: confirm all 12 prior-day statements (MT940/[camt.053](term:bank-statement)) arrived in the connectivity tool. The Chinese bank's file is missing, and since China is ahead of CET it should be in, so she opens a ticket with the bank. | Completeness list | Daniel; the day's position |
 | **Cash position** | Refresh the Power Query in the positioning workbook. Add today's AP runs, payroll and tax, and any flows subsidiaries mentioned by email. Compare against yesterday's expectation. | Projected closing balance per account, list of variances, proposed transfers | Daniel decides by 09:00 |
 | **Variance investigation** | HM Deutschland is EUR 0.3m lower than expected. She checks the statement detail and finds a trade-tax prepayment. She emails Jens to confirm and adds the date to the tax calendar. | Explained variance; corrected calendar | Forecast quality |
-| **13-week forecast** | Monday: roll the model forward and send templates. Tuesday noon: collect them and chase France. Wednesday: consolidate and build the variance table by entity and category. | Consolidated forecast, variance table | Daniel overrides; monthly to Thomas |
-| **FX exposure and hedge report** | Take subsidiaries' monthly currency forecasts and the list of open forwards. Compute cover per currency and month against the 60–90% band. | Hedge-ratio workbook; "needs top-up" list | Daniel deals |
+| **13-week forecast** | Monday: roll the model forward and send templates. Tuesday noon: collect them and chase France. Wednesday: consolidate and build the variance table by entity and category. | Consolidated forecast, variance table | Daniel overrides; a one-page view goes to Thomas [every Thursday](why:weekly-vs-monthly-forecast) |
+| **FX exposure and hedge report** | Take subsidiaries' monthly currency forecasts (in by WD5) and the list of open forwards. Compute cover per currency and month against the [graded policy bands](why:hedge-bands-graded) (Q+1 60–90% … Q+4 0–40%). | Hedge-ratio workbook; "needs top-up" list | Daniel reviews on WD7, then deals |
 | **Confirmation matching** | Compare the bank's PDF confirmation (rate, amount, value date, settlement account) with the deal log, and flag any difference immediately. | Matched / unmatched list | Control. At GlobalChem this is back-office work |
 | **Intercompany loan register** | Record each transfer as a loan draw or repayment, compute interest at the agreed rate, and send month-end statements to the subsidiaries. | Register; interest statements | Group Accounting (Claudia), Tax |
 | **Month-end pack** | Deal list with bank valuations, deposits, RCF drawings and interest, intercompany balances. | Excel files for accounting | Claudia's team books them |
@@ -68,7 +68,7 @@ Good questions:
 - "What does your manager change in what you prepare, and why?"
 - "When did something you prepared turn out to be wrong? How was it caught?"
 
-Less useful: "Why is the hedge policy 60–90%?" or "How did you choose your banks?" Those are manager or CFO questions.
+Less useful: "Why is the hedge policy set in graded bands?" or "How did you choose your banks?" Those are manager or CFO questions.
 
 </Callout>
 

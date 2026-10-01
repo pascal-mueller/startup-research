@@ -5,11 +5,19 @@
 
 - id: efd-finfrag-2022
   title: Federal Council commissions revision of Financial Market Infrastructure Act
-  publisher: Swiss Federal Department of Finance (FDF / EFD)
+  publisher: Swiss Federal Department of Finance (FDF / EFD) via admin.ch
   year: 2022
-  url: https://www.efd.admin.ch/efd/en/home/the-fdf/nsb-news_list.msg-id-90555.html
+  url: https://www.admin.ch/en/nsb?id=90555
   type: official
-  note: "Press release of 30 Sep 2022. The derivatives trade-reporting duty for small non-financial counterparties (e.g. industrial companies) was postponed by ordinance amendment to enter into force on 1 January 2028, to give Parliament time to decide on the FMIA revision; reporting duties already applicable to other participants are unaffected. The Federal Council's FMIA revision draft followed in June 2024 (consultation to Oct 2024)."
+  note: "Press release of 30 Sep 2022 (verified on the admin.ch press-release page in review round 1). The derivatives trade-reporting duty for small non-financial counterparties (e.g. industrial companies) was postponed by ordinance amendment to enter into force on 1 January 2028 ('with effect from 1 January 2028'), to give Parliament time to decide on the FMIA revision; reporting duties already applicable to other participants are unaffected. The Federal Council's FMIA revision draft followed in June 2024 (consultation to Oct 2024)."
+
+- id: cms-fmia-revision-2025
+  title: Swiss Federal Council commissions revision of the Financial Market Infrastructure Act (FMIA)
+  publisher: CMS Switzerland (law-firm legal update)
+  year: 2025
+  url: https://cms.law/en/che/legal-updates/swiss-federal-council-commissions-revision-of-financial-market-infrastructure-act-fmia
+  type: practitioner
+  note: "Currentness note on the FinfraG/FMIA revision: the package proposes abolishing the derivatives reporting duty for small non-financial counterparties entirely, with Parliament to decide before the postponed 2028 start date; the revision reached the dispatch/parliament phase in 2025–2026. Law-firm summary, not the primary text — check the current status before relying on it."
 
 - id: fmia-art108
   title: "Financial Market Infrastructure Act (FinfraG/FMIA), Art. 108 — Mitigation of operational and counterparty risk"
@@ -114,3 +122,11 @@
   url: https://zandersgroup.com/en/insights/blog/calculation-of-compounded-saron
   type: practitioner
   note: "Compounded SARON in arrears: interest is known only near the end of the interest period; lookback variant shifts the observation period a few days earlier so interest can be calculated and invoiced on the payment date. Used in LMA-style CHF loans, FRNs and derivatives."
+
+- id: milltech-hedge-monitor-2026
+  title: The Corporate Hedging Monitor Q1 2026
+  publisher: MillTech (MillTechFX / Millennium Global Treasury Services)
+  year: 2026
+  url: https://milltech.com/resources/currency-insight-and-education/the-corporate-hedging-monitor-q1-2026
+  type: vendor
+  note: "Vendor-sponsored quarterly survey of 250 senior finance decision-makers at UK and US corporates (market cap USD 50m–1bn — the corporate sample). Q1 2026: average hedge ratio reached 57% (from 49% in Q4 2025) and average hedge tenor 6.62 months (from 6.33); 96% reported losses from unhedged FX exposure. Figures seen on the publisher's own report page and confirmed by The Full FX (29 May 2026) and CFOtech UK (28 May 2026). The vendor's earlier Global FX Report 2025 (750 corporates + 750 fund managers) showed ≈ 48–49% and ≈ 5.3 months."

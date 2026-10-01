@@ -1,0 +1,223 @@
+# Why notes for stream "day" (Day in the Life). Ids prefixed day- to stay unique across all why files.
+# Every derivation below is re-derivable from content/companies.yaml and AUTHORING.md canonical facts v2/v2.1.
+
+- id: day-morning-window
+  claim: "The day's money work is finished before the early-afternoon cut-offs"
+  short: |
+    Asian prior-day statements are in the tool before 07:00 and US files land mid-morning, but every same-day payment
+    must be decided while a rejection can still be fixed before the bank's early-afternoon cut-off — so the position and
+    the funding decisions compress into the first working hour.
+  detail: |
+    The day pages are built backwards from the bank cut-off, not from the calendar. Upstream: China, Japan and
+    Singapore's business days end before the Swiss morning, so their prior-day files are in the multibank tool by
+    07:00; US banks generate prior-day files only after the European day has started (Lea replaces intraday
+    placeholders on the US account at 11:15). Downstream: corporate same-day CHF and EUR cut-offs sit in the early
+    afternoon, and a rejected payment needs hours to be noticed, re-confirmed and re-sent — Petra's 10:10 rejection is
+    fixed at 11:30 against a 14:00 cut-off. Everything between (statements 07:30, gap trace 08:10, funding 08:20,
+    proposal 08:45, decision 08:50) exists to leave that fix window open. Afternoons go to work without a cut-off:
+    forecasts, reports, projects, banks. For the ordering *within* the morning (statements → exceptions → decisions →
+    execution in cut-off order) see [why the daily routine runs in that order](why:morning-sequence).
+  check: |
+    If payments could be executed until system close (instant rails, 24/7), the morning compression would disappear.
+    Ask an interviewee which cut-off bounds their morning — the answer maps their day.
+  terms: [cut-off-time, cash-position, bank-statement]
+
+- id: day-escalation-two-million
+  claim: "What goes to the CFO: above CHF 2m, facility drawings, policy exceptions"
+  short: |
+    Below CHF 2m a payment runs on two electronic signatures (accounting and treasury) and stays with Daniel; above
+    CHF 2m the CFO and CEO co-sign in addition — and facility drawings, covenant figures and policy exceptions reach
+    the CFO whatever the amount.
+  detail: |
+    Helvetic's signing matrix: payments ≤ CHF 2m are four-eyes inside the bank channel (accounting prepares the run,
+    treasury provides the second electronic signature); > CHF 2m, Thomas (CFO) and the CEO co-sign in addition (the
+    threshold's own rationale is [here](why:ceo-cosign-threshold), the four-eyes pair [here](why:four-eyes-threshold)).
+    Hence
+    Tuesday's CHF 2.4m component payment leaves the treasury pair while the other 57 do not. The threshold is roughly
+    a day's revenue (CHF 650m ÷ ~250 working days ≈ CHF 2.6m): a single fraudulent or mistaken payment at that size is
+    visible but survivable — the point of a threshold. Escalation is also by *type*: anything touching the RCF, the
+    covenant or a policy limit goes to the Thursday jour fixe regardless of size, while routine funding stays with
+    Daniel even at several million.
+  check: |
+    The threshold should track scale: a CHF 80m company sets it near CHF 250k (Alpine's mandate). If the CFO co-signed
+    everything, the threshold would be meaningless; if nothing reached him, one payment could exceed a day's revenue.
+  terms: [signing-authority-matrix, four-eyes-principle]
+
+- id: day-runway-range
+  claim: "Runway presented as 21–24 months, not one number"
+  short: |
+    CHF 22m ÷ CHF 0.9m ≈ 24 months is the ceiling from today's balance; the January enterprise prepayment inflates the
+    balance inside the horizon and renewal timing moves the burn, so the board sees the 21–24 range the two effects
+    bracket, not a single figure.
+  detail: |
+    The arithmetic ceiling: 22 ÷ 0.9 = 24.4 (the single-number version is [here](why:systems-kleio-runway)). Two effects push the honest number down and make it a range. (1) Kleio's
+    enterprise customers pay annually in advance — the January (and July) inflows land inside any 24-month horizon and
+    are consumed again before it ends; excluding the January prepayment (illustratively CHF 2–3m) the same sheet shows
+    ≈ 21–22 months. (2) Renewals and hiring move the denominator: each hire at CHF 150–180k fully loaded adds
+    ≈ CHF 50–60k a month of burn, so four hires cost roughly six weeks of runway. Sarah therefore presents about
+    21–24 months "depending on renewals" — and the trigger for action is the trend (two months of burn above plan, or
+    a renewal slipping), not the level.
+  check: |
+    With receipts spread evenly and headcount frozen, the range would collapse to the single number; if the range never
+    moved quarter to quarter while the burn did, the model would be stale rather than conservative.
+  terms: [cash-runway, burn-rate]
+
+- id: day-hedge-ratio-by-quarter
+  claim: "Hedge ratios reported by quarter against each band"
+  short: |
+    The bands are defined per rolling calendar quarter (60–90% / 40–70% / 25–55% / 0–40%), so compliance can only be
+    tested per quarter: a blended 60% can hide the front quarter below its 60% floor and the far quarter above its 70%
+    ceiling — two breaches behind one comfortable number.
+  detail: |
+    Take Q+1 at 45% and Q+2 at 75%: blended cover is 60% — "inside" at group level — while Q+1 is below its 60–90% floor
+    (near-term EUR revenue unprotected) and Q+2 above its 40–70% ceiling (over-hedged on a less firm forecast, which
+    most policies treat as speculation). The buckets also roll: when Q4 2026 closes, Q1 2027 becomes the front quarter
+    and inherits the 60–90% band, so the same 62% can be mid-band today and near the floor a quarter later. This is why
+    the committee pack — and Lea's weekly report — shows each quarter's ratio beside its band and the roll convention,
+    and why a single "we are 60% hedged" slide proves nothing. (Why the bands shrink with the horizon at all is
+    [here](why:hedge-bands-graded).)
+  check: |
+    If the policy set one flat ratio for the whole book, per-quarter reporting would be optional; if forecasts were
+    equally firm at every horizon, the bands would be flat and the blended ratio would be honest.
+  terms: [hedge-ratio, forward]
+
+- id: day-exception-list
+  claim: "14 exceptions at 07:30; 3 of them reach Priya"
+  short: |
+    With ~280 accounts nobody reads balances; the TMS lists what fails a rule (missing statement, failed sweep, account
+    below minimum, unexpected large item). The cash managers triage the list; only items that change a decision today or
+    breach a limit reach Priya.
+  detail: |
+    Scale first: ~280 accounts across ~40 subsidiaries produce more daily movements than any team can read, so the
+    position is assembled by rule and only the failures surface. Each exception class maps to a decision: a missing
+    statement means an unknown balance (chase the bank), a failed sweep means a funding gap before cut-offs (manual
+    transfer), an account below its minimum means a payment at risk (pre-fund), an unexpected large item means a
+    counterparty or fraud question (exposure check). Triage is by consequence: the cash managers close the routine
+    three-quarters; the EUR 12m credit at a non-core bank (limit breach), the Spanish sweep failure (funding) and the
+    Polish loan request (authority) reach the head of cash. The exception count is also the automation KPI — 14 of ~280
+    is the daily 5% the systems could not explain.
+  check: |
+    If every statement arrived, every sweep ran and every balance held its minimum, the list would be empty and the
+    role would be reporting. A rising exception count is the leading indicator of a connectivity or mandate problem.
+  terms: [cash-position, sweeping, counterparty-limit]
+
+- id: day-german-funding-3m
+  claim: "EUR 3m from HM AG to HM Deutschland"
+  short: |
+    Payroll EUR 4.2m + minimum EUR 0.25m − balance EUR 1.9m = EUR 2.55m needed, rounded to EUR 3m for a buffer: about
+    EUR 0.7m stays in Germany after payroll and about EUR 0.9m stays at HM AG after the EUR 8m forward delivery
+    (11.9 − 3 − 8).
+  detail: |
+    German side: the account must hold the EUR 4.2m monthly payroll (value Friday 30 October) plus its EUR 0.25m
+    operating minimum once it is paid — 4.2 + 0.25 = 4.45 needed against a EUR 1.9m balance, so EUR 2.55m is the
+    precise figure and EUR 3.0m the operational one (round numbers, a buffer for the social charges' rounding). After
+    payroll: 1.9 + 3.0 − 4.2 = EUR 0.7m left, above the minimum. Parent side: HM AG holds about EUR 11.9m and owes the
+    bank EUR 8m on Thursday's forward delivery — 11.9 − 3 − 8 = EUR 0.9m spare, so the top-up does not create an
+    overdraft at the parent. It is sent Tuesday although payroll pays Friday because a failed transfer needs a fix day
+    and same-day SEPA is not guaranteed; it is booked as an intercompany loan because Helvetic has no cash pool.
+  check: |
+    If the EUR 8m were a receipt rather than a delivery, or Germany's own receipts landed before Friday, the top-up
+    would shrink; if HM AG could not spare the EUR, the currency would come from an EUR drawing on the RCF instead.
+  terms: [intercompany-loan, minimum-operating-balance, forward]
+
+- id: day-covenant-ltm
+  claim: "Net debt / EBITDA ≈ 1.36x at 30 September 2026"
+  short: |
+    Gross debt CHF 160m − cash CHF 54m = net debt CHF 106m; 106 ÷ 78 ≈ 1.36x against the 3.25x limit — on 30 September
+    figures, because that is the LTM period and the test dates are 30 June and 31 December, not October.
+  detail: |
+    The bridge Daniel shows Thomas: CHF 100m bond + the RCF's then-drawn CHF 35m + EUR 27m (≈ CHF 25m at 0.93) ≈
+    CHF 160m gross debt; less group cash ≈ CHF 54m = CHF 106m net debt; ÷ LTM EBITDA ≈ CHF 78m = 1.36x (the full
+    bridge is [here](why:leverage-bridge-136), and [why the test date changes the number](why:covenant-test-dates)).
+    The scene teaches two disciplines. (1) Never mix dates: the ratio must use balances from the same point as the
+    EBITDA period, so October cash of CHF 41–46m and the post-15-October drawings of CHF 30m + EUR 35m belong only in
+    a labelled pro-forma (≈ 1.5x) — and the ratio a lender quotes in December will read higher, because Q4 cash falls
+    to its seasonal low. (2) 30 September is not a test date: the semi-annual tests are 30 June and 31 December, and
+    the quarterly estimate exists for the banks' Q3 call. Roles: Claudia (Group Accounting) computes LTM ratios, Lea
+    supplies the net-debt schedule, Daniel reviews and presents; Marco's forecast EBITDA never enters an LTM number.
+    Helvetic reports under Swiss GAAP FER, so no lease liabilities enter the bridge.
+  check: |
+    If the covenant definition included IFRS 16 leases or EBITDA add-backs, the ratio would move — the definition, not
+    the arithmetic, is what gets negotiated. If a page mixes October cash with September EBITDA, it is wrong.
+  terms: [leverage-ratio, net-debt, covenant]
+
+- id: day-rcf-keep-drawn
+  claim: "Why surplus CHF does not repay the RCF now"
+  short: |
+    Repaying CHF 4m at the 15 November roll saves only about CHF 3k of margin for four weeks, net of the commitment fee
+    — and would have to be redrawn (three days' notice) before the mid-December low point, so the drawings stand.
+  detail: |
+    The saving: the margin is 0.85% over SARON, so CHF 4m repaid from 15 November to the 15 December roll saves
+    0.85% × 4m × 7/52 ≈ CHF 4.6k, less the commitment fee payable on the repaid amount (35% of the margin,
+    ≈ CHF 1.6k over the same weeks) — a few thousand francs. The cost: the forecast's low point is the week of
+    14 December (December payrolls including the 13th salary, ≈ CHF 18m — [why that week](why:week-four-trough)), so
+    the same CHF would be borrowed again within weeks, at three business days' notice and a fresh drawing process. The
+    0%-CHF rule ("surplus CHF reduces drawings at the next 15th rollover") therefore applies to *durable* surpluses:
+    the rollover is [the only moment a drawing can be repaid without break costs](why:fifteenth-rollover-repayment),
+    and Daniel pencils the reduction for the 15 January roll, when the Q4 collections rebuild cash. Deposits are not
+    the alternative — CHF yields ≈ 0% against the facility's 0.85% ([the full deposit-vs-repay logic](why:repay-rcf-not-chf-deposit)).
+  check: |
+    If the low point were behind us or the surplus permanent, repaying at the roll would be automatic; if break costs
+    were zero, mid-period repayment would dominate waiting.
+  terms: [interest-period, commitment-fee, rcf]
+
+- id: day-china-manual-balance
+  claim: "Position built without Suzhou — yesterday's balance, flagged unconfirmed"
+  short: |
+    HM Suzhou's bank has no reporting channel, so its balance is Wei's emailed portal export; when it is late, Lea
+    books yesterday's balance flagged as unconfirmed rather than waiting — the flag protects the decisions, and Chinese
+    cash sits outside concentration anyway.
+  detail: |
+    Of Helvetic's 12 accounts, 11 deliver statements through the multibank tool; the twelfth has no EBICS/SWIFT
+    corporate reporting and comes as a daily email from Wei that Lea keys in (the count arithmetic is
+    [here](why:systems-11-of-12-statements); why the group runs 12 accounts at all, [here](why:helvetic-twelve-accounts)).
+    The fallback rule when it is late:
+    carry the last confirmed balance, mark it unconfirmed in the workbook, and exclude it from concentration — CNY
+    cannot be swept or repatriated quickly ([trapped cash](term:trapped-cash)), so a stale CNY figure changes no decision today, whereas
+    an unknown *total* would stall every decision. The dangerous version is an unflagged stale balance, which reads as
+    fact. The late handover is logged as a connectivity gap — the standing argument for making the Chinese bank
+    provide a reporting file — and it is never explained with time zones: China is ahead of CET, so its data could
+    arrive early, never late for that reason.
+  check: |
+    If Suzhou's cash were needed for a payment this week, the fallback would not be acceptable and the position would
+    wait for the export; if the bank offered corporate reporting, the count becomes 12 of 12 and the row disappears.
+  terms: [trapped-cash, bank-statement, bank-connectivity]
+
+- id: day-kleio-cash-policy
+  claim: "CHF in term deposits at two banks; USD in a government MMF; no CHF MMF"
+  short: |
+    At ≈0% CHF yield, placement is about access and diversification, not return: CHF sits in short term deposits split
+    across the two Swiss banks, while the USD surplus goes into a USD government money-market fund where SOFR-level
+    yield pays for the wrapper.
+  detail: |
+    CHF first: with the SNB policy rate at 0% and SARON ≈ 0%, every CHF product yields ≈ 0%, so the only reasons to
+    place cash survive: (1) the board-mandated bank split after the 2023 bank failures — one CHF 4m deposit at each
+    Swiss bank, so no failure freezes everything (the board's 60% single-bank cap behind the split is
+    [here](why:kleio-bank-split-cap)); (2) keeping money outside the operating account, out of reach of a
+    single fraudulent debit. A CHF money-market fund would add an account, custody and reporting for no yield — the
+    paperwork Sarah declines. USD is different: after cloud and US payroll, a USD ~0.6m surplus remains and SOFR is
+    ≈ 3.5–4%, so a USD government money-market fund (daily liquidity, sovereign paper, within counterparty limits)
+    earns its keep and still converts within a day when the next US bill arrives.
+  check: |
+    If CHF rates rose above ~1%, the deposit-versus-MMF question would become a yield comparison; if the USD surplus
+    were needed within days for payroll, it would sit on the current account instead of in the fund.
+  terms: [term-deposit, money-market-fund]
+
+- id: day-us-payroll-topup
+  claim: "USD 150k top-up; CHF 200k ≈ one month of US payroll"
+  short: |
+    8 US staff cost ≈ USD 118k gross-to-net per semi-monthly run plus employer taxes ≈ CHF 190k a month at USD/CHF
+    0.80 — so a CHF 200k loss is about one month of US payroll. The USD 150k top-up covers one run plus a USD 40k
+    invoice with a buffer.
+  detail: |
+    The sizing: Kleio Inc.'s account holds USD 95k; the payroll provider debits a couple of days before Friday's pay
+    date and the next run is ≈ USD 118k gross-to-net plus employer taxes (≈ USD 140k all-in); a USD 40k conference
+    invoice is due next week. 95 + 150 = 245 against 140 + 40 = 180 → ≈ USD 65k buffer, funded from Kleio AG's USD
+    account (fed by US customer receipts) rather than by converting CHF — no spread paid and the natural hedge
+    preserved. The payroll scale in francs: two runs a month ≈ USD 236k ≈ CHF 190k at 0.80, so "CHF 200k = two months
+    of US payroll" would understate the exposure by half — it is about one month, which is the size of loss the
+    two-person finance team cannot hide.
+  check: |
+    With 16 US staff, CHF 200k would be about two weeks; on a monthly rather than semi-monthly payroll the top-up
+    would roughly double.
+  terms: [natural-hedge]

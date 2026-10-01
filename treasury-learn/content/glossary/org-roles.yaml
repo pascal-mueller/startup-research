@@ -52,8 +52,10 @@
     value date, settlement instructions) by matching the counterparty's confirmation against the internally recorded
     deal, performed by someone other than the dealer, via SWIFT MT300-type messages, a matching platform or signed PDF.
   example: >-
-    Daniel books a EUR 4m forward at 0.9360 for 30 December. The bank's confirmation shows 0.9306. Lea spots the
-    difference before settlement; it turns out to be a typo in the bank's back office, corrected the same day.
+    Daniel books a EUR 4m forward at 0.9306 for 30 December. The bank's confirmation shows 0.9360. Lea spots the
+    difference before settlement; it turns out to be a transposition typo in the bank's back office, corrected the
+    same day. (A December EUR/CHF forward prices *below* spot: EUR rates are above CHF rates, so the forward points
+    are negative.)
   related: [back-office, front-office, segregation-of-duties]
 - id: dealing-mandate
   term: Dealing mandate
@@ -81,5 +83,5 @@
   example: >-
     Bosch's English-language cash-manager ad describes "daily cash operations, including cash disposition and
     liquidity forecasts". At Helvetic it is the 09:00 decision after Lea's position: Daniel sends EUR 1.5m to
-    HM Deutschland and earmarks CHF 3m of parent surplus to repay part of the RCF drawing at next week's rollover.
+    HM Deutschland and earmarks CHF 3m of parent surplus to repay part of the RCF drawing at the next 15th rollover.
   related: [cash-position, cash-concentration, sweeping]

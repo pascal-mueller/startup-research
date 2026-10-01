@@ -19,7 +19,7 @@ Treasury adds two more:
 4. **Sensitive** — questions that sound like fraud reconnaissance or ask for confidential data. They end interviews or make the rest guarded.
 5. **Naive** — questions that reveal you haven't done basic homework (e.g. confusing treasury with accounting). They cost credibility and time. See [Vocabulary](/interview/vocabulary).
 
-## The spec's three classics
+## Three questions that look reasonable
 
 | Bad question | Why it fails | Ask instead |
 |---|---|---|
@@ -44,9 +44,11 @@ Treasury adds two more:
 | "What are your biggest pain points?" | Gets the most recent annoyance or a conference talking point ("data quality", "visibility"). | "Tell me about the last time something took much longer than it should have." · "What happened the last time the forecast was badly wrong?" |
 | "Do you have any problems with bank connectivity?" | Yes/no, and prompts a generic complaint. | "Which bank statements arrived late or incomplete last month? What did you do about it?" |
 | "How accurate is your forecast?" | Invites a number without definition — "about 90%" means nothing without horizon, measure and lines. | "When did you last compare the forecast with actuals? What was the biggest miss, and what caused it?" |
-| "What does a typical day look like?" | "Typical" smooths out the exceptions — which are the work. | "What did you do yesterday, from when you logged in?" · "What broke your last normal Monday?" |
+| "What does a typical day look like?" | "Typical" smooths out the exceptions — which are the work ([why "yesterday" beats "a typical day"](why:yesterday-beats-typical-day)). | "What did you do yesterday, from when you logged in?" · "What broke your last normal Monday?" |
 
 ## Leading and compliment-fishing questions
+
+Leading questions are the most expensive failure mode here: a courteous treasurer will confirm your premise whether or not it is true, and you cannot tell the difference afterwards — [why the open past-instance form beats it](why:open-vs-leading).
 
 | Bad question | Why it fails | Ask instead |
 |---|---|---|
@@ -57,16 +59,33 @@ Treasury adds two more:
 
 ## Sensitive questions (treasury-specific)
 
-These don't just produce bad data — they can end the conversation, because they resemble the reconnaissance fraudsters do before a [business email compromise](term:business-email-compromise) or CEO-fraud attempt[](cite:bacs-ceo-fraud-2026).
+These don't just produce bad data — they can end the conversation, because *specifics* about payment controls resemble the reconnaissance fraudsters do before a [business email compromise](term:business-email-compromise) or CEO-fraud attempt[](cite:bacs-ceo-fraud-2026).
+
+<Callout type="synthesis" title="The boundary — drawn once">
+
+Fraud controls and approval authority are **core discovery topics**. How a supplier bank-detail change gets verified, who has to approve what, what gets escalated and how the thresholds are written down — ask about all of it, as open questions about the last instance. What is off-limits is the **specific values** that make an attack work or breach confidentiality: limit amounts, signatory names, call-back numbers (plus account numbers, balances, counterparties, documents and loss details). And the phrasing matters: never ask a **leading** question that describes their live control back to them, and never drop jargon you can't back up — both read as reconnaissance or fake expertise rather than curiosity. [Why this line, and not a ban on the topic](why:discovery-vs-reconnaissance)
+
+</Callout>
 
 | Bad question | Why it fails | Ask instead |
 |---|---|---|
-| "What's your approval limit / who are your signatories?" | Exactly the information a fraudster needs. | "Walk me through what happens to a large payment after it's prepared — who looks at it next?" (sequence, not names or amounts) |
+| "What's your approval limit in CHF — and who are the signatories?" | Asks for the values behind the control: exactly what a fraudster needs, and confidential authority data. The *topic* is fine; the *numbers and names* are not. | "Roughly who has to approve what — and is it written down or a judgment call?" (authority and escalation: fine. The amounts and names: leave them out.) |
+| "So when a supplier sends new bank details, someone calls them back on a number you already have, right?" | Leading: describes a live control back to them and buys a polite "yes" — and tells any suspicious listener how much you know. | "Without the specifics — walk me through what happened the last time a supplier's bank details changed." |
 | "Which banks do you use for which entities?" | Bank relationships are confidential and useful to attackers. | "Roughly how many banks and accounts — tens or hundreds? How many different e-banking logins do you use?" |
-| "How do you verify supplier bank-detail changes?" | Asks them to describe a live control to a stranger. | "Without details — has a changed-bank-details request ever been caught? How was it spotted?" |
 | "Can you send me your forecast template / a screenshot?" | Asks for internal documents; may breach policy. | "Describe the template — what are the rows and columns, roughly? Who fills in which part?" Let them offer documents; don't request them. |
 | "How much cash do you have / what are you paying on your RCF?" | Confidential (unless published); irrelevant to workflow discovery. | Use public information from the annual report if needed; ask about the process, not the numbers. |
 | "Are you planning a refinancing?" | Potential inside information at listed companies. | "Walk me through the last refinancing, as far as you can talk about it." |
+
+<Example title="The safe version of the bank-details question, in practice" open>
+
+> **You:** "Without the specifics — the last time a supplier's bank details changed, what happened?"
+> **AP:** "The request came by email. I flagged it, somebody called the supplier on the number we already had, and the change went through a second approval before the next run."
+> **You:** "Who noticed it first — and what changed afterwards?"
+> **AP:** "I did. Now anything like that comes to me and the controller by default."
+
+You get the detection point, the sequence, the roles and a process change — enough to map the workflow — without a single number, name or procedure that belongs in an attacker's notes. The interviewee set the level of detail; that is the sign you asked it right.
+
+</Example>
 
 ## Naive questions (credibility cost)
 
@@ -77,6 +96,7 @@ These don't just produce bad data — they can end the conversation, because the
 | "Why don't you just automate the payments?" | Implies they haven't thought of it; payments are often highly automated already, and the human steps are controls. | "Which steps in the payment process are deliberately manual, and why?" |
 | "Does the CFO do all this?" (to a Group Treasurer) | Misreads the organisation at that size. | "Which decisions do you take, and which go to the CFO?" |
 | "What's your TMS?" as the opener | Tool-first; frames the conversation as a software evaluation. | Start with the work; the tools appear naturally in the walk-through. |
+| "So you load the camt.054s into your TMS every morning?" | Dropped jargon you haven't checked — doubly wrong here: the daily statement is MT940/[camt.053](term:camt-053) (camt.054 is the item detail behind a booking), and many mid-market groups have no TMS at all. | Know the terms ([Vocabulary](/interview/vocabulary)); ask "how does bank data get into your systems today?" |
 
 <Callout type="interview" title="If you catch yourself asking a bad question">
 

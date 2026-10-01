@@ -42,7 +42,7 @@
   aka: [deposit insurance, depositor protection, Einlagensicherung, FDIC insurance]
   category: Risk & control
   plain: A government-backed scheme that repays bank deposits up to a limit if a bank fails. The limit is small compared with a company's cash.
-  professional: "In Switzerland, privileged deposits are protected up to CHF 100,000 per depositor per bank through the esisuisse scheme; the US FDIC limit is USD 250,000 per depositor per bank per ownership category; EU schemes cover EUR 100,000. For a company holding millions, deposit protection is almost irrelevant — the protection comes from bank selection, counterparty limits and diversifying into instruments such as money market funds or government bills."
+  professional: "In Switzerland, deposits are protected up to CHF 100,000 per depositor per bank through the esisuisse scheme (certain claims, e.g. payroll-related balances, are privileged within that limit); the US FDIC limit is USD 250,000 per depositor per bank per ownership category; EU schemes cover EUR 100,000. For a company holding millions, deposit protection is almost irrelevant — the protection comes from bank selection, counterparty limits and diversifying into instruments such as money market funds or government bills."
   example: "Kleio's CHF 22m would be protected for only CHF 100k per bank if one of its Swiss banks failed, which is why its board asked for the split across banks and for part of the cash to go into instruments other than deposits."
   related: [counterparty-limit, counterparty, money-market-fund, treasury-bill]
 
@@ -52,7 +52,7 @@
   category: Debt & funding
   plain: A limit that lets the company's bank account go negative up to an agreed amount — the most common bank financing for Swiss and German SMEs.
   professional: "A bank credit facility drawn by running the current account into debit (or through short fixed advances under the same limit). Can be committed (for a term, with a commitment fee) or uncommitted/cancellable. SMEs use it to bridge working-capital swings; interest is paid only on the drawn amount. Larger companies replace it with an RCF shared by several banks."
-  example: "Alpine's CHF 12m committed operating line at its cantonal bank is usually drawn CHF 0–5m; when a CHF 2m acceptance payment slips a month, the line absorbs it."
+  example: "Alpine's CHF 12m committed operating line at its cantonal bank is usually drawn CHF 0–5m ([why CHF 12m](why:alpine-credit-line)); when a CHF 2m acceptance payment slips a month, the line absorbs it."
   related: [overdraft, rcf, committed-facility, commitment-fee, house-bank]
 
 - id: milestone-payments

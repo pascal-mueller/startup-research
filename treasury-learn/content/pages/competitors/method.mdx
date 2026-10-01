@@ -8,7 +8,7 @@ related: [/competitors, /competitors/landscape, /reference/sources, /interview/q
 
 ## The rules this section follows
 
-1. **What a vendor sells** may be described from the vendor's own documentation, but it is labelled as a **vendor claim**. Documentation tells you what a product is designed to do, not how well it does it or how many customers use it that way.
+1. **What a vendor sells** may be described from the vendor's own documentation, but it is labelled as a **vendor claim**. Documentation tells you what a product is designed to do, not how well it does it or how many customers use it that way. [Why this is the right source bar for product claims but not market claims](why:comp-self-description-bar).
 2. **Ownership, funding and acquisitions** need a dated source: a press release from a party to the deal, a filing, or reputable trade/financial press. Aggregator databases (PitchBook, Crunchbase, Tracxn) are leads, not proof.
 3. **Positioning** (who a vendor says it is for) comes from the vendor; **target customer** is the author's reading of that positioning, which is why the size map says "synthesis".
 4. **Apparent gaps** are allowed in only two forms:
@@ -16,14 +16,17 @@ related: [/competitors, /competitors/landscape, /reference/sources, /interview/q
    - **Open question** — something worth testing in interviews, phrased as a question. It is *not* a claim that the gap exists.
    Anything else ("clunky UI", "poor support", "expensive") needs evidence from several independent users and is not stated here.
 5. **Every entry is dated.** Treasury software ownership changed repeatedly in 2025–2026 (for example GTreasury's sale to Ripple[](cite:comp-ripple-gtreasury-pymnts)). A fact without a date is a liability.
+6. **"Strengths" on entries that are not sourced** describe what the documented scope does well *on paper* — a structural reading, not evidence from users. Where a strength is a vendor's own figure, it says so.
 
 ## What the badges mean
 
 <CompetitorVerifyLegend />
 
+The three-value badge exists because [uniform polish hides errors](why:comp-verify-badges) — the round-1 review caught a confidently-stated ownership fact that was simply wrong (Cashforce was attributed to Nomentia; it went to TIS in 2022). Upgrade a badge only when a dated source is registered.
+
 <Callout type="warning" title="Why so many entries are 'Not re-verified'">
 
-In the authoring session (2026-09-30), the page-fetching tool was blocked for every vendor and news domain tried, and the shared web-search budget was exhausted after a few queries. Rather than dress up background knowledge as research, entries that could not be checked say so. The facts that *were* checked are listed with their sources on each entry; the rest are on the "facts to re-verify" list in the stream notes. Treat this section as a well-organised hypothesis about the market until that list is worked through.
+In the first authoring session (2026-09-30), the page-fetching tool was blocked for every vendor and news domain tried, and the shared web-search budget was exhausted after a few queries. Rather than dress up background knowledge as research, entries that could not be checked say so. A revision pass after review round 1 re-checked the ownership and funding facts most likely to be wrong and upgraded those entries to **Key facts sourced**; the rest are on the "facts to re-verify" list in the stream notes. Treat unsourced parts of this section as a well-organised hypothesis about the market until that list is worked through.
 
 </Callout>
 
@@ -36,6 +39,7 @@ In the authoring session (2026-09-30), the page-fetching tool was blocked for ev
 | Automation | "Automates cash positioning" | Statements are imported and aggregated; judgement on funding moves remains human | Ask: "What do you still do by hand between 08:00 and 10:00?" |
 | AI / agents | "AI-powered forecasting", "treasury agents" | Ranges from a statistical model on bank history to an LLM assistant over the vendor's data | Ask: "What does it decide or do without a person clicking approve? Show me last week's corrections." |
 | Implementation time | "Live in weeks" | Core module, favourable scope, responsive banks | Ask customers for the date contract signed vs date the treasury team stopped using the old process |
+| Pricing | "Contact us" / "from CHF X per month" | Negotiated, module-tiered, often bundled via bank or partner deals | Ask customers what they pay, when it renews, who owns the budget (see the commercial-model recipe below) |
 | Survey statistics | "X% of treasurers say…" | Often a vendor-sponsored survey; sample and question wording matter | Check sponsor, sample size, region; prefer AFP, EACT, PwC, Deloitte, KPMG, ACT |
 
 <Callout type="field" title="Analyst reports and award lists">
@@ -43,6 +47,24 @@ In the authoring session (2026-09-30), the page-fetching tool was blocked for ev
 Analyst rankings and "best TMS" lists are widely used in selections, but the business models behind them differ (some are paid by vendors, some by buyers). Use them to build a long list; do not cite them as evidence of product quality. Practitioner publications (Treasury Today, TMI, The Global Treasurer, Strategic Treasurer) are useful for who-bought-what announcements, which are usually vendor-issued.
 
 </Callout>
+
+## How these products make money (research recipe — no prices are published here)
+
+Nothing in this section states a price: none were verified, and treasury software pricing is negotiated, tiered and bundled in ways that make list prices misleading. But the *structure* is knowable and matters for a founder:
+
+| Revenue model | Where it appears | What to ask |
+|---|---|---|
+| Subscription per module | TMS suites, modern platforms | "Which modules are in your contract? What did adding one cost?" |
+| Scaled by volume/complexity | Payment hubs (per payment or per bank), connectivity (per account/channel) | "Does the bill grow with transactions, banks or entities? What happens at renewal?" |
+| Implementation + services | Anything with a [TMS selection](term:tms-selection) or bank connectivity | "What was the one-off cost versus the annual? Who did the implementation?" |
+| Bank-resold / OEM | Forecasting and TMS products sold through banks (ask which bank gave them the tool) | "Do you buy this directly or through your bank? Who supports it?" |
+| Transaction/execution economics | FX providers, SCF platforms, investment portals | "How does the provider earn — spread, fee, fund rebate? Who sees it?" |
+
+The interview version is one question: **"What does this cost you, when does it renew, and who owns the budget?"** Add "who signed the last contract of this kind" — for working-capital products the signatory is often outside treasury.
+
+## Sizing the vendor (and the market)
+
+This section does not size the market and does not research vendor scale: a ~100-person Embat (company figure) and a multi-thousand-person FIS appear on the same map. Before treating entries as comparable, spend ten minutes per vendor: employee count (LinkedIn), last funding round and who led it (the entries carry dated sources where found), whether it sells direct or through banks/partners, and — for owned vendors — the parent's size and intentions. For market sizing, see the recipe at the end of [the full landscape](/competitors/landscape).
 
 ## How to verify in interviews
 

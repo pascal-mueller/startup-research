@@ -37,7 +37,11 @@ people:
   - role: Head of treasury / CFO
     does: Agrees the minimum liquidity level and scenarios, decides on refinancing and management actions, presents to the board or audit committee.
   - role: Board / audit committee
-    does: Approves the liquidity policy (minimum headroom) and large financing decisions; in Switzerland the board must monitor solvency (Art. 725 CO).
+    does: >-
+      Approves the liquidity policy (minimum headroom) and large financing decisions. In Switzerland Art. 725 CO has
+      two halves: the board's non-transferable duty to monitor solvency (Art. 725(1)) and, where there are indications
+      of over-indebtedness, the interim-balance-sheet and reporting duty (Art. 725(2)) — the half that forces
+      shareholders to inject equity or convert debt.
 systems:
   - name: Excel liquidity model
     use: At almost all companies below the largest, the liquidity plan is a workbook that links forecast, plan, facilities and covenants.
@@ -80,10 +84,12 @@ steps:
     where: Treasury policy, meeting
     when: Annually, and whenever the business changes materially
     detail: >-
-      Agree what "enough liquidity" means: which cash counts (excluding trapped cash and operating minimums), which
-      facilities count (committed, not expiring within the horizon, with covenant room), the minimum headroom (an
-      absolute amount, or weeks of outflows), the horizon (12–24 months), and the standard stress scenarios. This is set
-      once and revisited annually; without it, every monthly review becomes a debate about definitions.
+      Agree what "enough liquidity" means: which cash counts (excluding [trapped cash](term:trapped-cash) and
+      [minimum operating balances](term:minimum-operating-balance)), which facilities count (committed, with covenant
+      room, and with at least twelve months of remaining life — a facility inside its final year counts as zero because
+      it cannot be relied on past its expiry [why](why:headroom-twelve-month-rule)), the minimum headroom (an absolute
+      amount, or weeks of outflows), the horizon (12–24 months), and the standard stress scenarios. This is set once and
+      revisited annually; without it, every monthly review becomes a debate about definitions.
     judgment: How large the minimum should be. Too high means paying for unused facilities and holding idle cash; too low means a bad quarter becomes a crisis.
   - title: Take over the near term from the 13-week forecast
     who: Treasury analyst
@@ -164,7 +170,10 @@ steps:
       Present headroom by month (base and stress), the low point, covenant headroom at each test date, the refinancing
       timeline and recommended actions. In Switzerland, the board's statutory duty to monitor solvency (Art. 725 CO,
       revised 2023)[](cite:ch-co-board-duties) is commonly read by practitioners as requiring a rolling liquidity plan of
-      at least 12 months[](cite:weka-725-liquidity), and auditors and boards increasingly ask to see one.
+      at least 12 months[](cite:weka-725-liquidity), and auditors and boards increasingly ask to see one. Note that
+      Art. 725 has two halves: 725(1) is the liquidity-monitoring duty; 725(2) requires interim balance sheets when
+      there are indications of over-indebtedness and a report to the board — the half that forces capital injections or
+      debt-to-equity conversions, which is where [funding a subsidiary](wf:funding-subsidiary) starts.
     judgment: How to present uncertainty honestly without alarming the board — and when a scenario is serious enough to trigger actions now rather than monitoring.
   - title: Monitor early-warning triggers between reviews
     who: Treasury manager, treasury analyst
@@ -174,46 +183,87 @@ steps:
       threshold, large forecast misses two weeks in a row, a relationship bank downgraded, a key customer in
       difficulty. Crossing a trigger means an off-cycle review and escalation, and possibly the [liquidity crisis](wf:liquidity-crisis) playbook.
 example:
-  title: "Helvetic's 12-month liquidity plan in October 2026: plenty of cash, but a covenant and a bond in view"
+  title: "Helvetic's liquidity plan, November 2026 review: ample headroom — the covenant and the 2028 maturities are the problem"
   body: |
-    Daniel prepares the quarterly liquidity review for Thomas (CFO) and the board's audit committee. Lea has linked the
-    13-week forecast (October–December) and Marco's (FP&A) 2027 budget. Group cash is CHF 45m, of which about CHF 7m
-    (CNY ~60m) sits in HM Suzhou and is treated as [trapped](term:trapped-cash); the policy minimum cash is CHF 10m;
-    the CHF 200m RCF is about CHF 60m drawn (CHF 35m and EUR 27m loans). Helvetic's liquidity policy requires at least CHF 50m of headroom at all times.
-    All figures are illustrative.
+    Daniel prepares the quarterly liquidity review for Thomas (CFO) and the board's audit committee. The plan runs from
+    Q4 2026 to Q4 2027 — deliberately past the December 2027 covenant test. Lea has linked the
+    [13-week forecast](wf:cash-forecasting) (the 23 November run) as the near term, and Marco's (FP&A) 2027 budget —
+    EBITDA ≈ CHF 70m after the order slowdown — for the medium term. All figures are illustrative.
+
+    **Where the plan starts.** The 30 September 2026 LTM position is the reference: EBITDA ≈ CHF 78m, net debt ≈
+    CHF 106m, leverage ≈ 1.36x — CHF 100m bond plus CHF 60.2m of RCF drawings (CHF 35m + EUR 27m before the October
+    rollover) less ≈ CHF 54m of group cash. Two things have moved since, and [both are in the plan](why:net-debt-bridge-nov):
+    the 15 October rollover re-drew the loans as CHF 30m + EUR 35m (≈ CHF 63m drawn, ≈ CHF 137m undrawn of the CHF 200m
+    facility; gross debt up ≈ CHF 2.5m from the re-pricing), and group cash drifted from CHF 54m to CHF 41.3m — the
+    23 November forecast's opening (41m at the 16 November close plus that week's net +0.3m) — as Q4 working capital
+    built: the group ships in Q4 and collects in January and February. Net debt at the review is therefore ≈ CHF 122m. Usable cash excludes ≈ CHF 6m at HM Suzhou (CNY 55m,
+    [trapped](term:trapped-cash)); the CFO's group minimum liquidity is CHF 10m, held at the parent. Helvetic's policy
+    requires at least CHF 50m of headroom at all times, counting only committed facilities with
+    [at least twelve months of remaining life](why:headroom-twelve-month-rule).
 
     **Base case (CHF m, quarter-end):**
 
-    | Quarter | Opening cash | Operating CF (after tax, interest, leases) | Capex | Dividend / coupon | Closing cash | − trapped − minimum | Undrawn RCF | **Headroom** |
-    |---|---|---|---|---|---|---|---|---|
-    | Q4 2026 | 45.0 | +24.0 | −8.0 | −1.5 (bond coupon) | 59.5 | −17.0 | 140 | **182.5** |
-    | Q1 2027 | 59.5 | −4.0 (bonuses, tax, inventory build) | −7.0 | — | 48.5 | −17.0 | 140 | **171.5** |
-    | Q2 2027 | 48.5 | +11.0 | −8.0 | −20.0 (dividend, May) | 31.5 | −17.0 | 140 | **154.5** |
-    | Q3 2027 | 31.5 | +10.0 | −7.0 | — | 34.5 | −17.0 | 140 | **157.5** |
+    | Quarter | Opening cash | Operating CF (after tax, interest, leases) | Capex | Financing (RCF) | Dividend / coupon | Closing cash | − trapped − minimum | Undrawn RCF | **Headroom** |
+    |---|---|---|---|---|---|---|---|---|---|
+    | Q4 2026 | 54.0 | −20.4 | −8.0 | — | — | 25.6 | −16.0 | 137 | **146.6** |
+    | Q1 2027 | 25.6 | +28.1 | −7.0 | −24.4 | −1.3 (bond coupon) | 21.0 | −16.0 | 162 | **167.0** |
+    | Q2 2027 | 21.0 | +12.0 | −8.0 | +15.0 | −20.0 (dividend) | 20.0 | −16.0 | 147 | **151.0** |
+    | Q3 2027 | 20.0 | +9.0 | −7.0 | — | — | 22.0 | −16.0 | 147 | **153.0** |
+    | Q4 2027 | 22.0 | +7.0 | −8.0 | — | — | 21.0 | −16.0 | 147 (final year — not counted) | **5.0** |
 
-    Headroom is never in doubt in the base case. Net debt at the end of the horizon is 160 − 34.5 = CHF 125.5m;
-    with EBITDA of about CHF 70m, leverage is ~1.8x against a covenant of 3.25x.
+    The rows re-derive from the plan's own transactions:
+    - **Q4 2026 closes at CHF 25.6m** — the 13-week forecast's year-end close. December is a quiet receipts month, and
+      the quarter absorbs the December payrolls (including the Swiss 13th salary) and the year-end supplier runs; the
+      intra-quarter trough is CHF 18m on 18 December, ≈ CHF 12m usable. The annual CHF 1.25m bond coupon (1.25% on the
+      CHF 100m bond) is paid on 1 March — a separate, later event, inside the horizon exactly once.
+    - **Financing (−24.4 in Q1 2027):** CHF 15m repaid on the CHF loan at the 15 January rollover, and EUR 10m
+      (≈ CHF 9.4m) prepaid on the EUR loan at the 15 February period end — Daniel's January plan, to be confirmed with
+      the first January forecast. CHF 15m is then [re-drawn in May](why:may-redraw) (+15.0), days before the dividend
+      payment (a new drawing needs three business days' notice; only repayment waits for a period end). Undrawn RCF
+      therefore moves 137 → 152 → 162 → 147: the schedule is derived from these transactions, not held constant.
+    - **Q1 2027 rises; it does not drain.** The Q4 collections land in January and February: the forecast runs
+      CHF 25.6m → 52.6m before financing flows (the 19 February week is ≈ CHF 28m after the repayments), and the
+      31 March close of CHF 21.0m is after the 1 March coupon and March capex. The tightest points are not quarter-ends
+      but 18 December (CHF 18.0m gross, ≈ 12.0m usable) and 15 January after the repayment (CHF 21.6m gross, ≈ 15.6m
+      usable) — which is why the repayments are split the way they are (see [surplus cash investment](wf:surplus-cash-investment)).
 
-    **Combined stress** (agreed with Thomas last year): a machine-tool downturn cuts EBITDA from 70 to 50; the 20 largest
-    customers pay 30 days later (about CHF 15m of cash tied up); inventory for cancelled orders absorbs CHF 8m.
-    Cumulative cash impact ≈ −CHF 40m (the EBITDA fall is partly offset by lower tax).
+    Net debt and leverage move with the same transactions: CHF 106m at 30 September 2026 (1.36x on LTM EBITDA ≈ CHF 78m)
+    → ≈ CHF 137m at 31 December 2026 (Q4's working-capital build) → ≈ CHF 117m at 31 March 2027 (after the repayments)
+    → ≈ CHF 133m at the 30 June 2027 test (**1.91x** on the budget's CHF 70m) → ≈ CHF 132m at the 31 December 2027 test
+    (**1.89x**) — all far inside the 3.25x covenant.
 
-    | Stress result at the end of the horizon | Cash | Net debt | Leverage (covenant ≤ 3.25x) | Headroom |
-    |---|---|---|---|---|
-    | Stress, no management action | −5.5 → RCF drawn ~CHF 23m more to restore minimum cash | 165.5 | **3.3x — breach** | ~CHF 117m *if* the RCF were still available |
-    | Stress + dividend cancelled (+20) | | 145.5 | 2.9x | |
-    | Stress + dividend cancelled + CHF 8m capex deferred | | 137.5 | 2.75x | |
+    **Combined stress** (agreed with Thomas last year): a machine-tool downturn cuts EBITDA from CHF 70m to CHF 50m from
+    Q1 2027; the 20 largest customers pay 30 days later (about CHF 15m of cash tied up); inventory for cancelled orders
+    absorbs CHF 8m; lower tax offsets ≈ CHF 3m. Cumulative cash impact ≈ −CHF 20m by the June 2027 test and ≈ −CHF 40m
+    by December. Whatever the group draws on the RCF to hold the cash floor is cash-neutral for net debt.
+
+    | Test date | Scenario | Cash impact (cum.) | Net debt | LTM EBITDA | Leverage (covenant ≤ 3.25x) |
+    |---|---|---|---|---|---|
+    | 30 Jun 2027 | Base | — | 133.4 | ≈ 70 | 1.91x |
+    | 30 Jun 2027 | Stress | −20.0 | 153.4 | ≈ 60 | 2.56x — inside |
+    | 31 Dec 2027 | Base | — | 132.4 | ≈ 70 | 1.89x |
+    | 31 Dec 2027 | Stress, no management action | −40.0 | 172.4 | ≈ 50 | **3.45x — breach** |
+    | 31 Dec 2027 | Stress + dividend cancelled (+20.0) | | 152.4 | ≈ 50 | 3.05x |
+    | 31 Dec 2027 | Stress + dividend cancelled + CHF 8m capex deferred (+8.0) | | 144.4 | ≈ 50 | 2.89x |
+
+    (The June LTM blends a good H2 2026 with a stressed H1 2027 — hence ≈ 60 rather than 50.) **The reverse answer,
+    which is what the board remembers:** with the downturn's working-capital effects in the balance sheet,
+    [EBITDA below ≈ CHF 53m](why:reverse-stress-53m) breaks the December 2027 test — a 25% fall from the budget — and
+    with the dividend cancelled the break point is ≈ CHF 47m, a 33% fall.
 
     **What Daniel concludes and recommends:**
-    1. *Cash is not the problem; the covenant is.* In the downturn scenario the group runs out of covenant room before it
-       runs out of cash — and a covenant breach could block the RCF, turning a covenant issue into a liquidity issue.
+    1. *Cash is not the problem in the base case; the covenant is the binding constraint in the stress.* In the downturn
+       scenario the group runs out of covenant room before it runs out of liquidity — and a covenant breach could block
+       the RCF, turning a covenant issue into a liquidity issue.
     2. The dividend decision is the most powerful lever and falls in February (board proposal to the April AGM), so the
        board should see the stress case before approving the dividend proposal.
-    3. Both the CHF 100m bond and the RCF (after both one-year extension options were used) mature in 2028. The plan's
-       24-month extension shows the problem: from late 2027 the RCF drops out of headroom as it enters its final year,
-       and repaying the bond from the RCF would in any case cut undrawn headroom from 140 to about 40 — below the CHF 50m
-       policy minimum. He proposes an amend-and-extend of the RCF by mid-2027 and a bond or Schuldschein refinancing in
-       late 2027, at least 12 months before the bond matures. See [credit facility management](wf:credit-facility-management).
+    3. Both the CHF 100m bond and the RCF (after both one-year extension options were used) mature in 2028. The plan to
+       December 2027 shows the problem arriving early: under the twelve-month rule the RCF drops out of headroom in
+       Q4 2027 — headroom falls from ≈ CHF 153m at 30 September to ≈ CHF 5m at 31 December 2027, against the CHF 50m
+       policy minimum. Rolling the bond into the RCF (drawing CHF 100m to repay it) would not fix this: net debt is
+       unchanged, and the group would hold a single CHF ~147m facility in its final year that the same rule counts as
+       zero. He proposes an amend-and-extend of the RCF by mid-2027 and a bond or Schuldschein refinancing in late 2027,
+       at least 12 months before the bond matures. See [credit facility management](wf:credit-facility-management).
     4. Amber trigger: if order intake falls more than 15% for two consecutive months, the stress case becomes the base
        case and capex approvals above CHF 1m go to the CFO.
 
@@ -221,7 +271,11 @@ example:
     from two banks) for the March board.
 judgment:
   - decision: How much minimum liquidity the company should hold
-    why: A trade-off between the cost of idle cash and commitment fees and the cost of running short. There is no formula; it depends on how volatile the business is, how reliable forecasts are and how much the board fears a downturn.
+    why: >-
+      A trade-off between the visible price of the buffer and the cost of running short: the commitment fee on an undrawn
+      committed line (≈ 0.4% on Helvetic's CHF 200m line is ≈ CHF 800k a year) plus idle cash at 0%, against the cost of
+      a crisis. There is no formula; it depends on how volatile the business is, how reliable forecasts are and how much
+      the board fears a downturn.
   - decision: Which stress scenarios are severe but plausible
     why: Requires knowing the business — its customers, its cycle, its banks. Scenarios that are too mild give false comfort; implausible ones get ignored.
   - decision: Whether to trust FP&A's plan or apply a treasury haircut
@@ -284,8 +338,9 @@ by_size:
   multinational: >-
     Group liquidity planning run by the cash & liquidity or corporate finance team, with a formal liquidity policy
     (minimum liquidity, maximum reliance on short-term funding such as [commercial paper](term:commercial-paper), backstop
-    facility sized to cover CP outstanding), a multi-year funding plan, and liquidity metrics aligned with rating-agency
-    methodology. Stress testing is more formal (defined scenarios, reverse stress tests, sometimes [cash flow at risk](term:cash-flow-at-risk)).
+    facility sized to cover CP outstanding), a multi-year funding plan, and liquidity metrics presented in the same
+    sources-and-uses shape the rating agencies use (S&P's "adequate" descriptor needs 12-month
+    [sources of at least 1.2x uses](term:sources-and-uses)). Stress testing is more formal (defined scenarios, reverse stress tests, sometimes [cash flow at risk](term:cash-flow-at-risk)).
     The hard parts are forecast quality from dozens of entities, restricted-currency cash and bank counterparty concentration.
 companies:
   kleio: >-
@@ -347,9 +402,12 @@ evidence_note: >-
   The distinction between forecasting (best estimate of flows) and liquidity planning (available liquidity vs
   obligations, under stress) and the step sequence are established treasury practice; the Helvetic figures, scenario
   sizes and trigger levels are illustrative synthesis. Legal context: Art. 725 CO requires Swiss boards to monitor
-  solvency[](cite:ch-co-board-duties); the 12-month liquidity-plan reading is practitioner commentary[](cite:weka-725-liquidity).
-  Rating-agency liquidity thresholds are from S&P's published methodology as reproduced by S&P Maalot[](cite:sp-liquidity-descriptors).
-  Long-term funding ranked among European treasurers' top priorities in 2025[](cite:eact-2025), and 76% of ACT/HSF
+  solvency and, on indications of over-indebtedness, to report and prepare interim balance sheets[](cite:ch-co-board-duties);
+  the 12-month liquidity-plan reading is practitioner commentary[](cite:weka-725-liquidity).
+  Rating-agency liquidity thresholds are from S&P's published methodology (2019 edition — the 1.2x threshold is
+  unchanged in current criteria) as reproduced by S&P Maalot[](cite:sp-liquidity-descriptors).
+  Cash and liquidity management ranks as a top priority for CFOs and treasurers in PwC's 2025 Global Treasury Survey
+  (350 respondents)[](cite:pwc-gts-2025). Long-term funding ranked among European treasurers' top priorities in 2025[](cite:eact-2025), and 76% of ACT/HSF
   respondents expected macro and geopolitical factors to influence debt strategy considerably[](cite:act-hsf-debt-2025).
   Note: in this session sources were verified from publisher search-result extracts because direct page fetches were
   blocked by the network proxy.

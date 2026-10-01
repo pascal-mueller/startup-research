@@ -143,7 +143,11 @@ steps:
     detail: >-
       Move payment runs, payroll, direct debits, card-acquirer and PSP settlements, tax payments and customer
       collections to the new account. Customers must be told the new remittance details in a way they can verify —
-      a "please pay to our new account" letter looks exactly like vendor-imposter fraud to them.
+      a "please pay to our new account" letter looks exactly like vendor-imposter fraud to them. The fraud variant
+      writes itself: a fraudster who hears of the change sends customers a fake "we have changed banks" letter first,
+      so the announcement is made verifiable through channels the customer already trusts (their known sales contact,
+      the invoice template, a callback they initiate) — and when four large customers phone back to check the new
+      IBAN, that is the control working, not a nuisance.
     judgment: How long to run old and new accounts in parallel; which customers need personal contact rather than a letter.
   - title: Close the old account
     who: Treasury analyst prepares; signatories sign
@@ -162,6 +166,8 @@ steps:
       When someone joins or leaves, update mandates and users at every bank where they appear (a leaver's removal
       should take days, not months). Answer periodic KYC refresh requests. Once a year, reconcile the register against
       bank-confirmed lists of accounts and signatories and flag [dormant accounts](term:dormant-account) for closure.
+      The asymmetry — [opening takes weeks, removal should take days but rarely does](why:kyc-round-trips) — comes from
+      the bank's risk process on the way in and from missing HR triggers on the way out.
     judgment: Which accounts to keep "just in case" and which to close — dormant accounts cost fees and control effort.
 example:
   title: "Helvetic's 2024 rationalisation: moving the Czech entity to one bank"
@@ -180,7 +186,7 @@ example:
     | 12–24 | Old accounts run in parallel; stray receipts forwarded; direct debits cancelled | Local finance |
     | 26 | Residual CZK 184,000 transferred; closure letters signed; the bank confirms closure after five weeks; e-banking users (including the former controller) cancelled | Lea, Daniel |
 
-    **Elapsed time:** about 8 weeks to a usable account and about 7 months to the last closure confirmation. **Result:** one of the steps from 31 to 12 accounts; annual fees on the closed accounts of around CHF 3,000 saved; one fewer bank to keep KYC current with. The time sink was not the bank's systems but the KYC round trips and the run-off.
+    **Elapsed time:** about 8 weeks to a usable account and about 7 months to the last closure confirmation — [the shape of every corporate account opening](why:kyc-round-trips), where the bank's risk process and document round trips, not the company's speed, set the pace. **Result:** one of the steps from 31 to 12 accounts; annual fees on the closed accounts of around CHF 3,000 saved; one fewer bank to keep KYC current with. The time sink was not the bank's systems but the KYC round trips and the run-off.
 judgment:
   - decision: Whether a new account is needed at all
     why: Every account adds fees, KYC, mandates and reconciliation work for years; many requests can be served by existing accounts or POBO structures.
@@ -243,7 +249,9 @@ by_size:
     A treasury-operations team administers hundreds of accounts in a TMS register with workflow approvals, handles
     dozens of KYC refreshes and signatory changes a year across the bank panel, and runs periodic rationalisation. New
     accounts in restricted or emerging markets can take months. Policy strictly reserves account opening to group
-    treasury, and auditors test it.
+    treasury, and auditors test it. Collections structures increasingly replace physical accounts with
+    [virtual accounts](term:virtual-accounts) — one physical account with IBAN-like sub-accounts per entity or
+    customer — which cuts the account count without changing the flows.
 companies:
   kleio: "After SVB, Sarah opened accounts at a second Swiss bank: about six weeks, mostly spent collecting passport copies and signatures from two board members who live abroad. Kleio Inc.'s US account was opened online in days. The register is a tab in Sarah's Google Sheet."
   alpine: "Nine accounts at two banks. The cantonal bank's relationship manager handles most paperwork; when the previous controller left, Petra had to send updated signature cards and board extracts to both banks and it took three weeks to remove him from one e-banking contract."

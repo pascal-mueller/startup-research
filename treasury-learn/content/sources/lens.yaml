@@ -8,14 +8,21 @@
   year: 2025
   url: https://www.sap.com/use-cases/joule-assistant/cash-treasury-ai
   type: vendor
-  note: "Vendor description: the Cash Management Agent retrieves opening balances, forecasts cash flows, calculates closing balances per bank account, shows surplus/deficit accounts and suggests bank-transfer options using transfer templates, 'in line with treasury policy'. SAP says its internal IT deployed it with S/4HANA. Vendor claim — no independent evidence of results."
+  note: "Vendor description: the Cash Management Agent retrieves opening balances, forecasts cash flows, calculates closing balances per bank account, shows surplus/deficit accounts and suggests bank-transfer options using transfer templates, 'in line with treasury policy'. Status: SAP's Discovery Center lists 'Cash Management Agent (for SAP S/4HANA Cloud Private Edition)' as a Beta offering, 'currently in Beta and available at no cost' (checked 2026). The claim that SAP's internal IT deployed it with S/4HANA is UNVERIFIED (R1) — not confirmable against primary SAP material in search results. Vendor claim — no independent evidence of results."
 - id: kyriba-tai-2025
   title: "New Agentic AI Solution Elevates Data-Driven Decision-Making (TAI launch)"
   publisher: Kyriba
   year: 2025
   url: https://www.kyriba.com/news/kyriba-agentic-ai-solution-tai-transforms-finance-with-security-compliance-trust/
   type: vendor
-  note: "Press release, 13 May 2025: TAI, an 'agentic AI' with an embedded LLM, positioned to 'augment — not replace — human expertise' across treasury, payments, risk and working capital; claims faster exception resolution ('hours to minutes'). Vendor claim."
+  note: "Press release, 13 May 2025: TAI, an 'agentic AI' with an embedded LLM, positioned to 'augment — not replace — human expertise' across treasury, payments, risk and working capital. The same release names Co-Innovation Lab members Sodexo, Koch, Inc. and Mews as pilots of TAI's agentic capabilities. The 'hours to minutes' exception-resolution claim is UNVERIFIED (R1) — not seen in the retrievable release text. Vendor claim."
+- id: highradius-obp-2026
+  title: "HighRadius Launches $0 Implementation Fee, $0 Subscription Fee via Outcome Based Pricing for oCFO Software"
+  publisher: HighRadius (Business Wire press release)
+  year: 2026
+  url: https://www.businesswire.com/news/home/20260227310299/en/HighRadius-Launches-$0-Implementation-Fee-$0-Subscription-Fee-via-Outcome-Based-Pricing-for-oCFO-Software
+  type: vendor
+  note: "27 Feb 2026: outcome-based pricing (OBP) for office-of-the-CFO software — zero implementation fees, zero subscription until go-live, then 'a fraction of the actual savings realized by the client' via mutually agreed success criteria; vendor then describes itself as a provider of 190+ AI agents across O2C, AP, close and treasury. Vendor claim; the gain-share percentage is undisclosed."
 - id: highradius-autonomous-2027
   title: HighRadius Announces a 2027 Goal of Releasing a Fully Autonomous Finance Platform at Radiance
   publisher: HighRadius (Business Wire press release)
@@ -29,7 +36,7 @@
   year: 2025
   url: https://www.fintechfutures.com/press-releases/gtreasury-launches-gsmart-ai-setting-the-standard-for-secure-adaptable-and-agentic-ai-in-treasury-operations
   type: vendor
-  note: "18 June 2025: 'agent-driven workflows' and 'agentic actions' across connectivity, liquidity, forecasting, payments, risk and netting. Vendor claim."
+  note: "18 June 2025: GTreasury announced GSmart AI, an agentic-AI platform for treasury operations (confirmed via FinTech Futures/Finextra coverage of the launch). The quoted phrase 'agentic actions' across 'liquidity, forecasting and payments' is UNVERIFIED (R1) — the exact wording could not be confirmed; treat the scope description as paraphrase. Vendor claim."
 - id: eu-ai-act-annex3
   title: "Regulation (EU) 2024/1689 (Artificial Intelligence Act), Annex III — high-risk AI systems"
   publisher: European Union (EUR-Lex)

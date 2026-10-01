@@ -34,7 +34,7 @@
   category: FX
   plain: The exchange rate the company uses in its budget — hedging is often judged by whether it protects that rate.
   professional: "The FX rate set in the annual planning process (often the forward rate or spot at budget time, sometimes a rounded conservative rate) at which foreign-currency sales and costs are budgeted. Hedging programmes frequently aim to 'protect the budget rate' and report achieved average hedge rates against it; a budget rate far from the market forward cannot be protected, only locked at the forward."
-  example: "Helvetic budgeted 2027 EUR sales at 0.93. With spot 0.935 and the 12-month forward around 0.917 (illustrative), Daniel reminds Thomas that hedging the whole year today would lock about 1.5% below budget — the forward points are a cost of carry, not a bank fee."
+  example: "Helvetic budgeted 2027 EUR sales at 0.93. With spot 0.935 and the 12-month forward around 0.913–0.915 (illustrative, at €STR ≈ 2.2–2.4% vs SARON ≈ 0%), Daniel reminds Thomas that hedging the whole year today would lock about 1.7% below budget — the [forward points](why:forward-points-below-spot) are a cost of carry, not a bank fee."
   related: [forward-points, exposure-report, layered-hedging, fpa]
 
 - id: hedge-documentation
@@ -53,7 +53,7 @@
   category: FX
   plain: A trading screen where a company asks several banks for an FX price at once and deals with whoever is best, with every quote recorded.
   professional: "Electronic request-for-quote (RFQ) venues connecting corporate treasuries to their relationship banks' pricing engines for spot, forwards, swaps, NDFs and some options (e.g. 360T, FXall, Bloomberg FXGO). The treasurer enters the trade, selected banks respond within seconds, the best price is dealt, and the platform stores the full audit trail (all quotes, times, user), which supports best-execution evidence and segregation of duties. Most connect to TMS/ERP for straight-through deal capture and confirmation matching. Banks only quote where credit lines/ISDA are in place."
-  example: "Daniel sends 'sell EUR 3.0m, buy CHF, value 31 Aug 2027' to Helvetic's three hedging banks on the platform; they answer within seconds with 0.91885, 0.91862 and 0.91901. He deals at 0.91901; the platform's deal ticket goes to the deal register, and Lea matches the bank's confirmation against it."
+  example: "Daniel sends 'sell EUR 3.0m, buy CHF, value 31 Aug 2027' to Helvetic's three hedging banks on the platform; they answer within seconds with 0.91565, 0.91548 and 0.91588 (spot 0.9352). He deals at 0.91588; the platform's deal ticket goes to the deal register, and Lea matches the bank's confirmation against it."
   related: [forward, spot-fx, deal-confirmation, dealing-mandate, isda, relationship-bank]
 
 - id: hedge-roll
@@ -62,7 +62,7 @@
   category: FX
   plain: Moving a hedge to a different date when the underlying payment arrives earlier or later than planned.
   professional: "Done with an FX swap: the near leg offsets the original forward on its date, the far leg re-establishes the hedge at the new date at the market forward rate. The original forward's gain or loss is realised in cash on the near date. A 'historical rate rollover' (rolling at the old contract rate to defer the gain or loss) hides a loss or effectively creates credit, is priced by banks as such, and is prohibited by many policies. Taking up a forward early (predelivery) works the same way in reverse."
-  example: "A EUR 2.0m Helvetic forward for 31 Dec 2026 at 0.9420 is rolled to 31 Mar 2027 because two German acceptances slipped. On 31 Dec the near leg closes it at about 0.9312 — Helvetic receives roughly CHF 22k — and the new March hedge is about 0.9267, reflecting three more months of forward points (≈ CHF 9k on EUR 2m)."
+  example: "A EUR 2.0m Helvetic forward for 31 Dec 2026 at 0.9420 is rolled to 31 Mar 2027 because two German acceptances slipped. On 31 Dec the near leg closes it at about 0.9303 — Helvetic receives roughly CHF 23.5k (2.0m × (0.9420 − 0.93025)) — and the new March hedge is about 0.9249, reflecting three more months of forward points (≈ CHF 11k on EUR 2m)."
   related: [swap, forward, forward-points, layered-hedging]
 
 - id: collar
@@ -89,7 +89,7 @@
   category: Risk & control
   plain: The legal duty to report each derivative trade (including simple FX forwards) to a registered database — usually handled by the bank for smaller corporates.
   professional: "EU EMIR requires reporting of derivative trades to a trade repository; since EMIR Refit (June 2020) an EU financial counterparty is responsible for reporting on behalf of non-financial counterparties below the clearing threshold (NFC-), which must supply data the bank cannot know. Swiss FinfraG/FMIA has its own reporting regime; the duty for small non-financial counterparties was postponed to 1 January 2028. Separately, FinfraG requires timely confirmation of OTC derivative terms. Obligations depend on counterparty classification (financial vs non-financial, above/below thresholds) and on where each party is located — which legal and treasury must check rather than assume."
-  example: "Helvetic's Swiss bank reports its EUR/CHF forwards; when HM Deutschland once dealt directly with its German bank, that bank reported under EMIR on the subsidiary's behalf, but only after Jens confirmed HM Deutschland's NFC- status and LEI."
+  example: "Helvetic's Swiss bank reports its EUR/CHF forwards; when HM Deutschland once dealt directly with its German bank, that bank reported under EMIR on the subsidiary's behalf, but only after Jens confirmed HM Deutschland's NFC- status and LEI. Currentness (2026): the same Swiss FMIA revision package proposes abolishing the small-NFC reporting duty entirely before it ever starts, with Parliament deciding in 2025–2026 — confirm the current status before relying on the 2028 date."
   related: [lei, deal-confirmation, otc, isda]
 
 - id: facility-agent
@@ -116,7 +116,7 @@
   category: Debt & funding
   plain: The time slice (often 1, 3 or 6 months) for which a loan under a credit line runs before interest is paid and the loan is repaid or rolled.
   professional: "The period chosen in the utilisation request at the end of which interest is paid and the loan matures (and is typically rolled over if still needed). For term-rate loans (e.g. EURIBOR) the rate is fixed at the start; for compounded risk-free-rate loans (e.g. compounded SARON, SOFR) the rate is known only near the end, using a lookback or observation shift."
-  example: "Helvetic's EUR 27m loan runs for 3-month interest periods at EURIBOR plus margin, fixed in advance; its CHF 35m loan uses compounded SARON, so the exact interest arrives from the agent only a few days before 15 October."
+  example: "Helvetic's EUR 27m loan runs for 3-month interest periods at EURIBOR plus margin, fixed in advance; its CHF 35m loan uses compounded SARON, so the exact interest arrives from the agent only a few days before 15 October. Because the period cannot be cut short without break costs, the [15th rollover is the repayment moment](why:fifteenth-rollover-repayment)."
   related: [reference-rate, utilisation-request, rcf]
 
 - id: utilisation-fee
@@ -125,7 +125,7 @@
   category: Debt & funding
   plain: An extra charge on a credit line that kicks in when you borrow more than a set share of it.
   professional: "A fee payable on drawn amounts when utilisation of a revolving facility exceeds thresholds (commonly one-third and two-thirds of total commitments), stepping up per tier. It raises the cost of heavily drawn backstop facilities and is calculated by the agent together with interest."
-  example: "Helvetic's RCF charges 0.10% p.a. on all loans once drawings exceed CHF 66.7m (one-third of CHF 200m). A new EUR 8m drawing on top of CHF 60.2m would take utilisation to CHF 67.7m, so Daniel repays CHF 5m of the CHF loan from idle parent cash at the same rollover and stays at CHF 62.7m."
+  example: "Helvetic's RCF charges 0.10% p.a. on all loans once drawings exceed CHF 66.7m (one-third of CHF 200m). A new EUR 8m drawing on top of CHF 60.2m would take utilisation to CHF 67.7m, so Daniel repays CHF 5m of the CHF loan from idle parent cash at the same rollover ([the threshold, not the rate](why:utilisation-fee-threshold)) and stays at CHF 62.7m."
   related: [commitment-fee, rcf, margin-ratchet]
 
 - id: margin-ratchet

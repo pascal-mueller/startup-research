@@ -19,7 +19,7 @@ related: [/map/fx, /workflows/fx-hedging, /workflows/fx-exposure-management, /wo
 | Credit spreads, ratings, CDS | [Counterparty limits](term:counterparty-limit), funding decisions | Terminal; rating agencies | Head of treasury, risk |
 | Commodity prices | Exposure for commodity-intensive groups | Exchanges, terminal | Risk manager |
 
-Current levels in this manual's illustrative autumn-2026 setting: EUR/CHF around 0.93–0.94, USD/CHF around 0.79–0.81, SNB policy rate and SARON around 0%, €STR around 1.9–2.0%, SOFR around 3.5–4%. With CHF rates near zero, surplus CHF earns almost nothing, which is why a group with drawn bank debt reduces drawings rather than placing CHF deposits, while EUR and USD surpluses still earn meaningful overnight rates.
+Current levels in this manual's illustrative autumn-2026 setting: EUR/CHF around 0.93–0.94, USD/CHF around 0.79–0.81, SNB policy rate and SARON around 0%, €STR around 2.2–2.4%, SOFR around 3.5–4%. With CHF rates near zero, surplus CHF earns almost nothing, which is why a group with drawn bank debt reduces drawings rather than placing CHF deposits, while EUR and USD surpluses still earn meaningful overnight rates.
 
 ## Three rates for "the same" exchange rate
 
@@ -33,6 +33,12 @@ When Helvetic's month-end result shows an "FX loss" that surprises Thomas, the d
 
 </Callout>
 
+<Example title="CHF 8.2k of 'FX loss' on one EUR 2m conversion" company="helvetic" open>
+
+Lea buys EUR 2m for the European payment run. The bank portal shows a screen rate of 0.9350; the desk deals at 0.9362 after its margin; the month-end ECB fixing is 0.9321. In the position the EUR cost CHF 1,872,400; at month-end the EUR balance is revalued at 0.9321 = CHF 1,864,200, and the CHF 8,200 difference lands in the P&L as an FX loss that Thomas asks about — of which CHF 2,400 is the bank's margin (0.9362 vs 0.9350) and the rest the market's move since the deal date. Economically nothing went wrong: the euros were bought to be spent. [Where the CHF 8.2k comes from](why:systems-three-rates-loss).
+
+</Example>
+
 ## Where the data comes from, by size
 
 | | Startup ([Kleio](co:kleio)) | SME ([Alpine](co:alpine)) | Mid-market ([Helvetic](co:helvetic)) | Multinational ([GlobalChem](co:globalchem)) |
@@ -44,7 +50,7 @@ When Helvetic's month-end result shows an "FX loss" that surprises Thomas, the d
 
 ## Dealing platforms
 
-Mid-market and large treasuries increasingly execute FX and money-market deals on electronic platforms instead of by phone: multi-dealer request-for-quote platforms (360T, owned by Deutsche Börse; FXall, part of LSEG; Bloomberg FXGO) or single-bank portals. The treasurer sends the same request to several banks, takes the best quote, and the executed deal flows into the TMS for confirmation matching and settlement. The benefits practitioners cite are evidence of best execution for auditors and fewer manual keying errors; the limit is that the platform executes decisions — it does not decide what to hedge.
+Mid-market and large treasuries increasingly execute FX and money-market deals on electronic platforms instead of by phone: multi-dealer request-for-quote platforms (360T, owned by Deutsche Börse; FXall, part of LSEG; Bloomberg FXGO) or single-bank portals. The actors make it concrete: at [Helvetic](co:helvetic) it is Daniel, after Lea's forecast and exposure report have told him what to hedge and before the bank's cut-off — he sends the same request to several relationship banks, takes the best quote, and the deal lands in the hedge register. At [GlobalChem](co:globalchem) it is Jonas's desk putting the RFQ on the multi-dealer platform and Marta's back office matching the confirmations into SAP. The benefits practitioners cite are evidence of best execution for auditors and fewer manual keying errors; the limit is that the platform executes decisions — it does not decide what to hedge.
 
 ## Cost and administration
 

@@ -86,7 +86,8 @@ steps:
     where: 13-week workbook
     when: "Day 1–2"
     detail: >-
-      Remove or delay the missing receipts; add a stress case (further slippage, lower new-order deposits, one more
+      [Rebuild the 13-week cash flow first](why:crisis-opens-13-week): remove or delay the missing receipts; add a
+      stress case (further slippage, lower new-order deposits, one more
       customer late); identify the low point and [headroom](term:liquidity-headroom) = cash + undrawn committed lines –
       minimum operating cash, week by week and by entity. Note lumpy items in the window (payroll, 13th-month salary,
       VAT, tax, coupon, loan repayments).
@@ -127,8 +128,11 @@ steps:
     when: "Week 1–2"
     detail: >-
       Rank outflows: payroll and social charges, taxes and VAT, debt service and critical suppliers are paid on time;
-      other suppliers are asked for extended terms, ideally by agreement rather than by silently paying late. Capex and
-      hiring are frozen unless essential.
+      other suppliers are asked for extended terms, ideally by agreement rather than by silently paying late. Payroll
+      itself is not deferrable — but its size is a lever: [short-time work](term:short-time-work) compensation (Swiss
+      Kurzarbeit, German Kurzarbeitergeld) cuts the payroll outflow within weeks, and wage-payment timing (advances,
+      or early/partial payment of variable pay where employment law allows) can bridge days. Capex and hiring are
+      frozen unless essential.
     judgment: >-
       Which suppliers can be stretched without endangering supply or triggering their own credit insurers to cut the
       company off — a stretched supplier that stops delivering converts a liquidity problem into an operating one.
@@ -137,7 +141,8 @@ steps:
     where: Calls and meetings with relationship banks; written information to lenders
     when: "Week 1–2"
     detail: >-
-      Inform the main banks proactively with the 13-week cash flow, the cause, the levers and the plan. Ask about a
+      [Inform the main banks proactively before the board's decision meeting](why:bank-before-board) with the 13-week
+      cash flow, the cause, the levers and the plan. Ask about a
       temporary facility increase, [factoring](term:factoring) or invoice finance on sound receivables, and — if a
       [covenant](term:covenant) test is at risk — a [waiver](term:covenant-waiver) before the test date. Check
       information undertakings: many facility agreements require notice of events that could be material.
@@ -191,19 +196,19 @@ example:
     | 1 (5 Oct) | 6.4 | 6.4 | 6.4 | 11.4 |
     | 4 (26 Oct, payroll) | 7.9 | 3.0 | 3.0 | 9.6 |
     | 8 (23 Nov, payroll) | 6.1 | 1.2 | **0.0** | 8.3 |
-    | 10 (7 Dec) | 7.4 | 2.5 | 0.7 | 8.6 |
+    | 10 (7 Dec) | 7.4 | 2.5 | 0.7 | 8.3 |
     | 12 (21 Dec, payroll + 13th salary) | 3.9 | 2.1 | **–3.4** | 4.2 |
     | 13 (28 Dec) | 5.3 | 3.5 | –2.3 | 5.3 |
 
-    *Closing cash, CHF m. Stress low point –3.4 in week 12; undrawn line CHF 9m, so headroom after minimum cash is only CHF 4.1m. The last column adds the levers decided below: CHF 5m drawing (+5.0), factoring (+1.6 from week 4), capex freeze (+0.8), supplier extensions (+1.2 in weeks 5–9, repaid weeks 9–11), hiring freeze (+0.1 per month).*
+    *Closing cash, CHF m. Stress = Expected – the CHF 3.1m German acceptance (beyond week 13) – CHF 0.3m per week of lost new-order deposits from week 5. Stress low point –3.4 in week 12; undrawn line CHF 9m, so [headroom after minimum cash is only CHF 4.1m](why:alpine-headroom-41) = 9.0 – 3.4 – 1.5. The last column phases the levers decided below, so the rows foot to CHF 0.1m: CHF 5m drawing from week 1 (+5.0), factoring from week 4 (+1.6), supplier extensions +1.2 in over weeks 5–8 and repaid 0.4 per week in weeks 9–11, capex +0.4 by week 8 and +0.8 by week 12, hiring freeze +0.1 per month (0.2 cumulative from week 10).*
 
-    **Wednesday** — Martin informs the CEO and the board chair, starts a daily 08:30 cash call (Martin, Petra, head of sales, head of operations/procurement) and requires his approval for every payment above CHF 25k. He sends a utilisation request for CHF 5m under the committed line (two business days' notice) — the conditions are clearly met today; he does not want to find out in December whether they still are.
+    **Wednesday** — Martin informs the CEO and the board chair, starts a daily 08:30 cash call (Martin, Petra, head of sales, head of operations/procurement) and requires his approval for every payment above CHF 25k. He sends a utilisation request for CHF 5m under the committed line (two business days' notice) — [the conditions are clearly met today, and he does not want to find out in December whether they still are](why:precautionary-draw-early).
 
     **Thursday** — Martin calls the cantonal bank's relationship manager before she notices the drawing: cause, 13-week file, levers. He asks about non-recourse factoring of the German GmbH's undisputed receivables (EUR 1.9m → ≈ CHF 1.6m advance) and learns the bank will want the 13-week file monthly. He also rereads the credit agreement's information undertakings and the minimum equity ratio clause (illustrative); writing off the US receivable does not endanger it.
 
     **Week 2** — Board call: capex freeze on a new CHF 0.8m test cell (to Q2 2027), hiring freeze on six open roles (≈ CHF 0.1m per month), factoring approved. Procurement agrees 30-day extensions on CHF 1.2m of component invoices with two long-standing suppliers — who are told why. Payroll, AHV social charges, VAT and the mortgage payment stay untouched. US counsel files the claim and checks whether recently delivered robots give Alpine any priority.
 
-    **Weeks 3–13** — Daily updates; Petra's lever tracker shows factoring received in week 4 and the extensions repaid in weeks 9–11. The German CEO, called by Alpine's CEO, agrees to accept and pay the first site (EUR 1.6m) in week 10. With the stress-case low point (after levers) above CHF 4m and the German acceptance agreed, Martin ends the daily call in week 10 and returns to the Monday cash sheet — but keeps the CHF 5m drawn until the German money is in.
+    **Weeks 3–13** — Daily updates; Petra's lever tracker shows factoring received in week 4 and the extensions repaid in weeks 9–11. The German CEO, called by Alpine's CEO, agrees to accept and pay the first site (EUR 1.6m) in week 10 — the Expected column had assumed week 11; the week-10 date is the improvement the CEO-level call won. With the stress-case low point (after levers) above CHF 4m and the German acceptance agreed, Martin ends the daily call in week 10 and returns to the Monday cash sheet — but keeps the CHF 5m drawn until the German money is in.
 judgment:
   - decision: Timing problem or credit problem
     why: A late payer and an insolvent customer look identical on the bank statement for the first days; the response differs completely.
@@ -272,7 +277,7 @@ by_size:
 companies:
   kleio: "The Kleio version: a major insurer customer delays its January annual prepayment by 3 months. Sarah re-runs the runway model (CHF 22m cash, CHF 0.9m monthly burn), finds runway still above 20 months, and does nothing drastic — but the board's post-SVB rule of at least two Swiss banks means no single failure can freeze payroll."
   alpine: "The worked example above: two missing milestones, a Chapter 11 customer, the 13th salary in December, and a CFO who draws the committed line early and calls the bank himself."
-  helvetic: "A large Chinese distributor stops paying CNY 40m; the CNY cash at HM Suzhou cannot be upstreamed quickly anyway. Daniel moves the 13-week forecast to twice-weekly, keeps the CHF 140m undrawn RCF as headroom and runs the covenant model: leverage rises from 1.5x to about 1.8x in the stress case — no waiver needed, but he pre-briefs the four RCF banks before the semi-annual test."
+  helvetic: "A large Chinese distributor stops paying CNY 40m; the CNY cash at HM Suzhou cannot be upstreamed quickly anyway. Daniel moves the 13-week forecast to twice-weekly, keeps the CHF 137m undrawn RCF as headroom and runs the covenant model: writing the CNY 40m receivable off (≈ CHF 4.5m) and a broader China shortfall of ≈ CHF 5m against plan take pro forma EBITDA to ≈ CHF 68m and net debt to ≈ CHF 111m, so leverage moves from 1.36x to ≈ 1.6x — [with the bridge spelled out](why:stress-leverage-bridge), not asserted. No waiver needed against 3.25x, but he pre-briefs the four RCF banks before the semi-annual test."
   globalchem: "Crisis mode means the capital markets, not a customer: if the EUR commercial-paper market shuts (as happened briefly in March 2020), Priya's team stops issuing, Olivier prepares a drawing under the EUR 1.5bn backstop RCF, and Anna reports daily to Markus. A single customer default is handled by credit management and barely registers at group level."
 handoffs:
   - from: Bank statements / cash analyst
@@ -307,14 +312,17 @@ ai_note: >-
   and could be heavily assisted. The core of the workflow — judging whether a customer will pay, which supplier can
   wait, what to tell a bank — relies on relationships and information that is not in any system, under personal
   accountability of the CFO and board. Early-warning signals (payment-behaviour changes, news) are a plausible narrow use.
-terms: [thirteen-week-cash-flow, liquidity-headroom, committed-facility, drawdown, material-adverse-change, covenant, covenant-waiver, cross-default, factoring, cash-buffer, deposit-insurance, counterparty-limit, liquidity-risk]
+terms: [thirteen-week-cash-flow, liquidity-headroom, committed-facility, drawdown, material-adverse-change, covenant, covenant-waiver, cross-default, factoring, cash-buffer, deposit-insurance, counterparty-limit, liquidity-risk, short-time-work]
 related: [cash-forecasting, liquidity-planning, credit-facility-management, covenant-monitoring, daily-cash-positioning, currency-shock, fraud-investigation]
-sources: [roku-8k-2023, ust-fed-fdic-2023-joint, cs-1q23-earnings, finma-ubs-cs-2023, neugroup-svb-2023]
+sources: [roku-8k-2023, ust-fed-fdic-2023-joint, cs-1q23-earnings, finma-ubs-cs-2023, neugroup-svb-2023, co-art-725]
 evidence_note: >-
   Bank-failure facts are from primary filings and official statements: Roku's 8-K[](cite:roku-8k-2023), the joint US
   Treasury/Fed/FDIC statement[](cite:ust-fed-fdic-2023-joint), Credit Suisse's 1Q23 release[](cite:cs-1q23-earnings)
   and FINMA[](cite:finma-ubs-cs-2023); the post-SVB treasury response is from a NeuGroup member survey of mostly large
   US companies[](cite:neugroup-svb-2023). These were verified from publisher search snippets because direct page access
   was unavailable this session. The step sequence, levers and the Alpine example are established restructuring and
-  treasury practice synthesised by the author, not survey findings; the reference to Art. 725 CO (Swiss company law in
-  force since 1 January 2023) should be checked against the legal text before being relied on.
+  treasury practice synthesised by the author, not survey findings. The Art. 725 CO reference reflects the revised Swiss
+  company law in force since 1 January 2023 — Art. 725(1)–(2) CO explicitly puts the duty to monitor solvency
+  (Zahlungsfähigkeit) and to act on threatened illiquidity on the board (Art. 725a covers capital loss, Art. 725b
+  over-indebtedness)[](cite:co-art-725); it was confirmed against the statutory text and law-firm commentary in review
+  round 1.

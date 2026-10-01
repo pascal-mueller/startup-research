@@ -5,7 +5,7 @@
   category: Banking & connectivity
   plain: How the company's systems and the bank exchange payment instructions and account reports — by hand in a portal, or automatically through a file or message channel.
   professional: "The set of channels (e-banking portal, EBICS, Swift, host-to-host, bank APIs) plus the formats, keys, certificates, user rights and bank-side contracts that let payment files flow out and statements, intraday reports and status reports flow in. In practice a project per bank: contract, onboarding, key exchange, format testing, go-live and ongoing maintenance."
-  example: "Helvetic's multibank tool receives 12 prior-day statements over EBICS and Swift before 07:00; the account at the Chinese bank is still collected by the local finance team and emailed as a PDF."
+  example: "Helvetic's multibank tool receives 11 of the group's 12 prior-day statements over EBICS and Swift before 07:00; the twelfth — the account at the Chinese bank, which has no EBICS/SWIFT corporate reporting — is not in the tool at all and arrives as Wei's daily emailed portal export. A missing Chinese statement is a connectivity problem, never a time-zone one."
   related: [ebics, swift, host-to-host, api-banking, bank-statement, multibank-connectivity]
   confusedWith: "**Open banking.** Regulated third-party access (PSD2) is only one, mostly SME/retail-oriented, route; corporate connectivity is dominated by EBICS, Swift, host-to-host and bank-specific corporate APIs."
 
@@ -15,7 +15,7 @@
   category: Banking & connectivity
   plain: The modern electronic end-of-day bank statement file — opening and closing balances plus every booking of the day.
   professional: "ISO 20022 BankToCustomerStatement. Per account: balances (e.g. opening and closing booked, closing available), and entries (Ntry) with amount, credit/debit, booking date, value date, bank transaction code, references and optionally transaction details including structured or unstructured remittance information. Successor of MT940; country/bank usage rules (e.g. Swiss Payment Standards) and version (2009 vs 2019) matter."
-  example: "Every morning Alpine's Dynamics 365 Business Central imports two camt.053 files; Petra's reconciliation starts from the closing booked balance of CHF 8.42m on the main CHF account."
+  example: "Every morning Alpine's Dynamics 365 Business Central imports the Swiss banks' camt.053 files (one per account); Petra's reconciliation starts from the closing booked balance of [CHF 4.9m on the main CHF account](why:systems-alpine-camt-balance) — the group's largest, holding at most about half of Alpine's CHF 6–12m cash."
   related: [bank-statement, mt940, camt-052, camt-054, iso-20022, bank-transaction-code]
   confusedWith: "**camt.054.** The statement (053) lists bookings; the notification (054) gives the detail behind individual bookings (e.g. each item in a batch)."
 
@@ -42,7 +42,7 @@
   aka: [MT 101, Request for Transfer]
   category: Banking & connectivity
   plain: The legacy Swift message a company uses to instruct a bank to make a payment — including from an account held at another bank.
-  professional: "Swift FIN 'Request for Transfer'. Used by corporates over Swift (SCORE or MA-CUG) for single or small batches of payments, and for 'MT101 relay' where one bank forwards the instruction to the account-holding bank. The ISO 20022 equivalent for corporate-to-bank is pain.001. The November 2025 end of MT/MX coexistence concerned interbank cross-border messages; banks set their own timelines for corporate MT101."
+  professional: "Swift FIN 'Request for Transfer'. Used by corporates over Swift (SCORE or MA-CUG) for single or small batches of payments, and for 'MT101 relay' where one bank forwards the instruction to the account-holding bank. The ISO 20022 equivalent for corporate-to-bank is pain.001. Corporate-to-bank MT101 continues on each bank's own timeline, but the interbank relay is being retired: Swift's November 2026 call-to-action marks the end of coexistence for the interbank MT101 (end of life, NAKed on that leg) and recommends pain.001 at the corporate leg; J.P. Morgan reports the deadline extended, with revised dates and scope due by December 2026[](cite:swift-iso-call-2026)."
   example: "GlobalChem sends an MT101 through its service bureau to instruct its Singapore bank to pay SGD 2.1m from the regional treasury centre's account."
   related: [swift, pain-001, iso-20022, service-bureau]
 
@@ -61,7 +61,7 @@
   category: Banking & connectivity
   plain: A company that runs Swift connectivity on a corporate's behalf, so the corporate doesn't have to operate Swift infrastructure itself.
   professional: "A Swift-certified third party that hosts the Swift interface and gateway for many customers, handles operations, security updates and often format conversion and bank onboarding. The main alternatives are running Swift in-house (direct connection) or Swift's cloud option Alliance Lite2 (including when embedded in a partner application such as a TMS)."
-  example: "GlobalChem's treasury-systems lead Ben chose a service bureau because running a Swift gateway in-house would have needed dedicated IT staff and an annual security attestation of its own infrastructure."
+  example: "GlobalChem's treasury-systems lead Ben chose a service bureau because running a Swift gateway in-house would have needed dedicated IT staff to operate, patch and secure it; the annual Customer Security Programme self-attestation stays with GlobalChem either way — the bureau removes infrastructure operations, not the attestation."
   related: [swift, swift-score, bank-connectivity, multibank-connectivity]
 
 - id: swift-score
@@ -98,7 +98,7 @@
   category: Banking & connectivity
   plain: In EBICS, payment files are approved by electronic signatures from one or more authorised people, who can sign separately and from different places.
   professional: "EBICS users hold signature keys with a signature class (e.g. single signature E, first/second joint signature A/B, transport-only T). An order submitted with a transport signature waits at the bank until enough bank-technical signatures have been added — in the ERP/connectivity client or a mobile signing app. The bank enforces the mandate, so authority rules live partly on the bank side."
-  example: "Petra uploads Alpine's Tuesday run with a transport signature; the file waits at the bank until she and Martin each add their A signature, which Martin does on his phone at 11:40."
+  example: "Petra uploads Alpine's Tuesday run's three payment files with her transport signature; each file waits at the bank until she and Martin each add their signature (Petra's A, Martin's B), which Martin does on his phone at 11:40."
   related: [ebics, signing-authority-matrix, four-eyes-principle, payment-mandate]
 
 - id: bank-transaction-code
@@ -125,7 +125,7 @@
   category: Forecasting
   plain: The label each cash movement gets — "customer receipts", "payroll", "tax", "intercompany" — so actual cash can be compared with the forecast.
   professional: "A treasury classification of flows (SAP calls them liquidity items) assigned by rules from bank transaction codes, counterparty, GL account or text, or inherited from ERP documents. It connects the bank side (actuals) with the forecast side (plans); if both don't use the same categories, variance analysis is impossible."
-  example: "GlobalChem's forecast has 14 categories; the TMS assigns 91% of bank lines automatically and a back-office analyst classifies the rest each morning."
+  example: "GlobalChem's forecast has 14 categories; the TMS assigns [91% of bank lines](why:systems-automation-residue) automatically and a back-office analyst classifies the rest each morning."
   related: [variance-analysis, direct-method, bank-transaction-code, forecast-submission]
 
 - id: stp
@@ -134,7 +134,7 @@
   category: Systems
   plain: A transaction that flows from start to end without anyone touching it; the STP rate is the share that does.
   professional: "Used for payments (created, approved, sent, confirmed without repair), statements (imported, posted and reconciled automatically) and deals (captured, confirmed, settled, accounted automatically). Measured as a percentage per process; the residual exceptions are where operations staff spend their time."
-  example: "Marta tracks two numbers daily: payment files rejected by banks (target zero) and the share of statement lines auto-reconciled (around 93% in a normal week at GlobalChem)."
+  example: "Marta tracks two numbers daily: payment files rejected by banks (target zero) and the share of statement lines auto-reconciled (around [93% in a normal week](why:systems-automation-residue) at GlobalChem)."
   related: [reconciliation, payment-hub, deal-confirmation]
 
 - id: system-of-record

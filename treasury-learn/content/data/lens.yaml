@@ -134,7 +134,7 @@ workflows:
       value: 30–90 minutes of analyst time a day at mid-market; money impact is idle balances and avoided overdrafts, rarely large.
       judgment: Routine judgment — buffer size, whether an odd balance is a data error, timing vs cut-off.
       data_availability: Statements arrive as MT940/camt.053; known flows partly in ERP, partly in emails.
-      data_quality: Missing statements (connectivity failures), US files arriving last, unmapped accounts, flows announced by chat.
+      data_quality: Missing statements (connectivity failures), the one balance that arrives by email (HM Suzhou), US files arriving last, unmapped accounts, flows announced by chat.
       verifiability: Tomorrow's statements show whether the projected closing balance was right.
       consequence: A wrong proposal is usually caught at approval; if not, an overdraft or an unnecessary transfer.
       regulatory: Internal controls on transfers (four-eyes), not external regulation, for the preparation step.
@@ -165,6 +165,7 @@ workflows:
       - Bank statement access for every account (including the late and exotic ones) without a year-long IT project.
       - The agent can see where "known flows" actually arrive — email, Teams, ERP payment runs — with permission.
       - The treasury manager's accept/edit/reject is captured, not just done in the bank portal.
+      - Someone signs off the vendor's read access: bank subscriber terms on third-party access, a data-protection agreement, and the auditor's outsourced-processing view.
     startup_view: >-
       Crowded at the top (TMS and ERP vendors) and small at the bottom (SMEs check a portal in 10 minutes). The gap is
       mid-market groups without a TMS — Helvetic-shaped — and the exception-explanation layer everywhere.
@@ -218,12 +219,15 @@ workflows:
       - Bank actuals can be categorised to forecast lines reliably (the unglamorous prerequisite).
       - The treasury team stores forecast versions so accuracy is measurable at all.
       - Subsidiary finance accept an agent asking them questions (organisational, not technical).
+      - Someone signs off the vendor's read access: bank subscriber terms on third-party access, a data-protection agreement, and the auditor's outsourced-processing view.
     startup_view: >-
       The most crowded AI category in treasury (TMS vendors, AR/forecasting specialists, FP&A tools). Differentiation has
       to come from the variance/explanation loop and messy multi-entity mid-market data, not from "ML forecasting".
     ai_note_view: Agrees. The workflow's ai_note warns that accuracy gains are mostly vendor-reported — this lens repeats that.
     evidence: >-
-      Forecasting is the top treasury priority and the most-named challenge[](cite:afp-bench-2025-article,eact-2025);
+      Forecasting is the most-named challenge (62%) and the top departmental priority (73%)[](cite:afp-bench-2025,afp-top-tasks-2025),
+      still on top in AFP's 2026 benchmarking[](cite:afp-bench-2026), alongside EACT 2025 on the data-readiness
+      problem[](cite:eact-2025);
       PwC reports that 74% of treasuries are expanding or actively using AI, mostly ML and predictive analytics for
       forecasting, fraud and exposure visibility — but only 26% call their AI capabilities mature[](cite:pwc-gts-2025).
       HighRadius markets forecasting as "fully autonomous"[](cite:highradius-autonomous-2027) — a vendor claim, not an
@@ -252,7 +256,7 @@ workflows:
       suitability: Scenario assembly and sensitivity math, yes; the plan's conclusion, no.
       narrow: Debt-maturity and headroom calculator fed by the forecast.
       expand: Into covenant projections and facility management.
-      feedback: A handful of events per year, each unique.
+      feedback: A handful of events per year, each unique — inference; the workflow file offers no correction signal.
       defensibility: Context-heavy but low volume; hard to learn from.
     already_automated: FP&A and planning tools generate the P&L plan; cash conversion and funding overlay stay manual.
     agent_does: Converts the plan to cash, lays out maturities, headroom and covenant projections under 3–5 scenarios; drafts the memo.
@@ -302,7 +306,7 @@ workflows:
     startup_view: Thin — the value is in the forecast that sizes the surplus, not in the placement.
     ai_note_view: Agrees, including that at 0% CHF rates the value of yield optimisation is small.
     evidence: >-
-      Illustrative autumn-2026 levels in this manual: SNB policy rate 0%, €STR ≈ 1.9–2.0%, SOFR ≈ 3.5–4% (see the
+      Illustrative autumn-2026 levels in this manual: SNB policy rate 0%, €STR ≈ 2.2–2.4%, SOFR ≈ 3.5–4% (see the
       authoring conventions) — the economic value of optimisation is currency-dependent.
 
   - id: funding-subsidiary
@@ -327,7 +331,7 @@ workflows:
       suitability: Prepare loan agreement draft, rate calculation, booking instructions — yes.
       narrow: Intercompany-loan paperwork and interest calculation generator.
       expand: Intercompany loan register, interest billing, in-house-bank statements.
-      feedback: Legal/tax edits to drafts; few outcome labels.
+      feedback: Legal/tax edits to drafts; few outcome labels — inference; the workflow file offers no correction signal.
       defensibility: Customer-specific policies and templates; in-house-bank modules compete.
     already_automated: In-house banks at multinationals handle routine intercompany funding and interest automatically.
     agent_does: Sizes the need from the forecast, lists options with tax/FX constraints, drafts loan docs and booking entries.
@@ -404,7 +408,7 @@ workflows:
       suitability: Evidence dossier and anomaly flags, yes; approve, no.
       narrow: Pre-approval dossier — contract link, payee history, bank-detail change log, callback status.
       expand: Toward vendor-master and fraud-monitoring products, not into the approver's job.
-      feedback: True fraud labels are rare; false positives are frequent.
+      feedback: True fraud labels are rare; false positives are frequent — inference from the workflow's judgment section.
       defensibility: Bank-side and payment-hub fraud tools are strong incumbents.
     already_automated: Approval routing and limits in ERP/TMS/e-banking; the decision is not automated anywhere credible.
     agent_does: Builds an approval dossier and highlights anomalies (new IBAN, changed bank details, unusual timing, mismatch to contract).
@@ -494,15 +498,19 @@ workflows:
 
   - id: bank-fee-analysis
     class: good
-    assignment: "Check last quarter's bank fees against what we negotiated and tell me where we are overcharged."
+    assignment: "Check what our banks charged us against what we negotiated — including the costs that never appear on a fee statement — and tell me where we are overcharged."
     headline: >-
-      Near-ideal agent task — tedious, rule-checkable against a price schedule, low risk, easy to verify. The catch is size:
-      fees are a small line and the analysis quarterly, so it is a good wedge or feature, a weak standalone company.
+      Near-ideal agent task — tedious, rule-checkable against a price schedule, low risk, easy to verify. The catch is
+      size and cadence: fees are a small line and the review is annual at mid-market (Helvetic: Lea's four days each
+      January), so it is a good wedge or feature, a weak standalone company.
     scores: { frequency: 2, value: 2, judgment: 2, data_availability: 3, data_quality: 2, verifiability: 5, consequence: 1, regulatory: 1, trust: 1, automation: 2, human_involvement: 3, suitability: 5, narrow: 5, expand: 3, feedback: 4, defensibility: 2 }
     notes:
-      frequency: Monthly or quarterly; many companies never do it.
-      value: Recoverable overcharges plus negotiation leverage; small relative to interest and FX costs.
-      judgment: Whether a charge is legitimate; which bank to push back on.
+      frequency: Annual at mid-market (January review before the bank/wallet meeting); monthly where structured fee data removes the translation work; many smaller companies never do it.
+      value: >-
+        Recoverable overcharges plus negotiation leverage — and, hidden in FX spreads and receipt deductions, often the
+        largest banking cost of all (the reference workflow's ~CHF 40k of CZK spread never appears on a fee statement).
+        Still small relative to interest and FX costs.
+      judgment: Whether a charge is legitimate; which bank to push back on, and how hard.
       data_availability: US banks send EDI 822 / account analysis; European banks often PDFs; camt.086 emerging.
       data_quality: Non-standard service descriptions across banks.
       verifiability: Charge vs agreed price is objectively checkable.
@@ -510,19 +518,24 @@ workflows:
       regulatory: None beyond normal records.
       trust: Treasurers happily delegate this.
       automation: Specialist fee-analysis services exist; most mid-market do nothing systematic.
-      human_involvement: Days per year when done; often skipped.
+      human_involvement: About four days a year at Helvetic when done; often skipped.
       suitability: Parse, map to service codes, compare, draft dispute — end to end.
       narrow: One bank, one quarter, one price schedule.
       expand: Into bank wallet-share analysis and RFP preparation.
       feedback: Bank responses to disputes; treasurer edits.
       defensibility: Mapping tables across banks accumulate, but fee services already exist.
     already_automated: US account-analysis tools; outside the US, largely manual or ignored.
-    agent_does: Extracts charges from statements/invoices, maps them to service codes, compares to the negotiated schedule, drafts the dispute and a wallet-share view.
-    human_keeps: Deciding which banks to challenge and how hard (relationship banks provide the RCF).
+    agent_does: >-
+      Extracts charges from statements and invoices, maps them to service codes, compares to the negotiated schedule,
+      estimates the costs that never appear on a fee statement (FX spreads versus mid at trade time, deductions on
+      receipts), drafts the dispute and a wallet-share view.
+    human_keeps: Deciding which banks to challenge and how hard (relationship banks provide the RCF) — the negotiation itself.
     narrow_start: One-bank PDF fee reconciliation.
     expansion: Bank relationship scorecard, RFP support.
     must_be_true:
       - The negotiated price schedule actually exists in writing somewhere.
+      - Executed FX rates are retrievable, or the largest cost stays invisible.
+      - A vendor-access sign-off exists for the agent's read access (bank subscriber terms, data-protection agreement, auditor's outsourced-processing view).
     startup_view: Good wedge into bank-relationship work; not enough on its own.
     ai_note_view: Agrees — suits automation, modest economic value, relationship decisions stay human.
     evidence: >-
@@ -563,6 +576,7 @@ workflows:
     must_be_true:
       - Subsidiary ERP data is reachable (the multi-ERP mid-market problem).
       - The risk manager records why she overrides an exposure number.
+      - Someone signs off the vendor's read access: bank subscriber terms on third-party access, a data-protection agreement, and the auditor's outsourced-processing view.
     startup_view: Promising wedge at mid-market groups that hedge but lack a TMS exposure module. Check interest in interviews.
     ai_note_view: Broadly agrees. The workflow note stresses that TMS tools already do part of the rule-based extraction and that judging forecast reality needs conversations; the lens is slightly more optimistic because it targets mid-market groups without a TMS exposure module.
     evidence: >-
@@ -593,7 +607,7 @@ workflows:
       suitability: Proposal drafting and compliance checking, yes; discretionary trades, no.
       narrow: A "policy says hedge X — here are the trades" draft for approval.
       expand: Into hedge documentation and reporting.
-      feedback: Weak — no ground truth for a hedge decision.
+      feedback: Weak — no ground truth for a hedge decision, and the workflow file offers no correction signal.
       defensibility: Platforms and banks own execution.
     already_automated: Electronic multi-bank dealing and programmatic hedging are established; confirmations are matched automatically.
     agent_does: Compares exposure to hedge book, proposes trades to reach policy ratios, pre-checks limits and documentation.
@@ -628,7 +642,7 @@ workflows:
       suitability: Extraction, calendar, notice drafts, fee checks — yes.
       narrow: Facility abstract + deadline calendar from the PDF agreements.
       expand: Covenant monitoring, refinancing prep.
-      feedback: Few events; agent-bank notices as check.
+      feedback: Few events; agent-bank notices as check — inference; the workflow file offers no correction signal.
       defensibility: Legal-tech and TMS debt modules compete.
     already_automated: Debt modules in TMS track deals and interest; agreement terms are rarely structured.
     agent_does: Abstracts agreements, maintains the calendar, reconciles agent-bank interest notices, drafts utilisation requests.
@@ -662,7 +676,7 @@ workflows:
       suitability: Projection and sensitivity, yes; certification, no.
       narrow: Definition extraction + recalculation with traceable adjustments.
       expand: Into liquidity planning and facility management.
-      feedback: Few test events.
+      feedback: Few test events — inference; the workflow file offers no correction signal.
       defensibility: Low.
     already_automated: Rarely; calculation in spreadsheets from the close pack.
     agent_does: Extracts definitions, recalculates from close data, projects headroom from the forecast, flags adjustments needing interpretation.
@@ -732,7 +746,7 @@ workflows:
       suitability: Timeline reconstruction and evidence pack drafts only.
       narrow: Incident timeline from email and bank logs.
       expand: None into the job; adjacent to fraud prevention.
-      feedback: Almost none.
+      feedback: Almost none — inference; a rare crisis leaves no correction signal to learn from.
       defensibility: Low.
     already_automated: Bank-side fraud monitoring and verification-of-payee reduce incidents; response is manual.
     agent_does: Reconstructs timeline, drafts recall requests and incident report.
@@ -803,7 +817,7 @@ workflows:
       suitability: Inventory building and document review only.
       narrow: Bank-account and facility inventory from the data room.
       expand: None.
-      feedback: None repeated.
+      feedback: None repeated — each integration is a one-off project.
       defensibility: None.
     already_automated: No.
     agent_does: Builds account/facility/hedge inventories from documents, drafts checklists.
@@ -834,7 +848,7 @@ workflows:
       suitability: Impact calculation and briefing only.
       narrow: Pre-built shock scenarios fed by the exposure process.
       expand: Via fx-exposure-management, not via the shock.
-      feedback: Too rare.
+      feedback: Too rare — a rare event leaves no correction signal to learn from.
       defensibility: Low.
     already_automated: Scenario functions exist in TMS and risk systems.
     agent_does: Recomputes exposures, P&L and covenant impact, drafts the CFO briefing.
@@ -866,7 +880,7 @@ workflows:
       suitability: Daily cash update and prioritisation drafts.
       narrow: Daily-updated 13-week view in crisis mode.
       expand: Via cash-forecasting only.
-      feedback: Too rare.
+      feedback: Too rare — a rare event leaves no correction signal to learn from.
       defensibility: Low.
     already_automated: No.
     agent_does: Daily forecast refresh, payment prioritisation lists, lender-report drafts.
@@ -883,25 +897,26 @@ digital_workers:
     title: Prepare today's liquidity recommendation
     workflow: daily-cash-positioning
     company: helvetic
-    assignment: "Lea, by 09:30 tell me where we stand today and what you'd move — I'll approve before the EUR cut-off."
+    assignment: "Lea, by 09:00 tell me where we stand today and what you'd move — I'll approve before the Swiss bank's early-afternoon cut-off."
     assigned_by: Daniel (Treasury Manager)
     performed_today_by: Lea (Treasury Analyst), ~60–90 minutes every morning
     cadence: Every business day; deadline set by the earliest currency cut-off
     inputs:
-      - { name: Prior-day statements (camt.053 / MT940) for 12 accounts, source: Multibank connectivity tool, arrives: "Asian banks early, European 06:00–08:00, US last", quality: "Usually complete; the Chinese bank file fails 1–2 times a week (connectivity)" }
+      - { name: Prior-day statements (camt.053 / MT940) for 11 of the 12 accounts, source: Multibank connectivity tool, arrives: "Asian banks early, European 06:00–08:00, US last", quality: "Complete when the channels work; a missing statement here is a connectivity problem, never a time-zone one" }
+      - { name: "HM Suzhou's balance (the twelfth account)", source: "Wei's daily emailed portal export — the Chinese bank has no EBICS/SWIFT corporate reporting", arrives: "Whenever Wei sends it; typed into the workbook by Lea", quality: "One human handoff, no file and no feed — the weakest input; when it is late, carry yesterday's balance flagged unconfirmed and chase Wei" }
       - { name: Intraday reports (camt.052 / MT942), source: Banks that provide them, arrives: Intraday, quality: Partial coverage }
       - { name: Released AP runs and payroll, source: SAP (CH/DE/CZ), emails from IT/FR/UK/US, arrives: Day before / same morning, quality: "Structured in SAP; email elsewhere" }
-      - { name: Known flows not in any system, source: "Emails and Teams messages from Giulia, Jens, Wei", arrives: Any time, quality: Unstructured; the weakest input }
+      - { name: Known flows not in any system, source: "Emails and Teams messages from Giulia, Jens, Wei", arrives: Any time, quality: Unstructured }
       - { name: Minimum balances, counterparty limits, cut-offs, source: Treasury policy + bank documentation, arrives: Static, quality: Good but rarely updated }
       - { name: Yesterday's position and the 13-week forecast, source: Excel, arrives: Static, quality: As good as the forecast }
     reasoning:
-      - "Is every account's balance actually known, or am I looking at yesterday's number for China?"
+      - "Is every account's balance actually known — did Wei's export arrive, and is any other balance just yesterday's number?"
       - "Does each opening balance equal yesterday's closing balance? If not, which bank back-valued something?"
       - "Which movements were unexpected — and is each one a timing difference, a data problem, or something that could be fraud?"
       - "After today's known outflows, which account drops below its minimum (e.g. EUR 250k in Germany)?"
-      - "Is the CHF surplus at the parent temporary (bond coupon in week 6) — or can it reduce the RCF drawing at the next rollover, since CHF deposits earn ~0%?"
-      - "Fund Italy by moving EUR from Germany (intercompany loan) or by converting CHF? Which is cheaper and which is cleaner for accounting?"
-      - "What must go first because of cut-off times, and what can wait for more information?"
+      - "Is the CHF at the parent really surplus — the December payrolls (13th salary) make week 4 the low point and the CFO's CHF 10m minimum sits here — or can it reduce the CHF 30m RCF drawing at the 15 January rollover, since CHF deposits earn ~0%?"
+      - "Fund Germany by moving EUR from the parent (intercompany loan) or by converting CHF? Which is cheaper and which is cleaner for accounting?"
+      - "What must go first because of cut-off times — and which payment rail actually settles today (urgent EUR via T2, not SEPA)?"
       - "Is anything still unexplained at cut-off — move cash anyway for safety, or wait?"
     tools:
       - { name: Multibank connectivity tool, access: read, use: Statements and intraday reports }
@@ -921,20 +936,21 @@ digital_workers:
       - { check: Proposals are sensible, how: "Daniel accepts, edits or rejects each line — the core expert judgment" }
       - { check: Projection was right, how: "Next morning, projected vs actual closing balance per account is scored automatically" }
     execution: >-
-      Daniel approves; Lea (or the agent, as a draft only) enters the transfers in the bank portal; a second authorised
-      signer releases under the bank mandate. The agent never holds signing rights. Intercompany loan records go to
-      Claudia's accounting team.
+      Lea prepares (or the agent drafts) the transfers and enters them; Daniel releases them under the four-eyes
+      principle — payments above CHF 2m additionally need the CFO's and the CEO's co-signature. The agent never holds
+      signing rights. Intercompany loan records go to Claudia's accounting team.
     feedback:
       - { signal: "Accept / edit / reject per proposed transfer, with Daniel's one-line reason", becomes: "Labelled preference data: which buffer, which funding route, which timing" }
       - { signal: Edited explanations of unexpected movements, becomes: Evaluation set for explanation accuracy; recurring patterns become rules }
       - { signal: Projected vs actual closing balances, becomes: Objective daily accuracy metric per account }
       - { signal: Missed items that surfaced later, becomes: "Regression tests — 'the German trade-tax prepayment must never be missed again'" }
     failure_modes:
-      - { mode: Stale balance treated as current (failed Chinese statement file), guardrail: "Every balance carries its as-of timestamp; stale balances are visibly excluded" }
+      - { mode: Stale balance treated as current (Wei's export has not arrived and yesterday's figure is carried over silently), guardrail: "Every balance carries its as-of time and its source (tool vs email); the export is chased with Wei, and a carried-over figure is visibly flagged unconfirmed" }
       - { mode: Plausible but invented explanation for a debit, guardrail: "No explanation without cited evidence; otherwise 'unexplained' — unexplained large debits escalate as possible fraud" }
       - { mode: Arithmetic or FX conversion error, guardrail: "All numbers computed by deterministic code; the language model only selects and explains" }
       - { mode: Automation bias — manager approves without reading, guardrail: "Approval rate and edit rate monitored; deliberate test items seeded occasionally" }
       - { mode: Prompt injection via an email or remittance text, guardrail: "Inputs treated as data; no write access to banks; proposals only" }
+      - { mode: "System down at 08:00, or the bank changed its file (the 2009 camt.05x versions are discontinued in Nov 2026)", guardrail: "Degraded mode: yesterday's position clearly labelled stale, no proposals issued until inputs are back; parser changes tested against stored file samples first" }
     autonomy:
       - { level: 1, label: Briefing, scope: "Read-only position, missing statements, exception list", gate: "Two weeks of daily comparison with Lea's own position" }
       - { level: 2, label: Explanations, scope: "Draft explanations with evidence for unexpected movements", gate: "Explanation accuracy above an agreed threshold on the labelled set" }
@@ -1010,13 +1026,13 @@ digital_workers:
     title: Collect and reconcile this month's FX exposures
     workflow: fx-exposure-management
     company: helvetic
-    assignment: "By working day 4, give me a clean group exposure report by currency — what's open, what's hedged, what changed and why."
+    assignment: "Submissions by WD5 noon — and the clean group exposure report on my desk for the WD7 review: what's open, what's hedged, what changed and why."
     assigned_by: Daniel (Treasury Manager), who decides hedges with the CFO
-    performed_today_by: Lea (Treasury Analyst), 1–2 days a month
-    cadence: Monthly after close, plus mid-month updates for large orders
+    performed_today_by: Lea (Treasury Analyst), roughly WD2–WD6 of each month
+    cadence: "Monthly after close (collection window WD2–WD6, report for the WD7 review), plus mid-month updates for large orders"
     inputs:
       - { name: Balance-sheet exposures (receivables, payables, cash in foreign currency), source: "SAP (CH/DE/CZ) and local ERPs", arrives: After local close, quality: "Structured, but different ERPs and account mappings" }
-      - { name: Forecast exposures (next 12 months EUR/USD/CNY/GBP sales and purchases), source: Subsidiary templates, arrives: WD 3, quality: "Optimistic, stale, sometimes in the wrong currency" }
+      - { name: Forecast exposures (next 12 months EUR/USD/CNY/GBP sales and purchases), source: Subsidiary templates, arrives: "WD5 noon deadline (window WD2–WD6)", quality: "Optimistic, stale, sometimes in the wrong currency" }
       - { name: Hedge book (forwards), source: Treasury deal register / bank confirmations, arrives: Static + new deals, quality: Good }
       - { name: Intercompany balances, source: ERPs, arrives: After close, quality: Often mismatched between entities }
       - { name: Hedging policy (ratios by horizon), source: Policy document, arrives: Static, quality: Clear }
@@ -1025,7 +1041,7 @@ digital_workers:
       - "Why did Italy's 6-month EUR forecast drop 30% — lost order or template error?"
       - "Do intercompany balances match on both sides, so they net out at group level?"
       - "What is the net exposure after natural offsets (EUR costs in DE/CZ against EUR sales)?"
-      - "Where are we versus the policy corridor per horizon, and what trades would close the gap?"
+      - "Where are we versus the policy corridor per rolling quarter — and if we are outside it, is it a passive drift that a roll fixes, or a new hedge decision?"
     tools:
       - { name: ERPs, access: read, use: Open items by currency }
       - { name: Subsidiary templates via email or portal, access: draft, use: Reads submissions; drafts chasers and questions }
@@ -1042,8 +1058,9 @@ digital_workers:
       - { check: Forecast exposures were realistic, how: "Compared with invoiced flows in later months (objective, delayed)" }
       - { check: Hedge proposals are policy-compliant, how: Deterministic check against policy corridors }
     execution: >-
-      Daniel decides trades (with the CFO for anything outside policy); trades are executed on the bank platform by
-      authorised dealers and confirmed by back office. The agent has no dealing access.
+      Daniel decides trades (with the CFO for anything outside policy) and deals within his mandate on the bank
+      platform; Lea matches the confirmations and keeps the hedge register — Helvetic has no back office. The agent has
+      no dealing access.
     feedback:
       - { signal: Confirmed / rejected anomaly flags, becomes: Precision of anomaly detection }
       - { signal: Corrections by local finance, becomes: "Entity-specific mapping rules (e.g. Czech entity invoices EUR from a CZK ledger)" }
@@ -1055,7 +1072,7 @@ digital_workers:
     autonomy:
       - { level: 1, label: Reconciliation, scope: "Balance-sheet exposures vs ledgers", gate: "Ties out for three month-ends" }
       - { level: 2, label: Forecast QA and chasing, scope: "Flags and questions on submissions", gate: "Local finance accept the questions" }
-      - { level: 3, label: Hedge gap proposals, scope: "Draft trades to policy corridor", gate: "Daniel accepts most unedited" }
+      - { level: 3, label: Hedge gap proposals, scope: "Draft trades or rolls back to the policy corridor", gate: "Daniel accepts most unedited" }
     metrics:
       - Days after close until exposure report is ready
       - Reconciliation breaks found before vs after hedging
@@ -1066,10 +1083,10 @@ digital_workers:
     title: Review last quarter's bank fees
     workflow: bank-fee-analysis
     company: helvetic
-    assignment: "Check what our five banks charged us last quarter against what we agreed, and draft the emails for anything wrong."
+    assignment: "Check what our five banks charged us against what we agreed — including what never shows on a fee statement — and draft the emails for anything wrong."
     assigned_by: Daniel (Treasury Manager)
-    performed_today_by: "Nobody, regularly — Lea did it once after the 2024 account rationalisation"
-    cadence: Quarterly; annually before bank reviews
+    performed_today_by: "Lea (Treasury Analyst) — about four days each January; the review feeds Daniel's annual wallet review"
+    cadence: "Annual in January at mid-market; the modelled system runs the price check on every statement instead, so a mispricing does not wait for next January"
     inputs:
       - { name: Fee charges, source: "Bank statements (charge lines), PDF fee invoices, EDI 822 / account analysis from the US bank", arrives: Monthly, quality: Non-standard descriptions per bank }
       - { name: Agreed pricing, source: "Price schedules, emails, RCF side letters", arrives: Static, quality: Scattered; sometimes only in email }
@@ -1078,6 +1095,7 @@ digital_workers:
     reasoning:
       - "Is each charge the agreed price for that service, or list price because nobody loaded the deal?"
       - "Are we paying for accounts we closed in 2024, or services we don't use?"
+      - "What did we pay inside the FX spread and the receipt deductions — the costs that appear on no fee statement?"
       - "Which bank is expensive relative to the business we give it — and is that worth a fight given it's in our RCF?"
     tools:
       - { name: Statements and fee PDFs, access: read, use: Extract charges }
@@ -1096,6 +1114,7 @@ digital_workers:
       - { signal: Daniel's edits to tone and to which items to pursue, becomes: Relationship-aware prioritisation }
     failure_modes:
       - { mode: Wrong service mapping, guardrail: Mapping table visible and approved per bank }
+      - { mode: Only explicit fees checked — FX spreads and receipt deductions missed, guardrail: "Every review includes executed rates vs mid at trade time and receipts net of deductions; the wallet page shows the split" }
       - { mode: Aggressive disputes damaging relationship banks, guardrail: "Drafts only; human sends; relationship context shown next to each bank" }
     autonomy:
       - { level: 1, label: Fee table, scope: "Extraction and mapping", gate: "Ties to statements" }

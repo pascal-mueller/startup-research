@@ -35,6 +35,7 @@ export function Popover({ anchor, open, onEnter, onLeave, children }: {
     left = Math.max(12, left)
     let top = a.bottom + 6
     if (top + p.height > window.innerHeight - 12) top = a.top - p.height - 6
+    top = Math.max(12, Math.min(top, window.innerHeight - p.height - 12))
     setPos({ top, left })
   }, [open, anchor])
   if (!open) return null

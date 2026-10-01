@@ -30,21 +30,21 @@
   year: 2026
   url: https://www.financialprofessionals.org/interactive/research/2026-treasury-benchmarking-survey-report-people-and-policies/
   type: survey
-  note: "425 responses, fielded May 2026, primarily US. Cash and liquidity forecasting remains the most challenging task (49%) and the top priority; AI/automation entered the top five priorities (30%). A '46% of teams have fewer than five people' figure previously attributed to this report could not be verified and has been removed from the exemplar pages."
+  note: "425 responses, fielded May 2026, primarily US. Cash and liquidity forecasting remains the most challenging task and the top priority; the 49% share is as reported by AFP but was not confirmed against the primary text (R2), so quote it as 'about half of respondents' or with the explicit non-confirmation label. AI/automation entered the top five priorities (30%). A '46% of teams have fewer than five people' figure previously attributed to this report could not be verified and has been removed from the exemplar pages."
 - id: st-tis-cfv-2025
   title: 2025 Cash Forecasting & Visibility Survey
   publisher: Strategic Treasurer and TIS (vendor-sponsored)
   year: 2025
   url: https://tispayments.com/resources/2025-cash-forecasting-visibility-survey-with-strategic-treasurer
   type: survey
-  note: "200+ respondents across industries, sizes and regions. 68% report higher management expectations for forecasting; share calling forecasting 'difficult' rose from 39% (2018) to 53% (2025); 'easy' fell from 28% to 14%. Sponsored by a payments/treasury software vendor (TIS); sample not representative."
+  note: "200+ respondents across industries, sizes and regions. Rising management expectations for forecasting (the 68% share is as reported but was not confirmed against the primary text (R2), so quote it as 'roughly two-thirds, vendor-sponsored' or with the explicit non-confirmation label); share calling forecasting 'difficult' rose from 39% (2018) to 53% (2025) (confirmed); 'easy' fell from 28% to 14%. Sponsored by a payments/treasury software vendor (TIS); sample not representative."
 - id: deloitte-gts-2024
   title: 2024 Global Corporate Treasury Survey
   publisher: Deloitte
   year: 2024
   url: https://www.deloitte.com/us/en/services/consulting/articles/global-corporate-treasury-survey.html
   type: survey
-  note: "213 respondents worldwide, mostly large companies. 22% say the maturity of their cash-positioning capability requires development. (The earlier quoted phrase about forecasting being 'primarily supported by spreadsheets' could not be verified verbatim and is no longer quoted.)"
+  note: "213 respondents worldwide, mostly large companies. Cash-positioning maturity requiring development (the 22% share is as reported by Deloitte but was not confirmed against the primary text (R2), so quote it as 'about a fifth' or with the explicit non-confirmation label). (The earlier quoted phrase about forecasting being 'primarily supported by spreadsheets' could not be verified verbatim and is no longer quoted.)"
 - id: pwc-gts-2025
   title: "2025 Global Treasury Survey — Architects of change: Treasury leadership in an era of transformation"
   publisher: PwC

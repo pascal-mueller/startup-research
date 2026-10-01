@@ -86,5 +86,5 @@
   category: Risk & control
   plain: The internal rulebook that says who may decide or sign what, up to which amount.
   professional: "Board-approved schedule allocating decision and approval rights (e.g. borrowing, guarantees, hedging, bank accounts, payments, investments) to the board, CFO, treasurer and others by type and amount. Treasury's signing-authority matrix and bank mandates must be consistent with it."
-  example: "Helvetic's DoA: bank accounts opened on Daniel's proposal with CFO approval; new debt above CHF 20m needs board approval; payments above CHF 2m need one signature from treasury or the CFO."
+  example: "Helvetic's DoA: bank accounts opened on Daniel's proposal with CFO approval; new debt above CHF 20m needs board approval; payments up to CHF 2m follow four-eyes at the parent (Swiss AP or Lea prepares, Daniel releases), a single payment above CHF 2m adds Thomas (CFO) and the CEO as co-signers in addition to the four-eyes release, and above CHF 10m the board."
   related: [signing-authority-matrix, treasury-policy, collective-signature]

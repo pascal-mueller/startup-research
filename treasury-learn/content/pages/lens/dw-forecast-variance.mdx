@@ -8,9 +8,12 @@ related: [/workflows/cash-forecasting, /lens/matrix, /lens/dw-liquidity-recommen
 
 <Callout type="synthesis">
 
-Illustrative model based on the [cash forecasting](wf:cash-forecasting) workflow and its Helvetic worked example (week of 16 November).
-Lens rating: [good agent candidate](/lens/matrix#cash-forecasting). Forecasting is the most-cited treasury priority and
-challenge[](cite:afp-bench-2025-article,eact-2025) and the most crowded AI category — vendors already market ML
+Illustrative model based on the [cash forecasting](wf:cash-forecasting) workflow and its Helvetic worked example (last
+week's variances of the week of 16 November, run in the forecasting week that starts Monday 23 November).
+Lens rating: [good agent candidate](/lens/matrix#cash-forecasting). Cash and liquidity forecasting is the most-named
+challenge (62% name it their most challenging task) and the top departmental priority (73%)[](cite:afp-bench-2025,afp-top-tasks-2025),
+still on top in AFP's 2026 benchmarking[](cite:afp-bench-2026); the 2025 EACT survey ranks AI below data analytics and
+cloud[](cite:eact-2025). It is also the most crowded AI category — vendors already market ML
 forecasts, and one calls its forecasting "fully autonomous"[](cite:highradius-autonomous-2027) (a claim). This model
 deliberately starts with the *explanation* of last week, not with prediction.
 
@@ -30,21 +33,24 @@ missed.
 
 <Example title="Week of 16 November: the system's variance table and Daniel's verdicts" company="helvetic" open>
 
-Same week as the [cash forecasting](wf:cash-forecasting) worked example. The system reconciles last week's actuals to the
+The week of 16 November — the "last week" of the [cash forecasting](wf:cash-forecasting) worked example, analysed
+during the forecasting week of 23 November. The system reconciles last week's actuals to the
 bank statements (group net +0.3 vs forecast +3.9, CHF m) and proposes:
 
 | Line | Variance | Proposed type | Proposed reason and evidence | Daniel's verdict |
 |---|---|---|---|---|
 | Customer receipts, Italy | −2.1 | Timing | Largest customer's invoice open in the Italian ERP, not disputed; paid 10 days late in 7 of its last 10 invoices | **Right** |
 | Customer receipts, UK | −0.7 | Permanent | Short payment against invoice; credit-control email mentions a disputed delivery | **Right** — "and flag it to the CFO" |
-| Supplier payments, Germany | −0.3 | Timing | Two invoices added to the run after late approval (SAP run log) | **Partly** — "timing for us, but the approval delay is a process issue" |
-| Supplier payments, Switzerland | −0.18 | *Unexplained* | Two identical CHF 180k debits to the same supplier, same reference | **Right to flag** — duplicate payment; refund requested |
+| Supplier payments, Germany | −0.3 | Missing input | Two invoices added to the run after late approval (SAP run log) | **Partly** — "it lands as timing for us, but the approval delay is a process issue" |
+| Supplier payments, Switzerland | −0.18 | *Unexplained* | Two identical CHF 180k debits to the same supplier, same reference | **Right to flag** — duplicate payment; refund requested; type it "timing", the refund comes back |
 | Supplier payments, other | −0.02 | — | Below threshold | — |
 | Tax, Germany | −0.3 | Missing input | Trade-tax prepayment collected by direct debit; not in HM Deutschland's submission; same debit last quarter | **Right** — adds all four quarterly dates to the central calendar |
 | Total | **−3.6** | | Ties to statements ✓ | |
 
 The duplicate is the interesting line: the system did not guess a reason, it said "unexplained" and showed the two
-identical debits — which is how a control problem surfaces in a variance analysis.
+identical debits — which is how a control problem surfaces in a variance analysis. Note the triage: the CHF 0.02m line
+is shown with the totals but goes unexplained, while the CHF 0.18m duplicate gets investigated at a size no amount
+cutoff would surface — [why the cutoffs work that way](why:lens-variance-cutoffs).
 
 **Proposed forward adjustments:** move Italy's CHF 2.1m into week 1 (accepted); haircut Italy's receipts by 15% in
 weeks 5–13 because Italy over-forecast receipts in 8 of the last 10 weeks at the 4-week lag (accepted, with Daniel's note

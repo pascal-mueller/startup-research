@@ -24,7 +24,11 @@ people:
   - role: Treasury analyst / cash manager
     does: Collects balances, builds the position, investigates gaps, proposes transfers. (At SMEs, the head of accounting.)
   - role: Treasury manager / head of treasury
-    does: Reviews the position, decides funding and the use of surplus (concentrate, reduce borrowing, invest), second approver on transfers.
+    does: >-
+      Reviews the position, decides funding and the use of surplus (concentrate, reduce borrowing, invest), second
+      approver on transfers. When the manager is unavailable a named deputy (or the CFO) must approve:
+      [the analyst prepares but never releases](why:prepares-never-releases), and bank mandates list who may sign in
+      which combination.
   - role: Subsidiary finance managers / local accountants
     does: Explain unexpected local movements; flag large same-day payments or receipts not in any system; send statements or portal exports where the bank is not connected.
   - role: Accounts payable / payment operations
@@ -174,7 +178,7 @@ steps:
 example:
   title: "Tuesday 17 November at Helvetic Machines: EUR short in Germany, CHF that only looks like surplus"
   body: |
-    **07:30** — Lea opens the multibank connectivity tool. 11 of 12 prior-day statements are in, including HM Inc.'s (the US day closed overnight Swiss time). The twelfth is HM Suzhou's account at a Chinese domestic bank, which has no EBICS or Swift reporting to the group: as every day, Wei has emailed a portal export from Suzhou, and Lea types the CNY balance into the workbook. She refreshes the positioning workbook.
+    **07:30** — Lea opens the multibank connectivity tool. [The sequence below is fixed by the banks' clocks and cut-offs](why:morning-sequence). 11 of 12 prior-day statements are in, including HM Inc.'s (the US day closed overnight Swiss time). The twelfth is HM Suzhou's account at a Chinese domestic bank, which has no EBICS or Swift reporting to the group: as every day, Wei has emailed a portal export from Suzhou, and Lea types the CNY balance into the workbook. She refreshes the positioning workbook.
 
     | Account (12) | Opening, value-dated | Known today | Projected close | Account minimum | Status |
     |---|---|---|---|---|---|
@@ -182,7 +186,7 @@ example:
     | HM AG — EUR, Swiss bank A | EUR 6.8m | +0.9m customer receipt (value today, in the 07:45 camt.052); −1.5m to Germany | EUR 6.2m | 0.5m | OK |
     | HM AG — CHF, Swiss bank B (RCF agent) | CHF 3.5m | 0 | CHF 3.5m | 0.5m | OK |
     | HM Service AG — CHF | CHF 0.8m | 0 | CHF 0.8m | 0.2m | OK |
-    | HM Deutschland — EUR, German bank | EUR 1.5m (expected 1.8m) | −2.6m supplier run | **EUR −1.1m** | 0.25m | **Short EUR 1.35m** |
+    | HM Deutschland — EUR, German bank | EUR 1.5m (expected 1.8m; see 08:10) | −2.6m supplier run | **EUR −1.1m** | 0.25m | **Short EUR 1.35m** |
     | HM Italia — EUR | EUR 2.9m (expected 5.15m) | 0 | EUR 2.9m | 0.3m | Customer receipt missing |
     | HM France — EUR | EUR 0.9m | 0 | EUR 0.9m | 0.2m | OK |
     | HM UK — GBP | GBP 1.0m | 0 | GBP 1.0m | 0.2m | OK |
@@ -191,18 +195,18 @@ example:
     | HM Inc. — USD, global bank | USD 3.1m | −0.4m payroll funding | USD 2.7m | 1.0m | OK (US day starts ~15:00 Swiss time) |
     | HM Suzhou — CNY, Chinese bank | CNY 55m (emailed export) | 0 | CNY 55m | 5m | Not concentrated ([trapped](term:trapped-cash)) |
 
-    Group total about **CHF 41m** (illustrative rates EUR/CHF 0.935, USD/CHF 0.80, GBP/CHF 1.07), of which about CHF 6m in China. That is about CHF 2.6m below yesterday's forecast.
+    Group total about **CHF 41m** ([twelve accounts, six currencies, one conversion](why:group-total-41m); illustrative rates EUR/CHF 0.935, USD/CHF 0.80, GBP/CHF 1.07), of which about CHF 6m in China. That is about CHF 2.6m below yesterday's forecast. This group total is the anchor for next week's forecast: the [13-week strip](wf:cash-forecasting) opens from it.
 
     **08:10** — Lea explains the gap. (1) HM Italia's largest customer did not pay EUR 2.25m (≈ CHF 2.1m) due yesterday; she emails Giulia in Milan. (2) HM Deutschland's statement shows a EUR 0.3m debit by the municipality: the Gewerbesteuer (trade-tax) prepayment due 15 November, collected by [direct debit](term:direct-debit). Jens confirms it is real; nobody had put it in the forecast. (3) HM AG's CHF account shows a CHF 180k debit to a known Swiss supplier that matches a payment made last Thursday.
 
-    **08:25** — The CHF 180k debit is the fraud-shaped exception, so Lea checks before assuming anything: same beneficiary, same IBAN as the supplier master record, same invoice reference as Thursday's payment. The bank's camt.054 shows it came from a payment file uploaded twice by Swiss accounting. Not fraud: a duplicate. AP asks the supplier to refund it; Lea marks it as a timing difference in the forecast. Had the IBAN been new or the beneficiary unknown, she would have called Daniel and the bank immediately to try a recall.
+    **08:25** — The CHF 180k debit is the fraud-shaped exception, so Lea checks before assuming anything: same beneficiary, same IBAN as the supplier master record, same invoice reference as Thursday's payment. The camt.054 and the statement carry the same end-to-end and invoice references as Thursday's payment, and the payment tool shows one file uploaded twice by Swiss accounting. Not fraud: a duplicate. AP asks the supplier to refund it; Lea marks it as a timing difference in the forecast (it reappears in next week's [variance table](wf:cash-forecasting) as timing 0.2). Had the IBAN been new or the beneficiary unknown, she would have called Daniel and the bank immediately to try a recall.
 
     **08:40** — Options Lea writes up for Daniel:
     1. Transfer EUR 1.5m from HM AG's EUR account to HM Deutschland as a drawing under the intercompany framework agreement, sent as an urgent EUR payment (settled same day via the Swiss bank's euro clearing link to T2; SEPA would not be same-day guaranteed) before the Swiss bank's early-afternoon cut-off. *Recommended.*
     2. Pull EUR 1.5m from HM Italia: possible, but Italy's customer receipt is missing and it has a EUR 1.8m supplier run on Thursday.
     3. Let the German account use its EUR 2m [overdraft](term:overdraft): expensive, and the treasury policy forbids routine use of local overdrafts.
 
-    **09:10** — Daniel reads the one-page position email, approves option 1 as second signatory in the connectivity tool, and it goes out over EBICS. He then looks at HM AG's CHF 13.1m. It is above the account minimum, but it is not surplus: the forecast shows the Swiss payroll (about CHF 7m) on 25 November and the December payrolls with 13th salaries four weeks later, and the CFO's CHF 10m minimum liquidity is held at the parent. A CHF deposit would earn about 0% anyway. The CHF 35m RCF loan is in an interest period to 15 January and cannot be prepaid mid-period without break costs, so the reduction decision waits for that rollover. He leaves the cash on the current account.
+    **09:10** — Daniel reads the one-page position email, approves option 1 as second signatory in the connectivity tool, and it goes out over EBICS. He then looks at HM AG's CHF 13.1m. It is above the [account minimum](why:buffer-layers), but it is not surplus: the forecast shows the Swiss payroll (about CHF 7m) on 25 November and the December payrolls with 13th salaries in the week of 14 December — the 13-week forecast's [low point](why:week-four-trough) — and the CFO's CHF 10m minimum liquidity is held at the parent. A CHF deposit would earn about 0% anyway. The CHF 30m drawing under the RCF is in an interest period to 15 January and cannot be prepaid mid-period without break costs, so [the reduction decision waits for that rollover](why:fifteenth-rollover-repayment). He leaves the cash on the current account.
 
     **10:15** — Lea saves the day's position, emails the intercompany drawing confirmation to Claudia's team, records the three variances (Italian receipt: timing; German tax: missing input; duplicate payment: timing) and updates the 13-week forecast's week-1 actuals. **15:30** — the German transfer shows as credited in the German bank's intraday report; HM Inc.'s US account starts showing today's activity.
 judgment:
@@ -279,10 +283,10 @@ by_size:
 companies:
   kleio: >-
     Sarah checks the three banks' portals each Monday and before payroll, and types the balances into the Google Sheet.
-    After the Series B she split the cash across two Swiss banks and moved part into a CHF money-market fund, for
-    counterparty diversification after SVB rather than for yield (CHF money-market yields are about zero at a 0% SNB
-    rate). The USD that Kleio Inc. needs for US payroll and cloud bills sits in a USD government MMF at the US bank,
-    which does earn a money-market rate.
+    After the Series B she split the cash across two Swiss banks and laddered part of the CHF into short-term deposits
+    at both, for counterparty diversification after SVB rather than for yield (CHF deposit yields are about zero at a
+    0% SNB rate, and she uses no CHF money-market fund). The USD that Kleio Inc. needs for US payroll and cloud bills
+    sits in a USD government MMF at the US bank, which does earn a money-market rate.
   alpine: "Petra checks the portals daily at 08:00; on payment days (Tue/Fri) she makes sure the CHF account can cover the run. When the German subsidiary is short she asks Martin, who approves a transfer from the parent's EUR account."
   helvetic: "The worked example above. Lea builds the position; Daniel reviews and decides. There is no cash pool: concentration and funding are manual intercompany transfers. China is connected only by emailed portal exports, and CNY can't be moved freely, so it is monitored but excluded from concentration."
   globalchem: "The TMS position is ready at 07:00 Basel time; the cash & liquidity team first checks that all ~280 statements arrived and the overnight sweeps and in-house-bank postings match, then reviews ~15 exceptions a day, executes funding for accounts outside the pools, and checks the in-house bank's external position against counterparty limits. Asia-Pacific positioning is done earlier by the Singapore regional centre."
@@ -327,11 +331,13 @@ sources: [deloitte-gts-2024, swift-iso-mt9xx, zkb-iso20022-factsheet, six-sps-ca
 evidence_note: >-
   The steps and failure modes are established practice described consistently in treasury training material and
   vendor documentation. Timings, cut-off times, the worked example and company variants are illustrative synthesis.
-  Survey evidence that positioning is still immature at some large companies: 22% of Deloitte's 2024 respondents said
-  their cash-positioning capability requires development[](cite:deloitte-gts-2024). Message formats: when Swift's
-  MT/ISO 20022 coexistence for cross-border payments ended in November 2025, reporting MTs such as MT940/942 were
-  deprecated rather than withdrawn[](cite:swift-iso-mt9xx); Swiss banks have set no end date for MT940/942 to
-  corporates[](cite:zkb-iso20022-factsheet), while the 2009 camt versions end in November 2026[](cite:six-sps-cash-mgmt).
+  Survey evidence that positioning is still immature at some large companies: about a fifth of Deloitte's 2024
+  respondents (22%, as reported by Deloitte — figure not confirmed against the primary text) said their
+  cash-positioning capability requires development[](cite:deloitte-gts-2024). Message formats: corporate reporting
+  MTs such as MT940/942 were outside the scope of Swift's November 2025 cross-border milestone and are retained
+  rather than withdrawn (deprecated status in interbank scope; per bank communications, coexistence ends November
+  2028)[](cite:swift-iso-mt9xx); Swiss banks have set no end date for MT940/942 to corporates[](cite:zkb-iso20022-factsheet),
+  while the 2009 camt versions end in November 2026[](cite:six-sps-cash-mgmt).
   German trade-tax prepayment dates are statutory[](cite:gewstg-19). Euro-area banks must be able to receive SCT Inst
   since January 2025 and send it since October 2025[](cite:ecb-ipr); Swiss banks are not bound by the EU regulation,
   and SIX will discontinue euroSIC at the end of 2027[](cite:six-eurosic). CHF deposits earn about nothing because the

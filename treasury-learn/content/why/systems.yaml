@@ -1,0 +1,351 @@
+# Why notes — Systems & Data stream. Derivations behind non-obvious numbers, thresholds and decisions
+# in content/pages/systems and content/glossary/systems.yaml. Numbers must be re-derivable from
+# content/companies.yaml and the canonical facts (docs/AUTHORING.md, v2/v2.1).
+- id: systems-mt940-coexistence
+  claim: "MT940/MT942 stay in use while ISO 20022 lands"
+  short: |
+    The receivers of statement files are not banks but thousands of corporate import mappings. A bank that switched
+    MT940 off at the November 2025 CBPR+ milestone would break them all — so the reporting MTs were deprecated
+    (no longer maintained), not withdrawn, and the interbank reporting cut-off is communicated as Nov 2028.
+  detail: |
+    The 22 Nov 2025 end of MT/ISO 20022 coexistence covered cross-border interbank payments **and reporting** in
+    CBPR+[](cite:swift-iso-mt9xx): payment MTs were replaced by ISO 20022 messages, while in-scope reporting/statement
+    MTs (MT940/942/950) were left in FIN as deprecated — no longer maintained, with disincentives to follow, but
+    still processed. J.P. Morgan's ISO 20022 FAQ quotes Swift that the end-of-coexistence period "for statements and
+    reporting message is November 2028"[](cite:jpm-iso-faq-2026). Corporate-to-bank delivery is a separate contract:
+    Swiss banks quote no end date for MT940 to corporate clients[](cite:zkb-iso20022-factsheet). The migration cost
+    sits on receivers (statement import mappings, TMS/ERP parsers), which is exactly why the tail is long — the same
+    reason [camt.053](term:camt-053) and [MT940](term:mt940) run side by side at most mid-market groups today.
+  check: |
+    If a major bank published a dated MT940 switch-off for corporate delivery before 2028, or Swift withdrew the
+    reporting MTs from FIN on a fixed date, the "still supported / no fixed end date" statements would need updating.
+  terms: [mt940, camt-053, iso-20022, bank-statement]
+  sources: [swift-iso-mt9xx, jpm-iso-faq-2026, zkb-iso20022-factsheet]
+
+- id: systems-files-not-apis
+  claim: "Files, not APIs, carry most corporate banking data"
+  short: |
+    A file channel is one project per bank and then boring; an API is one project per bank *and* per data model, and
+    history, remittance detail and corporate entitlements still lag. Below mid-market the shortcut is a platform API
+    such as SIX bLink inside the accounting software — one interface, approved once in e-banking.
+  detail: |
+    Helvetic: 5 banks, 12 accounts. One scheduled [EBICS](term:ebics) job per bank collects that bank's [camt.053](term:camt-053)
+    files — one per account — covering every account at that bank in one run; the same coverage over APIs means five
+    different authentications, data models and coverage gaps (each bank's API "differs in coverage, data model and
+    authentication"). Kleio: 7 accounts
+    at 3 banks, no IT staff — the cloud accounting software pulls the two Swiss banks' data through SIX bLink, where
+    the accounting-software provider maintains the interface and Sarah approves the connection once in
+    e-banking[](cite:six-blink). So the market resolves into: files at mid-market and above, platform/aggregator APIs
+    at startup and SME scale, and APIs complementing files for intraday balance checks everywhere.
+  check: |
+    If one bank offered a standard API with full statement history, remittance detail and multi-user entitlements at
+    file-channel cost, the file preference at that bank would evaporate — watch large US banks, where API-first
+    cash platforms already work this way.
+  terms: [api-banking, bank-connectivity, camt-053]
+  sources: [six-blink]
+
+- id: systems-tms-data-first
+  claim: "TMS implementations fail on data quality first"
+  short: |
+    A TMS is a consumer of other people's data. Go-live forces decisions nobody wrote down ("is this flow
+    intercompany?") and every bank and ERP interface is a mini-project on another team's schedule — so scope, data
+    and interfaces dominate the timeline, not the software.
+  detail: |
+    The configuration inputs — account structure, [cash-flow categories](term:cash-flow-category), entity hierarchy,
+    deal types, accounting rules — are classification decisions scattered across accounting, subsidiaries and banks.
+    Each unmapped item does not block the software; it blocks the *numbers*: lines fall into "unclassified",
+    forecasts don't tie, positions don't reconcile, and trust in the system drops during parallel running. That is
+    why practitioner accounts put scope/data first and bank connectivity on the critical path (ten banks = ten
+    onboarding projects on the banks' schedules), and why the modules bought last (hedge accounting) are the ones
+    with the messiest upstream data.
+  check: |
+    If implementations were limited to one bank, one ERP and one currency, configuration — not data — would dominate.
+    Ask a customer which of the two took longer; the answer tests this claim directly.
+  terms: [tms, cash-flow-category, system-of-record]
+  sources: []
+
+- id: systems-tool-reconciliation
+  claim: "The connectivity tool needs its own completeness check"
+  short: |
+    A file that silently did not arrive leaves no trace — the position just shows yesterday's balance. Nothing else
+    in the chain notices, so the tool (or the analyst) must compare expected against received statements and today's
+    opening balance against yesterday's closing.
+  detail: |
+    Helvetic expects [11 of 12 account statements](why:systems-11-of-12-statements) each morning. The checks are
+    mechanical: did every expected file arrive (completeness), and does each account's opening balance today equal
+    its closing balance yesterday (continuity)? The failure they catch is invisible by construction — the German
+    bank returning "no data available" produces an absent file, not an error, and the wrong signal would be a
+    one-day-stale balance that looks perfectly plausible in the position. This is also why "the tool shows 10 of 11"
+    is an alarm worth building, while "the tool imported 10 files" is not.
+  check: |
+    If every bank pushed statements with per-account delivery acknowledgement and automatic retries, the manual
+    completeness check would shrink to an exception list. Some TMS products now do exactly this — ask.
+  terms: [bank-statement, bank-connectivity, reconciliation]
+  sources: []
+
+- id: systems-market-data-feed
+  claim: "Market data is a separate feed from bank data"
+  short: |
+    Banks report what happened to your money; they do not publish the reference data the whole group must value with.
+    Rates need one owner and one clock — a licensed feed or an administrator's fixing — or every report reconciles to
+    a different number.
+  detail: |
+    The same EUR 2m is converted at a morning rate for the position, revalued at the month-end [fixing](term:fx-fixing)
+    for accounting, and marked at curve rates for hedge valuation. If rates came embedded in each bank's files, five
+    banks would deliver five rate sets and the [cash position](term:cash-position) would differ from the books by
+    construction. Hence the architecture: a rate feed into the ERP/TMS (licensed separately from any terminal),
+    published fixings (ECB, SIX, NY Fed) as the accounting clock, and banks only as *execution* prices — the deal
+    rate, which includes their margin, is not a reference rate.
+  check: |
+    If bank statements carried the group's official accounting rates, the separate feed would be redundant. Watch
+    whether ERP vendors bundle rate tables — the boundary moves, but "one rate owner per purpose" does not.
+  terms: [fx-fixing, spot-fx, mark-to-market]
+  sources: []
+
+- id: systems-spreadsheets-survive
+  claim: "Spreadsheets survive next to every TMS"
+  short: |
+    A TMS standardises what repeats; treasury's hard questions do not repeat. Judgment overlays, one-off scenarios,
+    board packs and the glue between systems stay in Excel because configuring them in a system costs more than
+    building them — and the auditors' answer is an EUC inventory, not a ban.
+  detail: |
+    Derive from Helvetic's six workbooks: daily position, 13-week forecast, hedge register, intercompany loan
+    register, covenant model, bank account list. A TMS evaluation would target the first three; the covenant model
+    (tied to one credit agreement's definitions) and the board pack (format set by the CFO) are definitionally
+    one-offs. At GlobalChem — SAP treasury modules, payment factory, the lot — spreadsheets remain for scenario
+    models and edge-case reconciliations. The residue is exactly the judgment layer plus unstandardised inputs, so
+    it shrinks only when inputs arrive standardised (see why AI ranks low in the EACT survey for the same
+    reason[](cite:eact-2025)).
+  check: |
+    If forecast inputs arrived standardised and boards asked the same questions each month, the spreadsheet residue
+    would collapse to formatting. It does not — ask "what do you export to Excel even though you have the system?"
+  terms: [euc, tms, forecast-submission]
+  sources: [eact-2025]
+
+- id: systems-11-of-12-statements
+  claim: "11 of 12 statements arrive through the tool"
+  short: |
+    Helvetic's 12 operating accounts include one at a Chinese bank with no EBICS/SWIFT corporate reporting. Eleven
+    accounts are automated; the twelfth is Wei's daily emailed portal export — a connectivity gap, not a time-zone
+    one (China is ahead of CET, so its data could arrive early).
+  detail: |
+    12 operating accounts (companies.yaml) − 1 (the Chinese bank account, no corporate channel) = 11 statements
+    through the multibank tool before 07:00. Wei, HM Suzhou's finance manager, emails the portal export each
+    morning and Lea keys the figures into the workbook. The completeness check therefore expects 11 tool statements
+    **plus** one email — which is also why the "missing Chinese statement" case is chased as a connectivity/handover
+    problem and never excused as a time-zone difference.
+  check: |
+    If the Chinese bank offered corporate reporting over a standard channel and the account were onboarded, the
+    count would become 12 of 12 and the manual line would disappear. An acquisition would change the denominator
+    first.
+  terms: [bank-connectivity, bank-statement]
+  sources: []
+
+- id: systems-alpine-camt-balance
+  claim: "CHF 4.9m closing booked balance on Alpine's main CHF account"
+  short: |
+    Alpine's total cash swings between CHF 6m and 12m across nine accounts, so no single account can hold much more
+    than half of it. This morning the group holds CHF 8.4m: CHF 4.9m on the main CHF account and CHF 3.5m across the
+    other eight.
+  detail: |
+    Alpine (companies.yaml): cash CHF 6–12m, swinging with project milestone payments; 9 accounts across the Swiss
+    parent (house bank + the large Swiss bank), the German subsidiary and the US subsidiary. The main CHF account at
+    the cantonal house bank is the operating account that receives milestone receipts, so it is the largest — but
+    the German and US accounts must hold local operating balances, payroll floats and guarantee margins. Split:
+    4.9 + 3.5 = 8.4, inside the canonical range. A single-account figure of CHF 8.42m would leave under CHF 3.6m
+    for eight accounts and only fit at the very top of the swing — wrong as a routine morning.
+  check: |
+    If Alpine concentrated all group cash on one account (it does not — the subsidiaries bank locally), a single
+    balance could equal the total. A 20% project acceptance alone moves the month by ≈ CHF 0.7–0.8m.
+  terms: [camt-053, bank-statement, cash-position]
+  sources: []
+
+- id: systems-csp-attestation
+  claim: "Swift CSP self-attestation applies to bureau and Lite2 users too"
+  short: |
+    The annual Customer Security Programme self-attestation follows the BIC holder, not the access mode: Swift's own
+    corporate guidance says service-bureau users self-attest just like direct users. What a bureau or Alliance Lite2
+    removes is operating and hardening your own Swift infrastructure.
+  detail: |
+    Swift's *Customer Security Programme for corporates*: "In the case of corporates using a service bureau, each
+    corporate will still have direct responsibility for its own self-attestation, so the requirements on Alliance
+    Lite2 customers and those using a service bureau are alike"[](cite:swift-csp-corporates). The attestation is a
+    governance act — declare compliance with the Customer Security Controls Framework — while running an interface
+    is an operations act: patching, key management, hardening, monitoring. A [service bureau](term:service-bureau)
+    sells the second; the first stays with the corporate either way. The business case for indirect access is
+    therefore IT headcount and security operations, never "avoiding the attestation".
+  check: |
+    If Swift exempted indirect-access customers from self-attestation (it does not — every user with its own BIC
+    attests), the bureau rationale would stand as originally written.
+  terms: [swift, service-bureau, swift-score]
+  sources: [swift-csp-corporates, swift-lite2]
+
+- id: systems-instant-payments-24-7
+  claim: "Instant payments remove the overnight window"
+  short: |
+    SCT Inst and SIC Instant Payments settle in seconds, 24/7, and are irrevocable once sent — so bank cut-offs stop
+    bounding the day and the overnight gap stops being a free fraud-check and positioning window. Money can leave
+    irrevocably at 23:58 on a Sunday.
+  detail: |
+    EU [Instant Payments Regulation](term:sct-inst): euro-area PSPs had to receive SCT Inst by Jan 2025 and send by
+    Oct 2025, at no higher price than a standard transfer, with Verification of Payee from Oct 2025[](cite:ecb-ipr).
+    SIC Instant Payments: live Aug 2024, reception mandatory for the largest Swiss banks then and for all remaining
+    Swiss banks by end-2026[](cite:six-instant-payments). Treasury consequences: (1) "today" no longer ends at the
+    bank's cut-off — a Saturday-evening receipt lands in the weekend and must be in Monday's position; (2) an
+    approved payment to a fraudster cannot be recalled, so approval windows and call-backs matter more; (3) float
+    compression — the two-day "payment in flight" cushion disappears.
+  check: |
+    If banks batched instant payments at cut-offs like standard SCT, nothing would change. Ask a treasurer which
+    cut-offs still matter; the answer maps which rails are instant for them.
+  terms: [sct-inst, real-time-payments, cut-off-time]
+  sources: [ecb-ipr, six-instant-payments]
+
+- id: systems-three-rates-loss
+  claim: "CHF 8.2k 'FX loss' on a EUR 2m conversion"
+  short: |
+    Bought at the deal rate 0.9362, translated at the month-end fixing 0.9321: 2m × 0.0041 = CHF 8,200 of
+    revaluation difference. The bank's margin (0.9362 vs the 0.9350 screen = CHF 2,400) is already inside the deal
+    rate. Economically nothing was lost — the euros were bought for the European payment run and will be spent.
+  detail: |
+    Three rates, one pair: screen (indicative mid) 0.9350; deal rate 0.9362 after the bank's margin; month-end ECB
+    fixing 0.9321. On EUR 2m: screen CHF 1,870,000; deal CHF 1,872,400; accounting CHF 1,864,200. The EUR balance
+    bought at 0.9362 is revalued at 0.9321 for the month-end result → CHF 8,200 unrealised difference, of which
+    CHF 2,400 is the bank's margin and the rest the market's move between deal date and month-end. Multiply by the
+    open positions and the residual is the "FX loss" that surprises the CFO — a revaluation effect, not a decision
+    gone wrong. See the three-rates treatment on [Market data](/systems/market-data).
+  check: |
+    If month-end revaluation used deal rates, or the conversion happened on the last business day of the month, the
+    difference would vanish. If the same gap persists after the currency is spent, it is not a rate-source problem —
+    it is a real economic loss.
+  terms: [fx-fixing, spot-fx, mark-to-market]
+  sources: []
+
+- id: systems-kleio-runway
+  claim: "Runway ≈ 24 months in the Google Sheet"
+  short: |
+    CHF 22m cash ÷ CHF 0.9m monthly net burn ≈ 24 months. The arithmetic is trivial; the judgment is that January and
+    July enterprise prepayments inflate the balance, so the honest number is the burn-adjusted runway line, not
+    balance ÷ burn on any given Monday.
+  detail: |
+    Kleio (companies.yaml): cash ≈ CHF 22m from a CHF 35m Series B raised 18 months ago; net burn ≈ CHF 0.9m/month;
+    ARR CHF 14m. 22 ÷ 0.9 ≈ 24.4 months. But enterprise customers pay annually in advance — the big January and
+    July inflows make the balance look better than the underlying burn for half of every year — and each hire at
+    CHF 150–180k fully loaded moves the line by weeks. So Sarah's Monday refresh recalculates the line rather than
+    reading the balance, and the number the board hears is the one after the headcount plan, not before.
+  check: |
+    If prepayments were spread evenly through the year and headcount were frozen, balance ÷ burn would equal runway.
+    A delayed renewal or a slipped Series C moves the conversation, not the arithmetic.
+  terms: [cash-runway, burn-rate]
+  sources: []
+
+- id: systems-swiss-2026-date
+  claim: "14 or 21 November 2026 — two Swiss switch-off dates"
+  short: |
+    SIX, which sets the Swiss Payment Standards, dates the single-version switch at 14 Nov 2026; each bank runs its
+    own platform release, and several bank letters say 21 Nov 2026. The date that creates work for a treasurer is
+    the one in their own bank's letter.
+  detail: |
+    The Swiss Payment Standards 2009 message versions (pain.001.001.03, camt.05x.001.04) run alongside the 2019
+    versions until the November 2026 standard release; SIX's own documents date the switch at **14 November
+    2026**[](cite:six-sps-cash-mgmt), and some banks communicate **21 November 2026** as their platform
+    date[](cite:zkb-iso20022-factsheet) (21 Nov 2025 was the *previous* release, a common source of confusion).
+    Both dates are "November 2026" — but when interviewing, quote the date on the interviewee's bank letter, because
+    that is the deadline their ERP/TMS upgrade had to meet.
+  check: |
+    If banks aligned their platform releases with the standard's release date, the two dates would coincide. One
+    bank's schedule slipping does not move the standard.
+  terms: [iso-20022, pain-001]
+  sources: [six-sps-cash-mgmt, zkb-iso20022-factsheet]
+
+- id: systems-swiss-2009-sunset
+  claim: "Why the November 2026 Swiss message-version switch creates work"
+  short: |
+    Until 14 November 2026 Swiss banks accept both the 2009 and 2019 ISO 20022 message versions; after the switch
+    only 2019. A Swiss payer whose ERP still emits pain.001.001.03 gets its payment files rejected at the bank —
+    a hard stop on the payment run, not a warning.
+  detail: |
+    Under the Swiss Payment Standards, banks and software suppliers must accept and deliver the 2009 versions
+    (pain.001.001.03, pain.002.001.03, camt.05x.001.04) alongside the 2019 versions (pain.001.001.09,
+    camt.05x.001.08) until the November 2026 standard release; afterwards only 2019[](cite:six-sps-cash-mgmt).
+    So the work is not "ISO 20022" as a concept — Swiss companies have been on ISO 20022 all along — but the
+    *version*: every payment-file generator (ERP payment run, TMS, connectivity tool) must be upgraded and its
+    output tested with each bank before the date, and the dates differ by bank (SIX: 14 Nov 2026; some bank
+    letters: 21 Nov 2026[](cite:zkb-iso20022-factsheet), see [why two dates](why:systems-swiss-2026-date)).
+    Why a hard stop: the bank's receiving system validates the message version, an old-version pain.001 is
+    rejected, and a rejected file on a payroll or supplier day is an immediate cash problem. The inbound side
+    flips too — statements arrive as camt.05x.001.08 only, so import mappings written for v04 must be ready or
+    the morning statement load fails on day one.
+  check: |
+    If banks ran a soft grace period past the switch-off, the deadline would bend; historically these parallel
+    phases end hard. One bank's platform date slipping does not move the standard.
+  terms: [iso-20022, pain-001]
+  sources: [six-sps-cash-mgmt, zkb-iso20022-factsheet]
+
+- id: systems-aggregator-coverage
+  claim: "Aggregator APIs don't remove the per-bank projects"
+  short: |
+    An aggregator is one API in front of many banks — but coverage, history depth, refresh rate and liability
+    follow the aggregator's own contracts with each bank. The day you need full remittance detail, payment
+    approval or a bank it covers poorly, you are back to per-bank work (reasoning, not a survey finding).
+  detail: |
+    What an account-information aggregator (the Tink/Plaid/Codat class, used by many cloud cash platforms)
+    consolidates: one authentication, one data model, and the bank-by-bank integration work done by the vendor.
+    What it does not: (1) **depth** — balances and transactions yes, but full remittance detail, batch
+    breakdowns and statement-grade closing balances often not, which is exactly the data
+    [reconciliation](term:reconciliation) and cash application need; (2) **coverage** — behind the one API each
+    bank is still a separate integration on the vendor's roadmap, and its outages arrive as your missing data;
+    (3) **payments and entitlements** — aggregator connections are typically read-only account information:
+    bulk payment files, multi-user approval and corporate entitlements stay with per-bank channels
+    ([EBICS](term:ebics), Swift, host-to-host); (4) **consent and liability** — open-banking consents are
+    time-limited and retail-shaped, and the liability for missing data sits in the aggregator's contract, not
+    the bank's. So the aggregator removes the plumbing project for visibility — the route Kleio-style platforms
+    take[](cite:six-blink) — but not the data-quality project, and not the payment-side project.
+  check: |
+    If an aggregator offered payment initiation with corporate approval workflows, statement-grade data depth
+    and contractual liability for missing data at file-channel cost, the per-bank case would shrink to pricing.
+    Watch US API-first cash platforms and open-finance regulation extending PSD2.
+  terms: [api-banking, open-banking, bank-connectivity]
+  sources: []
+
+- id: systems-postpone-on-missing-statement
+  claim: "Postponing the EUR 2m transfer while the statement is missing"
+  short: |
+    The account shows a stale, provisional balance (EUR 3.1m from the portal). Moving EUR 2m out on top of
+    unverified bookings risks an overdraft on the group's biggest EUR account, so a discretionary transfer waits
+    for the 10:20 statement — two hours of delay against an avoidable broken payment run.
+  detail: |
+    The arithmetic is thin: EUR 3.1m provisional − EUR 2.0m transfer = EUR 1.1m of headroom, and the provisional
+    figure excludes anything booked but not yet shown in the intraday view (supplier batch, direct debits).
+    If unshown items exceed ≈ EUR 1.1m the account goes overdrawn — overdraft interest plus an emergency top-up
+    cost more than the delay. The decision rule practitioners describe: **pay and fund on known balances; move
+    discretionary amounts only on booked balances.** Daniel postpones rather than cancels because the transfer
+    (a funding/concentration move) is timing-flexible, and the statement is expected within hours. This is also
+    why the completeness check exists at all — see [the tool's own reconciliation](why:systems-tool-reconciliation).
+  check: |
+    If the transfer were time-critical (a payroll release before the cut-off), it would go on the provisional
+    figure on Daniel's explicit call. The rule governs discretionary moves; a rule that stopped payroll would be
+    wrong.
+  terms: [cash-position, bank-statement, value-date]
+  sources: []
+
+- id: systems-automation-residue
+  claim: "Why automation targets sit at 90–95%, not 100%"
+  short: |
+    Below ~90% the morning is exception work; above ~95% the rule maintenance costs more than the residue it
+    removes. The last few percent are long-tail lines — manual journals, intercompany, one-off counterparties,
+    bank-proprietary fee codes — that no rule set covers economically (field pattern, not a survey figure).
+  detail: |
+    Classification and reconciliation rules automate the repeating patterns: payroll, rent, known customer
+    receipts, standard fees. The residue is definitionally non-standard: a new counterparty's first payment, a
+    bank's proprietary fee code, a manual journal, an intercompany transfer booked on one side only, a changed
+    name. Each percentage point above ~95% needs rules so specific they break the next time a bank changes its
+    text — which is exactly [rule decay](term:bank-transaction-code). So practitioners set the target where the
+    expected manual effort (the residue each morning) roughly equals the expected rule-maintenance effort, and
+    report numbers like "91% of lines classified automatically" or "93% auto-reconciled in a normal week" as
+    healthy, not aspirational. The number matters less than its stability: a sudden drop is how mapping decay
+    shows up (see the [rule-decay example](/systems/data-quality)).
+  check: |
+    If a bank's codes were fully standardised and counterparties stable, the ceiling would rise towards 100%.
+    Ask what the residue consists of — if the answer is "everything unusual", the target is set right.
+  terms: [bank-transaction-code, posting-rules, stp]
+  sources: []

@@ -42,5 +42,5 @@
   category: Forecasting
   plain: The cash forecast each subsidiary's finance team sends to group treasury, usually in a fixed template on a fixed day.
   professional: "The periodic (weekly or monthly) delivery by each reporting entity of expected receipts and payments by currency and category for the forecast horizon, via an Excel template, a TMS/forecasting portal or an ERP extract. Its quality depends on local finance's incentives, knowledge of AR/AP timing and time available; group treasury aggregates, challenges and adjusts it."
-  example: "Every Tuesday by 12:00 Giulia (HM Italia) uploads her 13-week template; Lea chases the two entities that are late, notices Italy's receipts are identical to last week's, and asks Giulia whether she rolled the file forward without updating it."
+  example: "Every Tuesday by 12:00 Giulia (HM Italia) uploads her 13-week template; by then seven of the eight subsidiaries have usually sent theirs, and Lea chases the last one — at Helvetic typically HM France, which lands Wednesday morning. She notices Italy's receipts are identical to last week's and asks Giulia whether she rolled the file forward without updating it."
   related: [short-term-forecast, direct-method, variance-analysis, fpa]

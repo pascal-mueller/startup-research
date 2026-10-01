@@ -22,13 +22,13 @@ frequency: >-
   covenants; transaction checks whenever needed. Annual at SMEs with bank covenants tested on the statutory accounts.
 people:
   - role: Treasury manager (at large groups, corporate finance)
-    does: Owns the covenant model and headroom forecast; interprets definitions with legal; prepares the certificate; raises early warnings; leads lender discussions on waivers or amendments.
+    does: Reviews the covenant calculation, owns the headroom forecast and the covenant model; interprets definitions with legal; prepares the certificate; raises early warnings; presents the ratios to the agent and banks and leads discussions on waivers or amendments.
   - role: Treasury analyst
-    does: Maintains the model, pulls figures, runs scenarios, checks baskets before transactions.
+    does: Supplies the net-debt schedule from the debt register and cash forecast, runs scenarios and checks baskets before transactions.
   - role: Head of group accounting / controller
-    does: Supplies consolidated figures and the adjustments' underlying data; agrees the calculation; answers auditors.
+    does: Computes the LTM covenant ratios from the consolidated figures and the adjustment detail; agrees the calculation with treasury; answers auditors.
   - role: FP&A
-    does: Supplies the EBITDA forecast and downside scenarios for future test dates.
+    does: Supplies **forecast** EBITDA and downside scenarios for future test dates — never LTM actuals, which come from group accounting.
   - role: CFO
     does: Signs the compliance certificate; decides on actions when headroom is thin; fronts negotiations with banks.
   - role: Legal counsel
@@ -78,8 +78,11 @@ steps:
     detail: >-
       Translate each definition into a calculation: which reported lines make up EBITDA, which adjustments are allowed
       (exceptional items, pro forma acquisitions, caps), what counts as debt (bank loans, bonds, leases, guarantees,
-      pension deficits?) and as cash (freely available only?), how foreign-currency debt is translated, and what
+      pension deficits — and at test dates derivative receivables and [ISDA](term:isda) close-out netting) and as cash
+      (freely available only? how much restricted cash is deducted?), how foreign-currency debt is translated, and what
       [frozen GAAP](term:frozen-gaap) or accounting-change clauses say. Document every interpretation and who agreed it.
+      At Helvetic, [leases stay out of net debt](why:covenant-excludes-leases) — consistent with Swiss GAAP FER, under
+      which operating leases are off balance sheet.
     judgment: >-
       Ambiguous definitions are common. Choosing a reading that the company can defend to lenders and auditors — not the
       most flattering one — is the core skill.
@@ -94,13 +97,15 @@ steps:
       hold, ask the owners (tax, legal, subsidiaries).
     manual: Adjustment detail is gathered from accountants by email and pasted into the model.
   - title: Calculate and reconcile
-    who: Treasury analyst → treasury manager; reviewed by head of accounting
+    who: Head of group accounting computes the LTM ratios; the treasury analyst supplies the net-debt schedule; the treasury manager reviews and presents to the banks
     where: Excel covenant model
     detail: >-
       Compute each ratio ([leverage](term:leverage-ratio), [interest cover](term:interest-cover), sometimes gearing,
       [equity ratio](term:equity-ratio) or minimum liquidity), reconcile covenant EBITDA and net debt to the published
       figures line by line, and compare with the previous test and the last forecast. Any unexpected movement is
-      explained before the number leaves the building.
+      explained before the number leaves the building. Group accounting owns the LTM numbers (they come out of the
+      consolidation); treasury owns the net-debt schedule and the forecast view, in which FP&A's EBITDA forecast is the
+      only FP&A input.
     judgment: Whether an adjustment is supportable (e.g. is a recurring "one-off" still exceptional?).
   - title: Prepare, sign and deliver the compliance certificate
     who: Treasury manager prepares; CFO (and/or a director) signs
@@ -164,20 +169,33 @@ example:
   body: |
     **Covenants (from companies.yaml):** net debt / EBITDA ≤ 3.25x and interest cover ≥ 4x, tested at 30 June and 31 December. Definitions (illustrative): EBITDA per Swiss GAAP FER consolidated accounts, plus exceptional items and pro forma EBITDA of acquired businesses for the full 12 months; net debt = financial debt minus cash "freely available to the group"; operating leases are off balance sheet under FER, and the agreement excludes IFRS 16 lease liabilities if the group ever switches.
 
-    **Part 1 — the year-end test (routine).** Lea updates the model with Marco's forecast:
+    **Part 1 — the year-end test (routine).** Claudia's group accounting team computes the LTM covenant ratios from the consolidation, Lea supplies the net-debt schedule from the debt register and cash forecast, and Marco's FP&A forecast fills only the forward columns; Daniel reviews the result before it goes to the agent:
 
     | | 30 Jun 2026 (certificate) | 30 Sep 2026 (estimate) | 31 Dec 2026 (forecast) | Limit |
     |---|---|---|---|---|
     | LTM covenant EBITDA (CHF m) | 80 | 78 | 76 | |
-    | Net debt (CHF m) | 112 | 106 | 104 | |
-    | Net debt / EBITDA | 1.40x | 1.36x | 1.37x | ≤ 3.25x |
+    | Net debt (CHF m) | 112 | 106 | 137 | |
+    | Net debt / EBITDA | 1.40x | 1.36x | 1.80x | ≤ 3.25x |
     | Interest cover (EBITDA / net finance charges ≈ 3.4) | 23x | 23x | 22x | ≥ 4x |
 
-    At 1.37x the margin stays in the lowest step (0.85%, up to 1.50x). With CHF rates near zero, interest cover is not the constraint; leverage is.
+    The 30 September figures are the canonical ones: EBITDA ≈ CHF 78m, net debt ≈ CHF 106m, leverage ≈ 1.36x (106/78). Net debt is [what the lenders count](why:net-debt-lender-view): CHF 100m bond + CHF 60.2m drawings (the pre-rollover state) − ≈ CHF 54m of group cash. The December forecast swings because net debt tracks cash, not debt: cash drifts from ≈ CHF 54m at the September close to ≈ CHF 41m and ≈ CHF 35m in mid/late November as Q4 working capital builds (the daily position and the 13-week forecast show the same group cash), and the 13-week forecast puts it at the seasonal low of ≈ CHF 25m at the Q4 close (December payrolls with 13th salary, a quiet receipts month). With drawings at CHF 30m + EUR 35m ≈ CHF 62.7m after the 15 October rollover (so ≈ CHF 137m of the CHF 200m RCF is undrawn): CHF 100m + 62.7m − 25m ≈ CHF 137m net debt at year-end. The same forecast has cash back above CHF 50m by late February as the Q4 collections land, and Daniel pencils in a CHF 15m reduction of the CHF loan at the 15 January rollover — so the mid-2027 forecast falls back below CHF 100m.
+
+    At 1.80x the December certificate steps the margin to 1.05% (leverage-based grids reset on the certificate); if the Q1 collections land as forecast, the half-year test is back below 1.50x and 0.85% returns. With CHF rates near zero, interest cover is [not the constraint](why:cover-not-binding); leverage is — and it is seasonal, which is why the forecast columns matter as much as the certificate.
 
     One open interpretation: the month-end figures count all cash, including about CHF 7.9m in HM Suzhou that can only leave China as an annual dividend. Is that "freely available"? Excluding it would give 1.46x at 30 September — irrelevant today, but worth 0.1x in the acquisition case below. Daniel and Claudia agree to exclude it from the forecasts (the prudent reading) and to ask the agent informally how the lenders read the clause.
 
-    **Part 2 — "Project Lario" (not routine).** Thomas is negotiating to buy an Italian automation company for EUR 95m (≈ CHF 89m) plus CHF 3m costs, closing March 2027, funded by an RCF drawing. Target LTM EBITDA ≈ CHF 9m. Daniel checks the agreement first: acquisitions are permitted without consent if pro forma leverage is below 2.75x and no default is continuing — so the deal must be tested before signing.
+    **Part 2 — "Project Lario" (not routine).** Thomas is negotiating to buy an Italian automation company for EUR 95m (≈ CHF 89m) plus CHF 3m costs, closing March 2027, funded by an RCF drawing. Target LTM EBITDA ≈ CHF 9m. Daniel checks the agreement first: acquisitions are permitted without consent if pro forma leverage is below 2.75x — the [consent test that bites before the covenant does](why:acquisition-consent-test) — and no default is continuing, so the deal must be tested before signing.
+
+    **Where the base case comes from (CHF m):**
+
+    | | LTM EBITDA | Net debt |
+    |---|---|---|
+    | Reported LTM (Helvetic, FER accounts) | 74 | — |
+    | Net debt path: 106 (Sep) → ≈ 137 (Dec, Q4 cash low) → ≈ 98 (mid-2027: Q1 collections land, CHF 15m repaid at the 15 Jan rollover) | — | 106 → ≈ 98 |
+    | HM Suzhou cash not counted as "freely available" | — | +7.9 |
+    | Project Lario funding (EUR 95m ≈ CHF 89m + CHF 3m costs) | — | +92 |
+    | Pro forma LTM EBITDA of the target (the definition allows the full 12 months) | +9 | — |
+    | **Covenant figures at 30 Jun 2027** | **83** | **≈ 198** |
 
     | 30 Jun 2027 test | Base | Machine-tool downturn | Severe |
     |---|---|---|---|
@@ -189,12 +207,12 @@ example:
     | EBITDA fall to breach | 27% | 2% | — |
     | Margin step | 1.30% (was 0.85%) | 1.55% | — |
 
-    Without the pro forma clause (if only post-closing EBITDA counted), the base case would be 2.68x — only just inside the 2.75x acquisition condition. Undrawn RCF after closing would fall to about CHF 45m — with the bond due in 2028.
+    The downturn and severe rows add CHF 10–15m of working-capital outflow to net debt. The pro forma clause is worth about 0.3x of leverage — the [difference between the three conventions](why:pro-forma-ebitda-effect): without it, counting only the target's post-closing months (Apr–Jun 2027, ≈ CHF 2.3m of its CHF 9m) the base case would be ≈ 2.6x (198/76.3); ignoring the target's earnings entirely until a full LTM has elapsed gives 2.68x (198/74). Either way, only just inside the 2.75x acquisition condition. Undrawn RCF after closing would fall to about CHF 45m (CHF 200m − CHF 155m drawn: the ≈ CHF 63m after the October rollover plus the CHF 92m deal drawing) — with the bond due in 2028.
 
     **Daniel's memo to Thomas (key lines):**
     1. The deal passes the 2.75x acquisition test in the base case (2.39x), but a downturn of the kind machine-tool makers saw in 2009 or 2020 would leave almost no headroom, and the severe case breaches.
-    2. Pricing: the step to 1.30% costs roughly CHF 0.7m a year more on ~CHF 155m of drawings.
-    3. Fold it into the planned [amend-and-extend](wf:credit-facility-management): ask for a larger facility (CHF 250m) and an "acquisition spike" — leverage limit 3.75x for two test dates after a material acquisition — while the company is still at 1.4x and negotiating from strength.
+    2. Pricing: the step from 0.85% to 1.30% (the half-year certificate would be back at 0.85% without the deal) costs roughly CHF 0.7m a year more on ~CHF 155m of drawings — the ≈ CHF 63m already drawn plus CHF 92m new: 0.45% × 155m ≈ CHF 0.7m.
+    3. Fold it into the planned [amend-and-extend](wf:credit-facility-management): ask for a larger facility (CHF 250m) and an "acquisition spike" — leverage limit 3.75x for two test dates after a material acquisition — while current leverage is low (1.36x in September; the seasonal December peak is only 1.80x) and negotiating from strength.
     4. Consider EUR 20–30m of the price as deferred consideration or a vendor loan to limit day-one net debt.
     5. Tell the four banks about the deal before signing, not after.
 

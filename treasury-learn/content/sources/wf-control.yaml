@@ -29,4 +29,34 @@
   year: 2023
   url: https://www.fedlex.admin.ch/eli/cc/27/317_321_377/en
   type: official
-  note: "Art. 716a para. 1 no. 3 makes the organisation of accounting, financial control and financial planning a non-transferable duty of the board of directors — the reason a Swiss board (or its audit committee on its behalf) approves the treasury policy. Art. 725 (revised 1 Jan 2023) requires the board to monitor solvency and act if insolvency threatens. Art. 728a para. 1 no. 3 requires the statutory auditor in an ordinary audit to confirm that an internal control system (IKS/ICS) exists."
+  note: "Art. 716a para. 1 no. 3 makes the organisation of accounting, financial control and financial planning a non-transferable duty of the board of directors — the reason a Swiss board (or its audit committee on its behalf) approves the treasury policy. Art. 725 (revised 1 Jan 2023) requires the board to monitor solvency and act if insolvency threatens. Art. 728a para. 1 no. 3 requires the statutory auditor in an ordinary audit to examine whether an internal control system (IKS/ICS) exists (the statutory verb is 'examines whether', not 'confirms that')."
+
+# ---- added in the wf-control revision pass (verified against the original publishers) ----
+- id: fer-27-derivatives
+  title: "Swiss GAAP FER 27 — Derivative financial instruments"
+  publisher: Swiss GAAP FER (Foundation for Accounting and Reporting Recommendations)
+  year: 2013
+  url: https://www.fer.ch/en/standards/swiss-gaap-fer-27-derivate-finanzinstrumente/
+  type: standard
+  note: "Standard summary (current version in force for years beginning 1 Jan 2013): derivatives meeting the asset/liability definition are recognised in the balance sheet; derivatives for hedging purposes of balance-sheet items may be measured at fair value (actual values) or on the same valuation principles as the hedged position, with value changes recognised in the result of the period; derivatives without hedging purpose at actual values, value changes in the period result. Open derivatives are disclosed in the notes, structured by underlying (interest rates, FX, equity, other) and by purpose. FER 27 does not require effectiveness testing."
+- id: pwc-fer-financial-instruments-2025
+  title: "Swiss GAAP FER — Financial instruments"
+  publisher: PwC
+  year: 2025
+  url: https://www.pwc.ch/en/publications/2025/Swiss-GAAP-FER-Financial-Instruments.pdf
+  type: practitioner
+  note: "PwC accounting guidance: Swiss GAAP FER has no comprehensive financial-instruments standard — FER 27 covers derivatives and 'there is limited explicit guidance included in Swiss GAAP FER around recognition, measurement, presentation and disclosure of non-derivative financial instruments'. On hedge accounting: 'in Swiss GAAP FER there is no formal documentation requirement of the hedge relationship and there is no requirement for testing effectiveness'; PwC nevertheless recommends documenting hedged item, instrument and effectiveness to support the accounting-policy choice."
+- id: psr-app-scam-reimbursement
+  title: "APP fraud reimbursement protections (Faster Payments reimbursement requirement, live 7 October 2024)"
+  publisher: Payment Systems Regulator (UK)
+  year: 2025
+  url: https://www.psr.org.uk/information-for-consumers/app-fraud-reimbursement-protections/
+  type: official
+  note: "Mandatory APP-scam reimbursement covers 'consumers': individuals, microenterprises (fewer than 10 persons, ≤ EUR 2m annual turnover or balance sheet) and charities with income below GBP 1m — larger corporates are outside the scheme. Maximum GBP 85,000 per claim, optional excess up to GBP 100 (not for vulnerable consumers), claims within 13 months, reimbursement within 5 business days (up to 35 with 'stop the clock'). Excludes international payments, cheques/cash, civil disputes and unauthorised-payment cases."
+- id: us-reg-e-consumer-eft
+  title: "Regulation E — Electronic Fund Transfers (12 CFR Part 1005)"
+  publisher: US Consumer Financial Protection Bureau / eCFR
+  year: 2025
+  url: https://www.ecfr.gov/current/title-12/chapter-X/part-1005
+  type: official
+  note: "Regulation E implements the Electronic Fund Transfer Act 'for the protection of individual consumers'. The EFT definition excludes 'any transfer of funds through Fedwire or through a similar wire transfer system that is used primarily for transfers between financial institutions or between businesses' (§1005.3(c)(3)). Business accounts therefore have no Reg E error-resolution or liability caps; commercial wires run on UCC Article 4A and the bank's agreed security procedures."

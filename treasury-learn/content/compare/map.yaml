@@ -35,7 +35,7 @@
   cells:
     kleio: "CHF 22m, mostly in CHF sight accounts earning around zero at a 0% SNB rate. Sarah laddered CHF 8m into 3- and 6-month term deposits at the two Swiss banks and keeps USD surplus in a government MMF at the US bank; the board approved a one-page investment policy."
     alpine: "Rarely surplus for long: cash first repays the drawn part of the credit line. When milestones arrive together, Petra places CHF 2–3m for a month as a term deposit at the house bank."
-    helvetic: "Group cash of CHF 30–45m is used to reduce RCF drawings before anything is invested — repaying a SARON-based loan beats a zero-yield deposit. Minimum group cash of CHF 10m stays in sight accounts."
+    helvetic: "Group cash swings with working capital (≈ CHF 55m at the September close, ≈ CHF 25m at the Q4 low) and is used to reduce RCF drawings before anything is invested — repaying a SARON-based loan beats a zero-yield deposit. Minimum group liquidity of CHF 10m stays in sight accounts."
     globalchem: "Priya's team invests EUR 300–600m of surplus in overnight and term deposits and EUR/USD MMFs within counterparty limits set by rating, and a small securities portfolio under a board-approved investment policy; weekly limit utilisation report."
   takeaway: "Safety and liquidity come before yield at every size; the real question is usually 'repay debt or hold cash', and what limits apply to each bank."
 
@@ -45,7 +45,7 @@
   cells:
     kleio: "USD revenue (~40%) is partly offset by USD cloud and US payroll costs, a natural hedge. Sarah converts surplus USD and EUR to CHF at spot a few times a year; no derivatives."
     alpine: "45% of revenue in EUR, costs mostly CHF. A board minute allows Martin to hedge signed EUR projects with forwards at the large Swiss bank; Petra books them in a spreadsheet. Unsigned pipeline is not hedged."
-    helvetic: "Rolling EUR/CHF forwards within a 60–90% band for the next quarter; USD and GBP hedged more lightly; CNY exposure accepted. Lea computes net exposure per currency from the 13-week forecast; Daniel executes; hedge accounting under IFRS 9."
+    helvetic: "Rolling EUR/CHF forwards under graded bands by quarter (60–90% for the next rolling quarter down to 0–40% four quarters out); USD and GBP hedged more lightly; CNY exposure accepted. Lea computes net exposure per currency from the forecast; Daniel executes; hedge accounting under Swiss GAAP FER (simpler than GlobalChem's IFRS 9)."
     globalchem: "Jonas's team nets exposures from ~30 currencies through the in-house bank, hedges forecast flows 12 months ahead in layers and balance-sheet positions with FX swaps, uses NDFs for restricted currencies, and runs a 95% CFaR report monthly."
   takeaway: "The mechanics (a forward is a forward) do not change with size; what changes is who measures the exposure, whether a written policy exists, and whether netting happens before hedging."
 
@@ -75,7 +75,7 @@
   cells:
     kleio: "Nina prepares supplier payments in each bank's e-banking twice a month; Sarah approves in the bank portal (collective signature). Payroll through the fiduciary/payroll provider."
     alpine: "Petra creates twice-weekly payment runs in Business Central and uploads the pain.001 file via EBICS; bank-side dual signature — Petra plus one signatory up to CHF 250k, Martin as one of two above."
-    helvetic: "Each subsidiary runs its own AP payments from its ERP through the connectivity tool; Swiss payments are prepared by accounting and approved by Daniel or Thomas as second signatory; treasury payments (loans, FX settlements) prepared by Lea, released by Daniel."
+    helvetic: "Each subsidiary runs its own AP payments from its ERP through the connectivity tool; Swiss payments are prepared by accounting and released by Daniel up to CHF 2m (four eyes), with Thomas (CFO) and the CEO co-signing above CHF 2m; treasury payments (loans, FX settlements) prepared by Lea, released by Daniel."
     globalchem: "Most European payments leave through Marta's payment factory in Kraków (POBO from the in-house bank); treasury payments via SAP and SWIFT; sanctions screening and payment-release rules in the TMS; exceptions handled by payment operators."
   takeaway: "Treasury rarely creates operational payments — AP does. Treasury designs the controls, owns the bank channels and releases the unusual and financial payments."
 

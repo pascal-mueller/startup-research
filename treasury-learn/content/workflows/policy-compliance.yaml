@@ -60,7 +60,8 @@ systems:
 data:
   - name: Policy limits
     source: Treasury policy and appendices
-    notes: E.g. max exposure per bank by rating; hedge-ratio ranges by horizon; approved instruments; minimum liquidity; maximum tenor for deposits.
+    notes: E.g. max exposure per bank by rating; hedge-ratio ranges by horizon; interest-rate-risk limits (gap or DV01
+      caps, benchmark and tenor caps); approved instruments; minimum liquidity; maximum tenor for deposits.
   - name: Current exposures
     source: Cash position, deal register, derivative valuations
     notes: Counterparty exposure usually = balances + deposits + positive derivative market value (definitions vary; some add a potential-future-exposure add-on).
@@ -81,7 +82,8 @@ steps:
     when: Annually (often ahead of the budget or the audit-committee cycle), and after major events
     detail: >-
       Update the sections — scope and objectives; roles and delegation of authority; liquidity (minimum cash, headroom);
-      funding; FX and interest-rate risk (what to hedge, ranges by horizon, instruments); counterparty and investment
+      funding; FX and interest-rate risk (what to hedge, ranges by horizon, instruments; for rate risk also gap or
+      DV01 limits, benchmark and tenor caps); counterparty and investment
       limits; bank accounts, mandates and signatories; payment controls; treasury systems and access; reporting;
       breach handling. Changes are driven by what happened: a new currency after an acquisition, a bank downgrade,
       breaches that showed a limit is unworkable.
@@ -165,18 +167,22 @@ steps:
     when: Year-end audit; internal audit cycle
     detail: >-
       External auditors test the key treasury controls as part of the internal control system (in a Swiss ordinary
-      audit, the auditor must confirm that an internal control system exists); internal audit reviews the treasury
+      audit, the statutory auditor examines whether an internal control system exists — Art. 728a(1)(3) CO); internal
+      audit reviews the treasury
       function in more depth. Typical findings: missing independent deal confirmation, outdated bank mandates,
       limits not monitored in periods, users with conflicting rights. Treasury agrees actions and deadlines and
-      reports progress.
+      reports progress. Testing is [on samples, not exhaustive](why:compliance-sample-testing) — that is also why
+      preventive controls matter more than the tests.
     manual: Pulling evidence (screenshots of approvals, signed confirmations, limit reports for sample dates) is manual at most companies.
 example:
   title: "Helvetic Machines, Q3 compliance check for the audit committee"
   body: |
-    Helvetic's policy (approved by the board each December) requires, among other things: hedge 60–90% of next-quarter
-    forecast EUR net inflows with forwards or plain-vanilla options; trade only with RCF banks; per-bank exposure limits
+    Helvetic's policy (approved by the board each December) requires, among other things: hedge
+    [60–90% of next-quarter forecast EUR net inflows](why:hedge-bands-graded) with forwards or plain-vanilla options;
+    trade only with RCF banks; per-bank exposure limits
     (illustrative: CHF 25m for the two Swiss banks, CHF 20m for the global bank, CHF 10m for the German bank); minimum
-    cash CHF 10m and liquidity headroom of at least CHF 75m; joint signature by two for all bank payments; deals confirmed
+    cash CHF 10m and liquidity headroom of at least CHF 75m; [payments up to CHF 2m prepared by Lea and released by
+    Daniel (four-eyes), above CHF 2m co-signed by the CFO and the CEO](why:four-eyes-threshold); deals confirmed
     by someone other than the dealer.
 
     In October Lea prepares the quarterly compliance table for Daniel:
@@ -184,18 +190,28 @@ example:
     | Policy item | Limit | Position / finding | Status |
     |---|---|---|---|
     | Exposure, German bank | CHF 10m | CHF 10.1m on 30 Sep after a EUR 3.1m receipt; cured 1 Oct | Passive breach, cured |
-    | Exposure, Chinese bank | Excluded (standing board waiver) | CNY 7.9m equiv.; cannot be repatriated quickly | Waiver, reviewed annually |
-    | EUR hedge ratio, next quarter | 60–90% | 80% on 30 Sep; fell to 55% on 31 Aug after the sales forecast was raised; topped up with EUR 3m forwards on 4 Sep | Passive breach in August, cured |
+    | Exposure, Chinese bank | Excluded (standing board waiver) | CNY 55m (CHF 6.1m equiv.); [cannot be repatriated quickly](why:china-cash-excluded) | Waiver, reviewed annually |
+    | EUR hedge ratio, next quarter (Q4 2026: EUR 24m exposure) | 60–90% | Fell to 55% on 31 Aug when the Q4 sales forecast was raised to EUR 24m; topped up twice — EUR 3m forwards on 4 Sep (→ 67%) and EUR 3m on 18 Sep — 80% on 30 Sep | Passive breach in August, cured |
     | Instruments | Forwards, vanilla options | Forwards only | Compliant |
-    | Liquidity headroom | ≥ CHF 75m | CHF 176.1m | Compliant |
-    | Bank signatories | Only current, authorised staff | Former HM France finance manager (left in June) still on the French bank's mandate, no e-banking access | Breach — mandate change requested 9 Oct |
+    | Liquidity headroom | ≥ CHF 75m | CHF 177.9m | Compliant |
+    | Bank signatories | Only current, authorised staff | Former HM France finance manager (left 30 June) still on the German bank's mandate for HM France's EUR account; e-banking access was disabled in June | Breach — mandate change requested 9 Oct |
     | Deal confirmation | Not by the dealer | 2 of 41 forwards confirmed by Daniel himself while Lea was on holiday | Active control deviation |
 
-    **What Daniel does.** He reports all items; the last two go to the audit committee with remediation: HM France's
+    **What Daniel does.** He reports all items, [grading each passive or active](why:passive-vs-active-breach); the last
+    two go to the audit committee with remediation: HM France's
     mandate is updated (the bank needs a signed form and the new signatory's ID, which takes three weeks), and during
     Lea's absences confirmations will be done by Claudia's deputy in group accounting, as internal audit had already
     recommended in its 2025 treasury review. Thomas (CFO) asks why the leaver was not removed in June: the HR leaver
     list does not reach treasury for subsidiary staff — a process fix goes to HR.
+
+    The signatory review that found it — the four lists Lea reconciles, here for the German bank's HM France mandate:
+
+    | List | What it shows | The reconciling row |
+    |---|---|---|
+    | Bank mandate (PDF, last confirmed in March) | 4 signatories, including the finance manager who left on 30 June | the gap: the mandate itself |
+    | E-banking user list | 3 users; the leaver's access was disabled on 30 June | the portal was clean, the mandate was not |
+    | HR leaver list | Departure 30 June, notified to payroll but not to treasury | root cause: no notification path for subsidiary staff |
+    | Authority matrix | HM France: local finance manager + managing director, jointly | replacement = the new local finance manager, once the bank's KYC clears |
 judgment:
   - decision: Where to set limits and ranges
     why: Balances risk appetite against workability; depends on business model, rating, bank landscape and the team's capacity to monitor.
@@ -256,7 +272,9 @@ by_size:
     A policy framework with sub-policies (hedging, investments, funding, bank relationships, payments) and local
     procedures; a middle office or risk-control team independent of dealers monitors limits daily in the TMS; a
     treasury committee meets monthly or quarterly; formal attestation, audit committee reporting and regular internal
-    audits. Hundreds of signatories and users across ~20 banks make mandate management a function of its own.
+    audits. Hundreds of signatories and users across ~20 banks make mandate management a function of its own —
+    usually a bank account management team inside treasury operations (Marta's area at GlobalChem), often with eBAM
+    tooling.
 companies:
   kleio: "A one-page board resolution after SVB: cash split across at least two Swiss banks, maximum CHF 15m per bank, deposits only up to 6 months. Sarah reports compliance on one line of the quarterly board deck; Sarah and the CEO hold joint signature."
   alpine: "No written treasury policy beyond a board minute allowing FX forwards with the two Swiss banks up to 12 months. Martin and Petra hold joint signature; the auditor's management letter recommended a written hedging policy two years in a row."
@@ -300,7 +318,7 @@ related: [month-end-reporting, fraud-investigation, bank-account-management, fx-
 sources: [ch-co-board-duties, eact-guiding-principles, bacs-ceo-fraud-2026, deloitte-gts-2024]
 evidence_note: >-
   The Swiss board's non-transferable duty for financial control and planning, the board's duty to monitor solvency,
-  and the auditor's confirmation that an internal control system exists are statutory[](cite:ch-co-board-duties);
+  and the statutory auditor's examination of whether an internal control system exists are statutory[](cite:ch-co-board-duties);
   segregation of duties is a core treasury principle in European treasury associations' guidance[](cite:eact-guiding-principles);
   the Swiss federal cyber office recommends collective signature and four-eyes approval for payments and master-data
   changes[](cite:bacs-ceo-fraud-2026). Policy contents, monitoring frequencies, audit cycles and the Helvetic example

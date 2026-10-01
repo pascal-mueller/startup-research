@@ -14,7 +14,7 @@ Debt management is the **slowest-moving** part of treasury: a bond is issued onc
 
 <Callout type="survey" title="What treasurers say is driving debt decisions">
 
-In the ACT / Herbert Smith Freehills Corporate Debt and Treasury Report 2025, 76% of respondents expected macroeconomic and geopolitical factors to have a considerable influence on their debt strategy, up from 41% the previous year[](cite:act-hsf-debt-2025). The sample is UK-weighted, larger corporates.
+In the ACT / Herbert Smith Freehills Corporate Debt and Treasury Report 2025, macroeconomic and geopolitical factors dominated respondents' debt-strategy outlook: the share reporting a material negative impact rose sharply year on year while those reporting little or no impact fell markedly[](cite:act-hsf-debt-2025). (A "76% vs 41%" pair circulates in secondary coverage of this report but could not be confirmed against the primary text — the 2026 write-up uses "41%" for a different question — so no figures are quoted here. The sample is UK-weighted, larger corporates.)
 
 </Callout>
 
@@ -22,7 +22,7 @@ In the ACT / Herbert Smith Freehills Corporate Debt and Treasury Report 2025, 76
 
 | | [Kleio](co:kleio) | [Alpine](co:alpine) | [Helvetic](co:helvetic) | [GlobalChem](co:globalchem) |
 |---|---|---|---|---|
-| Instruments | None (CHF 5m [venture debt](term:venture-debt) offer) | CHF 12m committed operating line (CHF 0–5m drawn); CHF 6m mortgage | CHF 200m syndicated RCF (4 banks, ~CHF 60m drawn); CHF 100m SIX-listed bond due 2028 | ~CHF 3bn CHF/EUR bonds; EUR 1.5bn RCF (undrawn backstop); EUR CP programme |
+| Instruments | None (CHF 5m [venture debt](term:venture-debt) offer) | [CHF 12m committed operating line](why:alpine-line-sizing) (CHF 0–5m drawn); CHF 6m mortgage | CHF 200m syndicated RCF (4 banks, ~CHF 60m drawn in CHF + EUR tranches); CHF 100m SIX-listed bond due 2028 | ~CHF 3bn CHF/EUR bonds; EUR 1.5bn RCF (undrawn backstop); EUR CP programme |
 | Counterparties | Venture lender | House bank | Four RCF banks, bond investors | 7 core banks, bond investors, CP investors, rating agencies |
 | Covenants | Minimum cash CHF 5m (proposed) | Equity ratio and reporting duties to the bank | Net debt/EBITDA ≤ 3.25x; interest cover ≥ 4x, semi-annual | Few or none in bonds; rating-driven discipline |
 | Who manages | Sarah + board | Martin; Petra sends figures | Daniel operates, Thomas decides, board approves | Olivier's corporate finance team; Anna; board |
@@ -47,10 +47,10 @@ Example: Alpine's CHF 6m mortgage on the Winterthur plant is a 10-year fixed-rat
 
 <Example title="Running Helvetic's RCF" company="helvetic" open>
 
-- **Every 1–3 months:** as each drawing's interest period ends, Daniel decides how much to roll over. The 13-week forecast shows CHF 6m of surplus at the parent, so he rolls CHF 54m instead of CHF 60m: a utilisation request to the agent by 11:00 three business days before, value date matching the maturing drawing.
-- **Cost (illustrative):** CHF 60m drawn at SARON ≈ 0% + 0.90% margin ≈ CHF 540k a year; commitment fee on the CHF 140m undrawn at 35% of margin ≈ 0.315% ≈ CHF 440k a year. The undrawn "insurance" costs almost as much as the borrowing — Thomas has to justify the facility size to the board.
+- **Every interest period:** drawings are tranches whose [interest periods](term:interest-period) roll on the **15th**; as each ends, Daniel decides how much to roll over. At the 15 October 2026 rollover the 13-week forecast showed HM AG about CHF 5m above its needs (at SARON ≈ 0% surplus CHF earns nothing), so he rolled the CHF loan down from CHF 35m to CHF 30m and the EUR loan up from EUR 27m to EUR 35m to fund HM Deutschland's material payments. A utilisation request reaches the agent by 10:00 Zurich time, three business days before, with value dates matching the maturing drawings. State: **CHF 35m + EUR 27m ≈ CHF 60m drawn (≈ CHF 140m undrawn) until the rollover; CHF 30m + EUR 35m ≈ CHF 63m drawn (≈ CHF 137m undrawn) from November 2026 onward** — never "all CHF", never CHF 140m undrawn after the rollover.
+- **Cost (illustrative):** margin 0.85% — the current step of the leverage-based grid (0.85% up to 1.50x leverage, then 1.05 / 1.30 / 1.55, reset on each compliance certificate) — on ≈ CHF 63m of drawings ≈ CHF 535k a year, on top of the reference rates (SARON ≈ 0% on the CHF tranche, EURIBOR ≈ 2% on the EUR tranche). Commitment fee 35% of margin = 0.2975% on the ≈ CHF 137m undrawn ≈ CHF 410k a year — [why the undrawn "insurance" costs what it does](why:commitment-fee-cost). It costs nearly as much as the margin on the borrowing: Thomas has to justify the facility size to the board every year.
 - **Twice a year:** covenant calculation and [compliance certificate](term:compliance-certificate) (see below).
-- **2026:** the RCF runs to 2027; with the CHF 100m bond due in 2028, Daniel wants an [amend-and-extend](term:amend-and-extend) this year so that committed bank money covers the bond maturity if the market is closed.
+- **2026:** the RCF (signed October 2021, five years plus two one-year extension options — both accepted by all banks) now matures in **October 2028**, the same year as the CHF 100m bond. With both maturities in one year — and both debts appearing as current liabilities in the 2027 accounts — Daniel wants an [amend-and-extend](term:amend-and-extend) to 2031 (+1 +1) signed by mid-2027, before the bond refinancing window opens.
 
 </Example>
 
@@ -72,7 +72,7 @@ An [overdraft](term:overdraft) or uncommitted line can be cancelled by the bank 
 
 **Plain:** borrowing from many investors at once by selling tradeable IOUs. **Professional:** a [bond](term:bond) has a fixed principal, [maturity](term:maturity) and usually fixed [coupon](term:coupon); issued publicly (in Switzerland typically listed on SIX, with banks as lead managers and a prospectus) or privately. Bonds offer longer tenors and diversification from banks, but require disclosure, documentation, investor relations and are hard to amend. Swiss mid-caps without a rating do issue in the domestic CHF bond market; larger groups issue EUR and USD benchmark bonds with a [credit rating](term:credit-rating).
 
-Example: Helvetic's CHF 100m 7-year bond (issued 2021, 1.25% coupon, due 2028) costs CHF 1.25m a year in interest; the coupon payment in week 6 is one of the lumpy items in the 13-week forecast. GlobalChem's ~CHF 3bn of bonds are spread across CHF and EUR issues with maturities of about CHF 500m in each of 2027 and 2029.
+Example: Helvetic's CHF 100m 7-year bond (issued 2021, 1.25% coupon, due 2028) costs CHF 1.25m a year in interest, paid as a single annual coupon — one of the lumpy items in Lea's central calendar, and a separate, later event than the 13-week low point (which is driven by December payrolls — see [cash forecasting](/map/cash-forecasting)). GlobalChem's ~CHF 3bn of bonds are spread across CHF and EUR issues with maturities of about CHF 500m in each of 2027 and 2029.
 
 - **Terms:** [bond](term:bond), [coupon](term:coupon), [yield](term:yield), [maturity](term:maturity), [credit rating](term:credit-rating), [investment grade](term:investment-grade).
 
@@ -83,18 +83,20 @@ Example: Helvetic's CHF 100m 7-year bond (issued 2021, 1.25% coupon, due 2028) c
 
 ## Covenants
 
-**Plain:** promises the borrower makes to lenders — such as keeping debt below a multiple of earnings — that let lenders act if broken. **Professional:** [covenants](term:covenant) include financial covenants (e.g. [net debt](term:net-debt)/[EBITDA](term:ebitda) maximum, [interest cover](term:interest-cover) minimum, [equity ratio](term:equity-ratio)), tested on defined dates using the agreement's own definitions ([EBITDA adjustments](term:ebitda-adjustments), [frozen GAAP](term:frozen-gaap)); information undertakings; and restrictions ([negative pledge](term:negative-pledge), disposals, dividends). A breach is an [event of default](term:event-of-default) that can trigger [cross-default](term:cross-default) in other debt unless a [waiver](term:covenant-waiver) is agreed.
+**Plain:** promises the borrower makes to lenders — such as keeping debt below a multiple of earnings — that let lenders act if broken. **Professional:** [covenants](term:covenant) include financial covenants (e.g. [net debt](term:net-debt)/[EBITDA](term:ebitda) maximum, [interest cover](term:interest-cover) minimum, [equity ratio](term:equity-ratio)), tested on defined dates using the agreement's own definitions ([EBITDA adjustments](term:ebitda-adjustments), [frozen GAAP](term:frozen-gaap)) — [why the dates matter](why:covenant-test-dates); information undertakings; and restrictions ([negative pledge](term:negative-pledge), disposals, dividends). A breach is an [event of default](term:event-of-default) that can trigger [cross-default](term:cross-default) in other debt unless a [waiver](term:covenant-waiver) is agreed.
 
-<Example title="Helvetic's covenant test, 30 June" company="helvetic">
+<Example title="Helvetic's covenant calculation, LTM to 30 September 2026" company="helvetic">
+
+The formal tests are at 30 June and 31 December; this is the estimate Daniel reviews before the year-end certificate (CHF m):
 
 | | Covenant definition | Value |
 |---|---|---|
-| Net debt | RCF CHF 60m + bond CHF 100m + leases CHF 25m − cash CHF 41m | CHF 144m |
-| Covenant EBITDA (LTM) | Reported CHF 85m + CHF 3m restructuring add-back | CHF 88m |
-| Leverage | 144 ÷ 88 | **1.6x** (limit 3.25x) |
-| Interest cover | 88 ÷ 5 | **17.6x** (minimum 4x) |
+| Net debt | Bond 100 + RCF drawings 60 (CHF 35 + EUR 27) − cash 54 | 106 |
+| LTM EBITDA | Group accounting's FER figure; the agreement's add-backs are immaterial here | 78 |
+| Net debt / EBITDA | 106 ÷ 78 | [**1.36x**](why:leverage-bridge-136) (limit 3.25x) |
+| Interest cover | 78 ÷ 3.4 net finance charges (bond coupon, RCF interest, facility fees) | **23x** (minimum 4x) |
 
-[Covenant headroom](term:covenant-headroom): EBITDA could fall by roughly half before leverage hits 3.25x (all else equal). Lea prepares the calculation from Claudia's consolidated figures; Daniel checks definitions; Thomas signs the compliance certificate; the agent distributes it to the four banks within the deadline after the half-year accounts.
+No leases in the bridge: Helvetic reports under Swiss GAAP FER, where operating leases stay off balance sheet, and the agreement excludes IFRS 16 lease liabilities if the group ever switches. [Covenant headroom](term:covenant-headroom): EBITDA could fall to about CHF 33m (106 ÷ 3.25) — a drop of nearly 60% — before leverage hits 3.25x, all else equal. Claudia's group accounting computes the LTM ratios from the closed accounts; Lea supplies the net-debt schedule; Daniel reviews the result and presents it to the agent; Marco's FP&A forecast fills only the forward columns; Thomas signs the compliance certificate.
 
 </Example>
 
@@ -103,7 +105,7 @@ Example: Helvetic's CHF 100m 7-year bond (issued 2021, 1.25% coupon, due 2028) c
 
 <Callout type="confusion" title="Covenant EBITDA ≠ reported EBITDA">
 
-The loan agreement defines its own EBITDA and net debt, with add-backs and exclusions negotiated at signing. Treasury and accounting sometimes argue about which items qualify. When an interviewee says "we're at 1.6x", ask "on the covenant definition?"
+The loan agreement defines its own EBITDA and net debt, with add-backs and exclusions negotiated at signing. Treasury and accounting sometimes argue about which items qualify. When an interviewee says "we're at 1.4x", ask "on the covenant definition?" — and "as of which date?" (leverage at Helvetic is 1.36x in September and about 1.8x at the December test, because net debt tracks the seasonal cash low).
 
 </Callout>
 
@@ -116,7 +118,7 @@ The loan agreement defines its own EBITDA and net debt, with add-backs and exclu
 
 **Plain:** replacing debt that is coming due with new debt, ideally well before it is due. **Professional:** managing [refinancing risk](term:refinancing-risk) via a smooth maturity profile, refinancing 12–24 months ahead, keeping committed backstop facilities, and diversifying sources (banks, bonds, [Schuldschein](term:schuldschein), [private placements](term:private-placement)). Refinancing is also when pricing, covenants and bank group composition are renegotiated, often via [amend-and-extend](term:amend-and-extend).
 
-Example: Olivier plans GlobalChem's 2027 CHF 500m maturity 18 months ahead: pre-fund with a new CHF or EUR bond when markets are open, use the undrawn EUR 1.5bn RCF as fallback, and model the effect on net debt/EBITDA against the rating agencies' thresholds. Helvetic's version of the same problem is smaller but more dangerous: one bond (CHF 100m, 2028) and one RCF (2027) — if both renegotiations go badly in the same year, the group depends on four banks' goodwill.
+Example: Olivier plans GlobalChem's 2027 CHF 500m maturity 18 months ahead: pre-fund with a new CHF or EUR bond when markets are open, use the undrawn EUR 1.5bn RCF as fallback, and model the effect on net debt/EBITDA against the rating agencies' thresholds. Helvetic's version of the same problem is smaller but more concentrated: one bond (CHF 100m, due 2028) and one RCF (CHF 200m, maturing October 2028) — both refinancings land in the same year, so if both go badly the group depends on four banks' goodwill. That is why Daniel wants the amend-and-extend signed in 2027, well before either falls due.
 
 - **Drives:** [credit facility management](wf:credit-facility-management), [liquidity planning](wf:liquidity-planning).
 - **Terms:** [refinancing risk](term:refinancing-risk), [maturity](term:maturity), [amend-and-extend](term:amend-and-extend), [extension option](term:extension-option).
@@ -128,7 +130,7 @@ Example: Olivier plans GlobalChem's 2027 CHF 500m maturity 18 months ahead: pre-
 
 ## Commercial paper
 
-**Plain:** very short-term IOUs (days to months) that large, highly rated companies sell to money-market investors. **Professional:** [commercial paper](term:commercial-paper) is issued under a programme (e.g. Euro CP, French NEU CP, US CP) through dealer banks, typically 1 week–12 months, usually unsecured and backed by an undrawn RCF because investors need confidence the CP can be repaid if the market closes. Cheap and flexible for investment-grade issuers; effectively unavailable to unrated mid-caps.
+**Plain:** very short-term IOUs (days to months) that large, highly rated companies sell to money-market investors. **Professional:** [commercial paper](term:commercial-paper) is issued under a programme (e.g. Euro CP, French NEU CP, US CP) through dealer banks, typically 1 week–12 months, usually unsecured and backed by an undrawn RCF — [why the backstop must be committed](why:cp-needs-rcf-backstop) — because investors need confidence the CP can be repaid if the market closes. Cheap and flexible for investment-grade issuers; effectively unavailable to unrated mid-caps.
 
 Example: GlobalChem issues EUR 200–500m of CP to fund seasonal working capital; each week Priya's team decides how much to roll based on the 10-day forecast (e.g. rolling EUR 50m of EUR 120m maturing and repaying the rest from netting inflows). Helvetic cannot issue CP — no rating and too small — so its RCF does the same job at higher cost.
 
@@ -141,7 +143,7 @@ Example: GlobalChem issues EUR 200–500m of CP to fund seasonal working capital
 
 **Plain:** the risk that rate changes raise what you pay on debt (or lower what you earn on cash). **Professional:** [interest-rate risk](term:interest-rate-risk) from floating-rate debt (cash-flow risk) and fixed-rate debt (opportunity/fair-value risk), managed by a policy target for the [fixed/floating](term:fixed-vs-floating) mix and duration of debt, using fixed-rate issuance, [interest-rate swaps](term:interest-rate-swap) and [caps](term:interest-rate-cap). Since the LIBOR transition, floating loans reference overnight [risk-free rates](term:reference-rate) (SARON, €STR, SOFR) compounded in arrears.
 
-Example: Helvetic's CHF 60m RCF drawing floats at SARON; a 1-percentage-point rise would add CHF 0.6m of interest a year — small against CHF 88m EBITDA, so Daniel does not hedge. GlobalChem targets 60–80% fixed across its debt; its rolling CP makes part of the portfolio floating, and Jonas's team reports the mix quarterly.
+Example: Helvetic's ≈ CHF 63m of RCF drawings float at SARON and EURIBOR; a one-percentage-point rise in both would add about CHF 0.6m of interest a year — small against CHF 78m EBITDA, so Daniel does not hedge. GlobalChem targets 60–80% fixed across its debt; its rolling CP makes part of the portfolio floating, and Jonas's team reports the mix quarterly.
 
 - **Terms:** [interest-rate risk](term:interest-rate-risk), [interest-rate swap](term:interest-rate-swap), [interest-rate cap](term:interest-rate-cap), [reference rate](term:reference-rate), [basis point](term:basis-point).
 

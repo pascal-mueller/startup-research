@@ -74,7 +74,7 @@ Treasury Today describes three levels[](cite:tt-centralised-treasury):
 
 <OrgChart id="decentralised-group" />
 
-Centralisation almost always happens in the same order, because the early steps need only policy and the later ones need systems, legal work and tax review:
+Centralisation typically happens in roughly this order, because the early steps need only policy and the later ones need systems, legal work and tax review. It is a pattern, not a law: acquisitive or ERP-driven programmes reorder it (a payment factory before any pooling, account rationalisation only after a TMS, POBO driven by a fraud incident).
 
 <Flow steps={["Policy|group treasury policy, limits", "Visibility|all bank balances centrally", "Funding & hedging|group borrows and hedges; IC loans", "Bank rationalisation|fewer banks and accounts", "Liquidity structures|cash pools, netting, IHB", "Payments|payment factory, POBO/COBO"]} caption="Typical sequence of treasury centralisation. Many groups stop at step 3 or 4, and even large groups are often hybrid by region." />
 
@@ -100,7 +100,7 @@ An [RTC](term:regional-treasury-centre) is a treasury team in another time zone 
 
 - **Why they exist:** time zones (an Asian morning is over before Basel starts), restricted currencies that need local expertise, regional bank relationships, and tax incentives.
 - **Example:** Nestlé's Singapore treasury centre, set up in 1998, runs treasury activities for all Nestlé entities in more than 20 Asia-Pacific markets with front, middle and back office segregated[](cite:tt-nestle-ntc-ap-2023).
-- **Location economics:** Singapore's Finance and Treasury Centre incentive offers a concessionary 8% or 10% tax rate on qualifying treasury income, with substance conditions (for the 8% rate on a first award: at least 4 treasury professionals in Singapore and S$1.5m annual spend)[](cite:edb-ftc-factsheet).
+- **Location economics:** Singapore's Finance and Treasury Centre incentive offers a concessionary 8% or 10% tax rate on qualifying treasury income, with substance conditions (indicative award terms — e.g. a dedicated treasury team in Singapore and meaningful local business spending; exact terms such as "4 treasury professionals and S$1.5m annual spend" are negotiated per award and not confirmed against a primary text)[](cite:edb-ftc-factsheet).
 - **Typical when:** material flows in several regions, usually above several billion revenue. Mid-market groups like [Helvetic](co:helvetic) usually cover Asia from head office plus a strong local finance manager (Wei in Suzhou).
 
 ### In-house bank (IHB)
@@ -118,7 +118,7 @@ Scale of a large implementation, as described in a vendor case study: Siemens Ga
 
 <Callout type="field" title="Why Helvetic does not have an in-house bank">
 
-With 8 subsidiaries and 12 accounts, Helvetic gets most of the benefit from simple intercompany loans that Daniel arranges manually — it has **no** cash pool; a EUR pool is only under evaluation. An IHB would need a TMS, legal agreements with every subsidiary, tax review in six countries and accounting changes. At this size, the people cost of running it usually outweighs the savings. The trigger is typically a TMS project or an acquisition that doubles the entity count.
+With 8 subsidiaries and 12 accounts, Helvetic gets most of the benefit from simple intercompany loans that Daniel arranges manually — it has **no** cash pool; a EUR pool is only under evaluation. An IHB would need a TMS, legal agreements with every subsidiary, [tax review in six countries](why:pool-tax-review-first) and accounting changes. At this size, the people cost of running it usually outweighs the savings. The trigger is typically a TMS project or an acquisition that doubles the entity count.
 
 </Callout>
 
@@ -147,8 +147,10 @@ The ACT describes the classic split[](cite:act-wiki-office-structure): the **fro
 |---|---|---|---|
 | [Kleio](co:kleio) | Sarah (CFO) | — | Nina checks the bank confirmation and books it |
 | [Alpine](co:alpine) | Martin (CFO) trades forwards | — | Petra checks confirmations and books; the auditor reviews |
-| [Helvetic](co:helvetic) | Daniel trades and decides transfers | Thomas reviews limits monthly; no separate function | Lea matches confirmations (she does not trade); group accounting settles and books |
+| [Helvetic](co:helvetic) | Daniel trades and decides transfers | No separate function: Daniel monitors counterparty limits within his mandate, Thomas reviews them with the monthly report (some CFOs add a dedicated monthly limit review — practice variation) | Lea matches confirmations (she does not trade); group accounting settles and books |
 | [GlobalChem](co:globalchem) | Priya's and Jonas's desks, Olivier for debt | Treasury control team inside Marta's operations group | Marta's back office in Kraków |
+
+[Why the full split exists at GlobalChem but not at Helvetic](why:front-middle-back-scale). One caveat on the GlobalChem row: the middle-office "treasury control" sits inside the same team that releases payment-factory payments — limit monitoring inside the team that moves the money weakens independence, whatever the reporting line, and it is a fair question to ask in an interview.
 
 <Callout type="warning" title="Where small teams are exposed">
 

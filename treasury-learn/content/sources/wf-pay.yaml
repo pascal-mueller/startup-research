@@ -26,7 +26,7 @@
   year: 2025
   url: https://kpmg.com/de/en/insights/corporate-governance-and-compliance/verification-of-payee.html
   type: practitioner
-  note: "Explains VoP live since 9 Oct 2025 for euro SEPA credit transfers: name/IBAN check with match / close match / no match; corporates may opt out for bulk (collective) files, in which case the payer bears the liability VoP would have reduced."
+  note: "Explains VoP live since 9 Oct 2025 for euro SEPA credit transfers: name/IBAN check with match / close match / no match; non-consumer payers may opt out for bulk (collective) files. Note: VoP brings NO liability shift for corporate users — per the EPC's own bulk-VoP FAQ, a corporate that authorises a payment remains the liable party whether or not VoP runs (the opt-out changes nothing about liability; see epc-vop-bulk-faq)."
 - id: six-instant-payments
   title: Instant Payments (SIC IP)
   publisher: SIX
@@ -61,7 +61,7 @@
   year: 2026
   url: https://www.jpmorgan.com/solutions/treasury-payments/client-resource-center/iso-20022-migration
   type: vendor
-  note: "States ISO 20022 became the exclusive cross-border (CBPR+) standard from Nov 2025; Swift delayed Standards Release 2026 and unstructured addresses may continue until at least Nov 2027; encourages clients to move to pain.001.001.09 with hybrid or structured addresses."
+  note: "States ISO 20022 became the exclusive cross-border (CBPR+) standard from Nov 2025; on 27 Aug 2026 Swift deferred all SR2026 payments changes — including the CBPR+ removal of unstructured addresses — with a new date due by December 2026 at the latest (see swift-sr2026-deferral); some market infrastructures (Fedwire, CHAPS) have since moved to November 2027. Encourages clients to move to pain.001.001.09 with hybrid or structured addresses."
 - id: ubs-gpi-corporates
   title: gpi for Corporates
   publisher: UBS Switzerland
@@ -84,12 +84,12 @@
   type: official
   note: "Nacha rule requiring risk-based processes to identify ACH entries that are unauthorised or authorised under 'False Pretenses' (BEC, vendor and payroll impersonation). Phase 1 from 20 Mar 2026 (ODFIs and large originators); Phase 2 from 19/22 Jun 2026 for all non-consumer originators. Annual review required."
 - id: bacs-ceo-fraud-2026
-  title: BACS warnt vor anhaltendem CEO-Betrug
-  publisher: Netzwoche (reporting the Swiss Federal Office for Cyber Security, BACS)
+  title: "Woche 4: «Dringende Überweisung» – CEO-Betrug bleibt ein Dauerbrenner für KMU"
+  publisher: Swiss Federal Office for Cyber Security (BACS / NCSC weekly review)
   year: 2026
-  url: https://www.netzwoche.ch/news/2026-01-28/bacs-warnt-vor-anhaltendem-ceo-betrug
-  type: news
-  note: "28 Jan 2026. CEO-fraud reports to BACS rose from 719 (2024) to 971 (2025). BACS recommends collective signature / four-eyes for payments and master-data changes, verifying requests via a second channel using a known phone number, no exceptions to process for management instructions, and 'external' email banners. Mentions AI-generated voice messages and a multi-million-franc loss in canton Schwyz."
+  url: https://www.ncsc.admin.ch/ncsc/de/home/aktuell/im-fokus/2026/wochenrueckblick_4.html
+  type: official
+  note: "27 Jan 2026, the original BACS/NCSC publication (also listed on bacs.admin.ch 'Im Fokus'; Netzwoche and others reported it secondarily). CEO-fraud reports rose from 719 (2024) to 971 (2025). BACS recommends collective signature / four-eyes for payments and master-data changes, verifying requests via a second channel using a known phone number, no process exceptions for management instructions, and 'external' email banners. Mentions AI-generated deepfake voice messages and a multi-million-franc loss in canton Schwyz."
 - id: hsbc-camt086
   title: Standardising billing data
   publisher: HSBC
@@ -110,7 +110,7 @@
   year: 2013
   url: https://treasurytoday.com/banking/share-of-wallet/
   type: practitioner
-  note: "Practitioner feature (older but still the standard framing): share-of-wallet calculations by product, 'underfed / on target / overfed' bank classification (Ahold example), the problem of estimating indirect fees."
+  note: "Practitioner feature (older but still the standard framing): share-of-wallet calculations by product, 'underfed / on target / overfed' bank classification (Ahold example), the problem of estimating indirect fees. No 2024–26 equivalent of this framing was found; treated as standard practitioner framing only."
 - id: encompass-kyc-2025
   title: 2025 Encompass Corporate Treasurer KYC Survey
   publisher: Encompass Corporation (KYC software vendor)
@@ -126,7 +126,7 @@
   year: 2026
   url: https://www.truist.com/content/dam/truist-bank/us/en/documents/info/cci/2026-afp-payments-fraud-control-survey-report-key-highlights.pdf
   type: survey
-  note: "Key-highlights summary of the 2026 survey (data for 2025, 465 corporate practitioners, mostly US, 22nd edition). 76% experienced attempted or actual payments fraud; paper checks the most targeted method (58%), followed by ACH debits (30%) and wire transfers (25%); 74% affected by BEC; 17% use AI against payments fraud. US-centric: checks barely exist in Swiss corporate payments."
+  note: "Key-highlights summary of the 2026 survey (data for 2025, 465 corporate practitioners, mostly US, 22nd edition). 76% experienced attempted or actual payments fraud; paper checks the most targeted method (58%), followed by ACH debits (30%) and wire transfers (25%); 74% affected by BEC; 17% use AI against payments fraud. US-centric: checks barely exist in Swiss corporate payments. The same figures are on the record in the AFP press release afp-pfc-2026 — cite that where possible."
 - id: swift-eoc-2025
   title: "ISO 20022: Implementation FAQs / ISO 20022 end of coexistence guide"
   publisher: Swift
@@ -204,3 +204,33 @@
   url: https://www.theglobaltreasurer.com/2013/02/21/the-822-the-twist-bsb-and-the-iso-bsb-whats-it-all-about
   type: practitioner
   note: "Background on the lineage of electronic bank fee statements: US EDI 822 account analysis, the European TWIST BSB standard, and the ISO 20022 camt.086 message (first published 2012) with AFP global service codes."
+
+# ---- added in the r2 revision pass (verified against the original publishers) ----
+- id: swift-sr2026-deferral
+  title: "Swift accepts community request to extend structured address migration for ISO 20022 payment messages"
+  publisher: Swift
+  year: 2026
+  url: https://www.swift.com/news-events/news/swift-accepts-community-request-extend-structured-address-migration-iso-20022-payment-messages
+  type: standard
+  note: "27 Aug 2026. Swift deferred ALL payments changes of Standards Release 2026 — including the CBPR+ removal of unstructured postal addresses — after uneven industry readiness; no replacement date, an update is due by December 2026 at the latest. SR2025 stays in force (structured, hybrid and unstructured addresses all valid cross-border meanwhile); institutions already ready may keep sending structured addresses. Non-payments items (T+1 support) decoupled for Q1 2027. Fedwire and CHAPS moved their own Nov 2026 releases to Nov 2027."
+- id: epc-address-delay-2026
+  title: "EPC delays address format migration timeline (and EPC153-22 v2.2, Provision of Addresses under the EPC Payment Schemes)"
+  publisher: European Payments Council
+  year: 2026
+  url: https://www.europeanpaymentscouncil.eu/news-insights/news/epc-delays-address-format-migration-timeline
+  type: standard
+  note: "10 Sep 2026. The EPC's Payment Scheme Management Board decided on 9 Sep 2026 to delay the planned 15 Nov 2026 end date of the unstructured address format under all five EPC payment scheme rulebooks (SCT, SCT Inst, SDD Core, SDD B2B, OCT Inst); unstructured addresses remain permitted beyond that date, a new end date is to be set by the October 2026 PSMB (guidance EPC153-22 v2.2, dated 30 Sep 2026, replaces the fixed date with 'a future still to be set end date'). Direction of travel unchanged; structured/hybrid recommended."
+- id: six-lsv-decommissioning
+  title: "Discontinuation of LSV+/BDD Direct Debit Procedures"
+  publisher: SIX
+  year: 2026
+  url: https://www.six-group.com/en/products-services/banking-services/billing-and-payments/direct-debits/lsv-decommissioning.html
+  type: official
+  note: "SIX, with the Swiss financial-centre bodies, discontinues the LSV+/BDD direct debit procedures: last possible CHF collections value-dated 29/30 Sep 2028; the EUR variant ends 30/31 Aug 2027 (euroSIC itself is discontinued 31 Dec 2027). No new LSV identifiers since 31 Dec 2025. Reason: LSV+/BDD (introduced 2005; LSV since 1977) are not fully ISO 20022, rely on physical signatures and are declining. Named alternatives: eBill, QR-bill, standing order (Dauerauftrag), single payment order. Banks may end the service earlier."
+- id: six-ebill-direct-debit
+  title: "Market Launch of eBill Direct Debit — The Digital Direct Debit Procedure"
+  publisher: SIX
+  year: 2025
+  url: https://www.six-group.com/en/newsroom/news/banking-services/2025/market-launch-of-ebill-direct-debit.html
+  type: official
+  note: "26 May 2025. eBill Direct Debit, the digital successor to LSV+/BDD, launched mid-2025 on the eBill infrastructure (used by more than half of Swiss households): recurring receivables are collected against a digital mandate managed in e-banking/eBill, account-to-account via SIC, with an integrated contest/reversal right for payers (guaranteed repayment). First banks live Nov 2025; billers connect via a network partner or eBill Web. Reuse of pain.001/002 and camt.055/056 message flows."

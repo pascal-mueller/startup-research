@@ -1,0 +1,351 @@
+# Why notes — exemplar stream (Start Here pages, daily cash positioning, cash forecasting, core glossary).
+# Schema: id, claim, short, detail, check (optional), terms (optional), sources (optional).
+# Ids must be unique across ALL why files.
+- id: alpine-credit-line
+  claim: "Alpine's CHF 12m committed credit line"
+  short: |
+    Sized to the peak cumulative cash gap, not to one project. Two or three overlapping robot projects each run a
+    multi-month gap; the line also has to hold the cash floor, the guarantee line and a slip buffer.
+  detail: |
+    Alpine builds components and pays engineers before milestone receipts arrive (30% on order, 50% on delivery ~4
+    months later, 20% after acceptance). The sizing, re-derivable: **stacked project gaps ≈ CHF 3.5m** (two to three
+    projects in flight at once, each funding ≈ CHF 1–1.5m of costs and engineers net of the 30% order prepayment) +
+    **operating floor ≈ CHF 5.5m** (the minimum Petra keeps on the accounts, so payroll and a supplier run in the same
+    week never bounce) + **guarantee headroom ≈ CHF 1.5m** (advance-payment and performance guarantees issued under the
+    same facility at the house bank) + **slip buffer ≈ CHF 1.5m** (a 20% acceptance milestone on a CHF 4m project is
+    ≈ CHF 0.8m, and acceptances do slip a quarter). 3.5 + 5.5 + 1.5 + 1.5 = **CHF 12m**. CHF 4m would cover the project
+    gaps and nothing else. In the manual's downside case (week 9) cash is CHF 5.0m — below the CHF 5.5m floor — with
+    CHF 6.5m drawn, and the CHF 5.5m still undrawn is what holds headroom (5.5 + cash above the minimum, i.e. 0) at
+    CHF 5.5m — just above the board's CHF 5m floor. Committed lines are
+    cheap while undrawn (commitment fee only) and can only be negotiated before they are needed.
+  check: |
+    If Alpine's projects were cash-positive early (large order prepayments) or never overlapped, the stacked-gap term
+    would shrink toward CHF 1m and CHF 12m would be oversized. If guarantees moved to the large Swiss bank, the
+    guarantee term would drop out of the same line.
+  terms: [committed-facility, working-capital, liquidity-headroom]
+
+- id: covenant-baseline
+  claim: "Helvetic net debt / EBITDA ≈ 1.36x (LTM 30 September 2026)"
+  short: |
+    The bridge is gross debt less cash against last-twelve-months EBITDA: (CHF 60.2m RCF drawn + CHF 100m bond) −
+    CHF 54m cash = CHF 106m over CHF 78m = 1.36x. Leases are outside the covenant's net-debt definition.
+  detail: |
+    At the 30 September 2026 test date the RCF carried the pre-rollover drawing of CHF 35m + EUR 27m (≈ CHF 25.2m at
+    0.935), i.e. ≈ CHF 60.2m; add the CHF 100m bond → gross debt ≈ CHF 160m; deduct group cash of ≈ CHF 54m (the
+    September close — cash drifts to ≈ CHF 41m by mid-November) → **net debt ≈ CHF 106m**. Divided by LTM EBITDA of
+    ≈ CHF 78m: **1.36x** (106/78 = 1.359) against a ≤ 3.25x covenant. Two definitional points a lender interview will
+    surface: (1) **leases are excluded** — Helvetic reports under Swiss GAAP FER, where operating leases stay off
+    balance sheet, and the facility excludes IFRS 16 lease liabilities if the group ever switches; (2) the covenant's
+    own EBITDA definition allows add-backs (one-off restructuring, deal costs), so the tested ratio is slightly better
+    than 1.36x. Headroom: on unchanged net debt, EBITDA would have to fall to CHF 106m ÷ 3.25 = **≈ CHF 33m** — a fall
+    of more than half — before the covenant bites. Any other leverage figure needs its own explicit bridge.
+  check: |
+    If lease liabilities were added (≈ CHF 25m) the same facts would read ≈ 1.68x — wrong for this covenant. If the
+    September cash figure were CHF 41m (the November level) net debt would read CHF 119m and leverage 1.53x: the
+    date of the cash figure must match the test date.
+  terms: [covenant, net-debt, leverage-ratio]
+  sources: []
+
+- id: thirteen-weeks
+  claim: "Why the horizon is 13 weeks"
+  short: |
+    A quarter is the longest window you can still build from known invoices, payroll and tax dates — and it covers one
+    full quarterly VAT and tax cycle, so every lumpy statutory payment appears at least once in the view.
+  detail: |
+    The horizon is chosen from the data, not from the calendar. Weeks 1–4 are dominated by items already contracted
+    (open AR/AP, payroll runs, direct debits, loan dates), so they are forecastable; beyond roughly a quarter the
+    direct method degrades into run-rates and the FP&A plan is the better tool. One quarter also spans exactly one
+    full quarterly settlement cycle, so every *type* of lumpy statutory payment appears at least once — for Helvetic
+    a Swiss quarterly VAT payment (30 Nov in this window), one German trade-tax prepayment per quarter (the four
+    statutory dates 15 Feb/May/Aug/Nov rotate through successive windows, never all land in one), and a December
+    payroll spike with the 13th salary. That is why the forecast's low point always contains the lumpy items that
+    actually cause shortfalls. The *format* comes from lender monitoring and restructuring practice, where a weekly
+    13-week cash flow is contractual — which is why the number is a habit, not a rule.
+  check: |
+    A company with monthly VAT and no lumpy items gains little from 13 weeks; a company with a weekly payroll cycle
+    needs a shorter, daily horizon. If receipts were driven by one annual prepayment cycle (Kleio), 13 weeks is the
+    wrong tool and a runway model is used instead.
+  terms: [short-term-forecast, thirteen-week-cash-flow, vat-cash]
+  sources: [ch-mwstg-86, gewstg-19]
+
+- id: q4-collections
+  claim: "Why receipts peak in January–February, not in December"
+  short: |
+    Machines delivered in Q4 are billed on 60–90-day terms, so their cash lands in January and February; December is
+    a quiet collections month on top of the heaviest payment weeks of the year.
+  detail: |
+    Helvetic sells capital equipment on 60–90-day terms (DSO ≈ 90 days), so the cash for the strong Q4 shipment
+    quarter arrives 2–3 months later: weeks 7–13 of the forecast (January and February) collect October–November
+    deliveries, and Q4 deliveries collect into the next fiscal year. December's own receipts are the tail of
+    September–October billing — and September was slow. That is why the 13-week strip falls to its low point in
+    mid-December and climbs through January even though revenue is healthy throughout: the forecast is a *timing*
+    view, and the December trough is a timing artefact of the billing cycle plus the December payroll and year-end
+    supplier runs.
+  check: |
+    If customers paid on monthly terms (SaaS-like), receipts would track revenue within weeks and the December trough
+    would disappear. If Q4 shipments were weak, weeks 9–13 would not rise and the February level would not reach
+    ≈ CHF 50m.
+  terms: [dso, short-term-forecast, working-capital]
+
+- id: week-four-trough
+  claim: "The 13-week low point: week 4 (w/c 14 Dec), ≈ CHF 18m"
+  short: |
+    The trough is one payment-heavy week: December payrolls are brought forward before Christmas (including the Swiss
+    13th salary), year-end supplier runs and a capex milestone land in the same week, and December receipts are quiet.
+  detail: |
+    Week 4 (14–20 Dec) pays out ≈ CHF 30.8m against ≈ CHF 8.5m of receipts — a net −CHF 22.3m week: December payrolls
+    of ≈ CHF 21.0m (Swiss 7.0 + 13th salary 5.5, German 3.9, IT/FR/UK 1.4 + Italian *tredicesima* 0.4, and the
+    CZ/CN/US mid-month payroll 2.8 on the 15th), year-end supplier runs ≈ CHF 8.0m and a CHF 1.8m capex milestone.
+    Weeks 2 and 3 are the calm before it — with monthly payroll there is no payroll at all between 30 Nov and
+    13 Dec, which is why the balance is briefly at its highest just before the crash. From a ≈ CHF 41.3m opening the
+    four weeks net −CHF 23.3m to **CHF 18.0m**. Of that, ≈ CHF 6m is trapped in China, so the usable low point is
+    ≈ CHF 12m against the CFO's CHF 10m minimum — above it, but closer than the headline suggests.
+  check: |
+    If December salaries were paid on their normal month-end dates the trough would move to week 5 (21–27 Dec) and be
+    shallower; if the capex milestone slipped to January, the low point would rise by CHF 1.8m. The canonical
+    statement of this number is `cash-forecasting.yaml` — do not restate it elsewhere without matching it exactly.
+  terms: [short-term-forecast, cash-buffer, trapped-cash]
+
+- id: strip-opens-41
+  claim: "The 13-week strip opens at CHF 41.3m (Monday 23 November)"
+  short: |
+    The opening is the previous week's close: the positioning example's CHF 41m group total plus the week's net
+    +CHF 0.3m from the variance table. The two worked examples are one continuous scenario.
+  detail: |
+    The shared scenario runs Tue 17 Nov (daily positioning) → Mon 23 Nov (forecast roll-forward). The variance table's
+    actual column *is* the week's cash movement: receipts 10.7 − suppliers 7.3 − payroll 2.8 − tax 0.3 = **+0.3**.
+    Monday 16 Nov itself moved the balance by about zero — the two surprise debits (trade-tax direct debit
+    EUR 0.3m ≈ CHF 0.28m, duplicate payment CHF 0.18m) against the day's ordinary receipts — so Monday's close (the
+    CHF 41m group total, which is Tuesday's opening balance) plus the week's net +0.3m gives **CHF 41.3m** for the
+    following Monday. An earlier version of this strip opened at CHF 35m, which cannot be reconciled with a CHF 41m
+    group total and a +0.3m week; the strip is now re-derivable from the example's own receipts and payments.
+  check: |
+    If Monday 16 November had a net movement of its own (say a large receipt landing that day), the opening would
+    shift by exactly that amount. If the variance table's categories excluded a real flow (a capex payment, a
+    dividend), the +0.3m would not be the week's cash movement and the bridge would fail.
+  terms: [cash-position, variance-analysis, short-term-forecast]
+
+- id: italy-haircut
+  claim: "Italy's receipts in weeks 5–13 are haircut by 15%"
+  short: |
+    A central overlay based on measured bias: HM Italia has over-forecast receipts in 8 of the last 10 weeks at the
+    4-week lag, by about a sixth. The haircut is sized to that observed error and applied only to weeks not already
+    covered by issued invoices.
+  detail: |
+    Forecast accuracy is tracked at fixed lags (1 week, 4 weeks) by entity and category, with the *sign* of the error,
+    not just its size. Italy's 4-week-lag receipts have come in late or short in 8 of the last 10 weeks (9 of the last
+    12 counting every week), averaging roughly 15% below forecast — mostly payment behaviour of two large customers,
+    not sales. Daniel therefore overlays −15% on
+    Italy's weeks 5–13 receipts. It is deliberately **not** applied to weeks 1–4: those receipts come from invoices
+    already issued (and week 1's Italian receipt has a confirmed payment run), where the 13-week direct forecast is
+    strong. Overrides like this are also political: Giulia is told why, and the haircut comes off when the measured
+    bias disappears over two or three cycles.
+  check: |
+    If Italy's deliveries were simply late rather than its customers slow, the receipts would arrive in later weeks
+    (timing) and a permanent haircut would understate cash twice. If the bias were in the other direction, the overlay
+    should be a premium, and the accuracy report is what would show it.
+  terms: [variance-analysis, forecast-accuracy, short-term-forecast]
+
+- id: morning-sequence
+  claim: "Why the daily routine runs in that order"
+  short: |
+    Statements first (nothing is knowable without them), exceptions next (they change the numbers), decisions after
+    that, and everything that must move money before a bank cut-off, in cut-off order. Documentation last.
+  detail: |
+    The sequence is set by two clocks: the banks' data arrival and their cut-offs. (1) Balances cannot be checked
+    before prior-day statements land — and for a Swiss company Asian statements arrive early, US ones overnight, so
+    the completeness check at 07:30 tells you immediately which *account* is the problem (a missing Chinese statement
+    is a connectivity gap, not a time zone). (2) Exceptions are investigated before any decision because they change
+    the position: a missing receipt, an unforecast direct debit or a duplicate payment move the projected closing
+    balances the funding decision is based on. (3) Options go to the manager as one short note, and only then does he
+    decide — he decides once, on a complete picture. (4) Execution follows cut-off order: the urgent EUR payment to
+    Germany must leave before the Swiss bank's early-afternoon cut-off, while the US day has not even started. The
+    bookkeeping (position saved, intercompany confirmations, forecast update) is last because it moves nothing.
+  check: |
+    At a company with continuous intraday data and instant payments, the sequence compresses into exception handling
+    and the ordering matters less; at a startup the "morning routine" is a weekly portal login, and only the
+    completeness check survives.
+  terms: [cash-position, cut-off-time, bank-statement]
+
+- id: buffer-layers
+  claim: "CHF 2.0m account minimum, CHF 10m group minimum, CHF 137m headroom — three different buffers"
+  short: |
+    The account minimum (CHF 2.0m on the parent's CHF account) covers local payment noise and is set per account; the
+    CHF 10m group minimum is the CFO's rule and is tested at the forecast low point, not at today's balance.
+  detail: |
+    Three layers, and positioning and forecasting test different ones. (1) **Account operating minimum** — per account,
+    derived from that account's daily outflows, card and direct-debit noise and the cost of an overdraft: EUR 0.25m on
+    HM Deutschland's account, CHF 2.0m on the parent's main CHF account. The daily position tests each account's
+    projected closing balance against it. (2) **Group minimum liquidity** — the CFO's rule: CHF 10m, held at the
+    parent. The 13-week forecast tests its **low point** against it, which is why the usable figure matters: the
+    week-4 low of ≈ CHF 18m includes ≈ CHF 6m of trapped Chinese cash, leaving ≈ CHF 12m usable. (3) **Liquidity
+    headroom** — the forward-looking measure: liquidity including the ≈ CHF 137m undrawn RCF, less forecast needs.
+    A CHF 13.1m balance on one morning can be simultaneously "above the account minimum" and "not surplus": the Swiss
+    payroll of ≈ CHF 7m on the 25th and the December payrolls are already spoken for.
+  check: |
+    If all group cash sat at the parent in one account the two layers would collapse into one; if the group ran a cash
+    pool the operating minimums would be target balances instead. Naming the wrong layer is the classic error in
+    interviews ("we hold a CHF 10m buffer" — which one?).
+  terms: [minimum-operating-balance, cash-buffer, liquidity-headroom]
+
+- id: thursday-value-date
+  claim: "A spot trade agreed Tuesday settles Thursday"
+  short: |
+    Standard spot settlement is T+2 in most currency pairs: value date is two good business days after the trade date,
+    so a Tuesday deal gives Thursday value — and a payment needed *today* is met with a same-day payment, not with spot.
+  detail: |
+    Spot FX settles T+2 (T+1 for USD/CAD and some pairs) because the two payment legs must be prepared in their own
+    systems and time zones, with time for pre-funding and (for major pairs) CLS settlement. Treasury positions and
+    forecasts are built on **value dates**, so the trade date and the value date must not be confused: the CHF 941,200
+    from a EUR 1m spot sale on Tuesday is not in Tuesday's position. This is why the daily routine treats FX
+    conversion and same-day funding as separate tools: if HM Deutschland needs euros today, an urgent EUR payment
+    (settled same day via the Swiss bank's euro clearing link to T2) solves it, while a spot conversion would arrive
+    on Thursday — too late, and would leave the EUR account empty until then.
+  check: |
+    If a pair settled same-day or T+1, or if the payment were made inside one bank (internal book transfer), the
+    two-day gap would not exist. If the trade were done late on a Wednesday before a long weekend, the value date
+    would stretch further — which is exactly what the positioning worksheet has to know.
+  terms: [value-date, spot-fx, settlement, cut-off-time]
+
+- id: prepares-never-releases
+  claim: "Why Lea prepares and Daniel decides/releases — never one person both"
+  short: |
+    Four-eyes is a fraud and error control, not a hierarchy quirk: whoever creates the payment or the number must
+    not be the one who lets money leave. At Helvetic payments up to CHF 2m run four-eyes in treasury (Lea prepares,
+    Daniel releases); above CHF 2m the CFO and the CEO co-sign as well.
+  detail: |
+    The split is written into the bank mandate, not just into habit. Lea prepares and analyses but is **not** a
+    payment signatory and never approves or releases; Daniel (or a named deputy, or the CFO, when he is away)
+    releases — the releaser is always treasury. The *preparer* varies by work type: bank supplier runs are prepared
+    by AP in SAP F110, the German top-up is typed by Lea, the FX deal is dealt by Daniel — the release never varies.
+    A **single payment above CHF 2m** needs Thomas (CFO) and the CEO to co-sign in addition — the threshold is a
+    policy limit sized to Helvetic's payment scale (a normal supplier run is many small payments, so daily work
+    stays inside treasury's four-eyes and only unusual one-offs escalate). The same pattern at every size: at Alpine Petra
+    prepares and Martin decides; at Kleio the accountant prepares and Sarah (CFO) releases because she is the only
+    other pair of hands. The control also protects the *numbers*: the person who built the position is the one whose
+    error it would hide, so a second reader on the same morning's exceptions is the cheapest control there is.
+  check: |
+    If volumes make per-payment four-eyes impossible, batching and release-by-file restore it at the aggregate. If a
+    company has only one finance person, the control moves to the bank mandate (dual sign-off with the CEO) and to
+    after-the-fact review — which is exactly what the startup tier does.
+  terms: [four-eyes-principle, signatory, payment-mandate, payment-run]
+
+- id: passive-over-hedge
+  claim: "Q1 2027 at 75% is a passive over-hedge — corrected by a roll, not by hoping"
+  short: |
+    The 40–70% band applies to Q1 (Q+2); 75% sits five points above it because Q1 orders landed after the forwards
+    were placed — nobody chose to over-hedge. Policy says correct within the month: roll about EUR 3m of Q1 forwards
+    to Q2 (→ 68% and ≈ 51%), and report the change as passive.
+  detail: |
+    From the November exposure report: Q4 2026 is 25 hedged of EUR 34m = 74% — inside the 60–90% band that belongs
+    to the nearest quarter only and near its 75% target. Q1 2027 is 30 hedged of EUR 40m = 75% against a 40–70%
+    band. Why *passive*: the exposure grew (32 → 40 from October to November as the German acceptances slipped and
+    top-ups landed) while the forwards stayed put; the ratio moved without a decision. The correction is arithmetic,
+    not a view: roll ≈ EUR 3m of the Q1 forwards out to Q2 — Q1 becomes 27/40 = 68% (in 40–70%) and Q2 becomes
+    15/29 ≈ 51% (in 25–55%) — and label it passive in the report to the CFO. "No new hedges this week" stays true:
+    no new *buying*; the rebalance is a roll. Never describe Q1 as "inside the 60–90% band" — only the front quarter
+    has that band.
+  check: |
+    The roll is sized to the current exposure: if Q1 orders slip out and exposure falls back toward EUR 33m, 27/33
+    is still above band and more must be rolled; if exposure is revised up to EUR 45m, the unhedged drift itself
+    pulls the ratio down (30/45 = 67%) and no roll is needed. The exposure report, not the hedge book, drives the
+    action.
+  terms: [hedge-ratio, forward, treasury-policy, fx-exposure]
+
+- id: forward-points-12m
+  claim: "Why the EUR/CHF 12-month forward at spot 0.935 prices at ≈ 0.913–0.915"
+  short: |
+    A forward is spot scaled by the interest differential: 0.935 × (1 + SARON) ÷ (1 + €STR) with SARON ≈ 0% and
+    €STR ≈ 2.2–2.4% gives ≈ 0.935 ÷ 1.022–1.024 ≈ 0.913–0.915 — the euro's one-year rate advantage is exactly the
+    forward discount.
+  detail: |
+    Interest parity, no market view involved: 0.935 ÷ 1.022 = 0.9149 and 0.935 ÷ 1.024 = 0.9131, i.e. roughly
+    200–220 forward points below spot. Money-market conventions (T+2 spot dates, day counts, deposit vs swap rates) move the
+    printed points by fractions of a pip, which is why the level is quoted as a range. The same arithmetic drives the
+    90-day example in this entry: 0.9400 ÷ (1 + 2.3% × ¼) ≈ 0.9346 — a quarter of the annual gap (≈ 0.6%). A Swiss
+    treasurer hedging EUR receipts cares because the hedge rate is never the spot rate on the screen: the forward
+    for the hedge date is what the exposure is converted at.
+  check: |
+    With equal EUR and CHF rates the forward equals spot; if €STR rose to 4%, the 12-month forward at spot 0.935
+    would print ≈ 0.899. And the forward is not a forecast: if it were, every exporter would know next year's rate.
+  terms: [forward, spot-fx, swap]
+
+- id: supplier-run-rate
+  claim: "Why suppliers run at about CHF 7m a week"
+  short: |
+    The cost base is CHF 650m revenue − CHF 78m EBITDA ≈ CHF 570m; payroll takes ≈ CHF 190m of it, leaving ≈ CHF 380m
+    of purchased goods and services a year ≈ CHF 7.3m a week. Capex is separate and lumpy.
+  detail: |
+    The weekly line is not invented per week — it is the run-rate of the non-payroll cost base: ≈ CHF 380m ÷ 52 ≈
+    CHF 7.3m, which is the strip's 6.8–7.5 in normal weeks (runs are not perfectly even) and 8.0 in the year-end
+    week. The payroll half (see [payroll by country](why:payroll-by-country)) is ≈ CHF 15m a month plus 13th
+    salaries ≈ CHF 190m a year. Together they reconstruct the ≈ CHF 570m cost base — the same check behind the
+    working-capital terms (COGS ≈ CHF 420m plus operating expenses ≈ CHF 150m). Capex (≈ CHF 30m a year in the
+    plan) is not in the supplier run-rate: it appears as named milestones, e.g. the CHF 1.8m machining-centre
+    deposit in week 4.
+  check: |
+    If Helvetic outsourced assembly or brought a supplier in-house, the payroll/supplier split would move while the
+    total held. If the weekly supplier line were much above ≈ CHF 8m in ordinary weeks, it would imply a cost base
+    the P&L does not have — the r1 review caught exactly that (CHF 9.5m a week ≈ CHF 490m a year of suppliers alone).
+  terms: [short-term-forecast, working-capital, dpo]
+
+- id: weekly-cadence
+  claim: "Why the 13-week forecast runs Monday to Wednesday"
+  short: |
+    Monday closes last week first (the variances say whom to chase and which assumptions to change), Tuesday noon is
+    the subsidiary deadline, and Wednesday's review leaves Thursday and Friday to act — before the week's payment
+    runs, bank cut-offs and the CFO note.
+  detail: |
+    The cadence at Helvetic: subsidiaries submit by **Tuesday noon**, Lea consolidates Tuesday–Wednesday, Daniel
+    reviews **Wednesday**. Variance analysis comes first on Monday because it changes the numbers before they go
+    out: a receipt that did not arrive shifts this week's funding, a biased entity gets chased or haircut. Submissions
+    are not due Monday because subsidiaries need Monday to close their own week and pull ERP data — and Monday is
+    already a payment-run day in most of them. The review cannot slide to Friday: decisions (chase a customer, adjust
+    a hedge, fund an entity, pre-warn the CFO) have to land while there are still days in the week to execute them.
+    Lea prepares; Daniel decides — and when Lea is away, Daniel does all of it himself, which is the key-person risk
+    in a two-person team.
+  check: |
+    Multinationals that collect monthly entity submissions compress this into a monthly cycle plus a centrally built
+    daily view; distressed or lender-monitored companies move to daily updates. If submissions reliably arrive late,
+    the deadline — not the analysis — is the constraint to fix.
+  terms: [short-term-forecast, variance-analysis, forecast-accuracy]
+
+- id: payroll-by-country
+  claim: "Why the group's payroll lands in three different weeks each month"
+  short: |
+    Each country pays on its own date — Swiss on the 25th, German at month-end (the last banking day), Czech, Chinese
+    and US mid-month on the 15th, Italian/French/UK at month-end — so group payroll is three lumps a month, not one.
+    December's runs come before Christmas, with 13th salaries.
+  detail: |
+    Monthly payroll ≈ CHF 15m: Swiss ≈ 7.0 (parent and the Swiss service company), German ≈ 3.9 (= EUR 4.2m at
+    0.935), Italian/French/UK ≈ 1.4, Czech/Chinese/US ≈ 2.8 mid-month — ≈ CHF 181m a year, plus 13th salaries
+    (Swiss ≈ 5.5, Italian *tredicesima* ≈ 0.4) ≈ CHF 190m for ~2,600 staff ≈ CHF 73k per head a year, plausible for
+    a machine-tool group with Swiss engineering and lower-cost plants. Consequences the forecast must carry: no
+    payroll at all between 30 Nov and 13 Dec (weeks 2–3 are the calm before the trough), the December runs are
+    brought forward into the week of 14 Dec (with the 13th salaries) which is why the low point is week 4, and the
+    month-end weeks (e.g. week 10) show CH/DE/IT/FR/UK payroll of 12.3 at once.
+  check: |
+    If all entities ran one common pay date, payroll would be one lumpy line and the monthly trough would move to
+    that week; if headcount shifted toward the plants, the Swiss/German split would move while the ≈ CHF 190m total
+    held. Any strip whose payroll rows do not add to ≈ CHF 15m a month has lost an entity.
+  terms: [short-term-forecast, cash-buffer, direct-method]
+
+- id: group-total-41m
+  claim: "How twelve accounts in six currencies become a group total of about CHF 41m"
+  short: |
+    Every account's value-dated opening converted at the morning's illustrative rates and summed: CHF 18.5m + EUR
+    12.5m ≈ 11.7 + GBP 1.0m ≈ 1.1 + USD 3.1m ≈ 2.5 + CZK 30m ≈ 1.1 + CNY 55m ≈ 6 = ≈ CHF 40.9m, rounded to 41 — of
+    which about CHF 6m sits in China.
+  detail: |
+    CHF accounts 14.2 + 3.5 + 0.8 = 18.5; the five EUR accounts (6.8 + 1.5 + 2.9 + 0.9 + 0.4 = EUR 12.5m) at 0.935
+    ≈ 11.7; GBP 1.0m at 1.07 ≈ 1.1; USD 3.1m at 0.80 ≈ 2.5; CZK 30m ≈ 1.1; CNY 55m ≈ 6.0 ("about CHF 6m in
+    China"). Two properties of the number matter more than the arithmetic: it is a **conversion artefact** — a 3.5%
+    fall in EUR/CHF shrinks the total by ≈ CHF 0.4m with no cash moving at any bank, which is why the position
+    reports by currency first and the group total second — and it is built on **value-dated** openings, not booked
+    balances. It is also the anchor for the next step: the 13-week strip opens at CHF 41.3m = this CHF 41m plus the
+    week's net +0.3m (see [strip-opens-41](why:strip-opens-41)).
+  check: |
+    If the CZK or CNY rate were mis-keyed the total would move without any bank event — the classic spreadsheet
+    failure in positioning. If EUR/CHF fell to 0.90 the total would read ≈ CHF 40.4m on identical balances: rate
+    effects belong in the FX commentary, not in the "cash changed" line.
+  terms: [cash-position, value-date, available-balance]

@@ -1,0 +1,184 @@
+# Why notes for stream wf-events (acquisition-integration, currency-shock, liquidity-crisis).
+# Every derivation below is re-derivable from content/companies.yaml and the canonical facts in docs/AUTHORING.md.
+
+- id: covenant-shock-pro-forma
+  claim: "Shock-day covenant check: 1.36x → ≈ 1.6x, with the formula shown"
+  short: "The covenant is defined as net debt / LTM EBITDA, both in CHF — computed by Group Accounting on the closed accounts — so the shock shows up mostly on the EBITDA denominator, and only a little on net debt."
+  detail: |
+    Baseline (30 Sep 2026, canonical LTM): net debt = CHF 100m bond + CHF 60.2m of RCF drawings (CHF 35m + EUR 27m at
+    0.935) − ≈ CHF 54m group cash = CHF 106m over EBITDA ≈ CHF 78m = **1.36x** (full bridge in
+    [the baseline note](why:covenant-baseline)). On shock day (spot 0.860) the EUR 27m drawing is worth CHF 23.2m
+    instead of CHF 25.2m → net debt ≈ CHF 104m — see [why the debt side barely moves](why:eur-debt-natural-hedge).
+    The denominator carries the hit: unhedged EUR 69m over 12 months loses 69 × 0.075 ≈ CHF 5.2m of CHF cash and
+    margin now, and ≈ CHF 11m a year at run rate beyond the hedge horizon. If prices and costs do not adapt:
+    104 / 67 ≈ **1.6x** (78 − 11). Measurement conventions are part of the definition: FX debt is translated at closing
+    rates, LTM EBITDA at average rates (illustrative for Helvetic — always read your own agreement), and the ratio is
+    [computed by Group Accounting from the closed accounts](why:covenant-ebitda-source), never from FP&A's forecast.
+  check: "If the covenant translated both sides at average rates, the net-debt effect would nearly vanish; if the shock ran the other way, both sides improve and the pro forma drops below 1.36x."
+  terms: [covenant, net-debt, ebitda, leverage-ratio]
+
+- id: crisis-opens-13-week
+  claim: "A liquidity-crisis plan starts with a rebuilt 13-week cash flow"
+  short: "The 13-week window is the shortest horizon that still contains every lumpy non-deferrable payment and the longest that can be built from known items — and it is the document the banks ask for anyway."
+  detail: |
+    The crisis version of the standard [13-week forecast](why:thirteen-weeks) adds a stress case because the decision
+    needed is exactly "when is the low point, and how big is it". In Alpine's window (Oct–Dec 2026) the binding week is
+    week 12 — December payroll plus the 13th salary — and weekly granularity shows whether each lever lands before it
+    (factoring +1.6 from week 4; the supplier extensions must be repaid in weeks 9–11, *before* the trough). A monthly
+    view hides the trough week; a four-week view misses December entirely. The file is also the currency of the bank
+    conversation — lenders ask for a 13-week receipts-and-disbursements forecast with variances — so building anything
+    else means rebuilding it when the bank asks. The same file produces [the headroom number](why:alpine-headroom-41)
+    the bank will compute independently.
+  check: "If the trigger were a market event with no trustworthy receipt detail, the plan would open from facility headroom and scenario ranges instead, and the 13-week rebuild would follow a day later."
+  terms: [thirteen-week-cash-flow, liquidity-headroom]
+
+- id: day1-checklist-order
+  claim: "Day-1 checklist ordered: control → visibility → funding → integration"
+  short: "The order follows irreversibility: an unauthorised payment cannot be recalled, a missing statement is only delayed information, and policy integration is worthless until the first two hold."
+  detail: |
+    Control items — mandates, signatory revocations, interim payment rules — stop value leaving the company: a fraud or
+    a departing owner moves money once and it is gone. Visibility (read access, daily balance emails, then automated
+    statements) comes next because you cannot control what you cannot see, but a day's delay costs information, not
+    cash. Funding the first payroll sits alongside them because failing it is the one visible, morale-critical failure
+    under new ownership. Integration (forecasting, policy, bank rationalisation) is reversible and legitimately runs for
+    months. That is why the steps run in this order and why the day-100 report has the four columns it has: control
+    (mandates changed?), visibility (statements automated?), financing (change-of-control items resolved?), policy
+    (applied, with documents?). Within day 1 itself the same logic produces [the interim-signatory rule](why:signatory-gap).
+  check: "For a minority stake where the buyer touches nothing, the order still holds — control is simply defined as the consent rights the buyer does have."
+  terms: [payment-mandate, signatory]
+
+- id: transaction-vs-translation
+  claim: "The shock response reports transaction, translation and run-rate effects separately"
+  short: "They differ in timing, in whether cash moves, and in who acts: transaction effects drive hedging and pricing; translation hits only equity and drives disclosure; mixing them makes the board react to a number that will never touch cash."
+  detail: |
+    On Helvetic's shock day the three numbers point in different directions: **+6.2** MTM on the sold-forward book (an
+    accounting gain that becomes cash only as the forwards settle), **−5.2** unhedged 12-month cash-flow hit (cash,
+    over a year), **−14.3** translation of EUR 190m of subsidiaries' net assets into equity (no cash ever — a
+    translation reserve under Swiss GAAP FER, OCI under IFRS), plus the **−11.3** annual run rate if prices and costs
+    do not adapt. Lead with the translation loss and the board sees a cash crisis that does not exist; lead with the MTM
+    gain and it sees a windfall. The split also routes the work: hedging committee for the transaction exposure,
+    accounting and auditors for translation and any subsequent-events disclosure, sales/procurement/pricing for the
+    economic exposure.
+  check: "A group that trades in foreign currencies but has no foreign subsidiaries has zero translation exposure — the split collapses to two lines and the temptation to mix them largely disappears."
+  terms: [transaction-exposure, translation-exposure, economic-exposure]
+
+- id: bank-before-board
+  claim: "The bank call precedes the board call"
+  short: "Information undertakings put a clock on telling the bank, the board's decisions depend on what the bank will actually offer, and a bank that hears the problem elsewhere reacts defensively."
+  detail: |
+    Three reasons, in order of urgency. (1) *Contract*: facility agreements require notice of material events, and the
+    13-week file will show the gap at the next reporting date anyway — silence risks an information-undertaking breach.
+    (2) *Sequence*: the board's decisions (capex freeze, factoring, owner support) are only real once the bank's answer
+    is known — whether a temporary increase, invoice finance or a waiver is available. Calling the bank first lets the
+    CFO bring facts, not hopes. (3) *Relationship*: a bank that discovers the problem from overdraft usage or a missed
+    covenant certificate recalibrates the relationship exactly when goodwill is needed. Notice the nuance in Alpine's
+    week: the chair is *informed* on Wednesday (notification costs nothing), the bank is called Thursday, and the
+    *decision* board call is week 2, after the bank conversation.
+  check: "If the board had to approve a lever first (a capital increase, a guarantee) to unlock the bank conversation, the order would invert for that meeting."
+  terms: [covenant-waiver, committed-facility]
+
+- id: eur-debt-natural-hedge
+  claim: "The EUR 27m RCF drawing: net debt moves ≈ CHF 2m — and EUR debt is a natural hedge"
+  short: "The bond is CHF, but the RCF carries a EUR drawing: when EUR/CHF falls, the CHF value of the EUR debt falls with it (27 × 0.075 ≈ CHF 2m) — the same direction as the lost EUR earnings, which is exactly what a hedge does."
+  detail: |
+    Helvetic's debt at the shock date: CHF 100m bond (pure CHF) + RCF drawn CHF 35m + EUR 27m. The old claim that "the
+    RCF and bond are in CHF, so net debt hardly moves" was false: the EUR 27m drawing is worth 25.2 − 23.2 = ≈ CHF 2m
+    less in CHF after an 8% EUR fall, so net debt *falls* slightly. Balance-sheet version of the same idea: net EUR
+    assets of EUR 22m less the EUR 27m drawing leaves a roughly flat net EUR position (+0.4 of revaluation instead of a
+    −1.7 loss on the assets alone). Borrowing in the revenue currency is one of the standard structural responses after
+    a shock — after 2015, 77% of surveyed Swissmem members had shifted cost blocks into EUR for the same reason. It
+    stops working when the EUR earnings shrink (the debt becomes an over-hedge) and it is not free: EUR interest
+    (€STR ≈ 2.2–2.4%) costs more than CHF at SARON ≈ 0%, so the natural hedge carries a negative-carry bill of
+    roughly the rate difference on the drawing.
+  check: "If Helvetic's EUR revenue disappeared, the same EUR drawing would turn from natural hedge into an unmatched liability — the hedge only hedges while the exposure exists."
+  terms: [natural-hedge, rcf, net-debt]
+  sources: [swissmem-2015-franc]
+
+- id: alpine-headroom-41
+  claim: "Headroom after minimum cash: CHF 4.1m"
+  short: "Headroom is undrawn committed lines plus cash above the operating minimum: CHF 9.0m undrawn − the CHF 3.4m stress trough below zero − the CHF 1.5m minimum = CHF 4.1m — the same number the bank computes from the same file."
+  detail: |
+    Alpine: CHF 12m committed line, CHF 3m already drawn → CHF 9m undrawn. The stress case bottoms at −CHF 3.4m in
+    week 12 (December payroll + 13th salary). Surviving it without touching the CHF 1.5m operating minimum needs
+    3.4 + 1.5 = CHF 4.9m of new money; the undrawn line covers 9.0 − 4.9 = **CHF 4.1m** spare. Two conventions are
+    doing work here: only *committed* facilities count (the bank can cancel uncommitted overdrafts exactly when needed),
+    and the cash minimum is subtracted because cash below it is not spendable. CHF 4.1m is thin against a CHF 80m
+    revenue company — which is what drives the lever package: the [CHF 5m precautionary drawing](why:precautionary-draw-early),
+    factoring and supplier extensions convert that thin cushion into owned cash.
+  check: "If the stress trough were positive, the formula would show more headroom than the company will ever need — always read the number together with the trough week it protects."
+  terms: [liquidity-headroom, committed-facility, cash-buffer]
+
+- id: precautionary-draw-early
+  claim: "The CHF 5m drawn in week 1 — while conditions are clearly met"
+  short: "A committed line is only committed while the repeating draw-conditions hold; a MAC clause becomes a draw-stop as the situation worsens, so the cheap time to draw is before anyone can argue anything has materially changed."
+  detail: |
+    Every utilisation repeats representations (no material adverse change, no default) and the bank must be willing to
+    fund. With a Chapter 11 customer and slipping acceptances already known in week 1, waiting until the December
+    trough invites the bank to decline, ask questions for two weeks, or price the risk. The cost of drawing now is
+    small — interest at the line's margin on CHF 5m for the weeks it is held, tens of thousands of francs — against
+    certainty over the trough week. Sizing is deliberate: draw the trough-sized part (CHF 5m, roughly the gap the
+    levers must cover), not the full CHF 12m, because drawing everything signals distress and burns bank comfort that
+    the same crisis may need later. The drawing is repaid once the German acceptance money lands — it was insurance,
+    not funding.
+  check: "If the facility were uncommitted, or a default already existed, drawing early would be impossible or pointless — the plan would shift to supplier, payroll and equity levers."
+  terms: [committed-facility, material-adverse-change, drawdown]
+
+- id: funds-flow-sequencing
+  claim: "Closing-day money moves only after every condition is confirmed"
+  short: "Transfers are irreversible and same-day: if the price moves before a condition precedent fails, the buyer has paid away its leverage — so the memo sequences the money last and closing simply waits if anything slips."
+  detail: |
+    The [funds flow memo](term:funds-flow-memo) is a sequencing document, not just a list: legal confirms conditions
+    precedent (board resolutions, register filings, payoff letters, security-release undertakings), then the payments
+    release in one window, then receipts are confirmed and the closing memorandum signs. In Norvia's closing the
+    timeline was 09:00 conditions confirmed → payments released → 12:30 receipts confirmed, loans cancelled, pledge
+    released → 13:15 closing memorandum. Parts of the deal deliberately survive the day: the EUR 5m escrow backstops
+    the locked-box leakage warranty and returns only after the post-closing review. If a condition slips, the day ends
+    without money moving — nothing "catches up" at a worse moment.
+  check: "A simultaneous signing-and-closing with no conditions collapses the sequence to one release — but the four-eyes rule and the receipt confirmations survive."
+  terms: [funds-flow-memo, four-eyes-principle, value-date]
+
+- id: signatory-gap
+  claim: "Day 1 runs on an interim signatory — the revocation/mandate gap"
+  short: "Revocation is quick to request, but new mandates and commercial-register filings take days to weeks to activate; without planning there is a window in which nobody can legally sign on the target's accounts."
+  detail: |
+    Two processes run at different speeds. Removing the founder: a written revocation plus removal from EBICS users,
+    effective within days. Installing the new regime: joint-signature mandates that the banks activate only after KYC,
+    and new directors whose authority shows on a commercial-register extract (Handelsregister: days to weeks in
+    Germany). Between the two, payments must still run — payroll and suppliers do not wait for paperwork. Hence the
+    interim rule in the Norvia example: the founder's sole signature is revoked in writing on Day 1, but Norvia's CFO
+    stays on as interim signatory under the old mandate until the new joint-signature mandates are live (week 2–3),
+    with every payment above EUR 50k countersigned by group treasury meanwhile. The gap is closed deliberately; the
+    failure mode is discovering it at the first payroll.
+  check: "If banks processed mandate changes same-day and register extracts arrived instantly, there would be no gap and the interim rule would be pure overhead."
+  terms: [signatory, payment-mandate, kyc]
+
+- id: price-the-exposed-currency
+  claim: "The pricing response targets EUR prices for EU customers"
+  short: "The exposed flow is EUR revenue: EUR/CHF moved, so the margin loss sits on EUR invoices to EU customers. A CHF surcharge on non-EU customers touches USD/GBP/CNY flows that did not move."
+  detail: |
+    Helvetic: EUR ≈ 50% of CHF 650m revenue, almost all invoiced to EU customers. An 8% EUR/CHF fall erodes the CHF
+    value of exactly those invoices — so the levers move *EUR* prices: EUR list increases or a EUR surcharge on new EUR
+    quotes, reduced discounts, EUR quote validity cut to 30 days, or CHF invoicing where EU customers accept it (which
+    transfers the FX risk to them). Non-EU customers are untouched by this rate; a CHF surcharge aimed at them is
+    theatre. The direction of the lever is a commercial judgment — pass the move on or defend volume — and after 2015
+    most Swiss MEM exporters were forced towards volume: 51% of members surveyed in March 2015 had cut prices, 69% by
+    June 2015 (18% considered relocating part of production)[](cite:swissmem-2015-franc). Either way, the currency of
+    the response must match the currency of the exposure.
+  check: "If the shock were USD/CHF, the same test would point the lever at USD prices and US customers — the principle is exposure currency, not home currency."
+  terms: [transaction-exposure, budget-rate]
+  sources: [swissmem-2015-franc]
+
+- id: stress-leverage-bridge
+  claim: "The China default moves leverage 1.36x → ≈ 1.6x — with a bridge"
+  short: "A CNY 40m receivable is ≈ CHF 4.5m: on its own it moves leverage only to ≈ 1.4x. The stress case also contains a broader China shortfall of ≈ CHF 5m against plan — pro forma EBITDA ≈ CHF 68m on net debt ≈ CHF 111m — and that bridge must be spelled out."
+  detail: |
+    Baseline: 106 / 78 = **1.36x** (LTM 30 Sep 2026). The stress has two components. (1) The CNY 40m distributor
+    receivable is written off: ≈ CHF 4.5m at CNY/CHF ≈ 0.11 (40 × 0.11 ≈ 4.4–4.5) — a P&L hit (EBITDA 78 → ≈ 73.5) but
+    no net-debt effect, because the cash never arrived. On its own that gives 106 / 73.5 ≈ **1.4x** — which is why the
+    old "1.5x → 1.8x" story was arithmetically impossible. (2) The broader China deterioration the stress case assumes:
+    ≈ CHF 5m of EBITDA and cash versus Marco's plan. Together: EBITDA ≈ 78 − 9.5 ≈ **CHF 68.5m**, net debt ≈
+    106 + 5 ≈ **CHF 111m** → ≈ **1.6x**. Against a 3.25x covenant that is not a waiver question but a briefing
+    question — hence the pre-brief to the four RCF banks before the semi-annual test, not a waiver request. Any
+    leverage figure other than the canonical 1.36x must carry exactly this kind of bridge.
+  check: "Without the broader China shortfall the stress reaches only ≈ 1.4x; with it, the ratio depends on the assumed shortfall — the stress case must say what else it contains."
+  terms: [covenant, net-debt, leverage-ratio]

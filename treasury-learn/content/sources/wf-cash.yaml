@@ -52,7 +52,8 @@
     (search extract) Foreign-invested enterprises must allocate at least 10% of annual after-tax profit to a statutory
     reserve until it reaches 50% of registered capital; the reserve is not distributable. Dividends paid to a foreign
     parent bear 10% withholding tax under the Enterprise Income Tax law, reduced where a tax treaty provides a lower
-    rate (e.g. 5% for qualifying Hong Kong holding companies). Advisory-firm publication; rules change.
+    rate (e.g. 5% for qualifying Hong Kong holding companies). The China–Switzerland treaty's 5% rate for a directly-held
+    ≥25% subsidiary is recorded separately at ch-cn-dta-2013. Advisory-firm publication; rules change.
 
 - id: safe-cash-pool-2024
   title: PBOC and SAFE optimise the pilot policy for integrated RMB and foreign-currency cash pooling of multinational companies
@@ -66,3 +67,29 @@
     overseas-lending ratios within macro-prudential guidelines and lend across currencies domestically. SAFE reported
     54 multinational groups in the programme, with about USD 467bn of cross-border transfers benefiting 3,188 member
     companies. Shows that cross-border pooling out of China is possible but limited to a small number of large groups.
+
+- id: ch-cn-dta-2013
+  title: "Agreement between the Swiss Federal Council and the Government of the People's Republic of China for the Avoidance of Double Taxation (2013), Art. 10 — Dividends"
+  publisher: "Swiss Federal Council / Federal Department of Finance (agreement text, admin.ch); commentary: KPMG China Tax Alert 30/2013"
+  year: 2013
+  url: https://www.newsd.admin.ch/newsd/message/attachments/32161.pdf
+  type: official
+  note: >-
+    (search extract of the agreement text) Art. 10(2): dividend withholding tax is capped at 5% of the gross amount
+    where the beneficial owner is a company (other than a partnership) holding directly at least 25% of the capital of
+    the company paying the dividends; 10% in all other cases. The 2013 agreement introduced a limitation-of-benefits
+    clause (KPMG China Tax Alert 30/2013:
+    https://assets.kpmg.com/content/dam/kpmg/pdf/2013/10/China-tax-alert-1310-30-China-Switzerland-DTA.pdf).
+    Used for HM Suzhou's 2027 dividend: wholly owned by the Swiss parent → 5%, not the 10% domestic rate.
+
+- id: estv-2026-minimum-rates
+  title: "ESTV Publishes 2026 Safe Haven Interest Rates"
+  publisher: VATupdate, summarising the Swiss Federal Tax Administration circular letters of 29–30 January 2026
+  year: 2026
+  url: https://www.vatupdate.com/2026/02/06/estv-publishes-2026-safe-haven-interest-rates-key-points-for-taxpayers-and-loan-arrangements
+  type: practitioner
+  note: >-
+    (search extract) Minimum rates for advances to related parties: CHF 0.75%, EUR 2.5%, USD 4% (with changes from
+    2025); maximum rates for CHF borrowings from related parties. Corroborated by RSM Switzerland (5 Feb 2026): the
+    floors apply to equity-financed loans; debt-financed loans add a minimum spread (0.5%) with at least the CHF
+    safe-harbour rate as the overall floor. Registers the foreign-currency rates the funding example depends on.

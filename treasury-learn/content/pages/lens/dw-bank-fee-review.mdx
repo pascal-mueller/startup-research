@@ -1,62 +1,93 @@
 ---
-title: "Digital worker: review last quarter's bank fees"
+title: "Digital worker: review the bank fees"
 nav: "DW · Bank fee review"
 order: 9
-summary: A tedious, low-risk, fully checkable assignment most mid-market treasuries skip — modelled end to end. A near-ideal agent task and, on its own, a weak business.
+summary: The annual bank-fee review most mid-market treasuries run late and badly — modelled end to end against the reference workflow, including the largest cost that never appears on a fee statement. A near-ideal agent task and, on its own, a weak business.
 related: [/workflows/bank-fee-analysis, /lens/matrix, /lens/candidates]
 ---
 
 <Callout type="synthesis">
 
 Illustrative model based on the [bank fee analysis](wf:bank-fee-analysis) workflow and [Helvetic](co:helvetic)'s five
-banks. Lens rating: [good agent candidate](/lens/matrix#bank-fee-analysis), weak standalone business. AFP recommends
-treating banks as vendors and checking negotiated pricing is actually applied[](cite:afp-bank-fee-analysis); the ISO 20022
-camt.086 message is meant to standardise fee reporting[](cite:hsbc-camt086), but outside the US most corporates still
-receive fees as statement lines and PDFs.
+banks. Lens rating: [good agent candidate](/lens/matrix#bank-fee-analysis), weak standalone business. The reference
+workflow has Lea spend **about four days each January** on an annual review that feeds Daniel's wallet review — the
+[mid-market equilibrium](why:fee-review-annual), not a skipped task; the model below is that review prepared by a
+system, with one deliberate divergence: a system can afford to run the price check on every statement, so a mispricing
+is caught in its first month instead of at the next January. AFP recommends treating banks as vendors and checking
+negotiated pricing is actually applied[](cite:afp-bank-fee-analysis); the ISO 20022 camt.086 message is meant to
+standardise fee reporting[](cite:hsbc-camt086).
 
 </Callout>
 
 ## Why it is agent-shaped
 
 Every charge can be compared with an agreed price; the comparison is objective; a mistake costs an awkward email, not
-money; and nobody enjoys doing it, so it is often not done at all. That makes it a clean test of whether an AI system can
-do a whole assignment end to end — and a natural wedge into the more valuable conversation about which bank gets which
-business ([wallet share](term:wallet-share)).
+money; and the work is translation drudgery (each bank names the same service differently) that is nobody's hobby.
+That makes it a clean test of whether an AI system can do a whole assignment end to end — and a natural wedge into the
+more valuable conversation about which bank gets which business ([wallet share](term:wallet-share)).
+
+But the task splits in two, and only one half is machine work. Checking is [automatable; the negotiation is not](why:lens-fee-check-vs-negotiation) — which banks to challenge, how hard, and what to trade for the
+relationship is judgment whose outcome is never observable. And the reference workflow's named failure mode is the one
+to reproduce deliberately: **if you analyse only explicit fees, you miss the largest cost**.
 
 <DigitalWorker id="dw-bank-fee-review" />
 
-## A worked quarter
+## A worked review
 
-<Example title="Q3 review: what the system finds" company="helvetic" open>
+<Example title="January: the annual review, five banks, one price grid" company="helvetic" open>
 
-| Bank | Charges Q3 | At agreed prices | Difference | Main finding |
-|---|---|---|---|---|
-| Swiss bank A (house bank) | CHF 18.4k | CHF 16.9k | CHF 1.5k | Two accounts closed in 2024 still charged account maintenance |
-| Swiss bank B | CHF 7.2k | CHF 7.2k | — | — |
-| German bank | EUR 9.8k | EUR 8.1k | EUR 1.7k | List price applied to SEPA payments since a July price change; negotiated price not loaded |
-| Global bank (US/UK) | USD 14.6k | USD 14.1k | USD 0.5k | Account-analysis codes mapped; minor wire-fee differences |
-| Chinese bank | CNY 21k | not mapped | — | No written price schedule found — flagged, not disputed |
+Explicit fees for 2025 (excluding loan margins and RCF commitment fees): about **CHF 410k**. Only one of the five
+banks sends structured [camt.086](term:bank-services-billing); the others send PDFs, and the Chinese bank only shows
+fee debits on the account statement. The workflow is mostly translation — one line from the German bank's PDF,
+`210150 SCT FILE  13,980 @ 0.90` ("SEPA-Überweisung Datei, per Stück"), becomes in the price grid "SEPA credit
+transfer, file-based, 13,980 items at CHF 0.90, tendered price CHF 0.25" — and that mapping is the second row below.
 
-*Amounts illustrative.* Total identified in the quarter: roughly CHF 3.5k equivalent — small against Helvetic's interest
-and FX costs, which is precisely the point of the "weak standalone business" rating. The more useful output is the
-wallet-share page: the German bank earns the highest fees per payment while providing the smallest share of the RCF.
+| Finding | Bank | How found | Annual effect (CHF, illustrative) |
+|---|---|---|---|
+| Monthly account-package fees still charged for three accounts closed in the 2024 rationalisation | Swiss bank B | Account register vs fee statement | 1,800 — refunded for 14 months |
+| ~14,000 file-based SEPA payments priced at the manual e-banking rate (CHF 0.90 instead of the agreed 0.25) | German bank | Price grid vs statement | ~9,100 — refunded and corrected |
+| "Lifting fee" of CHF 8 on ~1,100 incoming cross-border EUR payments, not in the agreement | Swiss bank A | Receipts net of fees on camt.053 | ~8,800 — waived going forward, no refund |
+| Paper statements and six unused e-banking tokens | Two banks | Volume check | ~1,500 — cancelled |
+| **CZK conversions executed ~0.35% from mid versus ~0.10% on the FX platform** | German bank | Executed rates vs mid-market at trade time | **~40,000 on ~CHF 16m converted** — the item that appears on no fee statement |
 
-**Daniel's edits:** sends the Swiss bank A and German bank disputes; drops the US wire-fee item ("not worth it"); asks
-for the wallet-share page in the annual bank review.
+*Amounts illustrative.* Explicit-fee findings: roughly **CHF 21k** recovered or avoided. The larger number is the last
+row: about **CHF 40k** of FX spread on about CHF 16m of CZK conversions — invisible in every fee report, found only by
+comparing executed rates with mid at trade time. This is why "fee reconciliation" and "what banking actually costs"
+are different assignments, and why the honest output is the **wallet-share page**: fees + FX + lending per bank against
+what each bank provides. The workflow's own review found the bank with the smallest RCF share (20% of the CHF 200m
+commitments) earning about 6% of Helvetic's roughly CHF 2.4m wallet — which is how the next EUR hedging tranche gets
+allocated.
+
+**Daniel's edits:** sends the Swiss bank B and German bank disputes (they are factual and the banks hold little
+grudge value); drops the US wire-fee item ("not worth it"); keeps the Swiss bank A lifting-fee complaint for the next
+pricing negotiation instead of a dispute email — the bank is in the RCF. The system drafted all of it; the choices of
+target, tone and timing are his ([why that half cannot be automated](why:lens-fee-check-vs-negotiation)).
 
 </Example>
+
+<Callout type="field" title="A field note on formats">
+
+Outside the US, most corporates still receive bank fees as statement lines and PDF invoices rather than structured
+billing files — practitioner variation, not a survey finding. Helvetic's five banks illustrate the spread: one
+camt.086, three PDF providers, one statement-debits-only bank.
+
+</Callout>
 
 ## Limits
 
 - **The price schedule has to exist.** Often the "agreed" price lives in an email from three years ago or in the head of
-  the person who negotiated it.
-- **Relationship banks.** A bank in the RCF can be challenged, but carefully. The system drafts; the treasurer decides tone and whether to send.
-- **Small money.** Even when done well, this is a few thousand francs a quarter at a mid-market group. It justifies itself as
-  part of a broader cash-operations system, not as a product.
+  the person who negotiated it. The Chinese bank has no written price schedule at all — flagged, not disputed.
+- **Relationship banks.** A bank in the RCF can be challenged, but carefully. The system drafts; the treasurer decides
+  tone and whether to send.
+- **Small money.** Even done well, this is tens of thousands a year at a mid-market group — meaningful next to the
+  review's four days, [small next to a software budget](why:lens-time-price-bound). It justifies itself as part of a
+  broader cash-operations system, not as a product.
 
 <Callout type="interview" title="Questions this model suggests">
 
 "When did you last check bank fees against the agreed pricing — and what did you find?" "Where is your price schedule
-for each bank?" If the answer to the first is "never", ask why — lack of time, or lack of value? Both answers matter.
+for each bank?" "How do you measure what you pay inside the FX spread?" If the answer to the first is "never", ask why
+— lack of time, or lack of value? If the answer is "annually, in January", ask what the last review changed: the
+difference between a skipped task and a four-day routine is a different business.
 
 </Callout>

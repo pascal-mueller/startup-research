@@ -18,24 +18,24 @@ In every answer, try to capture six things: **trigger** (why the work started), 
 
 ## By interview phase
 
-A 45-minute interview typically runs: context (5 min) → one last-instance walk-through (20–25 min) → judgment, escalation and failure (10 min) → tools, workarounds and change (5–10 min) → close (3 min). Don't try to cover every workflow; one walk-through done properly beats five done superficially.
+A 45-minute interview typically runs: context (5 min) → one last-instance walk-through (20 min) → judgment, escalation and failure (10 min) → tools, workarounds and change (5 min) → close (3 min). Don't try to cover every workflow; one walk-through done properly beats five done superficially.
 
 ### 1. Context — who is this person, really?
 
 | Question | Follow-up probes |
 |---|---|
 | "What were the last three things you worked on?" | "Which of those happens every week?" · "Which did you hand to someone else?" |
-| "Who do you hand work to, and who hands work to you?" | "Who's the last person you emailed about it?" · "Who do you sit closest to?" |
+| "Who do you hand work to, and who hands work to you?" | "Who's the last person you emailed about it?" · "Who do you sit closest to — and who do you message most?" (for hybrid teams) |
 | "What's a normal Monday for you — and when did you last have one?" | "What broke the last one?" |
 | "How is treasury set up here — who does what, roughly?" | "Who does the payments?" · "Is there anyone in the subsidiaries who does treasury work?" |
 
-**Good answer sounds like:** named tasks, days and counterparts. *"Monday I consolidate the 13-week forecast — Italy and China are usually late, I chase them by 11 — then Daniel reviews it Tuesday before the CFO call."*
+**Good answer sounds like:** named tasks, days and counterparts. *"Monday I roll the 13-week forecast forward and write up last week's variances, then chase the entities for their submissions — by Tuesday noon seven of the eight have usually sent it, France is the one I chase into Wednesday. I consolidate Tuesday and Wednesday, and Daniel reviews it Wednesday afternoon."* The days matter — [why the forecast week is built this way](why:forecast-week-cycle).
 
 **Evasive / generic answer sounds like:** functional descriptions. *"We're responsible for group liquidity and financial risk management."* → Probe: *"What did that mean last Monday?"* If they cannot get concrete, you may be talking to a decider, not a doer — adjust your guide (see [wrong-person signals](/interview/before-and-after#red-flags-that-you-are-talking-to-the-wrong-person)).
 
 ### 2. The last-instance walk-through (the core)
 
-Pick **one** workflow the person actually performs and walk through the most recent instance.
+Pick **one** workflow the person actually performs and walk through the most recent instance — [why this is the core question](why:last-instance-walk-through).
 
 | Question | Follow-up probes |
 |---|---|
@@ -44,11 +44,11 @@ Pick **one** workflow the person actually performs and walk through the most rec
 | "What triggered that work?" | "Is it calendar-driven, or did something happen?" · "Who would notice if you didn't do it?" |
 | "Where did each input come from?" | "Is that a system extract, an email, a file someone sends?" · "How late does it usually arrive?" · "How do you know it's right?" |
 | "Which systems did you open?" | "In what order?" · "What do you use that one for that the other can't do?" · "How many logins?" |
-| "What did you export into Excel?" | "What do you do to it there?" · "Why can't that be done in the system?" · "Who else uses that file?" |
+| "Did anything end up in Excel — and what did you do there?" | "What do you do to it there?" · "Why can't that be done in the system?" · "Who else uses that file?" |
 | "Then what happened?" (repeat) | "Who got it next?" · "What did they send back?" · "What did they change?" |
 | "How long did that take, start to finish — and how much was waiting?" | "Is that typical?" · "What made last week longer?" |
 
-**Good answer sounds like:** sequence, specifics and friction. *"I log into three bank portals and the connectivity tool — the Chinese bank doesn't feed it, so I screenshot the balance and type it into the sheet. Then I compare against yesterday's forecast. Germany was CHF 600k below; I checked the open-items list, saw a customer receipt hadn't arrived, emailed Jens, and flagged it to Daniel."*
+**Good answer sounds like:** sequence, specifics and friction. *"I open the connectivity tool — it pulls in four of our five banks; the Chinese bank isn't connected, so I use the portal export Wei emailed overnight and type the balance into the sheet. Then I compare against yesterday's forecast. Germany was CHF 600k below; I checked the open-items list, saw a customer receipt hadn't arrived, emailed Jens, and flagged it to Daniel."*
 
 **Evasive / generic answer sounds like:** "the system does it", "it's pretty automated", "we have a process for that". → Probe: *"What's the last thing you had to do by hand in it?"* or *"What did you check before you trusted it this morning?"* Automation claims are often true for the happy path and false for exceptions — the exceptions are the work.
 
@@ -64,7 +64,7 @@ Pick **one** workflow the person actually performs and walk through the most rec
 | "What happens when something goes wrong — a payment fails, a statement is missing, a subsidiary runs short?" | "Tell me about the last time." · "Who did you call?" · "How long until it was resolved?" |
 | "What happens after you identify excess cash?" | "Who decides how much is really surplus?" · "Where did the last surplus go?" · "What stopped you investing more?" |
 
-**Good answer sounds like:** a story with a date, an amount range, a person and a consequence. *"In March a big US customer paid two weeks late; we'd assumed it in week 3. The UK entity needed funding for payroll, so we drew CHF 5m on the RCF for ten days. Since then Lea marks every receipt above CHF 1m as 'confirmed' or 'unconfirmed'."*
+**Good answer sounds like:** a story with a date, an amount range, a person and a consequence. *"In March a big US customer paid two weeks late; we'd assumed it in week 3. The UK entity needed funding for payroll, so we drew CHF 5m on the RCF and repaid it when the customer finally paid. Since then Lea marks every receipt above CHF 1m as 'confirmed' or 'unconfirmed'."*
 
 **Evasive / generic answer sounds like:** *"We're quite conservative"*, *"We always escalate anything material"*. → Probe: *"What was the last thing you considered material?"* Also note non-answers on failure — some people won't discuss mistakes with a stranger. Offer a safer frame: *"Without details — what's the kind of thing that goes wrong?"*
 
@@ -111,7 +111,7 @@ Use these when you already know which workflow the person performs. Each block: 
 
 - **Opener:** "Walk me through the last payment run — from invoice to confirmation that it left the bank."
 - **Probes:** "Who created the proposal?" · "Who approved it, in which system?" · "What was rejected or returned, and why?" · "What does an urgent out-of-cycle request look like?" · "What makes you refuse to approve a payment?"
-- **Good vs evasive:** real answers name the channel (e-banking, [EBICS](term:ebics), SWIFT), a rejection reason and a person. **Do not ask** for approval thresholds, signatory names or call-back procedures — ask for the *sequence* instead ("then who looks at it?").
+- **Good vs evasive:** real answers name the channel (e-banking, [EBICS](term:ebics), SWIFT), a rejection reason and a person. Approval authority is a core discovery topic — "who has to approve what, roughly, and is it written down or a judgment call?" is a good question. What you don't ask for are the values behind the controls (the limit amounts, the signatory names, the call-back numbers), and you never describe their control back to them in a leading way — see the [sensitivity boundary](/interview/bad-questions#sensitive-questions-treasury-specific).
 
 ### FX exposure and hedging — [exposure](wf:fx-exposure-management), [hedging](wf:fx-hedging)
 
@@ -125,10 +125,11 @@ Use these when you already know which workflow the person performs. Each block: 
 - **Probes:** "How did you decide what was really surplus?" · "Where did it go — which instrument, which bank?" · "What limited you — policy, limits, the CFO?" · "When did you last draw on a facility, and why then?"
 - **Good vs evasive:** real answers mention a [minimum cash buffer](term:cash-buffer), a counterparty constraint and a person who decided. "We optimise yield within our policy" → ask for the last placement.
 
-### Bank accounts and connectivity — [account management](wf:bank-account-management), [reconciliation](wf:bank-reconciliation)
+### Bank accounts and connectivity — [account management](wf:bank-account-management), [reconciliation](wf:bank-reconciliation), [post-M&A](wf:acquisition-integration)
 
 - **Opener:** "Walk me through the last bank account you opened or closed."
-- **Probes:** "How long did it take, and what held it up?" · "What documents did the bank want?" · "How did it get connected to your systems?" · "How do you know today who can sign on which account?" · "Which bank statements arrived late or incomplete last month?"
+- **Probes:** "How long did it take, and what held it up?" · "What documents did the bank want?" · "How did it get connected to your systems?" · "How do you know today who can sign on which account?" · "Which bank statements arrived late or incomplete last month?" · "When did you last review bank fees, and what did you find?"
+- **After an acquisition:** "Walk me through what happened to the bank accounts in the last acquisition — who found out what existed, what got closed, and what is still running?" Post-M&A integration is the natural place where account inventories, mandates and connectivity get rebuilt (the "we went from 31 to 12 accounts" story).
 - **Good vs evasive:** real answers include weeks of [KYC](term:kyc) back-and-forth, a board resolution or signatory list, and a connectivity step. "The bank handles that" means you're talking to someone who didn't do it.
 
 ### Debt and covenants — [facilities](wf:credit-facility-management), [covenants](wf:covenant-monitoring)
@@ -140,10 +141,12 @@ Use these when you already know which workflow the person performs. Each block: 
 ### Fraud and controls — [fraud investigation](wf:fraud-investigation), [policy compliance](wf:policy-compliance)
 
 - **Opener:** "Without naming anyone — tell me about the last suspicious payment request someone caught."
-- **Probes:** "How was it spotted?" · "What happened in the next hour?" · "What changed afterwards?" · "What does the process look like when a supplier sends new bank details?"
-- **Good vs evasive:** real answers describe detection by a person noticing something odd, and a process change afterwards. Accept vagueness about specifics — it's a control, not evasion.
+- **Probes:** "How was it spotted?" · "What happened in the next hour?" · "What changed afterwards?" · "The last time a supplier's bank details changed — what happened, from the email onwards?"
+- **Good vs evasive:** real answers describe detection by a person noticing something odd, and a process change afterwards. Fraud controls are a **good** topic to dig into — how the process works, who is involved by role, what it caught — but stay on the process shape and the past instance: leave out the specific values behind the control (see the [sensitivity boundary](/interview/bad-questions#sensitive-questions-treasury-specific)), and accept vagueness about specifics — it's a control, not evasion.
 
 ### Cash pooling and intercompany funding — [funding a subsidiary](wf:funding-subsidiary)
+
+*The manual has no separate pooling workflow page — the mechanics live inside [daily cash positioning](wf:daily-cash-positioning) and [funding a subsidiary](wf:funding-subsidiary); the terms are in the [pooling vocabulary row](/interview/vocabulary).*
 
 - **Opener:** "Tell me about the last time a subsidiary needed money from the group — who noticed first?"
 - **Probes:** "How did the request arrive?" · "What did you check before sending money?" · "Loan, capital or pool — who decided?" · "What did tax require?" · "Which entities are outside the pool, and why?"
@@ -157,12 +160,15 @@ Use these when you already know which workflow the person performs. Each block: 
 
 ## Adapting to seniority
 
+Some questions only work at some sizes and levels — [why](why:questions-by-size).
+
 | Person | Spend the time on | Walk-through prompt |
 |---|---|---|
 | Analyst / operations | Mechanics, systems, exceptions, time | "Walk me through this morning." |
 | Manager | Review, judgment, escalation, the recurring week | "Walk me through the last forecast you reviewed — what did you change?" |
 | Head of Treasury | Organisation, decisions reserved, projects, failures | "Walk me through the last decision that reached you — how did it arrive and what did you need?" |
 | CFO | What treasury output drives, risk appetite, budget, crises | "Tell me about the last time cash, FX or a bank surprised you." |
+| Head of accounting / AP | The payment chain end to end, vendor master data, bank recs (at SME size: cash too) | "Walk me through the last payment run — from invoice to it leaving the bank." |
 | Subsidiary finance | The other side of hand-offs | "Walk me through the last forecast you sent to group." |
 
 See [Preparing by role](/interview/by-role) for what each role can and cannot answer, and [Questions to avoid](/interview/bad-questions) for the questions that sound reasonable but produce noise.

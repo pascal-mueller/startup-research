@@ -1,10 +1,10 @@
 import MiniSearch from 'minisearch'
-import { pages, workflows, terms, companies, plainText } from './content'
+import { pages, workflows, terms, companies, whyNotes, plainText } from './content'
 import { sectionById } from './sections'
 
 export interface Doc {
   id: string
-  kind: 'Page' | 'Workflow' | 'Term' | 'Company'
+  kind: 'Page' | 'Workflow' | 'Term' | 'Company' | 'Why'
   title: string
   where: string
   path: string
@@ -45,6 +45,14 @@ const docs: Doc[] = [
     where: 'Company scenarios',
     path: c.path ?? '/companies',
     text: `${c.tagline} ${c.profile}`,
+  })),
+  ...whyNotes.map((w) => ({
+    id: `y:${w.id}`,
+    kind: 'Why' as const,
+    title: w.claim,
+    where: 'Why notes',
+    path: `/glossary/${w.id}`,
+    text: plainText(`${w.short} ${w.detail} ${w.check ?? ''}`),
   })),
 ]
 

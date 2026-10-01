@@ -34,18 +34,19 @@ The franc is a safe-haven currency that tends to strengthen in crises; Swiss exp
 
 <Example title="Helvetic's EUR exposure, from the forecast" company="helvetic" open>
 
-Lea's quarterly exposure report (next 12 months, CHF-functional parent and group, EUR m):
+Lea's quarterly exposure report (a November 2026 cycle — one snapshot; exposure and hedge figures move every monthly cycle — CHF-functional parent and group, EUR m):
 
-| | Q1 | Q2 | Q3 | Q4 |
+| | Q+1 (Q4 2026) | Q+2 (Q1 2027) | Q+3 (Q2 2027) | Q+4 (Q3 2027) |
 |---|---|---|---|---|
 | EUR sales invoiced from Switzerland | 48 | 45 | 42 | 50 |
 | EUR costs in Switzerland (German components) | −14 | −13 | −12 | −14 |
 | **Net EUR long** | **34** | **32** | **30** | **36** |
-| Hedged (forwards outstanding) | 25 | 16 | 10 | 5 |
-| **Hedge ratio** | **74%** | **50%** | **33%** | **14%** |
-| Policy band | 60–90% | 30–60% | 30–60% | 30–60% |
+| Hedged (forwards outstanding) | 25 | 12 | 10 | 5 |
+| **Hedge ratio** | **74%** | **38%** | **33%** | **14%** |
+| Policy band | 60–90% | 40–70% | 25–55% | 0–40% |
+| Internal target | 75% | 55% | 40% | 25% |
 
-Q4 is below the band: Daniel needs to sell about EUR 6m forward for Q4 this month. Where do the numbers come from? Q1 mostly from order backlog (reliable); Q3–Q4 from FP&A's sales forecast (less reliable, which is exactly why the policy hedges less of it).
+One quarter is out of band: Q1 2027 at 38% sits below its 40–70% band, so Daniel adds hedges this month — [about EUR 6m of new forwards](why:hedge-topup-judgment) to reach his 55% internal target (EUR 0.8m would merely scrape back over the policy floor). Q3 2027 at 14% looks alarming next to a flat "60–90% for everything" reading of the policy, but under the [graded bands](why:hedge-bands-graded) it is inside its 0–40% band by design — below Daniel's 25% internal target, which he builds towards as the quarter comes closer and the forecast firms up. Q4 2026 comes mostly from order backlog (reliable) and sits at 74%, on Daniel's 75% target. Where do the exposure numbers come from? Q+1 mostly from order backlog; Q+3–Q+4 from FP&A's sales forecast — which is precisely why the bands decline.
 
 </Example>
 
@@ -99,7 +100,7 @@ Example: Lea needs USD 2m in the US subsidiary's account on Wednesday for a supp
 
 ## Hedging
 
-**Plain:** taking a position that gains when your business exposure loses, so the two roughly cancel. **Professional:** FX hedging reduces the variability of cash flows or values from rate moves, by policy — not to profit from views. The core decisions: **whether** to hedge (materiality, margin sensitivity, ability to reprice), **how much** ([hedge ratio](term:hedge-ratio), often layered by horizon), **how far ahead**, **which instrument** (forward, option, swap), and **with whom** (bank limits, ISDA in place). A [treasury policy](term:treasury-policy) frames these, and speculative positions are normally forbidden. Hedge accounting (IFRS 9) is a separate decision about how the hedge shows up in P&L.
+**Plain:** taking a position that gains when your business exposure loses, so the two roughly cancel. **Professional:** FX hedging reduces the variability of cash flows or values from rate moves, by policy — not to profit from views. The core decisions: **whether** to hedge (materiality, margin sensitivity, ability to reprice), **how much** ([hedge ratio](term:hedge-ratio), often layered by horizon), **how far ahead**, **which instrument** (forward, option, swap), and **with whom** (bank limits, ISDA in place). A [treasury policy](term:treasury-policy) frames these, and speculative positions are normally forbidden. [Hedge accounting](term:hedge-accounting) is a separate decision about how the hedge shows up in P&L — and the applicable framework matters: Helvetic's Swiss GAAP FER treatment is far lighter than the IFRS 9 regime GlobalChem applies.
 
 <Example title="'Should we hedge, how much, which instrument?' at Alpine" company="alpine">
 
@@ -116,6 +117,12 @@ If EUR strengthens after Alpine sold EUR forward, the forward shows a loss — a
 
 </Callout>
 
+<Callout type="concept" title="Hedge accounting: what actually bites mid-market groups">
+
+Two different things get called "hedging" in accounting conversations. An **economic hedge** reduces risk and that is the end of it: the derivative's [mark-to-market](term:mark-to-market) runs through P&L and roughly offsets the exposure's own revaluation, with no documentation prepared. **Hedge accounting** is the optional regime that removes that P&L noise by deferring the hedge's value changes in equity until the hedged item itself hits P&L. The burden differs sharply by framework: under IFRS 9 (which [GlobalChem](co:globalchem) applies) a cash-flow hedge of forecast sales needs formal designation, documentation and effectiveness assessment; under Swiss GAAP FER 27 (which [Helvetic](co:helvetic) applies) the market value of forwards hedging future sales is simply booked in equity until the sale is recognised — no effectiveness testing. Ask a mid-market interviewee which framework they report under before assuming IFRS 9-style paperwork.
+
+</Callout>
+
 **Ask:**
 - "Walk me through the last hedge decision: who proposed, who approved, what did you look at?"
 - "What does your policy say, and when did you last deviate or ask for an exception?"
@@ -124,9 +131,9 @@ If EUR strengthens after Alpine sold EUR forward, the forward shows a loss — a
 
 ## Forwards
 
-**Plain:** agreeing today on the exchange rate for a future date. **Professional:** an OTC [forward](term:forward) fixes the rate for delivery on a future value date; forward rate = spot ± [forward points](term:forward-points), reflecting the interest differential. With €STR ≈ 2% and SARON ≈ 0% (illustrative), EUR/CHF forwards are below spot: selling EUR 12 months forward at spot 0.935 gives about 0.917. Forwards are the workhorse of corporate hedging: no upfront premium, but a binding obligation — and a credit line at the bank. Maturing forwards whose underlying flow is late are extended by [hedge rolls](term:hedge-roll) (swaps).
+**Plain:** agreeing today on the exchange rate for a future date. **Professional:** an OTC [forward](term:forward) fixes the rate for delivery on a future value date; forward rate = spot ± [forward points](term:forward-points), reflecting the interest differential. With €STR ≈ 2.2–2.4% and SARON ≈ 0% (illustrative), EUR/CHF forwards are below spot: at spot 0.935 the 12-month forward is about 0.913–0.915 — [the points are the interest differential, not a bank fee](why:forward-points-below-spot). Forwards are the workhorse of corporate hedging: no upfront premium, but a binding obligation — and a credit line at the bank. Maturing forwards whose underlying flow is late are extended by [hedge rolls](term:hedge-roll) (swaps).
 
-Example: Helvetic sells EUR 6m forward for Q4 dates at about 0.92 (illustrative: spot 0.935 less roughly nine months of a 2% interest differential), split between two banks for price competition and limit usage. Lea books the deals in the hedge spreadsheet and matches the bank confirmations the same day.
+Example: against its Q1 2027 receipt dates Helvetic sells about EUR 6m forward at roughly 0.928 (illustrative: spot 0.935 less roughly four months of the ≈2.3% euro–franc interest differential), split between two banks for price competition and limit usage. Lea books the deals in the hedge spreadsheet and matches the bank confirmations the same day.
 
 - **Terms:** [forward](term:forward), [forward points](term:forward-points), [OTC](term:otc), [hedge roll](term:hedge-roll), [deal confirmation](term:deal-confirmation).
 
@@ -166,7 +173,7 @@ Example: Helvetic's German and Czech plants give it EUR and CZK costs against EU
 
 **Plain:** the percentage of an exposure that is hedged. **Professional:** [hedge ratio](term:hedge-ratio) = hedged amount ÷ exposure, typically set as bands per horizon in the policy ([layered hedging](term:layered-hedging)), declining with forecast uncertainty. In the vendor-sponsored MillTech 2025 survey of ~750 mid-sized corporates, the average reported hedge ratio was about 48% with an average tenor of about 5.3 months[](cite:milltech-fx-2025) — treat as indicative only.
 
-Example: Helvetic's policy — 60–90% of next-quarter net EUR inflows, 30–60% for quarters 2–4, nothing beyond 12 months. In the exposure table above, Q1 at 74% is fine and Q4 at 14% needs topping up.
+Example: Helvetic's policy, approved by the board in December 2025 — [60–90% for the next rolling quarter (Q+1)](why:hedge-bands-graded), 40–70% for Q+2, 25–55% for Q+3, 0–40% for Q+4, nothing beyond 12 months; Daniel's internal targets sit mid-band at 75 / 55 / 40 / 25%. The 60–90% band is the Q+1 band only. In the exposure table above, Q+1 at 74% is on target; Q+2 (Q1 2027) at 38% is below its band and needs about EUR 6m of new forwards; Q+4 at 14% is inside its 0–40% band by design.
 
 - **Terms:** [hedge ratio](term:hedge-ratio), [layered hedging](term:layered-hedging), [treasury policy](term:treasury-policy), [cash flow at risk](term:cash-flow-at-risk).
 
@@ -177,7 +184,7 @@ Example: Helvetic's policy — 60–90% of next-quarter net EUR inflows, 30–60
 <SizeTabs
   startup="**Kleio.** USD revenue largely offset by USD costs (natural hedge); surplus converted at spot a few times a year. No derivatives, no policy needed. The trap: holding extra USD for its higher interest rate."
   sme="**Alpine.** Real EUR exposure (45% of revenue, CHF costs) and no written policy — only a board minute. Martin hedges signed projects with forwards by phone; bids and the pipeline are unhedged. The weakness is measurement: nobody maintains an exposure report."
-  midmarket="**Helvetic.** Written policy with bands, exposure from the forecast, layered EUR forwards with two banks, IFRS 9 hedge accounting with group accounting. Excel is the hedge book; a TMS is being evaluated partly for this."
+  midmarket="**Helvetic.** Written policy with graded bands per quarter, exposure from the forecast, layered EUR forwards with two banks, hedge accounting under Swiss GAAP FER with group accounting (no IFRS 9 effectiveness testing). Excel is the hedge book; a TMS is being evaluated partly for this."
   multinational="**GlobalChem.** A risk team with front/middle/back office separation, netting before hedging, multi-dealer platform, NDFs for restricted currencies, CFaR reporting, hedge accounting at scale. The hard problem is exposure quality from ~40 entities."
 />
 

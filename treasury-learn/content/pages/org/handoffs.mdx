@@ -8,13 +8,13 @@ related: [/org/responsibility-matrix, /org, /org/neighbours, /workflows, /interv
 
 ## Why hand-offs matter
 
-A responsibility matrix says who is involved; a hand-off chain says **in what order, with which artefact, through which channel**. Most treasury problems happen at hand-offs, not inside anyone's own task: a template arrives late, an email with a bank-detail change is trusted, a deal is not passed to accounting, a decision waits for someone on holiday.
+A responsibility matrix says who is involved; a hand-off chain says **in what order, with which artefact, through which channel**. Practitioners describe most treasury problems as happening at hand-offs, not inside anyone's own task: a template arrives late, an email with a bank-detail change is trusted, a deal is not passed to accounting, a decision waits for someone on holiday.
 
 Every hand-off has four parts worth asking about:
 
 | Part | Question | Example |
 |---|---|---|
-| **Trigger** | What starts it? | Thursday 12:00 deadline; a payment run; a subsidiary's email |
+| **Trigger** | What starts it? | Tuesday 12:00 deadline; a payment run; a subsidiary's email |
 | **Artefact** | What is handed over? | Excel template, payment file, deal ticket, bank confirmation, signed resolution |
 | **Channel** | How? | Shared folder, email, ERP workflow, TMS, phone |
 | **Check** | Who verifies it on receipt, and against what? | Lea compares to last cycle; the payment factory screens against sanctions lists |
@@ -29,19 +29,19 @@ The chains below are illustrative, modelled on the reference companies. Step num
 
 ## Cash forecasting (13-week)
 
-Modelled on [Helvetic](co:helvetic), fortnightly cycle. Workflow: [Cash forecasting](wf:cash-forecasting).
+Modelled on [Helvetic](co:helvetic), [weekly cycle](why:weekly-vs-monthly-forecast). Workflow: [Cash forecasting](wf:cash-forecasting).
 
 | # | From | Gives | To | When |
 |---|---|---|---|---|
-| 1 | Lea (Treasury Analyst) | Template, deadline, last cycle's variances by entity | Subsidiary finance managers (Giulia, Jens, Wei, …) | Monday, week 1 |
-| 2 | Local AP | Scheduled payment runs and large payables | Subsidiary finance manager | Tue–Wed |
-| 3 | Local AR / credit control | Open items with realistic receipt dates, disputes | Subsidiary finance manager | Tue–Wed |
-| 4 | Subsidiary finance managers | Completed 13-week templates by entity | Lea | Thursday 12:00 CET |
+| 1 | Lea (Treasury Analyst) | Template, deadline, last cycle's variances by entity | Subsidiary finance managers (Giulia, Jens, Wei, …) | Monday |
+| 2 | Local AP | Scheduled payment runs and large payables | Subsidiary finance manager | Mon–Tue morning |
+| 3 | Local AR / credit control | Open items with realistic receipt dates, disputes | Subsidiary finance manager | Mon–Tue morning |
+| 4 | Subsidiary finance managers | Completed 13-week templates by entity | Lea | Tuesday 12:00 CET |
 | 5 | Group tax; HR/payroll | Tax payment calendar; payroll and bonus dates | Lea | Standing calendar, updated monthly |
 | 6 | Marco (FP&A) | Rolling forecast for weeks 9–13 and months 4–12 | Lea | Monthly |
-| 7 | Lea | Consolidated forecast, variance vs last cycle and actuals, questions | Daniel (Treasury Manager) | Friday |
-| 8 | Daniel | Challenges on specific lines (e.g. Italy receipts) | Subsidiary finance manager | Friday |
-| 9 | Daniel | Adjusted forecast, low point, RCF headroom, proposed actions | Thomas (CFO) | Monthly meeting, or immediately if headroom falls below the policy minimum |
+| 7 | Lea | Consolidated forecast, variance vs last cycle and actuals, questions | Daniel (Treasury Manager) | Tue–Wed |
+| 8 | Daniel | Challenges on specific lines (e.g. Italy receipts) | Subsidiary finance manager | Wednesday |
+| 9 | Daniel | Adjusted forecast, low point, RCF headroom, proposed actions | Thomas (CFO) | One-page note Thursday, every week; the medium-term (18-month) plan is reviewed monthly — or immediately if headroom falls below the policy minimum |
 | 10 | Thomas | Decisions on material actions (draw RCF, delay capex, dividend timing) | Daniel; board if needed | As needed |
 
 **At other sizes.** At [Kleio](co:kleio), steps 1–8 collapse into Sarah (CFO) asking Nina for AP/AR lists and department heads for hiring changes, then updating the runway sheet; the board sees it monthly. At [Alpine](co:alpine), the critical hand-off is project managers → Petra (milestone dates), and Martin (CFO) reviews in a Monday meeting. At [GlobalChem](co:globalchem), 40 reporting units submit in a forecasting tool, Priya's team challenges outliers, Anna reviews, and FP&A reconciles the monthly view; the CFO sees a summary.
@@ -57,7 +57,7 @@ Workflow: [Payment processing](wf:payment-processing); large items: [Large payme
 | 3 | AP | Payment proposal (ERP payment run) | First approver | Nina at Kleio; AP clerk at Alpine; local AP at Helvetic; SSC AP at GlobalChem |
 | 4 | First approver | Approved run | Second approver / bank channel | Petra at Alpine; local finance manager at Helvetic |
 | 5 | AP or treasury | Total and timing of the run | Whoever funds the account | Treasury funds local accounts at Helvetic; the in-house bank at GlobalChem |
-| 6 | Second approver | Release (collective signature) | Bank / payment factory | Sarah at Kleio; Martin at Alpine; local MD at Helvetic (plus Daniel or Thomas above CHF 2m); ERP workflow then payment-factory screening at GlobalChem |
+| 6 | Second approver | Release (collective signature) | Bank / payment factory | Sarah at Kleio; Martin at Alpine; local finance manager + MD at Helvetic (at the parent: Swiss AP or Lea prepares, Daniel releases; a single payment above CHF 2m adds Thomas and the CEO as co-signers); ERP workflow then payment-factory screening at GlobalChem |
 | 7 | Payment factory (large groups) | Screened, routed file; exceptions held | Banks | Marta's team at GlobalChem; not present at smaller companies |
 | 8 | Bank | Status reports ([pain.002](term:pain-002)), rejects | AP / payment operations | Rejects handled by whoever sent the file |
 | 9 | Bank | Statements | Accounting (reconciliation) and treasury (position) | Next morning |
@@ -68,11 +68,11 @@ Workflow: [FX hedging](wf:fx-hedging) and [FX exposure management](wf:fx-exposur
 
 | # | From | Gives | To | When |
 |---|---|---|---|---|
-| 1 | Subsidiaries / FP&A | Forecast foreign-currency flows by month; budget rates | Lea | Monthly |
+| 1 | Subsidiaries / FP&A | Forecast foreign-currency flows by month; budget rates | Lea | Monthly, by WD5 (collection window WD2–WD6) |
 | 2 | Group accounting | Balance-sheet exposures (foreign-currency receivables, payables, IC loans) | Lea | Month-end |
-| 3 | Lea | Net exposure, hedge ratio vs policy corridor, proposed trades | Daniel | Monthly, before the hedging date |
-| 4 | Daniel | Decision within policy; request if outside policy | Thomas (only if outside policy) | Same day |
-| 5 | Daniel | Trade request; best of several quotes | Banks (RCF lenders) | Execution day |
+| 3 | Lea | Net exposure, hedge ratio vs the graded policy bands (Q+1 60–90% … Q+4 0–40%), proposed trades | Daniel | WD7 — he reviews the exposure report |
+| 4 | Daniel | Decision within policy; request if outside policy | Thomas (only if outside policy) | After the WD7 review |
+| 5 | Daniel | Trade request; best of several quotes | Banks (RCF lenders) | Execution, after the review |
 | 6 | Bank | Confirmation | Lea (not Daniel — segregation of duties) | Same day |
 | 7 | Lea | Deal details, confirmation, hedge designation | Claudia's team (group accounting) | Same day / month-end |
 | 8 | Daniel | Hedge report (cover ratios, rates achieved vs budget) | Thomas; FP&A | Monthly |
@@ -90,7 +90,7 @@ Workflow: [Funding a subsidiary](wf:funding-subsidiary).
 | 3 | Group tax | Rate and constraints | Daniel | Can take days |
 | 4 | Daniel | Request for approval (above threshold) | Thomas (CFO) | |
 | 5 | Legal | Loan agreement; resolutions for equity | Both entities' signatories | |
-| 6 | Lea | Prepared transfer | Daniel + Thomas (release) | Treasury payment, not AP |
+| 6 | Lea | Prepared transfer | Daniel (releases up to CHF 2m); Thomas and the CEO above CHF 2m | Treasury payment, not AP |
 | 7 | Lea | Loan record, interest schedule | Claudia's team + subsidiary accounting | Both sides booked the same way |
 
 **At other sizes.** Kleio: Sarah transfers monthly under a cost-plus agreement. Alpine: Martin decides, Petra transfers and books, the tax adviser set the rate once. GlobalChem: most entities simply draw on their in-house bank account; the hand-offs remain for restricted-currency countries and equity injections, where tax, legal and local banks are involved.
@@ -104,7 +104,7 @@ Workflow: [Month-end treasury reporting](wf:month-end-reporting).
 | 1 | Banks | Month-end statements and deal confirmations | Lea | Day 1 |
 | 2 | Lea | Deal list (FX, deposits, loans), IC loan schedule with interest | Group accounting | Day 1 |
 | 3 | Group accounting | Queries, IC mismatches | Lea / subsidiaries | Days 2–3 |
-| 4 | Group accounting | Month-end balances, net debt, EBITDA (and covenant definitions semi-annually) | Lea | Days 4–6 |
+| 4 | Group accounting | Month-end balances and EBITDA per the facility's definitions (semi-annually: the LTM covenant ratios, computed by Group Accounting from Lea's net-debt schedule) | Lea | Days 4–6 |
 | 5 | Lea | Draft treasury report: cash, debt, headroom, hedges, counterparties, covenants | Daniel | Day 6 |
 | 6 | Daniel | Reviewed report with commentary | Thomas | Day 7 |
 | 7 | Thomas / Daniel | Quarterly summary | Audit committee / board | Quarterly |

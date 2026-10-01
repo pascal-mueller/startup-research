@@ -94,9 +94,11 @@ steps:
     detail: >-
       Using the 13-week forecast, decide the amount, currency and period of each loan: roll unchanged, reduce with surplus
       cash, increase, or switch currency. Compare with alternatives — using idle cash, an [FX swap](term:swap) of surplus
-      currency, a local overdraft, commercial paper at large companies. With CHF rates near 0%, surplus CHF is better used
-      to reduce CHF drawings than left in deposits. Check thresholds that change cost, such as a
-      [utilisation fee](term:utilisation-fee) above one-third drawn.
+      currency (workable, but a revolving drawing is [awkward to swap](why:revolver-swap-awkward): it floats and can be
+      repaid at any rollover), a local overdraft, commercial paper at large companies. With CHF rates near 0%, surplus
+      CHF is better used to reduce CHF drawings than left in deposits — and because each loan runs to its interest-period
+      end on the 15th, the [rollover is the repayment moment](why:fifteenth-rollover-repayment). Check thresholds that
+      change cost, such as the [utilisation fee](term:utilisation-fee) tiers above one-third and two-thirds drawn.
     judgment: >-
       How much buffer to keep drawn versus repaid; which currency to borrow in; whether a need is temporary (short period,
       overdraft or swap) or structural (longer period, or a term loan instead).
@@ -175,17 +177,17 @@ example:
     | Swiss bank B | 50 | 15.1 | FX hedging, bond paying agent |
     | German bank | 50 | 15.1 | EUR cash management, FX hedging, EUR 2m overdraft for HM Deutschland |
     | Global bank | 40 | 12.0 | US/UK accounts only |
-    | **Total** | **200** | **60.2** (30%) | Loans: CHF 35m + EUR 27m (≈ CHF 25.2m at 0.935) |
+    | **Total** | **200** | **60.2** (30%; shares rounded) | Loans: CHF 35m + EUR 27m (≈ CHF 25.2m at 0.935) |
 
-    **Mon 5 Oct — calendar.** Lea's register shows both loans' interest periods end Thu 15 Oct; requests are due Mon 12 Oct, 10:00. The agent's Q3 commitment-fee invoice is CHF 106,285; Lea recomputes 0.2975% × average undrawn CHF 139.8m × 92/360 and agrees it.
+    **Mon 5 Oct — calendar.** Lea's register shows both loans' interest periods end Thu 15 Oct; requests are due Mon 12 Oct, 10:00. The agent's Q3 commitment-fee invoice is CHF 106,287; Lea recomputes 0.2975% × average undrawn CHF 139.8m × 92/360 = CHF 106,287 and agrees it.
 
-    **Tue 6 Oct — the decision.** The 13-week forecast shows HM Deutschland needs EUR 8m from mid-October for material on a large order, while HM AG's EUR receipts are committed to settling Q4 forwards. HM AG holds about CHF 5m more than it needs; at SARON ≈ 0% it earns nothing. Lea's first draft — roll everything and add EUR 8m — would take drawings to CHF 67.7m, over the one-third threshold, triggering 0.10% on *all* loans (≈ CHF 68k a year). Daniel's decision: roll the CHF loan at **CHF 30m** (repay 5m) and the EUR loan at **EUR 35m** (27m + 8m new), both for three months. Drawings after: CHF 30m + EUR 35m ≈ CHF 62.7m (31%), no utilisation fee.
+    **Tue 6 Oct — the decision.** The 13-week forecast shows HM Deutschland needs EUR 8m from mid-October for material on a large order, while HM AG's EUR receipts are committed to settling Q4 forwards. HM AG holds about CHF 5m more than it needs; at SARON ≈ 0% it earns nothing. Lea's first draft — roll everything and add EUR 8m — would take drawings to CHF 67.7m (35 + 35 × 0.935), over the one-third threshold of CHF 66.7m, triggering 0.10% on *all* loans (≈ CHF 68k a year): the [threshold, not the rate](why:utilisation-fee-threshold), drives the decision. Daniel's decision: roll the CHF loan at **CHF 30m** (repay 5m) and the EUR loan at **EUR 35m** (27m + 8m new), both for three months. Drawings after: CHF 30m + EUR 35m ≈ CHF 62.7m (31%), no utilisation fee.
 
     **Fri 9 Oct — interest notices.** EUR loan: 27m × (EURIBOR 2.05% + 0.85%) × 92/360 = EUR 200,100 (rate fixed in July, so Lea checked it then). CHF loan: compounded SARON came out marginally below zero, floored at 0, so interest = 35m × 0.85% × 92/360 = CHF 76,028 — the agent's figure matches.
 
     **Mon 12 Oct, 09:15 — requests.** Two utilisation requests, signed by Thomas and Daniel. Before signing, Daniel confirms with legal that nothing affects the representations. Emailed as PDF to the agent's loan desk; confirmation back by 14:00.
 
-    **Thu 15 Oct — settlement.** Cashless rollovers: HM AG pays CHF 5.076m (repayment plus interest) and receives EUR 7.80m (8.0m new minus 0.20m interest), which Lea lends on to HM Deutschland by intercompany loan. Register updated; Claudia's team gets the booking details.
+    **Thu 15 Oct — settlement.** Cashless rollovers: HM AG pays CHF 5.076m (the CHF 5.0m repayment plus CHF 76,028 interest) and receives EUR 7.80m (8.0m new minus 0.20m interest), which Lea lends on to HM Deutschland by intercompany loan. Register updated; Claudia's team gets the booking details. **The state from here on:** CHF 30m + EUR 35m ≈ CHF 62.7m drawn — call it ≈ CHF 63m — so ≈ CHF 137m of the CHF 200m is undrawn. Every later Helvetic scenario (November and beyond) starts from these figures, not from the pre-rollover CHF 35m + EUR 27m. The rollover on the 15th is the [repayment moment](why:fifteenth-rollover-repayment): mid-period prepayment would break the bank's funding for the period, so surplus cash waits for it.
 
     **Same week — a guarantee that doesn't fit.** Sales signs a CHF 4.0m machine order whose customer requires an [advance payment guarantee](term:advance-payment-guarantee). Swiss bank A's guarantee line has CHF 3.8m free. Options: wait for CHF 1.5m of guarantees expiring 31 October (the customer won't pay the deposit until the guarantee arrives); ask Swiss bank B to issue against cash collateral (ties up CHF 4m); or ask Swiss bank A for a temporary increase. Daniel asks for an increase to CHF 12m; the bank's credit approval takes eight working days, and the RM mentions that Swiss bank A "would like to discuss the RCF renewal early".
 
@@ -200,7 +202,10 @@ judgment:
   - decision: When to start an extension or refinancing, and which banks to invite
     why: Starting early costs fees and management time; starting late weakens the company's negotiating position and may worry auditors and rating agencies.
   - decision: Which terms to trade off in negotiation (price, size, tenor, covenants, baskets)
-    why: Some terms matter only in a downturn; it takes experience to know which ones will matter.
+    why: >-
+      Some terms matter only in a downturn; experience says which. The acquisition basket and the EBITDA add-back cap
+      decide whether a downturn deal can proceed at all, and the net-debt definition decides what counts — the margin
+      grid merely reprices after the fact.
 failure_modes:
   - mode: Missed notice deadline
     consequence: Drawing not available on the needed date; rollover becomes repayment; a scramble for overdraft funding.
@@ -256,7 +261,7 @@ by_size:
 companies:
   kleio: "No debt. A venture lender has offered CHF 5m over 36 months (illustrative: 12 months interest-only, warrants, a minimum-cash covenant). Sarah's work is modelling whether the covenant could bite before the next equity round, and negotiating the material-adverse-change clause — not facility administration."
   alpine: "A CHF 12m committed operating line at the cantonal bank, usually CHF 0–5m drawn as fixed advances of one to three months, plus guarantee lines for customer advance payments on projects and the CHF 6m plant mortgage. Petra emails the relationship manager and sends the signed advance form two days ahead; the bank's annual credit review uses the audited accounts, budget and order book. Martin handles the relationship."
-  helvetic: "The worked example above: a four-bank syndicated RCF drawn at ~CHF 60m, bilateral guarantee and overdraft lines, and an amend-and-extend to start ahead of the 2028 bond maturity."
+  helvetic: "The worked example above: a four-bank syndicated RCF drawn at CHF 30m + EUR 35m ≈ CHF 63m after the 15 October 2026 rollover (≈ CHF 137m undrawn), bilateral guarantee and overdraft lines, and an amend-and-extend to start ahead of the 2028 bond maturity."
   globalchem: "The EUR 1.5bn RCF with seven core banks is undrawn and backs the commercial-paper programme. Olivier's corporate-finance team requests the one-year extension in each window, holds an annual bank meeting in Basel, and allocates FX, cash management and bond mandates across the seven banks using a wallet-share model. Like many investment-grade facilities, it has no financial maintenance covenant."
 handoffs:
   - from: Cash forecast / daily position
@@ -305,7 +310,9 @@ evidence_note: >-
   35%[](cite:heidelberg-sfa-2014). Five-year RCFs with two one-year extension options are a common
   structure[](cite:loomis-rcf-2025), and amend-and-extend was reported as a major 2025 loan-market
   theme[](cite:globalcapital-ae-2025). Compounded SARON is calculated in arrears, typically with a lookback, so interest
-  is known only near the payment date[](cite:zanders-saron). 76% of ACT/HSF 2025 respondents expected macroeconomic and
-  geopolitical factors to influence debt strategy considerably[](cite:act-hsf-debt-2025). A SECO 2021 study found 32% of
+  is known only near the payment date[](cite:zanders-saron). The ACT/HSF Corporate Debt and Treasury Report 2025
+  reports that macroeconomic and geopolitical factors weigh heavily on treasurers' debt strategy — a clear majority
+  expected them to influence it considerably, more than in 2024 (as reported by ACT/HSF; the exact share is not
+  confirmed against the primary text)[](cite:act-hsf-debt-2025). A SECO 2021 study found 32% of
   Swiss SMEs used bank financing (the population includes micro-firms)[](cite:seco-kmu-finanzierung-2021). Pricing grids,
   fees, bank shares and the worked example are illustrative synthesis; market pricing varies by credit and period.

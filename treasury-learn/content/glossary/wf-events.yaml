@@ -87,7 +87,7 @@
   related: [credit-support-annex, mark-to-market, liquidity-risk, isda]
 - id: thirteen-week-cash-flow
   term: 13-week cash flow (13WCF)
-  aka: [13WCF, 13-week cash forecast, TWCF]
+  aka: [13WCF, 13-week cash forecast, weekly cash flow]
   category: Forecasting
   plain: A week-by-week forecast of cash in and out for the next quarter, used as the main steering tool when cash is tight.
   professional: >-

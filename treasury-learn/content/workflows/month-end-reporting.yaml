@@ -29,7 +29,7 @@ people:
   - role: Group / head of accounting and local accountants
     does: Set the close calendar and month-end FX rates; book interest, derivatives, intercompany loans and deposits in the general ledger; reconcile.
   - role: FP&A / controlling
-    does: Provide last-twelve-months (LTM) EBITDA and the outlook used in covenant calculations and headroom projections.
+    does: Provide the outlook (forecast EBITDA) used in headroom projections. LTM actual EBITDA for covenant ratios comes from group accounting — FP&A never supplies LTM actuals.
   - role: Subsidiary finance
     does: Confirm local bank balances, local borrowings and guarantees; book their side of intercompany loans and interest.
   - role: Banks / counterparties
@@ -73,8 +73,11 @@ data:
     source: Treasury's intercompany loan register / in-house bank
     notes: Both entities must book the same balance and interest; mismatches block the consolidation.
   - name: LTM EBITDA and outlook
-    source: FP&A / controlling
-    notes: Needed for leverage and interest-cover covenant estimates between formal test dates.
+    source: Group accounting (LTM actuals, for covenant ratios); FP&A / controlling (outlook)
+    notes: LTM EBITDA for covenant estimates comes from group accounting; FP&A supplies forecast EBITDA only, used for headroom projections between formal test dates.
+  - name: Derivative collateral and margin balances
+    source: CSA margin statements from the hedging banks
+    notes: Under ISDA credit support annexes, margin calls and collateral balances are month-end items in the accounting pack and a classic reconciliation gap (larger groups; Helvetic's plain forwards carry no CSA).
   - name: Forecast vs actual
     source: Stored 13-week forecast versions and actual cash flows
   - name: Limits and policy thresholds
@@ -126,8 +129,15 @@ steps:
       Hand over balances, deal list with valuations, accruals and intercompany statements. At most mid-market
       companies accounting books the entries; treasury does not post to the general ledger. At larger companies with
       integrated treasury modules, postings are generated automatically from the TMS and reviewed by treasury
-      accounting or back office. Where hedge accounting is applied, treasury also supplies hedge documentation and
-      effectiveness data.
+      accounting or back office. What the pack contains for derivatives depends on the reporting framework, and the
+      two vocabularies must not be mixed (see [why the packs differ](why:fer-vs-ifrs-pack)). Helvetic reports under
+      **Swiss GAAP FER**: derivatives are handled under **FER 27 "Derivative financial instruments"**, treasury
+      supplies fair values, accruals and the hedge book, and the [hedge-accounting](term:hedge-accounting) treatment
+      and hedge-ratio bands are **management practice** — FER 27 requires no formal hedge-documentation or
+      effectiveness testing. GlobalChem reports under **IFRS 9/16** with hedge
+      accounting: treasury supplies designation documentation and ongoing effectiveness assessments (that is where
+      "effectiveness data" belongs — IFRS 9 vocabulary, with no IAS 39-style 80–125% bright line), plus the data
+      behind the IFRS 7 risk disclosures.
     judgment: Which exceptions (a disputed valuation, a late confirmation) to flag to accounting rather than silently resolve.
   - title: Reconcile treasury figures to the ledger
     who: Treasury analyst with accounting
@@ -139,14 +149,15 @@ steps:
       a subsidiary that booked intercompany interest at last quarter's rate. Fix or document before consolidation.
     manual: Intercompany mismatches are chased by email with local accountants; this is where much of the month-end friction sits.
   - title: Compute covenant and headroom estimates
-    who: Treasury analyst, reviewed by treasury manager
+    who: Group accounting (Claudia's team) computes the LTM ratios; the treasury analyst supplies the net-debt schedule; the treasury manager reviews
     where: Excel covenant model
     when: WD3–WD4
     detail: >-
-      With LTM EBITDA from FP&A/controlling, compute [net debt](term:net-debt), [leverage](term:leverage-ratio) and
+      With LTM EBITDA from group accounting (FP&A supplies forecast EBITDA only — never LTM actuals), compute [net debt](term:net-debt), [leverage](term:leverage-ratio) and
       [interest cover](term:interest-cover) using the loan agreement's definitions (which differ from the reported
       figures — e.g. treatment of leases, one-offs, pro-forma acquisitions). Compute [liquidity headroom](term:liquidity-headroom):
       freely available cash plus undrawn committed facilities, minus minimum cash. Project both to the next test date.
+      Lea prepares the net-debt schedule and the projections; Daniel reviews and presents the ratios to the banks.
     judgment: Which adjustments the lender definitions allow, and whether a projected trend (not today's number) warrants a warning to the CFO.
   - title: Check limits and policy compliance
     who: Treasury analyst → treasury manager
@@ -190,7 +201,13 @@ example:
   body: |
     **WD1 (Thu 1 Oct)** — Lea loads the 30 September statements: 12 operating accounts plus two accounts outside the daily routine (a CZK escrow account and a USD guarantee collateral account). She requests valuation statements for the open forwards from the three hedging banks and takes the month-end rates from Claudia's rate table (EUR/CHF 0.9350, USD/CHF 0.8000 — illustrative).
 
-    **WD2** — The accounting pack goes to Claudia's team at 11:40: open forwards with bank values, accrued interest (bond coupon CHF 0.73m accrued since the last coupon date; RCF interest and commitment fee; eight intercompany loans), and intercompany statements. Local accountants book their side.
+    **WD2** — The accounting pack goes to Claudia's team at 11:40, [ten minutes inside the WD2 12:00 deadline](why:pack-wd2-report-wd5): open forwards with bank values, accrued interest (bond coupon CHF 0.73m accrued since the last coupon date; RCF interest and commitment fee; eight intercompany loans), and intercompany statements. Local accountants book their side. The pack's *contents* follow the reporting framework: Helvetic reports under **Swiss GAAP FER**, so it carries fair values, accruals and the hedge book — "hedge documentation and effectiveness data" would be IFRS 9 vocabulary, and at GlobalChem (IFRS 9/16) that is exactly what treasury supplies alongside the numbers. One intercompany row behind the WD3 mismatch, in the schedule that goes to Claudia (HM AG → HM Italia):
+
+    | Entity | Principal | Rate | Accrued interest, September |
+    |---|---|---|---|
+    | HM Italia | EUR 8.0m | 2.35% (quarterly reset; 2.10% booked in error) | EUR 15.7k at 2.35% vs EUR 14.0k booked |
+
+    The close week also collides with the weekly forecast cycle: subsidiaries' Tuesday-noon 13-week submissions land on WD4 and Lea normally consolidates Tue–Wed — this week she pushes the forecast consolidation to Wednesday–Thursday and Daniel's forecast review slips a day with it.
 
     **WD3** — Reconciliation: GL cash is CHF 1.9m lower than bank cash because HM Deutschland's supplier run was booked on 30 Sept but debited on 1 Oct (value date) — explained. HM Italia booked intercompany interest at 2.10% instead of the reset rate of 2.35%: Lea emails Giulia, who corrects it before consolidation.
 
@@ -198,23 +215,23 @@ example:
 
     | Item | 31 Aug | 30 Sep | Comment |
     |---|---|---|---|
-    | Cash (bank) | 61.2 | 54.0 | Q3 VAT payment and seasonal working capital; of which CNY 7.9 held in China, not freely movable |
+    | Cash (bank) | 61.2 | 54.0 | [German August VAT prepayment (due 10 Sep) and seasonal working capital](why:september-vat-driver); of which CNY 55m (CHF 6.1m equivalent) held in China, not freely movable |
     | Gross debt (RCF 60.0 + bond 100.0) | 160.0 | 160.0 | Bond due 2028 |
     | Net debt | 98.8 | 106.0 | |
     | Undrawn committed RCF | 140.0 | 140.0 | |
-    | Liquidity headroom (free cash 46.1 + undrawn 140.0 − minimum 10.0) | 183.3 | 176.1 | |
-    | Net debt / LTM EBITDA (78.0 from FP&A) | 1.27x | 1.36x | Covenant ≤ 3.25x; formal test 31 Dec |
+    | Liquidity headroom (free cash 55.1 / 47.9 + undrawn 140.0 − minimum 10.0) | 185.1 | 177.9 | Free cash excludes the [China balance](why:china-cash-excluded) |
+    | Net debt / LTM EBITDA (78.0 from group accounting) | 1.27x | 1.36x | Covenant ≤ 3.25x; formal test 31 Dec |
     | Interest cover (EBITDA / net interest 3.4) | 23x | 23x | Covenant ≥ 4x |
 
-    **Hedges** — EUR net inflows forecast for the next 12 months: EUR 118m; hedged with forwards EUR 58m. Next quarter hedged 80% (policy 60–90%), Q+2 61%, Q+3 41%, Q+4 16%. Average contracted rate 0.9390; market value of all forwards +CHF 0.9m (EUR +0.6m, USD +0.3m) per bank valuations.
+    **Hedges** — EUR net inflows forecast for the next 12 months: EUR 118m; hedged with forwards EUR 58m. Next quarter hedged 80% (policy [60–90%, the bands grade down by quarter](why:hedge-bands-graded)), Q+2 61%, Q+3 41%, Q+4 16%. Average contracted rate 0.9390; market value of all forwards +CHF 0.9m (EUR +0.6m, USD +0.3m) per bank valuations — [valued off the forward curve, not off spot](why:hedge-mtm-forward-curve): the naive spot-only check gives EUR +0.23m (58m × 0.004), but with €STR ≈ 2.2–2.4% against SARON ≈ 0% the four-month EUR/CHF forward is ≈ 0.928, and (0.9390 − 0.928) × 58 ≈ +0.6m. (Continuity note: the November forecast will show Q1 2027 at EUR 30m forwards against EUR 40m of exposure, 75% — quarterly EUR inflows are seasonal and about EUR 6m of new hedges go on in October–November.)
 
-    **Counterparty exposure** — German bank: cash 9.8 + positive forward value 0.3 = CHF 10.1m against a CHF 10m limit (101%) after a EUR 3.1m customer receipt landed on 30 September. Daniel classifies it as a passive breach, moves EUR 2m to HM AG on 1 October (exposure back to about 82%) and lists it in the exceptions section.
+    **Counterparty exposure** — German bank: cash 9.8 + positive forward value 0.3 = CHF 10.1m against a CHF 10m limit (101%) after a EUR 3.1m customer receipt landed on 30 September. Daniel classifies it as a [passive breach](why:passive-vs-active-breach), releases an EUR 2m transfer to HM AG on 1 October (prepared by Lea under the four-eyes rule; exposure back to about 82%) and lists it in the exceptions section.
 
-    **Cash vs RCF** — HM AG holds CHF 9m above its CHF 10m buffer. CHF deposits earn about 0% while RCF drawings cost SARON plus the margin, so Daniel's commentary proposes reducing the RCF drawing by CHF 8m at the 15 October rollover rather than placing a deposit (net debt unchanged, interest cost lower, the amount can be redrawn if the forecast turns).
+    **Cash vs RCF** — HM AG holds CHF 9m above its CHF 10m buffer. CHF deposits earn about 0% while RCF drawings cost SARON plus the margin, so Daniel's commentary proposes reducing the CHF drawing by CHF 5m at the 15 October rollover rather than placing a deposit (CHF 35m → 30m; net debt unchanged, interest cost lower, the amount can be redrawn if the forecast turns).
 
     **Forecast accuracy** — September receipts forecast 4 weeks earlier: CHF 58.0m; actual CHF 52.3m (−9.8%), mostly Italy again.
 
-    **WD5** — Thomas reads the report, asks why net debt rose CHF 7.2m (answer: seasonal VAT and working capital, as forecast) and asks Daniel to bring a first bond-refinancing timetable to the October meeting, because the CHF 100m bond will fall within the 12-month current-liability window of the 2027 year-end accounts and banks and bond investors will want to see a plan well before then.
+    **WD5** — Thomas reads the report, asks why net debt rose CHF 7.2m (answer: [the German August VAT prepayment and seasonal working capital](why:september-vat-driver), as forecast) and asks Daniel to bring a first bond-refinancing timetable to the October meeting, because the CHF 100m bond will fall within the 12-month current-liability window of the 2027 year-end accounts and banks and bond investors will want to see a plan well before then. At year-end the same data serves a second master: the auditor's bank confirmations must agree to the same balances and open derivative confirmations are sampled — which is exactly where a shortcut like "2 of 41 forwards confirmed by Daniel himself" surfaces in [treasury policy compliance](wf:policy-compliance).
 judgment:
   - decision: Which exceptions go in the report and how prominently
     why: The report's value is in the exceptions; listing everything hides what matters, omitting a breach erodes trust with the CFO and auditors.
@@ -272,15 +289,18 @@ by_size:
     PowerPoint, with quarterly board extracts. Reconciliation with accounting and intercompany interest are the main
     friction; covenant tracking is informal between test dates.
   multinational: >-
-    Treasury back office or treasury accounting produces TMS-generated postings, reconciliations and hedge accounting
-    documentation on a tight timetable (often WD1–WD3); the middle office runs limit and risk reports; the group
-    treasurer presents quarterly to the audit committee and sometimes a treasury committee. Additional external
+    Treasury back office or treasury accounting produces TMS-generated postings and reconciliations on a tight
+    timetable (often WD1–WD3), and hedge-accounting documentation in the vocabulary of the reporting framework —
+    IFRS 9 designation and effectiveness files at a group like GlobalChem, FER 27's lighter regime (no effectiveness
+    testing) at a Swiss GAAP FER group like Helvetic. The monthly multilateral netting cycle runs before the close,
+    with settlement mismatches chased by WD1. The middle office runs limit and risk reports; the
+    group treasurer presents quarterly to the audit committee and sometimes a treasury committee. Additional external
     reporting: rating-agency metrics, derivative disclosures, lender compliance certificates.
 companies:
   kleio: "Sarah's month-end board update has one treasury slide: cash by bank (CHF 22m across three banks, CHF 8m of it in deposits), burn, runway, and the USD balance. Nina books deposit interest when the deposits mature."
   alpine: "Petra closes the books by WD8. Her management pack shows cash by bank and currency, credit-line usage (CHF 3m drawn of 12m) and the open EUR forwards from the house bank's confirmations. Martin presents it to the board quarterly; there is no separate treasury report."
   helvetic: "The worked example above: Lea prepares the pack and tables; Daniel writes the commentary; Claudia's team books; Thomas receives the report by WD5 and takes a quarterly extract to the audit committee."
-  globalchem: "SAP treasury modules post deals, accruals and valuations automatically; Marta's back office in Kraków reconciles by WD2; Jonas's team produces hedge-effectiveness and risk reports; Priya reports in-house-bank and pool balances. Anna presents a quarterly treasury report to the audit committee covering liquidity, rating metrics, refinancing, counterparty exposure and policy breaches."
+  globalchem: "SAP treasury modules post deals, accruals and valuations automatically; Marta's back office in Kraków reconciles by WD2 and runs the monthly multilateral netting cycle before the close (settlement mismatches chased by WD1); Jonas's team produces the IFRS 9 hedge-designation, effectiveness and risk reports (GlobalChem reports under IFRS 9/16); Priya reports in-house-bank and pool balances. Anna presents a quarterly treasury report to the audit committee covering liquidity, rating metrics, refinancing, counterparty exposure and policy breaches."
 handoffs:
   - from: Banks
     gives: month-end statements, deal confirmations and derivative valuation statements
@@ -296,9 +316,9 @@ handoffs:
     gives: confirmations of local balances and intercompany bookings
     to: Treasury analyst
   - from: FP&A / controlling
-    gives: LTM EBITDA and outlook
+    gives: outlook (forecast EBITDA) for headroom projections
     to: Treasury analyst / manager
-    note: Needed for covenant estimates between formal test dates.
+    note: LTM actual EBITDA for covenant estimates comes from group accounting, which computes the ratios.
   - from: Treasury manager
     gives: monthly treasury report with commentary, exceptions and requested decisions
     to: CFO
@@ -321,11 +341,18 @@ ai_note: >-
   carry a high accuracy bar.
 terms: [month-end-close, cash-position, net-debt, liquidity-headroom, covenant, covenant-headroom, leverage-ratio, interest-cover, ebitda, mark-to-market, hedge-ratio, counterparty-exposure, counterparty-limit, debt-maturity-profile, interest-accrual, closing-rate, forecast-accuracy, intercompany-loan, hedge-accounting, compliance-certificate, treasury-report]
 related: [policy-compliance, covenant-monitoring, cash-forecasting, fx-hedging, bank-reconciliation, credit-facility-management]
-sources: [deloitte-gts-2024, pwc-gts-2025, ch-co-board-duties]
+sources: [deloitte-gts-2024, pwc-gts-2025, ch-co-board-duties, fer-27-derivatives, pwc-fer-financial-instruments-2025]
 evidence_note: >-
   The month-end sequence (balances, deal reconciliation, valuations, accruals, reconciliation to the ledger, report)
   is established practice in treasury operations; the WD timings, the report contents and the Helvetic numbers are
   illustrative synthesis consistent with the reference company, not a survey benchmark. No published survey gives a
   standard treasury-report template or close timetable; practice varies widely. The Swiss board's responsibility for
   financial control and planning (and therefore for receiving treasury reporting) follows from Art. 716a CO[](cite:ch-co-board-duties).
-  Survey context on the persistence of spreadsheets in treasury comes from Deloitte[](cite:deloitte-gts-2024) and PwC[](cite:pwc-gts-2025).
+  The framework split follows the standards: FER 27's recognition, measurement and note rules for derivatives and its
+  lack of an effectiveness-testing requirement[](cite:fer-27-derivatives), and PwC's FER guidance ("no formal
+  documentation requirement of the hedge relationship ... no requirement for testing effectiveness") versus IFRS 9
+  designation and effectiveness assessment[](cite:pwc-fer-financial-instruments-2025). Survey context on tool
+  maturity: about a fifth of Deloitte's respondents (22%) say the maturity of their cash-positioning capability
+  requires development[](cite:deloitte-gts-2024), and PwC's 2025 survey of 350 treasurers finds cash and liquidity
+  management the top priority, with the largest groups investing in in-house banks, payment factories and
+  POBO[](cite:pwc-gts-2025).

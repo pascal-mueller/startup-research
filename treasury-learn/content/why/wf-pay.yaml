@@ -1,0 +1,159 @@
+# Why notes for stream wf-pay (payments & banking workflows).
+# Every derivation below is re-derivable from content/companies.yaml and the canonical facts in docs/AUTHORING.md.
+
+- id: cut-offs-order-the-day
+  claim: "The bank's cut-off, not the ERP, decides whether today's run settles today"
+  short: "A file released after the currency cut-off simply misses the day: the bank executes it on the next business day. Everything in the payment day is therefore scheduled backwards from the cut-off — proposal early morning, uploads mid-morning, signatures well before noon."
+  detail: |
+    Banks batch and settle corporate files against rail deadlines (for Swiss banks, same-day CHF and EUR often need
+    the file in the late morning to early afternoon; SEPA and correspondent cutoffs differ by currency). A payment
+    released at 14:05 against a 14:00 cut-off is not late-but-executed — it carries the **next business day's** value,
+    so a supplier is paid a day late, a payroll or tax deadline is missed, or an overdraft is needed. That is why the
+    run is timed backwards from the cut-off: proposal at 08:00, review and funding check before 09:00, upload 09:15,
+    both signatures in before 11:00 for an afternoon cut-off — and why [instant rails](term:sct-inst) are the escape
+    hatch for the one payment that misses it. Cut-off times are per bank and per currency; the practitioner memorises
+    her own banks' numbers, not a generic rule.
+  check: "If instant payments become the default corporate rail, cut-offs stop mattering for retail-scale items — but batch files, payroll and cross-border legs will keep calendar deadlines."
+  terms: [cut-off-time, value-date, sct-inst, payment-run]
+  sources: []
+
+- id: execution-date-vs-value-date
+  claim: "Requested execution date is not the value date"
+  short: "You request a date; the bank assigns the value date. Before the cut-off the payment gets same-day value, after it next-day — and on cross-border receipts the bank may value-date later than it books, a hidden cost nobody negotiates."
+  detail: |
+    The payment instruction carries a *requested execution date*; the *value date* is the date from which the money
+    actually counts (interest and availability) on each account. Three practical consequences: (1) a file submitted
+    after the cut-off keeps its requested date but is executed and value-dated the next business day — the invoice due
+    date has passed even though the ERP shows "paid"; (2) the company's cash position is built on value dates, so a
+    payment booked on Tuesday but value-dated Wednesday belongs to Wednesday's position; (3) value dating on incoming
+    cross-border receipts (crediting a receipt a day or two later) is effectively an unpriced short-term loan to the
+    bank — when [bank fee analysis](wf:bank-fee-analysis) quantifies indirect costs, value dating belongs next to FX
+    spreads and lifting fees.
+  check: "On instant rails execution and value collapse into seconds, so this distinction fades for retail-scale items — but not for batch files and correspondent banking."
+  terms: [value-date, cut-off-time]
+  sources: []
+
+- id: camt-per-account
+  claim: "One statement per account — Alpine's Tuesday run produces three bank debits, not one"
+  short: "camt.053/MT940 statements are per account and per currency, so a run paid from CHF, EUR and USD accounts debits each account separately. 'CHF 1.9m' is treasury's CHF-equivalent sum; no bank booked it."
+  detail: |
+    A bank statement reports one account in its own currency. Alpine's Tuesday run pays from three accounts:
+    CHF 1,016,400 (CHF account, cantonal bank), EUR 741,900 (EUR account) and USD 236,500 (USD account, large bank) —
+    three statements, three debits (≈ CHF 1.02m + 0.69m at 0.935 + 0.19m at 0.80 ≈ CHF 1.90m in treasury's
+    CHF-equivalent view only). Within each account the run is one batch debit on the camt.053, and that account's
+    camt.054 breaks the debit down into its individual payments (52/27/5 minus the one rejected item), which is what
+    lets the ERP clear each vendor invoice. Consolidated treasury reporting adds the three up; the bank never does.
+  check: "An in-house bank or POBO structure consolidates reporting and execution into fewer accounts — but each remaining account still reports in its own currency on its own statement."
+  terms: [camt-054, bank-statement, mt940, reconciliation]
+  sources: [six-sps-cash-mgmt]
+
+- id: pain-file-per-account
+  claim: "One pain.001 per paying account — three files for Alpine's 84 payments"
+  short: "A pain.001 file carries exactly one debtor account and is addressed to one bank, so three paying accounts at two banks mean three files. 84 payments = 52 CHF + 27 EUR + 5 USD; the story 'one file with three payment-information blocks' is not what ERPs emit."
+  detail: |
+    The pain.001 structure allows several payment-information blocks, but each block fixes one debtor account and one
+    requested execution date, and a file is transmitted to one bank over one channel. ERPs therefore emit one file per
+    paying account (or per bank where one account is used): Business Central writes three files for Alpine's Tuesday
+    run — CHF 52 payments at the cantonal bank, EUR 27 at the same bank, USD 5 at the large Swiss bank (52 + 27 + 5 = 84).
+    This is also the unit of signing and rejection: each file gets its own two signatures and its own pain.002, so a
+    reject in the USD file never holds up the CHF file. Payment factories aggregate differently but keep the rule —
+    one debtor account per block, one bank per file.
+  check: "A payment hub can concatenate or split files by bank rules — but the debtor-account-per-block constraint and per-file status reporting stay."
+  terms: [pain-001, pain-002, payment-run, ebics]
+  sources: [six-sps-ig-ct-2026]
+
+- id: buffer-chooses-value-date
+  claim: "Thursday value for the CHF 4m down payment — the buffer picks the date, not a deposit"
+  short: "Paying Wednesday leaves HM AG at CHF 8.8m, under the CHF 10m parent buffer; the Thursday receipt leaves CHF 11.0m. No deposit is placed in between — CHF deposits earn ≈0% while the RCF is drawn."
+  detail: |
+    HM AG's CHF account is projected at CHF 13.6m for Wednesday and CHF 15.8m for Thursday (a CHF 2.2m customer
+    receipt lands Thursday morning), with CHF 0.8m of other outflows each day. Wednesday: 13.6 − 0.8 − 4.0 = **8.8m**,
+    below the CFO's CHF 10m parent buffer. Thursday: 15.8 − 0.8 − 4.0 = **11.0m**, comfortable. The contract allows
+    day 2 of 10, so Thursday is free — and the surplus stays on the current account towards the 15th RCF rollover
+    instead of sitting in a one-week CHF deposit, which would earn ≈0% while the facility costs SARON + 0.85%.
+    A CHF term deposit "maturing just in time" is the classic wrong answer here: with a drawn RCF it destroys value
+    and the maturity date becomes fake liquidity.
+  check: "If the CHF 2.2m receipt slipped past Thursday, Daniel would fund from another entity or draw the line — the buffer rule still binds, only the funding source changes."
+  terms: [cash-buffer, cash-position, value-date]
+  sources: []
+
+- id: kyc-round-trips
+  claim: "Weeks to open an account, weeks to remove a signatory"
+  short: "Opening is slowed by the bank's risk process: certified documents, extracts no older than 3–6 months, ownership charts and several Q&A rounds (93% of treasurers report being asked for the same data twice). Removal is slowed by nothing but missing HR triggers — it should take days."
+  detail: |
+    Corporate account opening is a know-your-customer round trip the company cannot accelerate: registry extracts and
+    apostilled copies with shelf lives, IDs of directors and controlling persons (Form K, 25% threshold), tax
+    self-certifications, expected-activity profiles — and the bank's KYC team comes back with questions, often for
+    documents already filed with the same bank for another entity (vendor survey of 250 UK/US treasurers: average
+    41 days to open, 93% asked for the same information more than once — indicative, not Swiss). Helvetic's Czech
+    opening ran ~8 weeks to a usable account with 3 KYC weeks in the middle; Kleio's Swiss opening took ~6 weeks
+    mostly waiting on two abroad board members. The asymmetry with removal is organisational, not legal: removing a
+    leaver is a form per bank (Alpine needed three weeks for one e-banking contract) and nothing forces it — an HR
+    leaver trigger to treasury is the control that makes removal take days.
+  check: "Digital onboarding for simple domestic SME cases can be days (Kleio Inc.'s US account) — the weeks scale with legal complexity, foreign entities and bank risk appetite."
+  terms: [kyc, board-resolution, signatory, dormant-account]
+  sources: [encompass-kyc-2024, crowe-swiss-account]
+
+- id: fee-review-annual
+  claim: "The bank-fee review runs once a year at mid-market"
+  short: "Fee data arrives quarterly in bank-specific formats and a full pass takes ~4 days; the analysis has exactly one natural consumer — the annual wallet/relationship review (and the 3–7-year RFP). Monthly passes only pay where structured camt.086/822 data removes the manual translation."
+  detail: |
+    The cadence is set by effort ÷ decision frequency. The effort side: statements come monthly or quarterly, mostly
+    as PDFs with bank-specific service descriptions that must be mapped by hand (Helvetic: one of five banks sends
+    camt.086; Lea spends ~4 days on the annual pass). The decision side: prices change annually, the wallet review is
+    annual, and tenders run every 3–7 years — so an annual review lands exactly when its output is consumed, and the
+    ~CHF 21k of recoverable findings plus the FX-spread insight pay for the four days. Doing it monthly would mostly
+    multiply the mapping work; doing it never lets fees for closed accounts run for years. Multinationals move to
+    monthly only because structured fee data (camt.086 / EDI 822) and a TMS module cut the translation cost to near
+    zero. A surprise fee debit or a price-change notice always triggers an out-of-cycle look.
+  check: "If a bank moved to structured monthly camt.086 with automated price checks, the annual cadence would be an artefact of data format, not of the problem."
+  terms: [bank-services-billing, wallet-share, bank-rfp]
+  sources: [afp-bank-fee-analysis, hsbc-camt086]
+
+- id: recon-value-date-clusters
+  claim: "The reconciliation queue clusters around value dates and month-end"
+  short: "Work arrives with value-dated statement lines: yesterday's value date lands in this morning's import, returns arrive on their own later value dates, and the month-end reconciliation date is the last value date of the month — which is why WD1–3 of the close concentrate the work."
+  detail: |
+    The daily queue is created by the bank, not by the accountant: the overnight camt.053/MT940 import covers the
+    previous [value date](term:value-date), camt.054 batch detail lands with the batch it describes, and returns and
+    correspondent-bank credits arrive days later on their own value dates — so items "appear" in clusters (a Tuesday
+    run clears Wednesday morning; the SEPA return from it surfaces Thursday; the cross-border one the following week).
+    The month-end cluster is structural: the audited number is the bank's closing balance at the month's last value
+    date, so every item that could still land in that month — receipts in transit, the returned payment from the 30th,
+    the quarterly fee debit — must be identified and aged by working days 1–3. Daily matching flattens the daily
+    peaks (HM AG: 191 of 212 items post automatically), but the month-end sign-off remains a value-date event.
+  check: "With real-time statement feeds (APIs/camt.052 intraday) and continuous reconciliation, the daily clustering would blur — month-end would still cluster because the period boundary is a date."
+  terms: [value-date, bank-statement, reconciliation, reconciling-item]
+  sources: []
+
+- id: kleio-fx-spread-cost
+  claim: "Kleio's biggest bank cost is the FX spread, not fees"
+  short: "40% of CHF 12m revenue is USD (≈USD 500k/month); ~USD 250k a month is converted at the bank's standard rate, 0.5–1% from mid ≈ USD 15–30k a year (CHF 12–24k) — more than every account fee at her seven accounts combined."
+  detail: |
+    Kleio's revenue split (companies.yaml): ~40% USD on CHF 12m recognised ≈ CHF 4.8m ≈ USD 6m a year at 0.80, i.e.
+    ~USD 500k a month. USD cloud and US payroll absorb about half of it; the remaining ~USD 250k a month is converted
+    to CHF. Converted at the e-banking standard rate, an illustrative 0.5–1% from mid on USD 3m a year is
+    **USD 15–30k (about CHF 12–24k)** — while seven accounts' package fees run to a few hundred francs. Hence the
+    one fee action that matters for a startup is not fee analysis but moving conversions to a negotiated rate or an
+    FX platform (and putting USD surplus in a USD government money-market fund rather than leaving it on a zero-rate
+    account). Note the currency labelling trap: the cost is naturally USD-denominated because the converted amount is.
+  check: "If USD costs rose to absorb most USD revenue, conversions would shrink and the spread cost with them; the 0.5–1% figure is an illustrative range, not a benchmark."
+  terms: [spot-fx, earnings-credit-rate, wallet-share]
+  sources: []
+
+- id: lsv-sunset-2028
+  claim: "LSV+/BDD direct-debit collections stop after 30 September 2028"
+  short: "SIX is discontinuing the 2005-era LSV+/BDD procedures (not fully ISO 20022, physical signatures, declining volumes); the end date is chosen for lead time. EUR collections end 30 Aug 2027 (euroSIC closes end-2027), CHF end-2028; billers must move recurring receivables to eBill, QR-bill, standing orders or single payments."
+  detail: |
+    SIX, with the Swiss financial-centre bodies, decided to phase the procedures out rather than modernise them:
+    the migration cost of forcing LSV+/BDD onto ISO 20022 (and away from physical mandate signatures) exceeded the
+    benefit given declining volumes. The schedule is hard: no new LSV identifiers since 31 Dec 2025; EUR collections
+    until 30 Aug 2027 only (they depend on euroSIC, itself discontinued 31 Dec 2027); CHF collections until
+    30 Sep 2028 — with banks free to end earlier. The designated successor is **eBill Direct Debit** (launched
+    mid-2025): digital mandates managed in e-banking, account-to-account settlement over SIC, payer contest right
+    with guaranteed repayment — the same collection logic without paper. For an AR/collections function this is a
+    two-year migration of recurring receivables and mandates, which is why it belongs in the payments picture now,
+    not in 2028.
+  check: "If eBill Direct Debit adoption stalls or banks extend LSV+ informally, collections would migrate to QR-bill + standing order instead — the 2028 end date itself is a SIX decision, not a market accident."
+  terms: [lsv-bdd, ebill, qr-bill, payment-mandate]
+  sources: [six-lsv-decommissioning, six-ebill-direct-debit]

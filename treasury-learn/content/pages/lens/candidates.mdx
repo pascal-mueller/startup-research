@@ -26,6 +26,30 @@ not that it is a good company to start.
 
 <LensGroup cls="hard" detail />
 
+The boundary is easiest to see modelled once, briefly — a [large payment approval](wf:large-payment-approval) at
+[Helvetic](co:helvetic):
+
+<Example title="The hard boundary: the CHF 4m payment dossier" company="helvetic" open>
+
+A supplier invoice of CHF 4m (a machine-component instalment) reaches Daniel's approval queue, above the CHF 2m
+threshold. What the system prepares in seconds:
+
+| Dossier item | What it shows |
+|---|---|
+| Contract and PO | Signed supply contract, matching PO, delivery confirmation from the plant |
+| Payee history | 14 payments to this supplier since 2023, always to the same IBAN |
+| Bank-detail change log | No change — the check that matters most: a new IBAN two days ago would flip the dossier to "verify by callback before anything else" |
+| Callback status | AP called the supplier's number on file and confirmed the account — logged with date and who called |
+| Anomaly flags | None; the amount matches the contract's instalment schedule |
+| Signature requirement | Above CHF 2m the CFO and the CEO co-sign in addition to treasury four-eyes ([why that threshold](why:ceo-cosign-threshold)) |
+
+What the system does not do: approve, judge whether the callback was convincing, or release. If it did, "the AI
+checked it" would be exactly the [automation bias](term:automation-bias) that leaves the control weaker than the paper
+one it replaces. This is why the workflow is rated [hard / dangerous](/lens/matrix#large-payment-approval) whatever its
+feasibility scores: the assignment *is* the accountable act, and the dossier is the whole — legitimate — product.
+
+</Example>
+
 ## Start narrow → expand into the job
 
 The spec's question is whether a system can start with one assignment and grow into **more of the person's job**. Looking
@@ -40,7 +64,7 @@ at the roles rather than the workflows, one path stands out: the **mid-market tr
 | 4 | Weekly variance analysis ([digital worker](/lens/dw-forecast-variance)) | Daily actuals already categorised in steps 1–2 | Daniel decides overrides |
 | 5 | Monthly FX exposure collection ([digital worker](/lens/dw-exposure-collection)) | Same subsidiaries, same chasing pattern | Daniel and the CFO decide hedges |
 | 6 | Month-end treasury report | Assembles outputs of 1–5 | Daniel edits the message to the CFO |
-| 7 | Quarterly bank-fee review ([digital worker](/lens/dw-bank-fee-review)) | Low-risk add-on using the same statements | Daniel decides which banks to challenge |
+| 7 | Bank-fee review — annual at mid-market ([digital worker](/lens/dw-bank-fee-review)) | Low-risk add-on using the same statements and FX records | Daniel decides which banks to challenge |
 
 At step 7, the system is preparing most of what a mid-market analyst produces in a week. The analyst's own job shifts to
 checking, chasing the humans the system cannot, and the judgment calls — which is roughly what the
@@ -56,16 +80,26 @@ boringly reliable — every statement present, every balance with an as-of time,
 
 ## What would have to be true (across candidates)
 
-1. **Data access without an IT project.** Bank statements for every account, ERP read access in multi-ERP groups, and
-   permission to read the treasury mailbox — the place where "known flows" and explanations live.
-2. **Corrections are captured.** Daniel's edits must happen *in* the system, not in the bank portal afterwards, or there
-   is no learning loop.
+1. **Data access without an IT project — and with the right approvals.** Bank statements for every account, ERP read
+   access in multi-ERP groups, and permission to read the treasury mailbox — the place where "known flows" and
+   explanations live. Someone must also approve that access: the bank's subscriber terms, the data-protection
+   agreement and the auditor's outsourced-processing review ([who the gatekeepers are](why:lens-vendor-access-gate)).
+2. **Corrections are captured — and they belong to the customer.** Daniel's edits must happen *in* the system, not in
+   the bank portal afterwards, or there is no learning loop; and the labelled history must be exportable, or the
+   learning loop becomes the lock-in ([whose data is it](why:lens-eval-set-ownership)).
 3. **Auditors accept the control design.** The system as *maker*, a human as *checker*, full logs, no signing rights.
-   This fits existing [four-eyes](term:four-eyes-principle) controls and ICS/SOX documentation — if it is designed that way from day one.
+   This fits existing [four-eyes](term:four-eyes-principle) controls and ICS/SOX documentation — if it is designed that
+   way from day one.
 4. **Subsidiaries tolerate it.** Chasing and questioning local finance is organisational work. If Giulia in Italy feels
    audited by a bot, the inputs get worse, not better.
-5. **The buyer has budget and pain at the same time.** Mid-market groups have the pain but small software budgets and
-   often a TMS project "in evaluation" — the agent competes with that project for the same money and attention.
+5. **The buyer has budget and pain at the same time.** Convert the time first: 30–90 minutes of analyst time a day is
+   125–375 hours a year — [under CHF 35k of fully loaded analyst cost](why:lens-time-price-bound) — so a mid-market
+   price above roughly CHF 20–30k a year must be justified by money moved (overdrafts, FX spreads, fee recoveries),
+   not by time saved. Mid-market groups have the pain but small software budgets and often a TMS project "in
+   evaluation" — the agent competes with that project for the same money and attention.
+6. **Someone can say who eats the error.** Because a human approves, a wrong proposal is the company's loss — so the
+   contract, the evidence log and the pricing model have to reflect that ([the allocation](why:lens-who-eats-the-error));
+   the vendor's willingness to price on measurable outcomes is the honest signal here.
 
 ## Tempting but poor startup targets
 
@@ -81,7 +115,8 @@ boringly reliable — every statement present, every balance with an as-of time,
   next rollover. There is little to optimise.
 - **Crises and events** (liquidity crisis, currency shock, acquisition integration, fraud investigation) — rare, unique,
   relationship-driven; no feedback loop. Consultants' and restructuring advisers' territory.
-- **Bank fee analysis on its own** — a good agent task, but a small budget line reviewed quarterly. Use as a wedge, not a company.
+- **Bank fee analysis on its own** — a good agent task, but a small budget line reviewed once a year at mid-market
+  ([four days of Lea's January](why:fee-review-annual)). Use as a wedge, not a company.
 
 </Callout>
 

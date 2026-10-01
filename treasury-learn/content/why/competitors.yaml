@@ -1,0 +1,137 @@
+# "Why" notes for the competitor landscape (stream: competitors).
+# Each note justifies a number or decision that appears in content/pages/competitors/*.mdx or content/data/competitors.yaml.
+# Numbers must be re-derivable from content/companies.yaml and the canonical facts in docs/AUTHORING.md.
+
+- id: comp-four-system-types
+  claim: "The four kinds of system: record / workflow / analytics / execution"
+  short: "The market is cut by switching cost and consequence of error, not by feature list — because those two variables predict the sales cycle, who signs, and churn better than functionality does."
+  detail: |
+    Feature lists do not tell a founder what they are up against; two variables do: **switching cost** (how painful
+    replacement is) and **consequence of error** (what happens when the system is wrong). Take [Helvetic](co:helvetic)
+    (CHF 650m, 5 banks, 12 accounts, 2-person treasury): an *analytics* tool (cash dashboard, forecast) reads other
+    systems' data and can be adopted — and ripped out — in weeks. A *system of record* holding every FX forward and
+    loan touches the [deal capture](term:deal-capture) history the auditors look at; replacing it is a multi-year
+    project. An *execution* channel (payment file to the bank) moves real money irrecoverably when wrong. So the
+    realistic adoption order for a new entrant is analytics first, workflow second, execution with a partner, system
+    of record last — and the *buyer* changes along the way (analyst → manager → CFO/auditor). The map and the
+    interview list are built from this, not from product categories.
+  check: "If treasurers in interviews describe buying purely on features — indifferent to who owns the data, who audits it, and what happens when it is wrong — the model is wrong."
+  terms: [system-of-record, deal-capture, tms]
+  sources: []
+
+- id: comp-category-placement
+  claim: "Why category placement decides the interview list"
+  short: "Where an entry sits on the map determines whom you interview and who you say the competition is. File a vendor in the wrong category and you will ask the wrong people the wrong questions."
+  detail: |
+    Categories are buying situations, not product taxonomies. Three concrete derivations from this landscape:
+    **1. Nomentia is filed under payments/connectivity, not established TMS** — its own positioning is "cash
+    management platform rather than a full deal-capture TMS", and [/systems/tms](/systems/tms) files it under
+    connectivity / payment hubs. A TMS selection is run by a treasury manager (Daniel at Helvetic) with a consultant
+    and takes months ([TMS selection](term:tms-selection)); a payment/connectivity purchase is argued by operations
+    (Marta's payment-factory world at GlobalChem) around bank mandates and formats. Interviewing "Nomentia customers
+    about their TMS" means interviewing the wrong roles.
+    **2. TIS bought Cashforce in June 2022**[](cite:comp-tis-cashforce-2022) — a payment hub now competing in
+    forecasting. A forecasting interview must therefore include payment-hub buyers, or you will mis-read who the
+    incumbent is.
+    **3. Working-capital products are bought by AR/AP/procurement**, with treasury as funder — so the interview list
+    for that category starts outside treasury altogether.
+  check: "If the same buyer, budget and sales motion turn out to apply across categories, placement stops mattering and the map can be read as a flat list."
+  terms: [tms-selection]
+  sources: [comp-tis-cashforce-2022, comp-nomentia-tipco-2021]
+
+- id: comp-self-description-bar
+  claim: "Vendor self-description is the right source bar for product claims, but not for market claims"
+  short: "A vendor's own site is primary evidence for what that vendor claims to ship — it controls that statement. For anything about the market (how common a problem is, whether a category exists) it is interested testimony and needs independent evidence."
+  detail: |
+    Apply two different bars to the same document. **Product claim**: "Nilus is your agentic workforce for treasury;
+    AI agents reconcile cash, forecast liquidity"[](cite:comp-nilus-agents) is admissible evidence that Nilus *makes
+    this claim* — nobody else can authoritatively state what the vendor says. It is not evidence that agents work in
+    production: shipped-vs-announced is exactly what the self-description cannot establish. **Market claim**: the same
+    page's implied market story ("from system of record to system of action") is marketing framing; market claims need
+    survey evidence with a stated sample (AFP, EACT, PwC) or customer evidence. This is why [method rule 1](/competitors/method)
+    allows product scope from documentation but labels it a vendor claim, and why every "AI" row on this map carries a
+    badge saying which bar was applied.
+  check: "If independent customer evidence contradicts a self-description (the feature does not exist or does not run), the product claim is downgraded to refuted — the bar is for admissibility, not for truth."
+  terms: [treasury-agent]
+  sources: [comp-nilus-agents]
+
+- id: comp-bank-owned-fx
+  claim: "Why bank ownership changes the FX-provider read"
+  short: "'Non-bank FX provider' describes a route to market (fintech UX, SME segment), not the balance sheet behind it. Kantox is 100% BNP Paribas since July 2023; Ebury is 55% Santander after April 2026 — so the 'banks ignore SMEs' gap is being closed by banks buying distribution."
+  detail: |
+    Two dated facts: Kantox — 100% BNP Paribas, acquisition completed 13 Jul 2023 (announced 11 Oct 2022)[](cite:comp-kantox-bnp-2023).
+    Ebury — Santander took 50.1% (agreement Nov 2019) and stayed majority shareholder at **55%** after the ~GBP 550m
+    Centerbridge-led raise of 30 Apr 2026, in which Santander invested GBP 50m[](cite:comp-ebury-santander-2026).
+    Both still sell like independents (SME segment, self-service UX, [currency management automation](term:currency-management-automation)
+    for Kantox). For a founder this changes the wedge analysis twice: (a) the underserved-SME gap is real but it is
+    being *acquired into* by banks, so "banks will never serve this segment" is not a durable moat; (b) in interviews,
+    ask SMEs what they compare against — the fintech brand or their house bank — because pricing, balance-sheet
+    capacity and cross-selling now come from the parent. It also breaks the tidy "banks vs non-banks" market-structure
+    story: the FX automation category contains a top-tier FX bank's own product.
+  check: "If these products run genuinely standalone — no co-selling, no shared balance sheet or pricing with the parent — the 'bank-owned' reading matters less and the product category is the whole story."
+  terms: [currency-management-automation]
+  sources: [comp-kantox-bnp-2023, comp-ebury-santander-2026]
+
+- id: comp-verify-badges
+  claim: "The three-value verification badge (sourced / background / watchlist)"
+  short: "Every entry wears its evidence level because uniform polish hides errors: the Cashforce→Nomentia mistake survived precisely where a fact looked confidently stated. The cost is a map that looks unfinished; the benefit is that errors stay findable and fixable."
+  detail: |
+    The badge has exactly three values, because there are exactly three evidence states in this research: **sourced**
+    (ownership/funding checked against a snippet from the named publisher), **background** (author knowledge, treated
+    as a lead), **watchlist** (name only — do not repeat as fact). A finer scale would imply precision the research
+    does not have. The method is falsifiable in both directions: an entry may be *upgraded* only when a dated source
+    is registered in `content/sources/competitors.yaml`, and the round-1 review showed the cost of skipping this —
+    Cashforce was attributed to Nomentia (it went to TIS in June 2022)[](cite:comp-tis-cashforce-2022), and the
+    sentence read as confidently as any sourced fact. Honesty here is not modesty; it is error containment.
+  check: "If readers treat all badges as equal (or the badges are invisible in the UI), the method fails and the section is just a rumour list with citations sprinkled on top."
+  sources: [comp-tis-cashforce-2022]
+
+- id: comp-status-quo-competitor
+  claim: "Excel + bank portals is the real incumbent below multinational size"
+  short: "For a 70–500-person company the competitive alternative is zero incremental cost and zero implementation. The claim is field reasoning from adoption economics, backed only indirectly by surveys — label and test it as such."
+  detail: |
+    Derive from the canonical companies. [Kleio](co:kleio): Sarah does treasury in ~10% of her time, 2 Swiss + 1 US
+    bank, 7 accounts — a treasury subscription costs more than the time it saves, so the spreadsheet wins on
+    economics, not on quality. [Alpine](co:alpine): Petra's pain is lumpy project receipts (a CHF 2m swing on one
+    acceptance certificate), not software. [Helvetic](co:helvetic): 5 banks, 12 accounts, 6 currencies, 2 treasury
+    people — here "stay on Excel but buy connectivity" is a live option (it is running one today). The survey
+    evidence is adjacent, not direct: Deloitte reports roughly a fifth say cash-positioning capability requires
+    development (≈22% as reported, figure not confirmed against the primary text)[](cite:deloitte-gts-2024), and AFP
+    2026 still names forecasting the hardest activity (about half of respondents)[](cite:afp-bench-2026) despite many
+    tools claiming to solve it. So the sentence "the honest competitor is often this row" is **synthesis** — state it
+    that way and test it in interviews, not as a survey finding.
+  check: "If interviews at 70–500-person companies show treasury software bought eagerly before the manual pain is felt, the thesis is wrong for that segment."
+  terms: [cash-position]
+  sources: [deloitte-gts-2024, afp-bench-2026]
+
+- id: comp-palm-feature-not-agent
+  claim: "Palm is filed under AI features, not under treasury agents"
+  short: "Classify by the vendor's own documented positioning. Palm says it 'sits on top of your TMS/ERP' — a forecasting layer (feature column). Nilus says 'your agentic workforce' that 'reconcile[s] cash, automate[s] finance ops' — task performance (agent column)."
+  detail: |
+    The features-vs-agents distinction is drawn from what the vendor itself claims. Palm: "AI cash flow forecasting for
+    treasury teams", "Palm sits on top of your TMS/ERP … strengthening forecasts", "The treasury platform that starts
+    where your TMS stops"[](cite:comp-palm-product) — it predicts and analyses over an existing system of record.
+    Nilus: "AI agents reconcile cash, forecast liquidity, and automate finance ops across every bank and ERP"[](cite:comp-nilus-agents)
+    — it claims to perform multi-step tasks. An earlier draft put both in an "agents (nothing verified)" bucket; the
+    derivation (self-description → classification) failed for Palm and the entry moved. Note what the derivation does
+    **not** establish: for both vendors, shipped-vs-announced remains unproven — the classification says what is
+    claimed, and the interview questions on the AI page test what is real.
+  check: "If a customer demonstrates Palm performing a multi-step treasury task unattended (not just forecasting), it belongs in the agent column and this note is wrong."
+  terms: [treasury-agent]
+  sources: [comp-palm-product, comp-nilus-agents]
+
+- id: comp-forecasting-pain
+  claim: "Why the cash-forecasting category is the crowded one"
+  short: "Demand-side pain is the best documented in treasury (AFP 2026: about half name forecasting the most challenging activity; ST/TIS: the 'difficult' share rose 39%→53% from 2018 to 2025) — and the data-collection steps look automatable, so every adjacent category crowds in."
+  detail: |
+    Two survey readings, at their honest strength. AFP 2026: cash and liquidity forecasting the most challenging
+    activity for **49%** of respondents (as reported by AFP; figure not confirmed against the primary text — read it
+    as "about half")[](cite:afp-bench-2026). Strategic Treasurer/TIS (vendor-sponsored, 200+ respondents): the share
+    calling forecasting "difficult" rose from **39% (2018) to 53% (2025)** — a 14-point rise, confirmed in the source
+    note[](cite:st-tis-cfv-2025). Combine with the step table on the forecasting page: the collection steps (bank
+    transactions, ERP open items) are mechanically automatable, which is why TMS suites, AR vendors and SME cash
+    tools all claim the category — while the judgement steps (business input, non-routine items, variance explanation)
+    remain human in nearly all documented scopes. The category is crowded *and* underserved at the same time; that is
+    the founder's opening and the trap.
+  check: "If interviews show forecast accuracy is now solved at mid-market companies, or that vendors own the judgement steps, the category thesis changes."
+  sources: [afp-bench-2026, st-tis-cfv-2025]

@@ -11,9 +11,9 @@ related: [/systems/architecture, /systems/data-quality, /map/banking, /map/payme
 Between a company and each of its banks, two directions of traffic:
 
 - **Outbound:** payment instructions ([pain.001](term:pain-001) or legacy [MT101](term:mt101) and bank-proprietary formats), sometimes FX or deposit instructions, account-maintenance requests.
-- **Inbound:** end-of-day statements ([camt.053](term:camt-053), [MT940](term:mt940), [BAI2](term:bai2) in the US), intraday reports ([camt.052](term:camt-052), MT942), payment status reports ([pain.002](term:pain-002)), debit/credit notifications ([camt.054](term:camt-054)), fee statements ([camt.086](term:bank-services-billing)), deal confirmations.
+- **Inbound:** end-of-day statements ([camt.053](term:camt-053), [MT940](term:mt940), [BAI2](term:bai2) in the US), intraday reports ([camt.052](term:camt-052), MT942), payment status reports ([pain.002](term:pain-002)) — for cross-border payments including [Swift gpi](term:swift-gpi) tracker updates (UETR status, deducted charges, FX applied)[](cite:ubs-gpi-corporates) — debit/credit notifications ([camt.054](term:camt-054)), fee statements ([camt.086](term:bank-services-billing)), deal confirmations.
 
-[Bank connectivity](term:bank-connectivity) is the set of channels, formats, keys and contracts that make this flow automatically.
+[Bank connectivity](term:bank-connectivity) is the set of channels, formats, keys and contracts that make this flow automatically. Note that "payment out" is no longer the end of the story: a tracked cross-border payment reports back as it moves through the correspondent chain, so the inbound traffic includes status, not just balances.
 
 <ConnectivityDiagram />
 
@@ -27,11 +27,11 @@ What breaks: user administration per bank (leavers keep tokens), statement downl
 
 ### EBICS
 
-[EBICS](term:ebics) is a file-exchange protocol used in Germany, France, Switzerland and Austria. The company runs an EBICS client — an ERP add-on, a [multibank connectivity tool](term:multibank-connectivity), a TMS or a small desktop client — which exchanges files with each bank's EBICS server.
+[EBICS](term:ebics) is a file-exchange protocol used in Germany, France, Switzerland and Austria — and increasingly available elsewhere in Europe through service providers and bank partnerships. The company runs an EBICS client — an ERP add-on, a [multibank connectivity tool](term:multibank-connectivity), a TMS or a small desktop client — which exchanges files with each bank's EBICS server.
 
 **Setup, per bank:** sign an EBICS contract; the bank sets up the customer and users with their rights; each user generates keys in the client; the key "initialisation letters" (INI/HIA) are signed and sent to the bank; the bank activates the keys; test files are exchanged. Payment approval uses [distributed electronic signatures](term:distributed-signature): a file sent with a transport signature waits at the bank until enough authorised signatures are added, so signing authority is enforced partly bank-side.
 
-**Currentness:** EBICS 3.0 harmonised the German, French and Swiss variants. In Switzerland, Zürcher Kantonalbank discontinued EBICS 2.4 on 21 November 2025 and, from November 2026, supports the 2019 ISO 20022 versions (pain.001.001.09, camt.05x.001.08) exclusively via EBICS 3.0[](cite:zkb-ebics3); other Swiss banks publish their own dates. Combined with the retirement of 2009 message versions in Switzerland in November 2026[](cite:six-sps-cash-mgmt), many Swiss companies need an EBICS client and format upgrade in 2026.
+**Currentness:** EBICS 3.0 harmonised the German, French and Swiss variants. In Switzerland, Zürcher Kantonalbank discontinued EBICS 2.4 on 21 November 2025 and, from November 2026, supports the 2019 ISO 20022 versions (pain.001.001.09, camt.05x.001.08) exclusively via EBICS 3.0[](cite:zkb-ebics3); other Swiss banks publish their own dates. Combined with the retirement of 2009 message versions in Switzerland in November 2026[](cite:six-sps-cash-mgmt) — [why that sunset date bites a Swiss payer](why:systems-swiss-2009-sunset) — many Swiss companies need an EBICS client and format upgrade in 2026.
 
 What breaks: expired or blocked keys (one bank blocked keys with insufficient key length from February 2025[](cite:zkb-ebics3)), a user leaves and nobody can sign, a bank changes its server certificate and the client rejects it, a format version is rejected after a bank's release.
 
@@ -41,11 +41,11 @@ What breaks: expired or blocked keys (one bank blocked keys with insufficient ke
 
 Messages used by corporates: FIN messages (MT101 payment requests, MT940/942 statements, MT300 FX confirmations) and [FileAct](term:fileact) for whole files (pain.001 batches, camt reports).
 
-**Currentness:** The November 2025 end of MT/ISO 20022 coexistence applied to cross-border payment messages *between banks* (CBPR+)[](cite:jpm-iso-2026,swift-iso-mt9xx). It did not switch off corporate-to-bank MT101 or MT940/942 reporting, which banks continue to support on their own timelines — but richer ISO 20022 data now travels through the bank chain, and banks push clients towards pain.001 with structured data.
+**Currentness:** The November 2025 end of MT/ISO 20022 coexistence covered cross-border interbank payments **and reporting** in CBPR+[](cite:jpm-iso-2026,swift-iso-mt9xx). The payment MTs were replaced by ISO 20022 messages; the reporting/statement MTs (MT940/942) were **deprecated** — still processed, no longer maintained — not withdrawn. The interbank reporting coexistence end is currently communicated as November 2028 (per bank communications)[](cite:jpm-iso-faq-2026). Corporate-to-bank delivery is a separate contract and follows each bank's own timeline — Swiss banks quote no fixed end date[](cite:zkb-iso20022-factsheet). Richer ISO 20022 data now travels through the bank chain, and banks push clients towards pain.001 with structured data. [Why MT940 outlives the cut-over](why:systems-mt940-coexistence).
 
 Who uses it: typically multinationals and larger mid-market groups with many banks across countries. GlobalChem connects roughly 20 banks through a service bureau. For [Helvetic](co:helvetic), Swift carries the global bank's US and UK accounts, EBICS the European ones.
 
-What breaks: onboarding each bank takes weeks to months (bank implementation queues, testing); annual security attestation under Swift's Customer Security Programme applies to Swift users (a reason many choose a service bureau or Lite2); relationship keys expire; a bank sends MT940 with proprietary codes in the free-text field.
+What breaks: onboarding each bank takes weeks to months (bank implementation queues, testing); the annual self-attestation under Swift's Customer Security Programme applies to every Swift customer regardless of access mode — [bureau](term:service-bureau) and Alliance Lite2 users must still attest annually, what they avoid is running and securing their own Swift interface[](cite:swift-csp-corporates) [why](why:systems-csp-attestation); relationship keys expire; a bank sends MT940 with proprietary codes in the free-text field.
 
 ### Host-to-host
 
@@ -55,7 +55,7 @@ What breaks: each link is its own project; certificate and key rotations; the ba
 
 ### Bank APIs
 
-[Bank APIs](term:api-banking) are REST interfaces for balances, transactions, payment initiation and status. Large banks offer corporate API portfolios; newer cash platforms rely on them for intraday visibility. In the EU/UK, [open banking](term:open-banking) under PSD2 standardised account access for licensed third parties, but it was built for retail and small business use: multi-user approvals, bulk files and corporate entitlements are not what it was designed for. In Switzerland, API access has developed through market initiatives and bank-by-bank offerings rather than regulation.
+[Bank APIs](term:api-banking) are REST interfaces for balances, transactions, payment initiation and status. Large banks offer corporate API portfolios; newer cash platforms rely on them for intraday visibility. In the EU/UK, [open banking](term:open-banking) under PSD2 standardised account access for licensed third parties, but it was built for retail and small business use: multi-user approvals, bulk files and corporate entitlements are not what it was designed for. In Switzerland, API access has developed through market initiatives and bank-by-bank offerings rather than regulation — the market initiative is SIX bLink: accounting-software providers connect to the banks through one standardised interface and the company approves the connection once in e-banking, which is exactly how [Kleio](co:kleio)'s accounting software reaches its two Swiss banks[](cite:six-blink). Cloud cash platforms often connect through account-information aggregators (the Tink/Plaid/Codat class) rather than direct bank APIs — one integration, but coverage, history depth, refresh frequency and liability follow the aggregator's contracts, not yours: [why aggregator APIs do not remove the per-bank projects](why:systems-aggregator-coverage).
 
 What breaks: every bank's API differs in coverage, data model and authentication; history and full remittance detail may be missing compared with a camt.053; token expiry and consent renewal. At most companies APIs **complement** file channels — intraday balances via API, the official end-of-day statement still as a file.
 
@@ -73,13 +73,19 @@ What breaks: every bank's API differs in coverage, data model and authentication
 | Purpose | ISO 20022 | Legacy / regional | Notes |
 |---|---|---|---|
 | Payment instruction (company → bank) | pain.001 | MT101; bank-proprietary; US NACHA files | Country variants (Swiss Payment Standards, CGI-MP); structured addresses increasingly required[](cite:postfinance-iso-updates) |
-| Payment status (bank → company) | pain.002 | proprietary acknowledgements | Rejections arrive here; someone must read them |
+| Payment status (bank → company) | pain.002 | proprietary acknowledgements | Rejections arrive here; the routine is a day-end exception list — ops reads the rejects, repairs and re-issues **before the bank's cut-off**, or the value date slips |
 | End-of-day statement | camt.053 | MT940; BAI2 (US) | Basis for position and [reconciliation](term:reconciliation) |
 | Intraday report | camt.052 | MT942; BAI2 current-day | Provisional; do not double count with camt.053 |
 | Debit/credit notification | camt.054 | proprietary | Breaks down batch bookings; QR/creditor references in Switzerland |
 | Bank fees | camt.086 | TWIST BSB; AFP service codes; PDF | Needed for [bank fee analysis](wf:bank-fee-analysis)[](cite:hsbc-camt086) |
 
-"Same format" rarely means identical: banks implement usage rules differently (optional fields, codes, how batch bookings are shown), which is why connectivity vendors maintain libraries of bank-specific variants.
+"Same format" rarely means identical: banks implement usage rules differently (optional fields, codes, how batch bookings are shown), which is why [connectivity vendors maintain libraries of bank-specific variants](why:systems-bank-variant-library).
+
+<Example title="Alpine's Tuesday payment run — one rejected IBAN" company="alpine" open>
+
+Petra runs the Tuesday supplier payment in Business Central: she reviews the payment journal against the due-date list, removes two disputed invoices and releases 84 payments worth CHF 1.9m equivalent. Business Central writes [three pain.001 files — one per paying account](why:pain-file-per-account): CHF domestic and EUR SEPA at the cantonal bank, USD cross-border at the large Swiss bank. Petra uploads all three via EBICS with her transport signature; each file waits at the bank until she and Martin add their bank-technical signatures (Petra's A, Martin's B under the joint-signature mandate), which Martin does on his phone at 11:40, and the bank releases them. One line comes back rejected in the CHF file's [pain.002](term:pain-002) — 83 of the 84 are accepted — because the supplier's IBAN changed in the vendor master after the payment proposal was generated. Petra repairs the line and re-sends it as a single payment [before the bank's 16:00 same-day cut-off](why:cut-offs-order-the-day), so the supplier is still paid on the agreed value date. Miss the cut-off and the repair is tomorrow's problem — with an apologetic email to the supplier. The USD file is unaffected: each file carries its own two signatures and gets its own pain.002. This repair loop — read the rejects, fix, re-issue before the cut-off — is the most common "systems" story at SMEs.
+
+</Example>
 
 ## Who sets it up, who owns it
 

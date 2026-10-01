@@ -14,12 +14,18 @@ related: [/workflows/fx-exposure-management, /workflows/fx-hedging, /map/fx, /co
 |---|---|---|---|
 | Identify exposure | [FX exposure management](wf:fx-exposure-management) | TMS exposure modules, [hedging automation](term:currency-management-automation) (e.g. Kantox), Excel | Is the forecast exposure real? Who is accountable for the number? |
 | Decide hedge | [FX hedging](wf:fx-hedging) | Mostly Excel and policy; advisory firms (e.g. Chatham) | Hedge ratio, tenor, instrument within [policy](term:treasury-policy) |
-| Execute | [FX hedging](wf:fx-hedging) | [Multi-dealer platforms](term:multi-dealer-platform) (360T, FXall, Bloomberg FXGO), bank portals, non-bank FX providers (e.g. Ebury) | Timing; which banks get the business (wallet share) |
+| Execute | [FX hedging](wf:fx-hedging) | [Multi-dealer platforms](term:multi-dealer-platform) (360T, FXall, Bloomberg FXGO), bank portals, cross-border payment/FX providers (e.g. Ebury — Santander-owned) | Timing; which banks get the business (wallet share) |
 | Capture, value, account | [Month-end reporting](wf:month-end-reporting) | TMS, hedge-accounting tools (e.g. Hedgebook, Reval) | Hedge-accounting designation and effectiveness |
 
 <Callout type="synthesis" title="Where the category is mature and where it is not">
 
 Execution venues have existed for decades and are embedded with banks and TMS. The weaker link in practice is upstream: getting a reliable exposure number from sales, procurement and subsidiaries, and turning policy into a decision. Hedging-automation vendors target exactly that; whether mid-market companies trust rules to trade on their behalf is a good interview topic. See also [currency shock](wf:currency-shock).
+
+</Callout>
+
+<Callout type="synthesis" title="Bank ownership blurs the 'non-bank' line">
+
+The tidy story — banks serve large corporates, fintechs serve everyone the banks ignore — does not survive contact with the ownership column. **Kantox is 100% BNP Paribas since July 2023**[](cite:comp-kantox-bnp-2023) and **Ebury is 55% Santander after the April 2026 raise**[](cite:comp-ebury-santander-2026). Both keep the fintech product and the underserved-SME pitch; the balance sheet, and increasingly the distribution, is the bank's. For a founder the conclusion is double-edged: the SME wedge is real, but it is being acquired into rather than left open — [the reasoning in full](why:comp-bank-owned-fx).
 
 </Callout>
 
@@ -29,7 +35,7 @@ Execution venues have existed for decades and are embedded with banks and TMS. T
 
 ## Cash investment portals
 
-The execution side of [surplus cash investment](wf:surplus-cash-investment): [cash investment portals](term:cash-investment-portal) for [money-market funds](term:money-market-fund) and fixed-term products. Atlar's 2025 partnership with TreasurySpring is an example of treasury platforms adding investment access through partners[](cite:comp-atlar-treasuryspring).
+The execution side of [surplus cash investment](wf:surplus-cash-investment): [cash investment portals](term:cash-investment-portal) for [money-market funds](term:money-market-fund) and fixed-term products. The de-facto standard portal treasurers name is ICD (the example used in the workflow itself); banks' own investment portals compete here and are usually free with the relationship. Atlar's 2025 partnership with TreasurySpring is an example of treasury platforms adding investment access through partners[](cite:comp-atlar-treasuryspring).
 
 <CompetitorTable category="investments" filters={false} />
 

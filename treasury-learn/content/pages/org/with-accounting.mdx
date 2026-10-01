@@ -14,7 +14,7 @@ related: [/org/neighbours, /start/neighbours, /org/responsibility-matrix, /workf
 | **Bank statements** | Booking statement lines to the GL | Using them for the [cash position](term:cash-position) before accounting has booked anything |
 | **Treasury deals** (FX forwards, deposits, loans) | Booking, month-end valuation, disclosure, [hedge accounting](term:hedge-accounting) entries | Deciding and executing the deal; providing complete deal data and hedge documentation |
 | **Intercompany loans, pools, netting** | Booking in both entities; [intercompany reconciliation](term:intercompany-reconciliation); consolidation eliminations | Creating the positions, loan agreements, interest calculations |
-| **Debt** | Accruals, classification (current vs non-current), covenant disclosure | Facility management, drawings, covenant calculations |
+| **Debt** | Accruals, classification (current vs non-current), covenant disclosure | Facility management, drawings, covenant data and headroom (Group Accounting computes the covenant ratios per the facility's definitions) |
 | **FX revaluation** | Revaluing foreign-currency balances; translation in consolidation | Measuring and hedging the exposure behind those numbers |
 | **Bank accounts** | GL accounts mapped to bank accounts | The bank account register, mandates and signatories |
 
@@ -26,9 +26,9 @@ At small companies both columns are the same person: at [Alpine](co:alpine) Petr
 |---|---|---|---|
 | Banks → both | Prior-day statements ([camt.053](term:iso-20022) / [MT940](term:mt940)) | Daily | Files into ERP (accounting) and TMS / multibank tool (treasury) |
 | Treasury → accounting | New deals: FX forwards, swaps, deposits, loans, with confirmations | Daily or weekly; complete list at month-end | TMS postings (large groups), Excel deal list (mid-market) |
-| Treasury → accounting | Intercompany loan drawdowns, repayments, interest, pool or netting settlements | Per transaction + month-end | Loan schedule, netting report |
+| Treasury → accounting | Intercompany loan drawdowns, repayments, interest, pool or netting settlements; semi-annually the net-debt schedule for the covenant computation | Per transaction + month-end | Loan schedule, netting report |
 | Treasury → accounting | Hedge relationships and effectiveness documentation | At inception; each reporting date | Hedge documentation files |
-| Accounting → treasury | Month-end balances, IC balances, EBITDA and net debt per covenant definitions | Monthly / semi-annual | Consolidation reports |
+| Accounting → treasury | Month-end balances, IC balances, LTM EBITDA per the covenant definitions (semi-annually: the computed LTM covenant ratios) | Monthly / semi-annual | Consolidation reports |
 | Accounting → treasury | Unexplained bank items, reconciliation breaks on treasury accounts | During close | Email, reconciliation tool |
 
 ## Common confusions
@@ -41,7 +41,7 @@ The ERP says the German account holds EUR 4.2m; the bank says EUR 3.1m. Both can
 
 <Callout type="confusion" title="Hedging is treasury; hedge accounting is accounting (with treasury's help)">
 
-Treasury decides whether to hedge and executes the forward. [Hedge accounting](term:hedge-accounting) (IFRS 9 in Europe) is an optional accounting treatment that lets gains and losses on the hedge match the hedged item in the P&L; it requires documentation at inception, which treasury usually prepares and accounting approves. A company can hedge economically without applying hedge accounting.
+Treasury decides whether to hedge and executes the forward. [Hedge accounting](term:hedge-accounting) (IFRS 9 for IFRS reporters such as GlobalChem; FER 27 for Swiss GAAP FER reporters such as [Helvetic](co:helvetic), where effectiveness testing is not required; local GAAP otherwise) is an optional accounting treatment that lets gains and losses on the hedge match the hedged item in the P&L; it requires documentation at inception, which treasury usually prepares and accounting approves. A company can hedge economically without applying hedge accounting.
 
 </Callout>
 
@@ -67,7 +67,7 @@ In US usage the Controller is the head of accounting. In DACH companies "Control
 
 **2 July.** Claudia's team books the forwards at month-end fair value using rates Lea provides, and documents the hedge relationships already set up with Daniel. The Italian loan balance matches. HM Deutschland does not: the parent shows EUR 8.2m, Jens's team EUR 8.0m. Daniel's EUR 0.2m top-up on 29 June was booked by the parent but not yet by the German entity.
 
-**3 July.** Jens books it; the mismatch clears. Lea updates the semi-annual covenant calculation with Claudia's EBITDA, adjusted as the RCF agreement defines it (net debt / EBITDA must be ≤ 3.25x). Thomas signs the compliance certificate.
+**3 July.** Jens books it; the mismatch clears. The semi-annual covenant computation now runs on the closed accounts: Lea supplies the net-debt schedule, Claudia (Group Accounting) computes the LTM ratios using the RCF agreement's definitions ([why the lender's definition decides who computes](why:covenant-ebitda-source)) — net debt / EBITDA must be ≤ 3.25x. Daniel reviews the result and presents it to the banks; Thomas signs the compliance certificate.
 
 **Who did what:** Lea (treasury) supplied deal and loan data; Claudia's team (accounting) booked, valued and reconciled; Jens (subsidiary finance) fixed the local booking; Daniel explained the top-up; Thomas approved. No one person owns the whole chain — which is why the June close depends on email.
 

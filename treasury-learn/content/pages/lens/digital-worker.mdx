@@ -11,7 +11,8 @@ related: [/lens/candidates, /lens/matrix, /day/lea, /day/daniel]
 A feature description ("AI-powered cash positioning") hides every question that decides whether a treasurer would rely
 on it. A digital-worker model forces them into the open. It is a template for **thinking and interviewing**, not a
 product spec, and every model below is an illustrative synthesis set at [Helvetic](co:helvetic), where Lea
-(analyst) prepares and Daniel (treasury manager) decides.
+(analyst) prepares and Daniel (treasury manager) decides — [an ownership that is a control design, not a staffing
+detail](why:lens-dw-owner-split).
 
 <Flow
   steps={["Assignment|what the manager asks for", "Inputs|where each one really comes from", "Reasoning|what the expert weighs", "Tools|and the access granted", "Output|the artefact handed over", "Verification|how the expert judges it", "Execution|who acts — a human", "Feedback|corrections and outcomes become data"]}
@@ -29,7 +30,7 @@ product spec, and every model below is an illustrative synthesis set at [Helveti
 | **Verification** | How does the expert tell it is right — now, and later? | "The manager reviews it" with no criteria |
 | **Execution** | Who acts on it, under which control? | The system as signatory |
 | **Feedback loop** | How do corrections and outcomes become training and evaluation data? | Corrections made in the bank portal, invisible to the system |
-| **Failure modes & guardrails** | What goes wrong, and what prevents or catches it? | Treating hallucination as the only risk; ignoring stale data, automation bias and injection |
+| **Failure modes & guardrails** | What goes wrong, and what prevents or catches it? | Treating hallucination as the only risk; ignoring stale data, automation bias, injection — and the mundane ones: the system is down at 08:00, or the bank changed its file |
 
 ## Four modelled assignments
 
@@ -46,8 +47,10 @@ assignment was modelled: the lens rates those [hard or dangerous](/lens/candidat
 1. **Numbers by code, words by model.** Balances, conversions, variances and policy checks are computed deterministically; the language model selects, explains and drafts.
 2. **Evidence or "unexplained".** No explanation without a link to the statement line, invoice or email it rests on. "I don't know" is a valid, and often the most valuable, output.
 3. **Maker, never checker.** The system prepares; a named human approves; release follows the existing [bank mandate](term:payment-mandate) and [four-eyes](term:four-eyes-principle) rules. No signing rights, no bank write access.
-4. **Autonomy is earned per level.** Each model has an autonomy ladder with an explicit gate (e.g. "ties out every day for two weeks"). Gates are measured on the [evaluation set](term:evaluation-set), not asserted.
-5. **Watch the reviewer, too.** [Automation bias](term:automation-bias) is the most likely failure once the system is usually right: track edit rates and seed test items.
+4. **Autonomy is earned per level.** Each model has an autonomy ladder with an explicit gate (e.g. "ties out every day for two weeks"). Gates are measured on the [evaluation set](term:evaluation-set), not asserted — and [that labelled history belongs to the customer](why:lens-eval-set-ownership), exportable and re-runnable, or the gate cannot be audited and the learning loop becomes lock-in.
+5. **Watch the reviewer, too.** [Automation bias](term:automation-bias) is the most likely failure once the system is usually right: track edit rates and seed test items. Where the expert cannot verify every line, verification degrades to sampling and spot-auditing the evidence links ([why sampling is the defensible form](why:compliance-sample-testing)) — say so in the control design, do not pretend to full review.
 6. **Inputs are data, not instructions.** Emails and remittance text are an attack surface ([prompt injection](term:prompt-injection), [BEC](term:business-email-compromise)).
+7. **Access is granted by gatekeepers, not by the team.** Read access to every bank statement, the treasury mailbox and ERP exports is a bank-contract, data-protection and audit decision ([who signs it off](why:lens-vendor-access-gate)); "read-only first" is not just safe design, it is the only access level that clears procurement quickly.
+8. **Degrade loudly, never silently.** Being down at 08:00 and the bank changing its file are scheduled events, not edge cases — the 2009 camt.05x statement versions are discontinued in November 2026[](cite:six-sps-cash-mgmt), which breaks every parser at once. The models must fail to "yesterday's numbers, flagged stale, no proposals", never to a plausible-looking stale table.
 
 </Callout>

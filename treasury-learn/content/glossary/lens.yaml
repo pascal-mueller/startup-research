@@ -15,7 +15,7 @@
   category: Risk & control
   plain: A design where software prepares or proposes, and a named person reviews and approves before anything takes effect.
   professional: Control design in which an automated system's output is subject to explicit human acceptance, editing or rejection before execution; in treasury it maps onto existing four-eyes and signing-authority controls, with the system in the "maker" role and never the "checker".
-  example: "The agent proposes moving EUR 800k from HM Deutschland to HM Italia; Daniel approves it; a second authorised signer releases it in the bank's EBICS signature app."
+  example: "The agent drafts a transfer moving EUR 800k from the parent's EUR account to HM Italia; Lea enters it and Daniel releases it in the bank's EBICS signature app — the agent is the maker, never the signer."
   related: [four-eyes-principle, segregation-of-duties, automation-bias, treasury-agent]
   confusedWith: "**Human on the loop** — the system acts and a human monitors and can intervene afterwards. Acceptable for low-risk tasks (drafting a report), not for moving money."
 
@@ -34,7 +34,7 @@
   category: Systems
   plain: A collection of past cases with known correct answers, used to measure whether an AI system is good enough before (and while) people rely on it.
   professional: Curated inputs with expert-verified outputs (or objective outcomes) against which a model or agent is scored repeatedly; in treasury built from accepted/rejected proposals, corrected explanations and realised actuals (e.g. forecast vs bank actuals).
-  example: "Helvetic's evaluation set for variance explanations: 52 weeks × ~40 variance lines, each with Daniel's verdict (right / wrong / partly) and, for timing items, whether the money actually arrived."
+  example: "Helvetic's evaluation set for variance explanations: 52 weeks × ~40 variance lines, each with Daniel's verdict (right / wrong / partly) and, for timing items, whether the money actually arrived. (It presumes the forecast-version discipline the variance model itself probes for — if old versions are not kept, building that history is the first job before any eval exists.)"
   related: [variance-analysis, hallucination, human-in-the-loop]
 
 - id: rpa
@@ -43,7 +43,7 @@
   category: Systems
   plain: Scripts that click through screens and copy data the way a person would — log into a bank portal, download a file, paste it into Excel.
   professional: Rule-based UI or file automation that replicates fixed human steps without judgment; widely used in treasury for downloads, uploads, reconciliation steps and report assembly. Brittle when screens or formats change; not "AI" in the LLM sense.
-  example: "An RPA bot logs into the Chinese bank's portal at 07:00, downloads the statement Helvetic's connectivity tool failed to receive, and saves it to the treasury folder."
+  example: "An RPA bot logs into the Chinese bank's portal at 07:00 and downloads the export that Wei otherwise emails by hand — automating the one of Helvetic's 12 accounts that has no EBICS/SWIFT reporting to the group at all."
   related: [stp, treasury-agent, erp]
   confusedWith: "**AI agent** — an agent decides which steps to take; an RPA bot follows a fixed script."
 

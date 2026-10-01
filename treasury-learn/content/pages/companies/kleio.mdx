@@ -20,9 +20,9 @@ Nobody at Kleio has "treasury" in their title. But every week someone has to ans
 |---|---|---|---|
 | Kleio Software AG (CH) | Large Swiss bank ("Bank A") | CHF current | Main operating account: supplier payments, funding of Swiss payroll |
 | | | EUR current | EUR customer receipts (German customers) |
-| | | USD current | USD receipts from Stripe payouts and some US customers; cloud bills |
+| | | USD current | USD receipts from Stripe payouts and some US customers; cloud bills; surplus USD invested in a USD government money-market fund (a fund position on this account, not an eighth bank account) |
 | Kleio Software AG (CH) | Cantonal bank ("Bank B", added 2023) | CHF current | Reserve account — about half the cash since the board's post-SVB request |
-| | | CHF deposit account | 3-month term deposits (currently CHF 8m across both banks) |
+| | | CHF deposit account | 3-month term deposits; together with a deposit product under Bank A's CHF current account this holds the CHF 8m of deposits split across both banks |
 | Kleio Inc. (Delaware) | US commercial bank | USD operating | US customer receipts, US vendors |
 | | | USD payroll | Funded before each US payroll run by the US payroll provider |
 
@@ -30,7 +30,7 @@ Seven accounts, three banks, three currencies. The Stripe balance is not a bank 
 
 <Callout type="confusion" title="'We have CHF 22m in the bank' is less safe than it sounds">
 
-Swiss deposit protection covers privileged deposits of up to CHF 100,000 per depositor per bank ([deposit protection](term:deposit-protection)). For a company with CHF 22m, that is irrelevant: if a bank fails, Kleio is an unsecured creditor for almost all of it. The protection comes from **which banks** the money is at and **how it is split** — which is why, after Silicon Valley Bank failed in March 2023, many start-up boards (Kleio's included) asked their CFOs to use a second bank.
+Swiss deposit protection covers deposits up to CHF 100,000 per depositor per bank (certain claims are [privileged](term:deposit-protection); see [deposit protection](term:deposit-protection)). For a company with CHF 22m, that is irrelevant: if a bank fails, Kleio is an unsecured creditor for almost all of it. The protection comes from **which banks** the money is at and **how it is split** — which is why, after Silicon Valley Bank failed in March 2023, many start-up boards (Kleio's included) asked their CFOs to use a second bank.
 
 </Callout>
 
@@ -40,14 +40,14 @@ Swiss deposit protection covers privileged deposits of up to CHF 100,000 per dep
 
 | Person | Role | Treasury tasks | Share of time |
 |---|---|---|---|
-| **Sarah** | CFO ([role page](/org/roles-cfo), [a day with Sarah](/day/sarah)) | Checks balances weekly, maintains the runway model, decides deposits and bank splits, approves every payment, talks to banks, answers the board | ~10% (about half a day a week), much more around fundraising |
+| **Sarah** | CFO ([role page](/org/roles-cfo), [a day with Sarah](/day/sarah)) | Checks balances weekly, maintains the runway model, decides deposits and bank splits, approves every payment, talks to banks, answers the board | ~10% (about half a day a week — [why so little](why:kleio-treasury-two-hours)), much more around fundraising |
 | **Nina** | Accountant | Enters supplier payments as e-banking batches, matches receipts, prepares month-end for the fiduciary | A few hours a week on payments |
 | External fiduciary | [Fiduciary / Treuhänder](term:fiduciary-treuhaender) | Bookkeeping review, VAT returns, statutory accounts, tax filings; no payment authority | Monthly / quarterly |
 | External payroll provider | — | Calculates payroll and social charges (CH and US), tells Sarah how much must be in the account and when | Monthly |
 | CEO (co-founder) | Backup signatory | Signs when Sarah is away; is told about anything unusual | Rarely |
 | Board (investors) | — | Asked for the bank split; approved the investment rules; sees runway every month in the investor update and discusses it quarterly; will approve any venture debt | Monthly / quarterly |
 
-There is no treasury policy document. There is a one-paragraph board resolution: cash may be held only at banks with a strong rating or a cantonal guarantee, in current accounts, deposits of up to 6 months, or government money market funds — and no single bank may hold more than 60% of the cash.
+There is no treasury policy document. There is a one-paragraph board resolution: cash may be held only at banks with a strong rating or a cantonal guarantee, in current accounts, deposits of up to 6 months, or government money market funds — and [no single bank may hold more than 60% of the cash](why:kleio-bank-split-cap). In practice Sarah holds the CHF in 3-month term deposits split across the two Swiss banks (they yield roughly nothing — the split is for bank safety, not return) and the USD in a USD government money-market fund; there is no CHF money-market fund.
 
 ## Systems
 
@@ -72,7 +72,7 @@ Costs are flat (about CHF 1.9m a month, 80% people), receipts are seasonal. The 
 | Jul | 2.9 | 1.9 | +1.0 | 14.1 | Second renewal cohort |
 | Aug–Sep | 0.4 / month | 1.9 / month | −1.5 / month | 11.1 (Sep) | |
 
-Over the year, cash falls by about CHF 11m — roughly the CHF 0.9m average monthly net burn in the company facts. But "cash ÷ last month's burn" gives anything from 12 months (in February) to "infinite" (in January). Sarah therefore uses a rolling 12-month average burn and a month-by-month runway model, not a single ratio. See [annual upfront billing](term:annual-prepayment) and [cash runway](term:cash-runway).
+Over the year, cash falls by about CHF 11m — roughly the CHF 0.9m average monthly net burn in the company facts. But "cash ÷ the just-completed month's net burn" gives anything from about 12 months (February: 19.1 ÷ 1.5) to "infinite" (January, when net cash is +3.5). Sarah therefore uses a rolling 12-month average burn and a month-by-month runway model, not a single ratio. See [annual upfront billing](term:annual-prepayment) and [cash runway](term:cash-runway).
 
 The USD side: Kleio Inc. receives US customers' USD and pays eight US salaries; the Swiss parent receives Stripe USD payouts and pays cloud bills in USD. Net, USD accumulates by roughly USD 1–2m a year. EUR accumulates too (German customers, few EUR costs).
 
@@ -80,7 +80,7 @@ The USD side: Kleio Inc. receives US customers' USD and pays eight US salaries; 
 
 - **Runway misread.** The prepayment seasonality makes the company look healthier in February than in December. Board members who look only at cash balances ask the wrong questions.
 - **Bank concentration and counterparty risk.** Solved crudely by splitting across two banks; still no view of each bank's creditworthiness beyond "big" and "cantonal".
-- **Idle cash earning little.** With the SNB policy rate at 0%, CHF deposits earn close to nothing (illustrative, autumn 2026). USD balances earn materially more: Kleio keeps surplus USD in short US deposits, and the board's rules also allow a government money market fund — which would add an account, a custody relationship and a decision nobody has had time for. See [surplus cash investment](wf:surplus-cash-investment).
+- **Idle cash earning little.** With the SNB policy rate at 0%, CHF deposits earn close to nothing (illustrative, autumn 2026) — the CHF 8m of term deposits are held for [bank-safety diversification](why:kleio-bank-split-cap), not yield. USD balances earn materially more, and Kleio's surplus USD sits in a USD government money-market fund bought through Bank A (the board's rules allow it; a CHF fund is pointless at ≈0% and is not used). See [surplus cash investment](wf:surplus-cash-investment).
 - **FX by accident.** USD and EUR are converted when the CHF account runs low, at the bank's rate, without comparing quotes. The spread is a real but invisible cost.
 - **Payment fraud.** Two signatures, but the two signatories sit next to each other and know each other's habits; a convincing CEO-impersonation email to Nina while Sarah travels is the classic risk. See [fraud investigation](wf:fraud-investigation).
 - **Key-person risk.** Sarah is the only person who understands the whole picture.
@@ -92,8 +92,8 @@ The USD side: Kleio Inc. receives US customers' USD and pays eight US salaries; 
 |---|---|
 | [Daily cash positioning](wf:daily-cash-positioning) | Weekly, not daily: Sarah logs into three portals on Monday and before payroll, types balances into the sheet. 15 minutes. |
 | [Cash forecasting](wf:cash-forecasting) | A monthly runway model, not a 13-week forecast. Key inputs: renewal list, payroll, the Stripe run-rate. |
-| [Liquidity planning](wf:liquidity-planning) | "When do we need to raise?" Rule of thumb: start with 12–15 months of runway left. |
-| [Surplus cash investment](wf:surplus-cash-investment) | CHF 8m in 3-month deposits split across both Swiss banks (for safety — they earn roughly nothing); surplus USD in short US deposits; a government money market fund is allowed but not yet used. |
+| [Liquidity planning](wf:liquidity-planning) | "When do we need to raise?" Rule of thumb: [start with 12–15 months of runway left](why:fundraise-12-15-months). |
+| [Surplus cash investment](wf:surplus-cash-investment) | CHF 8m in 3-month deposits split across both Swiss banks (for safety — they earn roughly nothing); surplus USD in a USD government money-market fund; no CHF money-market fund. |
 | [Funding a subsidiary](wf:funding-subsidiary) | USD sent to Kleio Inc. when a large US renewal is late; otherwise Inc. remits surplus quarterly under its intercompany agreement. |
 | [Payment processing](wf:payment-processing) | Nina prepares batches in e-banking twice a month; Sarah approves in the bank's app. |
 | [Large payment approval](wf:large-payment-approval) | Anything unusual (e.g. a USD 300k cloud prepayment) gets a call-back to the vendor and Sarah's second signature. |

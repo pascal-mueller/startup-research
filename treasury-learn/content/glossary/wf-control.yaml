@@ -16,7 +16,7 @@
   category: Organisation
   plain: A short regular report in which treasury tells the CFO and board about cash, debt, liquidity, financial risks and anything that went wrong.
   professional: "Management report, typically monthly to the CFO and quarterly (condensed) to the board or audit committee, covering cash and debt by entity/currency, net debt, liquidity headroom, debt maturity profile, hedge positions and market values, counterparty exposure versus limits, forecast accuracy, covenant headroom, policy breaches and requested decisions. No standard format; its usefulness depends on the commentary and exceptions."
-  example: "Daniel's September report shows net debt CHF 106m, headroom CHF 176m, leverage 1.36x against a 3.25x covenant, one passive limit breach at the German bank, and asks for a bond-refinancing timetable."
+  example: "Daniel's September report shows net debt CHF 106m, headroom CHF 178m, leverage 1.36x against a 3.25x covenant, one passive limit breach at the German bank, and asks for a bond-refinancing timetable."
   related: [liquidity-headroom, net-debt, covenant-headroom, counterparty-exposure, forecast-accuracy, month-end-close]
 
 - id: debt-maturity-profile
@@ -69,7 +69,7 @@
   aka: [ICS, IKS, internal controls, ICFR, SOX controls]
   category: Risk & control
   plain: The set of checks a company builds into its processes so that errors and fraud are prevented or caught.
-  professional: "Documented controls over financial reporting and operations (approvals, reconciliations, segregation of duties, access rights, confirmations), with owners and evidence. In a Swiss ordinary audit the statutory auditor must confirm that an ICS exists (Art. 728a CO); US-listed companies test controls under SOX 404. Key treasury controls: independent deal confirmation, bank reconciliation, payment dual approval, mandate reviews, limit monitoring."
+  professional: "Documented controls over financial reporting and operations (approvals, reconciliations, segregation of duties, access rights, confirmations), with owners and evidence. In a Swiss ordinary audit the statutory auditor examines whether an ICS exists (Art. 728a CO); US-listed companies test controls under SOX 404. Key treasury controls: independent deal confirmation, bank reconciliation, payment dual approval, mandate reviews, limit monitoring."
   example: "Helvetic's ICS lists 'deals confirmed by someone other than the dealer' as a key control; the auditor samples confirmations and finds two confirmed by Daniel himself."
   related: [segregation-of-duties, four-eyes-principle, three-lines-model, treasury-policy]
 

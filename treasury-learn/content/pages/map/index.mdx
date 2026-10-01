@@ -19,7 +19,7 @@ Read the diagram top-left to right, then down:
 3. **[Cash management](/map/cash-management)** starts from today's actual bank balances, adds the forecast for the next days, and moves cash to where it is needed — by transfer, sweep, pool or intercompany loan.
 4. What is left over goes to **[investments](/map/investments)** (or, more often, repays debt); what is missing comes from **[debt & financing](/map/debt)** — credit lines, loans, bonds, commercial paper.
 5. The same forecast defines **[FX](/map/fx)** exposure: forecast EUR receipts in a CHF company *are* the exposure to be hedged. Debt creates interest-rate exposure; deposits and hedges create bank counterparty exposure.
-6. **[Risk](/map/risk)** is the frame around all of it: the treasury policy sets hedge ratios, counterparty limits, minimum cash and approval rights, and middle-office checks report against them.
+6. **[Risk](/map/risk)** is the frame around all of it: the treasury policy sets hedge ratios, counterparty limits, minimum cash and approval rights, and [middle-office checks](/map/risk) report against them.
 7. Underneath, the **execution rails**: **[payments](/map/payments)** move the money, **[bank relationships](/map/banking)** provide the accounts, credit and services, and **[technology](/map/technology)** carries the data between banks, the ERP and the people who decide.
 
 <Callout type="synthesis" title="The one-sentence version">
@@ -52,9 +52,9 @@ A single business event touches several areas at once — which is why "the FX p
 | Area | What happens | Who |
 |---|---|---|
 | Working capital | The receivable goes overdue; credit control in Italy calls the customer and gets a promised date | Giulia's AR team |
-| Cash forecasting | Week-1 receipts miss by EUR 2.3m; Lea classifies it as timing and moves it three weeks out; Daniel haircuts Italy's later weeks | Lea, Daniel |
+| Cash forecasting | Week-1 receipts miss by EUR 2.3m; Lea classifies it as timing and moves it three weeks out; Daniel haircuts Italy's receipts by 15% in weeks 5–13 | Lea, Daniel |
 | Cash management | HM Italia's account will not cover Friday's supplier run; Lea proposes a EUR 1.5m intercompany transfer from the parent | Lea proposes, Daniel approves |
-| Debt | With less cash at the parent, Daniel rolls CHF 3m more of the RCF drawing than planned | Daniel |
+| Debt | With less cash at the parent, Daniel keeps CHF 3m more of the RCF drawing outstanding at the next 15th rollover than planned | Daniel |
 | FX | A EUR/CHF forward sold for this week's inflow matures with no EUR to deliver; Lea arranges a 3-week swap to roll it | Lea, Daniel |
 | Risk | Covenants unaffected; the customer's credit limit is reviewed by credit control | Giulia, credit control |
 | Payments / banking | The intercompany transfer goes out before the EUR cut-off; the roll is confirmed and settled by the bank | Lea |

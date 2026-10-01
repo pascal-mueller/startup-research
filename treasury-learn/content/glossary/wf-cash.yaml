@@ -9,7 +9,7 @@
   category: Cash & liquidity
   plain: A month-by-month view, usually 12–24 months ahead, of whether the company's cash and committed credit lines will cover everything it must pay — in a normal year and in a bad one.
   professional: "A medium-term projection of available liquidity (usable cash plus undrawn committed facilities, less trapped and minimum operating cash) against obligations, including debt maturities, facility expiries, dividends and covenant test dates, with stress scenarios and a funding plan. Distinct from the 13-week cash forecast, which predicts flows; the liquidity plan tests sufficiency and drives financing decisions. In Switzerland, boards' statutory duty to monitor solvency (Art. 725 CO) is commonly read as requiring a rolling plan of at least 12 months."
-  example: "Helvetic's October 2026 plan shows ample headroom (CHF 150m+) in the base case, but in the downturn case leverage reaches 3.3x against a 3.25x covenant — so the plan's real message is about the dividend decision and the 2028 refinancing."
+  example: "Helvetic's November 2026 plan shows headroom above CHF 145m through September 2027 in the base case, but in the downturn case leverage reaches 3.45x at the December 2027 covenant test against the 3.25x covenant — so the plan's real message is about the dividend decision and the 2028 refinancing."
   related: [liquidity-headroom, liquidity-stress-test, funding-plan, short-term-forecast, medium-term-forecast, covenant-headroom]
   confusedWith: "**Cash forecast** — the forecast asks 'how much cash will we have?'; the liquidity plan asks 'is that enough, including credit lines, under stress, and what do we do if not?'"
 
@@ -46,7 +46,7 @@
   category: Investments
   plain: Money market funds come in regulated types that differ in what they hold and whether their unit price can move.
   professional: "Under the EU Money Market Funds Regulation (2017/1131): public-debt CNAV funds (at least 99.5% government instruments, constant NAV), LVNAV funds (constant NAV allowed while within 20 bp of mark-to-market) and VNAV funds (floating NAV). Short-term LVNAV/CNAV funds must hold at least 10% daily and 30% weekly maturing assets, with weighted average maturity ≤ 60 days and weighted average life ≤ 120 days, and can apply liquidity fees or gates in stress. In the US, government MMFs (SEC Rule 2a-7) are the typical corporate choice; institutional prime funds have faced mandatory liquidity fees since the 2023 reforms."
-  example: "Helvetic parks EUR 10m for four weeks in a EUR LVNAV fund (≈1.8–1.9% net, illustrative) rather than a 1-month deposit, because its main Swiss bank is near its counterparty limit."
+  example: "Helvetic parks EUR 10m for four weeks in a EUR LVNAV fund (≈2.2% net, illustrative) rather than a 1-month deposit, because its main Swiss bank is at its counterparty limit."
   related: [money-market-fund, investment-policy, counterparty-limit, yield]
 
 - id: negative-carry
@@ -100,17 +100,29 @@
   aka: [ESTV safe harbour rates, SFTA safe harbour rates, steuerlich anerkannte Zinssätze]
   category: Accounting & tax
   plain: The interest rates the Swiss tax authority publishes each year that it will accept on loans between related companies without further proof.
-  professional: "Annual circular letters of the Swiss Federal Tax Administration setting minimum rates for loans by Swiss companies to related parties and maximum rates for loans from related parties, in CHF and major foreign currencies. Deviations are possible with arm's-length evidence. They protect only the Swiss side — the counterparty's tax authority applies its own rules."
-  example: "For 2026 the minimum rate on an equity-financed CHF loan to a related party is 0.75%; Helvetic's USD loan to HM Inc. at 4.00% matches the published USD rate."
+  professional: >-
+    Annual circular letters of the Swiss Federal Tax Administration setting minimum rates for loans by Swiss companies
+    to shareholders or related parties and maximum rates for loans from them, in CHF and major foreign currencies, in
+    practice for terms beyond about twelve months. Deviations are possible with arm's-length evidence. They protect only
+    the Swiss side — the counterparty's tax authority applies its own rules — and they do not cover flows with no Swiss
+    party at all (e.g. a loan between two foreign sister companies is benchmarked under those countries' rules).
+  example: "For 2026 the floor on a CHF loan to a related party is 0.75% (a debt-financed loan needs the lender's own funding cost plus a spread, but at least 0.75%); foreign-currency loans carry their own floors — EUR 2.50% and USD 4.00% — with the CHF floor as a second floor. Helvetic's USD loan to HM Inc. at 4.00% matches the published USD minimum."
   related: [transfer-pricing, intercompany-loan, hidden-profit-distribution, withholding-tax]
 
 - id: hidden-profit-distribution
   term: Hidden profit distribution
   aka: [constructive dividend, verdeckte Gewinnausschüttung, deemed dividend]
   category: Accounting & tax
-  plain: When a company gives a shareholder or related company a benefit it wouldn't give a stranger, tax authorities can treat it as if it had paid a dividend.
-  professional: "A non-arm's-length benefit to a shareholder or related party (e.g. an intercompany loan at below-market interest, or excessive interest paid to a related lender) that tax authorities requalify as a distribution — in Switzerland with corporate income-tax adjustment and potentially 35% withholding tax on the deemed dividend."
-  example: "Alpine had lent its US subsidiary money interest-free for years; its tax adviser warned that the Swiss tax authority could treat the missing interest as a hidden profit distribution, so Alpine now charges the safe-harbour rate."
+  plain: When a company gives one of its owners a benefit it would not give a stranger — a cheap loan, a waived debt — the tax authority can treat it as if the company had paid a dividend.
+  professional: >-
+    In Swiss practice, a non-arm's-length benefit conferred on a **shareholder** (or on a party standing in the
+    shareholder's place) that the tax authority requalifies as a distribution: the company's taxable profit is increased
+    and the deemed dividend can attract 35% Swiss withholding tax. The direction matters. A below-market loan from a
+    Swiss company **to its shareholder** risks this treatment. A below-market loan **to the company's own subsidiary**
+    does not — there the standard Swiss consequence is imputed interest income at the Swiss lender (and possibly a
+    hidden capital contribution at the borrower). Excessive interest paid to a related lender who is also a shareholder
+    falls on the shareholder side of the line.
+  example: "Alpine had lent its US subsidiary money interest-free for years. The tax adviser's point was directional: the Swiss tax authority would impute the missing interest as income of Alpine AG — the constructive-dividend machinery with its 35% withholding tax would kick in only if the benefit had flowed to Alpine's own shareholders (a cheap loan to a shareholder, a waived receivable). Alpine now charges the safe-harbour rate."
   related: [safe-harbour-rates, transfer-pricing, withholding-tax]
 
 - id: statutory-reserve
@@ -119,5 +131,5 @@
   category: Accounting & tax
   plain: A share of profits that Chinese companies must set aside each year and cannot pay out as dividends.
   professional: "Under Chinese company law, a company (including a foreign-invested enterprise) must allocate at least 10% of after-tax profit to a statutory reserve until it reaches 50% of registered capital; the reserve is not distributable. Together with the once-a-year, post-audit dividend cycle and dividend withholding tax, this is a main reason cash is 'trapped' in Chinese subsidiaries."
-  example: "Of HM Suzhou's CNY 25m profit, CNY 2.5m must go to the reserve before a dividend; withholding tax is then deducted from the CNY 22.5m distribution."
+  example: "Of HM Suzhou's CNY 25m profit, CNY 2.5m must go to the reserve before a dividend; withholding tax is then deducted from the CNY 22.5m distribution — 5% under the China–Switzerland treaty for the wholly-owned Swiss parent, leaving CNY 21.4m (the 10% domestic rate would leave CNY 20.3m)."
   related: [trapped-cash, repatriation, withholding-tax]

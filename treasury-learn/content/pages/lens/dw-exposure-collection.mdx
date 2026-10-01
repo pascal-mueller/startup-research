@@ -2,7 +2,7 @@
 title: "Digital worker: collect and reconcile this month's FX exposures"
 nav: "DW · FX exposure collection"
 order: 8
-summary: The monthly grind before any hedging decision — collecting, reconciling and cleaning subsidiary exposure data — modelled as an AI-prepared assignment. The hedge decision stays with the treasury manager and CFO.
+summary: The monthly grind before any hedging decision — collecting, reconciling and cleaning subsidiary exposure data — modelled as an AI-prepared assignment on the canonical WD2–WD7 timeline. The hedge decision stays with the treasury manager and CFO.
 related: [/workflows/fx-exposure-management, /workflows/fx-hedging, /lens/matrix, /map/fx]
 ---
 
@@ -21,18 +21,23 @@ areas and exposure data gathering among existing RPA uses[](cite:pwc-gts-2025).
 
 Hedging decisions are only as good as the [exposure](term:fx-exposure) numbers behind them, and the numbers are the
 weak part: forecast exposures come from subsidiary templates, balance-sheet exposures from several ERPs with different
-mappings, and intercompany balances often disagree between the two sides. Collecting and cleaning this is days of
-analyst work a month, it is checkable against ledgers, and a wrong number is caught before it becomes a trade — as long
-as a human still decides the hedge.
+mappings, and intercompany balances often disagree between the two sides. At Helvetic, Lea spends roughly **WD2–WD6 of
+each month** on this — several days of analyst work a month, not a morning — and it is checkable against ledgers. A
+wrong number is caught before it becomes a trade [as long as the cycle order holds](why:wd5-wd7-hedge-cycle): submissions by WD5, Lea consolidates, Daniel reviews the report on WD7, and
+hedge adjustments run after that review. A "clean report by working day 4" cannot include forecast exposures whose
+submission deadline is WD5 — the deadline exists because the stragglers' flows must be in before anyone computes a
+hedge.
 
 <DigitalWorker id="dw-exposure-collection" />
 
 ## A worked month-end
 
-<Example title="October close: three anomalies before Daniel's hedge meeting" company="helvetic" open>
+<Example title="The November cycle: three anomalies and a passive over-hedge before Daniel's WD7 review" company="helvetic" open>
 
-By working day 4 the system has reconciled balance-sheet exposures for seven of eight subsidiaries to their ledgers
-(the Chinese entity's ERP export is late) and flags:
+**WD2** — Lea sends the exposure template to the eight subsidiaries with the closing rates; deadline WD5 noon
+([collection window WD2–WD6](why:wd5-wd7-hedge-cycle)). **By WD3–WD4** the system has reconciled the
+balance-sheet exposures for seven of eight subsidiaries to their ledgers (the Chinese entity's ERP export is late) and
+flags three anomalies. **WD5–WD6** the submissions arrive and the forecast exposures are cleaned:
 
 | # | Anomaly | Evidence | Resolution |
 |---|---|---|---|
@@ -40,30 +45,40 @@ By working day 4 the system has reconciled balance-sheet exposures for seven of 
 | 2 | HM Italia: 6-month EUR sales forecast down 30% vs last month | No lost order in the CRM note or Giulia's comments | Giulia: one large order moved to next year — real, not an error |
 | 3 | Intercompany: HM Deutschland shows EUR 1.1m payable to HM AG; HM AG shows EUR 0.8m receivable | IC ledgers | Unresolved; excluded from netting until accounting confirms |
 
-**Draft hedge-gap view (for Daniel, not for execution):** after the corrections, 3–6-month EUR net exposure is hedged at
-a ratio below the policy corridor; the system lists the forward trades that would bring it back inside, with tenor and
-amount, and marks the Italian order change as the reason the gap moved. Daniel reduces the proposed amount because he
-doubts the order will return at all, and schedules the trade. Authorised dealers execute on the bank platform; back
-office matches the confirmation.
+**WD7 — the draft hedge-gap view (for Daniel, not for execution):** after the corrections, the system shows coverage
+against the [graded bands](why:hedge-bands-graded) per rolling calendar quarter — Q4 2026 at 74% inside its 60–90%
+band, and **Q1 2027 at 75% (EUR 30m of forwards against EUR 40m exposure), above its 40–70% band**. It does not
+propose buying anything: a ratio above the band is a [passive over-hedge](why:passive-vs-active-breach), and the
+policy answer is a correction within the month, reported as passive. The system lists the rebalance — roll about
+EUR 3m of Q1 forwards out to Q2, leaving Q1 at 27/40 = 68% and Q2 at 15/29 ≈ 51%, both in band — with the Italian
+order change shown as one of the reasons the exposure moved. Daniel decides the roll, halves the Italian forecast
+further ("that order does not come back this year — record the override against Giulia"), and schedules it. "No new
+hedges this week" stays true: no new *buying*; the rebalance is a roll.
 
-**Recorded:** anomaly #1 true positive; #2 a true change (useful flag, not an error); #3 open; Daniel's reduction and
-reason stored against the Italian entity.
+**Execution and records:** Daniel deals within his mandate on the bank platform (up to 12 months and CHF 20m per deal;
+options and anything longer need Thomas) and **Lea matches the confirmations and keeps the hedge register** — at a
+two-person treasury there is no back office; that function exists at multinationals like [GlobalChem](co:globalchem),
+not here. Anomaly #1 recorded as a true positive; #2 as a true change (useful flag, not an error) plus Daniel's
+override and its reason; #3 open; forecast-versus-invoiced accuracy starts accumulating per entity.
 
 </Example>
 
 ## Limits
 
 - **Forecast exposures are opinions.** The system can compare them with later invoicing and estimate each entity's
-  bias; it cannot make the forecast true.
-- **Hedge accounting.** Where hedge accounting is applied, exposure records are part of the documentation auditors test.
-  Anything the system changes must be logged and approved.
+  bias; it cannot make the forecast true — and the graded bands exist precisely because the further out the forecast,
+  the less of it deserves hedging.
+- **Hedge accounting.** Where hedge accounting is applied, exposure records are part of the documentation auditors test
+  (at Helvetic the Swiss GAAP FER disclosure rests on "highly probable" future sales). Anything the system changes must
+  be logged and approved.
 - **Multi-ERP access** is the practical blocker at mid-market groups; without read access to local ledgers, the system is
   back to reading templates.
 
 <Callout type="interview" title="Questions this model suggests">
 
-To the FX or treasury manager: "Where do your exposure numbers come from, and when did one last turn out wrong?" To a
-subsidiary controller: "How long does the exposure template take, and what do you guess?" To the auditor-facing person:
-"What documentation do you keep for hedge designations?"
+To the FX or treasury manager: "Where do your exposure numbers come from, and when did one last turn out wrong?" "When
+you are outside a band, what decides whether you trade or wait — and who signs?" To a subsidiary controller: "How long
+does the exposure template take, and what do you guess?" To the auditor-facing person: "What documentation do you keep
+for hedge designations?"
 
 </Callout>

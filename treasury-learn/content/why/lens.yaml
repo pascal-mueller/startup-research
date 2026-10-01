@@ -1,0 +1,185 @@
+# Why notes for the Agentic Treasury / Startup Lens stream (lens).
+# Each note justifies a number, threshold or boundary decision that appears in the lens pages or data.
+# Ids are prefixed `lens-` to stay unique across the 142+ why ids of other streams.
+- id: lens-recommendation-not-instruction
+  claim: "The morning note is a recommendation, never an instruction"
+  short: |
+    Releasing a transfer is a legal act by bank-registered signatories under the payment mandate; software can hold no
+    mandate, so the system's output must stop exactly one step short of the signature — and the four-eyes control only
+    survives if the maker is not also the checker.
+  detail: |
+    Helvetic's bank mandate registers named humans with collective signature by two; the banks execute only
+    instructions those people sign. An AI system is not a legal person and cannot be registered, so the boundary of the
+    digital worker falls where the mandate falls: preparation and proposal (what Lea does today) on one side, release
+    (Daniel; above CHF 2m the CFO and the CEO co-sign in addition — [why that threshold](why:ceo-cosign-threshold)) on
+    the other. If the system released what it proposed, "four eyes" would be one human plus a machine — one human.
+    The product consequence: the sellable claim is "prepared, checked, evidenced", never "executed" — and the same line
+    is what makes the design auditable ([maker, never checker](why:lea-never-releases)).
+  check: |
+    If bank mandates began registering software signatories, or an auditor accepted machine-maker plus machine-checker,
+    the boundary would move. Neither is the case in 2026.
+  terms: [four-eyes-principle, payment-mandate]
+  sources: []
+
+- id: lens-dw-owner-split
+  claim: "Each digital worker does Lea's work under Daniel's review — and that is why the owner cannot change"
+  short: |
+    The modelled assignments are the preparation half of a split that exists for control reasons, not staffing ones:
+    everything the analyst prepares is checkable before money moves, and everything the manager decides sits inside a
+    mandate. The system inherits the half with dense feedback; the human keeps the half that is reserved.
+  detail: |
+    At Helvetic two people cover eight subsidiaries, so the work splits by power, not by task
+    ([the split](why:prepare-decide-split)). All four digital workers sit on Lea's side of that line — assemble,
+    reconcile, explain, draft — and each hands its output to a decision Daniel (or the CFO) owns: transfers under
+    [four-eyes](why:lea-never-releases), hedge ratios with the CFO, forecast overrides, which banks to challenge.
+    Two derivable consequences. First, the *interface* is defined by the human owner's real behaviour: whatever the
+    manager does with the output (accept, edit, reject, defer) must be captured in the system, or the learning loop
+    exists only in the bank portal. Second, "who does it today" predicts where the boundary is robust: the daily
+    positioning owner changes nothing if the tool changes, whereas an assignment whose real owner is a relationship
+    (bank negotiations) or a mandate (approval) cannot be transferred at all, however accurate the system gets.
+  check: |
+    If an interview shows the analyst is not actually the preparer (e.g. the accountant builds the position), the model
+    is wrong for that company and the owner line must be re-derived — the boundary logic itself stands.
+  terms: [four-eyes-principle]
+
+- id: lens-matrix-scoring
+  claim: "Why the matrix scores what it scores"
+  short: |
+    The 16 criteria are not a quality scorecard; each stands for a cost or a constraint of delegating an assignment.
+    Three measure learnability (frequency × feedback × verifiability), three measure blast radius (consequence,
+    regulatory, trust), the rest feasibility and product shape — which is why the class is not a weighted sum.
+  detail: |
+    Mapping criterion → constraint: *frequency × feedback* = how fast a system could improve (daily accept/edit signals
+    beat quarterly ones); *verifiability × consequence* = where human review must sit — an assignment is delegable only
+    as far as its errors stay catchable before they cost money, which is why [bank fee analysis](wf:bank-fee-analysis)
+    (checkable, CHF-level consequences) scores differently from [large payment approval](wf:large-payment-approval)
+    (unverifiable until the money is gone, irrecoverable); *judgment, regulatory, trust* = what cannot be delegated at
+    all because a named human is reserved by mandate, law or accountability; *value × human involvement* = the prize;
+    *narrow, expand, defensibility* = the business shape. The class is deliberately not the sum: one reserved act is
+    decisive (approval is "hard" whatever its feasibility scores), and one commodity feature is fatal for the startup
+    question but not for the agent question. The two grey criteria (current automation, current human involvement) are
+    context: they describe the incumbent state, so a high score cuts both ways.
+  check: |
+    A workflow rated "hard" despite high learnability and low blast radius would falsify this mapping — which is why
+    every score carries a one-line reason in the matrix, so a reader can disagree with the reason instead of the number.
+
+- id: lens-variance-cutoffs
+  claim: "Variance triage: explanation effort is cut off by size, flags never are"
+  short: |
+    The cutoff decides which lines get a written explanation — not which lines get looked at. The worked week's
+    CHF 0.18m duplicate sits under any sane amount threshold and is exactly the line that mattered, because pattern
+    signals escalate regardless of size.
+  detail: |
+    Two separate rules do the work in the variance table. (a) *Explanation* threshold: an explanation costs the analyst
+    10–30 minutes and there are ~40 lines a week, so effort is triaged relative to the entity and to headroom — the
+    CHF 0.02m line is shown with totals but goes unexplained. (b) *Flag* rule: identical debits to the same supplier
+    with the same reference, sudden entity-level bias, or any fraud-shaped pattern bypasses (a) entirely. The judgment
+    a system must learn is where (a) sits and which patterns trigger (b) — a fixed amount cutoff would have buried the
+    duplicate; no cutoff would drown Daniel in explanations. This is also why the reasoning prompt says "big enough to
+    matter — relative to the entity and to headroom", not "above CHF 100k".
+  check: |
+    If a quarter's control findings (duplicates, direct debits nobody forecast) all sat above the explanation cutoff,
+    the cutoff could be pure size; the 2026 worked week shows they do not.
+  terms: [variance-analysis]
+
+- id: lens-fee-check-vs-negotiation
+  claim: "Fee checking is automatable; the negotiation is not"
+  short: |
+    Comparing a billed unit price with an agreed price is objective and per-line — machine work once the service
+    mapping exists. Deciding how hard to push which bank is judgment about credit, relationships and wallet share,
+    and its outcome has no ground truth to learn from.
+  detail: |
+    The check decomposes into extraction (messy but mechanical), mapping (learnable, reusable per bank — the mapping
+    tables are the only durable asset) and comparison (deterministic). All three are auditable per line, so the whole
+    check can be delegated. The negotiation cannot: disputing CHF 8.8k of lifting fees with a bank that holds 40 of the
+    CHF 200m RCF commitments trades money against credit relationship capital — the workflow's own judgment line says
+    recovering CHF 2,000 may not be worth the friction. Crucially, a negotiation has *no counterfactual*: you never
+    observe the price you would have got by fighting harder, so there is no outcome label, no evaluation set, and no
+    way to say a system's negotiation was "right" ([wallet share](term:wallet-share) is the context, not the score).
+    Hence the boundary in the model: system drafts the dispute, Daniel decides tone, target and whether to send.
+  check: |
+    An agent that negotiated pricing and beat human negotiators on a controlled benchmark would move the boundary;
+    no such evidence exists, and the negotiation is also where the multi-year relationship lives.
+  terms: [wallet-share]
+
+- id: lens-vendor-access-gate
+  claim: "Who must approve the agent's read access"
+  short: |
+    Giving a vendor read access to every bank statement, the treasury mailbox and ERP exports is a bank-contract, audit
+    and data-protection decision — EBICS/SWIFT subscriber terms restrict third-party access, the auditor treats the
+    vendor as outsourced processing, and retention and residency must be contracted before the pilot, not after.
+  detail: |
+    Enumerate the gate, because it is the first wall a startup hits after a pilot: (1) *Bank channel contracts* —
+    EBICS and SWIFT subscriber agreements name who may access the channel and on whose device; a vendor's cloud
+    processing the statements is a change to report, and a connectivity tool re-scoping its own access is the cheaper
+    route. (2) *Data protection* — statements, mailbox and ERP exports carry payment and personal data; a processing
+    agreement with retention and residency terms is required (Swiss FADP / GDPR). (3) *Audit and ICS* — outsourced
+    processing must appear in the control documentation: who can see and change what, where every correction is
+    logged. (4) *The bank's KYC view* of third-party access at the next refresh. None of these is a treasury decision,
+    so the sale is procurement-led and slow, and the two-person treasury team cannot grant the access alone. This is
+    also why "read-only" is not just a safety design but a sales argument: it is the only access level the gatekeeper
+    can approve without an audit project.
+  check: |
+    A pilot running on exported copies loosens the gate for the pilot; production access re-opens it. Ask who signed
+    the last outsourced-processing sign-off — if nobody did, the pilot is running outside the control system.
+
+- id: lens-who-eats-the-error
+  claim: "Who eats a wrong output"
+  short: |
+    Because the system is maker and the human is checker, a wrong approved proposal is the company's loss — the bank
+    executes signed instructions. That is why the sellable design logs evidence per line, and why outcome-based
+    pricing appears only on measurable outputs, never on decisions.
+  detail: |
+    Loss allocation follows the signature: the bank executes what authorised humans sign, so an approved-but-wrong
+    transfer proposal is the company's own act (insurance covers fraud and malfunction, rarely "we approved a bad
+    recommendation"). Three consequences for the boundary. (a) The contract can make the vendor liable for the
+    mechanical layer — extraction, arithmetic, mapping — but the decision layer stays with the company by construction.
+    (b) Evidence logging per line is therefore not hygiene but liability management: it is what lets the company show
+    the approver saw a checked, sourced proposal. (c) It explains the commercial model: HighRadius launched
+    outcome-based pricing in February 2026 — zero implementation and subscription fees until go-live, then a share of
+    realised gains[](cite:highradius-obp-2026) — feasible exactly where outputs are measurable (fee recoveries,
+    [DSO](term:dso), touchless rates); no vendor prices a share of "the treasurer's decisions", because there is no
+    measurable outcome to share.
+  check: |
+    If insurers or vendors began underwriting decision outcomes in treasury, the allocation argument weakens. The
+    interview version: "when your proposal is wrong and we approve it, who pays?"
+
+- id: lens-time-price-bound
+  claim: "The willingness-to-pay bound for analyst-time products"
+  short: |
+    30–90 minutes of analyst time a day is 125–375 hours a year — under two months of one working year. At fully
+    loaded mid-market analyst cost (CHF 120–160k) that is CHF 9–35k of time; a price above it must be justified by
+    money moved, not time saved.
+  detail: |
+    Arithmetic: 0.5–1.5 h × ~250 business days = 125–375 h ≈ 7–22% of a ~1,700 h working year. Fully loaded analyst
+    cost CHF 120–160k → CHF 70–95 per hour → CHF 9–35k of recoverable time a year across the whole assignment class.
+    That is the *bound*, and it is deliberately crude: it ignores the money side (idle balances, avoided overdrafts,
+    FX spreads — at [Kleio's scale](why:kleio-fx-spread-cost) alone the invisible FX spread beats all fees) and the
+    risk side (one avoided duplicate or fraud attempt can exceed the annual fee). The bound's use is sanity-checking:
+    "the mid-market buyer has a small software budget" is credible precisely because time alone does not clear a
+    CHF 50k price — so the pitch must claim money or risk, and the interview must ask what the software budget
+    actually is before building.
+  check: |
+    If interviewees name budgets far below the time value, they are buying risk or money, not time — and a time-saving
+    pitch is mis-positioned. If analyst costs are much lower in a market, the bound scales down with it.
+
+- id: lens-eval-set-ownership
+  claim: "The labelled data is the customer's asset"
+  short: |
+    Corrections and outcomes are simultaneously the learning loop and the switching cost. If the vendor owns them,
+    the customer cannot measure the system on exit or test a competitor on their own history — so the contract must
+    make the evaluation set exportable and the gates reproducible outside the vendor.
+  detail: |
+    What accumulates per year at Helvetic-scale: ~250 mornings × 3–7 proposals with accept/edit/reject and reasons,
+    weekly variance verdicts (~40 lines), monthly exposure corrections, and objective outcome labels (projected vs
+    actual balances, "timing" items that did or did not arrive). This is operational history and partly audit evidence
+    ([evaluation set](term:evaluation-set)). Ownership decides three things: (a) whether the company can *measure* the
+    system after a dispute — a vendor-held set cannot testify against its owner; (b) whether a competitor can be
+    trialled on the customer's own history (the only fair comparison); (c) audit access to correction trails. Design
+    rule that follows: per-line provenance, open export, and every autonomy gate measured on data the customer can
+    re-run themselves. The same data is why incumbents' switching costs look attractive to them and dangerous to the
+    buyer — say whose it is in writing.
+  check: |
+    "Can we export the complete labelled history and re-run your gate numbers ourselves?" — a refusal is a lock-in
+    flag and should lower the defensibility score of the vendor, not raise it.
+  terms: [evaluation-set]

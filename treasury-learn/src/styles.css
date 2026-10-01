@@ -129,6 +129,18 @@ td p, th p, td li { font: inherit !important; margin: 0 0 4px; }
 a.term { color: var(--term); border-bottom: 1px dotted color-mix(in srgb, var(--term) 60%, transparent); }
 a.term:hover { text-decoration: none; border-bottom-style: solid; }
 .term-missing { color: var(--c-warning) !important; border-bottom: 1px dashed var(--c-warning); }
+button.why {
+  font: inherit; color: inherit; background: color-mix(in srgb, var(--term) 12%, transparent);
+  border: 0; border-bottom: 1px dashed color-mix(in srgb, var(--term) 70%, transparent);
+  border-radius: 3px; padding: 0 3px; cursor: help;
+}
+button.why:hover { background: color-mix(in srgb, var(--term) 22%, transparent); border-bottom-style: solid; }
+.why-missing { color: var(--c-warning) !important; border-bottom: 1px dashed var(--c-warning); }
+.popover-detail { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 12.5px; }
+.popover-detail p { margin: 4px 0; }
+.popover-check { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.popover-check p { display: inline; margin: 0; }
+.popover { max-height: calc(100vh - 24px); overflow-y: auto; }
 .xref-wf { color: var(--wf); font-weight: 520; }
 .cites { line-height: 0; margin-left: 1px; }
 .cite { font: 600 10.5px var(--sans); color: var(--accent); padding: 0 2px; }
